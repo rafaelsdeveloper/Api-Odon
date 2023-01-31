@@ -1,0 +1,992 @@
+55007     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6000:1c6:0:0:0:0 with SMTP id t6csp2677611wrx; Sun, 30
+ May 2021 21:26:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx4iWbrgO2oumP8XhuP6TlMJI7rm7QgyZv/KNqnUcKf4iUV6pAA5vwzrHb0Kj6D5p1zaiED
+X-Received: by 2002:ac8:570a:: with SMTP id 10mr13255346qtw.360.1622435187505;
+ Sun, 30 May 2021 21:26:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1622435187; cv=none; d=google.com;
+ s=arc-20160816;
+ b=zIE5XB1NukWCL+WibwBSe1xrQcNKHAp0toXz5F7JeoKgccXGPW5U3vWWjbcpXBRK7u
+ HhGIdMZ67BHlgLA9XjxGDiozZtIPk2JAUKju6w4tyRoqSXLywb7GrPE6FVgUpGot4i/A
+ shtRDO2LqV74iTlhED44vL4n5qOhVcGXt/U6c+nw1knHU/+YVTHcp0Wijn6NnBOJN4A4
+ SmMNY8M8QNXeaj/4U91SRWlsPgI1VIxsc4OXxtQipvN9an3sRxaJx6aGprOMM8JAJnYm
+ yi0UtrSVguZzvClaFjU9GDnazBEidNbgfrzfKfcSMqAuhZe0pyqydvW3URdTJ8W9VDxp QFHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816;
+ h=feedback-id:date:message-id:content-transfer-encoding:mime-version
+ :subject:to:reply-to:from:dkim-signature:dkim-signature;
+ bh=haHyQUBhsZZPHQ6VOOSdOqxPYOhG+8cp2cuAjOpy5BI=;
+ b=WSmfNkiKCq9qociJxtfFaiBA3LuVdF/6H4rOfBHcwvZfWEoHKwYusCx47moGXbEGM5
+ aUbTsnk87OtmnqqiQnL2KXnvQz1Dx5sk/hCjZYwz5unyG3n+ZCy0ux7PhExnAdiYvpDG
+ k36xFNm2ng0xvUW1UODldFSXUM1aM4hlVa2TS2/8R4AIa8K3APcZPA2wln5Rcx4EE3Af
+ d/zAH6HammZskwCk1lPOmCV5YlIdWyq1j7S0kpe2sCgi1c4WqKqBM0GuEkUbY0a5ufq3
+ iGPoc/E1kbSu969D3IufcQWS1IIXJn6tnvUIjIfFJkhAHTYEX3Poo+pL4AXgDoopT7+5 aNyg==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@neuvoo.com
+ header.s=i65xoyebvc2grkobxgtmq2vau2jauwoy header.b="iqTm/Iru"; dkim=pass
+ header.i=@amazonses.com header.s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug
+ header.b=UD7idJw9; spf=pass (google.com: domain of
+ 01000179c0ac4921-fc96a45a-b6dd-4577-a607-3361af281aa4-000000@amazonses.com
+ designates 54.240.11.17 as permitted sender)
+ smtp.mailfrom=01000179c0ac4921-fc96a45a-b6dd-4577-a607-3361af281aa4-000000@amazonses.com;
+ dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=neuvoo.com
+Return-Path: <01000179c0ac4921-fc96a45a-b6dd-4577-a607-3361af281aa4-000000@amazonses.com>
+Received: from a11-17.smtp-out.amazonses.com (a11-17.smtp-out.amazonses.com.
+ [54.240.11.17]) by mx.google.com with ESMTPS id
+ j6si8855611qvb.136.2021.05.30.21.26.27 for <faeldroom46@gmail.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128); Sun, 30 May 2021
+ 21:26:27 -0700 (PDT)
+Received-SPF: pass (google.com: domain of
+ 01000179c0ac4921-fc96a45a-b6dd-4577-a607-3361af281aa4-000000@amazonses.com
+ designates 54.240.11.17 as permitted sender) client-ip=54.240.11.17;
+Authentication-Results: mx.google.com; dkim=pass header.i=@neuvoo.com
+ header.s=i65xoyebvc2grkobxgtmq2vau2jauwoy header.b="iqTm/Iru"; dkim=pass
+ header.i=@amazonses.com header.s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug
+ header.b=UD7idJw9; spf=pass (google.com: domain of
+ 01000179c0ac4921-fc96a45a-b6dd-4577-a607-3361af281aa4-000000@amazonses.com
+ designates 54.240.11.17 as permitted sender)
+ smtp.mailfrom=01000179c0ac4921-fc96a45a-b6dd-4577-a607-3361af281aa4-000000@amazonses.com;
+ dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=neuvoo.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=i65xoyebvc2grkobxgtmq2vau2jauwoy; d=neuvoo.com; t=1622435187;
+ h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date;
+ bh=36Tw3Qdg1MBMxDCZ3DAJCwlKu94hE9n14vKA7b7GsDs=;
+ b=iqTm/Irur4O0NilNcwQctedeHOBBBZFy8N2T0qkW4drzXBrhLbTPZS3XFUmUoX3V
+ M/0KPqezp6Ur/KYSJ1n+BFseqNxxEoqtyTGGTR/+LTwsV+g3Ju/+QhLB9DJoWbH+dOC
+ Fzc4ATnq+OmSNHrJ6deNQoNizTQmYulJsaajI78Y=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1622435187;
+ h=From:Reply-To:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date:Feedback-ID;
+ bh=36Tw3Qdg1MBMxDCZ3DAJCwlKu94hE9n14vKA7b7GsDs=;
+ b=UD7idJw9b08QRLZcGH0FD9eRrtfBY+qbcTbEoq7txqPS1zGKFcffvhdftOq8Brtf
+ UlFlfSJXSlp/fg569IO3xxWgexUuuYKcrIGS1IQ12v2DBc/EkWnKvq6Gy9eeBSsk3ey
+ vBT+y/OhZyDscUWAlMGabj+dHVVoN94EdZ7cTo1g=
+From: "neuvoo.pt" <job@neuvoo.com>
+Reply-To: no-reply@neuvoo.com
+To: faeldroom46@gmail.com
+Subject: =?utf-8?B?MjcgRW1wcmVnb3MgOiBFc3BlY2lhbGlzdGEgZGUgSW5mb3Jtw6F0aWNhIENvaW1icmEsIFBU?=
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Message-ID: <01000179c0ac4921-fc96a45a-b6dd-4577-a607-3361af281aa4-000000@email.amazonses.com>
+Date: Mon, 31 May 2021 04:26:26 +0000
+Feedback-ID: 1.us-east-1.6wbO9ElMgPzf+OZ2rLNxKltMXRaB2AkJWIPk1NT+OPs=:AmazonSES
+X-SES-Outgoing: 2021.05.31-54.240.11.17
+
+
+    <html>
+    <head>
+    <meta content=3D"telephone=3Dno" name=3D"format-detection">
+    </head>
+    <body>
+  =20
+    <div style=3D"">
+    <div class=3D"rcmBody " style=3D"font-family: arial,sans-serif;color: #=
+5A5A5A;text-align: center;margin-left: auto;margin-right: auto; margin-top:=
+20px;">
+    <!-- node type 8 -->
+   =20
+    <table style=3D"margin: 0 auto;padding-top: 10px; padding-bottom: 30px;=
+width: 100%;text-align: left; max-width:650px;table-layout: fixed;">
+    <tbody><tr>
+    <td class=3D"width320" style=3D"border-radius: 12px;overflow: hidden;  =
+box-shadow: 0px 9px 20px 2px #b9b9b9 !important; -webkit-box-shadow: 0px 9p=
+x 20px 2px #b9b9b9 !important;-moz-box-shadow: 0px 9px 20px 2px #b9b9b9 !im=
+portant; background-color:white; ">
+    <table style=3D"width: 101%;height: auto;padding: 10px 20px;background-=
+color: #00b2f3;border-radius: 12px 12px 0px 0px;margin-left: -1px;margin-to=
+p: -1px;">
+      <tbody><tr>
+        <td   style=3D"width: 100%;height: auto;padding: 10px 0px;backgroun=
+d-color: #00b2f3;"><img src=3D"https://neuvoo.com/V5/img/neuvoo-w.png" alt=
+=3D"neuvoo" style=3D"font-size: 22px;color: white;width: 100%;max-width: 90=
+px;">
+
+          <div style=3D"color: white;text-align: right;float: right;font-si=
+ze: 15px;font-weight: bold;width: 50%;">seu alerta di=C3=A1rio de emprego</=
+div></td>
+       =20
+      </tr>
+    </tbody></table>
+    <div style=3D""><div style=3D"clear: both;"></div><div style=3D"width: =
+100%;background-color: #F8F8F8;"><div style=3D"padding: 15px 5px 25px 20px;=
+text-align: justify; color:#484848;" dir=3D"auto">Ol=C3=A1! Nenhuma vaga re=
+cente publicada nas =C3=BAltimas 24h:
+ <div ><b><span dir=3D"auto">Especialista de Inform=C3=A1tica, Coimbra, PT<=
+/span><span dir=3D"auto"></span></b></div></div></div><table cellpadding=3D=
+"0" style=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;fl=
+oat: left;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D47e5602b33=
+01&pag=3D1&pos=3D1&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demail=
+&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTestC=
+&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_sta=
+rt_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_defa=
+ult&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&u=
+ser_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium&=
+current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_da=
+tein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&u=
+tm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3Dn=
+o&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: n=
+one; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">P=
+rocuramos explicadores de Inform=C3=A1tica em  Ad=C3=B5es</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Superprof </span></div> <div style=3D"max-width: 124px;overf=
+low: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: =
+#808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Ad=C3=B5es, =
+Portugal</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3Dc0bf52eb39=
+f9&pag=3D1&pos=3D2&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demail=
+&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTestC=
+&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_sta=
+rt_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_defa=
+ult&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&u=
+ser_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium&=
+current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_da=
+tein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&u=
+tm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3Dn=
+o&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: n=
+one; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">P=
+rocuramos explicadores de Inform=C3=A1tica em  Coimbra</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Superprof </span></div> <div style=3D"max-width: 124px;overf=
+low: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: =
+#808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, Por=
+tugal</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table cellpadding=3D"0" st=
+yle=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;float: l=
+eft;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D3f64d62e1e=
+f4&pag=3D1&pos=3D3&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demail=
+&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTestC=
+&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_sta=
+rt_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_defa=
+ult&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&u=
+ser_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium&=
+current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_da=
+tein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&u=
+tm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3Dn=
+o&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: n=
+one; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">P=
+rocuramos explicadores de Inform=C3=A1tica em  Agrelo</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Superprof </span></div> <div style=3D"max-width: 124px;overf=
+low: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: =
+#808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Agrelo, Port=
+ugal</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D41daf24a1e=
+7e&pag=3D1&pos=3D4&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demail=
+&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTestC=
+&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_sta=
+rt_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_defa=
+ult&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&u=
+ser_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium&=
+current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_da=
+tein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&u=
+tm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3Dn=
+o&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: n=
+one; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">P=
+esquisador Cliente Mist=C3=A9rio</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Helion Market Research CVBA. </span></div> <div style=3D"max=
+-width: 124px;overflow: hidden;text-overflow: ellipsis;color: #808080;"><sp=
+an style=3D"color: #808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp=
+;&nbsp;Coimbra</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table cellpadding=3D"0" st=
+yle=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;float: l=
+eft;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3Dacc728cd01=
+d1&pag=3D1&pos=3D5&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demail=
+&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTestC=
+&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_sta=
+rt_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_defa=
+ult&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&u=
+ser_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium&=
+current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_da=
+tein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&u=
+tm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3Dn=
+o&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: n=
+one; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">E=
+nsine portugu=C3=AAs online em Coimbra</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Preply </span></div> <div style=3D"max-width: 124px;overflow=
+: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #80=
+8080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, PT</sp=
+an></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3Dbe1390c2ea=
+83&pag=3D1&pos=3D6&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demail=
+&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTestC=
+&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_sta=
+rt_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_defa=
+ult&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&u=
+ser_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium&=
+current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_da=
+tein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&u=
+tm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3Dn=
+o&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: n=
+one; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">T=
+=C3=A9cnico Operacional de Ag=C3=AAncia (M/F)</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Carglass </span></div> <div style=3D"max-width: 124px;overfl=
+ow: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #=
+808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, Port=
+ugal</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table cellpadding=3D"0" st=
+yle=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;float: l=
+eft;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D02e6684ffd=
+81&pag=3D1&pos=3D7&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demail=
+&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTestC=
+&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_sta=
+rt_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_defa=
+ult&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&u=
+ser_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium&=
+current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_da=
+tein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&u=
+tm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3Dn=
+o&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: n=
+one; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">p=
+sic=C3=B3logo para psic=C3=B3logos</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Zaask </span></div> <div style=3D"max-width: 124px;overflow:=
+ hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #808=
+080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, Portuga=
+l</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3De7bd8b968f=
+2b&pag=3D1&pos=3D8&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demail=
+&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTestC=
+&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_sta=
+rt_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_defa=
+ult&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&u=
+ser_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium&=
+current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_da=
+tein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&u=
+tm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3Dn=
+o&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: n=
+one; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">T=
+rainee JAVA - Coimbra (m/f)</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Noesis </span></div> <div style=3D"max-width: 124px;overflow=
+: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #80=
+8080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra</span><=
+/div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table cellpadding=3D"0" st=
+yle=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;float: l=
+eft;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3Db64a2036af=
+0c&pag=3D1&pos=3D9&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demail=
+&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTestC=
+&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_sta=
+rt_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_defa=
+ult&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&u=
+ser_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium&=
+current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_da=
+tein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&u=
+tm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3Dn=
+o&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: n=
+one; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">Q=
+uality Assurance &amp; Qualified Person (M/F)</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Michael Page </span></div> <div style=3D"max-width: 124px;ov=
+erflow: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"colo=
+r: #808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, =
+PT</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D17d18888ea=
+62&pag=3D1&pos=3D10&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+Remo=C3=A7=C3=A3o de Amianto - Especialista em Remo=C3=A7=C3=A3o de Amianto=
+</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Fixando </span></div> <div style=3D"max-width: 124px;overflo=
+w: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #8=
+08080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, Coimb=
+ra, Portugal</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table cellpadding=3D"0" st=
+yle=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;float: l=
+eft;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D38260bbccf=
+fb&pag=3D1&pos=3D11&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+Professor de portugu=C3=AAs online - Coimbra (trabalho remoto)</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Preply </span></div> <div style=3D"max-width: 124px;overflow=
+: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #80=
+8080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, PT</sp=
+an></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3Dde66c10dfe=
+12&pag=3D1&pos=3D12&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+Programador Full Stack</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Computerworld </span></div> <div style=3D"max-width: 124px;o=
+verflow: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"col=
+or: #808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra<=
+/span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table cellpadding=3D"0" st=
+yle=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;float: l=
+eft;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3Dc1dad74217=
+b9&pag=3D1&pos=3D13&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+Instala=C3=A7=C3=A3o de Papel de Parede - Especialista em Aplicar Papel de =
+Parede</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Fixando </span></div> <div style=3D"max-width: 124px;overflo=
+w: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #8=
+08080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, Coimb=
+ra, Portugal</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D50ef7a907e=
+de&pag=3D1&pos=3D14&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+Programador Backend J=C3=BAnior/S=C3=A9nior</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Computerworld </span></div> <div style=3D"max-width: 124px;o=
+verflow: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"col=
+or: #808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra<=
+/span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table cellpadding=3D"0" st=
+yle=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;float: l=
+eft;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3Dbbcd8bc9c8=
+e8&pag=3D1&pos=3D15&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+Programador Frontend J=C3=BAnior/S=C3=A9nior</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Computerworld </span></div> <div style=3D"max-width: 124px;o=
+verflow: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"col=
+or: #808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra<=
+/span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D5f1cd0552a=
+cc&pag=3D1&pos=3D16&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+Operador Call Center (m/f) - Teletrabalho</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Adecco </span></div> <div style=3D"max-width: 124px;overflow=
+: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #80=
+8080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra</span><=
+/div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table cellpadding=3D"0" st=
+yle=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;float: l=
+eft;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D478dd50ef8=
+71&pag=3D1&pos=3D17&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+QA Automation Developer</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Noesis </span></div> <div style=3D"max-width: 124px;overflow=
+: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #80=
+8080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra</span><=
+/div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3Df9821532f8=
+21&pag=3D1&pos=3D18&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+Repara=C3=A7=C3=A3o de Computador Apple - T=C3=A9cnico de Computadores Appl=
+e</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Fixando </span></div> <div style=3D"max-width: 124px;overflo=
+w: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #8=
+08080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, Coimb=
+ra, Portugal</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table cellpadding=3D"0" st=
+yle=3D"font-size: 15px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;float: l=
+eft;width: 320px;padding: 0px 15px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3D0a5c2f4342=
+f5&pag=3D1&pos=3D19&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+Ajudante de Motorista (M/F) Coimbra</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Adecco </span></div> <div style=3D"max-width: 124px;overflow=
+: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"color: #80=
+8080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra</span><=
+/div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><table cellpadding=3D"0" style=3D"font-size: 15px;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;float: left;width: 320px;padding: 0px 15=
+px;">
+               <tbody><tr style=3D"line-height: 7px"><td colspan=3D"2" styl=
+e=3D"height: 7px">&nbsp;</td></tr>
+               <tr>
+                   <td colspan=3D"2" style=3D"text-align: left;overflow: hi=
+dden;">
+                    <div  style=3D"text-overflow: ellipsis;width: 265px;ove=
+rflow: hidden;    max-height: 52px;">
+                        <a href=3D"http://neuvoo.pt/job.php?id=3Da58c92ace0=
+d3&pag=3D1&pos=3D20&utm_medium=3Demail&source=3Dneuvoo-email&context=3Demai=
+l&testid=3DBoostCalculatedTestC&search_test_id=3D97&search_test_name=3DTest=
+C&search_test_group=3DBoostCalculated&search_test_variant=3DTestC&search_st=
+art_date=3D2021-05-20&search_p1=3D1.6&search_p2=3D&search_p3=3D&tl1=3Ds_def=
+ault&tl2=3Dckrp_v27&tl3=3Dd_default&tl4=3D&tl5=3Dcurrent_v12&tlf=3Dfcd_v27&=
+user_id=3D7a746fac5cadf2fbfeb5bc89565aba92&tgroup=3DAWS&send_group=3Dmedium=
+&current_group=3Ddefault&email_source=3Dview-b&refid=3D6f38bb62df23&email_d=
+atein=3D2021-03-15T03%3A46%3A55Z&email_datesent=3D2021-05-31T00%3A26%3A26Z&=
+utm_source=3Dgmail.com&email_status=3Dactive&ecs=3Dneuvoo-email&wc_email=3D=
+no&lang=3Dpt" style=3D"color: #0e40b2;font-weight: normal;text-decoration: =
+none; text-shadow: 0px 0px 0px #333;" target=3D"_blank" rel=3D"noreferrer">=
+T=C3=A9cnico(a) de Manuten=C3=A7=C3=A3o (m/f) Setor Hoteleiro</a>
+                    </div>
+                   </td>
+               </tr>
+                <tr>
+                    <td style=3D"width: 80%"><div  style=3D" display:inline=
+-flex;"> <div style=3D"max-width: 149px;overflow: hidden;text-overflow: ell=
+ipsis;color: #D46500;"><span style=3D"color: #D46500;white-space: nowrap;fo=
+nt-size:13px;">Michael Page </span></div> <div style=3D"max-width: 124px;ov=
+erflow: hidden;text-overflow: ellipsis;color: #808080;"><span style=3D"colo=
+r: #808080;white-space: nowrap;font-size:13px;">&nbsp;&nbsp;&nbsp;Coimbra, =
+PT</span></div></div></td>
+   =20
+                </tr>
+                <tr style=3D"line-height: 7px"><td colspan=3D"2" style=3D"h=
+eight: 7px;">&nbsp;</td></tr>
+           </tbody>
+        </table><div style=3D"clear:both"></div><table style=3D"width: 100%=
+;">
+                        <tbody>
+                            <tr>
+                                <td><a href=3D"http://neuvoo.pt/emprego/?k=
+=3DEspecialista+de+Inform%C3%A1tica&l=3DCoimbra%2C+PT&by=3Ddate&refid=3D6f3=
+8bb62df23&utm_source=3Demail&utm_medium=3Dgmail.com" style=3D"display: bloc=
+k;text-decoration: none;background-color: #484848;font-size: 13px;color: wh=
+ite;text-align: center;padding: 10px 10px;border-radius: 4px;width: 260px;m=
+argin: auto;margin-top:35px;" target=3D"_blank" rel=3D"noreferrer">Ver todo=
+s 244 an=C3=BAncios de vagas aguardadas</a></td><td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><div style=3D"margin-top: 45px;margin-bottom: 4=
+5px;padding: 15px 0px;width: 90%;text-align: center;font-size: 13px;border:=
+ 1px solid #e3e3e3;display: inline-flex;flex-wrap: wrap;margin-left: 5%;">
+                <div style=3D"text-align: left;margin: auto;color: #484848;=
+margin-bottom: 10px;padding: 0px 10px;"><b style=3D"font-size: 12pt;">Melho=
+rar o alerta</b><br> <div style=3D"color: #525252;">Alterar palavras-chave,=
+ localiza=C3=A7=C3=A3o e e-mail</div> </div>
+                <a href=3D"https://neuvoo.pt/my/notifications/?e_token=3D3a=
+aa1aafdaab2ae44aac79aefaa13aa19aa3gdccad&authToken=3D62f9a99ba5354c9f&lang=
+=3Dpt" style=3D"display: block;text-decoration: none;background-color: #484=
+848;font-size: 13px;color: white;text-align: center;padding: 10px 10px;bord=
+er-radius: 4px;width: 160px;margin: auto;" target=3D"_blank" rel=3D"norefer=
+rer">Gerir defini=C3=A7=C3=B5es de alertas</a>
+                <div style=3D"clear: both;"></div>
+        </div></div><div style=3D"font-size: 13px;text-align: justify;width=
+: 100%;background-color: #F8F8F8;" dir=3D"auto">
+   =20
+                        <div style=3D"text-align: center;padding: 35px 5px =
+35px 5px;color: #505050;"> Voc=C3=AA est=C3=A1 recebendo este e-mail porque=
+ voc=C3=AA assinou o sistema de alerta de trabalho do Neuvoo.
+ <br> Voc=C3=AA est=C3=A1 recebendo isto por erro ou porque deseja cancelar=
+ completamente de todos os alertas.<br>Por favor, clique aqui:<br><br>
+                        <a href=3D"https://neuvoo.pt/my/notifications/?e_to=
+ken=3D3aaa1aafdaab2ae44aac79aefaa13aa19aa3gdccad&authToken=3D62f9a99ba5354c=
+9f&lang=3Dpt&unsubscribe=3D6f38bb62df23" style=3D"color: #505050;text-decor=
+ation: underline;cursor: pointer;" target=3D"_blank" rel=3D"noreferrer">Can=
+celar alerta de email</a>
+   =20
+                        </div>
+                        <div style=3D"width: 100%;padding-bottom: 20px;">
+                            <div style=3D"width: 100%;margin: auto;text-ali=
+gn: center;color: #505050;">
+                               <a href=3D"http://neuvoo.pt" style=3D"color:=
+ #505050;"> neuvoo.pt</a> &nbsp; &nbsp; | &nbsp; &nbsp;=20
+                               <a href=3D"http://neuvoo.pt/contact/?lang=3D=
+pt" style=3D"color: #505050;">Contacte-nos</a> &nbsp; &nbsp; |&nbsp; &nbsp;=
+=20
+                               <a href=3D"http://neuvoo.pt/legal/?lang=3Dpt=
+" style=3D"color: #505050;">Termos de privacidade</a>=20
+   =20
+                            </div>
+                        </div>
+                        <div style=3D"width: 100%;text-align: center;paddin=
+g-bottom: 50px;"><span style=3D"width: 200px;margin: auto;color: #505050;">=
+ &#169; 2021 neuvoo <br> 5800 St Denis St, suite 604, Montreal, Quebec, Can=
+ad=C3=A1 H2S 3L5</span></div>
+                       =20
+                 </table>      =20
+                </div>
+                </div>
+                <img width=3D"1px" height=3D"1px" alt=3D"" src=3D"https://n=
+euvoo.com/img/logoEmail/39954eae4aa7ba9c2eae6dd6eeeead9aeaea4dedede8ca9ega9=
+eedea6ddeeaec2aaaddaeeded4eeeeee44eaebaa789997aabge9eede66edeeae2da91ce9eee=
+e44eeeeae3eaac3eee9d96beae7aa9aa93eaef6ad7eae4dea2ea9dda91eae34eeeeee4ceaef=
+9addaa9deaecda69eaedad3faabfaac7ad7f9dbfaa3feaeded4fedef9acfaa4adafbeaefda6=
+7ede99dddba1faacfaabcadacadfb9abfaa4e9dceeaefea4feaec9acaaa4fdaefeaefdd6fea=
+efaadfaa5d9dee9eg6bd1e9ea5daecd99eeee4ee4eeee99dcead4ad9d1ebecda6deaeaaaceb=
+e16adceaebaaaa4aafc99beae449ecee.png">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>4538</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1622435187</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>6369</string>
+</dict>
+</plist>

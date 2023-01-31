@@ -1,0 +1,2630 @@
+131763    
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:e28e:b0:367:360f:5438 with SMTP id i14csp7449134pxy;
+        Wed, 4 Jan 2023 05:48:39 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXu2edgIHweY6SFPhnajQxJyksATCcagWldPmv5N2k1afAHBChgc9iU7HLo7THWqXjwcevDp
+X-Received: by 2002:ac8:6647:0:b0:3a8:16a9:43ac with SMTP id j7-20020ac86647000000b003a816a943acmr67410542qtp.8.1672840119451;
+        Wed, 04 Jan 2023 05:48:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1672840119; cv=none;
+        d=google.com; s=arc-20160816;
+        b=TYuK0oI959V1ov8KbXKj/nX4dGu4HfM1UUZd3n4qlcMNRB40XlBOgNlqIt3Un1MOqu
+         b4RzbgmogMad3Q4yxqO8ZJfSSWRbmglMgiEzwCrMK5e5OMutW3Gq91iL1s3vDKpF/Jpk
+         WHHwYcJx97VIZqTl57o2M5E+XD7MkLd2HCKBJ2Vbb3XtVP2Ifj1dMWT+BVfCQzny7kbV
+         6jW731GNemKY6I/wTuNRHhcH/cxkQyVZlubZUIZICjp37LGITG1mXJkxvbB38LB+Jvx+
+         VEOtojwIT2MdDrumG1c/Egk639dlxc27YvcAWo03jZNgGqjSNspEVCEPwMO8aCLTbN38
+         b2sQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=iHTo8ZwaJU/AVRyaLLPakfp2sx4vX0X6nXF/0JY1fs4=;
+        b=xqSfAB7JMApL4eKwN1JkRIkNWxJvTYAWRmpeX5RwNjQjn/AgtvEQie4rjG++U0vRxb
+         P1u2QliZDsc1dhelW+a9JzKqDyzB1zjjdGWGFwf+aFF7GoXySBZuseuLgaxJuF+/FxS4
+         2JAf9rPxx6JaT+8cbjScurGjmzpkhuVEiNHmEoQQwKjfVHK56Tkkq2X7WUE6qhnCNwzn
+         Kr/rGBqRgKK5PnT/nrlu6rk0TQz3F2j4WGfDJCBZ/PgOjAlgiHHWaUWA1U2lpjvOnj9x
+         DGH+0IGPW7VAVesj35AfpjmeDNmgiWVdvTyXyAM0790NNyqFAKWxD+jE1umq2UNN/WVo
+         9qOQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=YW4hqbHj;
+       dkim=pass header.i=@mailb.linkedin.com header.s=proddkim1024 header.b=Z4ZBkFIg;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatorzozojgdq70j6@bounce.linkedin.com designates 108.174.3.155 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatorzozojgdq70j6@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatorzozojgdq70j6@bounce.linkedin.com>
+Received: from mailb-bc.linkedin.com (mailb-bc.linkedin.com. [108.174.3.155])
+        by mx.google.com with ESMTPS id bv15-20020a05622a0a0f00b003a53c633793si15057459qtb.595.2023.01.04.05.48.39
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 04 Jan 2023 05:48:39 -0800 (PST)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatorzozojgdq70j6@bounce.linkedin.com designates 108.174.3.155 as permitted sender) client-ip=108.174.3.155;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=YW4hqbHj;
+       dkim=pass header.i=@mailb.linkedin.com header.s=proddkim1024 header.b=Z4ZBkFIg;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatorzozojgdq70j6@bounce.linkedin.com designates 108.174.3.155 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatorzozojgdq70j6@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1672840118;
+	bh=iHTo8ZwaJU/AVRyaLLPakfp2sx4vX0X6nXF/0JY1fs4=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=YW4hqbHjBCtgumxW2cuyiAe2dzgB4eJplz7Kjp0tEJp8Q77DqvBU/oNh+herFUsVP
+	 jp713i+b3LrXGQBmNzXfshpmrtzvc+NGR7LkvKp+3cjxZwyAc4+3soRDnRSFnYGpTn
+	 1PjEl+G8dhYUbqYgmBuky+WcnL4Cu2lqoWD790526lCWsCYptSNyPM8FSqpSWn7cjj
+	 7kodT4lsb0uqKhv5C+O42/ck5sfpAeVnF/sGbQID953mrhbvYOSGFsFBKnmImX2gA1
+	 yDWqgmJkvgpgkPHGj0L6teLryLiNRvgYjyN2t24GGzK7ycsJGJqHUMckYPsoWMBrda
+	 PwU3mNKnKqusQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailb.linkedin.com;
+	s=proddkim1024; t=1672840118;
+	bh=iHTo8ZwaJU/AVRyaLLPakfp2sx4vX0X6nXF/0JY1fs4=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=Z4ZBkFIgrdafEw0aW4PA/avMb103BHDpSK7hGJqJxC4TVoL0eK/mAKOFeobnMeF2s
+	 aMe8gSlJy0LDClbTi0aNb3fIZaQPhBAKNyajVgwxzs2yfyOj3f36q2AxQfFIhKb2BF
+	 agvlIp7g3JZhKvks+X3vZu+GcfvLDhOSqvvgSOOg=
+From: LinkedIn <jobs-listings@linkedin.com>
+Message-ID: <870889905.21812721.1672840118966@lva1-app105069.prod.linkedin.com>
+Subject: =?UTF-8?Q?BOLD_by_Devoteam_est=C3=A1_contratando_pa?=
+ =?UTF-8?Q?ra_o_cargo_de:_Wordpress_Developer_.?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_21812719_1055295796.1672840118963"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Wed, 4 Jan 2023 13:48:38 +0000 (UTC)
+X-LinkedIn-Class: JOBS-TO-MBR
+X-LinkedIn-Template: jobs_jymbii_digest
+X-LinkedIn-fbl: m2-aszxcizovgf29cs1l3xdaqf9jve1q0u15k3pwgb18nlrjxgxniohl7jzz1c3fvq4vazioa6koaz93vs6a0c9wm4yh6hrc3mz929enh
+X-LinkedIn-Id: eau1wl-lchptbo9-lr
+List-Unsubscribe: <https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=urn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&midToken=AQEq1MBbB2bM8g&midSig=0L07TgEPjsraA1&trk=eml-jobs_jymbii_digest-unsub-0-unsub&trkEmail=eml-jobs_jymbii_digest-unsub-0-unsub-null-eau1wl~lchptbo9~lr-null-null&eid=eau1wl-lchptbo9-lr&loid=AQGF_oqCEUbEJwAAAYV9CoAr1ft_ePRONS4O8bcQ0sO52QRoHx_5_a3VeOVyhomDvlvykkWi4ztlpoPU3oyB3XOtfZ1lF5xu05iKdw>
+Feedback-ID: jobs_jymbii_digest:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_21812719_1055295796.1672840118963
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+Vagas que combinam com seu perfil:
+      https://www.linkedin.com/comm/jobs?lgTemp=3Djobs_jymbii_digest&lgCta=
+=3Deml-jymbii-bottom-see-all-jobs&lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbi=
+i_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=
+=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_digest-null-0-null&trkEmail=3Deml-j=
+obs_jymbii_digest-null-0-null-null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1w=
+l-lchptbo9-lr
+ =20
+         =20
+Wordpress Developer=20
+BOLD by Devoteam
+Portugal
+Esta empresa est=C3=A1 contratando
+Candidate-se com curr=C3=ADculo e perfil
+Visualizar vaga:
+      https://www.linkedin.com/comm/jobs/view/3423373887/?trackingId=3DnpxT=
+gheESSm5HysKpXxXJA%3D%3D&refId=3DlXDk%2FXi3RBqfzS6hAwI0TA%3D%3D&lipi=3Durn%=
+3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&mid=
+Token=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_digest=
+-job_card-0-view_job&trkEmail=3Deml-jobs_jymbii_digest-job_card-0-view_job-=
+null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl-lchptbo9-lr
+
+---------------------------------------------------------
+ =20
+         =20
+Middle HTML/CSS Developer
+Windmill
+Lisboa
+Compet=C3=AAncia relevante: Desenvolvimento web
+Visualizar vaga:
+      https://www.linkedin.com/comm/jobs/view/3407982448/?trackingId=3D3j9M=
+%2FZABRgq4nZNcuPAZ1A%3D%3D&refId=3DKXw%2BA0xkSMKCDbBMxZbszg%3D%3D&lipi=3Dur=
+n%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&m=
+idToken=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_dige=
+st-job_card-0-view_job&trkEmail=3Deml-jobs_jymbii_digest-job_card-0-view_jo=
+b-null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl-lchptbo9-lr
+
+---------------------------------------------------------
+ =20
+         =20
+Senior Web Designer
+DesignRush
+Portugal
+Esta empresa est=C3=A1 contratando
+Candidate-se com curr=C3=ADculo e perfil
+Visualizar vaga:
+      https://www.linkedin.com/comm/jobs/view/3382922413/?trackingId=3DfH43=
+H8q5RKKM1ZIM1r25zA%3D%3D&refId=3D6ACkWpX3TRmctBB8DUJC4A%3D%3D&lipi=3Durn%3A=
+li%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&midTo=
+ken=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_digest-j=
+ob_card-0-view_job&trkEmail=3Deml-jobs_jymbii_digest-job_card-0-view_job-nu=
+ll-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl-lchptbo9-lr
+
+---------------------------------------------------------
+ =20
+         =20
+Frontend Engineer - Trust & Safety
+Cloudflare
+Portugal
+Esta empresa est=C3=A1 contratando
+Candidate-se com curr=C3=ADculo e perfil
+Visualizar vaga:
+      https://www.linkedin.com/comm/jobs/view/3410404776/?trackingId=3DX223=
+6KPPRcqWCuVHgn83ZA%3D%3D&refId=3Dhm03k7jRSSql9DZskJGgMQ%3D%3D&lipi=3Durn%3A=
+li%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&midTo=
+ken=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_digest-j=
+ob_card-0-view_job&trkEmail=3Deml-jobs_jymbii_digest-job_card-0-view_job-nu=
+ll-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl-lchptbo9-lr
+
+---------------------------------------------------------
+ =20
+         =20
+Wordpress Developer
+Devoteam
+Portugal
+Esta empresa est=C3=A1 contratando
+Candidate-se com curr=C3=ADculo e perfil
+Visualizar vaga:
+      https://www.linkedin.com/comm/jobs/view/2988291822/?trackingId=3DNgIT=
+6g7rQzqxQKZ0v8r8KQ%3D%3D&refId=3DmndzKAiDS8%2B3onu9mPT8Vg%3D%3D&lipi=3Durn%=
+3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&mid=
+Token=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_digest=
+-job_card-0-view_job&trkEmail=3Deml-jobs_jymbii_digest-job_card-0-view_job-=
+null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl-lchptbo9-lr
+
+---------------------------------------------------------
+ =20
+         =20
+Conversion Rate Optimization Specialist
+Thankz Global Staffing
+Portugal
+Esta empresa est=C3=A1 contratando
+Candidate-se com curr=C3=ADculo e perfil
+Visualizar vaga:
+      https://www.linkedin.com/comm/jobs/view/3405256315/?trackingId=3D3VBX=
+gRlRQVWlC%2FJtUPToDw%3D%3D&refId=3DItauY%2F19R%2BSl1OuriVRtjw%3D%3D&lipi=3D=
+urn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D=
+&midToken=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_di=
+gest-job_card-0-view_job&trkEmail=3Deml-jobs_jymbii_digest-job_card-0-view_=
+job-null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl-lchptbo9-lr
+
+---------------------------------------------------------
+ =20
+Ver todas as vagas
+      https://www.linkedin.com/comm/jobs?lgTemp=3Djobs_jymbii_digest&lgCta=
+=3Deml-jymbii-bottom-see-all-jobs&lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbi=
+i_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=
+=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_digest-null-0-null&trkEmail=3Deml-j=
+obs_jymbii_digest-null-0-null-null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1w=
+l-lchptbo9-lr
+Veja as vagas mais adequadas para seu perfil
+
+      https://www.linkedin.com/comm/premium/products/?family=3Djss&lipi=3Du=
+rn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&=
+midToken=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_dig=
+est-jymbii-0-premium~upsell~text&trkEmail=3Deml-jobs_jymbii_digest-jymbii-0=
+-premium~upsell~text-null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl-lchptbo=
+9-lr
+ =20
+
+         =20
+     =20
+
+----------------
+
+Este e-mail foi enviado a Rafael Souza (Desenvolvedor web na Solution.dev)
+Saiba por que inclu=C3=ADmos isso:
+      https://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&lipi=3Du=
+rn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&=
+midToken=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_dig=
+est-SecurityHelp-0-textfooterglimmer&trkEmail=3Deml-jobs_jymbii_digest-Secu=
+rityHelp-0-textfooterglimmer-null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl=
+-lchptbo9-lr
+Voc=C3=AA est=C3=A1 recebendo e-mails sobre Vagas que podem ser do seu inte=
+resse.
+
+         =20
+           =20
+       =20
+      https://www.linkedin.com/comm/jobs/alerts?lipi=3Durn%3Ali%3Apage%3Aem=
+ail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&midToken=3DAQEq1MBb=
+B2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_digest-null-0-null&trk=
+Email=3Deml-jobs_jymbii_digest-null-0-null-null-eau1wl~lchptbo9~lr-null-nul=
+l&eid=3Deau1wl-lchptbo9-lr
+     =20
+         =20
+       =20
+Cancelar inscri=C3=A7=C3=A3o:
+      https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=3Durn%=
+3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&mid=
+Token=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_digest=
+-unsubscribe-0-textfooterglimmer&trkEmail=3Deml-jobs_jymbii_digest-unsubscr=
+ibe-0-textfooterglimmer-null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl-lchp=
+tbo9-lr&loid=3DAQGF_oqCEUbEJwAAAYV9CoAr1ft_ePRONS4O8bcQ0sO52QRoHx_5_a3VeOVy=
+homDvlvykkWi4ztlpoPU3oyB3XOtfZ1lF5xu05iKdw
+Ajuda:
+      https://www.linkedin.com/help/linkedin/answer/67?lang=3Dpt&lipi=3Durn=
+%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&mi=
+dToken=3DAQEq1MBbB2bM8g&midSig=3D0L07TgEPjsraA1&trk=3Deml-jobs_jymbii_diges=
+t-help-0-textfooterglimmer&trkEmail=3Deml-jobs_jymbii_digest-help-0-textfoo=
+terglimmer-null-eau1wl~lchptbo9~lr-null-null&eid=3Deau1wl-lchptbo9-lr
+
+=C2=A9 2023 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2 - Irlanda.LinkedIn =C3=A9 um nome comercial registrado da LinkedI=
+n Ireland Unlimited Company.LinkedIn e o logo do LinkedIn s=C3=A3o marcas r=
+egistradas do LinkedIn.
+------=_Part_21812719_1055295796.1672840118963
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt"> <=
+head> <meta http-equiv=3D"Content-Type" content=3D"text/html;charset=3Dutf-=
+8"> <meta name=3D"HandheldFriendly" content=3D"true"> <meta name=3D"viewpor=
+t" content=3D"width=3Ddevice-width; initial-scale=3D0.666667; user-scalable=
+=3D0"> <meta name=3D"viewport" content=3D"width=3Ddevice-width"> <title></t=
+itle> <style>
+          @media (max-width: 512px) { .mercado-container { width: 100% !imp=
+ortant; } }
+        </style> <style>
+          .full-width-button, .full-width-button table { display: none; } @=
+media (max-width: 512px) { .inline-button,
+          .inline-button table { display: none !important; } .full-width-bu=
+tton, .full-width-button table { display:
+          table !important; } }
+        </style> <!--[if mso]><style type=3D"text/css"> </style><![endif]--=
+> <!--[if IE]><style type=3D"text/css"> </style><![endif]--> <style>
+@media (min-width: 576px) {
+  .container {
+    max-width: 576px;
+  }
+
+  .\!container {
+    max-width: 576px !important;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  .\!container {
+    max-width: 768px !important;
+  }
+}
+@media (min-width: 790px) {
+  .container {
+    max-width: 790px;
+  }
+
+  .\!container {
+    max-width: 790px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+
+  .\!container {
+    max-width: 992px !important;
+  }
+}
+@media (min-width: 1128px) {
+  .container {
+    max-width: 1128px;
+  }
+
+  .\!container {
+    max-width: 1128px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .\!container {
+    max-width: 1200px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+
+  .\!container {
+    max-width: 1440px !important;
+  }
+}
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1680px;
+  }
+
+  .\!container {
+    max-width: 1680px !important;
+  }
+}
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1920px;
+  }
+
+  .\!container {
+    max-width: 1920px !important;
+  }
+}
+@media (min-width: 992px) {
+  .base-detail-page__header .nav {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1128px;
+  }
+}
+@media (max-width: 767px) {
+  .embedded-social-share .modal__outlet {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .nav .search-bar {
+    order: 4;
+  }
+}
+@media (max-width: 767px) {
+  .nav .sign-in-card {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .nav--minified-mobile .nav__cta-container > *:not(.nav__link-person) {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    order: initial;
+    width: initial;
+  }
+
+  .nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .tw-link-column-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .tw-link-column-item {
+    margin-bottom: 8px;
+  }
+
+  .tw-linkster .tw-link-column-item {
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__button {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__list {
+    right: 0px;
+    max-height: calc(100vh - 52px);
+    overflow-y: auto;
+  }
+}
+@media (max-width: 767px) {
+  .recent-searches.recent-searches--show {
+    position: fixed;
+    top: 168px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+    border-width: 0;
+  }
+}
+@media (max-width: 767px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.75);
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #cf0007;
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: #8a0005;
+    box-shadow: 0 0 0 1px #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:active {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:focus-within {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (min-width: 992px) {
+  .search-bar .dismissable-input {
+    width: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (max-width: 767px) {
+  .search-bar:not(.isExpanded) .base-search-bar__form {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  @media (max-width: 767px) {
+    .search-bar.isExpanded .search-bar__placeholder {
+      display: none;
+    }
+
+    .search-bar.isExpanded .base-search-bar__form {
+      display: flex;
+    }
+
+    position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 1000;
+        margin-bottom: 0px;
+        height: 100%;
+        background-color: #ffffff;
+    .search-bar.isExpanded .switcher-tabs {
+      display: inherit;
+    }
+
+  }
+}
+@media screen and (max-width: 767px) {
+  .stuck .search-bar {
+    transition: height 0.4s, margin-bottom 0.4s ease-in-out;
+    margin-bottom: 0px;
+    height: 0px;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    max-height: initial;
+    pointer-events: initial;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+}
+@media (max-width: 767px) {
+  .tabs__list {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    position: fixed;
+    top: 158px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+  }
+}
+@media (max-width: 767px) {
+  .base-search-bar .dismissable-input {
+    max-height: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .base-main-card__media ~ .base-main-card__info {
+    margin-left: 0px;
+    margin-top: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .mx-main-feed-card-no-gutter {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mx-main-feed-card-no-gutter {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
+@media (max-width: 767px) {
+  .px-main-feed-card-no-gutter {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .px-main-feed-card-no-gutter {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .filter .collapsible-dropdown__list {
+    max-height: 400px;
+  }
+}
+@media (forced-colors: active) {
+  .filter-button--selected {
+    border-width: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .base-card .duration {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+@media (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__button {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__icon--svg {
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    padding-right: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .babybear\:invisible {
+    visibility: hidden;
+  }
+
+  .babybear\:static {
+    position: static;
+  }
+
+  .babybear\:right-4 {
+    right: 32px;
+  }
+
+  .babybear\:-top-1 {
+    top: -8px;
+  }
+
+  .babybear\:z-0 {
+    z-index: 0;
+  }
+
+  .babybear\:my-2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .babybear\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .babybear\:mx-mobile-container-padding {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .babybear\:ml-0 {
+    margin-left: 0px;
+  }
+
+  .babybear\:mb-1 {
+    margin-bottom: 8px;
+  }
+
+  .babybear\:mr-0 {
+    margin-right: 0px;
+  }
+
+  .babybear\:ml-\[-9999px\] {
+    margin-left: -9999px;
+  }
+
+  .babybear\:mb-1\.5 {
+    margin-bottom: 12px;
+  }
+
+  .babybear\:ml-1 {
+    margin-left: 8px;
+  }
+
+  .babybear\:flex {
+    display: flex;
+  }
+
+  .babybear\:hidden {
+    display: none;
+  }
+
+  .babybear\:h-\[360px\] {
+    height: 360px;
+  }
+
+  .babybear\:h-\[72px\] {
+    height: 72px;
+  }
+
+  .babybear\:h-\[27px\] {
+    height: 27px;
+  }
+
+  .babybear\:h-\[1px\] {
+    height: 1px;
+  }
+
+  .babybear\:h-\[48px\] {
+    height: 48px;
+  }
+
+  .babybear\:h-auto {
+    height: auto;
+  }
+
+  .babybear\:h-\[180px\] {
+    height: 180px;
+  }
+
+  .babybear\:max-h-\[225px\] {
+    max-height: 225px;
+  }
+
+  .babybear\:max-h-\[400px\] {
+    max-height: 400px;
+  }
+
+  .babybear\:max-h-\[250px\] {
+    max-height: 250px;
+  }
+
+  .babybear\:min-h-\[134px\] {
+    min-height: 134px;
+  }
+
+  .babybear\:w-\[360px\] {
+    width: 360px;
+  }
+
+  .babybear\:w-full {
+    width: 100%;
+  }
+
+  .babybear\:w-6 {
+    width: 48px;
+  }
+
+  .babybear\:w-\[27px\] {
+    width: 27px;
+  }
+
+  .babybear\:w-\[1px\] {
+    width: 1px;
+  }
+
+  .babybear\:w-\[100vw\] {
+    width: 100vw;
+  }
+
+  .babybear\:w-\[calc\(100\%-68px\)\] {
+    width: calc(100% - 68px);
+  }
+
+  .babybear\:min-w-full {
+    min-width: 100%;
+  }
+
+  .babybear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .babybear\:flex-none {
+    flex: none;
+  }
+
+  .babybear\:flex-auto {
+    flex: 1 1 auto;
+  }
+
+  .babybear\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .babybear\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .babybear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .babybear\:flex-row {
+    flex-direction: row;
+  }
+
+  .babybear\:flex-col {
+    flex-direction: column;
+  }
+
+  .babybear\:flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .babybear\:items-start {
+    align-items: flex-start;
+  }
+
+  .babybear\:items-center {
+    align-items: center;
+  }
+
+  .babybear\:justify-around {
+    justify-content: space-around;
+  }
+
+  .babybear\:self-center {
+    align-self: center;
+  }
+
+  .babybear\:rounded-\[0px\] {
+    border-radius: 0px;
+  }
+
+  .babybear\:border-b-1 {
+    border-bottom-width: 1px;
+  }
+
+  .babybear\:border-solid {
+    border-style: solid;
+  }
+
+  .babybear\:border-color-border-low-emphasis {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .babybear\:bg-color-transparent {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .babybear\:bg-color-brand {
+    background-color: #0a66c2;
+  }
+
+  .babybear\:p-2 {
+    padding: 16px;
+  }
+
+  .babybear\:p-0 {
+    padding: 0px;
+  }
+
+  .babybear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:px-\[4px\] {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .babybear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .babybear\:py-1\.5 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .babybear\:py-1 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .babybear\:pb-2 {
+    padding-bottom: 16px;
+  }
+
+  .babybear\:pr-0 {
+    padding-right: 0px;
+  }
+
+  .babybear\:leading-\[150px\] {
+    line-height: 150px;
+  }
+
+  .babybear\:last\:border-b-0:last-child {
+    border-bottom-width: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mamabear\:absolute {
+    position: absolute;
+  }
+
+  .mamabear\:right-4 {
+    right: 32px;
+  }
+
+  .mamabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .mamabear\:-top-1 {
+    top: -8px;
+  }
+
+  .mamabear\:flex {
+    display: flex;
+  }
+
+  .mamabear\:hidden {
+    display: none;
+  }
+
+  .mamabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .mamabear\:w-\[744px\] {
+    width: 744px;
+  }
+
+  .mamabear\:w-full {
+    width: 100%;
+  }
+
+  .mamabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .mamabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .mamabear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .mamabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .mamabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .mamabear\:flex-row {
+    flex-direction: row;
+  }
+
+  .mamabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .mamabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .mamabear\:items-center {
+    align-items: center;
+  }
+
+  .mamabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:self-center {
+    align-self: center;
+  }
+
+  .mamabear\:tab-vertical.tab-sm,
+.mamabear\:tab-vertical .tab-md,
+.mamabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .mamabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .mamabear\:px-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .mamabear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mamabear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .papabear\:absolute {
+    position: absolute;
+  }
+
+  .papabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .papabear\:-top-1 {
+    top: -8px;
+  }
+
+  .papabear\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .papabear\:\!mx-2 {
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
+
+  .papabear\:mt-\[-100px\] {
+    margin-top: -100px;
+  }
+
+  .papabear\:mb-\[18px\] {
+    margin-bottom: 18px;
+  }
+
+  .papabear\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .papabear\:mt-0\.5 {
+    margin-top: 4px;
+  }
+
+  .papabear\:mr-2 {
+    margin-right: 16px;
+  }
+
+  .papabear\:ml-column-gutter {
+    margin-left: 24px;
+  }
+
+  .papabear\:flex {
+    display: flex;
+  }
+
+  .papabear\:hidden {
+    display: none;
+  }
+
+  .papabear\:h-\[34px\] {
+    height: 34px;
+  }
+
+  .papabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .papabear\:min-h-\[96px\] {
+    min-height: 96px;
+  }
+
+  .papabear\:w-\[400px\] {
+    width: 400px;
+  }
+
+  .papabear\:w-content-max-w {
+    width: 1128px;
+  }
+
+  .papabear\:w-core-rail-width {
+    width: 790px;
+  }
+
+  .papabear\:w-right-rail-width {
+    width: calc(1128px - 24px - 790px);
+  }
+
+  .papabear\:w-auto {
+    width: auto;
+  }
+
+  .papabear\:w-\[1128px\] {
+    width: 1128px;
+  }
+
+  .papabear\:w-\[135px\] {
+    width: 135px;
+  }
+
+  .papabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .papabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .papabear\:max-w-\[550px\] {
+    max-width: 550px;
+  }
+
+  .papabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .papabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .papabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .papabear\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .papabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .papabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .papabear\:justify-center {
+    justify-content: center;
+  }
+
+  .papabear\:self-start {
+    align-self: flex-start;
+  }
+
+  .papabear\:tab-vertical.tab-sm,
+.papabear\:tab-vertical .tab-md,
+.papabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .papabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .papabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .papabear\:border-4 {
+    border-width: 4px;
+  }
+
+  .papabear\:p-details-container-padding {
+    padding: 24px;
+  }
+
+  .papabear\:p-0 {
+    padding: 0px;
+  }
+
+  .papabear\:py-2 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .papabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+
+  .papabear\:text-xl {
+    font-size: 24px;
+  }
+}
+</style></head> <body dir=3D"ltr" class=3D"font-sans bg-color-background-ca=
+nvas w-full m-0 p-0 pt-1" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ma=
+rgin: 0px; width: 100%; background-color: #f3f2f0; padding: 0px; padding-to=
+p: 8px; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe U=
+I', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', C=
+antarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Em=
+oji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <=
+div class=3D"h-0 opacity-0 text-transparent invisible overflow-hidden w-0 m=
+ax-h-[0]" style=3D"visibility: hidden; height: 0px; max-height: 0; width: 0=
+px; overflow: hidden; opacity: 0; mso-hide: all;" data-email-preheader=3D"t=
+rue">Suas recomenda=C3=A7=C3=B5es de vagas do LinkedIn</div> <div class=3D"=
+h-0 opacity-0 text-transparent invisible overflow-hidden w-0 max-h-[0]" sty=
+le=3D"visibility: hidden; height: 0px; max-height: 0; width: 0px; overflow:=
+ hidden; opacity: 0; mso-hide: all;"> =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 </div> <table class=
+=3D"font-sans mercado-container w-[512px] max-w-[512px] mx-auto my-0 p-0 bg=
+-color-background-container" role=3D"presentation" valign=3D"top" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"512" align=3D"center" styl=
+e=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table=
+-rspace: 0pt; margin-left: auto; margin-right: auto; margin-top: 0px; margi=
+n-bottom: 0px; width: 512px; max-width: 512px; background-color: #ffffff; p=
+adding: 0px; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Se=
+goe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen San=
+s', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe =
+UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif=
+;"> <tbody> <tr> <td class=3D"text-center p-3" style=3D"-webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 2=
+4px; text-align: center;"> <table class=3D"font-sans min-w-full" role=3D"pr=
+esentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt; min-width: 100%; font-family: -apple-syst=
+em, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'F=
+ira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple C=
+olor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida=
+ Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td align=3D"left" v=
+align=3D"middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/co=
+mm/feed/?lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKB=
+dBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&=
+amp;trk=3Deml-jobs_jymbii_digest-header-0-home_glimmer&amp;trkEmail=3Deml-j=
+obs_jymbii_digest-header-0-home_glimmer-null-eau1wl~lchptbo9~lr-null-null&a=
+mp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" class=3D"w-[84px]" style=3D"=
+color: #0a66c2; cursor: pointer; display: inline-block; text-decoration: no=
+ne; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; width: 84px;"> <img class=3D"bloc=
+k" alt=3D"LinkedIn" src=3D"https://www.linkedin.com/comm/dms/logo?badgeThem=
+e=3Dmercado&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNko=
+tR%2FKBdBcwBcXHbA%3D%3D&amp;midSig=3D0L07TgEPjsraA1&amp;midToken=3DAQEq1MBb=
+B2bM8g&amp;trkEmail=3Deml-jobs_jymbii_digest-null-0-comms%7Ebadging%7Edynam=
+ic%7Eglimmer-null-eau1wl%7Elchptbo9%7Elr-null-null&amp;trk=3Deml-jobs_jymbi=
+i_digest-null-0-comms%7Ebadging%7Edynamic%7Eglimmer&amp;_sig=3D1lRwSMtBLsra=
+A1" data-test-header-dynamic-badging-img style=3D"outline: none; text-decor=
+ation: none; -ms-interpolation-mode: bicubic; display: block;"> </a> </td> =
+<td valign=3D"middle" align=3D"right" style=3D"-webkit-text-size-adjust: 10=
+0%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adju=
+st: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"f=
+ont-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0" width=3D"100%" data-test-header-profile style=3D"-webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbod=
+y> <tr> <td align=3D"right" valign=3D"middle" class=3D"w-[32px]" style=3D"-=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; width: 32px;" width=3D"32"> <a href=3D"https://pt.linkedin.com/comm=
+/in/rafaelandersonsouza?lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3=
+BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D=
+0L07TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-header-0-profile_glimmer&am=
+p;trkEmail=3Deml-jobs_jymbii_digest-header-0-profile_glimmer-null-eau1wl~lc=
+hptbo9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=
+=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration=
+: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%;"> <img alt=3D"Rafael Souza" s=
+rc=3D"https://media.licdn.com/dms/image/C4D03AQEH4CxhkhtzrA/profile-display=
+photo-shrink_200_200/0/1607511453788?e=3D1678320000&amp;v=3Dbeta&amp;t=3D1O=
+AgIsr12Tfm3XwQHMovQdXm96inIkBUt93_xgl99-s" class=3D"rounded-[100%] w-[32px]=
+ h-[32px]" style=3D"outline: none; text-decoration: none; -ms-interpolation=
+-mode: bicubic; height: 32px; width: 32px; border-radius: 100%;" width=3D"3=
+2" height=3D"32"> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> <=
+/table> </td> </tr> <tr> <td class=3D"px-3 pb-3" style=3D"-webkit-text-size=
+-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; tex=
+t-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-=
+left: 24px; padding-right: 24px; padding-bottom: 24px;"> <div> <table class=
+=3D"font-sans leading-regular" role=3D"presentation" valign=3D"top" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;=
+ font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Rob=
+oto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarel=
+l, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', '=
+Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; line-heigh=
+t: 1.25;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; =
+mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <h1 style=3D"margin: 0; fon=
+t-weight: 500;"> <a href=3D"https://www.linkedin.com/comm/jobs?lgTemp=3Djob=
+s_jymbii_digest&amp;lgCta=3Deml-jymbii-bottom-see-all-jobs&amp;lipi=3Durn%3=
+Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;=
+midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;trk=3Deml-jobs_jy=
+mbii_digest-null-0-null&amp;trkEmail=3Deml-jobs_jymbii_digest-null-0-null-n=
+ull-eau1wl~lchptbo9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_b=
+lank" class=3D"text-display-sm font-semibold font-sans text-system-gray-90"=
+ style=3D"cursor: pointer; display: inline-block; text-decoration: none; -w=
+ebkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; text-size-adjust: 100%; font-family: -apple-system, system-ui, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubun=
+tu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helve=
+tica, Arial, sans-serif; font-size: 24px; font-weight: 600; color: #282828;=
+"> Vagas que combinam com seu perfil </a> </h1> </td> </tr> <tr> <td class=
+=3D"pt-3" data-test-id=3D"job-card" style=3D"-webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 24px;"> =
+<table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font=
+-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, =
+'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'D=
+roid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> =
+<td class=3D"pr-2 w-6" valign=3D"top" style=3D"-webkit-text-size-adjust: 10=
+0%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adju=
+st: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 48px; paddin=
+g-right: 16px;" width=3D"48"> <a href=3D"https://www.linkedin.com/comm/jobs=
+/view/3423373887/?trackingId=3DnpxTgheESSm5HysKpXxXJA%3D%3D&amp;refId=3DlXD=
+k%2FXi3RBqfzS6hAwI0TA%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_=
+digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;m=
+idSig=3D0L07TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-company_=
+logo&amp;trkEmail=3Deml-jobs_jymbii_digest-job_card-0-company_logo-null-eau=
+1wl~lchptbo9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" s=
+tyle=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decora=
+tion: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"inline-bl=
+ock relative bg-color-entity-ghost-background w-6 h-6 rounded-[2px]" src=3D=
+"https://static.licdn.com/aero-v1/sc/h/el9pt92rkf0hoaycxvp248194" alt=3D"BO=
+LD by Devoteam" style=3D"outline: none; text-decoration: none; -ms-interpol=
+ation-mode: bicubic; position: relative; display: inline-block; height: 48p=
+x; width: 48px; border-radius: 2px; background-color: #eae6df;" width=3D"48=
+" height=3D"48"> </a> </td> <td valign=3D"top" style=3D"-webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=
+=3D"https://www.linkedin.com/comm/jobs/view/3423373887/?trackingId=3DnpxTgh=
+eESSm5HysKpXxXJA%3D%3D&amp;refId=3DlXDk%2FXi3RBqfzS6hAwI0TA%3D%3D&amp;lipi=
+=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D=
+%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;trk=3Deml=
+-jobs_jymbii_digest-job_card-0-job_posting&amp;trkEmail=3Deml-jobs_jymbii_d=
+igest-job_card-0-job_posting-null-eau1wl~lchptbo9~lr-null-null&amp;eid=3Dea=
+u1wl-lchptbo9-lr" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointe=
+r; display: inline-block; text-decoration: none; -webkit-text-size-adjust: =
+100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-ad=
+just: 100%;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"to=
+p" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe=
+ UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans',=
+ Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;">=
+ <tbody> <tr> <td class=3D"pb-0.25" style=3D"-webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bottom: 2px;"=
+> <a href=3D"https://www.linkedin.com/comm/jobs/view/3423373887/?trackingId=
+=3DnpxTgheESSm5HysKpXxXJA%3D%3D&amp;refId=3DlXDk%2FXi3RBqfzS6hAwI0TA%3D%3D&=
+amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwB=
+cXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;t=
+rk=3Deml-jobs_jymbii_digest-job_card-0-jobcard_body&amp;trkEmail=3Deml-jobs=
+_jymbii_digest-job_card-0-jobcard_body-null-eau1wl~lchptbo9~lr-null-null&am=
+p;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" class=3D"font-bold text-md le=
+ading-regular text-color-brand" style=3D"cursor: pointer; display: inline-b=
+lock; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; font-siz=
+e: 16px; font-weight: 600; line-height: 1.25; color: #0a66c2;"> Wordpress D=
+eveloper </a> </td> </tr> <tr> <td class=3D"pb-0.5" style=3D"-webkit-text-s=
+ize-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; =
+text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; paddi=
+ng-bottom: 4px;"> <p class=3D"text-system-gray-100 text-sm leading-[20px]" =
+style=3D"margin: 0; font-weight: 400; font-size: 14px; line-height: 20px; c=
+olor: #1f1f1f;"> BOLD by Devoteam =C2=B7 Portugal (Remoto) </p> </td> </tr>=
+ <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt;"> <table class=3D"font-sans" role=3D"presentati=
+on" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0;" align=
+=3D"left"> <!--[if (gte mso 9)|(IE)]><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" role=3D"presentation" style=3D"width: 100%;"><![endif]-=
+-> <!--[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;"><![endif]=
+--> <div class=3D"job-card-flavor__container" style=3D"display: inline-bloc=
+k; padding-top: 4px; padding-right: 24px;"> <table class=3D"font-sans" role=
+=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-=
+ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', =
+Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji'=
+, 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', H=
+elvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-1 w-3" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt; width: 24px; padding-right: 8px;" width=3D"24"> <img src=3D"https=
+://static.licdn.com/aero-v1/sc/h/9l6a5sabysjjlpb4xyj1r8g5x" alt=3D"=C3=ADco=
+ne de radar" class=3D"w-3 h-3 block" style=3D"outline: none; text-decoratio=
+n: none; -ms-interpolation-mode: bicubic; display: block; height: 24px; wid=
+th: 24px;" width=3D"24" height=3D"24"> </td> <td style=3D"-webkit-text-size=
+-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; tex=
+t-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <p cla=
+ss=3D"job-card-flavor__detail" style=3D"margin: 0; font-weight: 400; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 12px; =
+line-height: 1.25; color: #666666;"> Recrutando agora </p> </td> </tr> </tb=
+ody> </table> </div> <!--[if (gte mso 9)|(IE)]></td> </tr><![endif]--> <!--=
+[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;"><![endif]--> <di=
+v class=3D"job-card-flavor__container" style=3D"display: inline-block; padd=
+ing-top: 4px; padding-right: 24px;"> <table class=3D"font-sans" role=3D"pre=
+sentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, Bli=
+nkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu,=
+ Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Sego=
+e UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetic=
+a, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-1 w-3" style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; width: 24px; padding-right: 8px;" width=3D"24"> <img alt=3D"Candidatura =
+simplificada" class=3D"w-3 h-3 rounded-[2px] block" src=3D"https://static.l=
+icdn.com/aero-v1/sc/h/1sk0fbe9amaiat5elvybbtxsm" style=3D"outline: none; te=
+xt-decoration: none; -ms-interpolation-mode: bicubic; display: block; heigh=
+t: 24px; width: 24px; border-radius: 2px;" width=3D"24" height=3D"24"> </td=
+> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt;"> <p class=3D"job-card-flavor__detail" style=3D"mar=
+gin: 0; font-weight: 400; font-family: -apple-system, system-ui, BlinkMacSy=
+stemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen=
+, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Em=
+oji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Aria=
+l, sans-serif; font-size: 12px; line-height: 1.25; color: #666666;"> Candid=
+atura simplificada </p> </td> </tr> </tbody> </table> </div> <!--[if (gte m=
+so 9)|(IE)]></td> </tr><![endif]--> <!--[if (gte mso 9)|(IE)]></table><![en=
+dif]--> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </a> </=
+td> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"pt-3" data-test-i=
+d=3D"job-card" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt; padding-top: 24px;"> <table class=3D"font-=
+sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-syste=
+m, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fi=
+ra Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Co=
+lor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida =
+Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-2 w-6=
+" valign=3D"top" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; width: 48px; padding-right: 16px;" width=
+=3D"48"> <a href=3D"https://www.linkedin.com/comm/jobs/view/3407982448/?tra=
+ckingId=3D3j9M%2FZABRgq4nZNcuPAZ1A%3D%3D&amp;refId=3DKXw%2BA0xkSMKCDbBMxZbs=
+zg%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%=
+2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsr=
+aA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-company_logo&amp;trkEmail=
+=3Deml-jobs_jymbii_digest-job_card-0-company_logo-null-eau1wl~lchptbo9~lr-n=
+ull-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"color: #0=
+a66c2; cursor: pointer; display: inline-block; text-decoration: none; -webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%;"> <img class=3D"inline-block relative bg-c=
+olor-entity-ghost-background w-6 h-6 rounded-[2px]" src=3D"https://media.li=
+cdn.com/dms/image/C4E0BAQGNLBLYZJlAvg/company-logo_100_100/0/1657542507778?=
+e=3D2147483647&amp;v=3Dbeta&amp;t=3DC9wIBgF5tNNbjLNEnESnBC3XJD5_obcedwR46ld=
+68cs" alt=3D"Windmill" style=3D"outline: none; text-decoration: none; -ms-i=
+nterpolation-mode: bicubic; position: relative; display: inline-block; heig=
+ht: 48px; width: 48px; border-radius: 2px; background-color: #eae6df;" widt=
+h=3D"48" height=3D"48"> </a> </td> <td valign=3D"top" style=3D"-webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <=
+a href=3D"https://www.linkedin.com/comm/jobs/view/3407982448/?trackingId=3D=
+3j9M%2FZABRgq4nZNcuPAZ1A%3D%3D&amp;refId=3DKXw%2BA0xkSMKCDbBMxZbszg%3D%3D&a=
+mp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBc=
+XHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;tr=
+k=3Deml-jobs_jymbii_digest-job_card-0-job_posting&amp;trkEmail=3Deml-jobs_j=
+ymbii_digest-job_card-0-job_posting-null-eau1wl~lchptbo9~lr-null-null&amp;e=
+id=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"color: #0a66c2; cursor:=
+ pointer; display: inline-block; text-decoration: none; -webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%;"> <table class=3D"font-sans" role=3D"presentation" valig=
+n=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" s=
+tyle=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-ta=
+ble-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont,=
+ 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen=
+ Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Se=
+goe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-s=
+erif;"> <tbody> <tr> <td class=3D"pb-0.25" style=3D"-webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bottom=
+: 2px;"> <a href=3D"https://www.linkedin.com/comm/jobs/view/3407982448/?tra=
+ckingId=3D3j9M%2FZABRgq4nZNcuPAZ1A%3D%3D&amp;refId=3DKXw%2BA0xkSMKCDbBMxZbs=
+zg%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%=
+2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsr=
+aA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-jobcard_body&amp;trkEmail=
+=3Deml-jobs_jymbii_digest-job_card-0-jobcard_body-null-eau1wl~lchptbo9~lr-n=
+ull-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" class=3D"font-bold=
+ text-md leading-regular text-color-brand" style=3D"cursor: pointer; displa=
+y: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; font-size: 16px; font-weight: 600; line-height: 1.25; color: #0a66c2;"> =
+Middle HTML/CSS Developer </a> </td> </tr> <tr> <td class=3D"pb-0.5" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; padding-bottom: 4px;"> <p class=3D"text-system-gray-100 text-s=
+m leading-[20px]" style=3D"margin: 0; font-weight: 400; font-size: 14px; li=
+ne-height: 20px; color: #1f1f1f;"> Windmill =C2=B7 Lisboa (Remoto) </p> </t=
+d> </tr> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-=
+lspace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"font-sans" role=3D"pr=
+esentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, Bl=
+inkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu=
+, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Seg=
+oe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helveti=
+ca, Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0;" =
+align=3D"left"> <!--[if (gte mso 9)|(IE)]><table cellpadding=3D"0" cellspac=
+ing=3D"0" border=3D"0" role=3D"presentation" style=3D"width: 100%;"><![endi=
+f]--> <!--[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;"><![end=
+if]--> <div class=3D"job-card-flavor__container" style=3D"display: inline-b=
+lock; padding-top: 4px; padding-right: 24px;"> <table class=3D"font-sans" r=
+ole=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso=
+-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, syst=
+em-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans=
+', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emo=
+ji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande'=
+, Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-1 w-3" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; width: 24px; padding-right: 8px;" width=3D"24"> <img src=3D"ht=
+tps://static.licdn.com/aero-v1/sc/h/ak0szf0336eao8wd8sqnpspz4" alt=3D"=C3=
+=ADcone de verifica=C3=A7=C3=A3o" class=3D"w-3 h-3 block" style=3D"outline:=
+ none; text-decoration: none; -ms-interpolation-mode: bicubic; display: blo=
+ck; height: 24px; width: 24px;" width=3D"24" height=3D"24"> </td> <td style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt;"> <p class=3D"job-card-flavor__detail" style=3D"margin: 0; fon=
+t-weight: 400; font-family: -apple-system, system-ui, BlinkMacSystemFont, '=
+Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen S=
+ans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Sego=
+e UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-ser=
+if; font-size: 12px; line-height: 1.25; color: #666666;"> Compet=C3=AAncia =
+relevante: Desenvolvimento web </p> </td> </tr> </tbody> </table> </div> <!=
+--[if (gte mso 9)|(IE)]></td> </tr><![endif]--> <!--[if (gte mso 9)|(IE)]><=
+/table><![endif]--> </td> </tr> </tbody> </table> </td> </tr> </tbody> </ta=
+ble> </a> </td> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"pt-3"=
+ data-test-id=3D"job-card" style=3D"-webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 24px;"> <table cl=
+ass=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-siz=
+e-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: =
+-apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetic=
+a Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans=
+', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbo=
+l', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=
+=3D"pr-2 w-6" valign=3D"top" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 48px; padding-right: =
+16px;" width=3D"48"> <a href=3D"https://www.linkedin.com/comm/jobs/view/338=
+2922413/?trackingId=3DfH43H8q5RKKM1ZIM1r25zA%3D%3D&amp;refId=3D6ACkWpX3TRmc=
+tBB8DUJC4A%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZb=
+IBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L0=
+7TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-company_logo&amp;tr=
+kEmail=3Deml-jobs_jymbii_digest-job_card-0-company_logo-null-eau1wl~lchptbo=
+9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"col=
+or: #0a66c2; cursor: pointer; display: inline-block; text-decoration: none;=
+ -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"inline-block relativ=
+e bg-color-entity-ghost-background w-6 h-6 rounded-[2px]" src=3D"https://me=
+dia.licdn.com/dms/image/C560BAQFxXINfv3kACA/company-logo_100_100/0/16305108=
+91639?e=3D2147483647&amp;v=3Dbeta&amp;t=3DGlh_9KssiccYa65oT1e8JUfvrG7Cu093U=
+tFJM090GWw" alt=3D"DesignRush" style=3D"outline: none; text-decoration: non=
+e; -ms-interpolation-mode: bicubic; position: relative; display: inline-blo=
+ck; height: 48px; width: 48px; border-radius: 2px; background-color: #eae6d=
+f;" width=3D"48" height=3D"48"> </a> </td> <td valign=3D"top" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt;"> <a href=3D"https://www.linkedin.com/comm/jobs/view/3382922413/?track=
+ingId=3DfH43H8q5RKKM1ZIM1r25zA%3D%3D&amp;refId=3D6ACkWpX3TRmctBB8DUJC4A%3D%=
+3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdB=
+cwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&am=
+p;trk=3Deml-jobs_jymbii_digest-job_card-0-job_posting&amp;trkEmail=3Deml-jo=
+bs_jymbii_digest-job_card-0-job_posting-null-eau1wl~lchptbo9~lr-null-null&a=
+mp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"color: #0a66c2; cur=
+sor: pointer; display: inline-block; text-decoration: none; -webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%;"> <table class=3D"font-sans" role=3D"presentation" v=
+align=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100=
+%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemF=
+ont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Ox=
+ygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji',=
+ 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sa=
+ns-serif;"> <tbody> <tr> <td class=3D"pb-0.25" style=3D"-webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bo=
+ttom: 2px;"> <a href=3D"https://www.linkedin.com/comm/jobs/view/3382922413/=
+?trackingId=3DfH43H8q5RKKM1ZIM1r25zA%3D%3D&amp;refId=3D6ACkWpX3TRmctBB8DUJC=
+4A%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%=
+2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsr=
+aA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-jobcard_body&amp;trkEmail=
+=3Deml-jobs_jymbii_digest-job_card-0-jobcard_body-null-eau1wl~lchptbo9~lr-n=
+ull-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" class=3D"font-bold=
+ text-md leading-regular text-color-brand" style=3D"cursor: pointer; displa=
+y: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; font-size: 16px; font-weight: 600; line-height: 1.25; color: #0a66c2;"> =
+Senior Web Designer </a> </td> </tr> <tr> <td class=3D"pb-0.5" style=3D"-we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace:=
+ 0pt; padding-bottom: 4px;"> <p class=3D"text-system-gray-100 text-sm leadi=
+ng-[20px]" style=3D"margin: 0; font-weight: 400; font-size: 14px; line-heig=
+ht: 20px; color: #1f1f1f;"> DesignRush =C2=B7 Portugal (Remoto) </p> </td> =
+</tr> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"font-sans" role=3D"prese=
+ntation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, Blink=
+MacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, O=
+xygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe =
+UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica,=
+ Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0;" ali=
+gn=3D"left"> <!--[if (gte mso 9)|(IE)]><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" role=3D"presentation" style=3D"width: 100%;"><![endif]-=
+-> <!--[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;"><![endif]=
+--> <div class=3D"job-card-flavor__container" style=3D"display: inline-bloc=
+k; padding-top: 4px; padding-right: 24px;"> <table class=3D"font-sans" role=
+=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-=
+ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', =
+Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji'=
+, 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', H=
+elvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-1 w-3" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt; width: 24px; padding-right: 8px;" width=3D"24"> <img src=3D"https=
+://static.licdn.com/aero-v1/sc/h/9l6a5sabysjjlpb4xyj1r8g5x" alt=3D"=C3=ADco=
+ne de radar" class=3D"w-3 h-3 block" style=3D"outline: none; text-decoratio=
+n: none; -ms-interpolation-mode: bicubic; display: block; height: 24px; wid=
+th: 24px;" width=3D"24" height=3D"24"> </td> <td style=3D"-webkit-text-size=
+-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; tex=
+t-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <p cla=
+ss=3D"job-card-flavor__detail" style=3D"margin: 0; font-weight: 400; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 12px; =
+line-height: 1.25; color: #666666;"> Recrutando agora </p> </td> </tr> </tb=
+ody> </table> </div> <!--[if (gte mso 9)|(IE)]></td> </tr><![endif]--> <!--=
+[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;"><![endif]--> <di=
+v class=3D"job-card-flavor__container" style=3D"display: inline-block; padd=
+ing-top: 4px; padding-right: 24px;"> <table class=3D"font-sans" role=3D"pre=
+sentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, Bli=
+nkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu,=
+ Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Sego=
+e UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetic=
+a, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-1 w-3" style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; width: 24px; padding-right: 8px;" width=3D"24"> <img alt=3D"Candidatura =
+simplificada" class=3D"w-3 h-3 rounded-[2px] block" src=3D"https://static.l=
+icdn.com/aero-v1/sc/h/1sk0fbe9amaiat5elvybbtxsm" style=3D"outline: none; te=
+xt-decoration: none; -ms-interpolation-mode: bicubic; display: block; heigh=
+t: 24px; width: 24px; border-radius: 2px;" width=3D"24" height=3D"24"> </td=
+> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt;"> <p class=3D"job-card-flavor__detail" style=3D"mar=
+gin: 0; font-weight: 400; font-family: -apple-system, system-ui, BlinkMacSy=
+stemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen=
+, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Em=
+oji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Aria=
+l, sans-serif; font-size: 12px; line-height: 1.25; color: #666666;"> Candid=
+atura simplificada </p> </td> </tr> </tbody> </table> </div> <!--[if (gte m=
+so 9)|(IE)]></td> </tr><![endif]--> <!--[if (gte mso 9)|(IE)]></table><![en=
+dif]--> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </a> </=
+td> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"pt-3" data-test-i=
+d=3D"job-card" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt; padding-top: 24px;"> <table class=3D"font-=
+sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-syste=
+m, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fi=
+ra Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Co=
+lor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida =
+Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-2 w-6=
+" valign=3D"top" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; width: 48px; padding-right: 16px;" width=
+=3D"48"> <a href=3D"https://www.linkedin.com/comm/jobs/view/3410404776/?tra=
+ckingId=3DX2236KPPRcqWCuVHgn83ZA%3D%3D&amp;refId=3Dhm03k7jRSSql9DZskJGgMQ%3=
+D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKB=
+dBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&=
+amp;trk=3Deml-jobs_jymbii_digest-job_card-0-company_logo&amp;trkEmail=3Deml=
+-jobs_jymbii_digest-job_card-0-company_logo-null-eau1wl~lchptbo9~lr-null-nu=
+ll&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"color: #0a66c2;=
+ cursor: pointer; display: inline-block; text-decoration: none; -webkit-tex=
+t-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; text-size-adjust: 100%;"> <img class=3D"inline-block relative bg-color-e=
+ntity-ghost-background w-6 h-6 rounded-[2px]" src=3D"https://media.licdn.co=
+m/dms/image/C4D0BAQG16gpXzS14DQ/company-logo_100_100/0/1625230996048?e=3D21=
+47483647&amp;v=3Dbeta&amp;t=3DObF0XGi1n0NcIYxQXx_47avjideCCvfDjMZ1OSdIWHk" =
+alt=3D"Cloudflare" style=3D"outline: none; text-decoration: none; -ms-inter=
+polation-mode: bicubic; position: relative; display: inline-block; height: =
+48px; width: 48px; border-radius: 2px; background-color: #eae6df;" width=3D=
+"48" height=3D"48"> </a> </td> <td valign=3D"top" style=3D"-webkit-text-siz=
+e-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; te=
+xt-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a hr=
+ef=3D"https://www.linkedin.com/comm/jobs/view/3410404776/?trackingId=3DX223=
+6KPPRcqWCuVHgn83ZA%3D%3D&amp;refId=3Dhm03k7jRSSql9DZskJGgMQ%3D%3D&amp;lipi=
+=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D=
+%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;trk=3Deml=
+-jobs_jymbii_digest-job_card-0-job_posting&amp;trkEmail=3Deml-jobs_jymbii_d=
+igest-job_card-0-job_posting-null-eau1wl~lchptbo9~lr-null-null&amp;eid=3Dea=
+u1wl-lchptbo9-lr" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointe=
+r; display: inline-block; text-decoration: none; -webkit-text-size-adjust: =
+100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-ad=
+just: 100%;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"to=
+p" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe=
+ UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans',=
+ Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;">=
+ <tbody> <tr> <td class=3D"pb-0.25" style=3D"-webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bottom: 2px;"=
+> <a href=3D"https://www.linkedin.com/comm/jobs/view/3410404776/?trackingId=
+=3DX2236KPPRcqWCuVHgn83ZA%3D%3D&amp;refId=3Dhm03k7jRSSql9DZskJGgMQ%3D%3D&am=
+p;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcX=
+HbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;trk=
+=3Deml-jobs_jymbii_digest-job_card-0-jobcard_body&amp;trkEmail=3Deml-jobs_j=
+ymbii_digest-job_card-0-jobcard_body-null-eau1wl~lchptbo9~lr-null-null&amp;=
+eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" class=3D"font-bold text-md lead=
+ing-regular text-color-brand" style=3D"cursor: pointer; display: inline-blo=
+ck; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; font-size:=
+ 16px; font-weight: 600; line-height: 1.25; color: #0a66c2;"> Frontend Engi=
+neer - Trust &amp; Safety </a> </td> </tr> <tr> <td class=3D"pb-0.5" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; padding-bottom: 4px;"> <p class=3D"text-system-gray-100 text-s=
+m leading-[20px]" style=3D"margin: 0; font-weight: 400; font-size: 14px; li=
+ne-height: 20px; color: #1f1f1f;"> Cloudflare =C2=B7 Portugal (Remoto) </p>=
+ </td> </tr> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"font-sans" role=
+=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-=
+ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', =
+Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji'=
+, 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', H=
+elvetica, Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size=
+: 0;" align=3D"left"> <!--[if (gte mso 9)|(IE)]><table cellpadding=3D"0" ce=
+llspacing=3D"0" border=3D"0" role=3D"presentation" style=3D"width: 100%;"><=
+![endif]--> <!--[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;">=
+<![endif]--> <div class=3D"job-card-flavor__container" style=3D"display: in=
+line-block; padding-top: 4px; padding-right: 24px;"> <table class=3D"font-s=
+ans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system=
+, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fir=
+a Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Col=
+or Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida G=
+rande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-1 w-3"=
+ style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; width: 24px; padding-right: 8px;" width=3D"24"> <img src=
+=3D"https://static.licdn.com/aero-v1/sc/h/9l6a5sabysjjlpb4xyj1r8g5x" alt=3D=
+"=C3=ADcone de radar" class=3D"w-3 h-3 block" style=3D"outline: none; text-=
+decoration: none; -ms-interpolation-mode: bicubic; display: block; height: =
+24px; width: 24px;" width=3D"24" height=3D"24"> </td> <td style=3D"-webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;=
+"> <p class=3D"job-card-flavor__detail" style=3D"margin: 0; font-weight: 40=
+0; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', R=
+oboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantar=
+ell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji',=
+ 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; font-siz=
+e: 12px; line-height: 1.25; color: #666666;"> Recrutando agora </p> </td> <=
+/tr> </tbody> </table> </div> <!--[if (gte mso 9)|(IE)]></td> </tr><![endif=
+]--> <!--[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;"><![endi=
+f]--> <div class=3D"job-card-flavor__container" style=3D"display: inline-bl=
+ock; padding-top: 4px; padding-right: 24px;"> <table class=3D"font-sans" ro=
+le=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, syste=
+m-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans'=
+, Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoj=
+i', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande',=
+ Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-1 w-3" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; width: 24px; padding-right: 8px;" width=3D"24"> <img alt=3D"Ca=
+ndidatura simplificada" class=3D"w-3 h-3 rounded-[2px] block" src=3D"https:=
+//static.licdn.com/aero-v1/sc/h/1sk0fbe9amaiat5elvybbtxsm" style=3D"outline=
+: none; text-decoration: none; -ms-interpolation-mode: bicubic; display: bl=
+ock; height: 24px; width: 24px; border-radius: 2px;" width=3D"24" height=3D=
+"24"> </td> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt;"> <p class=3D"job-card-flavor__detail" st=
+yle=3D"margin: 0; font-weight: 400; font-family: -apple-system, system-ui, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubun=
+tu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helve=
+tica, Arial, sans-serif; font-size: 12px; line-height: 1.25; color: #666666=
+;"> Candidatura simplificada </p> </td> </tr> </tbody> </table> </div> <!--=
+[if (gte mso 9)|(IE)]></td> </tr><![endif]--> <!--[if (gte mso 9)|(IE)]></t=
+able><![endif]--> </td> </tr> </tbody> </table> </td> </tr> </tbody> </tabl=
+e> </a> </td> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"pt-3" d=
+ata-test-id=3D"job-card" style=3D"-webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso=
+-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 24px;"> <table clas=
+s=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspaci=
+ng=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -a=
+pple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica =
+Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans',=
+ 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'=
+, 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=
+=3D"pr-2 w-6" valign=3D"top" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 48px; padding-right: =
+16px;" width=3D"48"> <a href=3D"https://www.linkedin.com/comm/jobs/view/298=
+8291822/?trackingId=3DNgIT6g7rQzqxQKZ0v8r8KQ%3D%3D&amp;refId=3DmndzKAiDS8%2=
+B3onu9mPT8Vg%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3B=
+ZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0=
+L07TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-company_logo&amp;=
+trkEmail=3Deml-jobs_jymbii_digest-job_card-0-company_logo-null-eau1wl~lchpt=
+bo9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"c=
+olor: #0a66c2; cursor: pointer; display: inline-block; text-decoration: non=
+e; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-si=
+ze-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"inline-block relat=
+ive bg-color-entity-ghost-background w-6 h-6 rounded-[2px]" src=3D"https://=
+media.licdn.com/dms/image/C560BAQEloqEBLHUukg/company-logo_100_100/0/154712=
+4986477?e=3D2147483647&amp;v=3Dbeta&amp;t=3DjrJ21z-k63VixvZBiZtID_G2jYJOSQ1=
+2Lyzen7jLu-M" alt=3D"Devoteam" style=3D"outline: none; text-decoration: non=
+e; -ms-interpolation-mode: bicubic; position: relative; display: inline-blo=
+ck; height: 48px; width: 48px; border-radius: 2px; background-color: #eae6d=
+f;" width=3D"48" height=3D"48"> </a> </td> <td valign=3D"top" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt;"> <a href=3D"https://www.linkedin.com/comm/jobs/view/2988291822/?track=
+ingId=3DNgIT6g7rQzqxQKZ0v8r8KQ%3D%3D&amp;refId=3DmndzKAiDS8%2B3onu9mPT8Vg%3=
+D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKB=
+dBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&=
+amp;trk=3Deml-jobs_jymbii_digest-job_card-0-job_posting&amp;trkEmail=3Deml-=
+jobs_jymbii_digest-job_card-0-job_posting-null-eau1wl~lchptbo9~lr-null-null=
+&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"color: #0a66c2; c=
+ursor: pointer; display: inline-block; text-decoration: none; -webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%;"> <table class=3D"font-sans" role=3D"presentation"=
+ valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"1=
+00%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSyste=
+mFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, '=
+Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji=
+', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, =
+sans-serif;"> <tbody> <tr> <td class=3D"pb-0.25" style=3D"-webkit-text-size=
+-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; tex=
+t-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-=
+bottom: 2px;"> <a href=3D"https://www.linkedin.com/comm/jobs/view/298829182=
+2/?trackingId=3DNgIT6g7rQzqxQKZ0v8r8KQ%3D%3D&amp;refId=3DmndzKAiDS8%2B3onu9=
+mPT8Vg%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNk=
+otR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgE=
+PjsraA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-jobcard_body&amp;trkEma=
+il=3Deml-jobs_jymbii_digest-job_card-0-jobcard_body-null-eau1wl~lchptbo9~lr=
+-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" class=3D"font-bo=
+ld text-md leading-regular text-color-brand" style=3D"cursor: pointer; disp=
+lay: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; font-size: 16px; font-weight: 600; line-height: 1.25; color: #0a66c2;"=
+> Wordpress Developer </a> </td> </tr> <tr> <td class=3D"pb-0.5" style=3D"-=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; padding-bottom: 4px;"> <p class=3D"text-system-gray-100 text-sm lea=
+ding-[20px]" style=3D"margin: 0; font-weight: 400; font-size: 14px; line-he=
+ight: 20px; color: #1f1f1f;"> Devoteam =C2=B7 Portugal (Remoto) </p> </td> =
+</tr> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"font-sans" role=3D"prese=
+ntation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, Blink=
+MacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, O=
+xygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe =
+UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica,=
+ Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0;" ali=
+gn=3D"left"> <!--[if (gte mso 9)|(IE)]><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" role=3D"presentation" style=3D"width: 100%;"><![endif]-=
+-> <!--[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;"><![endif]=
+--> <div class=3D"job-card-flavor__container" style=3D"display: inline-bloc=
+k; padding-top: 4px; padding-right: 24px;"> <table class=3D"font-sans" role=
+=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-=
+ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', =
+Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji'=
+, 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', H=
+elvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-1 w-3" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt; width: 24px; padding-right: 8px;" width=3D"24"> <img src=3D"https=
+://static.licdn.com/aero-v1/sc/h/9l6a5sabysjjlpb4xyj1r8g5x" alt=3D"=C3=ADco=
+ne de radar" class=3D"w-3 h-3 block" style=3D"outline: none; text-decoratio=
+n: none; -ms-interpolation-mode: bicubic; display: block; height: 24px; wid=
+th: 24px;" width=3D"24" height=3D"24"> </td> <td style=3D"-webkit-text-size=
+-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; tex=
+t-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <p cla=
+ss=3D"job-card-flavor__detail" style=3D"margin: 0; font-weight: 400; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 12px; =
+line-height: 1.25; color: #666666;"> Recrutando agora </p> </td> </tr> </tb=
+ody> </table> </div> <!--[if (gte mso 9)|(IE)]></td> </tr><![endif]--> <!--=
+[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;"><![endif]--> <di=
+v class=3D"job-card-flavor__container" style=3D"display: inline-block; padd=
+ing-top: 4px; padding-right: 24px;"> <table class=3D"font-sans" role=3D"pre=
+sentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, Bli=
+nkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu,=
+ Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Sego=
+e UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetic=
+a, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-1 w-3" style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; width: 24px; padding-right: 8px;" width=3D"24"> <img alt=3D"Candidatura =
+simplificada" class=3D"w-3 h-3 rounded-[2px] block" src=3D"https://static.l=
+icdn.com/aero-v1/sc/h/1sk0fbe9amaiat5elvybbtxsm" style=3D"outline: none; te=
+xt-decoration: none; -ms-interpolation-mode: bicubic; display: block; heigh=
+t: 24px; width: 24px; border-radius: 2px;" width=3D"24" height=3D"24"> </td=
+> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt;"> <p class=3D"job-card-flavor__detail" style=3D"mar=
+gin: 0; font-weight: 400; font-family: -apple-system, system-ui, BlinkMacSy=
+stemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen=
+, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Em=
+oji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Aria=
+l, sans-serif; font-size: 12px; line-height: 1.25; color: #666666;"> Candid=
+atura simplificada </p> </td> </tr> </tbody> </table> </div> <!--[if (gte m=
+so 9)|(IE)]></td> </tr><![endif]--> <!--[if (gte mso 9)|(IE)]></table><![en=
+dif]--> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </a> </=
+td> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"pt-3" data-test-i=
+d=3D"job-card" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt; padding-top: 24px;"> <table class=3D"font-=
+sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-syste=
+m, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fi=
+ra Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Co=
+lor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida =
+Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-2 w-6=
+" valign=3D"top" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; width: 48px; padding-right: 16px;" width=
+=3D"48"> <a href=3D"https://www.linkedin.com/comm/jobs/view/3405256315/?tra=
+ckingId=3D3VBXgRlRQVWlC%2FJtUPToDw%3D%3D&amp;refId=3DItauY%2F19R%2BSl1OuriV=
+Rtjw%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkot=
+R%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPj=
+sraA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-company_logo&amp;trkEmail=
+=3Deml-jobs_jymbii_digest-job_card-0-company_logo-null-eau1wl~lchptbo9~lr-n=
+ull-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"color: #0=
+a66c2; cursor: pointer; display: inline-block; text-decoration: none; -webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%;"> <img class=3D"inline-block relative bg-c=
+olor-entity-ghost-background w-6 h-6 rounded-[2px]" src=3D"https://media.li=
+cdn.com/dms/image/C560BAQGQoftuvJQQuw/company-logo_100_100/0/1661450202601?=
+e=3D2147483647&amp;v=3Dbeta&amp;t=3DMZcoLn9CEi0lwccwhDHNwZ7_DAVymAVw0xeSDOZ=
+0AwE" alt=3D"Thankz Global Staffing" style=3D"outline: none; text-decoratio=
+n: none; -ms-interpolation-mode: bicubic; position: relative; display: inli=
+ne-block; height: 48px; width: 48px; border-radius: 2px; background-color: =
+#eae6df;" width=3D"48" height=3D"48"> </a> </td> <td valign=3D"top" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/jobs/view/340525631=
+5/?trackingId=3D3VBXgRlRQVWlC%2FJtUPToDw%3D%3D&amp;refId=3DItauY%2F19R%2BSl=
+1OuriVRtjw%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZb=
+IBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L0=
+7TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-job_posting&amp;trk=
+Email=3Deml-jobs_jymbii_digest-job_card-0-job_posting-null-eau1wl~lchptbo9~=
+lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"color=
+: #0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%;"> <table class=3D"font-sans" role=3D"p=
+resentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0=
+" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, B=
+linkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubunt=
+u, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Se=
+goe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvet=
+ica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pb-0.25" style=3D"-webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; padding-bottom: 2px;"> <a href=3D"https://www.linkedin.com/comm/jobs/vi=
+ew/3405256315/?trackingId=3D3VBXgRlRQVWlC%2FJtUPToDw%3D%3D&amp;refId=3DItau=
+Y%2F19R%2BSl1OuriVRtjw%3D%3D&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii=
+_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;=
+midSig=3D0L07TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-job_card-0-jobcard=
+_body&amp;trkEmail=3Deml-jobs_jymbii_digest-job_card-0-jobcard_body-null-ea=
+u1wl~lchptbo9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" =
+class=3D"font-bold text-md leading-regular text-color-brand" style=3D"curso=
+r: pointer; display: inline-block; text-decoration: none; -webkit-text-size=
+-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; tex=
+t-size-adjust: 100%; font-size: 16px; font-weight: 600; line-height: 1.25; =
+color: #0a66c2;"> Conversion Rate Optimization Specialist </a> </td> </tr> =
+<tr> <td class=3D"pb-0.5" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bottom: 4px;"> <p class=
+=3D"text-system-gray-100 text-sm leading-[20px]" style=3D"margin: 0; font-w=
+eight: 400; font-size: 14px; line-height: 20px; color: #1f1f1f;"> Thankz Gl=
+obal Staffing =C2=B7 Portugal (Remoto) </p> </td> </tr> <tr> <td style=3D"-=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" b=
+order=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace:=
+ 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI'=
+, Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Can=
+tarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoj=
+i', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tb=
+ody> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt; font-size: 0;" align=3D"left"> <!--[if (gte=
+ mso 9)|(IE)]><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" role=
+=3D"presentation" style=3D"width: 100%;"><![endif]--> <!--[if (gte mso 9)|(=
+IE)]><tr> <td style=3D"padding-top: 4px;"><![endif]--> <div class=3D"job-ca=
+rd-flavor__container" style=3D"display: inline-block; padding-top: 4px; pad=
+ding-right: 24px;"> <table class=3D"font-sans" role=3D"presentation" valign=
+=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" st=
+yle=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-tex=
+t-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, =
+'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen =
+Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Seg=
+oe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-se=
+rif;"> <tbody> <tr> <td class=3D"pr-1 w-3" style=3D"-webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 24px; p=
+adding-right: 8px;" width=3D"24"> <img src=3D"https://static.licdn.com/aero=
+-v1/sc/h/9l6a5sabysjjlpb4xyj1r8g5x" alt=3D"=C3=ADcone de radar" class=3D"w-=
+3 h-3 block" style=3D"outline: none; text-decoration: none; -ms-interpolati=
+on-mode: bicubic; display: block; height: 24px; width: 24px;" width=3D"24" =
+height=3D"24"> </td> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso=
+-table-lspace: 0pt; mso-table-rspace: 0pt;"> <p class=3D"job-card-flavor__d=
+etail" style=3D"margin: 0; font-weight: 400; font-family: -apple-system, sy=
+stem-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sa=
+ns', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color E=
+moji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grand=
+e', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.25; color=
+: #666666;"> Recrutando agora </p> </td> </tr> </tbody> </table> </div> <!-=
+-[if (gte mso 9)|(IE)]></td> </tr><![endif]--> <!--[if (gte mso 9)|(IE)]><t=
+r> <td style=3D"padding-top: 4px;"><![endif]--> <div class=3D"job-card-flav=
+or__container" style=3D"display: inline-block; padding-top: 4px; padding-ri=
+ght: 24px;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top=
+" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"=
+-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe =
+UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', =
+Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI E=
+moji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> =
+<tbody> <tr> <td class=3D"pr-1 w-3" style=3D"-webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 24px; padding-=
+right: 8px;" width=3D"24"> <img alt=3D"Candidatura simplificada" class=3D"w=
+-3 h-3 rounded-[2px] block" src=3D"https://static.licdn.com/aero-v1/sc/h/1s=
+k0fbe9amaiat5elvybbtxsm" style=3D"outline: none; text-decoration: none; -ms=
+-interpolation-mode: bicubic; display: block; height: 24px; width: 24px; bo=
+rder-radius: 2px;" width=3D"24" height=3D"24"> </td> <td style=3D"-webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"=
+> <p class=3D"job-card-flavor__detail" style=3D"margin: 0; font-weight: 400=
+; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Ro=
+boto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantare=
+ll, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', =
+'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; font-size=
+: 12px; line-height: 1.25; color: #666666;"> Candidatura simplificada </p> =
+</td> </tr> </tbody> </table> </div> <!--[if (gte mso 9)|(IE)]></td> </tr><=
+![endif]--> <!--[if (gte mso 9)|(IE)]></table><![endif]--> </td> </tr> </tb=
+ody> </table> </td> </tr> </tbody> </table> </a> </td> </tr> </tbody> </tab=
+le> </td> </tr> <tr data-test-id=3D"see-more-jobs-button"> <td class=3D"pt-=
+3 text-left" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt; padding-top: 24px; text-align: left;"> <tabl=
+e class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cel=
+lspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-fami=
+ly: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helv=
+etica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid =
+Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI S=
+ymbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td v=
+align=3D"middle" align=3D"left" style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.=
+linkedin.com/comm/jobs?lgTemp=3Djobs_jymbii_digest&amp;lgCta=3Deml-jymbii-b=
+ottom-see-all-jobs&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3B=
+ZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0=
+L07TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-jymbii-0-all~job~postings&am=
+p;trkEmail=3Deml-jobs_jymbii_digest-jymbii-0-all~job~postings-null-eau1wl~l=
+chptbo9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=
+=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration=
+: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%;"> <table class=3D"font-sans b=
+order-separate" role=3D"presentation" valign=3D"top" border=3D"0" cellspaci=
+ng=3D"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse=
+: separate; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Seg=
+oe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans=
+', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;=
+"> <tbody> <tr> <td class=3D"btn-md btn-primary border-color-brand button-l=
+ink leading-regular !min-h-[auto] font-sans !shadow-none border-1 border-so=
+lid" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt; height: min-content; border-radius: 24px; padding-to=
+p: 12px; padding-bottom: 12px; padding-left: 24px; padding-right: 24px; tex=
+t-align: center; font-size: 16px; font-weight: 600; cursor: pointer; text-d=
+ecoration-line: none; background-color: #0a66c2; color: #ffffff; border-wid=
+th: 1px; border-style: solid; border-color: #0a66c2; font-family: -apple-sy=
+stem, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', =
+'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple=
+ Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Luci=
+da Grande', Helvetica, Arial, sans-serif; line-height: 1.25; min-height: au=
+to !important; box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000 !important;"> <a=
+ href=3D"https://www.linkedin.com/comm/jobs?lgTemp=3Djobs_jymbii_digest&amp=
+;lgCta=3Deml-jymbii-bottom-see-all-jobs&amp;lipi=3Durn%3Ali%3Apage%3Aemail_=
+jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBb=
+B2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-jymbii-=
+0-all~job~postings&amp;trkEmail=3Deml-jobs_jymbii_digest-jymbii-0-all~job~p=
+ostings-null-eau1wl~lchptbo9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" tar=
+get=3D"_blank" tabindex=3D"-1" aria-hidden=3D"true" style=3D"color: #0a66c2=
+; cursor: pointer; display: inline-block; text-decoration: none; -webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%;"> <span class=3D"no-underline text-white" style=
+=3D"color: #ffffff; text-decoration-line: none;"> Ver todas as vagas </span=
+> </a> </td> </tr> </tbody> </table> </a> </td> </tr> </tbody> </table> </t=
+d> </tr> <tr data-test-id=3D"premium-upsell-divider"> <td class=3D"pt-3" st=
+yle=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-tex=
+t-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; padding-top: 24px;"> <hr class=3D"bg-[#D9D9D9] border-0 h-[=
+1px] m-0" style=3D"margin: 0px; height: 1px; border-width: 0; background-co=
+lor: #D9D9D9;"> </td> </tr> <tr data-test-id=3D"premium-upsell"> <td class=
+=3D"pt-3" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; padding-top: 24px;"> <table class=3D"font-sans"=
+ role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, sy=
+stem-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sa=
+ns', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color E=
+moji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grand=
+e', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <t=
+able class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <t=
+d align=3D"left" valign=3D"top" class=3D"w-0" style=3D"-webkit-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 0px;=
+" width=3D"0"> <a href=3D"https://pt.linkedin.com/comm/in/rafaelandersonsou=
+za?lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBc=
+XHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;tr=
+k=3Deml-jobs_jymbii_digest-jymbii-0-premium~upsell&amp;trkEmail=3Deml-jobs_=
+jymbii_digest-jymbii-0-premium~upsell-null-eau1wl~lchptbo9~lr-null-null&amp=
+;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=3D"color: #0a66c2; curso=
+r: pointer; display: inline-block; text-decoration: none; -webkit-text-size=
+-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; tex=
+t-size-adjust: 100%;"> <img class=3D"w-[84px]" alt=3D"=C3=8Dcone Premium" s=
+rc=3D"https://static.licdn.com/aero-v1/sc/h/40p617it49hlmq3d88bf4wguy" styl=
+e=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;=
+ width: 84px;" width=3D"84"> </a> </td> </tr> <tr> <td class=3D"text-center=
+" align=3D"center" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-a=
+djust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt; text-align: center;"> <img class=3D"in=
+line-block relative bg-color-entity-ghost-background clip-path-circle-50 ro=
+unded-full w-16 h-16" src=3D"https://media.licdn.com/dms/image/C4D03AQEH4Cx=
+hkhtzrA/profile-displayphoto-shrink_200_200/0/1607511453788?e=3D1678320000&=
+amp;v=3Dbeta&amp;t=3D1OAgIsr12Tfm3XwQHMovQdXm96inIkBUt93_xgl99-s" alt=3D"Ra=
+fael Souza" style=3D"outline: none; text-decoration: none; -ms-interpolatio=
+n-mode: bicubic; position: relative; display: inline-block; height: 128px; =
+width: 128px; border-radius: 9999px; background-color: #eae6df; clip-path: =
+circle(50%);" width=3D"128" height=3D"128"> </td> </tr> </tbody> </table> <=
+/td> </tr> <tr> <td class=3D"text-lg leading-regular text-center pt-2" styl=
+e=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table=
+-rspace: 0pt; padding-top: 16px; text-align: center; font-size: 20px; line-=
+height: 1.25;"> Veja as vagas mais adequadas para seu perfil </td> </tr> <t=
+r> <td class=3D"pt-2" style=3D"-webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 16px;"> <table class=
+=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -ap=
+ple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica N=
+eue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',=
+ 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=
+=3D"middle" align=3D"middle" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.lin=
+kedin.com/comm/premium/products/?family=3Djss&amp;lipi=3Durn%3Ali%3Apage%3A=
+email_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQ=
+Eq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-n=
+ull-0-null&amp;trkEmail=3Deml-jobs_jymbii_digest-null-0-null-null-eau1wl~lc=
+hptbo9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" style=
+=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration=
+: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%;"> <table class=3D"font-sans b=
+order-separate" role=3D"presentation" valign=3D"top" border=3D"0" cellspaci=
+ng=3D"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse=
+: separate; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Seg=
+oe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans=
+', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;=
+"> <tbody> <tr> <td class=3D"btn-sm btn-secondary !border-[#424242] button-=
+link leading-regular !min-h-[auto] font-sans !shadow-none border-1 border-s=
+olid" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; height: min-content; border-radius: 24px; padding-t=
+op: 7px; padding-bottom: 7px; padding-left: 16px; padding-right: 16px; text=
+-align: center; font-size: 14px; font-weight: 600; cursor: pointer; text-de=
+coration-line: none; background-color: rgba(0, 0, 0, 0); color: rgba(0, 0, =
+0, 0.75); border-width: 1px; border-style: solid; font-family: -apple-syste=
+m, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fi=
+ra Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Co=
+lor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida =
+Grande', Helvetica, Arial, sans-serif; line-height: 1.25; min-height: auto =
+!important; border-color: #424242 !important; box-shadow: 0 0 #0000, 0 0 #0=
+000, 0 0 #0000 !important;"> <a href=3D"https://www.linkedin.com/comm/premi=
+um/products/?family=3Djss&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_di=
+gest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;mid=
+Sig=3D0L07TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-null-0-null&amp;trkEm=
+ail=3Deml-jobs_jymbii_digest-null-0-null-null-eau1wl~lchptbo9~lr-null-null&=
+amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" tabindex=3D"-1" aria-hidden=
+=3D"true" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; =
+text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <span class=
+=3D"no-underline !text-[#424242]" style=3D"text-decoration-line: none; colo=
+r: #424242 !important;"> Veja todas as vagas </span> </a> </td> </tr> </tbo=
+dy> </table> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </tabl=
+e> </td> </tr> </tbody> </table> </div> </td> </tr> <tr> <td class=3D"bg-co=
+lor-background-canvas p-3" style=3D"-webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f3f2f0; pad=
+ding: 24px;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"to=
+p" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe=
+ UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans',=
+ Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;">=
+ <tbody> <tr> <td class=3D"text-center pb-2" style=3D"-webkit-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bott=
+om: 16px; text-align: center;"> <h2 class=3D"text-lg" style=3D"margin: 0; f=
+ont-weight: 500; font-size: 20px;">Mantenha-se a par das atualiza=C3=A7=C3=
+=B5es com o aplicativo do LinkedIn</h2> </td> </tr> <tr> <td class=3D"text-=
+center" data-test-id=3D"footer-app-store-icon" style=3D"-webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align=
+: center;"> <a href=3D"https://itunes.apple.com/us/app/linkedin/id288429040=
+?pt=3D10746&amp;ct=3Dst_appsite_flagship&amp;mt=3D8" style=3D"color: #0a66c=
+2; cursor: pointer; display: inline-block; text-decoration: none; -webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%;"> <img alt=3D"Baixe na App Store" src=3D"https=
+://static.licdn.com/aero-v1/sc/h/uslxhb1orpuqowrx33atnpsu" class=3D"h-[40px=
+] w-[120px] pr-1" style=3D"outline: none; text-decoration: none; -ms-interp=
+olation-mode: bicubic; height: 40px; width: 120px; padding-right: 8px;" wid=
+th=3D"120" height=3D"40"> </a><a href=3D"https://play.google.com/store/apps=
+/details?id=3Dcom.linkedin.android&amp;referrer=3Dst_appsite_flagship" styl=
+e=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoratio=
+n: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%;"> <img alt=3D"Baixe no Googl=
+e Play" src=3D"https://static.licdn.com/aero-v1/sc/h/a460qa5pzdbqv5d5y7d8sb=
+ovh" class=3D"h-[40px] w-[134px]" style=3D"outline: none; text-decoration: =
+none; -ms-interpolation-mode: bicubic; height: 40px; width: 134px;" width=
+=3D"134" height=3D"40"> </a> </td> </tr> <tr> <td class=3D"py-2" style=3D"-=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; padding-top: 16px; padding-bottom: 16px;"><hr class=3D"border-none =
+bg-[#e0dfdd] h-[1px]" style=3D"height: 1px; border-style: none; background-=
+color: #e0dfdd;"></td> </tr> </tbody> </table> <table class=3D"font-sans te=
+xt-xs" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-syst=
+em, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'F=
+ira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple C=
+olor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida=
+ Grande', Helvetica, Arial, sans-serif; font-size: 12px;"> <tbody> <tr> <td=
+ class=3D"pb-1 m-0" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tabl=
+e-lspace: 0pt; mso-table-rspace: 0pt; margin: 0px; padding-bottom: 8px;"> E=
+ste e-mail foi enviado a Rafael Souza (Desenvolvedor web na Solution.dev) <=
+/td> </tr> <tr> <td class=3D"pb-1 m-0" style=3D"-webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin: 0px; paddi=
+ng-bottom: 8px;"> <a href=3D"https://www.linkedin.com/help/linkedin/answer/=
+4788?lang=3Dpt&amp;lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIB=
+NkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07T=
+gEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-SecurityHelp-0-footerglimmer&amp=
+;trkEmail=3Deml-jobs_jymbii_digest-SecurityHelp-0-footerglimmer-null-eau1wl=
+~lchptbo9~lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" styl=
+e=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoratio=
+n: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%;">Saiba por que inclu=C3=ADmo=
+s isso.</a> </td> </tr> <tr> <td class=3D"pb-1 m-0" style=3D"-webkit-text-s=
+ize-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; =
+text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margi=
+n: 0px; padding-bottom: 8px;">Voc=C3=AA est=C3=A1 recebendo e-mails sobre V=
+agas que podem ser do seu interesse.</td> </tr> <tr> <td class=3D"pb-1 m-0"=
+ style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; margin: 0px; padding-bottom: 8px;"> <a href=3D"https://w=
+ww.linkedin.com/comm/jobs/alerts?lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii=
+_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;=
+midSig=3D0L07TgEPjsraA1&amp;trk=3Deml-jobs_jymbii_digest-null-0-null&amp;tr=
+kEmail=3Deml-jobs_jymbii_digest-null-0-null-null-eau1wl~lchptbo9~lr-null-nu=
+ll&amp;eid=3Deau1wl-lchptbo9-lr" target=3D"_blank" trackingmodule=3D"footer=
+" trackingsuffix=3D"manage_alert_mercado" style=3D"color: #0a66c2; cursor: =
+pointer; display: inline-block; text-decoration: none; -webkit-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-s=
+ize-adjust: 100%;"> Gerenciar recomenda=C3=A7=C3=B5es</a> =C2=A0=C2=A0=C2=
+=B7=C2=A0=C2=A0 <a href=3D"https://www.linkedin.com/comm/psettings/email-un=
+subscribe?lipi=3Durn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FK=
+BdBcwBcXHbA%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1=
+&amp;trk=3Deml-jobs_jymbii_digest-unsubscribe-0-footerGlimmer&amp;trkEmail=
+=3Deml-jobs_jymbii_digest-unsubscribe-0-footerGlimmer-null-eau1wl~lchptbo9~=
+lr-null-null&amp;eid=3Deau1wl-lchptbo9-lr&amp;loid=3DAQGF_oqCEUbEJwAAAYV9Co=
+Ar1ft_ePRONS4O8bcQ0sO52QRoHx_5_a3VeOVyhomDvlvykkWi4ztlpoPU3oyB3XOtfZ1lF5xu0=
+5iKdw" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display:=
+ inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+">Cancelar inscri=C3=A7=C3=A3o</a> =C2=A0=C2=A0=C2=B7=C2=A0=C2=A0 <a href=
+=3D"https://www.linkedin.com/help/linkedin/answer/67?lang=3Dpt&amp;lipi=3Du=
+rn%3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&=
+amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;trk=3Deml-job=
+s_jymbii_digest-help-0-footerglimmer&amp;trkEmail=3Deml-jobs_jymbii_digest-=
+help-0-footerglimmer-null-eau1wl~lchptbo9~lr-null-null&amp;eid=3Deau1wl-lch=
+ptbo9-lr" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; displ=
+ay: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%;">Ajuda</a> </td> </tr> <tr> <td class=3D"pb-1" style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; paddin=
+g-bottom: 8px;"> <a href=3D"https://www.linkedin.com/comm/feed/?lipi=3Durn%=
+3Ali%3Apage%3Aemail_jobs_jymbii_digest%3BZbIBNkotR%2FKBdBcwBcXHbA%3D%3D&amp=
+;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0L07TgEPjsraA1&amp;trk=3Deml-jobs_j=
+ymbii_digest-footer-0-logoGlimmer&amp;trkEmail=3Deml-jobs_jymbii_digest-foo=
+ter-0-logoGlimmer-null-eau1wl~lchptbo9~lr-null-null&amp;eid=3Deau1wl-lchptb=
+o9-lr" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display:=
+ inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+"> <img src=3D"https://static.licdn.com/aero-v1/sc/h/9ehe6n39fa07dc5edzv0rl=
+a4e" alt=3D"LinkedIn" class=3D"block h-[14px] w-[56px] image-rendering-cris=
+p" style=3D"outline: none; text-decoration: none; image-rendering: -moz-cri=
+sp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimiz=
+e-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-n=
+eighbor; display: block; height: 14px; width: 56px;" width=3D"56" height=3D=
+"14"> </a> </td> </tr> <tr> <td data-test-copyright-text style=3D"-webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"=
+> =C2=A9 2023 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Plac=
+e, Dublin 2 - Irlanda. LinkedIn =C3=A9 um nome comercial registrado da Link=
+edIn Ireland Unlimited Company. <span data-test-trademarks-text> LinkedIn e=
+ o logo do LinkedIn s=C3=A3o marcas registradas do LinkedIn. </span> </td> =
+</tr> </tbody> </table> </td> </tr> </tbody> </table> <img alt role=3D"pres=
+entation" src=3D"https://www.linkedin.com/emimp/ip_WldGMU1YZHNMV3hqYUhCMFlt=
+ODVMV3h5OmFtOWljMTlxZVcxaWFXbGZaR2xuWlhOMDo=3D.gif" style=3D"outline: none;=
+ text-decoration: none; -ms-interpolation-mode: bicubic; width: 1px; height=
+: 1px;" width=3D"1" height=3D"1"> </body> </html>
+------=_Part_21812719_1055295796.1672840118963--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>568</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1672840119</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>11769</string>
+</dict>
+</plist>

@@ -1,0 +1,592 @@
+42074     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:aca:3186:0:0:0:0:0 with SMTP id x128csp2047633oix; Sat, 5
+ Jan 2019 13:10:37 -0800 (PST)
+X-Google-Smtp-Source: ALg8bN441hsMyBl/yB8ywpgyNfIo/cl3cs+4TgI+z6OSfnhCxwrl+VDSi1ksxqKdVhnd4hN3oKao
+X-Received: by 2002:a63:1408:: with SMTP id u8mr1582672pgl.271.1546722637407;
+ Sat, 05 Jan 2019 13:10:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1546722637; cv=none; d=google.com;
+ s=arc-20160816;
+ b=KgAFGQe3hU1CqyKQ95JTcX1QCNxj4yS3DrDfw9HpJcAqrD+mJrH924VA0iqNKScoB+
+ ckZ3dgaJkSvKhlgSwwNzMjqIs8v7++VEAbgRBt6vkxc4ifcxq3XOOcn6NDtOS5NOYpCa
+ bl/hlCm14AGevLQLJSMdec4LRggr9h0dQ53jCv7UXhTeFScdb2ZkqHHTRF2yM23LORng
+ WJ2oT2TBXLQzp434CppTygltFiwfvz49OyA/NJCNMFlzG/eMrYZ1AERmqJGF4d9d25lp
+ ZVYedjXPzj50586isDmG9ZZ8efOkkoJ5JKm+LBZonmeBUe5OUM/llRDa7xZ3jMnwp6iC sAlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; h=list-id:list-unsubscribe:feedback-id:subject:from:reply-to
+ :mime-version:date:message-id:to:dkim-signature;
+ bh=6x57Yg01oa3YmrTQoxruclseNXGqAWxSifmM90z/dIo=;
+ b=AyYbDsIu94pl6ZqNavZzpZ2q7caaZmTIootp47xT97Q8+Matbl67jz2gWMX58SxtCv
+ bVXBpV5wzLsbWnucIPGDrBD4ZrF5GBBFpZFtI0q9g3NogXXRtqPSnCuaesnctfsyZ1ms
+ eYRMtS9VTujvwRhiB9aejYRuaE2lsHfjnk/EoP/KB9Et2bAXS+6N4AbG+nRaHLmnEKJk
+ e47xb538/fJhBZKTmSq0kI8RmMVGWBzg/Up5tSEdf56EFhTDqBeZlJVcL9+/WrK/Nswq
+ MvvU9WaHP4Ejji/wvd7CCke7at9yVQDGaUrXRZo3volS/WVOX7jHPJkNxZLNYPK20Uqa ofVA==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass
+ header.i=@notifications.pinterest.com header.s=scph1017 header.b=rUoYXawW;
+ spf=pass (google.com: domain of
+ bounces-600878912691562359@notifications.pinterest.com designates
+ 54.149.191.236 as permitted sender)
+ smtp.mailfrom=bounces-600878912691562359@notifications.pinterest.com;
+ dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=pinterest.com
+Return-Path: <bounces-600878912691562359@notifications.pinterest.com>
+Received: from outbound-191-236.usw2.aws.post.pinterest.com
+ (outbound-191-236.usw2.aws.post.pinterest.com. [54.149.191.236]) by
+ mx.google.com with ESMTPS id f4si9508068pgg.492.2019.01.05.13.10.36 for
+ <faeldroom46@gmail.com> (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256
+ bits=128/128); Sat, 05 Jan 2019 13:10:37 -0800 (PST)
+Received-SPF: pass (google.com: domain of
+ bounces-600878912691562359@notifications.pinterest.com designates
+ 54.149.191.236 as permitted sender) client-ip=54.149.191.236;
+Authentication-Results: mx.google.com; dkim=pass
+ header.i=@notifications.pinterest.com header.s=scph1017 header.b=rUoYXawW;
+ spf=pass (google.com: domain of
+ bounces-600878912691562359@notifications.pinterest.com designates
+ 54.149.191.236 as permitted sender)
+ smtp.mailfrom=bounces-600878912691562359@notifications.pinterest.com;
+ dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=pinterest.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=notifications.pinterest.com; s=scph1017; t=1546722636;
+ i=@notifications.pinterest.com;
+ bh=6x57Yg01oa3YmrTQoxruclseNXGqAWxSifmM90z/dIo=;
+ h=To:Message-ID:Date:Content-Type:From:Subject;
+ b=rUoYXawWB89D0BR9ctHeAvO2K98sBuZkDb+dllotWvTGy8WLFlHkvcRHLOoo4PKRM
+ MZg9jVn9EYiYjFKNK0J3d+2Xs6G6t3ic4eKAm781qb+o5Tg4aSZSJ2HcH4OS750r78
+ idjBOKCwDcQ1u2KYEcfyEjXOlRNmQ3MlGNHG3Jy8=
+X-MSFBL: o7JgSY9AVU5DMkB1CCWT47G5QX+PfvYfRfnWd6wwOyo=|eyJ0ZW5hbnRfaWQiOiJ
+ waW50ZXJlc3QiLCJtZXNzYWdlX2lkIjoiMDAxMjRjMWQzMTVjMTNlN2Q2ODMiLCJ
+ yIjoiZmFlbGRyb29tNDZAZ21haWwuY29tIiwic3ViYWNjb3VudF9pZCI6IjAiLCJ
+ jdXN0b21lcl9pZCI6IjEifQ==
+To: "Fael Droom" <faeldroom46@gmail.com>
+Message-ID: <6D.38.59155.C4D113C5@c.mta4vrest.cc.prd.sparkpost>
+Date: Sat, 05 Jan 2019 21:10:36 +0000
+Content-Type: multipart/alternative;
+ boundary="_----HDFDa/Om8rcDOeBCErS+fg===_AC/38-59155-C4D113C5"
+MIME-Version: 1.0
+Reply-To: pinbot@reply.pinterest.com
+From: "=?utf-8?q?Pinterest?=" <pinbot@notifications.pinterest.com>
+Subject: 1 de seus Pins foi salvo
+Feedback-ID: ACTIVITY_AGGREGATION:notifications:pinterest
+List-Unsubscribe: <mailto:unsubscribe@post.pinterest.com?subject=unsubscribe:WiEaeEKcNO_JgKbozFVYcCPhgHmED4xONbNIR5gIDIE~|eyAicmNwdF90byI6ICJmYWVsZHJvb200NkBnbWFpbC5jb20iLCAidGVuYW50X2lkIjogInBpbnRlcmVzdCIsICJjdXN0b21lcl9pZCI6ICIxIiwgIm1lc3NhZ2VfaWQiOiAiMDAxMjRjMWQzMTVjMTNlN2Q2ODMiLCAic3ViYWNjb3VudF9pZCI6ICIwIiB9>
+List-Id: <pinterest-1-0>
+
+
+--_----HDFDa/Om8rcDOeBCErS+fg===_AC/38-59155-C4D113C5
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Type: TEXT/PLAIN;
+	charset=UTF-8
+
+                        =0A                =0A    >> Seu Pin da pasta {boar=
+d} foi salvo nesta pasta.=0A=0A=0A=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3DPinterest=0A=0A=0A572 7t=
+h Street, San Francisco, CA, 94103=0A=0ACentral de Ajuda: https://post.pint=
+erest.com/f/a/LiwmyrNOH0oV976WVm96FA~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEI=
+KABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2=
+F%2Fwww.pinterest.com%2Fhelp%2F=0A=0APol=C3=ADtica de Privacidade: https://=
+post.pinterest.com/f/a/tk89_TZ1jR1h83lYIQE7lQ~~/AAAAAQA~/RgReE6JMPwRXCXBpbn=
+RlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dh=
+ttps%3A%2F%2Fwww.pinterest.com%2F_%2F_%2Fabout%2Fprivacy%2F=0A=0ATermos e c=
+ondi=C3=A7=C3=B5es: https://post.pinterest.com/f/a/g3zS8pftT36JAnPMhxlXGg~~=
+/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21ha=
+WwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinterest.com%2F_%2F_%2Fabout%=
+2Fterms-service%2F=0A=0ACancelar assinatura deste e-mail: https://post.pint=
+erest.com/f/a/TMrg8V6lYccvpMe6aLgRMQ~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEI=
+KABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2=
+F%2Fwww.pinterest.com%2Femail%2Funsubscribe%2F%3Fod%3D2EgUH7JK1kLp6ZgaMeO58=
+uhXGEQL8%252BRdmq1U8JW%252FrM8EWwpMMMSmIXHVRFl8%252FRShx%252FOP6yfs69eQ%250=
+A6DXgahoqEoCVpA3gj2RtWOU2ypcTgtIZjw0HWxC8TCTl1ncvXsT0XL9%252BbyvgFxaOGX8DiZ=
+p%252F15zF%250A6LRlz%252FseqC%252BodZs6QBmLI5Tx1XvuoHmnyBghcJ4fa35QiL%252Fj=
+wAy5NoO7aTHynb4eAxhtkCrsrxKn%250AgmwvR5NEe00Rah6JFINjzb0qTGiWFBdDTbafUruZNc=
+t%252BWuG%252FUpAuxXK%252F0Mx9CrRvyqsWGABDXW5l%250Ajp7b40Q4VtKfC4KzcbyJAJjl=
+4D6%252FjhtDfGKKGoCgTw9UFYxaXboY05m%252FMr38Ibk9Qqt0wkHUANze%250AXbTQ%252FO=
+hTdNyrAzhh3LzcXec83qGlc91vQLxLq4zxHGCXOUo%253D%250A%26amp%3Buser_id%3DNjAwO=
+Dc4OTEyNjkxNTYyMzU5%250A=0A
+--_----HDFDa/Om8rcDOeBCErS+fg===_AC/38-59155-C4D113C5
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Type: TEXT/HTML;
+	charset=UTF-8
+
+=0A<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.=
+org/TR/xhtml1/DTD/xhtml1-strict.dtd">=0A<html xmlns=3D"http://www.w3.org/19=
+99/xhtml">=0A<head>=0A<meta http-equiv=3D"Content-Type" content=3D"text/htm=
+l; charset=3Dutf-8" />=0A<meta name=3D"viewport" content=3D"width=3Ddevice-=
+width, initial-scale=3D1.0"/>=0A<meta http-equiv=3D"X-UA-Compatible" conten=
+t=3D"IE=3Dedge" />=0A<style type=3D"text/css">=0A.ExternalClass {width:100%=
+;}=0A.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass =
+font, .ExternalClass td, .ExternalClass div {=0Aline-height: 100%;=0A}=0Abo=
+dy {-webkit-text-size-adjust:none; -ms-text-size-adjust:none;}=0Abody {marg=
+in:0; padding:0;}=0Atable td {border-collapse:collapse;}=0A@media (max-widt=
+h: 480px) {=0Adiv, p, a, li, td { -webkit-text-size-adjust:none; }=0A*[clas=
+s~=3Dm_hide] {display:none !important}=0A*[class~=3Dm_w70] {width:70px !imp=
+ortant}=0A*[class~=3Dm_w122] {width:122px !important}=0A*[class~=3Dm_w135] =
+{width:135px !important}=0A*[class~=3Dm_w150] {width:150px !important}=0A*[=
+class~=3Dm_w170] {width:170px !important}=0A*[class~=3Dm_w248] {width:248px=
+ !important;max-width:248px !important}=0A*[class~=3Dm_w280] {width:280px !=
+important;max-width:280px !important}=0A*[class~=3Dm_w292] {width:292px !im=
+portant;max-width:292px !important}=0A*[class~=3Dm_w320] {width:320px !impo=
+rtant;max-width:320px !important}=0A*[class~=3Dm_mw280] {max-width:280px !i=
+mportant}=0A*[class~=3Dm_mw320] {max-width:320px !important}=0A*[class~=3Dm=
+_min_w53] {min-width:53px !important}=0A*[class~=3Dm_min_w280] {min-width:2=
+80px !important}=0A*[class~=3Dm_hauto] {height:auto !important}=0A*[class~=
+=3Dm_h30] {height:30px !important}=0A*[class~=3Dm_h40] {height:40px !import=
+ant}=0A*[class~=3Dm_h67] {height:67px !important}=0A*[class~=3Dm_h96] {heig=
+ht:96px !important}=0A*[class~=3Dm_h135] {height:135px !important}=0A*[clas=
+s~=3Dm_h156] {height:156px !important}=0A*[class~=3Dm_h210] {height:210px !=
+important;}=0A*[class~=3Dm_wh24] {width:24px !important; height:24px !impor=
+tant}=0A*[class~=3Dm_wh28] {width:28px !important; height:28px !important}=
+=0A*[class~=3Dm_wh34] {width:34px !important; height:34px !important}=0A*[c=
+lass~=3Dm_wh39] {width:39px !important; height:39px !important}=0A*[class~=
+=3Dm_wh40] {width:40px !important; height:40px !important}=0A*[class~=3Dm_w=
+h59] {width:59px !important; height:59px !important}=0A*[class~=3Dm_wh64] {=
+width:64px !important; height:64px !important}=0A*[class~=3Dm_wh66] {width:=
+66px !important; height:66px !important}=0A*[class~=3Dm_wh67] {width:67px !=
+important; height:67px !important}=0A*[class~=3Dm_wh75] {width:75px !import=
+ant; height:75px !important}=0A*[class~=3Dm_wh80] {width:80px !important; h=
+eight:80px !important}=0A*[class~=3Dm_wh84] {width:84px !important; height:=
+84px !important}=0A*[class~=3Dm_wh90] {width:90px !important; height:90px !=
+important}=0A*[class~=3Dm_wh92] {width:92px !important; height:92px !import=
+ant}=0A*[class~=3Dm_wh93] {width:93px !important; height:93px !important}=
+=0A*[class~=3Dm_wh99] {width:99px !important; height:99px !important}=0A*[c=
+lass~=3Dm_w100p] {width:100% !important;}=0A*[class~=3Dm_plr0] {padding-lef=
+t:0 !important;padding-right:0 !important}=0A*[class~=3Dm_pt0] {padding-top=
+:0px !important}=0A*[class~=3Dm_pt8] {padding-top:8px !important}=0A*[class=
+~=3Dm_pt9] {padding-top:9px !important}=0A*[class~=3Dm_pt10] {padding-top:1=
+0px !important}=0A*[class~=3Dm_pt16] {padding-top:16px !important}=0A*[clas=
+s~=3Dm_pt18] {padding-top:18px !important}=0A*[class~=3Dm_pt20] {padding-to=
+p:20px !important}=0A*[class~=3Dm_pt28] {padding-top:28px !important}=0A*[c=
+lass~=3Dm_pt30] {padding-top:30px !important}=0A*[class~=3Dm_pt40] {padding=
+-top:40px !important}=0A*[class~=3Dm_pb0] {padding-bottom:0px !important}=
+=0A*[class~=3Dm_pb2] {padding-bottom:2px !important}=0A*[class~=3Dm_pb8] {p=
+adding-bottom:8px !important}=0A*[class~=3Dm_pb10] {padding-bottom:10px !im=
+portant}=0A*[class~=3Dm_pb12] {padding-bottom:12px !important}=0A*[class~=
+=3Dm_pb16] {padding-bottom:16px !important}=0A*[class~=3Dm_pb20] {padding-b=
+ottom:20px !important}=0A*[class~=3Dm_pb25] {padding-bottom:25px !important=
+}=0A*[class~=3Dm_pb26] {padding-bottom:26px !important}=0A*[class~=3Dm_pb29=
+] {padding-bottom:29px !important}=0A*[class~=3Dm_pb30] {padding-bottom:30p=
+x !important}=0A*[class~=3Dm_pb32] {padding-bottom:32px !important}=0A*[cla=
+ss~=3Dm_pb35] {padding-bottom:35px !important}=0A*[class~=3Dm_pb37] {paddin=
+g-bottom:37px !important}=0A*[class~=3Dm_pb39] {padding-bottom:39px !import=
+ant}=0A*[class~=3Dm_pb40] {padding-bottom:40px !important}=0A*[class~=3Dm_p=
+b60] {padding-bottom:60px !important}=0A*[class~=3Dm_pr0] {padding-right:0p=
+x !important}=0A*[class~=3Dm_pr2] {padding-right:2px !important}=0A*[class~=
+=3Dm_pr4] {padding-right:4px !important}=0A*[class~=3Dm_pr8] {padding-right=
+:8px !important}=0A*[class~=3Dm_pr10] {padding-right:10px !important}=0A*[c=
+lass~=3Dm_pr16] {padding-right:16px !important}=0A*[class~=3Dm_pr20] {paddi=
+ng-right:20px !important}=0A*[class~=3Dm_pr22] {padding-right:22px !importa=
+nt}=0A*[class~=3Dm_pl0] {padding-left:0px !important}=0A*[class~=3Dm_pl5] {=
+padding-left:5px !important}=0A*[class~=3Dm_pl10] {padding-left:10px !impor=
+tant}=0A*[class~=3Dm_pl16] {padding-left:16px !important}=0A*[class~=3Dm_pl=
+20] {padding-left:20px !important}=0A*[class~=3Dm_h3] {font-size:20px !impo=
+rtant;line-height:24px !important}=0A*[class~=3Dm_fs11] {font-size:11px !im=
+portant}=0A*[class~=3Dm_fs12] {font-size:12px !important}=0A*[class~=3Dm_fs=
+14] {font-size:14px !important}=0A*[class~=3Dm_fs16] {font-size:16px !impor=
+tant}=0A*[class~=3Dm_fs18] {font-size:18px !important}=0A*[class~=3Dm_fs20]=
+ {font-size:20px !important}=0A*[class~=3Dm_fs21] {font-size:21px !importan=
+t}=0A*[class~=3Dm_fs24] {font-size:24px !important}=0A*[class~=3Dm_fs30] {f=
+ont-size:30px !important}=0A*[class~=3Dm_fs36] {font-size:36px !important}=
+=0A*[class~=3Dm_fs41] {font-size:41px !important}=0A*[class~=3Dm_fs48] {fon=
+t-size:48px !important}=0A*[class~=3Dm_lh16] {line-height:16px !important}=
+=0A*[class~=3Dm_lh20] {line-height:20px !important}=0A*[class~=3Dm_lh22] {l=
+ine-height:22px !important}=0A*[class~=3Dm_lh23] {line-height:23px !importa=
+nt}=0A*[class~=3Dm_lh28] {line-height:28px !important}=0A*[class~=3Dm_lh40]=
+ {line-height:40px !important}=0A*[class~=3Dm_lh46] {line-height:46px !impo=
+rtant}=0A*[class~=3Dm_lh52] {line-height:52px !important}=0A*[class~=3Dm_fs=
+40] {font-size:40px !important}=0A*[class~=3Dm_overflow112] {max-width:112p=
+x !important;overflow:hidden !important;text-overflow:ellipsis}=0A*[class~=
+=3Dm_overflow125] {max-width:125px !important;overflow:hidden !important;te=
+xt-overflow:ellipsis}=0A*[class~=3Dm_overflow135] {max-width:135px !importa=
+nt;overflow:hidden !important;text-overflow:ellipsis}=0A*[class~=3Dm_overfl=
+ow156] {max-width:156px !important;overflow:hidden !important;text-overflow=
+:ellipsis}=0A*[class~=3Dm_overflow190] {max-width:190px !important;overflow=
+:hidden !important;text-overflow:ellipsis}=0A*[class~=3Dm_overflow200] {max=
+-width:200px !important;overflow:hidden !important;text-overflow:ellipsis}=
+=0A*[class~=3Dm_overflow240] {max-width:240px !important;overflow:hidden !i=
+mportant;text-overflow:ellipsis}=0A*[class~=3Dm_overflow280] {max-width:280=
+px !important;overflow:hidden !important;text-overflow:ellipsis}=0A*[class~=
+=3Dm_hoverflow280] {max-height:280px !important;overflow:hidden !important;=
+text-overflow:ellipsis}=0A*[class~=3Dm_b0] {border:none !important}=0A*[cla=
+ss~=3Dm_br0] {border-radius:0 0 0 0 !important}=0A*[class~=3Dm_br_l5] {bord=
+er-radius:5px 0 0 5px !important}=0A*[class~=3Dm_br_r5] {border-radius:0 5p=
+x 5px 0 !important}=0A*[class~=3Dm_bg_white] {background-color:#ffffff !imp=
+ortant}=0A}=0A</style>=0A</head>=0A<body>=0D=0A<div style=3D"color:transpar=
+ent;visibility:hidden;opacity:0;font-size:0px;border:0;max-height:1px;width=
+:1px;margin:0px;padding:0px;border-width:0px!important;display:none!importa=
+nt;line-height:0px!important;"><img border=3D"0" width=3D"1" height=3D"1" s=
+rc=3D"https://post.pinterest.com/q/KxXDNY4qdeKMGOumc5A3rg~~/AAAAAQA~/RgReE6=
+JMPVcJcGludGVyZXN0QgoAEkwdMVwT59aDUhVmYWVsZHJvb200NkBnbWFpbC5jb21YBAAAAAA~"=
+/></div>=0D=0A=0A<table class=3D"m_bg_white" width=3D"100%" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0">=0A<tr>=0A<td class=3D"m_w320 m_pt0" widt=
+h=3D"580" align=3D"center" style=3D"padding-top:20px">=0A<table class=3D"m_=
+w320 m_b0" height=3D"40" width=3D"580" align=3D"center" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0"=0Astyle=3D"background-color:#ffffff">=0A<tr>=
+=0A<td class=3D"m_w280 m_pl20 m_pr20 m_pt20 m_pb20" width=3D"580" align=3D"=
+left" style=3D"padding:30px 30px 20px 30px">=0A<table width=3D"100%" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:collaps=
+e;">=0A<tr>=0A<td class=3D"m_pb25" align=3D"left" valign=3D"bottom" style=
+=3D"padding:0 0 35px 0">=0A<table class=3D"m_w280" width=3D"520">=0A<tr>=0A=
+<td class=3D"m_overflow200 m_fs21 m_lh23" style=3D"font-size:32px; line-hei=
+ght:36px;padding:0 0 0 0;font-family:helvetica neue,helvetica,arial,sans-se=
+rif;font-weight:bold;color:#444444;max-width:300px;overflow:hidden;text-ove=
+rflow:ellipsis">=0A<span style=3D"color:#bd081c;">Veja quem est=C3=A1 adora=
+ndo</span> seus Pins e pastas=0A</td>=0A<td valign=3D"top">=0A<table width=
+=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">=0A<tr>=0A<td cl=
+ass=3D"m_h40" align=3D"right" valign=3D"top" height=3D"50">=0A<a href=3D"ht=
+tps://post.pinterest.com/f/a/fNueAbL3dJ24GmmjYo9Vog~~/AAAAAQA~/RgReE6JMPwRX=
+CXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarg=
+et=3Dhttps%3A%2F%2Fwww.pinterest.com%2F%3Futm_campaign%3Dactivity%26e_t%3Dd=
+6881e3e828e428ca5ec76b0d555498e%26utm_medium%3D2003%26utm_source%3D31%26e_t=
+_s%3Dheader" title=3D"Visitar o Pinterest">=0A<img class=3D"m_wh34" width=
+=3D"48" height=3D"48" border=3D"0"=0Asrc=3D"https://i.pinimg.com/email/shar=
+ed/brand/logo_circle_100.png"=0Astyle=3D"-ms-interpolation-mode:bicubic;tex=
+t-decoration:none;display:block;outline:none;" />=0A</a>=0A</td>=0A</tr>=0A=
+</table>=0A</td>=0A</tr>=0A</table>=0A</td>=0A</tr>=0A</table>=0A</td>=0A</=
+tr>=0A</table>=0A</td>=0A</tr>=0A</table>=0A<table class=3D"m_bg_white" wid=
+th=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">=0A<tr>=0A<td =
+width=3D"580" align=3D"center" style=3D"">=0A<table class=3D"m_w320" width=
+=3D"580" align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+=0Astyle=3D"background-color:#ffffff">=0A<tr>=0A<td width=3D"580" align=3D"=
+center" style=3D"padding-bottom:50px">=0A<table width=3D"100%" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" style=3D"background-color:#ffffff">=0A=
+<tr>=0A<td class=3D"m_w280 m_pl20 m_pr20" width=3D"580" align=3D"center" st=
+yle=3D"padding:0 30px 0 30px;background-color:#ffffff">=0A<table align=3D"l=
+eft" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border-collapse:collapse;">=0A<tr>=0A<td class=3D"m_pb16" style=3D"padd=
+ing-bottom:24px">=0A<table>=0A<tr>=0A<td class=3D"m_pr4" align=3D"left" val=
+ign=3D"bottom" height=3D"75" style=3D"padding-right:8px">=0A<a href=3D"http=
+s://post.pinterest.com/f/a/693yiwh94uOaulVeht9wVA~~/AAAAAQA~/RgReE6JMPwRXCX=
+BpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=
+=3Dhttps%3A%2F%2Fwww.pinterest.com%2Fsecure%2Fautologin%2F%3Fod%3DQiC8ie8zs=
+d3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5XldPza0Yzk15pPmetcoP%250AWex=
+C72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMzaX3oE7VlYEvGdPM3iseBhLHMN3WttthL6%252F=
+Wgpw%253D%253D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYyMzU5%250A%26next%3D%252=
+Fpin%252F600878775256232639%252F%253Futm_campaign%253Dactivity%2526e_t%253D=
+d6881e3e828e428ca5ec76b0d555498e%2526utm_medium%253D2003%2526utm_source%253=
+D31%2526e_t_s%253Dheader" title=3D"">=0A<img class=3D"m_wh80" width=3D"103"=
+ height=3D"103" src=3D"https://i.pinimg.com/150x150/d6/f0/ab/d6f0ab70a8abf8=
+a44e62f5fef8b469c5.jpg" border=3D"0"=0Astyle=3D"border-radius:8px;-ms-inter=
+polation-mode:bicubic;text-decoration:none;display:block;outline:none;"/>=
+=0A</a>=0A</td>=0A</tr>=0A</table>=0A</td>=0A</tr>=0A</table>=0A<table widt=
+h=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border=
+-collapse:collapse;">=0A<tr>=0A<td class=3D"m_h3" align=3D"left" valign=3D"=
+bottom" style=3D"padding-bottom:40px;font-family:helvetica neue,helvetica,a=
+rial,sans-serif;font-size:24px;line-height:26px;color:#555555">=0ASeu Pin d=
+a pasta <a href=3D"https://post.pinterest.com/f/a/-PVH2ichy0nO0CeutIF8SQ~~/=
+AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haW=
+wuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinterest.com%2Fsecure%2Fautolo=
+gin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5XldPz=
+a0Yzk15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMzaX3oE7VlYEvGdPM=
+3iseBhLHMN3WttthL6%252FWgpw%253D%253D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYy=
+MzU5%250A%26next%3D%252Ffaeldroom%252Fbateria-pearl%252F%253Futm_campaign%2=
+53Dactivity%2526e_t%253Dd6881e3e828e428ca5ec76b0d555498e%2526utm_medium%253=
+D2003%2526utm_source%253D31%2526e_t_s%253Dtext" style=3D"color:#555555;font=
+-weight:bold;text-decoration:none;text-shadow:0 1px 0 #FFFFFF;">Bateria Pea=
+rl</a> foi salvo nesta pasta.=0A</td>=0A</tr>=0A</table>=0A<table width=3D"=
+100%" align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" sty=
+le=3D"border-collapse:collapse;">=0A<tr>=0A<td valign=3D"top" align=3D"cent=
+er">=0A<table class=3D"m_w135" width=3D"162" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" align=3D"left" style=3D"border-collapse:collapse;">=0A<t=
+r>=0A<td class=3D"m_pr10" style=3D"padding-right:14px">=0A<table width=3D"1=
+00%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" style=
+=3D"border-collapse:collapse;">=0A<tr>=0A<td>=0A<a href=3D"https://post.pin=
+terest.com/f/a/tHxDlUSoNwegGGP9ql4uJQ~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdE=
+IKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%=
+2F%2Fwww.pinterest.com%2Fsecure%2Fautologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOo=
+Q0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1D=
+ICZV1agEnM%252FKuzIkj1qMzaX3oE7VlYEvGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%25=
+3D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYyMzU5%250A%26next%3D%252Fwchante921%=
+252Fpearl-drums%252F%253Futm_campaign%253Dactivity%2526e_t%253Dd6881e3e828e=
+428ca5ec76b0d555498e%2526utm_medium%253D2003%2526utm_source%253D31%2526utm_=
+content%253D793266990554047782">=0A<table border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0">=0A<tr>=0A<td class=3D"m_pb2" style=3D"padding:0 2px 2px 0"=
+>=0A<a href=3D"https://post.pinterest.com/f/a/tHxDlUSoNwegGGP9ql4uJQ~~/AAAA=
+AQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY2=
+9tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinterest.com%2Fsecure%2Fautologin%=
+2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5XldPza0Yz=
+k15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMzaX3oE7VlYEvGdPM3ise=
+BhLHMN3WttthL6%252FWgpw%253D%253D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYyMzU5=
+%250A%26next%3D%252Fwchante921%252Fpearl-drums%252F%253Futm_campaign%253Dac=
+tivity%2526e_t%253Dd6881e3e828e428ca5ec76b0d555498e%2526utm_medium%253D2003=
+%2526utm_source%253D31%2526utm_content%253D793266990554047782">=0A<img clas=
+s=3Dm_wh66 width=3D81 height=3D81 border=3D"0" style=3D"border-top-left-rad=
+ius:8px;-ms-interpolation-mode:bicubic;text-decoration:none;display:block;o=
+utline:none"=0Asrc=3D"https://i.pinimg.com/150x150/d6/f0/ab/d6f0ab70a8abf8a=
+44e62f5fef8b469c5.jpg"/>=0A</a>=0A</td>=0A<td class=3D"m_pb2" style=3D"padd=
+ing:0 0px 2px 0">=0A<a href=3D"https://post.pinterest.com/f/a/tHxDlUSoNwegG=
+GP9ql4uJQ~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb2=
+9tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinterest.com%2Fsec=
+ure%2Fautologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7lLu4=
+PDhlzp5XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMzaX3=
+oE7VlYEvGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%253D%250A%26user_id%3DNjAwODc4=
+OTEyNjkxNTYyMzU5%250A%26next%3D%252Fwchante921%252Fpearl-drums%252F%253Futm=
+_campaign%253Dactivity%2526e_t%253Dd6881e3e828e428ca5ec76b0d555498e%2526utm=
+_medium%253D2003%2526utm_source%253D31%2526utm_content%253D7932669905540477=
+82">=0A<img class=3Dm_wh66 width=3D81 height=3D81 border=3D"0" style=3D"bor=
+der-top-right-radius:8px;-ms-interpolation-mode:bicubic;text-decoration:non=
+e;display:block;outline:none"=0Asrc=3D"https://i.pinimg.com/150x150/ec/ef/3=
+d/ecef3d8fb4165799adc242d1feccdfb6.jpg"/>=0A</a>=0A</td>=0A</tr>=0A</table>=
+=0A<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">=0A<tr>=0A<td cl=
+ass=3D"m_pb2" style=3D"padding:0 2px 2px 0">=0A<a href=3D"https://post.pint=
+erest.com/f/a/tHxDlUSoNwegGGP9ql4uJQ~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEI=
+KABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2=
+F%2Fwww.pinterest.com%2Fsecure%2Fautologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ=
+0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1DI=
+CZV1agEnM%252FKuzIkj1qMzaX3oE7VlYEvGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%253=
+D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYyMzU5%250A%26next%3D%252Fwchante921%2=
+52Fpearl-drums%252F%253Futm_campaign%253Dactivity%2526e_t%253Dd6881e3e828e4=
+28ca5ec76b0d555498e%2526utm_medium%253D2003%2526utm_source%253D31%2526utm_c=
+ontent%253D793266990554047782">=0A<img class=3Dm_wh66 width=3D81 height=3D8=
+1 border=3D"0" style=3D"border-bottom-left-radius:8px;-ms-interpolation-mod=
+e:bicubic;text-decoration:none;display:block;outline:none"=0Asrc=3D"https:/=
+/i.pinimg.com/150x150/94/75/f7/9475f7ca1112ba75f9cf312c1a01c2dc.jpg"/>=0A</=
+a>=0A</td>=0A<td class=3D"m_pb2" style=3D"padding:0 0px 2px 0">=0A<a href=
+=3D"https://post.pinterest.com/f/a/tHxDlUSoNwegGGP9ql4uJQ~~/AAAAAQA~/RgReE6=
+JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=
+=3Ftarget=3Dhttps%3A%2F%2Fwww.pinterest.com%2Fsecure%2Fautologin%2F%3Fod%3D=
+QiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5XldPza0Yzk15pPmetco=
+P%250AWexC72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMzaX3oE7VlYEvGdPM3iseBhLHMN3Wtt=
+thL6%252FWgpw%253D%253D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYyMzU5%250A%26ne=
+xt%3D%252Fwchante921%252Fpearl-drums%252F%253Futm_campaign%253Dactivity%252=
+6e_t%253Dd6881e3e828e428ca5ec76b0d555498e%2526utm_medium%253D2003%2526utm_s=
+ource%253D31%2526utm_content%253D793266990554047782">=0A<img class=3Dm_wh66=
+ width=3D81 height=3D81 border=3D"0" style=3D"border-bottom-right-radius:8p=
+x;-ms-interpolation-mode:bicubic;text-decoration:none;display:block;outline=
+:none"=0Asrc=3D"https://i.pinimg.com/150x150/bf/d1/f3/bfd1f370cd169734cf273=
+4d629abbe27.jpg"/>=0A</a>=0A</td>=0A</tr>=0A</table>=0A</a>=0A</td>=0A</tr>=
+=0A</table>=0A</td>=0A</tr>=0A<tr>=0A<td class=3D"m_pb16 m_pt6" style=3D"pa=
+dding: 12px 0 24px">=0A<table border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0">=0A<tr>=0A<td valign=3D"top" class=3D"m_pr4 m_pl4" style=3D"padding:0 8=
+px 0 8px">=0A<a href=3D"https://post.pinterest.com/f/a/xgEf4L_5Q2Xm-JjFB5cC=
+og~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ=
+21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinterest.com%2Fsecure%2Fa=
+utologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5=
+XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMzaX3oE7VlYE=
+vGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%253D%250A%26user_id%3DNjAwODc4OTEyNjk=
+xNTYyMzU5%250A%26next%3D%252Fwchante921%252F%253Futm_campaign%253Dactivity%=
+2526e_t%253Dd6881e3e828e428ca5ec76b0d555498e%2526utm_medium%253D2003%2526ut=
+m_source%253D31%2526utm_content%253D793267059273340868">=0A<img width=3D"36=
+" height=3D"36" class=3D"m_wh28" border=3D"0"=0Asrc=3D"https://i.pinimg.com=
+/60x60_RS/cd/41/e3/cd41e3bf6b3ef7f8277e627df2f56cc2.jpg"=0Astyle=3D"border-=
+radius:50%;-ms-interpolation-mode:bicubic;text-decoration:none;display:bloc=
+k;outline:none;"/>=0A</a>=0A</td>=0A<td class=3D"m_w170" width=3D"279" styl=
+e=3D"font-family:helvetica neue,helvetica,arial,sans-serif;" align=3D"left"=
+>=0A<div class=3D"m_fs11 m_overflow156 " style=3D"color:#555555;font-size:1=
+4px;font-weight:bold;padding-bottom:2px;max-width:279px;overflow:hidden;tex=
+t-overflow:ellipsis">=0APearl drums=0A</div>=0A<div class=3D"m_fs11 m_overf=
+low156" style=3D"color:#b5b5b5;font-size:14px;line-height:1.1;max-width:279=
+px;overflow:hidden;text-overflow:ellipsis">=0AJw Washington=0A</div>=0A</td=
+>=0A</tr>=0A</table>=0A</td>=0A</tr>=0A</table>=0A<table class=3D"m_w135" w=
+idth=3D"162" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"left=
+" style=3D"border-collapse:collapse;">=0A<tr>=0A<td class=3D"m_pr0" style=
+=3D"padding-right:14px">=0A<table width=3D"100%" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" align=3D"left" style=3D"border-collapse:collapse;"=
+>=0A<tr>=0A<td>=0A<a href=3D"https://post.pinterest.com/f/a/q5W8324GwSMiLR4=
+nVMaQag~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29t=
+NDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinterest.com%2Fsecur=
+e%2Fautologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7lLu4PD=
+hlzp5XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMzaX3oE=
+7VlYEvGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%253D%250A%26user_id%3DNjAwODc4OT=
+EyNjkxNTYyMzU5%250A%26next%3D%252Ffergaburger3%252Fdrums%252F%253Futm_campa=
+ign%253Dactivity%2526e_t%253Dd6881e3e828e428ca5ec76b0d555498e%2526utm_mediu=
+m%253D2003%2526utm_source%253D31%2526utm_content%253D557461328814840255">=
+=0A<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">=0A<tr>=0A<td cl=
+ass=3D"m_pb2" style=3D"padding:0 2px 2px 0">=0A<a href=3D"https://post.pint=
+erest.com/f/a/q5W8324GwSMiLR4nVMaQag~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEI=
+KABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2=
+F%2Fwww.pinterest.com%2Fsecure%2Fautologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ=
+0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1DI=
+CZV1agEnM%252FKuzIkj1qMzaX3oE7VlYEvGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%253=
+D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYyMzU5%250A%26next%3D%252Ffergaburger3=
+%252Fdrums%252F%253Futm_campaign%253Dactivity%2526e_t%253Dd6881e3e828e428ca=
+5ec76b0d555498e%2526utm_medium%253D2003%2526utm_source%253D31%2526utm_conte=
+nt%253D557461328814840255">=0A<img class=3Dm_wh66 width=3D81 height=3D81 bo=
+rder=3D"0" style=3D"border-top-left-radius:8px;-ms-interpolation-mode:bicub=
+ic;text-decoration:none;display:block;outline:none"=0Asrc=3D"https://i.pini=
+mg.com/150x150/d6/f0/ab/d6f0ab70a8abf8a44e62f5fef8b469c5.jpg"/>=0A</a>=0A</=
+td>=0A<td class=3D"m_pb2" style=3D"padding:0 0px 2px 0">=0A<a href=3D"https=
+://post.pinterest.com/f/a/q5W8324GwSMiLR4nVMaQag~~/AAAAAQA~/RgReE6JMPwRXCXB=
+pbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=
+=3Dhttps%3A%2F%2Fwww.pinterest.com%2Fsecure%2Fautologin%2F%3Fod%3DQiC8ie8zs=
+d3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5XldPza0Yzk15pPmetcoP%250AWex=
+C72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMzaX3oE7VlYEvGdPM3iseBhLHMN3WttthL6%252F=
+Wgpw%253D%253D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYyMzU5%250A%26next%3D%252=
+Ffergaburger3%252Fdrums%252F%253Futm_campaign%253Dactivity%2526e_t%253Dd688=
+1e3e828e428ca5ec76b0d555498e%2526utm_medium%253D2003%2526utm_source%253D31%=
+2526utm_content%253D557461328814840255">=0A<img class=3Dm_wh66 width=3D81 h=
+eight=3D81 border=3D"0" style=3D"border-top-right-radius:8px;-ms-interpolat=
+ion-mode:bicubic;text-decoration:none;display:block;outline:none"=0Asrc=3D"=
+https://i.pinimg.com/150x150/e1/99/82/e1998268ee860333ac879da2b8c56cc2.jpg"=
+/>=0A</a>=0A</td>=0A</tr>=0A</table>=0A<table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0">=0A<tr>=0A<td class=3D"m_pb2" style=3D"padding:0 2px 2p=
+x 0">=0A<a href=3D"https://post.pinterest.com/f/a/q5W8324GwSMiLR4nVMaQag~~/=
+AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haW=
+wuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinterest.com%2Fsecure%2Fautolo=
+gin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7lLu4PDhlzp5XldPz=
+a0Yzk15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMzaX3oE7VlYEvGdPM=
+3iseBhLHMN3WttthL6%252FWgpw%253D%253D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYy=
+MzU5%250A%26next%3D%252Ffergaburger3%252Fdrums%252F%253Futm_campaign%253Dac=
+tivity%2526e_t%253Dd6881e3e828e428ca5ec76b0d555498e%2526utm_medium%253D2003=
+%2526utm_source%253D31%2526utm_content%253D557461328814840255">=0A<img clas=
+s=3Dm_wh66 width=3D81 height=3D81 border=3D"0" style=3D"border-bottom-left-=
+radius:8px;-ms-interpolation-mode:bicubic;text-decoration:none;display:bloc=
+k;outline:none"=0Asrc=3D"https://i.pinimg.com/150x150/20/e8/6c/20e86c0e9bbe=
+a6299c9a16a095a1a31b.jpg"/>=0A</a>=0A</td>=0A<td class=3D"m_pb2" style=3D"p=
+adding:0 0px 2px 0">=0A<a href=3D"https://post.pinterest.com/f/a/q5W8324GwS=
+MiLR4nVMaQag~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1IVZmFlbGR=
+yb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinterest.com%2F=
+secure%2Fautologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55Hw4Dnt7VN7l=
+Lu4PDhlzp5XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM%252FKuzIkj1qMz=
+aX3oE7VlYEvGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%253D%250A%26user_id%3DNjAwO=
+Dc4OTEyNjkxNTYyMzU5%250A%26next%3D%252Ffergaburger3%252Fdrums%252F%253Futm_=
+campaign%253Dactivity%2526e_t%253Dd6881e3e828e428ca5ec76b0d555498e%2526utm_=
+medium%253D2003%2526utm_source%253D31%2526utm_content%253D55746132881484025=
+5">=0A<img class=3Dm_wh66 width=3D81 height=3D81 border=3D"0" style=3D"bord=
+er-bottom-right-radius:8px;-ms-interpolation-mode:bicubic;text-decoration:n=
+one;display:block;outline:none"=0Asrc=3D"https://i.pinimg.com/150x150/64/28=
+/a2/6428a260272652ffacb614fec2a7fee8.jpg"/>=0A</a>=0A</td>=0A</tr>=0A</tabl=
+e>=0A</a>=0A</td>=0A</tr>=0A</table>=0A</td>=0A</tr>=0A<tr>=0A<td class=3D"=
+m_pb16 m_pt6" style=3D"padding: 12px 0 24px">=0A<table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0">=0A<tr>=0A<td valign=3D"top" class=3D"m_pr4 m_=
+pl4" style=3D"padding:0 8px 0 8px">=0A<a href=3D"https://post.pinterest.com=
+/f/a/bmQ-GxVWG5PAPQE1pgDabA~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFc=
+E-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.p=
+interest.com%2Fsecure%2Fautologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsu=
+Ss55Hw4Dnt7VN7lLu4PDhlzp5XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM=
+%252FKuzIkj1qMzaX3oE7VlYEvGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%253D%250A%26=
+user_id%3DNjAwODc4OTEyNjkxNTYyMzU5%250A%26next%3D%252Ffergaburger3%252F%253=
+Futm_campaign%253Dactivity%2526e_t%253Dd6881e3e828e428ca5ec76b0d555498e%252=
+6utm_medium%253D2003%2526utm_source%253D31%2526utm_content%253D557461397534=
+023042">=0A<img width=3D"36" height=3D"36" class=3D"m_wh28" border=3D"0"=0A=
+src=3D"https://s.pinimg.com/images/user/default_60.png"=0Astyle=3D"border-r=
+adius:50%;-ms-interpolation-mode:bicubic;text-decoration:none;display:block=
+;outline:none;"/>=0A</a>=0A</td>=0A<td class=3D"m_w170" width=3D"279" style=
+=3D"font-family:helvetica neue,helvetica,arial,sans-serif;" align=3D"left">=
+=0A<div class=3D"m_fs11 m_overflow156 " style=3D"color:#555555;font-size:14=
+px;font-weight:bold;padding-bottom:2px;max-width:279px;overflow:hidden;text=
+-overflow:ellipsis">=0Adrums=0A</div>=0A<div class=3D"m_fs11 m_overflow156"=
+ style=3D"color:#b5b5b5;font-size:14px;line-height:1.1;max-width:279px;over=
+flow:hidden;text-overflow:ellipsis">=0ATyrone Ferguson=0A</div>=0A</td>=0A<=
+/tr>=0A</table>=0A</td>=0A</tr>=0A</table>=0A</td>=0A</tr>=0A</table>=0A<ta=
+ble width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border-collapse:collapse;">=0A<tr>=0A<td class=3D"m_plr0" align=3D"cent=
+er" style=3D"padding:0 0 0 0">=0A<a href=3D"https://post.pinterest.com/f/a/=
+BXZnvi5ygllSSUUvorWxEA~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg=
+1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinter=
+est.com%2Fsecure%2Fautologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55H=
+w4Dnt7VN7lLu4PDhlzp5XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM%252F=
+KuzIkj1qMzaX3oE7VlYEvGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%253D%250A%26user_=
+id%3DNjAwODc4OTEyNjkxNTYyMzU5%250A%26next%3D%252Fnews_hub%252F5009432029761=
+137181%253Futm_campaign%253Dactivity%2526e_t%253Dd6881e3e828e428ca5ec76b0d5=
+55498e%2526utm_medium%253D2003%2526utm_source%253D31%2526e_t_s%253Dcta" sty=
+le=3D"text-decoration:none;display:block">=0A<table width=3D"100%" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0">=0A<tr>=0A<td align=3D"center" s=
+tyle=3D"padding:14px 20px 14px 20px;background-color:#efefef;border-radius:=
+4px">=0A<a class=3D"m_overflow280" href=3D"https://post.pinterest.com/f/a/B=
+XZnvi5ygllSSUUvorWxEA~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg1=
+IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pintere=
+st.com%2Fsecure%2Fautologin%2F%3Fod%3DQiC8ie8zsd3duhs9odFOoQ0jcEmLwsuSs55Hw=
+4Dnt7VN7lLu4PDhlzp5XldPza0Yzk15pPmetcoP%250AWexC72fKOIjQi1DICZV1agEnM%252FK=
+uzIkj1qMzaX3oE7VlYEvGdPM3iseBhLHMN3WttthL6%252FWgpw%253D%253D%250A%26user_i=
+d%3DNjAwODc4OTEyNjkxNTYyMzU5%250A%26next%3D%252Fnews_hub%252F50094320297611=
+37181%253Futm_campaign%253Dactivity%2526e_t%253Dd6881e3e828e428ca5ec76b0d55=
+5498e%2526utm_medium%253D2003%2526utm_source%253D31%2526e_t_s%253Dcta" styl=
+e=3D"font-family:helvetica neue,helvetica,arial,sans-serif;font-weight:bold=
+;font-size:px;line-height:px;color:#555555;text-decoration:none;display:blo=
+ck;text-align:center;;max-width:400px;overflow:hidden;text-overflow:ellipsi=
+s">=0AVeja mais pastas, buscas, perfis ou Pins dessa cole=C3=A7=C3=A3o=0A</=
+a>=0A</td>=0A</tr>=0A</table>=0A</a>=0A</td>=0A</tr>=0A</table>=0A</td>=0A<=
+/tr>=0A</table>=0A</td>=0A</tr>=0A</table>=0A</td>=0A</tr>=0A</table>=0A<ta=
+ble class=3D"m_bg_white" width=3D"100%" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0">=0A<tr>=0A<td align=3D"center">=0A<table class=3D"m_w320" wid=
+th=3D"580" align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"=0Astyle=3D"background-color:#f7f7f7">=0A<tr>=0A<td class=3D"m_w280 m_pl20=
+ m_pr20" align=3D"center" style=3D"padding:0 30px 0 30px">=0A<table width=
+=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-=
+collapse:collapse;">=0A<tr>=0A<td align=3D"left" valign=3D"bottom" height=
+=3D"30" style=3D"padding:32px 0 32px 0">=0A<img width=3D"204" height=3D"49"=
+ border=3D"0" alt=3D"Pinterest"=0Asrc=3D"https://i.pinimg.com/email/shared/=
+brand/logo_and_pinterest_brand.png"=0Astyle=3D"-ms-interpolation-mode:bicub=
+ic;text-decoration:none;display:block;outline:none;" />=0A</td>=0A</tr>=0A<=
+/table>=0A</td>=0A</tr>=0A<tr>=0A<td class=3D"m_w280 m_pl20 m_pr20" align=
+=3D"center" style=3D"padding:0 30px 30px 30px">=0A<table width=3D"100%" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:coll=
+apse;">=0A<tr>=0A<td>=0A<table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-collapse:collapse;">=0A<tr>=0A<td align=3D"left"=0As=
+tyle=3D"font-family:helvetica neue,helvetica,arial,sans-serif;font-size:12p=
+x;line-height:22px;color:#444444">=0A<a href=3D"#" style=3D"color:#444444;t=
+ext-decoration:none;pointer-events:none;">=0A572 7th Street=0A</a>=0A</td>=
+=0A<td align=3D"left"=0Astyle=3D"padding:0 4px 0 4px;font-family:sans-serif=
+;font-size:18px;color:#444444">=0A&middot;=0A</td>=0A<td align=3D"left"=0As=
+tyle=3D"font-family:helvetica neue,helvetica,arial,sans-serif;font-size:12p=
+x;line-height:22px;color:#444444">=0A<a href=3D"#" style=3D"color:#444444;t=
+ext-decoration:none;pointer-events:none;">=0ASan Francisco CA, 94103=0A</a>=
+=0A</td>=0A</tr>=0A</table>=0A<table border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" style=3D"border-collapse:collapse;">=0A<tr>=0A<td align=3D"left"=
+=0Astyle=3D"font-family:helvetica neue,helvetica,arial,sans-serif;font-size=
+:12px;line-height:22px;color:#444444">=0A<a href=3D"https://post.pinterest.=
+com/f/a/Ns25Qk_YmTrT7uS4YwMfqg~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMH=
+TFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fww=
+w.pinterest.com%2F_%2F_%2Fhelp%2F%3Fsource%3Demail_footer%26utm_campaign%3D=
+activity%26e_t%3Dd6881e3e828e428ca5ec76b0d555498e%26utm_medium%3D2003%26utm=
+_source%3D31%26e_t_s%3Dfooter"=0Astyle=3D"color:#444444;text-decoration:und=
+erline;" title=3D"Encontre respostas na Central de Ajuda">=0ACentral de Aju=
+da=0A</a>=0A</td>=0A<td align=3D"left"=0Astyle=3D"padding:0 4px 0 4px;font-=
+family:sans-serif;font-size:18px;color:#444444">=0A&middot;=0A</td>=0A<td a=
+lign=3D"left"=0Astyle=3D"font-family:helvetica neue,helvetica,arial,sans-se=
+rif;font-size:12px;line-height:22px;color:#444444">=0A<a href=3D"https://po=
+st.pinterest.com/f/a/tk89_TZ1jR1h83lYIQE7lQ~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRl=
+cmVzdEIKABJMHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhtt=
+ps%3A%2F%2Fwww.pinterest.com%2F_%2F_%2Fabout%2Fprivacy%2F" style=3D"color:#=
+444444;text-decoration:underline">=0APol=C3=ADtica de Privacidade=0A</a>=0A=
+</td>=0A<td align=3D"left"=0Astyle=3D"padding:0 4px 0 4px;font-family:sans-=
+serif;font-size:18px;color:#444444">=0A&middot;=0A</td>=0A<td align=3D"left=
+"=0Astyle=3D"font-family:helvetica neue,helvetica,arial,sans-serif;font-siz=
+e:12px;line-height:22px;color:#444444">=0A<a href=3D"https://post.pinterest=
+.com/f/a/g3zS8pftT36JAnPMhxlXGg~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJ=
+MHTFcE-fWg1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2F=
+www.pinterest.com%2F_%2F_%2Fabout%2Fterms-service%2F" style=3D"color:#44444=
+4;text-decoration:underline">=0ATermos e condi=C3=A7=C3=B5es=0A</a>=0A</td>=
+=0A</tr>=0A</table>=0A<table border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" style=3D"border-collapse:collapse;">=0A<tr>=0A<td align=3D"left"=0Astyle=
+=3D"font-family:helvetica neue,helvetica,arial,sans-serif;font-size:12px;li=
+ne-height:22px;color:#444444">=0A<a href=3D"https://post.pinterest.com/f/a/=
+mqmAUBCHGHOehM_p1IC7tw~~/AAAAAQA~/RgReE6JMPwRXCXBpbnRlcmVzdEIKABJMHTFcE-fWg=
+1IVZmFlbGRyb29tNDZAZ21haWwuY29tWAQAAAAA=3Ftarget=3Dhttps%3A%2F%2Fwww.pinter=
+est.com%2Femail%2Funsubscribe%2F%3Fod%3D2EgUH7JK1kLp6ZgaMeO58uhXGEQL8%252BR=
+dmq1U8JW%252FrM8EWwpMMMSmIXHVRFl8%252FRShx%252FOP6yfs69eQ%250A6DXgahoqEoCVp=
+A3gj2RtWOU2ypcTgtIZjw0HWxC8TCTl1ncvXsT0XL9%252BbyvgFxaOGX8DiZp%252F15zF%250=
+A6LRlz%252FseqC%252BodZs6QBmLI5Tx1XvuoHmnyBghcJ4fa35QiL%252FjwAy5NoO7aTHynb=
+4eAxhtkCrsrxKn%250AgmwvR5NEe00Rah6JFINjzb0qTGiWFBdDTbafUruZNct%252BWuG%252F=
+UpAuxXK%252F0Mx9CrRvyqsWGABDXW5l%250Ajp7b40Q4VtKfC4KzcbyJAJjl4D6%252FjhtDfG=
+KKGoCgTw9UFYxaXboY05m%252FMr38Ibk9Qqt0wkHUANze%250AXbTQ%252FOhTdNyrAzhh3Lzc=
+Xec83qGlc91vQLxLq4zxHGCXOUo%253D%250A%26user_id%3DNjAwODc4OTEyNjkxNTYyMzU5%=
+250A%26utm_campaign%3Dactivity%26e_t%3Dd6881e3e828e428ca5ec76b0d555498e%26u=
+tm_medium%3D2003%26utm_source%3D31%26e_t_s%3Dfooter"=0Astyle=3D"color:#4444=
+44;text-decoration:underline;" title=3D"Cancelar assinatura deste e-mail">=
+=0ARemover faeldroom46@gmail.com desta lista de e-mail=0A</a>=0A</td>=0A</t=
+r>=0A</table>=0A</td>=0A</tr>=0A</table>=0A</td>=0A</tr>=0A</table>=0A</td>=
+=0A</tr>=0A</table>=0A<img src=3D"https://www.pinterest.com/email/tracking.=
+gif=3Fe_t=3Dd6881e3e828e428ca5ec76b0d555498e" width=3D"0" height=3D"0"/>=0A=
+=0D=0A<img border=3D"0" width=3D"1" height=3D"1" alt=3D"" src=3D"https://po=
+st.pinterest.com/q/50lYXVhPDEx-g0EHngfhGg~~/AAAAAQA~/RgReE6JMPlcJcGludGVyZX=
+N0QgoAEkwdMVwT59aDUhVmYWVsZHJvb200NkBnbWFpbC5jb21YBAAAAAA~">=0D=0A</body>=
+=0A</html>=0A
+--_----HDFDa/Om8rcDOeBCErS+fg===_AC/38-59155-C4D113C5--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>6912</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1546722637</integer>
+	<key>flags</key>
+	<integer>25770064897</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>2936</string>
+</dict>
+</plist>

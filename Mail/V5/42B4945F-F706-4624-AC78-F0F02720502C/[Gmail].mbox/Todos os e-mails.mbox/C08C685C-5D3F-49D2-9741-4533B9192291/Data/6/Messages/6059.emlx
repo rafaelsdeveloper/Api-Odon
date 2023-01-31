@@ -1,0 +1,782 @@
+35670     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a5d:6b82:0:0:0:0:0 with SMTP id n2csp1532303wrx; Thu, 6 Aug
+ 2020 06:41:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyA6dOKiyr1pVEg9ght4xZ1trAsknZF46jdeqtSJS5GhG30vq4yyTR2SrCQ7U7Y/Sb3iVhm
+X-Received: by 2002:adf:82b2:: with SMTP id 47mr7324220wrc.17.1596721279385;
+ Thu, 06 Aug 2020 06:41:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1596721279; cv=none; d=google.com;
+ s=arc-20160816;
+ b=o+Z8tLx8NCchPSkQGrX9f0kqDWsQKNXzTVhhWTa2ZKOx6QEFDfI360N0krpxhuIVU9
+ lmPcIf2fWbyGkGdqyN3pORqZWGWpFvDeJd9uVhn1keU2I8DeJB8Rx6t3oABkXe5EQw0v
+ LDxP16rq2MukFBwY746p9QFpmd0C/1k1JUX1E91kIYNHy2rG/4qMtq8z8g2OU64wyv3E
+ hnZAmw7g2VBsTWC4SfrejVucvN/scSSe+QGghC4/Bgc3VttJjsoxYEmI64IdzAMewmxG
+ d2/MIy/ogyCIm0+JGqfWIweuBoYNv3xw/THpu0OfM680R3sVOfDOdVO+nnwAp9PNAxbz JiWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816;
+ h=feedback-id:date:message-id:content-transfer-encoding:mime-version
+ :subject:to:from:dkim-signature:dkim-signature;
+ bh=NEadykJNIS42Zg4k2F6+5g69TrjMZ1/QTAUOFOxNBt0=;
+ b=PbHMprN5AhN8O2H3Ert7KQXr/zL6VMxzF7uGj02Xt5U3vEmwdEcrrfelvb2J+khyUL
+ Mw93/34B5+HdpCiZ/Wvr+MOzCfqvsAkh3OzC200IPYzJp4RuXTKcLM9Ak3zsi7K9ytPU
+ ZM+DgKyd8D+DO/h0bLHmqGAh+3jW6jOgr96tP7zJ/3TQGg2B1mT+dZH8B0WWRfd1LSTT
+ IGxuISxRZatFH+YreYoUiu5cI7WO7heQzHoflmuAP7yUyVr/x6yKhClyFO2GsdG1mpWm
+ 5oab3LJ21NG+PQne7mViH5bGWHidbsf/91WG2lMW//XZoy1eonyVf4cbRtbsd2fS60qR IvEg==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass
+ header.i=@transferwise.com header.s=jeh5nlqze7f7uflmwpc4ecl7mqcbr3zs
+ header.b=X+gQSbwC; dkim=pass header.i=@amazonses.com
+ header.s=shh3fegwg5fppqsuzphvschd53n6ihuv header.b=UJFNbmX3; spf=pass
+ (google.com: domain of
+ 01020173c4013056-073e0c7a-3b3f-4d5e-b3be-a4726a174543-000000@ses.transferwise.com
+ designates 54.240.6.64 as permitted sender)
+ smtp.mailfrom=01020173c4013056-073e0c7a-3b3f-4d5e-b3be-a4726a174543-000000@ses.transferwise.com;
+ dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=transferwise.com
+Return-Path: <01020173c4013056-073e0c7a-3b3f-4d5e-b3be-a4726a174543-000000@ses.transferwise.com>
+Received: from a6-64.smtp-out.eu-west-1.amazonses.com
+ (a6-64.smtp-out.eu-west-1.amazonses.com. [54.240.6.64]) by mx.google.com with
+ ESMTPS id 20si5449959wrc.415.2020.08.06.06.41.19 for <faeldroom46@gmail.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128); Thu, 06 Aug 2020
+ 06:41:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of
+ 01020173c4013056-073e0c7a-3b3f-4d5e-b3be-a4726a174543-000000@ses.transferwise.com
+ designates 54.240.6.64 as permitted sender) client-ip=54.240.6.64;
+Authentication-Results: mx.google.com; dkim=pass header.i=@transferwise.com
+ header.s=jeh5nlqze7f7uflmwpc4ecl7mqcbr3zs header.b=X+gQSbwC; dkim=pass
+ header.i=@amazonses.com header.s=shh3fegwg5fppqsuzphvschd53n6ihuv
+ header.b=UJFNbmX3; spf=pass (google.com: domain of
+ 01020173c4013056-073e0c7a-3b3f-4d5e-b3be-a4726a174543-000000@ses.transferwise.com
+ designates 54.240.6.64 as permitted sender)
+ smtp.mailfrom=01020173c4013056-073e0c7a-3b3f-4d5e-b3be-a4726a174543-000000@ses.transferwise.com;
+ dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=transferwise.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=jeh5nlqze7f7uflmwpc4ecl7mqcbr3zs; d=transferwise.com; t=1596721279;
+ h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date;
+ bh=sZkP1Gnnq7dHYmjEIBv3ISsomapVr6iQzJgSi4wMkDs=;
+ b=X+gQSbwCaNy0rfraBb/dxBaX2RS1pJ+dmqBjq4BUuUatLLNv8EV3m4iQFXW6IKpy
+ 82iGIriqDUoKpAqclToVv7U9xUn5W1qAZC9TIhH/w5lV7zOn1gt2X2Wo7Au11ZxVZgx
+ JyLCNNZ9XblnRSikSFzdq3w6fZrqWO98UQR5Rrpw=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=shh3fegwg5fppqsuzphvschd53n6ihuv; d=amazonses.com; t=1596721279;
+ h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date:Feedback-ID;
+ bh=sZkP1Gnnq7dHYmjEIBv3ISsomapVr6iQzJgSi4wMkDs=;
+ b=UJFNbmX357xYZ9CXBOWm0OPbEbWW/RR+v9FeUDU8ysPX+VoHdMybSI1VcpycvEtN
+ /fD9zg+bEFXrdfqGqDNCtuZTeFKcilDxgbNL+Otv867FIvRmlo8xIF3JLadAbJCv/9J
+ 56Uy9e5F/AK0PHnVBKQDWgvpdGNRnF5t5HXI3Kto=
+From: TransferWise <noreply@transferwise.com>
+To: Rafael <faeldroom46@gmail.com>
+Subject: =?UTF-8?Q?Ofere=C3=A7a_uma_transfer=C3=AAncia_gratuita?=
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Message-ID: <01020173c4013056-073e0c7a-3b3f-4d5e-b3be-a4726a174543-000000@eu-west-1.amazonses.com>
+Date: Thu, 6 Aug 2020 13:41:19 +0000
+X-SES-Outgoing: 2020.08.06-54.240.6.64
+Feedback-ID: 1.eu-west-1.mm5NPSHhtqGV8xmTc+H48ekbFiBo7YChlSZtE09syLc=:AmazonSES
+
+<!doctype html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+<head>
+  <title></title>
+  <!--[if !mso]><!-- -->
+  <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+  <!--<![endif]-->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+<style type=3D"text/css">
+  #outlook a { padding: 0; }
+  .ReadMsgBody { width: 100%; }
+  .ExternalClass { width: 100%; }
+  .ExternalClass * { line-height:100%; }
+  body { margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; }
+  table, td { border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rs=
+pace: 0pt; }
+  img { border: 0; height: auto; line-height: 100%; outline: none; text-dec=
+oration: none; -ms-interpolation-mode: bicubic; }
+  p { display: block; margin: 13px 0; }
+</style>
+<!--[if !mso]><!-->
+<style type=3D"text/css">
+  @media only screen and (max-width:480px) {
+    @-ms-viewport { width:320px; }
+    @viewport { width:320px; }
+  }
+</style>
+<!--<![endif]-->
+<!--[if mso]>
+<xml>
+  <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+  </o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<!--[if lte mso 11]>
+<style type=3D"text/css">
+  .outlook-group-fix {
+    width:100% !important;
+  }
+</style>
+<![endif]-->
+
+<!--[if !mso]><!-->
+    <link href=3D"https://d2yjfm58htokf8.cloudfront.net/static/fonts/averta=
+-v2.css" rel=3D"stylesheet" type=3D"text/css">
+    <style type=3D"text/css">
+
+        @import url(https://d2yjfm58htokf8.cloudfront.net/static/fonts/aver=
+ta-v2.css);
+
+    </style>
+  <!--<![endif]--><style type=3D"text/css">
+      *, *:before, *:after {
+        box-sizing: border-box;
+      }
+         =20
+      p {
+        margin: 0 0 40px 0;
+      }
+     =20
+      a {
+        color: #00b9ff;
+      }
+     =20
+      a.no-decoration {
+        text-decoration: none;
+      }
+     =20
+      .body-wrapper {
+        background: #f2f5f7;
+        padding: 16px;
+      }
+     =20
+      .logo-wrapper {
+        margin-bottom: 16px !important;
+      }
+     =20
+      .content-wrapper {
+        margin-bottom: 16px !important;
+      }
+     =20
+      .footer-wrapper div {
+        color: #37517e !important;
+      }
+     =20
+      .footer-wrapper div a {
+        color: #00b9ff !important;
+      }
+     =20
+      .mt-0 {
+        margin-top: 0 !important;
+      }
+     =20
+      .mt-1 {
+        margin-top: 16px !important;
+      }
+     =20
+      .mt-2 {
+        margin-top: 24px !important;
+      }
+     =20
+      .mb-0 {
+        margin-bottom: 0 !important;
+      }
+     =20
+      .mb-1 {
+        margin-bottom: 16px !important;
+      }
+     =20
+      .mb-2 {
+        margin-bottom: 24px !important;
+      }
+=20
+      .mr-0 {
+        margin-right: 0 !important;
+      }
+     =20
+      .mr-1 {
+        margin-right: 16px !important;
+      }
+     =20
+      .mr-2 {
+        margin-right: 24px !important;
+      }
+     =20
+      .ml-0 {
+        margin-left: 0 !important;
+      }
+     =20
+      .ml-1 {
+        margin-left: 16px !important;
+      }
+     =20
+      .ml-2 {
+        margin-left: 24px !important;
+      }
+     =20
+      .centered {
+        text-align: center
+      }
+     =20
+      .btn {
+        box-sizing: border-box;
+        display: inline-block;
+        min-height: 36px;
+        padding: 12px 24px;
+        margin: 0 0 24px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 0;
+        border-radius: 3px;
+        color: #fff !important;
+        background-color: #00b9ff;
+        text-decoration: none;
+
+        -webkit-transition: all .15s ease-in-out;
+        -o-transition: all .15s ease-in-out;
+        transition: all .15s ease-in-out;
+      }
+     =20
+      .btn-full {
+        width: 100%;
+      }
+     =20
+      .btn:hover {
+        background-color: #00a4df;
+      }
+     =20
+      .btn:active {
+        background-color: #008ec0;
+      }
+     =20
+      .blue {
+        color: #00b9ff;
+      }
+     =20
+      @media screen and (min-width: 576px) and (max-width: 768px) {
+        .body-wrapper {
+          padding: 24px !important;
+        }
+        .logo-wrapper {
+          margin-bottom: 24px !important;
+        }
+        .content-wrapper {
+          margin-bottom: 24px !important;
+        }
+      }
+     =20
+      @media screen and (min-width: 768px) {
+        .body-wrapper {
+          padding: 24px 48px !important;
+        }
+        .logo-wrapper {
+          margin-bottom: 24px !important;
+        }
+        .content-wrapper {
+          margin-bottom: 48px !important;
+        }
+      }
+     =20
+      .mainCard .hero {
+        color: #fff;
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 24px;
+      }
+     =20
+      .mainCard .hero .highlight {
+        color: #00b9ff;
+      }
+     =20
+      .mainCard p {
+        color: #fff;
+      }
+     =20
+      .title {
+        font-size: 22px;
+        font-weight: 600;
+        color: #2f4366;
+      }
+     =20
+      .subtitle {
+        font-size: 16px;
+        font-weight: 600;
+        color: #2f4366;
+      }
+     =20
+     =20
+  .mainCard {
+    background-color: #37517e !important;
+  }
+
+     </style><style type=3D"text/css">
+  @media only screen and (min-width:480px) {
+    .mj-column-per-100 { width:100%!important; }
+.mj-column-per-20 { width:20%!important; }
+.mj-column-per-80 { width:80%!important; }
+  }
+</style>
+</head>
+<body>
+ =20
+  <div class=3D"mj-container body-wrapper"><!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"600" align=3D"center" style=3D"width:600px;">
+        <tr>
+          <td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:e=
+xactly;">
+      <![endif]--><div style=3D"margin:0px auto;max-width:600px;background:=
+#f2f5f7;" class=3D"logo-wrapper" data-class=3D"logo-wrapper"><table role=3D=
+"presentation" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0px;w=
+idth:100%;background:#f2f5f7;" align=3D"center" border=3D"0"><tbody><tr><td=
+ style=3D"text-align:center;vertical-align:top;direction:ltr;font-size:0px;=
+padding:0px;"><!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0">
+        <tr>
+          <td style=3D"vertical-align:middle;width:600px;">
+      <![endif]--><div class=3D"mj-column-per-100 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"center"><table role=3D"presentation" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"border-collapse:collapse;border-spacing:0px;" align=3D=
+"center" border=3D"0"><tbody><tr><td style=3D"width:150px;"><img alt=3D"Log=
+o" height=3D"auto" src=3D"https://transferwise.com/public-resources/assets/=
+notification-service/images/tw_logo-v2.png" style=3D"border:none;border-rad=
+ius:0px;display:block;font-size:13px;outline:none;text-decoration:none;widt=
+h:100%;height:auto;" width=3D"150"></td></tr></tbody></table></td></tr></tb=
+ody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]-->
+      <!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"600" align=3D"center" style=3D"width:600px;" class=3D"con=
+tent-wrapper-outlook mainCard-outlook">
+        <tr>
+          <td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:e=
+xactly;">
+      <![endif]--><div style=3D"margin:0px auto;max-width:600px;background:=
+transparent;" class=3D"content-wrapper mainCard"><table role=3D"presentatio=
+n" cellpadding=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100%;ba=
+ckground:transparent;" align=3D"center" border=3D"0"><tbody><tr><td style=
+=3D"text-align:center;vertical-align:top;direction:ltr;font-size:0px;paddin=
+g:40px;"><!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0">
+        <tr>
+          <td style=3D"vertical-align:middle;width:600px;">
+      <![endif]--><div class=3D"mj-column-per-100 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"middle"><div style=3D"cursor:auto;color:#738691;font-family:T=
+W-Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-alig=
+n:middle;"><p style=3D"margin-bottom: 24px">
+    <span style=3D"background-color:#37517e;display:inline-block;">
+      <img src=3D"https://transferwise.com/public-resources/assets/notifica=
+tion-service/notifications/referral-host-forwardable/heart.png" width=3D"64=
+px">
+    </span>
+  </p>
+ =20
+    <p class=3D"hero">
+      Envie uma transfer=C3=AAncia gratuita.
+    </p>
+    <p>
+      Fa=C3=A7a algu=C3=A9m feliz - encaminhe este e-mail a um amigo e ele =
+receber=C3=A1 uma transfer=C3=AAncia gratuita quando se cadastrar na Transf=
+erWise. Usando o link abaixo, ele receber=C3=A1 um desconto nas taxas em um=
+a transfer=C3=AAncia de at=C3=A9 500 EUR.
+    </p>
+
+  <p class=3D"mb-0">
+    <a href=3D"https://api.transferwise.com/v1/notification-flow/messages/0=
+a6771d8-91c0-4640-97a9-86a405138323/deliveries/1ba093d9-d8d8-4a34-bffd-c0f9=
+575c18b9/linkClicks/?name=3Dinvite&link=3DaHR0cHM6Ly90cmFuc2Zlcndpc2UuY29tL=
+2VmL3JhZmFlbHMyMTkzP2VtYWlsPWZhZWxkcm9vbTQ2JTQwZ21haWwuY29tJnV0bV9jb250ZW50=
+PXYy&hash=3D0d50646a26edea686b0dd71e8c44381e">
+      https://transferwise.com/u/rafaels2193
+    </a>
+  </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]-->
+      <!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"600" align=3D"center" style=3D"width:600px;" class=3D"con=
+tent-wrapper-outlook">
+        <tr>
+          <td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:e=
+xactly;">
+      <![endif]--><div style=3D"margin:0px auto;max-width:600px;background:=
+#fff;" class=3D"content-wrapper"><table role=3D"presentation" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100%;background:#fff;=
+" align=3D"center" border=3D"0"><tbody><tr><td style=3D"text-align:center;v=
+ertical-align:top;direction:ltr;font-size:0px;padding:40px;"><!--[if mso | =
+IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0">
+        <tr>
+          <td style=3D"vertical-align:middle;width:600px;">
+      <![endif]--><div class=3D"mj-column-per-100 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"title">
+          Rafael usa a TransferWise porque...
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:120px;">
+      <![endif]--><div class=3D"mj-column-per-20 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-0">
+          <img src=3D"https://transferwise.com/public-resources/assets/noti=
+fication-service/notifications/referral-host-forwardable/money-icn.png" wid=
+th=3D"64px">
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:480px;">
+      <![endif]--><div class=3D"mj-column-per-80 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-1">
+          H=C3=A1 um custo <strong>baixo</strong> e transparente, e voc=C3=
+=AA receber=C3=A1 o =C3=BAnico c=C3=A2mbio justo existente =E2=80=93 o verd=
+adeiro.
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:120px;">
+      <![endif]--><div class=3D"mj-column-per-20 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-0">
+          <img src=3D"https://transferwise.com/public-resources/assets/noti=
+fication-service/notifications/referral-host-forwardable/fast-spot.png" wid=
+th=3D"64px">
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:480px;">
+      <![endif]--><div class=3D"mj-column-per-80 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-1">
+          =C3=89 <strong>r=C3=A1pido</strong> =E2=80=93 90% das transfer=C3=
+=AAncias europeias s=C3=A3o completadas em um dia.
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:120px;">
+      <![endif]--><div class=3D"mj-column-per-20 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-0">
+          <img src=3D"https://transferwise.com/public-resources/assets/noti=
+fication-service/notifications/referral-host-forwardable/trust-spot.png" wi=
+dth=3D"64px">
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:480px;">
+      <![endif]--><div class=3D"mj-column-per-80 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-0">
+          Milh=C3=B5es de clientes satisfeitos <strong>confiam</strong> na =
+TransferWise, enviando 4 bilh=C3=B5es de libras esterlinas todos os meses.
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]-->
+      <!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"600" align=3D"center" style=3D"width:600px;" class=3D"con=
+tent-wrapper-outlook">
+        <tr>
+          <td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:e=
+xactly;">
+      <![endif]--><div style=3D"margin:0px auto;max-width:600px;background:=
+#fff;" class=3D"content-wrapper"><table role=3D"presentation" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100%;background:#fff;=
+" align=3D"center" border=3D"0"><tbody><tr><td style=3D"text-align:center;v=
+ertical-align:top;direction:ltr;font-size:0px;padding:40px;"><!--[if mso | =
+IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0">
+        <tr>
+          <td style=3D"vertical-align:middle;width:600px;">
+      <![endif]--><div class=3D"mj-column-per-100 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"title">
+          Mas n=C3=A3o acredite somente em n=C3=B3s. Confira o que as outra=
+s pessoas t=C3=AAm a dizer sobre a TransferWise.
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:120px;">
+      <![endif]--><div class=3D"mj-column-per-20 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-0">
+          <img src=3D"https://transferwise.com/public-resources/assets/noti=
+fication-service/notifications/referral-host-forwardable/ic-press-financial=
+-times.png" width=3D"72px">
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:480px;">
+      <![endif]--><div class=3D"mj-column-per-80 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-1">
+          "A TransferWise pretende usar a internet para causar uma revolu=
+=C3=A7=C3=A3o digital nos servi=C3=A7os financeiros atuais."
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:120px;">
+      <![endif]--><div class=3D"mj-column-per-20 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-0">
+          <img src=3D"https://transferwise.com/public-resources/assets/noti=
+fication-service/notifications/referral-host-forwardable/ic-press-economist=
+.png" width=3D"72px">
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td><td style=3D"vertical-align:middle;width:480px;">
+      <![endif]--><div class=3D"mj-column-per-80 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"left"><div style=3D"cursor:auto;color:#738691;font-family:TW-=
+Averta-Regular, Helvetica, Arial;font-size:16px;line-height:1.8;text-align:=
+left;"><p class=3D"mb-1">
+          "A TransferWise destr=C3=B3i as tarifas abusivas que os bancos co=
+bram para enviar dinheiro para o exterior."
+        </p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]-->
+      <!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"600" align=3D"center" style=3D"width:600px;" class=3D"foo=
+ter-wrapper-outlook">
+        <tr>
+          <td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:e=
+xactly;">
+      <![endif]--><div style=3D"margin:0px auto;max-width:600px;" class=3D"=
+footer-wrapper"><table role=3D"presentation" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"font-size:0px;width:100%;" align=3D"center" border=3D"0"><t=
+body><tr><td style=3D"text-align:center;vertical-align:top;direction:ltr;fo=
+nt-size:0px;padding:0px;"><!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0">
+        <tr>
+          <td style=3D"width:600px;" class=3D"content-wrapper-outlook">
+      <![endif]--><div style=3D"margin:0px auto;max-width:600px;background:=
+#f2f5f7;" class=3D"content-wrapper"><table role=3D"presentation" cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100%;background:#f2f=
+5f7;" align=3D"center" border=3D"0"><tbody><tr><td style=3D"text-align:cent=
+er;vertical-align:top;direction:ltr;font-size:0px;padding:40px;padding-bott=
+om:0px;padding-top:0px;"><!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0">
+        <tr>
+          <td style=3D"vertical-align:middle;width:600px;">
+      <![endif]--><div class=3D"mj-column-per-100 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"center"><div style=3D"cursor:auto;color:#738691;font-family:T=
+W-Averta-Regular, Helvetica, Arial;font-size:14px;line-height:1.8;text-alig=
+n:center;">Quer alterar as atualiza=C3=A7=C3=B5es que enviamos para voc=C3=
+=AA? Acesse <a href=3D"https://api.transferwise.com/v1/notification-flow/me=
+ssages/0a6771d8-91c0-4640-97a9-86a405138323/deliveries/1ba093d9-d8d8-4a34-b=
+ffd-c0f9575c18b9/linkClicks/?name=3DnotificationPreferences&link=3DaHR0cHM6=
+Ly90cmFuc2Zlcndpc2UuY29tL25vdGlmaWNhdGlvbnM_cHJlZmVyZW5jZXMtdG9rZW49MGIwMzI=
+2MTItMTZlZS00OGUxLTlmZTYtOTJlYzk2NDY0Y2U5&hash=3D7b11cdc6e2c058a62599e1d748=
+245ea4">Notifica=C3=A7=C3=B5es</a> para configurar as suas prefer=C3=AAncia=
+s.   N=C3=A3o podemos receber respostas neste endere=C3=A7o de email. Mas s=
+e voc=C3=AA precisar de ajuda, visite o nosso <a href=3D"https://api.transf=
+erwise.com/v1/notification-flow/messages/0a6771d8-91c0-4640-97a9-86a4051383=
+23/deliveries/1ba093d9-d8d8-4a34-bffd-c0f9575c18b9/linkClicks/?name=3DhelpC=
+entre&link=3DaHR0cHM6Ly90cmFuc2Zlcndpc2UuY29tL2hlbHA&hash=3Dc67bdeee60a9b67=
+43c92e3fa3d4e9a28">Centro de Suporte.</a></div></td></tr></tbody></table></=
+div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+        </td>
+      </tr>
+      <tr>
+        <td style=3D"width:600px;" class=3D"content-wrapper-outlook">
+      <![endif]--><div style=3D"margin:0px auto;max-width:600px;background:=
+#f2f5f7;" class=3D"content-wrapper"><table role=3D"presentation" cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100%;background:#f2f=
+5f7;" align=3D"center" border=3D"0"><tbody><tr><td style=3D"text-align:cent=
+er;vertical-align:top;direction:ltr;font-size:0px;padding:40px;padding-bott=
+om:0px;padding-top:0px;"><!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0">
+        <tr>
+          <td style=3D"vertical-align:middle;width:600px;">
+      <![endif]--><div class=3D"mj-column-per-100 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"center"><div style=3D"cursor:auto;color:#738691;font-family:T=
+W-Averta-Regular, Helvetica, Arial;font-size:10px;line-height:1.8;text-alig=
+n:center;"><p class=3D"mb-1">Este e-mail foi enviado para voc=C3=AA pela Tr=
+ansferWise. Ao usar os nossos servi=C3=A7os, voc=C3=AA concorda com os noss=
+os <a href=3D"https://api.transferwise.com/v1/notification-flow/messages/0a=
+6771d8-91c0-4640-97a9-86a405138323/deliveries/1ba093d9-d8d8-4a34-bffd-c0f95=
+75c18b9/linkClicks/?name=3DcustomerAgreements&link=3DaHR0cHM6Ly90cmFuc2Zlcn=
+dpc2UuY29tL3Rlcm1zLWFuZC1jb25kaXRpb25z&hash=3D886a17751779c410d40cd7dd308ce=
+c6b">acordos com o cliente</a>.</p>
+
+<p class=3D"mb-0">=C2=A9 TransferWise 2020. Todos os direitos reservados.</=
+p></div></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+          </td>
+        </tr>
+      </table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]-->
+      <!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"600" align=3D"center" style=3D"width:600px;" class=3D"con=
+tent-wrapper-outlook">
+        <tr>
+          <td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:e=
+xactly;">
+      <![endif]--><div style=3D"margin:0px auto;max-width:600px;background:=
+transparent;" class=3D"content-wrapper"><table role=3D"presentation" cellpa=
+dding=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100%;background:=
+transparent;" align=3D"center" border=3D"0"><tbody><tr><td style=3D"text-al=
+ign:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px;"><!-=
+-[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0">
+        <tr>
+          <td style=3D"vertical-align:middle;width:600px;">
+      <![endif]--><div class=3D"mj-column-per-100 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr class=3D"zendesk-tag"><td style=3D"word-wrap:break-word;f=
+ont-size:0px;padding:0px;" align=3D"left"><div style=3D"cursor:auto;color:#=
+f2f5f7;font-family:TW-Averta-Regular, Helvetica, Arial;font-size:1px;line-h=
+eight:1.8;text-align:left;">zdtag-nr-contact-form-sent</div></td></tr></tbo=
+dy></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]-->
+      <!--[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"600" align=3D"center" style=3D"width:600px;" class=3D"con=
+tent-wrapper-outlook">
+        <tr>
+          <td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:e=
+xactly;">
+      <![endif]--><div style=3D"margin:0px auto;max-width:600px;background:=
+transparent;" class=3D"content-wrapper"><table role=3D"presentation" cellpa=
+dding=3D"0" cellspacing=3D"0" style=3D"font-size:0px;width:100%;background:=
+transparent;" align=3D"center" border=3D"0"><tbody><tr><td style=3D"text-al=
+ign:center;vertical-align:top;direction:ltr;font-size:0px;padding:0px;"><!-=
+-[if mso | IE]>
+      <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0">
+        <tr>
+          <td style=3D"vertical-align:middle;width:600px;">
+      <![endif]--><div class=3D"mj-column-per-100 outlook-group-fix" style=
+=3D"vertical-align:middle;display:inline-block;direction:ltr;font-size:13px=
+;text-align:left;width:100%;"><table role=3D"presentation" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"vertical-align:middle;" width=3D"100%" border=
+=3D"0"><tbody><tr><td style=3D"word-wrap:break-word;font-size:0px;padding:0=
+px;" align=3D"center"><table role=3D"presentation" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"border-collapse:collapse;border-spacing:0px;" align=3D=
+"center" border=3D"0"><tbody><tr><td style=3D"width:1px;"><img alt=3D"" hei=
+ght=3D"1" src=3D"https://api.transferwise.com/v1/notification-flow/messages=
+/0a6771d8-91c0-4640-97a9-86a405138323/deliveries/1ba093d9-d8d8-4a34-bffd-c0=
+f9575c18b9/open.gif" style=3D"border:none;border-radius:0px;display:block;f=
+ont-size:13px;outline:none;text-decoration:none;width:100%;height:1px;" wid=
+th=3D"1"></td></tr></tbody></table></td></tr></tbody></table></div><!--[if =
+mso | IE]>
+      </td></tr></table>
+      <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+      </td></tr></table>
+      <![endif]--></div>
+</body>
+</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>5904</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1596721279</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>4386</string>
+</dict>
+</plist>

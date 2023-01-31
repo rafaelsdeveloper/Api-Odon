@@ -1,0 +1,1917 @@
+80842     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a11:e091:b0:34f:8045:9bb7 with SMTP id dm17csp3254030pxc;
+        Tue, 22 Nov 2022 07:59:01 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf6/HR2XWurCEvo4cEYJuUdE/CJ86vmcMhiMDRaz9oMDark06u0PYlJEzK9Bwq4Q7jsBS3a7
+X-Received: by 2002:ac8:4617:0:b0:3a4:fcc1:b209 with SMTP id p23-20020ac84617000000b003a4fcc1b209mr4123107qtn.215.1669132741538;
+        Tue, 22 Nov 2022 07:59:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1669132741; cv=none;
+        d=google.com; s=arc-20160816;
+        b=NL8px33nPZDAyXJ0SZEceYi/GNch+Ya8BOQ7lhv/oyRWIsIeufE08RoU6DRq4r7McR
+         h3UX7yt1eAWHwr1zJhMta9Tt+axC7Pyh5zgqNao0igcHicMNFbirDSQDDvNE41YC4JHu
+         UrnlOpBr267BDzdAF9F2NRxobSmfIlwWC8F5+eV2rvJF5qPNLmeyt/vDqJ9GERC06AZS
+         rfZaIxAs7GmmX6dJ7oyXmz3P8AqIRiSxcEIlkE4nd20qLIfFQXAxOrgknkicZfBzYjKf
+         kVNbHoa+MmdkLxtmOP+dCCTsVG8mWFDQHqTeoWy9QVfvU07DIoL6C+K2k3mRYo+oEJZq
+         oNXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=3WAi97OwlF1eRH4atVfR+enEM0dHMbJw8iTMsp/P70E=;
+        b=oFq9bdUvk0pE1YGQ1aLYg6pLPsqGPLT6WubUp73zhDwCDOqFXQKhZGE2jve9zdvCRx
+         f+h4cmwPnqZx4rgkkOLalmzcV4NbbdJx0o73f4HxS3eFeoiIWWCpShlm0IDC9jiVxkcj
+         zz9lEvMXTRrT5mxb96H/reTj1OVhHh2qeGLIrm6tJQJJrCrv7dQHecpmYEogVslAFuXy
+         l4yTzvZ8iKRUi9unKUlEZCTtO6BeRtzWyrDThrVIe2SqIk5iGeyVS/DGhVm2swd2NYAs
+         /gm5nMBbb8g3nHUMCw/giLSNnDh9lW5FCDh8y0pI6DiYa2NAnZTr8RDT4WmOE8FoXY22
+         dYUQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b="UDh/DZzW";
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=5lBHGKwv;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmas6len71f8rqy4iz@bounce.linkedin.com designates 2620:109:c006:104::204 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmas6len71f8rqy4iz@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmas6len71f8rqy4iz@bounce.linkedin.com>
+Received: from maile-bd.linkedin.com (maile-bd.linkedin.com. [2620:109:c006:104::204])
+        by mx.google.com with ESMTPS id l18-20020ac81492000000b0039cd5f083a9si7775259qtj.105.2022.11.22.07.59.01
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 22 Nov 2022 07:59:01 -0800 (PST)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmas6len71f8rqy4iz@bounce.linkedin.com designates 2620:109:c006:104::204 as permitted sender) client-ip=2620:109:c006:104::204;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b="UDh/DZzW";
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=5lBHGKwv;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmas6len71f8rqy4iz@bounce.linkedin.com designates 2620:109:c006:104::204 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmas6len71f8rqy4iz@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1669132741;
+	bh=3WAi97OwlF1eRH4atVfR+enEM0dHMbJw8iTMsp/P70E=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=UDh/DZzWP27whcRa01tm2BjW1fK6bGl2fWTterK3CqnAeevE7naMR19jkzbhCCaIn
+	 xF1mrwAQP/27WIO7G0DH+7j2kGHFLWP2Duvmr2uKTSNjJK9aRiWdBwOzBs+5A8Z49G
+	 goJkLDTi2nBIISzMDgTPY0pdWdW0P+A5epPju+XwlJihr9L65idaXMDHcjPL+TPY3q
+	 6/il1ozBMPvew/6W2XMmySp3n1RSYRF5E0oiF1MCQ+FSlJqGqvShlCxamUhniP4cG4
+	 O04Nu6XZw5we/Hu/qljZBLgVNQGu2VYImUcRKPDTRk+BIR7hiCk66tDwOhVNycFH+5
+	 9cMI3ibzPu1Jw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maile.linkedin.com;
+	s=proddkim1024; t=1669132741;
+	bh=3WAi97OwlF1eRH4atVfR+enEM0dHMbJw8iTMsp/P70E=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=5lBHGKwvE1KpdzCLNqoTPZJ1SUL3d9Fp4BmzmusZnOYi5POYEmj3/7OWljI2LZp/X
+	 LfEY2YJJ5lOMQHKux6Vjc4R6gzwORPBRHXKjx9hXZjJjaoK69a1h6MP101aYzHtADB
+	 Z5hpgpN6mfeKpBGkJQHaXgLGV4k2AHY9RcAh6KR8=
+From: Gary Vaynerchuk via LinkedIn <newsletters-noreply@linkedin.com>
+Message-ID: <89538825.23613856.1669132741241@lva1-app72674.prod.linkedin.com>
+Subject: Patience is foundational not only to the entry-level intern, but
+ also to CEOs, COOs, and senior executives.
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_23613854_2144303277.1669132741238"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Tue, 22 Nov 2022 15:59:01 +0000 (UTC)
+X-LinkedIn-Class: EMAIL-DEFAULT
+X-LinkedIn-Template: email_series_follow_newsletter_01
+X-LinkedIn-fbl: m2-aszq7rwgjmqy80d4o4uou54bt43llz81c9x35ii7isca2ttnmsu2ca406tm0sz7mmuis91aswvbwi8vjxypusyx7jb66fbbaccayct
+X-LinkedIn-Id: eau1wl-laseja5a-1k
+List-Unsubscribe: <https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=urn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&midToken=AQEq1MBbB2bM8g&midSig=34q1A6Mnl_uWw1&trk=eml-email_series_follow_newsletter_01-unsub-0-unsub&trkEmail=eml-email_series_follow_newsletter_01-unsub-0-unsub-null-eau1wl~laseja5a~1k-null-null&eid=eau1wl-laseja5a-1k&loid=AQFzVeOydSRyjQAAAYSgEGjhhn3Nb4hGjPseCqqLOCXpgeiiB7WEelUnQ3B2jGGol_ezygFkyCL5sUqXo5lOCQEWLV6NWasAMasvosGrEAoB0EusNv1D2A>
+Feedback-ID: email_series_follow_newsletter_01:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_23613854_2144303277.1669132741238
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+LinkedIn 360 l By GaryVee
+
+Por Gary Vaynerchuk
+
+<p style=3D"margin: 0; font-weight: 400;">Similar to kindness, patience is =
+another trait that people don=E2=80=99t immediately think of when they thin=
+k of business success =E2=80=94 especially for the super-ambitious. They wa=
+nt the wins and they want them now, so patience can feel counterintuitive t=
+o the big goals they=E2=80=99ve set for themselves. I'd like to offer a dif=
+ferent perspective.</p><p style=3D"margin: 0; font-weight: 400;">When you'r=
+e patient as a leader, you can give your employees room to grow and develop=
+ over time. All of a sudden, you don't get angry at small mistakes they mak=
+e in their first few weeks on the job. You're more comfortable with trainin=
+g and developing young talent over time. You're more willing to look at the=
+ir performance in aggregate, rather than overvaluing how they did in week o=
+ne or week ten. When you're patient with yourself, you can be patient with =
+others.</p><p style=3D"margin: 0; font-weight: 400;">Ultimately, when you=
+=E2=80=99re optimistic, curious, and patient with your employees, you can l=
+ead with trust and create scale.</p>
+Ler mais
+      https://www.linkedin.com/comm/pulse/patience-foundational-only-entry-=
+level-intern-also-ceos-vaynerchuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_seri=
+es_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&midToken=3DAQEq1MB=
+bB2bM8g&midSig=3D34q1A6Mnl_uWw1&trk=3Deml-email_series_follow_newsletter_01=
+-newsletter_content_preview_text-0-readmore_button_&trkEmail=3Deml-email_se=
+ries_follow_newsletter_01-newsletter_content_preview_text-0-readmore_button=
+_-null-eau1wl~laseja5a~1k-null-null&eid=3Deau1wl-laseja5a-1k
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+    Conhece algu=C3=A9m que possa se interessar por esta newsletter? Compar=
+tilhe-a!
+Compartilhe esta s=C3=A9rie no LinkedIn
+      https://www.linkedin.com/e/v2?urlhash=3DupnH&url=3Dhttps%3A%2F%2Fwww%=
+2Elinkedin%2Ecom%2FshareArticle%3Furl%3Dhttps%253A%252F%252Fwww%252Elinkedi=
+n%252Ecom%252Fpulse%252Fpatience-foundational-only-entry-level-intern-also-=
+ceos-vaynerchuk&lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newslett=
+er_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D3=
+4q1A6Mnl_uWw1&ek=3Demail_series_follow_newsletter_01&e=3Deau1wl-laseja5a-1k=
+&eid=3Deau1wl-laseja5a-1k&m=3Dnull&ts=3Dnull&li=3D0&t=3Dplh =20
+Compartilhe esta s=C3=A9rie no Facebook
+      https://www.linkedin.com/e/v2?urlhash=3Dbixa&url=3Dhttps%3A%2F%2Fwww%=
+2Efacebook%2Ecom%2Fsharer%2Fsharer%2Ephp%3Fu%3Dhttps%3A%2F%2Fwww%2Elinkedin=
+%2Ecom%2Fpulse%2Fpatience-foundational-only-entry-level-intern-also-ceos-va=
+ynerchuk&lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3=
+BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D34q1A6Mn=
+l_uWw1&ek=3Demail_series_follow_newsletter_01&e=3Deau1wl-laseja5a-1k&eid=3D=
+eau1wl-laseja5a-1k&m=3Dnull&ts=3Dnull&li=3D0&t=3Dplh =20
+Compartilhe esta s=C3=A9rie no Twitter
+      https://www.linkedin.com/e/v2?urlhash=3Dl280&url=3Dhttps%3A%2F%2Fwww%=
+2Etwitter%2Ecom%2Fintent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom=
+%2Fpulse%2Fpatience-foundational-only-entry-level-intern-also-ceos-vaynerch=
+uk&lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqY=
+NjsR2GgFjQD%2F4Wftw%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D34q1A6Mnl_uWw1=
+&ek=3Demail_series_follow_newsletter_01&e=3Deau1wl-laseja5a-1k&eid=3Deau1wl=
+-laseja5a-1k&m=3Dnull&ts=3Dnull&li=3D0&t=3Dplh =20
+ =20
+     =20
+         =20
+     =20
+
+
+----------------
+
+Este e-mail foi enviado a Rafael Souza (Desenvolvedor web na Solution.dev)
+Saiba porque inclu=C3=ADmos isso:
+      https://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&lipi=3Du=
+rn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqYNjsR2GgFjQD=
+%2F4Wftw%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D34q1A6Mnl_uWw1&trk=3Deml-=
+email_series_follow_newsletter_01-SecurityHelp-0-textfooterglimmer&trkEmail=
+=3Deml-email_series_follow_newsletter_01-SecurityHelp-0-textfooterglimmer-n=
+ull-eau1wl~laseja5a~1k-null-null&eid=3Deau1wl-laseja5a-1k
+Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do LinkedIn.=
+ O autor pode ver que voc=C3=AA =C3=A9 assinante da newsletter.
+
+         =20
+           =20
+         =20
+       =20
+Cancelar inscri=C3=A7=C3=A3o:
+      https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=3Durn%=
+3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F=
+4Wftw%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D34q1A6Mnl_uWw1&trk=3Deml-ema=
+il_series_follow_newsletter_01-unsubscribe-0-textfooterglimmer&trkEmail=3De=
+ml-email_series_follow_newsletter_01-unsubscribe-0-textfooterglimmer-null-e=
+au1wl~laseja5a~1k-null-null&eid=3Deau1wl-laseja5a-1k&loid=3DAQFzVeOydSRyjQA=
+AAYSgEGjhhn3Nb4hGjPseCqqLOCXpgeiiB7WEelUnQ3B2jGGol_ezygFkyCL5sUqXo5lOCQEWLV=
+6NWasAMasvosGrEAoB0EusNv1D2A
+Ajuda:
+      https://www.linkedin.com/help/linkedin/answer/67?lang=3Dpt&lipi=3Durn=
+%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2=
+F4Wftw%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D34q1A6Mnl_uWw1&trk=3Deml-em=
+ail_series_follow_newsletter_01-help-0-textfooterglimmer&trkEmail=3Deml-ema=
+il_series_follow_newsletter_01-help-0-textfooterglimmer-null-eau1wl~laseja5=
+a~1k-null-null&eid=3Deau1wl-laseja5a-1k
+
+=C2=A9 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2 - Irlanda.LinkedIn =C3=A9 um nome comercial registrado da LinkedI=
+n Ireland Unlimited Company.LinkedIn e o logo do LinkedIn s=C3=A3o marcas r=
+egistradas do LinkedIn.
+------=_Part_23613854_2144303277.1669132741238
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt"> <=
+head> <meta http-equiv=3D"Content-Type" content=3D"text/html;charset=3Dutf-=
+8"> <meta name=3D"HandheldFriendly" content=3D"true"> <meta name=3D"viewpor=
+t" content=3D"width=3Ddevice-width; initial-scale=3D0.666667; user-scalable=
+=3D0"> <meta name=3D"viewport" content=3D"width=3Ddevice-width"> <title></t=
+itle> <style>
+          @media (max-width: 512px) { .mercado-container { width: 100% !imp=
+ortant; } }
+        </style> <style>
+          .full-width-button, .full-width-button table { display: none; } @=
+media (max-width: 512px) { .inline-button,
+          .inline-button table { display: none !important; } .full-width-bu=
+tton, .full-width-button table { display:
+          table !important; } }
+        </style> <!--[if mso]><style type=3D"text/css"> </style><![endif]--=
+> <!--[if IE]><style type=3D"text/css"> </style><![endif]--> <style>
+@media (min-width: 576px) {
+  .container {
+    max-width: 576px;
+  }
+
+  .\!container {
+    max-width: 576px !important;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  .\!container {
+    max-width: 768px !important;
+  }
+}
+@media (min-width: 790px) {
+  .container {
+    max-width: 790px;
+  }
+
+  .\!container {
+    max-width: 790px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+
+  .\!container {
+    max-width: 992px !important;
+  }
+}
+@media (min-width: 1128px) {
+  .container {
+    max-width: 1128px;
+  }
+
+  .\!container {
+    max-width: 1128px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .\!container {
+    max-width: 1200px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+
+  .\!container {
+    max-width: 1440px !important;
+  }
+}
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1680px;
+  }
+
+  .\!container {
+    max-width: 1680px !important;
+  }
+}
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1920px;
+  }
+
+  .\!container {
+    max-width: 1920px !important;
+  }
+}
+@media (min-width: 992px) {
+  .base-detail-page__header .nav {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1128px;
+  }
+}
+@media (max-width: 767px) {
+  .embedded-social-share .modal__outlet {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .nav .search-bar {
+    order: 4;
+  }
+}
+@media (max-width: 767px) {
+  .nav .sign-in-card {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .nav--minified-mobile .nav__cta-container > *:not(.nav__link-person) {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    order: initial;
+    width: initial;
+  }
+
+  .nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .tw-link-column-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .tw-link-column-item {
+    margin-bottom: 8px;
+  }
+
+  .tw-linkster .tw-link-column-item {
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__button {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__list {
+    right: 0px;
+    max-height: calc(100vh - 52px);
+    overflow-y: auto;
+  }
+}
+@media (max-width: 767px) {
+  .recent-searches.recent-searches--show {
+    position: fixed;
+    top: 168px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+    border-width: 0;
+  }
+}
+@media (max-width: 767px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.75);
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #cf0007;
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: #8a0005;
+    box-shadow: 0 0 0 1px #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:active {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:focus-within {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (min-width: 992px) {
+  .search-bar .dismissable-input {
+    width: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (max-width: 767px) {
+  .search-bar:not(.isExpanded) .base-search-bar__form {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  @media (max-width: 767px) {
+    .search-bar.isExpanded .search-bar__placeholder {
+      display: none;
+    }
+
+    .search-bar.isExpanded .base-search-bar__form {
+      display: flex;
+    }
+
+    position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 1000;
+        margin-bottom: 0px;
+        height: 100%;
+        background-color: #ffffff;
+    .search-bar.isExpanded .switcher-tabs {
+      display: inherit;
+    }
+
+  }
+}
+@media screen and (max-width: 767px) {
+  .stuck .search-bar {
+    transition: height 0.4s, margin-bottom 0.4s ease-in-out;
+    margin-bottom: 0px;
+    height: 0px;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    max-height: initial;
+    pointer-events: initial;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+}
+@media (max-width: 767px) {
+  .tabs__list {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    position: fixed;
+    top: 158px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+  }
+}
+@media (max-width: 767px) {
+  .base-search-bar .dismissable-input {
+    max-height: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .base-main-card__media ~ .base-main-card__info {
+    margin-left: 0px;
+    margin-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .filter .collapsible-dropdown__list {
+    max-height: 400px;
+  }
+}
+@media (forced-colors: active) {
+  .filter-button--selected {
+    border-width: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .base-card .duration {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+@media (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__button {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__icon--svg {
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    padding-right: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .babybear\:invisible {
+    visibility: hidden;
+  }
+
+  .babybear\:static {
+    position: static;
+  }
+
+  .babybear\:right-4 {
+    right: 32px;
+  }
+
+  .babybear\:-top-1 {
+    top: -8px;
+  }
+
+  .babybear\:z-0 {
+    z-index: 0;
+  }
+
+  .babybear\:my-2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .babybear\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .babybear\:mx-mobile-container-padding {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .babybear\:ml-0 {
+    margin-left: 0px;
+  }
+
+  .babybear\:mb-1 {
+    margin-bottom: 8px;
+  }
+
+  .babybear\:mr-0 {
+    margin-right: 0px;
+  }
+
+  .babybear\:ml-\[-9999px\] {
+    margin-left: -9999px;
+  }
+
+  .babybear\:mb-1\.5 {
+    margin-bottom: 12px;
+  }
+
+  .babybear\:ml-1 {
+    margin-left: 8px;
+  }
+
+  .babybear\:flex {
+    display: flex;
+  }
+
+  .babybear\:hidden {
+    display: none;
+  }
+
+  .babybear\:h-\[360px\] {
+    height: 360px;
+  }
+
+  .babybear\:h-\[72px\] {
+    height: 72px;
+  }
+
+  .babybear\:h-\[27px\] {
+    height: 27px;
+  }
+
+  .babybear\:h-\[1px\] {
+    height: 1px;
+  }
+
+  .babybear\:h-\[48px\] {
+    height: 48px;
+  }
+
+  .babybear\:h-auto {
+    height: auto;
+  }
+
+  .babybear\:h-\[180px\] {
+    height: 180px;
+  }
+
+  .babybear\:max-h-\[225px\] {
+    max-height: 225px;
+  }
+
+  .babybear\:max-h-\[400px\] {
+    max-height: 400px;
+  }
+
+  .babybear\:max-h-\[250px\] {
+    max-height: 250px;
+  }
+
+  .babybear\:min-h-\[134px\] {
+    min-height: 134px;
+  }
+
+  .babybear\:w-\[360px\] {
+    width: 360px;
+  }
+
+  .babybear\:w-full {
+    width: 100%;
+  }
+
+  .babybear\:w-6 {
+    width: 48px;
+  }
+
+  .babybear\:w-\[27px\] {
+    width: 27px;
+  }
+
+  .babybear\:w-\[1px\] {
+    width: 1px;
+  }
+
+  .babybear\:w-\[100vw\] {
+    width: 100vw;
+  }
+
+  .babybear\:w-\[calc\(100\%-68px\)\] {
+    width: calc(100% - 68px);
+  }
+
+  .babybear\:min-w-full {
+    min-width: 100%;
+  }
+
+  .babybear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .babybear\:flex-none {
+    flex: none;
+  }
+
+  .babybear\:flex-auto {
+    flex: 1 1 auto;
+  }
+
+  .babybear\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .babybear\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .babybear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .babybear\:flex-row {
+    flex-direction: row;
+  }
+
+  .babybear\:flex-col {
+    flex-direction: column;
+  }
+
+  .babybear\:flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .babybear\:items-start {
+    align-items: flex-start;
+  }
+
+  .babybear\:items-center {
+    align-items: center;
+  }
+
+  .babybear\:justify-around {
+    justify-content: space-around;
+  }
+
+  .babybear\:self-center {
+    align-self: center;
+  }
+
+  .babybear\:rounded-\[0px\] {
+    border-radius: 0px;
+  }
+
+  .babybear\:border-b-1 {
+    border-bottom-width: 1px;
+  }
+
+  .babybear\:border-solid {
+    border-style: solid;
+  }
+
+  .babybear\:border-color-border-low-emphasis {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .babybear\:bg-color-transparent {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .babybear\:bg-color-brand {
+    background-color: #0a66c2;
+  }
+
+  .babybear\:p-2 {
+    padding: 16px;
+  }
+
+  .babybear\:p-0 {
+    padding: 0px;
+  }
+
+  .babybear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:px-\[4px\] {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .babybear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .babybear\:py-1\.5 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .babybear\:py-1 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .babybear\:pb-2 {
+    padding-bottom: 16px;
+  }
+
+  .babybear\:pr-0 {
+    padding-right: 0px;
+  }
+
+  .babybear\:leading-\[150px\] {
+    line-height: 150px;
+  }
+
+  .babybear\:last\:border-b-0:last-child {
+    border-bottom-width: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mamabear\:absolute {
+    position: absolute;
+  }
+
+  .mamabear\:right-4 {
+    right: 32px;
+  }
+
+  .mamabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .mamabear\:-top-1 {
+    top: -8px;
+  }
+
+  .mamabear\:mt-\[68px\] {
+    margin-top: 68px;
+  }
+
+  .mamabear\:flex {
+    display: flex;
+  }
+
+  .mamabear\:hidden {
+    display: none;
+  }
+
+  .mamabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .mamabear\:w-\[744px\] {
+    width: 744px;
+  }
+
+  .mamabear\:w-full {
+    width: 100%;
+  }
+
+  .mamabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .mamabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .mamabear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .mamabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .mamabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .mamabear\:flex-row {
+    flex-direction: row;
+  }
+
+  .mamabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .mamabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .mamabear\:items-center {
+    align-items: center;
+  }
+
+  .mamabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:self-center {
+    align-self: center;
+  }
+
+  .mamabear\:tab-vertical.tab-sm,
+.mamabear\:tab-vertical .tab-md,
+.mamabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .mamabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .mamabear\:px-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .mamabear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mamabear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .papabear\:absolute {
+    position: absolute;
+  }
+
+  .papabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .papabear\:-top-1 {
+    top: -8px;
+  }
+
+  .papabear\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .papabear\:\!mx-2 {
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
+
+  .papabear\:mt-\[68px\] {
+    margin-top: 68px;
+  }
+
+  .papabear\:mt-\[-100px\] {
+    margin-top: -100px;
+  }
+
+  .papabear\:mb-\[18px\] {
+    margin-bottom: 18px;
+  }
+
+  .papabear\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .papabear\:mt-0\.5 {
+    margin-top: 4px;
+  }
+
+  .papabear\:mr-2 {
+    margin-right: 16px;
+  }
+
+  .papabear\:ml-column-gutter {
+    margin-left: 24px;
+  }
+
+  .papabear\:flex {
+    display: flex;
+  }
+
+  .papabear\:hidden {
+    display: none;
+  }
+
+  .papabear\:h-\[34px\] {
+    height: 34px;
+  }
+
+  .papabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .papabear\:min-h-\[96px\] {
+    min-height: 96px;
+  }
+
+  .papabear\:w-\[400px\] {
+    width: 400px;
+  }
+
+  .papabear\:w-content-max-w {
+    width: 1128px;
+  }
+
+  .papabear\:w-core-rail-width {
+    width: 790px;
+  }
+
+  .papabear\:w-right-rail-width {
+    width: calc(1128px - 24px - 790px);
+  }
+
+  .papabear\:w-auto {
+    width: auto;
+  }
+
+  .papabear\:w-\[1128px\] {
+    width: 1128px;
+  }
+
+  .papabear\:w-\[135px\] {
+    width: 135px;
+  }
+
+  .papabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .papabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .papabear\:max-w-\[550px\] {
+    max-width: 550px;
+  }
+
+  .papabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .papabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .papabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .papabear\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .papabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .papabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .papabear\:justify-center {
+    justify-content: center;
+  }
+
+  .papabear\:self-start {
+    align-self: flex-start;
+  }
+
+  .papabear\:tab-vertical.tab-sm,
+.papabear\:tab-vertical .tab-md,
+.papabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .papabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .papabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .papabear\:border-4 {
+    border-width: 4px;
+  }
+
+  .papabear\:p-details-container-padding {
+    padding: 24px;
+  }
+
+  .papabear\:p-0 {
+    padding: 0px;
+  }
+
+  .papabear\:py-2 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .papabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+
+  .papabear\:text-xl {
+    font-size: 24px;
+  }
+}
+</style></head> <body dir=3D"ltr" class=3D"font-sans bg-color-background-ca=
+nvas w-full m-0 p-0 pt-1" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ma=
+rgin: 0px; width: 100%; background-color: #f3f2f0; padding: 0px; padding-to=
+p: 8px; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe U=
+I', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', C=
+antarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Em=
+oji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <=
+div class=3D"h-0 opacity-0 text-transparent invisible overflow-hidden w-0 m=
+ax-h-[0]" style=3D"visibility: hidden; height: 0px; max-height: 0; width: 0=
+px; overflow: hidden; opacity: 0; mso-hide: all;" data-email-preheader=3D"t=
+rue">Similar to kindness, patience is another trait that people don=E2=80=
+=99t immediately=E2=80=A6</div> <div class=3D"h-0 opacity-0 text-transparen=
+t invisible overflow-hidden w-0 max-h-[0]" style=3D"visibility: hidden; hei=
+ght: 0px; max-height: 0; width: 0px; overflow: hidden; opacity: 0; mso-hide=
+: all;"> =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+ =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0 </div> <table class=3D"font-sans mercado-container=
+ w-[512px] max-w-[512px] mx-auto my-0 p-0 bg-color-background-container" ro=
+le=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"512" align=3D"center" style=3D"-webkit-text-size-adjust: =
+100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-ad=
+just: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin-left: auto=
+; margin-right: auto; margin-top: 0px; margin-bottom: 0px; width: 512px; ma=
+x-width: 512px; background-color: #ffffff; padding: 0px; font-family: -appl=
+e-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neu=
+e', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'A=
+pple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', '=
+Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"t=
+ext-center p-3" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt; padding: 24px; text-align: center;"> <tab=
+le class=3D"font-sans min-w-full" role=3D"presentation" valign=3D"top" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; min-width: 100%; font-family: -apple-system, system-ui, BlinkMacSystemFo=
+nt, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxy=
+gen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', =
+'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, san=
+s-serif;"> <tbody> <tr> <td align=3D"left" valign=3D"middle" style=3D"-webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt;"> <a href=3D"https://www.linkedin.com/comm/feed/?lipi=3Durn%3Ali%3Apage=
+%3Aemail_email_series_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D=
+&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp;trk=3Deml-em=
+ail_series_follow_newsletter_01-header-0-home_glimmer&amp;trkEmail=3Deml-em=
+ail_series_follow_newsletter_01-header-0-home_glimmer-null-eau1wl~laseja5a~=
+1k-null-null&amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" class=3D"w-[84=
+px]" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-=
+decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; width: 84px;"> <img=
+ class=3D"block" alt=3D"LinkedIn" src=3D"https://www.linkedin.com/comm/dms/=
+logo?badgeTheme=3Dmercado&amp;csrfToken=3Dcsrf&amp;lipi=3DTPgqYNjsR2GgFjQD%=
+252F4Wftw%253D%253D&amp;flockId=3Deau1wl%257Elaseja5a%257E1k&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp;trkEmail=3Deml-email_seri=
+es_follow_newsletter_01-null-0-comms%257Ebadging%257Edynamic%257Eglimmer-nu=
+ll-eau1wl%257Elaseja5a%257E1k-null-null&amp;trk=3Deml-email_series_follow_n=
+ewsletter_01-null-0-comms%257Ebadging%257Edynamic%257Eglimmer&amp;_sig=3D0h=
+-FZ5ZB9_uWw1" data-test-header-dynamic-badging-img style=3D"outline: none; =
+text-decoration: none; -ms-interpolation-mode: bicubic; display: block;"> <=
+/a> </td> <td valign=3D"middle" align=3D"right" style=3D"-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <table =
+class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0" width=3D"100%" data-test-header-profile styl=
+e=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table=
+-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'S=
+egoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sa=
+ns', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-seri=
+f;"> <tbody> <tr> <td align=3D"right" valign=3D"middle" class=3D"w-[32px]" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; width: 32px;" width=3D"32"> <a href=3D"https://pt.linkedi=
+n.com/comm/in/rafaelandersonsouza?lipi=3Durn%3Ali%3Apage%3Aemail_email_seri=
+es_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQE=
+q1MBbB2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_n=
+ewsletter_01-header-0-profile_glimmer&amp;trkEmail=3Deml-email_series_follo=
+w_newsletter_01-header-0-profile_glimmer-null-eau1wl~laseja5a~1k-null-null&=
+amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" style=3D"color: #0a66c2; cu=
+rsor: pointer; display: inline-block; text-decoration: none; -webkit-text-s=
+ize-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; =
+text-size-adjust: 100%;"> <img alt=3D"Rafael Souza" src=3D"https://media-ex=
+p1.licdn.com/dms/image/C4D03AQEH4CxhkhtzrA/profile-displayphoto-shrink_200_=
+200/0/1607511453788?e=3D1674691200&amp;v=3Dbeta&amp;t=3DWv7C7VBfIlnONgeRB-E=
+AkJgnxW64zIfglW8XQ1kbaFo" class=3D"rounded-[100%] w-[32px] h-[32px]" style=
+=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; =
+height: 32px; width: 32px; border-radius: 100%;" width=3D"32" height=3D"32"=
+> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </=
+tr> <tr> <td class=3D"px-0 pb-3" style=3D"-webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-left: 0px; paddi=
+ng-right: 0px; padding-bottom: 24px;"> <div> <table class=3D"font-sans" rol=
+e=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system=
+-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans',=
+ Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji=
+', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', =
+Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pb-2 px-3" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; padding-left: 24px; padding-right: 24px; padding-bottom: 16px;=
+"> <h1 class=3D"text-sm font-medium font-sans break-words tracking-widest l=
+eading-regular text-system-gray-70 uppercase" data-test-id=3D"email-header"=
+ style=3D"margin: 0; overflow-wrap: break-word; font-family: -apple-system,=
+ system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira=
+ Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Colo=
+r Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gr=
+ande', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; tex=
+t-transform: uppercase; line-height: 1.25; letter-spacing: 0.1em; color: #6=
+66666;"> Newsletter no LinkedIn </h1> </td> </tr> <tr> <td data-test-id=3D"=
+newsletter-entity-lockup" class=3D"pb-2 px-3" style=3D"-webkit-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-lef=
+t: 24px; padding-right: 24px; padding-bottom: 16px;"> <table class=3D"font-=
+sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-syste=
+m, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fi=
+ra Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Co=
+lor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida =
+Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=3D"top" cl=
+ass=3D"pr-1 w-8" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; width: 64px; padding-right: 8px;" width=
+=3D"64"> <a href=3D"https://www.linkedin.com/comm/newsletters/6641420720876=
+343296?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BT=
+PgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D34=
+q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_ent=
+ity_lockup-0-newsletter_entity_cta&amp;trkEmail=3Deml-email_series_follow_n=
+ewsletter_01-newsletter_entity_lockup-0-newsletter_entity_cta-null-eau1wl~l=
+aseja5a~1k-null-null&amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" style=
+=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration=
+: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"inline-block =
+relative bg-color-entity-ghost-background w-8 h-8" src=3D"https://media-exp=
+1.licdn.com/dms/image/D4E12AQGMnncpfIDhLQ/series-logo_image-shrink_100_100/=
+0/1662050735223?e=3D2147483647&amp;v=3Dbeta&amp;t=3DOSpzpgOfT3aq2bUquQdgxlE=
+k5_dqr8reBYi5INEeb04" alt=3D"LinkedIn 360 l By GaryVee" style=3D"outline: n=
+one; text-decoration: none; -ms-interpolation-mode: bicubic; position: rela=
+tive; display: inline-block; height: 64px; width: 64px; background-color: #=
+eae6df;" width=3D"64" height=3D"64"> </a> </td> <td valign=3D"top" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe U=
+I', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', C=
+antarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Em=
+oji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <=
+tbody> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/com=
+m/newsletters/6641420720876343296?lipi=3Durn%3Ali%3Apage%3Aemail_email_seri=
+es_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQE=
+q1MBbB2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_n=
+ewsletter_01-newsletter_entity_lockup-0-newsletter_entity_cta&amp;trkEmail=
+=3Deml-email_series_follow_newsletter_01-newsletter_entity_lockup-0-newslet=
+ter_entity_cta-null-eau1wl~laseja5a~1k-null-null&amp;eid=3Deau1wl-laseja5a-=
+1k" target=3D"_blank" class=3D"no-underline" style=3D"color: #0a66c2; curso=
+r: pointer; display: inline-block; text-decoration: none; -webkit-text-size=
+-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; tex=
+t-size-adjust: 100%; text-decoration-line: none;"> <span class=3D"font-[700=
+] text-md m-0 pb-0.25 break-words leading-regular text-system-gray-90" styl=
+e=3D"margin: 0px; overflow-wrap: break-word; padding-bottom: 2px; font-size=
+: 16px; font-weight: 700; line-height: 1.25; color: #282828;"> LinkedIn 360=
+ l By GaryVee </span> </a> </td> </tr> <tr> <td style=3D"-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=
+=3D"https://www.linkedin.com/comm/newsletters/6641420720876343296?lipi=3Dur=
+n%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%=
+2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp=
+;trk=3Deml-email_series_follow_newsletter_01-newsletter_entity_lockup-0-new=
+sletter_entity_cta&amp;trkEmail=3Deml-email_series_follow_newsletter_01-new=
+sletter_entity_lockup-0-newsletter_entity_cta-null-eau1wl~laseja5a~1k-null-=
+null&amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" class=3D"no-underline"=
+ style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-deco=
+ration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%; text-decoration-line: n=
+one;"> <span class=3D"text-sm m-0 text-cool-gray-70 break-words font-normal=
+ leading-regular" style=3D"margin: 0px; overflow-wrap: break-word; font-siz=
+e: 14px; font-weight: 400; line-height: 1.25; color: #56687a;"> Gary Vayner=
+chuk's monthly recap of the most valuable content on business, social media=
+, marketing and more. </span> </a> </td> </tr> </tbody> </table> </td> </tr=
+> </tbody> </table> </td> </tr> <tr> <td data-test-id=3D"newsletter-author-=
+lockup" class=3D"px-3 pb-2" valign=3D"middle" style=3D"-webkit-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-lef=
+t: 24px; padding-right: 24px; padding-bottom: 16px;"> <table class=3D"font-=
+sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-syste=
+m, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fi=
+ra Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Co=
+lor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida =
+Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=3D"middle"=
+ align=3D"left" class=3D"pr-1 w-4" style=3D"-webkit-text-size-adjust: 100%;=
+ -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 32px; padding-r=
+ight: 8px;" width=3D"32"> <a href=3D"https://www.linkedin.com/comm/in/garyv=
+aynerchuk/pt?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_=
+01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSi=
+g=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_newsletter_01-newslett=
+er_author_lockup-0-newsletter_author_cta&amp;trkEmail=3Deml-email_series_fo=
+llow_newsletter_01-newsletter_author_lockup-0-newsletter_author_cta-null-ea=
+u1wl~laseja5a~1k-null-null&amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" =
+style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decor=
+ation: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"inline-b=
+lock relative bg-color-entity-ghost-background clip-path-circle-50 rounded-=
+full w-4 h-4 align-middle" src=3D"https://media-exp1.licdn.com/dms/image/C4=
+D03AQHqHC_kb600Iw/profile-displayphoto-shrink_400_400/0/1560203090726?e=3D1=
+674691200&amp;v=3Dbeta&amp;t=3DSjWCzKSfCE4urzPE67dWjOo50fIelnIxy57kejXsmSQ"=
+ alt=3D"Imagem do autor" style=3D"outline: none; text-decoration: none; -ms=
+-interpolation-mode: bicubic; position: relative; display: inline-block; he=
+ight: 32px; width: 32px; border-radius: 9999px; background-color: #eae6df; =
+vertical-align: middle; clip-path: circle(50%);" width=3D"32" height=3D"32"=
+> </a> </td> <td valign=3D"middle" class=3D"align-middle" style=3D"-webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;=
+ vertical-align: middle;"> <table class=3D"font-sans" role=3D"presentation"=
+ valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"1=
+00%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSyste=
+mFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, '=
+Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji=
+', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, =
+sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.l=
+inkedin.com/comm/in/garyvaynerchuk/pt?lipi=3Durn%3Ali%3Apage%3Aemail_email_=
+series_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_fo=
+llow_newsletter_01-newsletter_author_lockup-0-newsletter_author_cta&amp;trk=
+Email=3Deml-email_series_follow_newsletter_01-newsletter_author_lockup-0-ne=
+wsletter_author_cta-null-eau1wl~laseja5a~1k-null-null&amp;eid=3Deau1wl-lase=
+ja5a-1k" target=3D"_blank" class=3D"no-underline" style=3D"color: #0a66c2; =
+cursor: pointer; display: inline-block; text-decoration: none; -webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; text-decoration-line: none;"> <span class=3D"font=
+-[700] text-sm m-0 pb-0.25 text-system-gray-90 leading-regular" style=3D"ma=
+rgin: 0px; padding-bottom: 2px; font-size: 14px; font-weight: 700; line-hei=
+ght: 1.25; color: #282828;">Gary Vaynerchuk</span> </a> </td> </tr> <tr> <t=
+d style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso=
+-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/in/garyvayne=
+rchuk/pt?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3=
+BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D=
+34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_a=
+uthor_lockup-0-newsletter_author_cta&amp;trkEmail=3Deml-email_series_follow=
+_newsletter_01-newsletter_author_lockup-0-newsletter_author_cta-null-eau1wl=
+~laseja5a~1k-null-null&amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" clas=
+s=3D"no-underline" style=3D"color: #0a66c2; cursor: pointer; display: inlin=
+e-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; text-=
+decoration-line: none;"> <span class=3D"text-xs m-0 text-cool-gray-70" data=
+-test-id=3D"headline" style=3D"margin: 0px; font-size: 12px; color: #56687a=
+;"> Presidente da VaynerMedia, S=C3=B3cio na Vayner/RSE and 4 vezes autor d=
+e best-seller do NYT </span> </a> </td> </tr> </tbody> </table> </td> </tr>=
+ </tbody> </table> </td> </tr> <tr data-test-id=3D"newsletter-hero-banner">=
+ <td class=3D"bg-color-surface-accent-4 py-2 px-3 leading-regular" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt; background-color: #dde7f1; padding-left: 24px; padding-right: 24p=
+x; padding-top: 16px; padding-bottom: 16px; line-height: 1.25;"> <a href=3D=
+"https://www.linkedin.com/comm/pulse/patience-foundational-only-entry-level=
+-intern-also-ceos-vaynerchuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_fo=
+llow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBb=
+B2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_newsle=
+tter_01-newsletter_hero_banner-0-open_on_linkedin_cta&amp;trkEmail=3Deml-em=
+ail_series_follow_newsletter_01-newsletter_hero_banner-0-open_on_linkedin_c=
+ta-null-eau1wl~laseja5a~1k-null-null&amp;eid=3Deau1wl-laseja5a-1k" target=
+=3D"_blank" class=3D"text-color-text no-underline" style=3D"cursor: pointer=
+; display: inline-block; text-decoration: none; -webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; color: rgba(0, 0, 0, 0.9); text-decoration-line: none;"> Veja o =
+que outras pessoas est=C3=A3o dizendo sobre este t=C3=B3pico:<span class=3D=
+"text-color-brand font-normal text-md leading-regular" style=3D"font-size: =
+16px; font-weight: 400; line-height: 1.25; color: #0a66c2;"> Abrir no Linke=
+dIn</span> </a> </td> </tr> <tr data-test-id=3D"newsletter-content-preview"=
+> <td class=3D"px-3 pt-2" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; padding-left: 24px; padding-rig=
+ht: 24px; padding-top: 16px;"> <table class=3D"font-sans" role=3D"presentat=
+ion" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif;"> <tbody> <tr> <td class=3D"border-1 border-solid border-s=
+ystem-gray-50 rounded-md overflow-hidden" style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; overflow: hidde=
+n; border-radius: 8px; border-width: 1px; border-style: solid; border-color=
+: #b0b0b0;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top=
+" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"=
+-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe =
+UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', =
+Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI E=
+moji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> =
+<tbody> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/co=
+mm/pulse/patience-foundational-only-entry-level-intern-also-ceos-vaynerchuk=
+?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqYNj=
+sR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6Mn=
+l_uWw1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_content_p=
+review-0-headline_&amp;trkEmail=3Deml-email_series_follow_newsletter_01-new=
+sletter_content_preview-0-headline_-null-eau1wl~laseja5a~1k-null-null&amp;e=
+id=3Deau1wl-laseja5a-1k" target=3D"_blank" style=3D"color: #0a66c2; cursor:=
+ pointer; display: inline-block; text-decoration: none; -webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%;"> <img class=3D"block w-full" alt=3D"Imagem de capa da n=
+ewsletter" src=3D"https://media-exp1.licdn.com/dms/image/D4E12AQHX-4qMulO75=
+Q/article-cover_image-shrink_720_1280/0/1669095971221?e=3D2147483647&amp;v=
+=3Dbeta&amp;t=3DhNRGWrDLc3xtwR_YHlbPjhfx7x3z3xocUcpAFHe2LW4" style=3D"outli=
+ne: none; text-decoration: none; -ms-interpolation-mode: bicubic; display: =
+block; width: 100%;"> </a> </td> </tr> <tr> <td class=3D"p-2" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; padding: 16px;"> <table class=3D"font-sans" role=3D"presentation" vali=
+gn=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont=
+, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxyge=
+n Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-=
+serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linked=
+in.com/comm/pulse/patience-foundational-only-entry-level-intern-also-ceos-v=
+aynerchuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%=
+3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=
+=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_newsletter_01-newslette=
+r_content_preview-0-title_&amp;trkEmail=3Deml-email_series_follow_newslette=
+r_01-newsletter_content_preview-0-title_-null-eau1wl~laseja5a~1k-null-null&=
+amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" class=3D"no-underline font-=
+medium text-sm m-0 text-system-gray-90" style=3D"cursor: pointer; display: =
+inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; =
+margin: 0px; font-size: 14px; font-weight: 500; color: #282828; text-decora=
+tion-line: none;"> <h2 style=3D"margin: 0; font-weight: 500;"> Patience is =
+foundational not only to the entry-level intern, but also to CEOs, COOs, an=
+d senior executives. </h2> </a> </td> </tr> <tr data-test-id=3D"newsletter-=
+content-preview--content"> <td class=3D"pt-0.5 series-article-body" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Se=
+goe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen San=
+s', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe =
+UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif=
+; font-size: 16px; padding-top: 4px;"> <p style=3D"margin: 0; font-weight: =
+400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Similar to kindn=
+ess, patience is another trait that people don=E2=80=99t immediately think =
+of when they think of business success =E2=80=94 especially for the super-a=
+mbitious. They want the wins and they want them now, so patience can feel c=
+ounterintuitive to the big goals they=E2=80=99ve set for themselves. I'd li=
+ke to offer a different perspective.</p><p style=3D"margin: 0; font-weight:=
+ 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">When you're pat=
+ient as a leader, you can give your employees room to grow and develop over=
+ time. All of a sudden, you don't get angry at small mistakes they make in =
+their first few weeks on the job. You're more comfortable with training and=
+ developing young talent over time. You're more willing to look at their pe=
+rformance in aggregate, rather than overvaluing how they did in week one or=
+ week ten. When you're patient with yourself, you can be patient with other=
+s.</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-size=
+: 1em; line-height: 1.5;">Ultimately, when you=E2=80=99re optimistic, curio=
+us, and patient with your employees, you can lead with trust and create sca=
+le.</p> </td> </tr> <tr> <td class=3D"pt-2 no-underline" style=3D"-webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+padding-top: 16px; text-decoration-line: none;"> <table class=3D"font-sans"=
+ role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, sy=
+stem-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sa=
+ns', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color E=
+moji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grand=
+e', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=3D"middle" alig=
+n=3D"left" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/pul=
+se/patience-foundational-only-entry-level-intern-also-ceos-vaynerchuk?lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqYNjsR2Gg=
+FjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6Mnl_uWw=
+1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_content_previe=
+w-0-readmore_button_&amp;trkEmail=3Deml-email_series_follow_newsletter_01-n=
+ewsletter_content_preview-0-readmore_button_-null-eau1wl~laseja5a~1k-null-n=
+ull&amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" style=3D"color: #0a66c2=
+; cursor: pointer; display: inline-block; text-decoration: none; -webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%;"> <table class=3D"font-sans border-separate" ro=
+le=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: separate; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <t=
+d class=3D"btn-md btn-primary border-color-brand button-link leading-regula=
+r !min-h-[auto] font-sans !shadow-none border-1 border-solid" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; height: min-content; border-radius: 24px; padding-top: 12px; padding-b=
+ottom: 12px; padding-left: 24px; padding-right: 24px; text-align: center; f=
+ont-size: 16px; font-weight: 600; cursor: pointer; text-decoration-line: no=
+ne; background-color: #0a66c2; color: #ffffff; border-width: 1px; border-st=
+yle: solid; border-color: #0a66c2; font-family: -apple-system, system-ui, B=
+linkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubunt=
+u, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Se=
+goe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvet=
+ica, Arial, sans-serif; line-height: 1.25; min-height: auto !important; box=
+-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000 !important;"> <a href=3D"https://w=
+ww.linkedin.com/comm/pulse/patience-foundational-only-entry-level-intern-al=
+so-ceos-vaynerchuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsl=
+etter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp=
+;midSig=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_newsletter_01-ne=
+wsletter_content_preview-0-readmore_button_&amp;trkEmail=3Deml-email_series=
+_follow_newsletter_01-newsletter_content_preview-0-readmore_button_-null-ea=
+u1wl~laseja5a~1k-null-null&amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" =
+tabindex=3D"-1" aria-hidden=3D"true" style=3D"color: #0a66c2; cursor: point=
+er; display: inline-block; text-decoration: none; -webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%;"> <span class=3D"no-underline text-white" style=3D"color: #fff=
+fff; text-decoration-line: none;"> Participe da conversa </span> </a> </td>=
+ </tr> </tbody> </table> </a> </td> </tr> </tbody> </table> </td> </tr> </t=
+body> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> =
+</td> </tr> <tr> <td class=3D"pt-2 px-3" style=3D"-webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-left: 24=
+px; padding-right: 24px; padding-top: 16px;"> <table class=3D"font-sans" ro=
+le=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, syste=
+m-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans'=
+, Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoj=
+i', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande',=
+ Helvetica, Arial, sans-serif;"> <tbody> <tr> <td align=3D"left" style=3D"-=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt;"> Conhece algu=C3=A9m que possa se interessar por esta newsletter? =
+Compartilhe-a! </td> </tr> <tr> <td class=3D"pt-2" align=3D"center" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; padding-top: 16px;"> <table class=3D"font-sans mx-auto" role=
+=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"75%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size=
+-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tab=
+le-lspace: 0pt; mso-table-rspace: 0pt; margin-left: auto; margin-right: aut=
+o; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', R=
+oboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantar=
+ell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji',=
+ 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody=
+> <tr align=3D"middle"> <td style=3D"-webkit-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; =
+mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.link=
+edin.com/e/v2?urlhash=3DupnH&amp;url=3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2=
+FshareArticle%3Furl%3Dhttps%253A%252F%252Fwww%252Elinkedin%252Ecom%252Fpuls=
+e%252Fpatience-foundational-only-entry-level-intern-also-ceos-vaynerchuk&am=
+p;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqYN=
+jsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6M=
+nl_uWw1&amp;ek=3Demail_series_follow_newsletter_01&amp;e=3Deau1wl-laseja5a-=
+1k&amp;eid=3Deau1wl-laseja5a-1k&amp;m=3Dnewsletter_social_upsell&amp;ts=3Dl=
+inkedin_upsell_cta&amp;li=3D0&amp;t=3Dplh" target=3D"_blank" style=3D"color=
+: #0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%;"> <img class=3D"w-3 h-3 align-middle" =
+src=3D"https://static-exp1.licdn.com/aero-v1/sc/h/dxxwa7aq3z1rmvz7wmodrbt4k=
+" alt=3D"Compartilhe esta s=C3=A9rie no LinkedIn" style=3D"outline: none; t=
+ext-decoration: none; -ms-interpolation-mode: bicubic; height: 24px; width:=
+ 24px; vertical-align: middle;" width=3D"24" height=3D"24"> </a> </td> <td =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/e/v2?urlhash=3Dbixa=
+&amp;url=3Dhttps%3A%2F%2Fwww%2Efacebook%2Ecom%2Fsharer%2Fsharer%2Ephp%3Fu%3=
+Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2Fpatience-foundational-only-en=
+try-level-intern-also-ceos-vaynerchuk&amp;lipi=3Durn%3Ali%3Apage%3Aemail_em=
+ail_series_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midTok=
+en=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp;ek=3Demail_series_follo=
+w_newsletter_01&amp;e=3Deau1wl-laseja5a-1k&amp;eid=3Deau1wl-laseja5a-1k&amp=
+;m=3Dnewsletter_social_upsell&amp;ts=3Dfacebook_upsell_cta&amp;li=3D0&amp;t=
+=3Dplh" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display=
+: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%=
+;"> <img class=3D"w-3 h-3 align-middle" src=3D"https://static-exp1.licdn.co=
+m/aero-v1/sc/h/dpe078783oyfx6qjv3mt2avpn" alt=3D"Compartilhe esta s=C3=A9ri=
+e no Facebook" style=3D"outline: none; text-decoration: none; -ms-interpola=
+tion-mode: bicubic; height: 24px; width: 24px; vertical-align: middle;" wid=
+th=3D"24" height=3D"24"> </a> </td> <td style=3D"-webkit-text-size-adjust: =
+100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-ad=
+just: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"http=
+s://www.linkedin.com/e/v2?urlhash=3Dl280&amp;url=3Dhttps%3A%2F%2Fwww%2Etwit=
+ter%2Ecom%2Fintent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpul=
+se%2Fpatience-foundational-only-entry-level-intern-also-ceos-vaynerchuk&amp=
+;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BTPgqYNj=
+sR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6Mn=
+l_uWw1&amp;ek=3Demail_series_follow_newsletter_01&amp;e=3Deau1wl-laseja5a-1=
+k&amp;eid=3Deau1wl-laseja5a-1k&amp;m=3Dnewsletter_social_upsell&amp;ts=3Dtw=
+itter_upsell_cta&amp;li=3D0&amp;t=3Dplh" target=3D"_blank" style=3D"color: =
+#0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%;"> <img class=3D"w-3 h-3 align-middle" sr=
+c=3D"https://static-exp1.licdn.com/aero-v1/sc/h/1xn78fnzsemwl5bquyh865evs" =
+alt=3D"Compartilhe esta s=C3=A9rie no Twitter" style=3D"outline: none; text=
+-decoration: none; -ms-interpolation-mode: bicubic; height: 24px; width: 24=
+px; vertical-align: middle;" width=3D"24" height=3D"24"> </a> </td> </tr> <=
+/tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table=
+> </div> </td> </tr> <tr> <td class=3D"bg-color-background-canvas p-3" styl=
+e=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table=
+-rspace: 0pt; background-color: #f3f2f0; padding: 24px;"> <table class=3D"f=
+ont-sans text-xs" role=3D"presentation" valign=3D"top" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-siz=
+e-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: =
+-apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetic=
+a Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans=
+', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbo=
+l', 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: 12px;"> <tbod=
+y> <tr> <td class=3D"pb-1 m-0" style=3D"-webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin: 0px; padding-botto=
+m: 8px;"> Este e-mail foi enviado a Rafael Souza (Desenvolvedor web na Solu=
+tion.dev) </td> </tr> <tr> <td class=3D"pb-1 m-0" style=3D"-webkit-text-siz=
+e-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; te=
+xt-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin:=
+ 0px; padding-bottom: 8px;"> <a href=3D"https://www.linkedin.com/help/linke=
+din/answer/4788?lang=3Dpt&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_f=
+ollow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MB=
+bB2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_newsl=
+etter_01-SecurityHelp-0-footerglimmer&amp;trkEmail=3Deml-email_series_follo=
+w_newsletter_01-SecurityHelp-0-footerglimmer-null-eau1wl~laseja5a~1k-null-n=
+ull&amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" style=3D"color: #0a66c2=
+; cursor: pointer; display: inline-block; text-decoration: none; -webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%;">Saiba por que inclu=C3=ADmos isso.</a> </td> <=
+/tr> <tr> <td class=3D"pb-1 m-0" style=3D"-webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin: 0px; padding-bot=
+tom: 8px;">Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o d=
+o LinkedIn. O autor pode ver que voc=C3=AA =C3=A9 assinante da newsletter.<=
+/td> </tr> <tr> <td class=3D"pb-1 m-0" style=3D"-webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin: 0px; paddi=
+ng-bottom: 8px;"> <a href=3D"https://www.linkedin.com/comm/psettings/email-=
+unsubscribe?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_0=
+1%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=
+=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_newsletter_01-unsubscri=
+be-0-footerGlimmer&amp;trkEmail=3Deml-email_series_follow_newsletter_01-uns=
+ubscribe-0-footerGlimmer-null-eau1wl~laseja5a~1k-null-null&amp;eid=3Deau1wl=
+-laseja5a-1k&amp;loid=3DAQFzVeOydSRyjQAAAYSgEGjhhn3Nb4hGjPseCqqLOCXpgeiiB7W=
+EelUnQ3B2jGGol_ezygFkyCL5sUqXo5lOCQEWLV6NWasAMasvosGrEAoB0EusNv1D2A" target=
+=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inline-block=
+; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Cancelar in=
+scri=C3=A7=C3=A3o</a> =C2=A0=C2=A0=C2=B7=C2=A0=C2=A0 <a href=3D"https://www=
+.linkedin.com/help/linkedin/answer/67?lang=3Dpt&amp;lipi=3Durn%3Ali%3Apage%=
+3Aemail_email_series_follow_newsletter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&=
+amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D34q1A6Mnl_uWw1&amp;trk=3Deml-ema=
+il_series_follow_newsletter_01-help-0-footerglimmer&amp;trkEmail=3Deml-emai=
+l_series_follow_newsletter_01-help-0-footerglimmer-null-eau1wl~laseja5a~1k-=
+null-null&amp;eid=3Deau1wl-laseja5a-1k" target=3D"_blank" style=3D"color: #=
+0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%;">Ajuda</a> </td> </tr> <tr> <td class=3D"=
+pb-1" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; padding-bottom: 8px;"> <a href=3D"https://www.linke=
+din.com/comm/feed/?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsl=
+etter_01%3BTPgqYNjsR2GgFjQD%2F4Wftw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp=
+;midSig=3D34q1A6Mnl_uWw1&amp;trk=3Deml-email_series_follow_newsletter_01-fo=
+oter-0-logoGlimmer&amp;trkEmail=3Deml-email_series_follow_newsletter_01-foo=
+ter-0-logoGlimmer-null-eau1wl~laseja5a~1k-null-null&amp;eid=3Deau1wl-laseja=
+5a-1k" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display:=
+ inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+"> <img src=3D"https://static-exp1.licdn.com/aero-v1/sc/h/9ehe6n39fa07dc5ed=
+zv0rla4e" alt=3D"LinkedIn" class=3D"block h-[14px] w-[56px] image-rendering=
+-crisp" style=3D"outline: none; text-decoration: none; image-rendering: -mo=
+z-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-op=
+timize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: near=
+est-neighbor; display: block; height: 14px; width: 56px;" width=3D"56" heig=
+ht=3D"14"> </a> </td> </tr> <tr> <td data-test-copyright-text style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt;"> =C2=A9 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton=
+ Place, Dublin 2 - Irlanda. LinkedIn =C3=A9 um nome comercial registrado da=
+ LinkedIn Ireland Unlimited Company. <span data-test-trademarks-text> Linke=
+dIn e o logo do LinkedIn s=C3=A3o marcas registradas do LinkedIn. </span> <=
+/td> </tr> </tbody> </table> </td> </tr> </tbody> </table> <img alt role=3D=
+"presentation" src=3D"https://www.linkedin.com/emimp/ip_WldGMU1YZHNMV3hoYzJ=
+WcVlUVmhMVEZyOlpXMWhhV3hmYzJWeWFXVnpYMlp2Ykd4dmQxOXVaWGR6YkdWMGRHVnlYekF4Om=
+RYSnVPbXhwT214cGJtdGxaRWx1UVhKMGFXTnNaVG8zTURBd05qazFPRE16TVRVeE1EVXpPREkw.=
+gif" style=3D"outline: none; text-decoration: none; -ms-interpolation-mode:=
+ bicubic; width: 1px; height: 1px;" width=3D"1" height=3D"1"> </body> </htm=
+l>
+------=_Part_23613854_2144303277.1669132741238--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1128</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1669132741</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>11372</string>
+</dict>
+</plist>

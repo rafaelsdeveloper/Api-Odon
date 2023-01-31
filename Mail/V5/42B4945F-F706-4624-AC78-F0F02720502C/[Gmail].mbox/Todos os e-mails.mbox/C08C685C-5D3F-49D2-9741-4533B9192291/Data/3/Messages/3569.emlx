@@ -1,0 +1,665 @@
+47263     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:adf:9b8b:0:0:0:0:0 with SMTP id d11csp4998316wrc;
+        Tue, 30 Nov 2021 03:35:30 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzaJSFftJpO17gFIn7nx55F+WORTMDeusPGiQ3eHXUgAn6QdIlPNFw95Ebno17cE+4vVrUZ
+X-Received: by 2002:a05:6102:3708:: with SMTP id s8mr38215390vst.45.1638272130696;
+        Tue, 30 Nov 2021 03:35:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1638272130; cv=none;
+        d=google.com; s=arc-20160816;
+        b=KJ2sqUg0NV8PFKiPSHsOHyFtzixjzJ+k9eUoyeTo0m9YK1iOFss+PidMMQKylS0aj0
+         dqSNYWxxxDwS5+8us2JP6TP50OfKbuCAzreMvKfGqIZC4KmTX82b3ZeWN4S1lLqPZgqY
+         GTWyIxfT943JtPGSgtE1q9Y6NFX2spTy8xxBNb9NfMK817G1s0CSe77WOHUT5dQKoh61
+         NeRuQvS0hEUzQASBVdQVF3DblMMNr/C2o1Z2e4ovQVfRSdsP/hmqFGgmM3zJZdWaqWJF
+         qMKrtJtR495fYKrToM28xSt8blqyk6v9/srqfiKz5kVbm2/3LmVsM7gPPqE8WtXJhTyL
+         tuoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=h23J2rVKRTFwEO2CMY1jgnehKmt3vDixoAcOBRGS0NU=;
+        b=gQW52z2Nn5ghIYsgra2d83WOj5UpUT6EeuPqYvJMjDZ42AoUrYK91qsaRehquAjAds
+         Leb/H5flI6u/TmE5NWL6lVgqmJH1bFNWxzjrYqRl/GNLubMMidzuDsHbjpKvubf3BFvr
+         nkbuVOrAxkgtWaSCa2DksqWoM/aI9EKbBhe4VglQYUbn7lYVQ93ByWm/HblcEcrQWGwK
+         2U2lVO2OCD0cud1jBg3xFA8H/UjY4M/1hMXSY5NED7Y9XNERmmCScVZ4I3NspxDxz8x0
+         4W35plur3D/67jnDSgdqFWgTNKN2WScmZHpADM0ZtDbyPrEaSafmKl9KWov8p6Tofp8V
+         L9Eg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=Khp1AIyx;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b="R6vGb/GJ";
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm5s7w4bsrj7mqukhh@bounce.linkedin.com designates 2620:119:50c0:207::202 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm5s7w4bsrj7mqukhh@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm5s7w4bsrj7mqukhh@bounce.linkedin.com>
+Received: from maile-hb.linkedin.com (maile-hb.linkedin.com. [2620:119:50c0:207::202])
+        by mx.google.com with ESMTPS id i11si17752902vsf.739.2021.11.30.03.35.30
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Nov 2021 03:35:30 -0800 (PST)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm5s7w4bsrj7mqukhh@bounce.linkedin.com designates 2620:119:50c0:207::202 as permitted sender) client-ip=2620:119:50c0:207::202;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=Khp1AIyx;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b="R6vGb/GJ";
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm5s7w4bsrj7mqukhh@bounce.linkedin.com designates 2620:119:50c0:207::202 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm5s7w4bsrj7mqukhh@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1638272129;
+	bh=h23J2rVKRTFwEO2CMY1jgnehKmt3vDixoAcOBRGS0NU=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=Khp1AIyx8ygCyfGxXp31gNM20hR9SMviVub6wSISlvSWGCC2qqDEnaYbsf9tMXf/5
+	 2027DFsAdwLBOvS38j+1k7EC6JBFdB4Kg4nYlvwKHdWgVTO0Rc2DRnC5hWaw/1oVgf
+	 c28GPgbqjEHPBpn2c3XybWlbMl2XiR30eH5gBPWD7Ks+ma4bTzOIE5FLkKQmfxWGhs
+	 TuBjjbrDiuQL6OhdgWWEhhfvrkuv/U7N/d/9pPbHsH+efDIz9dbRveFVMuCiq1xNFI
+	 LunYzD6TXL5JACZi9TqP7okc0L/p9GZlIFFhsvEj0mCPM4YLcMFY/jW1zdnPTBr6BX
+	 0tSfOek8CEZEQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maile.linkedin.com;
+	s=proddkim1024; t=1638272129;
+	bh=h23J2rVKRTFwEO2CMY1jgnehKmt3vDixoAcOBRGS0NU=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=R6vGb/GJKIv/scthedXuQ3X0Pp+W9hKjWwaZi/Hzr0gTIfXNBb8yu6xXfzDrw//qN
+	 saJHiNgKpXN/N9Llc6URHvUjzJsxe8RVv6LKv1Cog4XRlpSPZf97b6LWCcAF0ojliL
+	 6ZjGH32tOQ8ZT6tCA/E/Neu1i8AW/BeebtCVSFOM=
+From: Richard Branson via LinkedIn <newsletters-noreply@linkedin.com>
+Message-ID: <1960207007.3302091.1638272129210@lva1-app47802.prod.linkedin.com>
+Subject: =?UTF-8?Q?Ask_Richard:_How_do_you_balance_creative_thinking_with_foc?=
+ =?UTF-8?Q?us_and_productivity=3F_And,_wha?=
+ =?UTF-8?Q?t=E2=80=99s_more_important_-_EQ_or_IQ=3F?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3302089_1721441109.1638272129207"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Tue, 30 Nov 2021 11:35:29 +0000 (UTC)
+X-LinkedIn-Class: EMAIL-DEFAULT
+X-LinkedIn-Template: email_series_follow_newsletter_01
+X-LinkedIn-fbl: m2-aszqdh86l7zp2y0hon7uyrhkxsydvb26wkmlr0dy9hf7u06f8uykha0ilpkq5ucv249iinzwodtxrfdhw5qfuku0lv27v7texgcr59
+X-LinkedIn-Id: eau1wl-kwm0xcxu-e5
+List-Unsubscribe: <https://www.linkedin.com/e/v2?e=eau1wl-kwm0xcxu-e5&t=lun&midToken=AQEq1MBbB2bM8g&midSig=3iteFz49BnEG01&ek=email_series_follow_newsletter_01&li=14&m=unsub&ts=unsub&eid=eau1wl-kwm0xcxu-e5&loid=AQHDp2TTvc5DiAAAAX1woNiG1Gpb_xNablW0DQSwfOnSCnrgOoK4hcy2TQ2rb9opQ6LACXhxOYCfJ6C61PvocPbxYK-WlvW5EZcwfzc1iJnMRtBf9W_vSw>
+Feedback-ID: email_series_follow_newsletter_01:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_3302089_1721441109.1638272129207
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+NEWSLETTER ON LINKEDIN
+Ask Richard: How do you balance creative thinking with focus and productivi=
+ty? And, what=E2=80=99s more important - EQ or IQ?
+By Richard Branson
+
+Thank you to everyone who submitted such thoughtful questions for my #AskRi=
+chard Newsletter this month. It was as difficult as ever to only answer one=
+, so I combined two questions that work together nicely. The first question=
+ was shared by=C2=A0aspiring entrepreneur=C2=A0Andy Long. As someone with d=
+yslexia,=C2=A0I really understand his concern about balancing creative thin=
+king with being productive and finding the focus and structure to help you =
+implement energetic=C2=A0ideas. Over many years, I=E2=80=99ve learnt some t=
+ools and processes that work for me, so I hope you find my answer useful. T=
+he second question was penned by=C2=A0Vladimirs Levins, who asked if IQ or =
+EQ (emotional intelligence) is more important when building a successful bu=
+siness. I hope my reply is reassuring for Vladimirs, Andy and anyone else w=
+ho might be doubting their unique skills. I=E2=80=99m a very=C2=A0determine=
+d person=C2=A0who likes=C2=A0to see things through, but I often have a mill=
+ion different ideas whizzing through my brain at any given time. To=C2=A0he=
+lp stay=C2=A0focused and drive ideas forward, I make a lot of lists=C2=A0- =
+and make=C2=A0sure I stick to them! I carry a notebook everywhere I go=C2=
+=A0and write=C2=A0down almost every idea that comes to me. This=C2=A0helps =
+to=C2=A0filter and prioritise my (often)=C2=A0expansive=C2=A0thoughts. I=C2=
+=A0then make a list of small and manageable daily tasks that need to be don=
+e to turn my ideas into reality. A few years ago, I found an old to-do list=
+ of mine from 1972 and it always makes me smile. I like to think=C2=A0my li=
+sts have become a little less lofty over the years, but it shows how import=
+ant it is to dream big too! In case you can=E2=80=99t read my handwriting, =
+here=E2=80=99s what I had planned for November 6, 1972: =C2=A01.=C2=A0=C2=
+=A0=C2=A0=C2=A0Learn to fly =C2=A02.=C2=A0=C2=A0=C2=A0=C2=A0Look after me, =
+you, boat =C2=A03.=C2=A0=C2=A0=C2=A0=C2=A0Entertain everybody with me =C2=
+=A04.=C2=A0=C2=A0=C2=A0=C2=A0Invite nice people back =C2=A05.=C2=A0=C2=A0=
+=C2=A0=C2=A0Start getting the small house together at The Manor =C2=A06.=C2=
+=A0=C2=A0=C2=A0=C2=A0Start buying odds and sods for The Manor =C2=A07.=C2=
+=A0=C2=A0=C2=A0=C2=A0Work with me on projects/sort me out =C2=A08.=C2=A0=C2=
+=A0=C2=A0=C2=A0More shops to be found I was 22-years-old at the time, which=
+ might explain why one of the tasks was to sort myself out! I=E2=80=99m not=
+ quite ready to tick that one off yet, but it=E2=80=99s wonderful to look b=
+ack at this list and realise what followed.=C2=A0Other things that help me =
+find focus include: Concentrating on one task at a time.=C2=A0 Working out =
+a daily routine, and sticking to it. Figuring out when, where, how and why =
+you work at your best, and creating a sort of =E2=80=98productivity toolkit=
+=E2=80=99. This might include a list of certain processes, tools, places, s=
+ystems and spaces where you find the most focus and productivity. Work to y=
+our strengths and make sure you collaborate, delegate and outsource as much=
+ as possible when you feel out of your depth. Leaning on a business mentor =
+is really useful here too. Although it takes a bit more effort to find this=
+ focus if you=E2=80=99re more creative or neurodivergent, I=E2=80=99ve foun=
+d the perks of being an atypical thinker have far outweighed the challenges=
+. This lends itself well to Vladimirs question about EQ vs IQ. In short, I =
+think being emotionally intelligent is more important in every aspect of li=
+fe =E2=80=93 and this includes business. Being a good listener, finding emp=
+athy, understanding emotions, communicating effectively, treating people we=
+ll, and bringing out the best is critical to success. It will also help you=
+ build a business that really understands people and solve their problems, =
+and it will make for a happier and healthier team too.=C2=A0 If I had let m=
+y IQ and my school grades determine my success I certainly wouldn=E2=80=99t=
+ be where I am today, so I hope that nobody lets a standardised test result=
+ get in the way of a good idea. Thank you to Andy and Vladimirs for posing =
+these wonderful questions. I hope my answers have inspired all of you to fi=
+nd your focus, embrace your creativity, connect with people, and celebrate =
+the unique things that make you =E2=80=98you=E2=80=99. This is what life is=
+ all about. Until next month, Richard
+
+Join the conversation:
+https://www.linkedin.com/e/v2/pulse?e=3Deau1wl-kwm0xcxu-e5&amp;lipi=3Durn%3=
+Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BSe1hAaNHRAyosqvrly4S=
+Pg%3D%3D&amp;a=3Dpulse_web_view_article_detail_new_url&amp;midToken=3DAQEq1=
+MBbB2bM8g&amp;midSig=3D3iteFz49BnEG01&amp;ek=3Demail_series_follow_newslett=
+er_01&amp;li=3D3&amp;m=3Dfooter_promo&amp;ts=3Dprimary_cta_link&amp;permLin=
+k=3Dask-richard-how-do-you-balance-creative-thinking-focus-branson
+
+.....................................
+
+Cancelar inscri=C3=A7=C3=A3o: https://www.linkedin.com/e/v2?e=3Deau1wl-kwm0=
+xcxu-e5&t=3Dlun&midToken=3DAQEq1MBbB2bM8g&midSig=3D3iteFz49BnEG01&ek=3Demai=
+l_series_follow_newsletter_01&li=3D14&m=3Dunsub&ts=3Dunsub&eid=3Deau1wl-kwm=
+0xcxu-e5&loid=3DAQHDp2TTvc5DiAAAAX1woNiG1Gpb_xNablW0DQSwfOnSCnrgOoK4hcy2TQ2=
+rb9opQ6LACXhxOYCfJ6C61PvocPbxYK-WlvW5EZcwfzc1iJnMRtBf9W_vSw
+
+Ajuda: https://www.linkedin.com/e/v2?e=3Deau1wl-kwm0xcxu-e5&lipi=3Durn%3Ali=
+%3Apage%3Aemail_email_series_follow_newsletter_01%3BSe1hAaNHRAyosqvrly4SPg%=
+3D%3D&a=3DcustomerServiceUrl&midToken=3DAQEq1MBbB2bM8g&midSig=3D3iteFz49BnE=
+G01&ek=3Demail_series_follow_newsletter_01&li=3D13&m=3Dfooter&ts=3Dhelp&art=
+icleId=3D67
+
+
+Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do LinkedIn.
+
+Este e-mail foi enviado para Rafael Souza.
+Saiba por que inclu=C3=ADmos isso: https://www.linkedin.com/e/v2?e=3Deau1wl=
+-kwm0xcxu-e5&lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_=
+01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D&a=3DcustomerServiceUrl&midToken=3DAQEq1MB=
+bB2bM8g&midSig=3D3iteFz49BnEG01&ek=3Demail_series_follow_newsletter_01&arti=
+cleId=3D4788
+
+=C2=A9 2021 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2. LinkedIn =C3=A9 um nome comercial registrado da LinkedIn Ireland=
+ Unlimited Company. LinkedIn e o logo do LinkedIn s=C3=A3o marcas registrad=
+as do LinkedIn.
+------=_Part_3302089_1721441109.1638272129207
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns=3D"http://www.w3=
+.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt"> <head> <meta http-equiv=3D"Co=
+ntent-Type" content=3D"text/html;charset=3Dutf-8"> <meta name=3D"HandheldFr=
+iendly" content=3D"true"> <meta name=3D"viewport" content=3D"width=3Ddevice=
+-width; initial-scale=3D0.666667; user-scalable=3D0"> <meta name=3D"viewpor=
+t" content=3D"width=3Ddevice-width"> <title></title> <!--[if mso]><style ty=
+pe=3D"text/css">body {font-family: 'Helvetica Neue', Helvetica, Arial, sans=
+-serif;}.phoenix-email-container {width: 512px !important;}</style><![endif=
+]--> <!--[if IE]><style type=3D"text/css">.phoenix-email-container {width: =
+512px !important;}</style><![endif]--> <style type=3D"text/css">@media only=
+ screen and (max-width:32em) { .phoenix-email-container { width:100% !impor=
+tant; } } @media only screen and (max-width:20em) {} @media only screen and=
+ (max-device-width:30em) {} @media screen and (device-width:30em) and (devi=
+ce-height:22.5em), screen and (device-width:22.5em) and (device-height:30em=
+), screen and (device-width:20em) and (device-height:15em) {} @media screen=
+ and (-webkit-min-device-pixel-ratio:0) {} @media screen and (max-device-wi=
+dth:25.88em) and (max-device-height:48.5em) {} @media only screen and (max-=
+width:30em) { .slate-resizable-image-embed { text-align:center; } } </style=
+> </head> <body style=3D"padding:0;margin:0 auto;-webkit-text-size-adjust:1=
+00%;width:100% !important;-ms-text-size-adjust:100%;font-family:'Helvetica =
+Neue',Helvetica,Arial,sans-serif;"> <div style=3D"overflow:hidden;color:tra=
+nsparent;visibility:hidden;mso-hide:all;width:0;font-size:0;opacity:0;heigh=
+t:0;"> Thank you to everyone who submitted such thoughtful questions for my=
+... </div> <table role=3D"presentation" align=3D"center" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0" width=3D"100%" bgcolor=3D"#EDF0F3" style=3D"=
+background-color:#EDF0F3;table-layout:fixed;-webkit-text-size-adjust:100%;m=
+so-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-c=
+ollapse:separate;"> <tbody> <tr> <td align=3D"center" style=3D"-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-a=
+djust:100%;"> <center style=3D"width:100%;"> <table role=3D"presentation" b=
+order=3D"0" class=3D"phoenix-email-container" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"512" bgcolor=3D"#FFFFFF" style=3D"background-color:#FFFFFF;=
+margin:0 auto;max-width:512px;-webkit-text-size-adjust:100%;mso-table-rspac=
+e:0pt;width:inherit;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-c=
+ollapse:separate;"> <tbody> <tr> <td bgcolor=3D"#F6F8FA" style=3D"backgroun=
+d-color:#F6F8FA;padding:12px;-webkit-text-size-adjust:100%;mso-table-rspace=
+:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-bottom:1px solid=
+ #ECECEC;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;width:100% !important;mso-table-lspace:0pt;-ms-text-size-adj=
+ust:100%;border-collapse:separate;min-width:100% !important;"> <tbody> <tr>=
+ <td align=3D"left" valign=3D"middle" style=3D"-webkit-text-size-adjust:100=
+%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a =
+href=3D"https://www.linkedin.com/comm/feed/?midToken=3DAQEq1MBbB2bM8g&amp;m=
+idSig=3D3iteFz49BnEG01&amp;trk=3Deml-email_series_follow_newsletter_01-head=
+er-9-home&amp;trkEmail=3Deml-email_series_follow_newsletter_01-header-9-hom=
+e-null-eau1wl%7Ekwm0xcxu%7Ee5-null-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Apag=
+e%3Aemail_email_series_follow_newsletter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D"=
+ style=3D"cursor:pointer;color:#0073B1;-webkit-text-size-adjust:100%;displa=
+y:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <img alt=
+=3D"LinkedIn" border=3D"0" src=3D"https://static.licdn.com/sc/p/com.linkedi=
+n.email-assets-frontend%3Aemail-assets-frontend-static-content%2B__latest__=
+/f/%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Flogos%2Flogo_phoen=
+ix_header_blue_78x66_v1.png" height=3D"34" width=3D"40" style=3D"outline:no=
+ne;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;"></a>=
+</td> <td valign=3D"middle" width=3D"100%" align=3D"right" style=3D"-webkit=
+-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-s=
+ize-adjust:100%;"><a href=3D"https://www.linkedin.com/comm/in/rafaelanderso=
+nsouza?midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49BnEG01&amp;trk=3Deml-=
+email_series_follow_newsletter_01-header-17-profile&amp;trkEmail=3Deml-emai=
+l_series_follow_newsletter_01-header-17-profile-null-eau1wl%7Ekwm0xcxu%7Ee5=
+-null-neptune%2Fprofile%7Evanity%2Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_=
+email_series_follow_newsletter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D" style=3D"=
+cursor:pointer;margin:0;color:#0073B1;-webkit-text-size-adjust:100%;display=
+:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <table role=
+=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> =
+<tr> <td align=3D"left" valign=3D"middle" style=3D"padding:0 0 0 10px;-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;"><p style=3D"margin:0;font-weight:400;"> <span style=3D"=
+word-wrap:break-word;color:#4C4C4C;word-break:break-word;font-weight:400;-m=
+s-word-break:break-all;font-size:14px;line-height:1.429;overflow-wrap:break=
+-word;">Rafael Souza</span></p></td> <td valign=3D"middle" width=3D"40" sty=
+le=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;padding-left:10px;=
+mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <img alt=3D"Rafael Souza"=
+ border=3D"0" height=3D"36" width=3D"36" src=3D"https://media-exp1.licdn.co=
+m/dms/image/C4D03AQEH4CxhkhtzrA/profile-displayphoto-shrink_100_100/0/16075=
+11453788?e=3D2159024400&amp;v=3Dbeta&amp;t=3D-tHMmR1dxjrCprClXWXo4zHcUBJ32R=
+L-H3UeChqfLrs" style=3D"border-radius:50%;outline:none;-ms-interpolation-mo=
+de:bicubic;color:#FFFFFF;text-decoration:none;"></td> </tr> </tbody> </tabl=
+e></a></td> <td width=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-tabl=
+e-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">&nbsp;</td> <=
+/tr> </tbody> </table></td> </tr> <tr> <td style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;=
+"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspa=
+ce:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separ=
+ate;"> <tbody> <tr> <td style=3D"padding:16px 0;-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;font=
+-size:20px;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-=
+table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-coll=
+apse:separate;"> <tbody> <tr> <td style=3D"padding:0 16px 12px;-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-a=
+djust:100%;border-bottom:solid 1px #EDF0F3;"> <div style=3D"color:#666;font=
+-weight:bold;letter-spacing:2px;font-size:16px;"> NEWSLETTER DO LINKEDIN </=
+div> <div style=3D"padding:4px 0 0;color:#000;font-weight:bold;font-size:28=
+px;"> Ask Richard </div> <div style=3D"padding:8px 0 0;font-size:16px;"> <a=
+ href=3D"https://www.linkedin.com/comm/profile/view?id=3DAAsAAAwp1RMBB_PBf6=
+Qezb9b0ZC_anXZ7nrADfU&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49Bn=
+EG01&amp;trk=3Deml-email_series_follow_newsletter_01-null-0-null&amp;trkEma=
+il=3Deml-email_series_follow_newsletter_01-null-0-null-null-eau1wl%7Ekwm0xc=
+xu%7Ee5-npv-nprofile%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series=
+_follow_newsletter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D" style=3D"cursor:point=
+er;color:#0073B1;-webkit-text-size-adjust:100%;display:inline-block;text-de=
+coration:none;-ms-text-size-adjust:100%;"> <img alt=3D"" role=3D"presentati=
+on" border=3D"0" height=3D"36" width=3D"36" src=3D"https://media-exp1.licdn=
+.com/dms/image/C4D03AQHh6_Wth5f3rQ/profile-displayphoto-shrink_800_800/0/16=
+25181962692?e=3D2159024400&amp;v=3Dbeta&amp;t=3Dw-cl4Xy5u_fQ_e-gveGYX3qV7kg=
+MhNAyo3toVWrkU-Y" style=3D"border-radius:50%;outline:none;-ms-interpolation=
+-mode:bicubic;color:#FFFFFF;text-decoration:none;vertical-align:middle;marg=
+in-right:6px;"> <span style=3D"color:#4C4C4C;">De Richard Branson</span></a=
+> </div></td> </tr> <tr> <td bgcolor=3D"#F6F8FA" style=3D"background-color:=
+#F6F8FA;padding:16px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso=
+-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.linked=
+in.com/e/v2/pulse?e=3Deau1wl-kwm0xcxu-e5&amp;lipi=3Durn%3Ali%3Apage%3Aemail=
+_email_series_follow_newsletter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D&amp;a=3Dp=
+ulse_web_view_article_detail_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midS=
+ig=3D3iteFz49BnEG01&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D1&a=
+mp;m=3Dhero&amp;ts=3Dtitle_link&amp;permLink=3Dask-richard-how-do-you-balan=
+ce-creative-thinking-focus-branson" style=3D"cursor:pointer;color:#0073B1;-=
+webkit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-=
+text-size-adjust:100%;"> <span style=3D"color:#4C4C4C;font-weight:400;font-=
+size:16px;line-height:1.25;">Abra este artigo no LinkedIn para ver o que as=
+ pessoas est=C3=A3o dizendo sobre este t=C3=B3pico.</span> <span style=3D"c=
+olor:inherit;font-weight:700;font-size:16px;line-height:1.25;">Abrir no Lin=
+kedIn</span></a></td> </tr> <tr> <td style=3D"padding:12px 16px;word-wrap:b=
+reak-word;word-break:break-word;-webkit-text-size-adjust:100%;mso-table-rsp=
+ace:0pt;-ms-word-break:break-all;mso-table-lspace:0pt;-ms-text-size-adjust:=
+100%;border-bottom:solid 1px #EDF0F3;overflow-wrap:break-word;"><h1 style=
+=3D"padding:0 0 16px;margin:0;font-weight:bold;font-size:24px;line-height:1=
+.333;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3Deau1wl-kwm0xcxu-e=
+5&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BSe=
+1hAaNHRAyosqvrly4SPg%3D%3D&amp;a=3Dpulse_web_view_article_detail_new_url&am=
+p;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49BnEG01&amp;ek=3Demail_seri=
+es_follow_newsletter_01&amp;li=3D1&amp;m=3Dhero&amp;ts=3Dtitle_link&amp;per=
+mLink=3Dask-richard-how-do-you-balance-creative-thinking-focus-branson" sty=
+le=3D"cursor:pointer;color:#0073B1;-webkit-text-size-adjust:100%;display:in=
+line-block;text-decoration:none;-ms-text-size-adjust:100%;"> <span style=3D=
+"color:#000;">Ask Richard: How do you balance creative thinking with focus =
+and productivity? And, what=E2=80=99s more important - EQ or IQ?</span></a>=
+</h1><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3Deau1wl-kwm0xcxu-e5&=
+amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BSe1h=
+AaNHRAyosqvrly4SPg%3D%3D&amp;a=3Dpulse_web_view_article_detail_new_url&amp;=
+midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49BnEG01&amp;ek=3Demail_series=
+_follow_newsletter_01&amp;li=3D2&amp;m=3Dhero&amp;ts=3Dimage_link&amp;permL=
+ink=3Dask-richard-how-do-you-balance-creative-thinking-focus-branson" style=
+=3D"cursor:pointer;color:#0073B1;-webkit-text-size-adjust:100%;display:inli=
+ne-block;text-decoration:none;-ms-text-size-adjust:100%;"><img src=3D"https=
+://media-exp1.licdn.com/dms/image/C4D12AQHOKtsqTpPBDA/article-cover_image-s=
+hrink_720_1280/0/1638270726141?e=3D2159024400&amp;v=3Dbeta&amp;t=3DXcejxxeP=
+PKzwuio2EgbChNLtwoLJoijn-TitGuGYC-0" border=3D"0" alt=3D"Imagem de capa da =
+newsletter" width=3D"512" style=3D"outline:none;-ms-interpolation-mode:bicu=
+bic;color:#FFFFFF;max-width:100%;text-decoration:none;padding-bottom:16px;"=
+></a> <div style=3D"font-size:16px;font-family:Times,Georgia,'Times New Rom=
+an',serif !important;"> <p style=3D"margin:1rem 0;color:#4C4C4C;font-weight=
+:400;"></p> <p style=3D"margin:1rem 0;font-weight:400;">Thank you to everyo=
+ne who submitted such thoughtful questions for my #AskRichard Newsletter th=
+is month. It was as difficult as ever to only answer one, so I combined two=
+ questions that work together nicely.</p> <p style=3D"margin:1rem 0;font-we=
+ight:400;">The first question was shared by&nbsp;aspiring entrepreneur&nbsp=
+;<a href=3D"https://www.linkedin.com/in/andy-long-7b765511/" target=3D"_bla=
+nk" style=3D"cursor:pointer;color:#0073B1;-webkit-text-size-adjust:100%;dis=
+play:inline;text-decoration:none;-ms-text-size-adjust:100%;">Andy Long</a>.=
+ As someone with dyslexia,&nbsp;I really understand his concern about balan=
+cing creative thinking with being productive and finding the focus and stru=
+cture to help you implement energetic&nbsp;ideas. Over many years, I=E2=80=
+=99ve learnt some tools and processes that work for me, so I hope you find =
+my answer useful.</p> <p style=3D"margin:1rem 0;font-weight:400;">The secon=
+d question was penned by&nbsp;<a href=3D"https://www.linkedin.com/in/vladim=
+irs-levins-321a1a84/" target=3D"_blank" style=3D"cursor:pointer;color:#0073=
+B1;-webkit-text-size-adjust:100%;display:inline;text-decoration:none;-ms-te=
+xt-size-adjust:100%;">Vladimirs Levins</a>, who asked if IQ or EQ (emotiona=
+l intelligence) is more important when building a successful business. I ho=
+pe my reply is reassuring for Vladimirs, Andy and anyone else who might be =
+doubting their unique skills.</p> <div class=3D"slate-resizable-image-embed=
+"> <img alt=3D"No alt text provided for this image" data-media-urn=3D"" dat=
+a-li-src=3D"https://media-exp1.licdn.com/dms/image/C4D12AQElXrpgiq4Ttw/arti=
+cle-inline_image-shrink_1000_1488/0/1638270951351?e=3D2159024400&amp;v=3Dbe=
+ta&amp;t=3D13buiiDuePR2CGlrQVDXkcjfkYDQSTIRdkC5WcbfHeM" src=3D"https://medi=
+a-exp1.licdn.com/dms/image/C4D12AQElXrpgiq4Ttw/article-inline_image-shrink_=
+1000_1488/0/1638270951351?e=3D2159024400&amp;v=3Dbeta&amp;t=3D13buiiDuePR2C=
+GlrQVDXkcjfkYDQSTIRdkC5WcbfHeM" width=3D"480" style=3D"outline:none;-ms-int=
+erpolation-mode:bicubic;color:#FFFFFF;max-width:100%;text-decoration:none;"=
+> </div> <p style=3D"margin:1rem 0;font-weight:400;">I=E2=80=99m a very&nbs=
+p;determined person&nbsp;who likes&nbsp;to see things through, but I often =
+have a million different ideas whizzing through my brain at any given time.=
+ To&nbsp;help stay&nbsp;focused and drive ideas forward, I make a lot of li=
+sts&nbsp;- and make&nbsp;sure I stick to them! I carry a notebook everywher=
+e I go&nbsp;and write&nbsp;down almost every idea that comes to me. This&nb=
+sp;helps to&nbsp;filter and prioritise my (often)&nbsp;expansive&nbsp;thoug=
+hts. I&nbsp;then make a list of small and manageable daily tasks that need =
+to be done to turn my ideas into reality. A few years ago, I found an old t=
+o-do list of mine from 1972 and it always makes me smile. I like to think&n=
+bsp;my lists have become a little less lofty over the years, but it shows h=
+ow important it is to dream big too!</p> <div class=3D"slate-resizable-imag=
+e-embed"> <img alt=3D"No alt text provided for this image" data-media-urn=
+=3D"" data-li-src=3D"https://media-exp1.licdn.com/dms/image/C4D12AQFzi-O-ad=
+6zDw/article-inline_image-shrink_1500_2232/0/1638270806165?e=3D2159024400&a=
+mp;v=3Dbeta&amp;t=3DElUdYjxVlssd3A2z_LSNp0EiLzazjIuthMcuFl7p6-c" src=3D"htt=
+ps://media-exp1.licdn.com/dms/image/C4D12AQFzi-O-ad6zDw/article-inline_imag=
+e-shrink_1500_2232/0/1638270806165?e=3D2159024400&amp;v=3Dbeta&amp;t=3DElUd=
+YjxVlssd3A2z_LSNp0EiLzazjIuthMcuFl7p6-c" width=3D"480" style=3D"outline:non=
+e;-ms-interpolation-mode:bicubic;color:#FFFFFF;max-width:100%;text-decorati=
+on:none;"> </div> <p style=3D"margin:1rem 0;font-weight:400;">In case you c=
+an=E2=80=99t read my handwriting, here=E2=80=99s what I had planned for Nov=
+ember 6, 1972:</p> <p style=3D"margin:1rem 0;font-weight:400;">&nbsp;1.&nbs=
+p;&nbsp;&nbsp;&nbsp;Learn to fly</p> <p style=3D"margin:1rem 0;font-weight:=
+400;">&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;Look after me, you, boat</p> <p style=
+=3D"margin:1rem 0;font-weight:400;">&nbsp;3.&nbsp;&nbsp;&nbsp;&nbsp;Enterta=
+in everybody with me</p> <p style=3D"margin:1rem 0;font-weight:400;">&nbsp;=
+4.&nbsp;&nbsp;&nbsp;&nbsp;Invite nice people back</p> <p style=3D"margin:1r=
+em 0;font-weight:400;">&nbsp;5.&nbsp;&nbsp;&nbsp;&nbsp;Start getting the sm=
+all house together at The Manor</p> <p style=3D"margin:1rem 0;font-weight:4=
+00;">&nbsp;6.&nbsp;&nbsp;&nbsp;&nbsp;Start buying odds and sods for The Man=
+or</p> <p style=3D"margin:1rem 0;font-weight:400;">&nbsp;7.&nbsp;&nbsp;&nbs=
+p;&nbsp;Work with me on projects/sort me out</p> <p style=3D"margin:1rem 0;=
+font-weight:400;">&nbsp;8.&nbsp;&nbsp;&nbsp;&nbsp;More shops to be found</p=
+> <p style=3D"margin:1rem 0;font-weight:400;">I was 22-years-old at the tim=
+e, which might explain why one of the tasks was to sort myself out! I=E2=80=
+=99m not quite ready to tick that one off yet, but it=E2=80=99s wonderful t=
+o look back at this list and realise what followed.&nbsp;Other things that =
+help me find focus include:</p> <ol style=3D"margin-top:0;"> <li>Concentrat=
+ing on one task at a time.&nbsp;</li> <li>Working out a daily routine, and =
+sticking to it.</li> <li>Figuring out when, where, how and why you work at =
+your best, and creating a sort of =E2=80=98productivity toolkit=E2=80=99. T=
+his might include a list of certain processes, tools, places, systems and s=
+paces where you find the most focus and productivity.</li> <li>Work to your=
+ strengths and make sure you collaborate, delegate and outsource as much as=
+ possible when you feel out of your depth. Leaning on a business mentor is =
+really useful here too.</li> </ol> <div class=3D"slate-resizable-image-embe=
+d"> <img alt=3D"No alt text provided for this image" data-media-urn=3D"" da=
+ta-li-src=3D"https://media-exp1.licdn.com/dms/image/C4D12AQG9F5rf6hWUxA/art=
+icle-inline_image-shrink_1000_1488/0/1638271087430?e=3D2159024400&amp;v=3Db=
+eta&amp;t=3DC601kRTCd6qqIYOsPv8asEMJW7sHAAjPyXLNQMV0ie8" src=3D"https://med=
+ia-exp1.licdn.com/dms/image/C4D12AQG9F5rf6hWUxA/article-inline_image-shrink=
+_1000_1488/0/1638271087430?e=3D2159024400&amp;v=3Dbeta&amp;t=3DC601kRTCd6qq=
+IYOsPv8asEMJW7sHAAjPyXLNQMV0ie8" width=3D"480" style=3D"outline:none;-ms-in=
+terpolation-mode:bicubic;color:#FFFFFF;max-width:100%;text-decoration:none;=
+"> </div> <p style=3D"margin:1rem 0;font-weight:400;">Although it takes a b=
+it more effort to find this focus if you=E2=80=99re more creative or neurod=
+ivergent, I=E2=80=99ve found the perks of being an atypical thinker have fa=
+r outweighed the challenges. This lends itself well to Vladimirs question a=
+bout EQ vs IQ. In short, I think being emotionally intelligent is more impo=
+rtant in every aspect of life =E2=80=93 and this includes business. Being a=
+ good listener, finding empathy, understanding emotions, communicating effe=
+ctively, treating people well, and bringing out the best is critical to suc=
+cess. It will also help you build a business that really understands people=
+ and solve their problems, and it will make for a happier and healthier tea=
+m too.&nbsp;</p> <p style=3D"margin:1rem 0;font-weight:400;">If I had let m=
+y IQ and my school grades determine my success I certainly wouldn=E2=80=99t=
+ be where I am today, so I hope that nobody lets a standardised test result=
+ get in the way of a good idea.</p> <div class=3D"slate-resizable-image-emb=
+ed"> <img alt=3D"No alt text provided for this image" data-media-urn=3D"" d=
+ata-li-src=3D"https://media-exp1.licdn.com/dms/image/C4D12AQHfQMnNW-cppA/ar=
+ticle-inline_image-shrink_1000_1488/0/1638271243613?e=3D2159024400&amp;v=3D=
+beta&amp;t=3D9I2jWjWIWL8HTEklB9Q_Wfc8jttpcd0uT8HrcPjkTFk" src=3D"https://me=
+dia-exp1.licdn.com/dms/image/C4D12AQHfQMnNW-cppA/article-inline_image-shrin=
+k_1000_1488/0/1638271243613?e=3D2159024400&amp;v=3Dbeta&amp;t=3D9I2jWjWIWL8=
+HTEklB9Q_Wfc8jttpcd0uT8HrcPjkTFk" width=3D"480" style=3D"outline:none;-ms-i=
+nterpolation-mode:bicubic;color:#FFFFFF;max-width:100%;text-decoration:none=
+;"> </div> <p style=3D"margin:1rem 0;font-weight:400;">Thank you to Andy an=
+d Vladimirs for posing these wonderful questions. I hope my answers have in=
+spired all of you to find your focus, embrace your creativity, connect with=
+ people, and celebrate the unique things that make you =E2=80=98you=E2=80=
+=99. This is what life is all about.</p> <p style=3D"margin:1rem 0;font-wei=
+ght:400;">Until next month,</p> <p style=3D"margin:1rem 0;font-weight:400;"=
+>Richard</p> <p style=3D"margin:1rem 0;font-weight:400;"><br></p> <p style=
+=3D"margin:1rem 0;font-weight:400;"><br></p> <p style=3D"margin:1rem 0;font=
+-weight:400;"></p> </div> <div style=3D"padding:12px 0 16px;text-align:cent=
+er;"> <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;display:inline-block;mso-tab=
+le-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody>=
+ <tr> <td align=3D"center" valign=3D"middle" style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100=
+%;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3Deau1wl-kwm0xcxu-e5&a=
+mp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BSe1hA=
+aNHRAyosqvrly4SPg%3D%3D&amp;a=3Dpulse_web_view_article_detail_new_url&amp;m=
+idToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49BnEG01&amp;ek=3Demail_series_=
+follow_newsletter_01&amp;li=3D3&amp;m=3Dfooter_promo&amp;ts=3Dprimary_cta_l=
+ink&amp;permLink=3Dask-richard-how-do-you-balance-creative-thinking-focus-b=
+ranson" target=3D"_blank" style=3D"cursor:pointer;word-wrap:normal;color:#0=
+073B1;word-break:normal;white-space:nowrap;-webkit-text-size-adjust:100%;di=
+splay:block;text-decoration:none;-ms-text-size-adjust:100%;overflow-wrap:no=
+rmal;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust:100%;mso-table-=
+rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:s=
+eparate;"> <tbody> <tr> <td bgcolor=3D"#0073B1" style=3D"padding:8px 24px;c=
+olor:#FFFFFF;-webkit-text-size-adjust:100%;font-weight:500;font-size:18px;-=
+ms-text-size-adjust:100%;border-color:#0073B1;background-color:#0073B1;bord=
+er-radius:2px;mso-table-rspace:0pt;mso-table-lspace:0pt;border-width:1px;bo=
+rder-style:solid;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3Deau1w=
+l-kwm0xcxu-e5&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsle=
+tter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D&amp;a=3Dpulse_web_view_article_detai=
+l_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49BnEG01&amp;ek=
+=3Demail_series_follow_newsletter_01&amp;li=3D3&amp;m=3Dfooter_promo&amp;ts=
+=3Dprimary_cta_link&amp;permLink=3Dask-richard-how-do-you-balance-creative-=
+thinking-focus-branson" target=3D"_blank" style=3D"cursor:pointer;color:#FF=
+FFFF;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:non=
+e;-ms-text-size-adjust:100%;">Participe da conversa</a></td> </tr> </tbody>=
+ </table></a></td> </tr> </tbody> </table> </div></td> </tr> <tr> <td align=
+=3D"center" style=3D"padding:16px 64px;-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:ce=
+nter;"> <p style=3D"margin:0;color:#4C4C4C;font-weight:400;font-size:16px;l=
+ine-height:1.25;">Conhece algu=C3=A9m que possa se interessar por esta news=
+letter? Compartilhe-a!</p> <div> <a href=3D"mailto:?subject=3DRe%3A%20Ask%2=
+0Richard%3A%20How%20do%20you%20balance%20creative%20thinking%20with%20focus=
+%20and%20productivity%3F%20And%2C%20what%E2%80%99s%20more%20important%20-%2=
+0EQ%20or%20IQ%3F&amp;body=3DI%20thought%20you'd%20be%20interested%20in%20th=
+is%20article%20from%20a%20newsletter%20on%20LinkedIn%20I'm%20subscribed%20t=
+o%3A&nbsp;https%3A%2F%2Fwww.linkedin.com%2Fe%2Fv2%2Fpulse%3Fe%3Deau1wl-kwm0=
+xcxu-e5%26lipi%3Durn%253Ali%253Apage%253Aemail_email_series_follow_newslett=
+er_01%253BSe1hAaNHRAyosqvrly4SPg%253D%253D%26a%3Dpulse_web_view_article_det=
+ail_new_url%26midToken%3DAQEq1MBbB2bM8g%26midSig%3D3iteFz49BnEG01%26ek%3Dem=
+ail_series_follow_newsletter_01%26li%3D5%26m%3Dfooter_promo%26ts%3Dfrwd_lin=
+k%26permLink%3Dask-richard-how-do-you-balance-creative-thinking-focus-brans=
+on" style=3D"cursor:pointer;padding:12px 12px 0;color:#0073B1;-webkit-text-=
+size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-ad=
+just:100%;"><img src=3D"https://static.licdn.com/sc/p/com.linkedin.email-as=
+sets-frontend%3Aemail-assets-frontend-static-content%2B__latest__/f/%2Femai=
+l-assets-frontend%2Fimages%2Femail%2Fartdeco%2Ficons%2F24%2Fenvelope-icon.p=
+ng" height=3D"24" width=3D"24" alt=3D"NEWSLETTER DO LINKEDIN" style=3D"outl=
+ine:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;=
+padding-left:0px;"></a> <a href=3D"https://www.linkedin.com/e/v2?e=3Deau1wl=
+-kwm0xcxu-e5&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newslet=
+ter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D&amp;t=3Dplh&amp;midToken=3DAQEq1MBbB2=
+bM8g&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D6&amp;m=3Dfooter_p=
+romo&amp;urlhash=3DPBSs&amp;url=3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fshar=
+eArticle%3Fmini%3Dtrue%26url%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2=
+Fask-richard-how-do-you-balance-creative-thinking-focus-branson" style=3D"c=
+ursor:pointer;padding:12px 12px 0;color:#0073B1;-webkit-text-size-adjust:10=
+0%;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"><i=
+mg src=3D"https://static.licdn.com/sc/p/com.linkedin.email-assets-frontend%=
+3Aemail-assets-frontend-static-content%2B__latest__/f/%2Femail-assets-front=
+end%2Fimages%2Femail%2Fartdeco%2Fsocial%2F24%2Flinkedin-color.png" height=
+=3D"24" width=3D"24" alt=3D"Compartilhe esta s=C3=A9rie no LinkedIn" style=
+=3D"outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decorati=
+on:none;padding-left:0px;"></a> <a href=3D"https://www.linkedin.com/e/v2?e=
+=3Deau1wl-kwm0xcxu-e5&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follo=
+w_newsletter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D&amp;t=3Dplh&amp;midToken=3DA=
+QEq1MBbB2bM8g&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D7&amp;m=
+=3Dfooter_promo&amp;urlhash=3DziLK&amp;url=3Dhttps%3A%2F%2Fwww%2Efacebook%2=
+Ecom%2Fsharer%2Fsharer%2Ephp%3Fu%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpul=
+se%2Fask-richard-how-do-you-balance-creative-thinking-focus-branson" style=
+=3D"cursor:pointer;padding:12px 12px 0;color:#0073B1;-webkit-text-size-adju=
+st:100%;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%=
+;"><img src=3D"https://static.licdn.com/sc/p/com.linkedin.email-assets-fron=
+tend%3Aemail-assets-frontend-static-content%2B__latest__/f/%2Femail-assets-=
+frontend%2Fimages%2Femail%2Fartdeco%2Fsocial%2F24%2Ffacebook-color.png" hei=
+ght=3D"24" width=3D"24" alt=3D"Compartilhe esta s=C3=A9rie no Facebook" sty=
+le=3D"outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decora=
+tion:none;padding-left:0px;"></a> <a href=3D"https://www.linkedin.com/e/v2?=
+e=3Deau1wl-kwm0xcxu-e5&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_foll=
+ow_newsletter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D&amp;t=3Dplh&amp;midToken=3D=
+AQEq1MBbB2bM8g&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D8&amp;m=
+=3Dfooter_promo&amp;urlhash=3D-NpX&amp;url=3Dhttps%3A%2F%2Fwww%2Etwitter%2E=
+com%2Fintent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2Fa=
+sk-richard-how-do-you-balance-creative-thinking-focus-branson" style=3D"cur=
+sor:pointer;padding:12px 12px 0;color:#0073B1;-webkit-text-size-adjust:100%=
+;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"><img=
+ src=3D"https://static.licdn.com/sc/p/com.linkedin.email-assets-frontend%3A=
+email-assets-frontend-static-content%2B__latest__/f/%2Femail-assets-fronten=
+d%2Fimages%2Femail%2Fartdeco%2Fsocial%2F24%2Ftwitter-color.png" height=3D"2=
+4" width=3D"24" alt=3D"Compartilhe esta s=C3=A9rie no Twitter" style=3D"out=
+line:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none=
+;padding-left:0px;"></a> </div></td> </tr> </tbody> </table></td> </tr> </t=
+body> </table></td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;m=
+so-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tabl=
+e role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%" bgcolor=3D"#EDF0F3" align=3D"center" style=3D"background-color=
+:#EDF0F3;padding:0 24px;color:#6A6C6D;-webkit-text-size-adjust:100%;mso-tab=
+le-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collaps=
+e:separate;text-align:center;"> <tbody> <tr> <td align=3D"center" style=3D"=
+padding:16px 0 0 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-t=
+able-lspace:0pt;-ms-text-size-adjust:100%;text-align:center;"> <table role=
+=3D"presentation" align=3D"center" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:sep=
+arate;"> <tbody> <tr> <td valign=3D"middle" align=3D"center" style=3D"paddi=
+ng:0 0 16px 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;vertical-a=
+lign:middle;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:cente=
+r;"><a href=3D"https://www.linkedin.com/e/v2?e=3Deau1wl-kwm0xcxu-e5&amp;t=
+=3Dlun&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49BnEG01&amp;ek=3De=
+mail_series_follow_newsletter_01&amp;li=3D14&amp;m=3Dunsub&amp;ts=3Dunsub&a=
+mp;eid=3Deau1wl-kwm0xcxu-e5&amp;loid=3DAQHDp2TTvc5DiAAAAX1woNiG1Gpb_xNablW0=
+DQSwfOnSCnrgOoK4hcy2TQ2rb9opQ6LACXhxOYCfJ6C61PvocPbxYK-WlvW5EZcwfzc1iJnMRtB=
+f9W_vSw" style=3D"cursor:pointer;color:#6A6C6D;-webkit-text-size-adjust:100=
+%;text-decoration:underline;display:inline-block;-ms-text-size-adjust:100%;=
+"> <span style=3D"color:#6A6C6D;font-weight:400;text-decoration:underline;f=
+ont-size:12px;line-height:1.333;">Cancelar inscri=C3=A7=C3=A3o</span></a>&n=
+bsp;&nbsp;|&nbsp;&nbsp;<a href=3D"https://www.linkedin.com/e/v2?e=3Deau1wl-=
+kwm0xcxu-e5&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newslett=
+er_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D&amp;a=3DcustomerServiceUrl&amp;midToke=
+n=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49BnEG01&amp;ek=3Demail_series_follow=
+_newsletter_01&amp;li=3D13&amp;m=3Dfooter&amp;ts=3Dhelp&amp;articleId=3D67"=
+ style=3D"cursor:pointer;color:#6A6C6D;-webkit-text-size-adjust:100%;text-d=
+ecoration:underline;display:inline-block;-ms-text-size-adjust:100%;"> <span=
+ style=3D"color:#6A6C6D;font-weight:400;text-decoration:underline;font-size=
+:12px;line-height:1.333;">Ajuda</span></a></td> </tr> </tbody> </table></td=
+> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presenta=
+tion" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=
+=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt=
+;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td ali=
+gn=3D"center" style=3D"padding:0 0 12px 0;-webkit-text-size-adjust:100%;mso=
+-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align=
+:center;"> <p style=3D"margin:0;color:#6A6C6D;font-weight:400;font-size:12p=
+x;line-height:1.333;">Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=
+=A7=C3=A3o do LinkedIn. O autor da newsletter pode ver que voc=C3=AA =C3=A9=
+ assinante.</p></td> </tr> <tr> <td align=3D"center" style=3D"padding:0 0 1=
+2px 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;text-align:center;"> <p style=3D"margin:0;word=
+-wrap:break-word;color:#6A6C6D;word-break:break-word;font-weight:400;-ms-wo=
+rd-break:break-all;font-size:12px;line-height:1.333;overflow-wrap:break-wor=
+d;">Este e-mail foi enviado para Rafael Souza. <a href=3D"https://www.linke=
+din.com/e/v2?e=3Deau1wl-kwm0xcxu-e5&amp;lipi=3Durn%3Ali%3Apage%3Aemail_emai=
+l_series_follow_newsletter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D&amp;a=3Dcustom=
+erServiceUrl&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49BnEG01&amp;=
+ek=3Demail_series_follow_newsletter_01&amp;articleId=3D4788" style=3D"curso=
+r:pointer;color:#6A6C6D;-webkit-text-size-adjust:100%;text-decoration:under=
+line;display:inline-block;-ms-text-size-adjust:100%;">Saiba por que inclu=
+=C3=ADmos isto.</a></p></td> </tr> <tr> <td align=3D"center" style=3D"paddi=
+ng:0 0 8px 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-l=
+space:0pt;-ms-text-size-adjust:100%;text-align:center;"><a href=3D"https://=
+www.linkedin.com/comm/feed/?midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3iteFz49=
+BnEG01&amp;trk=3Deml-email_series_follow_newsletter_01-footer-11-home&amp;t=
+rkEmail=3Deml-email_series_follow_newsletter_01-footer-11-home-null-eau1wl%=
+7Ekwm0xcxu%7Ee5-null-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Apage%3Aemail_emai=
+l_series_follow_newsletter_01%3BSe1hAaNHRAyosqvrly4SPg%3D%3D" style=3D"curs=
+or:pointer;color:#6A6C6D;-webkit-text-size-adjust:100%;text-decoration:unde=
+rline;display:inline-block;-ms-text-size-adjust:100%;"><img alt=3D"LinkedIn=
+" border=3D"0" height=3D"14" src=3D"https://static.licdn.com/sc/p/com.linke=
+din.email-assets-frontend%3Aemail-assets-frontend-static-content%2B__latest=
+__/f/%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Flogos%2Flogo_pho=
+enix_footer_darkgray_197x48_v1.png" width=3D"58" style=3D"outline:none;-ms-=
+interpolation-mode:bicubic;color:#FFFFFF;display:block;text-decoration:none=
+;"></a></td> </tr> <tr> <td align=3D"center" style=3D"padding:0 0 12px 0;-w=
+ebkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-t=
+ext-size-adjust:100%;text-align:center;"> <p style=3D"margin:0;color:#6A6C6=
+D;font-weight:400;font-size:12px;line-height:1.333;">=C2=A9 2021 LinkedIn I=
+reland Unlimited Company, Wilton Plaza, Wilton Place, Dublin 2. LinkedIn =
+=C3=A9 um nome comercial registrado da LinkedIn Ireland Unlimited Company. =
+LinkedIn e a logomarca do LinkedIn s=C3=A3o marcas registradas do LinkedIn.=
+</p></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </tr> <=
+/tbody> </table> </center></td> </tr> </tbody> </table> <img alt=3D"" role=
+=3D"presentation" src=3D"https://www.linkedin.com/emimp/ip_WldGMU1YZHNMV3Qz=
+YlRCNFkzaDFMV1UxOlpXMWhhV3hmYzJWeWFXVnpYMlp2Ykd4dmQxOXVaWGR6YkdWMGRHVnlYekF=
+4OmRYSnVPbXhwT214cGJtdGxaRWx1UVhKMGFXTnNaVG8yT0RjeE5EQTFNemcwT0RVMU1qUTRPRG=
+sy.gif" style=3D"outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;=
+text-decoration:none;width:1px;height:1px;"> </body> </html>
+------=_Part_3302089_1721441109.1638272129207--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>3514</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1638272130</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>7570</string>
+</dict>
+</plist>

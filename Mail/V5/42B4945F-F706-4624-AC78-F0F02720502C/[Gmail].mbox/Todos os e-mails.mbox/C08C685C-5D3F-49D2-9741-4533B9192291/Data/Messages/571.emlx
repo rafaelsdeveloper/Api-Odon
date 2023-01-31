@@ -1,0 +1,2295 @@
+110017    
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:e28e:b0:367:360f:5438 with SMTP id i14csp6986215pxy;
+        Tue, 3 Jan 2023 11:44:36 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXuClQzcFaBxXJK8cfVAJloxWVqoerKtXDZEDTLDxtt7O1MyBSYbVo44HLpnWQXTefjJYKv5
+X-Received: by 2002:a62:b514:0:b0:581:a55:d213 with SMTP id y20-20020a62b514000000b005810a55d213mr27877743pfe.29.1672775076562;
+        Tue, 03 Jan 2023 11:44:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1672775076; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Uv4PH6svSRS2xrfTdMbNiFFHByIAgw7sz/Vx43oWFoWy/0gG5MLVmtEWgCJtr6CvxA
+         JH8GGCGvx6vuHvSh+MNetI3szom7TOEWWLsJ4HJ9v3qmrdMl/fw0++1lAEyxdiY1poX1
+         SXM1nhsF/KGycpvvMFkdCsEEnIBgO0JYI30QOic8BKpVXTpuB2m8HD0C+tfeIyxabnYK
+         t9RRCAFBsXdmISi3/a/K3LltMcYQSxwycx2bTQDNWgCBTf7II3CywyWDwBFbSXk7XEqY
+         LfOiJAKCUl6lURPWcXxmpt9ll2YxEyXHOS9CEm4JJlC1VcSmzHW8N2yVyLubaWvR/WHA
+         vhMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=3LooRYbOOsB3xOZSqP8r6CgSWEJDI3V40xvIIZcGkv4=;
+        b=AtsySXzv8pJ5bH141aj/fURHVi239r3wi9kQ0p2PeTlGiCwkh8lMO85nZUuicqmKtt
+         DU8Vu0bSHohLYOCrd2sMjDZLeeSp40Hin/OWaDZdTLQSPaG7PGewQHqAQKerzfuBgZx8
+         B1M8Gueqm24XMx4arExvJXY4XJYhXY1YevX3rZs4eSADo7M1OPFqX0mkaXnSPFRakLia
+         XniZLPR4uc/tXyoo1tuR1/KYvIoGi7kuWa8EYBj+bIgQ2Bx0+uTjzNTYGYpv9lwzKSbH
+         TutNjGreSX3fs5EgEQSmYegLJ8smy0ddX1Gfo2Op/SoBor2xfx2KAvXm4COM44ts1Zfz
+         x1Zw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=ao418hgS;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=TIeC6qyB;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatoo2b60czpz08yv@bounce.linkedin.com designates 2620:119:50c0:207::202 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatoo2b60czpz08yv@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatoo2b60czpz08yv@bounce.linkedin.com>
+Received: from maile-hb.linkedin.com (maile-hb.linkedin.com. [2620:119:50c0:207::202])
+        by mx.google.com with ESMTPS id c13-20020a056a000acd00b0056c37608f45si34061610pfl.348.2023.01.03.11.44.36
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 03 Jan 2023 11:44:36 -0800 (PST)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatoo2b60czpz08yv@bounce.linkedin.com designates 2620:119:50c0:207::202 as permitted sender) client-ip=2620:119:50c0:207::202;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=ao418hgS;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=TIeC6qyB;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatoo2b60czpz08yv@bounce.linkedin.com designates 2620:119:50c0:207::202 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmatoo2b60czpz08yv@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1672775073;
+	bh=3LooRYbOOsB3xOZSqP8r6CgSWEJDI3V40xvIIZcGkv4=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=ao418hgSkTFN5ABkTCSJw36zUyEKHeFzI4Lc4DKO5OOmdIgkJnSCU6GTD5LVRIuZo
+	 xDqNZhLqDSg4W2wx0d8bXmPEjLkerxO+1+J7ZTfwZR5WsgSP3lbmHofYtdEcYQQzFM
+	 1p/fxlUnMRMH1oMT6S0PHlsnDtXg9ChLl0jR9ZE9C3yDwnho8I9qJflfr7p6diC387
+	 4aTJykVGTj/Ofr+HGCSMK0QPNohYDwrVUWD2nyCjHeSZMPWVk3CkLAOTWO1O5AhmUM
+	 W8OsYXiLti4nvmQh9p5/steZVmcuquiWIR1tX2xG1B85D9aDpqpEzKHgZKe0quvPzn
+	 oaUZvjj7GokDQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maile.linkedin.com;
+	s=proddkim1024; t=1672775073;
+	bh=3LooRYbOOsB3xOZSqP8r6CgSWEJDI3V40xvIIZcGkv4=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=TIeC6qyBeenTr+ae5G+UgK0XnnGq6Yx0PZjvCR6h2VTaQxgQRu9lzePA59qRsFEXh
+	 rrapyAwKzfVXtUhOqyS3RSEg6JsfQt9CmndmN2uZqh6vAB01vwzp/IfyfIds9fNe4L
+	 ymOSqQ2EBodlBJL8SZadZM97cBBVpqgBTgTNFg6s=
+From: Tony Robbins via LinkedIn <newsletters-noreply@linkedin.com>
+Message-ID: <646548241.23373548.1672775073318@lva1-app87113.prod.linkedin.com>
+Subject: Tony Robbins | My # 1 Rule for Results in 2023
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_23373546_795396040.1672775073316"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Tue, 3 Jan 2023 19:44:33 +0000 (UTC)
+X-LinkedIn-Class: EMAIL-DEFAULT
+X-LinkedIn-Template: email_series_follow_newsletter_01
+X-LinkedIn-fbl: m2-aszxtvmur7sfhyd3a4com5xlzm7vjfp8ofhg7apa25i1kakdcz99a52segeu90yuhqvylobxpalae6fcgxqw8coy66niby2ektgtwt
+X-LinkedIn-Id: eau1wl-lcgn367t-dg
+List-Unsubscribe: <https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=urn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&midToken=AQEq1MBbB2bM8g&midSig=1Et8oJ3tGwqaA1&trk=eml-email_series_follow_newsletter_01-unsub-0-unsub&trkEmail=eml-email_series_follow_newsletter_01-unsub-0-unsub-null-eau1wl~lcgn367t~dg-null-null&eid=eau1wl-lcgn367t-dg&loid=AQHShj5B1XsoGgAAAYV5KftWzk5YrGC9ODbynNWOE2wPXSpBs6aCkTOtYqW8jpZnRL6JHmDL-4NMzg-mp5PvwjLkTL9dnRUPzJGI4z_12CeEx14W1unrfw>
+Feedback-ID: email_series_follow_newsletter_01:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_23373546_795396040.1672775073316
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+The One Thing
+
+Por Tony Robbins
+
+<blockquote>=E2=80=9C<strong>The truth is, you want to surround yourself wi=
+th people who are out of your league.</strong>=E2=80=9D</blockquote><p styl=
+e=3D"margin: 0; font-weight: 400;">Welcome to 2023, my friend.</p><p style=
+=3D"margin: 0; font-weight: 400;">January 1 is synonymous with a fresh star=
+t, a blank slate.&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">But th=
+e truth is life offers us the opportunity to take action and make changes i=
+n our lives every day of the year.&nbsp;</p><p style=3D"margin: 0; font-wei=
+ght: 400;">Did you know that 95% of new year=E2=80=99s resolutions are aban=
+doned by the second week of January? Why is that?&nbsp;&nbsp;</p><p style=
+=3D"margin: 0; font-weight: 400;">It=E2=80=99s because most people set an i=
+ntention, but they don=E2=80=99t <em>resolve.&nbsp;&nbsp;</em></p><p style=
+=3D"margin: 0; font-weight: 400;">When we=E2=80=99re resolved, that means w=
+e=E2=80=99ll do whatever it takes to meet our goals. We=E2=80=99ll wake up =
+early, stay up late, push through obstacles, and defy all odds to make it h=
+appen.&nbsp;&nbsp;</p><p style=3D"margin: 0; font-weight: 400;"><strong>All=
+ the drive in the world will eventually give out, because you can only push=
+ for so long. But when you incorporate a strong enough reason <em>why</em>,=
+ and <em>strategy</em> into meeting your goals, that=E2=80=99s when results=
+ show up.&nbsp;&nbsp;</strong></p><p style=3D"margin: 0; font-weight: 400;"=
+>My <strong>#1</strong> rule for seeing the results you want in 2023?&nbsp;=
+&nbsp;</p><h3 style=3D"margin: 0; font-weight: 500;"><strong>Proximity is p=
+ower.&nbsp;</strong></h3><p style=3D"margin: 0; font-weight: 400;">I=E2=80=
+=99m talking about who you surround yourself with.&nbsp;&nbsp;</p><p style=
+=3D"margin: 0; font-weight: 400;">Take a moment and think about all the peo=
+ple you have proximity to. Whether it=E2=80=99s through your business, work=
+, family, community...&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">B=
+e honest, how many of them are operating at a higher level than you?&nbsp;<=
+/p><p style=3D"margin: 0; font-weight: 400;"><strong>The truth is, you want=
+ to surround yourself with people who are <em>out of your league.</em></str=
+ong></p><p style=3D"margin: 0; font-weight: 400;">If you=E2=80=99re playing=
+ a sport, and you play against people that are all worse than you are, are =
+you going to get better?&nbsp;&nbsp;</p><p style=3D"margin: 0; font-weight:=
+ 400;">The same applies in all areas of life, but especially in business.&n=
+bsp;&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">If your business pa=
+rtners are stagnate and complacent, chances are you will be too.&nbsp;</p><=
+p style=3D"margin: 0; font-weight: 400;"><strong>Growing your peer group mi=
+ght mean stepping into rooms and conversations you wouldn=E2=80=99t normall=
+y be in...&nbsp;</strong></p><p style=3D"margin: 0; font-weight: 400;">It m=
+ight mean putting yourself out there...&nbsp;</p><p style=3D"margin: 0; fon=
+t-weight: 400;">Raising your standards...&nbsp;</p><p style=3D"margin: 0; f=
+ont-weight: 400;">And it most definitely requires being uncomfortable...&nb=
+sp;</p><p style=3D"margin: 0; font-weight: 400;">Ever notice how when we=E2=
+=80=99re comfortable, we don=E2=80=99t grow?&nbsp;</p><p style=3D"margin: 0=
+; font-weight: 400;">And =E2=80=9Ccomfortable=E2=80=9D certainly never star=
+ted companies, took investment risks, or created any meaningful progress. &=
+nbsp;</p><p style=3D"margin: 0; font-weight: 400;">I joined my own peer gro=
+up when I was just starting out called the Scorpions that was organized by =
+one of my dearest friends, Peter Guber. Sounds very mysterious, but it was =
+just a group of incredibly successful people who invited me to join group t=
+rips where they brainstormed and collaborated on ideas.&nbsp;&nbsp;</p><p s=
+tyle=3D"margin: 0; font-weight: 400;">At first, I was intimidated by their =
+success. They had their own planes and a list of accolades that made what I=
+ had at the time feel small.&nbsp;&nbsp;</p><p style=3D"margin: 0; font-wei=
+ght: 400;">It felt like a stretch to be among them. It hurt my wallet a bit=
+ too. At that stage, I wasn=E2=80=99t at the same level. But the learnings =
+and connections I gained far outweighed any discomfort I felt in the beginn=
+ing.&nbsp;&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">And I made fr=
+iends for life. People who to this day; I consider some of my dearest frien=
+ds and mentors.&nbsp;&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">No=
+w, I=E2=80=99m not saying to overextend yourself to get in certain circles.=
+ But sometimes, we shy away from places we truly belong, because of fear of=
+ not measuring up...&nbsp;</p><figure><img alt=3D"No alt text provided for =
+this image" data-media-urn data-li-src=3D"https://media.licdn.com/dms/image=
+/D5612AQEXJMeCXXeC1A/article-inline_image-shrink_1500_2232/0/1672768252035?=
+e=3D1678320000&amp;v=3Dbeta&amp;t=3DRoxLCY5Ck-dkxi3y2J2HUkzYuiaKYZVbfYz8FvD=
+raYY" src=3D"https://media.licdn.com/dms/image/D5612AQEXJMeCXXeC1A/article-=
+inline_image-shrink_1500_2232/0/1672768252035?e=3D1678320000&amp;v=3Dbeta&a=
+mp;t=3DRoxLCY5Ck-dkxi3y2J2HUkzYuiaKYZVbfYz8FvDraYY" width=3D"480" style=3D"=
+outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;"></f=
+igure><figure><img alt=3D"No alt text provided for this image" data-media-u=
+rn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQG9M2vZn0AM5w/art=
+icle-inline_image-shrink_1500_2232/0/1672768261240?e=3D1678320000&amp;v=3Db=
+eta&amp;t=3DSpDvNU8rh6GqCd1Zfay4mB5aHeUvplnggx8wdyxsfU0" src=3D"https://med=
+ia.licdn.com/dms/image/D5612AQG9M2vZn0AM5w/article-inline_image-shrink_1500=
+_2232/0/1672768261240?e=3D1678320000&amp;v=3Dbeta&amp;t=3DSpDvNU8rh6GqCd1Zf=
+ay4mB5aHeUvplnggx8wdyxsfU0" width=3D"480" style=3D"outline: none; text-deco=
+ration: none; -ms-interpolation-mode: bicubic;"></figure><h3 style=3D"margi=
+n: 0; font-weight: 500;"><strong>Having proximity to the right people also =
+provides you with role models.&nbsp;&nbsp;</strong></h3><p style=3D"margin:=
+ 0; font-weight: 400;"><em>Everyone needs a role model, including top athle=
+tes and Fortune 500 business owners.&nbsp;</em></p><p style=3D"margin: 0; f=
+ont-weight: 400;">Role models grant us perspective. They give us sage wisdo=
+m and insights. And they give us the gift of anticipation of the road ahead=
+. Because after all, success leaves clues.&nbsp;&nbsp;</p><p style=3D"margi=
+n: 0; font-weight: 400;">I have mine and will continue to have role models =
+for the rest of my life. It=E2=80=99s not something you outgrow, because gr=
+owth is eternal.&nbsp;&nbsp;</p><h3 style=3D"margin: 0; font-weight: 500;">=
+<strong>Lastly, proximity is power, but it=E2=80=99s also opportunity. &nbs=
+p;</strong></h3><p style=3D"margin: 0; font-weight: 400;">When you surround=
+ yourself with the right people it=E2=80=99s easy to answer the call when o=
+pportunity comes knocking.&nbsp;</p><p style=3D"margin: 0; font-weight: 400=
+;">Because chances are you=E2=80=99ll have a relationship with just the rig=
+ht investment banker, PR expert, or designer to get your idea off the groun=
+d.&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">I asked you at the be=
+ginning of this newsletter to think of the people you have proximity to...&=
+nbsp;</p><p style=3D"margin: 0; font-weight: 400;"><em>What does your curre=
+nt peer group look like?&nbsp;</em></p><p style=3D"margin: 0; font-weight: =
+400;"><em>Has anyone else come to mind?&nbsp;</em></p><p style=3D"margin: 0=
+; font-weight: 400;"><em>Who in your life can you connect with that is play=
+ing at a higher level?&nbsp;</em></p><p style=3D"margin: 0; font-weight: 40=
+0;"><em>What might 2023 look like if you expanded your circle of proximity?=
+&nbsp;</em></p><p style=3D"margin: 0; font-weight: 400;">2023 is yours to c=
+reate the life you want.&nbsp;&nbsp;</p><p style=3D"margin: 0; font-weight:=
+ 400;">Happy New Year, friend!&nbsp;</p><p style=3D"margin: 0; font-weight:=
+ 400;">Tony Robbins</p><figure><img alt=3D"No alt text provided for this im=
+age" data-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612A=
+QGawR9aiIzemw/article-inline_image-shrink_400_744/0/1672767772625?e=3D16783=
+20000&amp;v=3Dbeta&amp;t=3DEY3Cz9rVFubueNcJN4QEWaPyi_gR_cyQUknO_FgSko8" src=
+=3D"https://media.licdn.com/dms/image/D5612AQGawR9aiIzemw/article-inline_im=
+age-shrink_400_744/0/1672767772625?e=3D1678320000&amp;v=3Dbeta&amp;t=3DEY3C=
+z9rVFubueNcJN4QEWaPyi_gR_cyQUknO_FgSko8" width=3D"480" style=3D"outline: no=
+ne; text-decoration: none; -ms-interpolation-mode: bicubic;"></figure><p st=
+yle=3D"margin: 0; font-weight: 400;"><br></p><h3 style=3D"margin: 0; font-w=
+eight: 500;"><br></h3><h3 style=3D"margin: 0; font-weight: 500;"><br></h3><=
+p style=3D"margin: 0; font-weight: 400;"><br></p><p style=3D"margin: 0; fon=
+t-weight: 400;"><br></p><p style=3D"margin: 0; font-weight: 400;"><br></p><=
+p style=3D"margin: 0; font-weight: 400;"><br></p><p style=3D"margin: 0; fon=
+t-weight: 400;">P.S Join me for my <em>free</em> <a href=3D"https://tonyr.c=
+o/becomeunshakeablechallenge2023" target=3D"_blank" rel=3D"nofollow noopene=
+r" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-de=
+coration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Become Unshakeable C=
+hallenge by clicking here!</a> I only do this once a year, and I=E2=80=99d =
+love to have you there.&nbsp;</p><figure><img alt=3D"No alt text provided f=
+or this image" data-media-urn data-li-src=3D"https://media.licdn.com/dms/im=
+age/D5612AQHgB8LCajjrmQ/article-inline_image-shrink_400_744/0/1672767838877=
+?e=3D1678320000&amp;v=3Dbeta&amp;t=3DPHhGiNyBxhJF-r03x9pB6sP_KSBIFhgUsr4K_K=
+y7JZo" src=3D"https://media.licdn.com/dms/image/D5612AQHgB8LCajjrmQ/article=
+-inline_image-shrink_400_744/0/1672767838877?e=3D1678320000&amp;v=3Dbeta&am=
+p;t=3DPHhGiNyBxhJF-r03x9pB6sP_KSBIFhgUsr4K_Ky7JZo" width=3D"480" style=3D"o=
+utline: none; text-decoration: none; -ms-interpolation-mode: bicubic;"></fi=
+gure><p style=3D"margin: 0; font-weight: 400;"><strong>Books I=E2=80=99m Lo=
+ving:</strong>&nbsp;</p><ul><li><a href=3D"https://www.amazon.com/How-Will-=
+Measure-Your-Life/dp/0062102419?&amp;linkCode=3Dsl1&amp;tag=3Drobbinsresear=
+-20&amp;linkId=3Dfeb97f93f2c9609903ab7029d7ed5187&amp;language=3Den_US&amp;=
+ref_=3Das_li_ss_tl" target=3D"_blank" rel=3D"nofollow noopener" style=3D"co=
+lor: #0a66c2; cursor: pointer; display: inline-block; text-decoration: none=
+; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; text-size-adjust: 100%;">How Will You Measure Your Life</a>=
+</li></ul><figure><img alt=3D"No alt text provided for this image" data-med=
+ia-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQF15c_RXiqU4A=
+/article-inline_image-shrink_1500_2232/0/1672768326951?e=3D1678320000&amp;v=
+=3Dbeta&amp;t=3DGs0bPkOa_l09mIKooKqJwl_Hzf8edFoDBkEPlnx-rVk" src=3D"https:/=
+/media.licdn.com/dms/image/D5612AQF15c_RXiqU4A/article-inline_image-shrink_=
+1500_2232/0/1672768326951?e=3D1678320000&amp;v=3Dbeta&amp;t=3DGs0bPkOa_l09m=
+IKooKqJwl_Hzf8edFoDBkEPlnx-rVk" width=3D"480" style=3D"outline: none; text-=
+decoration: none; -ms-interpolation-mode: bicubic;"></figure><h3 style=3D"m=
+argin: 0; font-weight: 500;"><strong>Latest Podcast:</strong></h3><ul><li><=
+a href=3D"https://youtu.be/-LrUbUB6kAg" target=3D"_blank" rel=3D"nofollow n=
+oopener" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; t=
+ext-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Embrace Happin=
+ess With Sister Shivani</a></li></ul><h3 style=3D"margin: 0; font-weight: 5=
+00;"><strong>Give Back:</strong>&nbsp;</h3><ul><li><a href=3D"https://give.=
+feedingamerica.org/a/tony-robbins?s_src=3DW16X1TONY" target=3D"_blank" rel=
+=3D"nofollow noopener" style=3D"color: #0a66c2; cursor: pointer; display: i=
+nline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">=
+Help me in my goal to feed 1B</a></li></ul><h3 style=3D"margin: 0; font-wei=
+ght: 500;"><strong>A Gift for You:</strong></h3><ul><li><a href=3D"https://=
+tonyr.co/becomeunshakeablechallenge2023" target=3D"_blank" rel=3D"nofollow =
+noopener" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; =
+text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Become Unshak=
+eable Challenge =E2=80=93 completely free!</a></li></ul><p style=3D"margin:=
+ 0; font-weight: 400;"><br></p><blockquote><strong>=E2=80=9CWhen you surrou=
+nd yourself with the right people it=E2=80=99s easy to answer the call when=
+ opportunity comes knocking.=E2=80=9D&nbsp;</strong></blockquote>
+Ler mais
+      https://www.linkedin.com/comm/pulse/tony-robbins-my-1-rule-results-20=
+23-tony-robbins?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newslett=
+er_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=
+=3D1Et8oJ3tGwqaA1&trk=3Deml-email_series_follow_newsletter_01-newsletter_co=
+ntent_preview_text-0-readmore_button_&trkEmail=3Deml-email_series_follow_ne=
+wsletter_01-newsletter_content_preview_text-0-readmore_button_-null-eau1wl~=
+lcgn367t~dg-null-null&eid=3Deau1wl-lcgn367t-dg
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+    Conhece algu=C3=A9m que possa se interessar por esta newsletter? Compar=
+tilhe-a!
+Compartilhe esta s=C3=A9rie no LinkedIn
+      https://www.linkedin.com/e/v2?urlhash=3DE9o2&url=3Dhttps%3A%2F%2Fwww%=
+2Elinkedin%2Ecom%2FshareArticle%3Furl%3Dhttps%253A%252F%252Fwww%252Elinkedi=
+n%252Ecom%252Fpulse%252Ftony-robbins-my-1-rule-results-2023-tony-robbins&li=
+pi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2=
+BGScySKwjo3Nf67Q%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D1Et8oJ3tGwqaA1&ek=
+=3Demail_series_follow_newsletter_01&e=3Deau1wl-lcgn367t-dg&eid=3Deau1wl-lc=
+gn367t-dg&m=3Dnull&ts=3Dnull&li=3D0&t=3Dplh =20
+Compartilhe esta s=C3=A9rie no Facebook
+      https://www.linkedin.com/e/v2?urlhash=3DYOkL&url=3Dhttps%3A%2F%2Fwww%=
+2Efacebook%2Ecom%2Fsharer%2Fsharer%2Ephp%3Fu%3Dhttps%3A%2F%2Fwww%2Elinkedin=
+%2Ecom%2Fpulse%2Ftony-robbins-my-1-rule-results-2023-tony-robbins&lipi=3Dur=
+n%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScySK=
+wjo3Nf67Q%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D1Et8oJ3tGwqaA1&ek=3Demai=
+l_series_follow_newsletter_01&e=3Deau1wl-lcgn367t-dg&eid=3Deau1wl-lcgn367t-=
+dg&m=3Dnull&ts=3Dnull&li=3D0&t=3Dplh =20
+Compartilhe esta s=C3=A9rie no Twitter
+      https://www.linkedin.com/e/v2?urlhash=3DWAT7&url=3Dhttps%3A%2F%2Fwww%=
+2Etwitter%2Ecom%2Fintent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom=
+%2Fpulse%2Ftony-robbins-my-1-rule-results-2023-tony-robbins&lipi=3Durn%3Ali=
+%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf=
+67Q%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D1Et8oJ3tGwqaA1&ek=3Demail_seri=
+es_follow_newsletter_01&e=3Deau1wl-lcgn367t-dg&eid=3Deau1wl-lcgn367t-dg&m=
+=3Dnull&ts=3Dnull&li=3D0&t=3Dplh =20
+ =20
+     =20
+         =20
+     =20
+
+----------------
+
+Este e-mail foi enviado a Rafael Souza (Desenvolvedor web na Solution.dev)
+Saiba por que inclu=C3=ADmos isso:
+      https://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&lipi=3Du=
+rn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScyS=
+Kwjo3Nf67Q%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D1Et8oJ3tGwqaA1&trk=3Dem=
+l-email_series_follow_newsletter_01-SecurityHelp-0-textfooterglimmer&trkEma=
+il=3Deml-email_series_follow_newsletter_01-SecurityHelp-0-textfooterglimmer=
+-null-eau1wl~lcgn367t~dg-null-null&eid=3Deau1wl-lcgn367t-dg
+Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do LinkedIn.=
+ O autor pode ver que voc=C3=AA =C3=A9 assinante da newsletter.
+
+         =20
+           =20
+         =20
+       =20
+Cancelar inscri=C3=A7=C3=A3o:
+      https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=3Durn%=
+3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwj=
+o3Nf67Q%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D1Et8oJ3tGwqaA1&trk=3Deml-e=
+mail_series_follow_newsletter_01-unsubscribe-0-textfooterglimmer&trkEmail=
+=3Deml-email_series_follow_newsletter_01-unsubscribe-0-textfooterglimmer-nu=
+ll-eau1wl~lcgn367t~dg-null-null&eid=3Deau1wl-lcgn367t-dg&loid=3DAQHShj5B1Xs=
+oGgAAAYV5KftWzk5YrGC9ODbynNWOE2wPXSpBs6aCkTOtYqW8jpZnRL6JHmDL-4NMzg-mp5Pvwj=
+LkTL9dnRUPzJGI4z_12CeEx14W1unrfw
+Ajuda:
+      https://www.linkedin.com/help/linkedin/answer/67?lang=3Dpt&lipi=3Durn=
+%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKw=
+jo3Nf67Q%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D1Et8oJ3tGwqaA1&trk=3Deml-=
+email_series_follow_newsletter_01-help-0-textfooterglimmer&trkEmail=3Deml-e=
+mail_series_follow_newsletter_01-help-0-textfooterglimmer-null-eau1wl~lcgn3=
+67t~dg-null-null&eid=3Deau1wl-lcgn367t-dg
+
+=C2=A9 2023 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2 - Irlanda.LinkedIn =C3=A9 um nome comercial registrado da LinkedI=
+n Ireland Unlimited Company.LinkedIn e o logo do LinkedIn s=C3=A3o marcas r=
+egistradas do LinkedIn.
+------=_Part_23373546_795396040.1672775073316
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt"> <=
+head> <meta http-equiv=3D"Content-Type" content=3D"text/html;charset=3Dutf-=
+8"> <meta name=3D"HandheldFriendly" content=3D"true"> <meta name=3D"viewpor=
+t" content=3D"width=3Ddevice-width; initial-scale=3D0.666667; user-scalable=
+=3D0"> <meta name=3D"viewport" content=3D"width=3Ddevice-width"> <title></t=
+itle> <style>
+          @media (max-width: 512px) { .mercado-container { width: 100% !imp=
+ortant; } }
+        </style> <style>
+          .full-width-button, .full-width-button table { display: none; } @=
+media (max-width: 512px) { .inline-button,
+          .inline-button table { display: none !important; } .full-width-bu=
+tton, .full-width-button table { display:
+          table !important; } }
+        </style> <!--[if mso]><style type=3D"text/css"> </style><![endif]--=
+> <!--[if IE]><style type=3D"text/css"> </style><![endif]--> <style>
+@media (min-width: 576px) {
+  .container {
+    max-width: 576px;
+  }
+
+  .\!container {
+    max-width: 576px !important;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  .\!container {
+    max-width: 768px !important;
+  }
+}
+@media (min-width: 790px) {
+  .container {
+    max-width: 790px;
+  }
+
+  .\!container {
+    max-width: 790px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+
+  .\!container {
+    max-width: 992px !important;
+  }
+}
+@media (min-width: 1128px) {
+  .container {
+    max-width: 1128px;
+  }
+
+  .\!container {
+    max-width: 1128px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .\!container {
+    max-width: 1200px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+
+  .\!container {
+    max-width: 1440px !important;
+  }
+}
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1680px;
+  }
+
+  .\!container {
+    max-width: 1680px !important;
+  }
+}
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1920px;
+  }
+
+  .\!container {
+    max-width: 1920px !important;
+  }
+}
+@media (min-width: 992px) {
+  .base-detail-page__header .nav {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1128px;
+  }
+}
+@media (max-width: 767px) {
+  .embedded-social-share .modal__outlet {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .nav .search-bar {
+    order: 4;
+  }
+}
+@media (max-width: 767px) {
+  .nav .sign-in-card {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .nav--minified-mobile .nav__cta-container > *:not(.nav__link-person) {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    order: initial;
+    width: initial;
+  }
+
+  .nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .tw-link-column-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .tw-link-column-item {
+    margin-bottom: 8px;
+  }
+
+  .tw-linkster .tw-link-column-item {
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__button {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__list {
+    right: 0px;
+    max-height: calc(100vh - 52px);
+    overflow-y: auto;
+  }
+}
+@media (max-width: 767px) {
+  .recent-searches.recent-searches--show {
+    position: fixed;
+    top: 168px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+    border-width: 0;
+  }
+}
+@media (max-width: 767px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.75);
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #cf0007;
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: #8a0005;
+    box-shadow: 0 0 0 1px #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:active {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:focus-within {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (min-width: 992px) {
+  .search-bar .dismissable-input {
+    width: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (max-width: 767px) {
+  .search-bar:not(.isExpanded) .base-search-bar__form {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  @media (max-width: 767px) {
+    .search-bar.isExpanded .search-bar__placeholder {
+      display: none;
+    }
+
+    .search-bar.isExpanded .base-search-bar__form {
+      display: flex;
+    }
+
+    position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 1000;
+        margin-bottom: 0px;
+        height: 100%;
+        background-color: #ffffff;
+    .search-bar.isExpanded .switcher-tabs {
+      display: inherit;
+    }
+
+  }
+}
+@media screen and (max-width: 767px) {
+  .stuck .search-bar {
+    transition: height 0.4s, margin-bottom 0.4s ease-in-out;
+    margin-bottom: 0px;
+    height: 0px;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    max-height: initial;
+    pointer-events: initial;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+}
+@media (max-width: 767px) {
+  .tabs__list {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    position: fixed;
+    top: 158px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+  }
+}
+@media (max-width: 767px) {
+  .base-search-bar .dismissable-input {
+    max-height: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .base-main-card__media ~ .base-main-card__info {
+    margin-left: 0px;
+    margin-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .filter .collapsible-dropdown__list {
+    max-height: 400px;
+  }
+}
+@media (forced-colors: active) {
+  .filter-button--selected {
+    border-width: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .base-card .duration {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+@media (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__button {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__icon--svg {
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    padding-right: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .babybear\:invisible {
+    visibility: hidden;
+  }
+
+  .babybear\:static {
+    position: static;
+  }
+
+  .babybear\:right-4 {
+    right: 32px;
+  }
+
+  .babybear\:-top-1 {
+    top: -8px;
+  }
+
+  .babybear\:z-0 {
+    z-index: 0;
+  }
+
+  .babybear\:my-2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .babybear\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .babybear\:mx-mobile-container-padding {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .babybear\:ml-0 {
+    margin-left: 0px;
+  }
+
+  .babybear\:mb-1 {
+    margin-bottom: 8px;
+  }
+
+  .babybear\:mr-0 {
+    margin-right: 0px;
+  }
+
+  .babybear\:ml-\[-9999px\] {
+    margin-left: -9999px;
+  }
+
+  .babybear\:mb-1\.5 {
+    margin-bottom: 12px;
+  }
+
+  .babybear\:ml-1 {
+    margin-left: 8px;
+  }
+
+  .babybear\:flex {
+    display: flex;
+  }
+
+  .babybear\:hidden {
+    display: none;
+  }
+
+  .babybear\:h-\[360px\] {
+    height: 360px;
+  }
+
+  .babybear\:h-\[72px\] {
+    height: 72px;
+  }
+
+  .babybear\:h-\[27px\] {
+    height: 27px;
+  }
+
+  .babybear\:h-\[1px\] {
+    height: 1px;
+  }
+
+  .babybear\:h-\[48px\] {
+    height: 48px;
+  }
+
+  .babybear\:h-auto {
+    height: auto;
+  }
+
+  .babybear\:h-\[180px\] {
+    height: 180px;
+  }
+
+  .babybear\:max-h-\[225px\] {
+    max-height: 225px;
+  }
+
+  .babybear\:max-h-\[400px\] {
+    max-height: 400px;
+  }
+
+  .babybear\:max-h-\[250px\] {
+    max-height: 250px;
+  }
+
+  .babybear\:min-h-\[134px\] {
+    min-height: 134px;
+  }
+
+  .babybear\:w-\[360px\] {
+    width: 360px;
+  }
+
+  .babybear\:w-full {
+    width: 100%;
+  }
+
+  .babybear\:w-6 {
+    width: 48px;
+  }
+
+  .babybear\:w-\[27px\] {
+    width: 27px;
+  }
+
+  .babybear\:w-\[1px\] {
+    width: 1px;
+  }
+
+  .babybear\:w-\[100vw\] {
+    width: 100vw;
+  }
+
+  .babybear\:w-\[calc\(100\%-68px\)\] {
+    width: calc(100% - 68px);
+  }
+
+  .babybear\:min-w-full {
+    min-width: 100%;
+  }
+
+  .babybear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .babybear\:flex-none {
+    flex: none;
+  }
+
+  .babybear\:flex-auto {
+    flex: 1 1 auto;
+  }
+
+  .babybear\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .babybear\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .babybear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .babybear\:flex-row {
+    flex-direction: row;
+  }
+
+  .babybear\:flex-col {
+    flex-direction: column;
+  }
+
+  .babybear\:flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .babybear\:items-start {
+    align-items: flex-start;
+  }
+
+  .babybear\:items-center {
+    align-items: center;
+  }
+
+  .babybear\:justify-around {
+    justify-content: space-around;
+  }
+
+  .babybear\:self-center {
+    align-self: center;
+  }
+
+  .babybear\:rounded-\[0px\] {
+    border-radius: 0px;
+  }
+
+  .babybear\:border-b-1 {
+    border-bottom-width: 1px;
+  }
+
+  .babybear\:border-solid {
+    border-style: solid;
+  }
+
+  .babybear\:border-color-border-low-emphasis {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .babybear\:bg-color-transparent {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .babybear\:bg-color-brand {
+    background-color: #0a66c2;
+  }
+
+  .babybear\:p-2 {
+    padding: 16px;
+  }
+
+  .babybear\:p-0 {
+    padding: 0px;
+  }
+
+  .babybear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:px-\[4px\] {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .babybear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .babybear\:py-1\.5 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .babybear\:py-1 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .babybear\:pb-2 {
+    padding-bottom: 16px;
+  }
+
+  .babybear\:pr-0 {
+    padding-right: 0px;
+  }
+
+  .babybear\:leading-\[150px\] {
+    line-height: 150px;
+  }
+
+  .babybear\:last\:border-b-0:last-child {
+    border-bottom-width: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mamabear\:absolute {
+    position: absolute;
+  }
+
+  .mamabear\:right-4 {
+    right: 32px;
+  }
+
+  .mamabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .mamabear\:-top-1 {
+    top: -8px;
+  }
+
+  .mamabear\:mt-\[68px\] {
+    margin-top: 68px;
+  }
+
+  .mamabear\:flex {
+    display: flex;
+  }
+
+  .mamabear\:hidden {
+    display: none;
+  }
+
+  .mamabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .mamabear\:w-\[744px\] {
+    width: 744px;
+  }
+
+  .mamabear\:w-full {
+    width: 100%;
+  }
+
+  .mamabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .mamabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .mamabear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .mamabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .mamabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .mamabear\:flex-row {
+    flex-direction: row;
+  }
+
+  .mamabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .mamabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .mamabear\:items-center {
+    align-items: center;
+  }
+
+  .mamabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:self-center {
+    align-self: center;
+  }
+
+  .mamabear\:tab-vertical.tab-sm,
+.mamabear\:tab-vertical .tab-md,
+.mamabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .mamabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .mamabear\:px-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .mamabear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mamabear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .papabear\:absolute {
+    position: absolute;
+  }
+
+  .papabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .papabear\:-top-1 {
+    top: -8px;
+  }
+
+  .papabear\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .papabear\:\!mx-2 {
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
+
+  .papabear\:mt-\[68px\] {
+    margin-top: 68px;
+  }
+
+  .papabear\:mt-\[-100px\] {
+    margin-top: -100px;
+  }
+
+  .papabear\:mb-\[18px\] {
+    margin-bottom: 18px;
+  }
+
+  .papabear\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .papabear\:mt-0\.5 {
+    margin-top: 4px;
+  }
+
+  .papabear\:mr-2 {
+    margin-right: 16px;
+  }
+
+  .papabear\:ml-column-gutter {
+    margin-left: 24px;
+  }
+
+  .papabear\:flex {
+    display: flex;
+  }
+
+  .papabear\:hidden {
+    display: none;
+  }
+
+  .papabear\:h-\[34px\] {
+    height: 34px;
+  }
+
+  .papabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .papabear\:min-h-\[96px\] {
+    min-height: 96px;
+  }
+
+  .papabear\:w-\[400px\] {
+    width: 400px;
+  }
+
+  .papabear\:w-content-max-w {
+    width: 1128px;
+  }
+
+  .papabear\:w-core-rail-width {
+    width: 790px;
+  }
+
+  .papabear\:w-right-rail-width {
+    width: calc(1128px - 24px - 790px);
+  }
+
+  .papabear\:w-auto {
+    width: auto;
+  }
+
+  .papabear\:w-\[1128px\] {
+    width: 1128px;
+  }
+
+  .papabear\:w-\[135px\] {
+    width: 135px;
+  }
+
+  .papabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .papabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .papabear\:max-w-\[550px\] {
+    max-width: 550px;
+  }
+
+  .papabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .papabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .papabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .papabear\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .papabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .papabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .papabear\:justify-center {
+    justify-content: center;
+  }
+
+  .papabear\:self-start {
+    align-self: flex-start;
+  }
+
+  .papabear\:tab-vertical.tab-sm,
+.papabear\:tab-vertical .tab-md,
+.papabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .papabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .papabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .papabear\:border-4 {
+    border-width: 4px;
+  }
+
+  .papabear\:p-details-container-padding {
+    padding: 24px;
+  }
+
+  .papabear\:p-0 {
+    padding: 0px;
+  }
+
+  .papabear\:py-2 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .papabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+
+  .papabear\:text-xl {
+    font-size: 24px;
+  }
+}
+</style></head> <body dir=3D"ltr" class=3D"font-sans bg-color-background-ca=
+nvas w-full m-0 p-0 pt-1" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ma=
+rgin: 0px; width: 100%; background-color: #f3f2f0; padding: 0px; padding-to=
+p: 8px; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe U=
+I', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', C=
+antarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Em=
+oji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <=
+div class=3D"h-0 opacity-0 text-transparent invisible overflow-hidden w-0 m=
+ax-h-[0]" style=3D"visibility: hidden; height: 0px; max-height: 0; width: 0=
+px; overflow: hidden; opacity: 0; mso-hide: all;" data-email-preheader=3D"t=
+rue">=E2=80=9CThe truth is, you want to surround yourself with people who a=
+re out of your=E2=80=A6</div> <div class=3D"h-0 opacity-0 text-transparent =
+invisible overflow-hidden w-0 max-h-[0]" style=3D"visibility: hidden; heigh=
+t: 0px; max-height: 0; width: 0px; overflow: hidden; opacity: 0; mso-hide: =
+all;"> =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+ =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0 </div> <table class=3D"font-sans mercado-container=
+ w-[512px] max-w-[512px] mx-auto my-0 p-0 bg-color-background-container" ro=
+le=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"512" align=3D"center" style=3D"-webkit-text-size-adjust: =
+100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-ad=
+just: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin-left: auto=
+; margin-right: auto; margin-top: 0px; margin-bottom: 0px; width: 512px; ma=
+x-width: 512px; background-color: #ffffff; padding: 0px; font-family: -appl=
+e-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neu=
+e', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'A=
+pple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', '=
+Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"t=
+ext-center p-3" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt; padding: 24px; text-align: center;"> <tab=
+le class=3D"font-sans min-w-full" role=3D"presentation" valign=3D"top" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; min-width: 100%; font-family: -apple-system, system-ui, BlinkMacSystemFo=
+nt, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxy=
+gen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', =
+'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, san=
+s-serif;"> <tbody> <tr> <td align=3D"left" valign=3D"middle" style=3D"-webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt;"> <a href=3D"https://www.linkedin.com/comm/feed/?lipi=3Durn%3Ali%3Apage=
+%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%=
+3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-=
+email_series_follow_newsletter_01-header-0-home_glimmer&amp;trkEmail=3Deml-=
+email_series_follow_newsletter_01-header-0-home_glimmer-null-eau1wl~lcgn367=
+t~dg-null-null&amp;eid=3Deau1wl-lcgn367t-dg" target=3D"_blank" class=3D"w-[=
+84px]" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; tex=
+t-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; width: 84px;"> <i=
+mg class=3D"block" alt=3D"LinkedIn" src=3D"https://www.linkedin.com/comm/dm=
+s/logo?badgeTheme=3Dmercado&amp;csrfToken=3Dcsrf&amp;lipi=3D%252FXepDM%252B=
+GScySKwjo3Nf67Q%253D%253D&amp;flockId=3Deau1wl%257Elcgn367t%257Edg&amp;midT=
+oken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trkEmail=3Deml-email_=
+series_follow_newsletter_01-null-0-comms%257Ebadging%257Edynamic%257Eglimme=
+r-null-eau1wl%257Elcgn367t%257Edg-null-null&amp;trk=3Deml-email_series_foll=
+ow_newsletter_01-null-0-comms%257Ebadging%257Edynamic%257Eglimmer&amp;_sig=
+=3D1gzxz7MaGwqaA1" data-test-header-dynamic-badging-img style=3D"outline: n=
+one; text-decoration: none; -ms-interpolation-mode: bicubic; display: block=
+;"> </a> </td> <td valign=3D"middle" align=3D"right" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <t=
+able class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" data-test-header-profile=
+ style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFon=
+t, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxyg=
+en Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', '=
+Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans=
+-serif;"> <tbody> <tr> <td align=3D"right" valign=3D"middle" class=3D"w-[32=
+px]" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt; width: 32px;" width=3D"32"> <a href=3D"https://pt.li=
+nkedin.com/comm/in/rafaelandersonsouza?lipi=3Durn%3Ali%3Apage%3Aemail_email=
+_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;midToke=
+n=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-email_series_f=
+ollow_newsletter_01-header-0-profile_glimmer&amp;trkEmail=3Deml-email_serie=
+s_follow_newsletter_01-header-0-profile_glimmer-null-eau1wl~lcgn367t~dg-nul=
+l-null&amp;eid=3Deau1wl-lcgn367t-dg" target=3D"_blank" style=3D"color: #0a6=
+6c2; cursor: pointer; display: inline-block; text-decoration: none; -webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust:=
+ 100%; text-size-adjust: 100%;"> <img alt=3D"Rafael Souza" src=3D"https://m=
+edia.licdn.com/dms/image/C4D03AQEH4CxhkhtzrA/profile-displayphoto-shrink_20=
+0_200/0/1607511453788?e=3D1678320000&amp;v=3Dbeta&amp;t=3D1OAgIsr12Tfm3XwQH=
+MovQdXm96inIkBUt93_xgl99-s" class=3D"rounded-[100%] w-[32px] h-[32px]" styl=
+e=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;=
+ height: 32px; width: 32px; border-radius: 100%;" width=3D"32" height=3D"32=
+"> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> <=
+/tr> <tr> <td class=3D"px-0 pb-3" style=3D"-webkit-text-size-adjust: 100%; =
+-ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: =
+100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-left: 0px; padd=
+ing-right: 0px; padding-bottom: 24px;"> <div> <table class=3D"font-sans" ro=
+le=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, syste=
+m-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans'=
+, Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoj=
+i', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande',=
+ Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pb-2 px-3" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; padding-left: 24px; padding-right: 24px; padding-bottom: 16px;=
+"> <h1 class=3D"text-sm font-medium font-sans break-words tracking-widest l=
+eading-regular text-system-gray-70 uppercase" data-test-id=3D"email-header"=
+ style=3D"margin: 0; overflow-wrap: break-word; font-family: -apple-system,=
+ system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira=
+ Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Colo=
+r Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gr=
+ande', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; tex=
+t-transform: uppercase; line-height: 1.25; letter-spacing: 0.1em; color: #6=
+66666;"> Newsletter no LinkedIn </h1> </td> </tr> <tr> <td data-test-id=3D"=
+newsletter-entity-lockup" class=3D"pb-2 px-3" style=3D"-webkit-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-lef=
+t: 24px; padding-right: 24px; padding-bottom: 16px;"> <table class=3D"font-=
+sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-syste=
+m, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fi=
+ra Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Co=
+lor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida =
+Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=3D"top" cl=
+ass=3D"pr-1 w-8" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; width: 64px; padding-right: 8px;" width=
+=3D"64"> <a href=3D"https://www.linkedin.com/comm/newsletters/6988995191143=
+636992?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%=
+2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D=
+1Et8oJ3tGwqaA1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_e=
+ntity_lockup-0-newsletter_entity_cta&amp;trkEmail=3Deml-email_series_follow=
+_newsletter_01-newsletter_entity_lockup-0-newsletter_entity_cta-null-eau1wl=
+~lcgn367t~dg-null-null&amp;eid=3Deau1wl-lcgn367t-dg" target=3D"_blank" styl=
+e=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoratio=
+n: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"inline-block=
+ relative bg-color-entity-ghost-background w-8 h-8" src=3D"https://media.li=
+cdn.com/dms/image/D5612AQGt-qoJQgYMGA/series-logo_image-shrink_100_100/0/16=
+66306282493?e=3D2147483647&amp;v=3Dbeta&amp;t=3DdExa9A8BFq9hgE9YMYsNjWCkayi=
+kk9ruxzzxk82_QQk" alt=3D"The One Thing" style=3D"outline: none; text-decora=
+tion: none; -ms-interpolation-mode: bicubic; position: relative; display: i=
+nline-block; height: 64px; width: 64px; background-color: #eae6df;" width=
+=3D"64" height=3D"64"> </a> </td> <td valign=3D"top" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <t=
+able class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <t=
+d style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso=
+-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/newsletters/=
+6988995191143636992?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_news=
+letter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&=
+amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-email_series_follow_newsletter_01=
+-newsletter_entity_lockup-0-newsletter_entity_cta&amp;trkEmail=3Deml-email_=
+series_follow_newsletter_01-newsletter_entity_lockup-0-newsletter_entity_ct=
+a-null-eau1wl~lcgn367t~dg-null-null&amp;eid=3Deau1wl-lcgn367t-dg" target=3D=
+"_blank" class=3D"no-underline" style=3D"color: #0a66c2; cursor: pointer; d=
+isplay: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; text-decoration-line: none;"> <span class=3D"font-[700] text-md m-0=
+ pb-0.25 break-words leading-regular text-system-gray-90" style=3D"margin: =
+0px; overflow-wrap: break-word; padding-bottom: 2px; font-size: 16px; font-=
+weight: 700; line-height: 1.25; color: #282828;"> The One Thing </span> </a=
+> </td> </tr> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.=
+com/comm/newsletters/6988995191143636992?lipi=3Durn%3Ali%3Apage%3Aemail_ema=
+il_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;midTo=
+ken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-email_series=
+_follow_newsletter_01-newsletter_entity_lockup-0-newsletter_entity_cta&amp;=
+trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_entity_lockup-0=
+-newsletter_entity_cta-null-eau1wl~lcgn367t~dg-null-null&amp;eid=3Deau1wl-l=
+cgn367t-dg" target=3D"_blank" class=3D"no-underline" style=3D"color: #0a66c=
+2; cursor: pointer; display: inline-block; text-decoration: none; -webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; text-decoration-line: none;"> <span class=3D"t=
+ext-sm m-0 text-cool-gray-70 break-words font-normal leading-regular" style=
+=3D"margin: 0px; overflow-wrap: break-word; font-size: 14px; font-weight: 4=
+00; line-height: 1.25; color: #56687a;"> A place where I share one thing a =
+month that will enhance your quality of life. </span> </a> </td> </tr> </tb=
+ody> </table> </td> </tr> </tbody> </table> </td> </tr> <tr> <td data-test-=
+id=3D"newsletter-author-lockup" class=3D"px-3 pb-2" valign=3D"middle" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; padding-left: 24px; padding-right: 24px; padding-bottom: 16px;=
+"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;=
+ font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Rob=
+oto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarel=
+l, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', '=
+Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> =
+<tr> <td valign=3D"middle" align=3D"left" class=3D"pr-1 w-4" style=3D"-webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; width: 32px; padding-right: 8px;" width=3D"32"> <a href=3D"https://www.=
+linkedin.com/comm/in/officialtonyrobbins/pt?lipi=3Durn%3Ali%3Apage%3Aemail_=
+email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;mi=
+dToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-email_ser=
+ies_follow_newsletter_01-newsletter_author_lockup-0-newsletter_author_cta&a=
+mp;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_author_locku=
+p-0-newsletter_author_cta-null-eau1wl~lcgn367t~dg-null-null&amp;eid=3Deau1w=
+l-lcgn367t-dg" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; =
+display: inline-block; text-decoration: none; -webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%;"> <img class=3D"inline-block relative bg-color-entity-ghost-backgr=
+ound clip-path-circle-50 rounded-full w-4 h-4 align-middle" src=3D"https://=
+media.licdn.com/dms/image/C5603AQGEdRXt-tOAbw/profile-displayphoto-shrink_4=
+00_400/0/1588621541709?e=3D1678320000&amp;v=3Dbeta&amp;t=3DdKtjJb0JFUB-p3Gs=
+dtyB6t6HQr1B0oTSksVptYl8VYM" alt=3D"Imagem do autor" style=3D"outline: none=
+; text-decoration: none; -ms-interpolation-mode: bicubic; position: relativ=
+e; display: inline-block; height: 32px; width: 32px; border-radius: 9999px;=
+ background-color: #eae6df; vertical-align: middle; clip-path: circle(50%);=
+" width=3D"32" height=3D"32"> </a> </td> <td valign=3D"middle" class=3D"ali=
+gn-middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; vertical-align: middle;"> <table class=3D"font=
+-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-syst=
+em, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'F=
+ira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple C=
+olor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida=
+ Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust:=
+ 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt=
+;"> <a href=3D"https://www.linkedin.com/comm/in/officialtonyrobbins/pt?lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BG=
+ScySKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwq=
+aA1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_author_locku=
+p-0-newsletter_author_cta&amp;trkEmail=3Deml-email_series_follow_newsletter=
+_01-newsletter_author_lockup-0-newsletter_author_cta-null-eau1wl~lcgn367t~d=
+g-null-null&amp;eid=3Deau1wl-lcgn367t-dg" target=3D"_blank" class=3D"no-und=
+erline" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; te=
+xt-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; text-decoration-=
+line: none;"> <span class=3D"font-[700] text-sm m-0 pb-0.25 text-system-gra=
+y-90 leading-regular" style=3D"margin: 0px; padding-bottom: 2px; font-size:=
+ 14px; font-weight: 700; line-height: 1.25; color: #282828;">Tony Robbins</=
+span> </a> </td> </tr> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.=
+linkedin.com/comm/in/officialtonyrobbins/pt?lipi=3Durn%3Ali%3Apage%3Aemail_=
+email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;mi=
+dToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-email_ser=
+ies_follow_newsletter_01-newsletter_author_lockup-0-newsletter_author_cta&a=
+mp;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_author_locku=
+p-0-newsletter_author_cta-null-eau1wl~lcgn367t~dg-null-null&amp;eid=3Deau1w=
+l-lcgn367t-dg" target=3D"_blank" class=3D"no-underline" style=3D"color: #0a=
+66c2; cursor: pointer; display: inline-block; text-decoration: none; -webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; text-decoration-line: none;"> <span class=
+=3D"text-xs m-0 text-cool-gray-70" data-test-id=3D"headline" style=3D"margi=
+n: 0px; font-size: 12px; color: #56687a;"> #1 New York Times best-selling a=
+uthor, life and business strategist, philanthropist, entrepreneur </span> <=
+/a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr>=
+ <tr data-test-id=3D"newsletter-hero-banner"> <td class=3D"bg-color-surface=
+-accent-4 py-2 px-3 leading-regular" style=3D"-webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #d=
+de7f1; padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-=
+bottom: 16px; line-height: 1.25;"> <a href=3D"https://www.linkedin.com/comm=
+/pulse/tony-robbins-my-1-rule-results-2023-tony-robbins?lipi=3Durn%3Ali%3Ap=
+age%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%=
+3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3De=
+ml-email_series_follow_newsletter_01-newsletter_hero_banner-0-open_on_linke=
+din_cta&amp;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_her=
+o_banner-0-open_on_linkedin_cta-null-eau1wl~lcgn367t~dg-null-null&amp;eid=
+=3Deau1wl-lcgn367t-dg" target=3D"_blank" class=3D"text-color-text no-underl=
+ine" style=3D"cursor: pointer; display: inline-block; text-decoration: none=
+; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; color: rgba(0, 0, 0, 0.9); text-dec=
+oration-line: none;"> Veja o que outras pessoas est=C3=A3o dizendo sobre es=
+te t=C3=B3pico:<span class=3D"text-color-brand font-normal text-md leading-=
+regular" style=3D"font-size: 16px; font-weight: 400; line-height: 1.25; col=
+or: #0a66c2;"> Abrir no LinkedIn</span> </a> </td> </tr> <tr data-test-id=
+=3D"newsletter-content-preview"> <td class=3D"px-3 pt-2" style=3D"-webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+padding-left: 24px; padding-right: 24px; padding-top: 16px;"> <table class=
+=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -ap=
+ple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica N=
+eue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',=
+ 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D=
+"border-1 border-solid border-system-gray-50 rounded-md overflow-hidden" st=
+yle=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-tex=
+t-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; overflow: hidden; border-radius: 8px; border-width: 1px; bo=
+rder-style: solid; border-color: #b0b0b0;"> <table class=3D"font-sans" role=
+=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-=
+ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', =
+Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji'=
+, 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', H=
+elvetica, Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=
+=3D"https://www.linkedin.com/comm/pulse/tony-robbins-my-1-rule-results-2023=
+-tony-robbins?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter=
+_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;mi=
+dSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-email_series_follow_newsletter_01-newsl=
+etter_content_preview-0-headline_&amp;trkEmail=3Deml-email_series_follow_ne=
+wsletter_01-newsletter_content_preview-0-headline_-null-eau1wl~lcgn367t~dg-=
+null-null&amp;eid=3Deau1wl-lcgn367t-dg" target=3D"_blank" style=3D"color: #=
+0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%;"> <img class=3D"block w-full" alt=3D"Imag=
+em de capa da newsletter" src=3D"https://media.licdn.com/dms/image/D5612AQG=
+5TlF1PLuvrA/article-cover_image-shrink_720_1280/0/1672767718665?e=3D2147483=
+647&amp;v=3Dbeta&amp;t=3DJYBxXZ5Be6MJ8tXba_XzJPfhe8e875PAQavzyEbfQoM" style=
+=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; =
+display: block; width: 100%;"> </a> </td> </tr> <tr> <td class=3D"p-2" styl=
+e=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table=
+-rspace: 0pt; padding: 16px;"> <table class=3D"font-sans" role=3D"presentat=
+ion" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://=
+www.linkedin.com/comm/pulse/tony-robbins-my-1-rule-results-2023-tony-robbin=
+s?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXep=
+DM%2BGScySKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8o=
+J3tGwqaA1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_conten=
+t_preview-0-title_&amp;trkEmail=3Deml-email_series_follow_newsletter_01-new=
+sletter_content_preview-0-title_-null-eau1wl~lcgn367t~dg-null-null&amp;eid=
+=3Deau1wl-lcgn367t-dg" target=3D"_blank" class=3D"no-underline font-medium =
+text-sm m-0 text-system-gray-90" style=3D"cursor: pointer; display: inline-=
+block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size=
+-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; margin:=
+ 0px; font-size: 14px; font-weight: 500; color: #282828; text-decoration-li=
+ne: none;"> <h2 style=3D"margin: 0; font-weight: 500;"> Tony Robbins | My #=
+ 1 Rule for Results in 2023 </h2> </a> </td> </tr> <tr data-test-id=3D"news=
+letter-content-preview--content"> <td class=3D"pt-0.5 series-article-body" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont=
+, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxyge=
+n Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-=
+serif; font-size: 16px; padding-top: 4px;"> <blockquote style=3D"margin-top=
+: 1.5em; margin-bottom: 1.5em; margin-left: 0px; margin-right: 0px; display=
+: block; border-left-width: 4px; border-style: solid; border-left-color: #4=
+24242; padding-top: 0px; padding-bottom: 0px; padding-right: 0px; padding-l=
+eft: 1.5em; font-size: 1em; font-style: italic; line-height: 1.5; color: #2=
+82828;">=E2=80=9C<strong>The truth is, you want to surround yourself with p=
+eople who are out of your league.</strong>=E2=80=9D</blockquote><p style=3D=
+"margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-heigh=
+t: 1.5;">Welcome to 2023, my friend.</p><p style=3D"margin: 0; font-weight:=
+ 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">January 1 is sy=
+nonymous with a fresh start, a blank slate.&nbsp;</p><p style=3D"margin: 0;=
+ font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Bu=
+t the truth is life offers us the opportunity to take action and make chang=
+es in our lives every day of the year.&nbsp;</p><p style=3D"margin: 0; font=
+-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Did you=
+ know that 95% of new year=E2=80=99s resolutions are abandoned by the secon=
+d week of January? Why is that?&nbsp;&nbsp;</p><p style=3D"margin: 0; font-=
+weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">It=E2=80=
+=99s because most people set an intention, but they don=E2=80=99t <em style=
+=3D"font-style: italic;">resolve.&nbsp;&nbsp;</em></p><p style=3D"margin: 0=
+; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">W=
+hen we=E2=80=99re resolved, that means we=E2=80=99ll do whatever it takes t=
+o meet our goals. We=E2=80=99ll wake up early, stay up late, push through o=
+bstacles, and defy all odds to make it happen.&nbsp;&nbsp;</p><p style=3D"m=
+argin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height:=
+ 1.5;"><strong>All the drive in the world will eventually give out, because=
+ you can only push for so long. But when you incorporate a strong enough re=
+ason <em style=3D"font-style: italic;">why</em>, and <em style=3D"font-styl=
+e: italic;">strategy</em> into meeting your goals, that=E2=80=99s when resu=
+lts show up.&nbsp;&nbsp;</strong></p><p style=3D"margin: 0; font-weight: 40=
+0; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">My <strong>#1</str=
+ong> rule for seeing the results you want in 2023?&nbsp;&nbsp;</p><h3 style=
+=3D"margin: 0; font-weight: 500; margin-left: 0px; margin-right: 0px; margi=
+n-top: 1em; margin-bottom: 0.5em; font-size: 1.17em; line-height: 1.25; let=
+ter-spacing: -0.02em;"><strong style=3D"font-weight: 500;">Proximity is pow=
+er.&nbsp;</strong></h3><p style=3D"margin: 0; font-weight: 400; margin-top:=
+ 0.8em; font-size: 1em; line-height: 1.5;">I=E2=80=99m talking about who yo=
+u surround yourself with.&nbsp;&nbsp;</p><p style=3D"margin: 0; font-weight=
+: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Take a moment =
+and think about all the people you have proximity to. Whether it=E2=80=99s =
+through your business, work, family, community...&nbsp;</p><p style=3D"marg=
+in: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.=
+5;">Be honest, how many of them are operating at a higher level than you?&n=
+bsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-si=
+ze: 1em; line-height: 1.5;"><strong>The truth is, you want to surround your=
+self with people who are <em style=3D"font-style: italic;">out of your leag=
+ue.</em></strong></p><p style=3D"margin: 0; font-weight: 400; margin-top: 0=
+.8em; font-size: 1em; line-height: 1.5;">If you=E2=80=99re playing a sport,=
+ and you play against people that are all worse than you are, are you going=
+ to get better?&nbsp;&nbsp;</p><p style=3D"margin: 0; font-weight: 400; mar=
+gin-top: 0.8em; font-size: 1em; line-height: 1.5;">The same applies in all =
+areas of life, but especially in business.&nbsp;&nbsp;</p><p style=3D"margi=
+n: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5=
+;">If your business partners are stagnate and complacent, chances are you w=
+ill be too.&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0=
+.8em; font-size: 1em; line-height: 1.5;"><strong>Growing your peer group mi=
+ght mean stepping into rooms and conversations you wouldn=E2=80=99t normall=
+y be in...&nbsp;</strong></p><p style=3D"margin: 0; font-weight: 400; margi=
+n-top: 0.8em; font-size: 1em; line-height: 1.5;">It might mean putting your=
+self out there...&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-=
+top: 0.8em; font-size: 1em; line-height: 1.5;">Raising your standards...&nb=
+sp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-siz=
+e: 1em; line-height: 1.5;">And it most definitely requires being uncomforta=
+ble...&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em;=
+ font-size: 1em; line-height: 1.5;">Ever notice how when we=E2=80=99re comf=
+ortable, we don=E2=80=99t grow?&nbsp;</p><p style=3D"margin: 0; font-weight=
+: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">And =E2=80=9Cc=
+omfortable=E2=80=9D certainly never started companies, took investment risk=
+s, or created any meaningful progress. &nbsp;</p><p style=3D"margin: 0; fon=
+t-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">I join=
+ed my own peer group when I was just starting out called the Scorpions that=
+ was organized by one of my dearest friends, Peter Guber. Sounds very myste=
+rious, but it was just a group of incredibly successful people who invited =
+me to join group trips where they brainstormed and collaborated on ideas.&n=
+bsp;&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; f=
+ont-size: 1em; line-height: 1.5;">At first, I was intimidated by their succ=
+ess. They had their own planes and a list of accolades that made what I had=
+ at the time feel small.&nbsp;&nbsp;</p><p style=3D"margin: 0; font-weight:=
+ 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">It felt like a =
+stretch to be among them. It hurt my wallet a bit too. At that stage, I was=
+n=E2=80=99t at the same level. But the learnings and connections I gained f=
+ar outweighed any discomfort I felt in the beginning.&nbsp;&nbsp;</p><p sty=
+le=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-=
+height: 1.5;">And I made friends for life. People who to this day; I consid=
+er some of my dearest friends and mentors.&nbsp;&nbsp;</p><p style=3D"margi=
+n: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5=
+;">Now, I=E2=80=99m not saying to overextend yourself to get in certain cir=
+cles. But sometimes, we shy away from places we truly belong, because of fe=
+ar of not measuring up...&nbsp;</p><figure><img alt=3D"No alt text provided=
+ for this image" data-media-urn data-li-src=3D"https://media.licdn.com/dms/=
+image/D5612AQEXJMeCXXeC1A/article-inline_image-shrink_1500_2232/0/167276825=
+2035?e=3D1678320000&amp;v=3Dbeta&amp;t=3DRoxLCY5Ck-dkxi3y2J2HUkzYuiaKYZVbfY=
+z8FvDraYY" src=3D"https://media.licdn.com/dms/image/D5612AQEXJMeCXXeC1A/art=
+icle-inline_image-shrink_1500_2232/0/1672768252035?e=3D1678320000&amp;v=3Db=
+eta&amp;t=3DRoxLCY5Ck-dkxi3y2J2HUkzYuiaKYZVbfYz8FvDraYY" width=3D"480" styl=
+e=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;=
+ margin-top: 1em; display: block; max-width: 100%;"></figure><figure><img a=
+lt=3D"No alt text provided for this image" data-media-urn data-li-src=3D"ht=
+tps://media.licdn.com/dms/image/D5612AQG9M2vZn0AM5w/article-inline_image-sh=
+rink_1500_2232/0/1672768261240?e=3D1678320000&amp;v=3Dbeta&amp;t=3DSpDvNU8r=
+h6GqCd1Zfay4mB5aHeUvplnggx8wdyxsfU0" src=3D"https://media.licdn.com/dms/ima=
+ge/D5612AQG9M2vZn0AM5w/article-inline_image-shrink_1500_2232/0/167276826124=
+0?e=3D1678320000&amp;v=3Dbeta&amp;t=3DSpDvNU8rh6GqCd1Zfay4mB5aHeUvplnggx8wd=
+yxsfU0" width=3D"480" style=3D"outline: none; text-decoration: none; -ms-in=
+terpolation-mode: bicubic; margin-top: 1em; display: block; max-width: 100%=
+;"></figure><h3 style=3D"margin: 0; font-weight: 500; margin-left: 0px; mar=
+gin-right: 0px; margin-top: 1em; margin-bottom: 0.5em; font-size: 1.17em; l=
+ine-height: 1.25; letter-spacing: -0.02em;"><strong style=3D"font-weight: 5=
+00;">Having proximity to the right people also provides you with role model=
+s.&nbsp;&nbsp;</strong></h3><p style=3D"margin: 0; font-weight: 400; margin=
+-top: 0.8em; font-size: 1em; line-height: 1.5;"><em style=3D"font-style: it=
+alic;">Everyone needs a role model, including top athletes and Fortune 500 =
+business owners.&nbsp;</em></p><p style=3D"margin: 0; font-weight: 400; mar=
+gin-top: 0.8em; font-size: 1em; line-height: 1.5;">Role models grant us per=
+spective. They give us sage wisdom and insights. And they give us the gift =
+of anticipation of the road ahead. Because after all, success leaves clues.=
+&nbsp;&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em;=
+ font-size: 1em; line-height: 1.5;">I have mine and will continue to have r=
+ole models for the rest of my life. It=E2=80=99s not something you outgrow,=
+ because growth is eternal.&nbsp;&nbsp;</p><h3 style=3D"margin: 0; font-wei=
+ght: 500; margin-left: 0px; margin-right: 0px; margin-top: 1em; margin-bott=
+om: 0.5em; font-size: 1.17em; line-height: 1.25; letter-spacing: -0.02em;">=
+<strong style=3D"font-weight: 500;">Lastly, proximity is power, but it=E2=
+=80=99s also opportunity. &nbsp;</strong></h3><p style=3D"margin: 0; font-w=
+eight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">When you =
+surround yourself with the right people it=E2=80=99s easy to answer the cal=
+l when opportunity comes knocking.&nbsp;</p><p style=3D"margin: 0; font-wei=
+ght: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Because cha=
+nces are you=E2=80=99ll have a relationship with just the right investment =
+banker, PR expert, or designer to get your idea off the ground.&nbsp;</p><p=
+ style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; l=
+ine-height: 1.5;">I asked you at the beginning of this newsletter to think =
+of the people you have proximity to...&nbsp;</p><p style=3D"margin: 0; font=
+-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;"><em sty=
+le=3D"font-style: italic;">What does your current peer group look like?&nbs=
+p;</em></p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font=
+-size: 1em; line-height: 1.5;"><em style=3D"font-style: italic;">Has anyone=
+ else come to mind?&nbsp;</em></p><p style=3D"margin: 0; font-weight: 400; =
+margin-top: 0.8em; font-size: 1em; line-height: 1.5;"><em style=3D"font-sty=
+le: italic;">Who in your life can you connect with that is playing at a hig=
+her level?&nbsp;</em></p><p style=3D"margin: 0; font-weight: 400; margin-to=
+p: 0.8em; font-size: 1em; line-height: 1.5;"><em style=3D"font-style: itali=
+c;">What might 2023 look like if you expanded your circle of proximity?&nbs=
+p;</em></p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font=
+-size: 1em; line-height: 1.5;">2023 is yours to create the life you want.&n=
+bsp;&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; f=
+ont-size: 1em; line-height: 1.5;">Happy New Year, friend!&nbsp;</p><p style=
+=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-he=
+ight: 1.5;">Tony Robbins</p><figure><img alt=3D"No alt text provided for th=
+is image" data-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D=
+5612AQGawR9aiIzemw/article-inline_image-shrink_400_744/0/1672767772625?e=3D=
+1678320000&amp;v=3Dbeta&amp;t=3DEY3Cz9rVFubueNcJN4QEWaPyi_gR_cyQUknO_FgSko8=
+" src=3D"https://media.licdn.com/dms/image/D5612AQGawR9aiIzemw/article-inli=
+ne_image-shrink_400_744/0/1672767772625?e=3D1678320000&amp;v=3Dbeta&amp;t=
+=3DEY3Cz9rVFubueNcJN4QEWaPyi_gR_cyQUknO_FgSko8" width=3D"480" style=3D"outl=
+ine: none; text-decoration: none; -ms-interpolation-mode: bicubic; margin-t=
+op: 1em; display: block; max-width: 100%;"></figure><p style=3D"margin: 0; =
+font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;"><br=
+></p><h3 style=3D"margin: 0; font-weight: 500; margin-left: 0px; margin-rig=
+ht: 0px; margin-top: 1em; margin-bottom: 0.5em; font-size: 1.17em; line-hei=
+ght: 1.25; letter-spacing: -0.02em;"><br></h3><h3 style=3D"margin: 0; font-=
+weight: 500; margin-left: 0px; margin-right: 0px; margin-top: 1em; margin-b=
+ottom: 0.5em; font-size: 1.17em; line-height: 1.25; letter-spacing: -0.02em=
+;"><br></h3><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; fon=
+t-size: 1em; line-height: 1.5;"><br></p><p style=3D"margin: 0; font-weight:=
+ 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;"><br></p><p styl=
+e=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-h=
+eight: 1.5;"><br></p><p style=3D"margin: 0; font-weight: 400; margin-top: 0=
+.8em; font-size: 1em; line-height: 1.5;"><br></p><p style=3D"margin: 0; fon=
+t-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">P.S Jo=
+in me for my <em style=3D"font-style: italic;">free</em> <a href=3D"https:/=
+/tonyr.co/becomeunshakeablechallenge2023" target=3D"_blank" rel=3D"nofollow=
+ noopener" style=3D"text-decoration: none; -webkit-text-size-adjust: 100%; =
+-ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: =
+100%; display: inline; cursor: pointer; color: #0a66c2; text-decoration-lin=
+e: none;">Become Unshakeable Challenge by clicking here!</a> I only do this=
+ once a year, and I=E2=80=99d love to have you there.&nbsp;</p><figure><img=
+ alt=3D"No alt text provided for this image" data-media-urn data-li-src=3D"=
+https://media.licdn.com/dms/image/D5612AQHgB8LCajjrmQ/article-inline_image-=
+shrink_400_744/0/1672767838877?e=3D1678320000&amp;v=3Dbeta&amp;t=3DPHhGiNyB=
+xhJF-r03x9pB6sP_KSBIFhgUsr4K_Ky7JZo" src=3D"https://media.licdn.com/dms/ima=
+ge/D5612AQHgB8LCajjrmQ/article-inline_image-shrink_400_744/0/1672767838877?=
+e=3D1678320000&amp;v=3Dbeta&amp;t=3DPHhGiNyBxhJF-r03x9pB6sP_KSBIFhgUsr4K_Ky=
+7JZo" width=3D"480" style=3D"outline: none; text-decoration: none; -ms-inte=
+rpolation-mode: bicubic; margin-top: 1em; display: block; max-width: 100%;"=
+></figure><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-=
+size: 1em; line-height: 1.5;"><strong>Books I=E2=80=99m Loving:</strong>&nb=
+sp;</p><ul style=3D"margin-top: 1em; margin-right: 0px; margin-bottom: 0px;=
+ margin-left: 1.5em; display: block; padding: 0px;"><li style=3D"margin-lef=
+t: 1em; font-size: 1em; line-height: 1.5; letter-spacing: -0.15%; color: #2=
+82828;"><a href=3D"https://www.amazon.com/How-Will-Measure-Your-Life/dp/006=
+2102419?&amp;linkCode=3Dsl1&amp;tag=3Drobbinsresear-20&amp;linkId=3Dfeb97f9=
+3f2c9609903ab7029d7ed5187&amp;language=3Den_US&amp;ref_=3Das_li_ss_tl" targ=
+et=3D"_blank" rel=3D"nofollow noopener" style=3D"text-decoration: none; -we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%; display: inline; cursor: pointer; color:=
+ #0a66c2; text-decoration-line: none;">How Will You Measure Your Life</a></=
+li></ul><figure><img alt=3D"No alt text provided for this image" data-media=
+-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQF15c_RXiqU4A/a=
+rticle-inline_image-shrink_1500_2232/0/1672768326951?e=3D1678320000&amp;v=
+=3Dbeta&amp;t=3DGs0bPkOa_l09mIKooKqJwl_Hzf8edFoDBkEPlnx-rVk" src=3D"https:/=
+/media.licdn.com/dms/image/D5612AQF15c_RXiqU4A/article-inline_image-shrink_=
+1500_2232/0/1672768326951?e=3D1678320000&amp;v=3Dbeta&amp;t=3DGs0bPkOa_l09m=
+IKooKqJwl_Hzf8edFoDBkEPlnx-rVk" width=3D"480" style=3D"outline: none; text-=
+decoration: none; -ms-interpolation-mode: bicubic; margin-top: 1em; display=
+: block; max-width: 100%;"></figure><h3 style=3D"margin: 0; font-weight: 50=
+0; margin-left: 0px; margin-right: 0px; margin-top: 1em; margin-bottom: 0.5=
+em; font-size: 1.17em; line-height: 1.25; letter-spacing: -0.02em;"><strong=
+ style=3D"font-weight: 500;">Latest Podcast:</strong></h3><ul style=3D"marg=
+in-top: 1em; margin-right: 0px; margin-bottom: 0px; margin-left: 1.5em; dis=
+play: block; padding: 0px;"><li style=3D"margin-left: 1em; font-size: 1em; =
+line-height: 1.5; letter-spacing: -0.15%; color: #282828;"><a href=3D"https=
+://youtu.be/-LrUbUB6kAg" target=3D"_blank" rel=3D"nofollow noopener" style=
+=3D"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: i=
+nline; cursor: pointer; color: #0a66c2; text-decoration-line: none;">Embrac=
+e Happiness With Sister Shivani</a></li></ul><h3 style=3D"margin: 0; font-w=
+eight: 500; margin-left: 0px; margin-right: 0px; margin-top: 1em; margin-bo=
+ttom: 0.5em; font-size: 1.17em; line-height: 1.25; letter-spacing: -0.02em;=
+"><strong style=3D"font-weight: 500;">Give Back:</strong>&nbsp;</h3><ul sty=
+le=3D"margin-top: 1em; margin-right: 0px; margin-bottom: 0px; margin-left: =
+1.5em; display: block; padding: 0px;"><li style=3D"margin-left: 1em; font-s=
+ize: 1em; line-height: 1.5; letter-spacing: -0.15%; color: #282828;"><a hre=
+f=3D"https://give.feedingamerica.org/a/tony-robbins?s_src=3DW16X1TONY" targ=
+et=3D"_blank" rel=3D"nofollow noopener" style=3D"text-decoration: none; -we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%; display: inline; cursor: pointer; color:=
+ #0a66c2; text-decoration-line: none;">Help me in my goal to feed 1B</a></l=
+i></ul><h3 style=3D"margin: 0; font-weight: 500; margin-left: 0px; margin-r=
+ight: 0px; margin-top: 1em; margin-bottom: 0.5em; font-size: 1.17em; line-h=
+eight: 1.25; letter-spacing: -0.02em;"><strong style=3D"font-weight: 500;">=
+A Gift for You:</strong></h3><ul style=3D"margin-top: 1em; margin-right: 0p=
+x; margin-bottom: 0px; margin-left: 1.5em; display: block; padding: 0px;"><=
+li style=3D"margin-left: 1em; font-size: 1em; line-height: 1.5; letter-spac=
+ing: -0.15%; color: #282828;"><a href=3D"https://tonyr.co/becomeunshakeable=
+challenge2023" target=3D"_blank" rel=3D"nofollow noopener" style=3D"text-de=
+coration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: inline; curs=
+or: pointer; color: #0a66c2; text-decoration-line: none;">Become Unshakeabl=
+e Challenge =E2=80=93 completely free!</a></li></ul><p style=3D"margin: 0; =
+font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;"><br=
+></p><blockquote style=3D"margin-top: 1.5em; margin-bottom: 1.5em; margin-l=
+eft: 0px; margin-right: 0px; display: block; border-left-width: 4px; border=
+-style: solid; border-left-color: #424242; padding-top: 0px; padding-bottom=
+: 0px; padding-right: 0px; padding-left: 1.5em; font-size: 1em; font-style:=
+ italic; line-height: 1.5; color: #282828;"><strong>=E2=80=9CWhen you surro=
+und yourself with the right people it=E2=80=99s easy to answer the call whe=
+n opportunity comes knocking.=E2=80=9D&nbsp;</strong></blockquote> </td> </=
+tr> <tr> <td class=3D"pt-2 no-underline" style=3D"-webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 16p=
+x; text-decoration-line: none;"> <table class=3D"font-sans" role=3D"present=
+ation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMa=
+cSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxy=
+gen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, A=
+rial, sans-serif;"> <tbody> <tr> <td valign=3D"middle" align=3D"left" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/pulse/tony-robbins-=
+my-1-rule-results-2023-tony-robbins?lipi=3Durn%3Ali%3Apage%3Aemail_email_se=
+ries_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-email_series_fo=
+llow_newsletter_01-newsletter_content_preview-0-readmore_button_&amp;trkEma=
+il=3Deml-email_series_follow_newsletter_01-newsletter_content_preview-0-rea=
+dmore_button_-null-eau1wl~lcgn367t~dg-null-null&amp;eid=3Deau1wl-lcgn367t-d=
+g" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inl=
+ine-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <=
+table class=3D"font-sans border-separate" role=3D"presentation" valign=3D"t=
+op" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"auto" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; border-collapse: separate; font-family: -apple-system, system-=
+ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', =
+Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji'=
+, 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', H=
+elvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"btn-md btn-primary=
+ border-color-brand button-link leading-regular !min-h-[auto] font-sans !sh=
+adow-none border-1 border-solid" style=3D"-webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; height: min-content; bor=
+der-radius: 24px; padding-top: 12px; padding-bottom: 12px; padding-left: 24=
+px; padding-right: 24px; text-align: center; font-size: 16px; font-weight: =
+600; cursor: pointer; text-decoration-line: none; background-color: #0a66c2=
+; color: #ffffff; border-width: 1px; border-style: solid; border-color: #0a=
+66c2; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI'=
+, Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Can=
+tarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoj=
+i', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; line-=
+height: 1.25; min-height: auto !important; box-shadow: 0 0 #0000, 0 0 #0000=
+, 0 0 #0000 !important;"> <a href=3D"https://www.linkedin.com/comm/pulse/to=
+ny-robbins-my-1-rule-results-2023-tony-robbins?lipi=3Durn%3Ali%3Apage%3Aema=
+il_email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp=
+;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-email_=
+series_follow_newsletter_01-newsletter_content_preview-0-readmore_button_&a=
+mp;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_content_prev=
+iew-0-readmore_button_-null-eau1wl~lcgn367t~dg-null-null&amp;eid=3Deau1wl-l=
+cgn367t-dg" target=3D"_blank" tabindex=3D"-1" aria-hidden=3D"true" style=3D=
+"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration: n=
+one; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%;"> <span class=3D"no-underline te=
+xt-white" style=3D"color: #ffffff; text-decoration-line: none;"> Participe =
+da conversa </span> </a> </td> </tr> </tbody> </table> </a> </td> </tr> </t=
+body> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> =
+</td> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"pt-2 px-3" styl=
+e=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table=
+-rspace: 0pt; padding-left: 24px; padding-right: 24px; padding-top: 16px;">=
+ <table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; fon=
+t-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,=
+ 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, '=
+Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Sego=
+e UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr>=
+ <td align=3D"left" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tabl=
+e-lspace: 0pt; mso-table-rspace: 0pt;"> Conhece algu=C3=A9m que possa se in=
+teressar por esta newsletter? Compartilhe-a! </td> </tr> <tr> <td class=3D"=
+pt-2" align=3D"center" style=3D"-webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 16px;"> <table class=
+=3D"font-sans mx-auto" role=3D"presentation" valign=3D"top" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0" width=3D"75%" style=3D"-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin-le=
+ft: auto; margin-right: auto; font-family: -apple-system, system-ui, BlinkM=
+acSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Ox=
+ygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe U=
+I Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, =
+Arial, sans-serif;"> <tbody> <tr align=3D"middle"> <td style=3D"-webkit-tex=
+t-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> =
+<a href=3D"https://www.linkedin.com/e/v2?urlhash=3DE9o2&amp;url=3Dhttps%3A%=
+2F%2Fwww%2Elinkedin%2Ecom%2FshareArticle%3Furl%3Dhttps%253A%252F%252Fwww%25=
+2Elinkedin%252Ecom%252Fpulse%252Ftony-robbins-my-1-rule-results-2023-tony-r=
+obbins&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01=
+%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSi=
+g=3D1Et8oJ3tGwqaA1&amp;ek=3Demail_series_follow_newsletter_01&amp;e=3Deau1w=
+l-lcgn367t-dg&amp;eid=3Deau1wl-lcgn367t-dg&amp;m=3Dnewsletter_social_upsell=
+&amp;ts=3Dlinkedin_upsell_cta&amp;li=3D0&amp;t=3Dplh" target=3D"_blank" sty=
+le=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decorati=
+on: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"w-3 h-3 ali=
+gn-middle" src=3D"https://static.licdn.com/aero-v1/sc/h/dxxwa7aq3z1rmvz7wmo=
+drbt4k" alt=3D"Compartilhe esta s=C3=A9rie no LinkedIn" style=3D"outline: n=
+one; text-decoration: none; -ms-interpolation-mode: bicubic; height: 24px; =
+width: 24px; vertical-align: middle;" width=3D"24" height=3D"24"> </a> </td=
+> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/e/v2?urlhash=
+=3DYOkL&amp;url=3Dhttps%3A%2F%2Fwww%2Efacebook%2Ecom%2Fsharer%2Fsharer%2Eph=
+p%3Fu%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2Ftony-robbins-my-1-rule=
+-results-2023-tony-robbins&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_=
+follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq=
+1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;ek=3Demail_series_follow_newslet=
+ter_01&amp;e=3Deau1wl-lcgn367t-dg&amp;eid=3Deau1wl-lcgn367t-dg&amp;m=3Dnews=
+letter_social_upsell&amp;ts=3Dfacebook_upsell_cta&amp;li=3D0&amp;t=3Dplh" t=
+arget=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inline-=
+block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size=
+-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img =
+class=3D"w-3 h-3 align-middle" src=3D"https://static.licdn.com/aero-v1/sc/h=
+/dpe078783oyfx6qjv3mt2avpn" alt=3D"Compartilhe esta s=C3=A9rie no Facebook"=
+ style=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bic=
+ubic; height: 24px; width: 24px; vertical-align: middle;" width=3D"24" heig=
+ht=3D"24"> </a> </td> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linked=
+in.com/e/v2?urlhash=3DWAT7&amp;url=3Dhttps%3A%2F%2Fwww%2Etwitter%2Ecom%2Fin=
+tent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2Ftony-robb=
+ins-my-1-rule-results-2023-tony-robbins&amp;lipi=3Durn%3Ali%3Apage%3Aemail_=
+email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;mi=
+dToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;ek=3Demail_series_f=
+ollow_newsletter_01&amp;e=3Deau1wl-lcgn367t-dg&amp;eid=3Deau1wl-lcgn367t-dg=
+&amp;m=3Dnewsletter_social_upsell&amp;ts=3Dtwitter_upsell_cta&amp;li=3D0&am=
+p;t=3Dplh" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; disp=
+lay: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%;"> <img class=3D"w-3 h-3 align-middle" src=3D"https://static.licdn.com/=
+aero-v1/sc/h/1xn78fnzsemwl5bquyh865evs" alt=3D"Compartilhe esta s=C3=A9rie =
+no Twitter" style=3D"outline: none; text-decoration: none; -ms-interpolatio=
+n-mode: bicubic; height: 24px; width: 24px; vertical-align: middle;" width=
+=3D"24" height=3D"24"> </a> </td> </tr> </tbody> </table> </td> </tr> </tbo=
+dy> </table> </td> </tr> </tbody> </table> </div> </td> </tr> <tr> <td clas=
+s=3D"bg-color-background-canvas p-3" style=3D"-webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f=
+3f2f0; padding: 24px;"> <table class=3D"font-sans text-xs" role=3D"presenta=
+tion" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif; font-size: 12px;"> <tbody> <tr> <td class=3D"pb-1 m-0" sty=
+le=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text=
+-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt; margin: 0px; padding-bottom: 8px;"> Este e-mail foi enviado =
+a Rafael Souza (Desenvolvedor web na Solution.dev) </td> </tr> <tr> <td cla=
+ss=3D"pb-1 m-0" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt; margin: 0px; padding-bottom: 8px;"> <a hr=
+ef=3D"https://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&amp;lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BG=
+ScySKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwq=
+aA1&amp;trk=3Deml-email_series_follow_newsletter_01-SecurityHelp-0-footergl=
+immer&amp;trkEmail=3Deml-email_series_follow_newsletter_01-SecurityHelp-0-f=
+ooterglimmer-null-eau1wl~lcgn367t~dg-null-null&amp;eid=3Deau1wl-lcgn367t-dg=
+" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inli=
+ne-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Sai=
+ba por que inclu=C3=ADmos isso.</a> </td> </tr> <tr> <td class=3D"pb-1 m-0"=
+ style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; margin: 0px; padding-bottom: 8px;">Voc=C3=AA est=C3=A1 r=
+ecebendo e-mails de notifica=C3=A7=C3=A3o do LinkedIn. O autor pode ver que=
+ voc=C3=AA =C3=A9 assinante da newsletter.</td> </tr> <tr> <td class=3D"pb-=
+1 m-0" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt; margin: 0px; padding-bottom: 8px;"> <a href=3D"htt=
+ps://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=3Durn%3Ali%3Apa=
+ge%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3=
+D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Dem=
+l-email_series_follow_newsletter_01-unsubscribe-0-footerGlimmer&amp;trkEmai=
+l=3Deml-email_series_follow_newsletter_01-unsubscribe-0-footerGlimmer-null-=
+eau1wl~lcgn367t~dg-null-null&amp;eid=3Deau1wl-lcgn367t-dg&amp;loid=3DAQHShj=
+5B1XsoGgAAAYV5KftWzk5YrGC9ODbynNWOE2wPXSpBs6aCkTOtYqW8jpZnRL6JHmDL-4NMzg-mp=
+5PvwjLkTL9dnRUPzJGI4z_12CeEx14W1unrfw" target=3D"_blank" style=3D"color: #0=
+a66c2; cursor: pointer; display: inline-block; text-decoration: none; -webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%;">Cancelar inscri=C3=A7=C3=A3o</a> =C2=A0=
+=C2=A0=C2=B7=C2=A0=C2=A0 <a href=3D"https://www.linkedin.com/help/linkedin/=
+answer/67?lang=3Dpt&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_=
+newsletter_01%3B%2FXepDM%2BGScySKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq1MBbB2b=
+M8g&amp;midSig=3D1Et8oJ3tGwqaA1&amp;trk=3Deml-email_series_follow_newslette=
+r_01-help-0-footerglimmer&amp;trkEmail=3Deml-email_series_follow_newsletter=
+_01-help-0-footerglimmer-null-eau1wl~lcgn367t~dg-null-null&amp;eid=3Deau1wl=
+-lcgn367t-dg" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; d=
+isplay: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%;">Ajuda</a> </td> </tr> <tr> <td class=3D"pb-1" style=3D"-webkit-tex=
+t-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; pa=
+dding-bottom: 8px;"> <a href=3D"https://www.linkedin.com/comm/feed/?lipi=3D=
+urn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B%2FXepDM%2BGScy=
+SKwjo3Nf67Q%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1Et8oJ3tGwqaA1=
+&amp;trk=3Deml-email_series_follow_newsletter_01-footer-0-logoGlimmer&amp;t=
+rkEmail=3Deml-email_series_follow_newsletter_01-footer-0-logoGlimmer-null-e=
+au1wl~lcgn367t~dg-null-null&amp;eid=3Deau1wl-lcgn367t-dg" target=3D"_blank"=
+ style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-deco=
+ration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img src=3D"https://s=
+tatic.licdn.com/aero-v1/sc/h/9ehe6n39fa07dc5edzv0rla4e" alt=3D"LinkedIn" cl=
+ass=3D"block h-[14px] w-[56px] image-rendering-crisp" style=3D"outline: non=
+e; text-decoration: none; image-rendering: -moz-crisp-edges; image-renderin=
+g: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-render=
+ing: crisp-edges; -ms-interpolation-mode: nearest-neighbor; display: block;=
+ height: 14px; width: 56px;" width=3D"56" height=3D"14"> </a> </td> </tr> <=
+tr> <td data-test-copyright-text style=3D"-webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> =C2=A9 2023 LinkedIn I=
+reland Unlimited Company, Wilton Plaza, Wilton Place, Dublin 2 - Irlanda. L=
+inkedIn =C3=A9 um nome comercial registrado da LinkedIn Ireland Unlimited C=
+ompany. <span data-test-trademarks-text> LinkedIn e o logo do LinkedIn s=C3=
+=A3o marcas registradas do LinkedIn. </span> </td> </tr> </tbody> </table> =
+</td> </tr> </tbody> </table> <img alt role=3D"presentation" src=3D"https:/=
+/www.linkedin.com/emimp/ip_WldGMU1YZHNMV3hqWjI0ek5qZDBMV1JuOlpXMWhhV3hmYzJW=
+eWFXVnpYMlp2Ykd4dmQxOXVaWGR6YkdWMGRHVnlYekF4OmRYSnVPbXhwT214cGJtdGxaRWx1UVh=
+KMGFXTnNaVG8zTURFMk1Ea3lNak0yTnpRd01qY3lNVEk0.gif" style=3D"outline: none; =
+text-decoration: none; -ms-interpolation-mode: bicubic; width: 1px; height:=
+ 1px;" width=3D"1" height=3D"1"> </body> </html>
+------=_Part_23373546_795396040.1672775073316--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>564</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1672775076</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>11765</string>
+</dict>
+</plist>

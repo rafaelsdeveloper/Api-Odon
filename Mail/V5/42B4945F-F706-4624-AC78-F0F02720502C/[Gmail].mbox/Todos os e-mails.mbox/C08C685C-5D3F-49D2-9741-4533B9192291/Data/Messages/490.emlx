@@ -1,0 +1,682 @@
+46542     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:e28e:b0:367:360f:5438 with SMTP id i14csp586287pxy;
+        Fri, 23 Dec 2022 13:28:36 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXvw+pwXnCPog4MeWRvbmV9Hol9mcUOm0MfM7F7uBwFxE4pu6XoiKeE0iYgFIXYWd8uvHp/5
+X-Received: by 2002:ac8:518f:0:b0:3a8:137e:2963 with SMTP id c15-20020ac8518f000000b003a8137e2963mr14130446qtn.20.1671830916640;
+        Fri, 23 Dec 2022 13:28:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1671830916; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vZrQQtLOKuyOFme6hp8Ujwl78kMOcs3aBHJWw7tNfS6691Je8CSoWr83pNizHpoVzS
+         3GE2dqMawInI+vvZt6rqLyRoxqoUZsNj6lhpgnspGJX1DLJyYK/KrV77DdN5mnxE+INt
+         FnLN+EH9NrT/oAFh1ukUvzEZqNWlSIiL9A7ygXff5ShDiRDK88J1TwtQUPQ7vz0eawSV
+         XbnFYck766rQocXcdxmhiorN+GsDK8JFk3lijGxDDTRBaExgWfp+jxFkg0tSG+EigskE
+         DTxtzKZiMXCYTyrbKTDRph47P28qgAepc8f1PccRUaCi5oxZk0R+wONTwip5yCcPjKq6
+         L2uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:content-transfer-encoding:mime-version:subject
+         :message-id:to:from:date:dkim-signature;
+        bh=rsdAup1F3J7/uUeAh4KJ7yrJcQyENFUwi2DPsnPnpBA=;
+        b=y83PZ25AT2dmqrqPIkeVRt5UxNdUi5bkpYlVliER2RvF9L8+m44RU3hp8uHXKWzEXC
+         gD5oe9RKLjR2qecD5uq0FVXztIJn6XocEPZugou02y6CnCw63470tiWBZYSpfTNrJOoU
+         DswjCOVPW3buA1Iy9IAjSXOuTqb3MJMH8oBt3J8Jq1dMT/4O3ydy4g8KRyf0RhWP94vn
+         67SUTIY7KGhHZHem6FgdwCfH0gKIW0p6bf07KoJEgd9vwZQ073gI5JU6tbha/VVDNoQ9
+         UHI/Obqbpg9HXMEKdL+73b25d8X4wo/igSluYx8/6w+eFuIo0whZwgWzhFJfTcFy00A1
+         C4Qw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=DE6KqlD5;
+       spf=pass (google.com: domain of 0100018540e34bb1-d0de6a5d-ca64-4fcc-bf23-e551b2a585b8-000000@amazonses.com designates 54.240.9.42 as permitted sender) smtp.mailfrom=0100018540e34bb1-d0de6a5d-ca64-4fcc-bf23-e551b2a585b8-000000@amazonses.com
+Return-Path: <0100018540e34bb1-d0de6a5d-ca64-4fcc-bf23-e551b2a585b8-000000@amazonses.com>
+Received: from a9-42.smtp-out.amazonses.com (a9-42.smtp-out.amazonses.com. [54.240.9.42])
+        by mx.google.com with ESMTPS id j8-20020ac806c8000000b003979d6bb76asi1486151qth.31.2022.12.23.13.28.36
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 23 Dec 2022 13:28:36 -0800 (PST)
+Received-SPF: pass (google.com: domain of 0100018540e34bb1-d0de6a5d-ca64-4fcc-bf23-e551b2a585b8-000000@amazonses.com designates 54.240.9.42 as permitted sender) client-ip=54.240.9.42;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@amazonses.com header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=DE6KqlD5;
+       spf=pass (google.com: domain of 0100018540e34bb1-d0de6a5d-ca64-4fcc-bf23-e551b2a585b8-000000@amazonses.com designates 54.240.9.42 as permitted sender) smtp.mailfrom=0100018540e34bb1-d0de6a5d-ca64-4fcc-bf23-e551b2a585b8-000000@amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1671830916;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=lUnQtfzZYynyRxxKH5MkHhqfyNTwpW5esXeCtm7lDqs=;
+	b=DE6KqlD5GYLIfmdGqRb3i4wQu/hrfK/p9bCgAOFn878990UbcsNA0TxskBlKvU2Y
+	0EYPqTcvNrLzJjpUoosOVrkGbWkm1WvVeR4LEh9moCwNtbCweKHS/KDryGeMOqTxytH
+	mKNtM0dhB3gaSHW3eFBZItWaNAA+xZc/qOeqO1VE=
+Date: Fri, 23 Dec 2022 21:28:36 +0000
+From: Brasil Bitcoin <newsletter@brasilbitcoin.com.br>
+To: faeldroom46@gmail.com
+Message-ID: <0100018540e34bb1-d0de6a5d-ca64-4fcc-bf23-e551b2a585b8-000000@email.amazonses.com>
+Subject: Presidente sancionou o PL que regula criptos no Brasil | Resumo
+ Semanal
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Feedback-ID: 1.us-east-1.UOYqnngUllOEYdPVNO1FaDapSwWWk6j5TxNLTaz64AU=:AmazonSES
+X-SES-Outgoing: 2022.12.23-54.240.9.42
+
+<!DOCTYPE html><html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"u=
+rn:schemas-microsoft-com:office:office" lang=3D"pt-BR"><head><title></title=
+><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"><=
+meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.0=
+"><link href=3D"https://fonts.googleapis.com/css?family=3DAbril+Fatface" re=
+l=3D"stylesheet" type=3D"text/css"><style>
+  * {
+   box-sizing: border-box;
+  }
+=20
+  body {
+   margin: 0;
+   padding: 0;
+  }
+=20
+  a[x-apple-data-detectors] {
+   color: inherit !important;
+   text-decoration: inherit !important;
+  }
+=20
+  #MessageViewBody a {
+   color: inherit;
+   text-decoration: none;
+  }
+=20
+  p {
+   line-height: inherit
+  }
+=20
+  .desktop_hide,
+  .desktop_hide table {
+   mso-hide: all;
+   display: none;
+   max-height: 0px;
+   overflow: hidden;
+  }
+=20
+  @media (max-width:560px) {
+=20
+   .image_block img.big,
+   .row-content {
+    width: 100% !important;
+   }
+=20
+   .mobile_hide {
+    display: none;
+   }
+=20
+   .stack .column {
+    width: 100%;
+    display: block;
+   }
+=20
+   .mobile_hide {
+    min-height: 0;
+    max-height: 0;
+    max-width: 0;
+    overflow: hidden;
+    font-size: 0px;
+   }
+=20
+   .desktop_hide,
+   .desktop_hide table {
+    display: table !important;
+    max-height: none !important;
+   }
+  }
+ </style></head><body style=3D"background-color: #222; margin: 0; padding: =
+0; -webkit-text-size-adjust: none; text-size-adjust: none;"><table class=3D=
+"nl-container" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace:=
+ 0pt; background-color: #222;"><tbody><tr><td><table class=3D"row row-1" al=
+ign=3D"center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace:=
+ 0pt; background-image: url('https://brasilbitcoin.com.br/images/emails/v2/=
+bg_dark.png'); background-repeat: repeat;"><tbody><tr><td><table class=3D"r=
+ow-content stack" align=3D"center" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rs=
+pace: 0pt; color: #000000; width: 540px;" width=3D"540"><tbody><tr><td clas=
+s=3D"column column-1" width=3D"100%" style=3D"mso-table-lspace: 0pt; mso-ta=
+ble-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; p=
+adding-top: 0px; padding-bottom: 0px; border-top: 0px; border-right: 0px; b=
+order-bottom: 0px; border-left: 0px;"><table class=3D"html_block block-1" w=
+idth=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pres=
+entation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td c=
+lass=3D"pad"><div style=3D"font-family:Helvetica Neue, Helvetica, Arial, sa=
+ns-serif;text-align:center;" align=3D"center"><table class=3D"darkm" style=
+=3D"background-color:#222222;width:100%;height:100%;font-family: Helvetica,=
+ Arial, sans-serif, serif, EmojiFont; font-size: 14px;border-collapse: coll=
+apse;background-image: url('https://brasilbitcoin.com.br/images/emails/v2/b=
+g_dark.png');background-repeat: repeat"></table></div></td></tr></table><ta=
+ble class=3D"image_block block-2" width=3D"100%" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt;"><tr><td class=3D"pad" style=3D"padding-bottom:4=
+5px;padding-left:60px;padding-right:60px;padding-top:60px;width:100%;"><div=
+ class=3D"alignment" align=3D"center" style=3D"line-height:10px"><img src=
+=3D"https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/BeeProAg=
+ency/739325_722484/unnamed.png" style=3D"display: block; height: auto; bord=
+er: 0; width: 189px; max-width: 100%;" width=3D"189"></div></td></tr></tabl=
+e><table class=3D"image_block block-3" width=3D"100%" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"pad" style=3D"width:100%;pa=
+dding-right:0px;padding-left:0px;"><div class=3D"alignment" align=3D"center=
+" style=3D"line-height:10px"><img class=3D"big" src=3D"https://d15k2d11r6t6=
+rl.cloudfront.net/public/users/Integrators/BeeProAgency/739325_722484/zD1pU=
+D0.png" style=3D"display: block; height: auto; border: 0; width: 540px; max=
+-width: 100%;" width=3D"540"></div></td></tr></table></td></tr></tbody></ta=
+ble></td></tr></tbody></table><table class=3D"row row-2" align=3D"center" w=
+idth=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pres=
+entation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tbody><t=
+r><td><table class=3D"row-content stack" align=3D"center" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 540px;" width=3D"5=
+40"><tbody><tr><td class=3D"column column-1" width=3D"100%" style=3D"mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left;=
+ vertical-align: top; padding-top: 0px; padding-bottom: 0px; border-top: 0p=
+x; border-right: 0px; border-bottom: 0px; border-left: 0px;"><table class=
+=3D"image_block block-1" width=3D"100%" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt;"><tr><td class=3D"pad" style=3D"width:100%;padding-right:0p=
+x;padding-left:0px;"><div class=3D"alignment" align=3D"center" style=3D"lin=
+e-height:10px"><img class=3D"big" src=3D"https://i.imgur.com/mHGWUF0.png" s=
+tyle=3D"display: block; height: auto; border: 0; width: 540px; max-width: 1=
+00%;" width=3D"540"></div></td></tr></table></td></tr></tbody></table></td>=
+</tr></tbody></table><table class=3D"row row-3" align=3D"center" width=3D"1=
+00%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tbody><tr><td><ta=
+ble class=3D"row-content stack" align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width=
+: 540px;" width=3D"540"><tbody><tr><td class=3D"column column-1" width=3D"1=
+00%" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 40=
+0; text-align: left; vertical-align: top; padding-top: 0px; padding-bottom:=
+ 0px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: =
+0px;"><table class=3D"text_block block-2" width=3D"100%" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"><tr><td class=3D"=
+pad" style=3D"padding-bottom:10px;padding-left:40px;padding-right:40px;padd=
+ing-top:40px;"><div style=3D"font-family: Arial, sans-serif"><div class sty=
+le=3D"font-size: 12px; font-family: Arial, 'Helvetica Neue', Helvetica, san=
+s-serif; mso-line-height-alt: 14.399999999999999px; color: #404040; line-he=
+ight: 1.2;"><p style=3D"margin: 0; font-size: 12px; mso-line-height-alt: 14=
+.399999999999999px; letter-spacing: normal;"><span style=3D"font-size:26px;=
+">Ol=C3=A1, <strong><span style=3D"color:#00b9fc;">Rafael!</span></strong><=
+/span></p></div></div></td></tr></table><table class=3D"text_block block-3"=
+ width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pr=
+esentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-bre=
+ak: break-word;"><tr><td class=3D"pad" style=3D"padding-bottom:10px;padding=
+-left:40px;padding-right:40px;"><div style=3D"font-family: Arial, sans-seri=
+f"><div class style=3D"font-size: 14px; font-family: Arial, 'Helvetica Neue=
+', Helvetica, sans-serif; mso-line-height-alt: 16.8px; color: #545454; line=
+-height: 1.2;"><p style=3D"margin: 0; font-size: 14px; mso-line-height-alt:=
+ 16.8px;">&nbsp;</p><p style=3D"margin: 0; font-size: 14px; mso-line-height=
+-alt: 16.8px;"><span style=3D"background-color:transparent;"><span style=3D=
+"font-size:16px;"><span style=3D"color:#000000;">Chegou o seu resumo dos </=
+span><span style=3D"color:#00b9fc;"><strong><span style=3D"color:#00b9fc;">=
+dias 17 a 23 de dezembro</span></strong></span></span></span><span style=3D=
+"background-color:transparent;"><span style=3D"font-size:16px;"><span style=
+=3D"color:#00b9fc;"><strong><span style=3D"color:#00b9fc;">&nbsp;</span></s=
+trong></span><span style=3D"color:#000000;">com as principais not=C3=ADcias=
+ que impactaram o mercado cripto, confira:</span></span></span></p></div></=
+div></td></tr></table><table class=3D"text_block block-5" width=3D"100%" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">=
+<tr><td class=3D"pad" style=3D"padding-bottom:5px;padding-left:40px;padding=
+-right:40px;padding-top:35px;"><div style=3D"font-family: Arial, sans-serif=
+"><div class style=3D"font-size: 12px; font-family: Arial, 'Helvetica Neue'=
+, Helvetica, sans-serif; mso-line-height-alt: 14.399999999999999px; color: =
+#404040; line-height: 1.2;"><p style=3D"margin: 0; font-size: 16px; text-al=
+ign: left; mso-line-height-alt: 19.2px; letter-spacing: normal;"><span styl=
+e=3D"color:#00b9fc;"><strong><span style=3D"font-size:18px;">Bolsonaro sanc=
+iona lei de regulamenta=C3=A7=C3=A3o das criptomoedas.&nbsp;</span></strong=
+></span></p><p style=3D"margin: 0; font-size: 16px; text-align: left; mso-l=
+ine-height-alt: 14.399999999999999px; letter-spacing: normal;">&nbsp;</p><p=
+ style=3D"margin: 0; font-size: 16px; text-align: left; mso-line-height-alt=
+: 19.2px; letter-spacing: normal;"><span style=3D"color:#000000;font-size:1=
+6px;"><span style>O atual presidente da rep=C3=BAblica, Jair Bolsonaro sanc=
+ionou sem vetos, nesta quarta-feira (21), a lei que regulamenta o mercado d=
+e criptomoedas no Brasil.</span></span></p><p style=3D"margin: 0; font-size=
+: 16px; text-align: left; mso-line-height-alt: 14.399999999999999px; letter=
+-spacing: normal;">&nbsp;</p><p style=3D"margin: 0; font-size: 16px; text-a=
+lign: left; mso-line-height-alt: 19.2px; letter-spacing: normal;"><span sty=
+le=3D"color:#545454;font-size:16px;"><span style><span style=3D"color:#0000=
+00;">A lei define diretrizes regulat=C3=B3rias&nbsp;para nortear a regulame=
+nta=C3=A7=C3=A3o infralegal, a prote=C3=A7=C3=A3o e defesa do consumidor, o=
+ combate aos crimes financeiros e a transpar=C3=AAncia das opera=C3=A7=C3=
+=B5es envolvendo criptomoedas.&nbsp;.</span>&nbsp;</span></span></p></div><=
+/div></td></tr></table><table class=3D"text_block block-7" width=3D"100%" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">=
+<tr><td class=3D"pad" style=3D"padding-bottom:5px;padding-left:40px;padding=
+-right:40px;padding-top:35px;"><div style=3D"font-family: Arial, sans-serif=
+"><div class style=3D"font-size: 12px; font-family: Arial, 'Helvetica Neue'=
+, Helvetica, sans-serif; mso-line-height-alt: 14.399999999999999px; color: =
+#404040; line-height: 1.2;"><p style=3D"margin: 0; font-size: 12px; text-al=
+ign: left; mso-line-height-alt: 14.399999999999999px; letter-spacing: norma=
+l;"><strong><span style=3D"font-size:18px;background-color:#ffffff;color:#0=
+0b9fc;">Nova York emite orienta=C3=A7=C3=B5es para bancos que desejam possu=
+ir criptomoedas</span></strong></p><p style=3D"margin: 0; font-size: 12px; =
+text-align: left; mso-line-height-alt: 14.399999999999999px; letter-spacing=
+: normal;">&nbsp;</p></div></div></td></tr></table><table class=3D"text_blo=
+ck block-8" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; word-break: break-word;"><tr><td class=3D"pad" style=3D"padding-bottom:4=
+0px;padding-left:40px;padding-right:40px;"><div style=3D"font-family: Arial=
+, sans-serif"><div class style=3D"font-size: 14px; font-family: Arial, 'Hel=
+vetica Neue', Helvetica, sans-serif; mso-line-height-alt: 16.8px; color: #5=
+45454; line-height: 1.2;"><p style=3D"margin: 0; font-size: 16px; text-alig=
+n: left; mso-line-height-alt: 19.2px;"><span style=3D"color:#000000;">O Dep=
+artamento de Servi=C3=A7os Financeiros do estado de Nova York emitiu orient=
+a=C3=A7=C3=B5es para bancos que desejam entrar em moedas virtuais.</span><b=
+r><br><span style=3D"color:#000000;">O departamento espera avaliar minucios=
+amente a proposta virtual para uma institui=C3=A7=C3=A3o com atividades rel=
+acionadas a criptomoedas seguras e s=C3=B3lidas.</span></p></div></div></td=
+></tr></table></td></tr></tbody></table></td></tr></tbody></table><table cl=
+ass=3D"row row-4" align=3D"center" width=3D"100%" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt;"><tbody><tr><td><table class=3D"row-content stac=
+k" align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; ba=
+ckground-color: #ffffff; color: #000000; width: 540px;" width=3D"540"><tbod=
+y><tr><td class=3D"column column-1" width=3D"33.333333333333336%" style=3D"=
+mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align:=
+ left; vertical-align: top; border-top: 0px; border-right: 0px; border-bott=
+om: 0px; border-left: 0px;"><table class=3D"image_block block-2" width=3D"1=
+00%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"p=
+ad" style=3D"padding-left:15px;padding-top:15px;width:100%;padding-right:0p=
+x;padding-bottom:5px;"><div class=3D"alignment" align=3D"center" style=3D"l=
+ine-height:10px"><img src=3D"https://i.imgur.com/d37xb38.png" style=3D"disp=
+lay: block; height: auto; border: 0; width: 165px; max-width: 100%;" width=
+=3D"165" alt=3D"I'm an image" title=3D"I'm an image"></div></td></tr></tabl=
+e></td><td class=3D"column column-2" width=3D"66.66666666666667%" style=3D"=
+mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align:=
+ left; vertical-align: top; border-top: 0px; border-right: 0px; border-bott=
+om: 0px; border-left: 0px;"><table class=3D"text_block block-2" width=3D"10=
+0%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-wo=
+rd;"><tr><td class=3D"pad" style=3D"padding-bottom:10px;padding-left:15px;p=
+adding-right:15px;padding-top:15px;"><div style=3D"font-family: sans-serif"=
+><div class style=3D"font-size: 12px; font-family: Helvetica Neue, Helvetic=
+a, Arial, sans-serif; mso-line-height-alt: 14.399999999999999px; color: #55=
+5555; line-height: 1.2;"><p style=3D"margin: 0; font-size: 16px; text-align=
+: left; mso-line-height-alt: 19.2px;"><span style=3D"color:#00b9fc;font-siz=
+e:18px;"><strong>CEO da Brasil Bitcoin, Marco Castellari, comenta sobre o q=
+ue esperar das criptomoedas em 2023.</strong></span></p></div></div></td></=
+tr></table><table class=3D"divider_block block-3" width=3D"100%" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"pad" style=3D"pa=
+dding-bottom:5px;padding-left:15px;padding-right:15px;padding-top:5px;"><di=
+v class=3D"alignment" align=3D"center"><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" width=3D"100%" style=3D"mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"divider_inner" style=
+=3D"font-size: 1px; line-height: 1px; border-top: 1px solid #BBBBBB;"><span=
+>&#8202;</span></td></tr></table></div></td></tr></table><table class=3D"te=
+xt_block block-4" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt; word-break: break-word;"><tr><td class=3D"pad" style=3D"padding-bo=
+ttom:10px;padding-left:15px;padding-right:15px;padding-top:10px;"><div styl=
+e=3D"font-family: sans-serif"><div class style=3D"font-size: 12px; font-fam=
+ily: Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14.=
+399999999999999px; color: #555555; line-height: 1.2;"><p style=3D"margin: 0=
+; font-size: 12px; text-align: left; mso-line-height-alt: 14.39999999999999=
+9px;"><span style=3D"color:#000000;"><em><span style=3D"font-size:16px;">"E=
+stou muito confiante com os pr=C3=B3ximos anos, como 2023, que as criptomoe=
+das se estabelecer=C3=A3o como ativos globais, n=C3=A3o somente para especu=
+la=C3=A7=C3=A3o, mas para aplica=C3=A7=C3=B5es reais. Stablecoins como Teth=
+er e Pax Gold, atrelados ao d=C3=B3lar e ao ouro, respectivamente, s=C3=A3o=
+ exemplos claros disso"</span></em></span></p></div></div></td></tr></table=
+><table class=3D"button_block block-5" width=3D"100%" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"pad" style=3D"padding-botto=
+m:15px;padding-left:10px;padding-right:10px;padding-top:10px;text-align:lef=
+t;"><div class=3D"alignment" align=3D"left"><a href=3D"https://cointimes.co=
+m.br/o-que-esperar-do-bitcoin-e-criptomoedas-em-2023-veja-opinioes-de-espec=
+ialistas/" target=3D"_blank" style=3D"text-decoration:none;display:inline-b=
+lock;color:#ffffff;background-color:#00b9fc;border-radius:4px;width:auto;bo=
+rder-top:0px solid transparent;font-weight:400;border-right:0px solid trans=
+parent;border-bottom:0px solid transparent;border-left:0px solid transparen=
+t;padding-top:5px;padding-bottom:5px;font-family:Helvetica Neue, Helvetica,=
+ Arial, sans-serif;font-size:16px;text-align:center;mso-border-alt:none;wor=
+d-break:keep-all;"><span style=3D"padding-left:20px;padding-right:20px;font=
+-size:16px;display:inline-block;letter-spacing:normal;"><span style=3D"marg=
+in: 0; word-break: break-word; line-height: 32px;">Acessar mat=C3=A9ria</sp=
+an></span></a></div></td></tr></table></td></tr></tbody></table></td></tr><=
+/tbody></table><table class=3D"row row-5" align=3D"center" width=3D"100%" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tbody><tr><td><table cl=
+ass=3D"row-content stack" align=3D"center" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 540px;=
+" width=3D"540"><tbody><tr><td class=3D"column column-1" width=3D"100%" sty=
+le=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-=
+align: left; vertical-align: top; padding-top: 0px; padding-bottom: 0px; bo=
+rder-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"><t=
+able class=3D"divider_block block-1" width=3D"100%" border=3D"0" cellpaddin=
+g=3D"10" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"pad"><div class=3D"alignment=
+" align=3D"center"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+role=3D"presentation" width=3D"100%" style=3D"mso-table-lspace: 0pt; mso-ta=
+ble-rspace: 0pt;"><tr><td class=3D"divider_inner" style=3D"font-size: 1px; =
+line-height: 1px; border-top: 1px solid #BBBBBB;"><span>&#8202;</span></td>=
+</tr></table></div></td></tr></table><table class=3D"text_block block-3" wi=
+dth=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"prese=
+ntation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break:=
+ break-word;"><tr><td class=3D"pad" style=3D"padding-left:40px;padding-righ=
+t:40px;padding-top:35px;"><div style=3D"font-family: Arial, sans-serif"><di=
+v class style=3D"font-size: 12px; font-family: Arial, 'Helvetica Neue', Hel=
+vetica, sans-serif; mso-line-height-alt: 14.399999999999999px; color: #4040=
+40; line-height: 1.2;"><p style=3D"margin: 0; font-size: 12px; text-align: =
+center; mso-line-height-alt: 14.399999999999999px; letter-spacing: normal;"=
+><strong><span style=3D"font-size:18px;">Confira as criptomoedas que foram =
+destaques da semana na Brasil Bitcoin:</span></strong></p><p style=3D"margi=
+n: 0; font-size: 12px; text-align: center; mso-line-height-alt: 14.39999999=
+9999999px; letter-spacing: normal;">&nbsp;</p></div></div></td></tr></table=
+><table class=3D"image_block block-4" width=3D"100%" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"pad" style=3D"padding-left:4=
+0px;padding-right:40px;width:100%;"><div class=3D"alignment" align=3D"cente=
+r" style=3D"line-height:10px"><img class=3D"big" src=3D"https://i.imgur.com=
+/5QoFj7M.png" style=3D"display: block; height: auto; border: 0; width: 460p=
+x; max-width: 100%;" width=3D"460"></div></td></tr></table><table class=3D"=
+divider_block block-5" width=3D"100%" border=3D"0" cellpadding=3D"10" cells=
+pacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt;"><tr><td class=3D"pad"><div class=3D"alignment" align=3D"cen=
+ter"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" width=3D"100%" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t;"><tr><td class=3D"divider_inner" style=3D"font-size: 1px; line-height: 1=
+px; border-top: 1px solid #BBBBBB;"><span>&#8202;</span></td></tr></table><=
+/div></td></tr></table><table class=3D"text_block block-6" width=3D"100%" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">=
+<tr><td class=3D"pad" style=3D"padding-left:40px;padding-right:40px;padding=
+-top:5px;"><div style=3D"font-family: Arial, sans-serif"><div class style=
+=3D"font-size: 12px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-=
+serif; mso-line-height-alt: 14.399999999999999px; color: #404040; line-heig=
+ht: 1.2;"><p style=3D"margin: 0; font-size: 12px; text-align: center; mso-l=
+ine-height-alt: 14.399999999999999px; letter-spacing: normal;">&nbsp;</p><p=
+ style=3D"margin: 0; font-size: 12px; text-align: center; mso-line-height-a=
+lt: 14.399999999999999px; letter-spacing: normal;"><strong><span style=3D"f=
+ont-size:18px;">=C3=9Altimos v=C3=ADdeos</span></strong></p></div></div></t=
+d></tr></table><table class=3D"text_block block-7" width=3D"100%" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"><tr><td =
+class=3D"pad" style=3D"padding-bottom:10px;padding-left:40px;padding-right:=
+40px;"><div style=3D"font-family: Arial, sans-serif"><div class style=3D"fo=
+nt-size: 14px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;=
+ mso-line-height-alt: 16.8px; color: #545454; line-height: 1.2;"><p style=
+=3D"margin: 0; font-size: 14px; mso-line-height-alt: 16.8px;">&nbsp;</p><p =
+style=3D"margin: 0; font-size: 14px; mso-line-height-alt: 16.8px;"><span st=
+yle=3D"background-color:transparent;color:#000000;"><span style=3D"font-siz=
+e:16px;">Confira os =C3=BAltimos v=C3=ADdeos de nosso canal no YouTube, ond=
+e explicamos o que =C3=A9 <strong>taxa selic, </strong>tamb=C3=A9m falamos =
+sobre como surgiu a Black Friday e como ela impacta o mercado cripto,&nbsp;=
+confira:</span></span></p><p style=3D"margin: 0; font-size: 14px; mso-line-=
+height-alt: 16.8px;">&nbsp;</p></div></div></td></tr></table></td></tr></tb=
+ody></table></td></tr></tbody></table><table class=3D"row row-6" align=3D"c=
+enter" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><=
+tbody><tr><td><table class=3D"row-content stack" align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color:=
+ #000000; width: 540px;" width=3D"540"><tbody><tr><td class=3D"column colum=
+n-1" width=3D"50%" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; f=
+ont-weight: 400; text-align: left; vertical-align: top; border-top: 0px; bo=
+rder-right: 0px; border-bottom: 0px; border-left: 0px;"><table class=3D"ima=
+ge_block block-2" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt;"><tr><td class=3D"pad" style=3D"padding-bottom:10px;padding-left:1=
+0px;padding-right:10px;padding-top:15px;width:100%;"><div class=3D"alignmen=
+t" align=3D"center" style=3D"line-height:10px"><img src=3D"https://i.imgur.=
+com/Hiopyjz.png" style=3D"display: block; height: auto; border: 0; width: 2=
+50px; max-width: 100%;" width=3D"250"></div></td></tr></table><table class=
+=3D"text_block block-3" width=3D"100%" border=3D"0" cellpadding=3D"10" cell=
+spacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; word-break: break-word;"><tr><td class=3D"pad"><div style=
+=3D"font-family: sans-serif"><div class style=3D"font-size: 12px; font-fami=
+ly: Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14.3=
+99999999999999px; color: #555555; line-height: 1.2;"><p style=3D"margin: 0;=
+ font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span s=
+tyle=3D"font-size:14px;"><strong>ENTENDA O QUE =C3=89 TAXA SELIC E COMO ELA=
+ PODE INFLUENCIAR NOS SEUS INVESTIMENTOS!</strong></span></p></div></div></=
+td></tr></table><table class=3D"button_block block-4" width=3D"100%" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"pad" style=
+=3D"padding-bottom:15px;padding-left:10px;padding-right:10px;padding-top:10=
+px;text-align:center;"><div class=3D"alignment" align=3D"center"><a href=3D=
+"https://www.youtube.com/watch?v=3DOnzUWdc69UM&t=3D143s" target=3D"_blank" =
+style=3D"text-decoration:none;display:inline-block;color:#ffffff;background=
+-color:#e03a3d;border-radius:4px;width:auto;border-top:0px solid transparen=
+t;font-weight:400;border-right:0px solid transparent;border-bottom:0px soli=
+d transparent;border-left:0px solid transparent;padding-top:5px;padding-bot=
+tom:5px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:=
+14px;text-align:center;mso-border-alt:none;word-break:keep-all;"><span styl=
+e=3D"padding-left:20px;padding-right:20px;font-size:14px;display:inline-blo=
+ck;letter-spacing:normal;"><span style=3D"margin: 0; word-break: break-word=
+;"><span style=3D"line-height: 28px;" data-mce-style>Assistir</span></span>=
+</span></a></div></td></tr></table></td><td class=3D"column column-2" width=
+=3D"50%" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight=
+: 400; text-align: left; vertical-align: top; border-top: 0px; border-right=
+: 0px; border-bottom: 0px; border-left: 0px;"><table class=3D"image_block b=
+lock-2" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" rol=
+e=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;">=
+<tr><td class=3D"pad" style=3D"padding-bottom:10px;padding-left:10px;paddin=
+g-right:10px;padding-top:15px;width:100%;"><div class=3D"alignment" align=
+=3D"center" style=3D"line-height:10px"><img src=3D"https://i.imgur.com/99xw=
+Sa6.png" style=3D"display: block; height: auto; border: 0; width: 250px; ma=
+x-width: 100%;" width=3D"250"></div></td></tr></table><table class=3D"text_=
+block block-3" width=3D"100%" border=3D"0" cellpadding=3D"10" cellspacing=
+=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt; word-break: break-word;"><tr><td class=3D"pad"><div style=3D"font-=
+family: sans-serif"><div class style=3D"font-size: 12px; font-family: Helve=
+tica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 14.3999999999=
+99999px; color: #555555; line-height: 1.2;"><p style=3D"margin: 0; font-siz=
+e: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style=3D"f=
+ont-size:14px;"><strong>COMO SURGIU A BLACK FRIDAY? COMO ELA IMPACTA O MERC=
+ADO DE CRIPTOMOEDAS?</strong></span></p></div></div></td></tr></table><tabl=
+e class=3D"button_block block-4" width=3D"100%" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt;"><tr><td class=3D"pad" style=3D"padding-bottom:15px=
+;padding-left:10px;padding-right:10px;padding-top:10px;text-align:center;">=
+<div class=3D"alignment" align=3D"center"><a href=3D"https://www.youtube.co=
+m/watch?v=3D-6AVxN79yuM" target=3D"_blank" style=3D"text-decoration:none;di=
+splay:inline-block;color:#ffffff;background-color:#e03a3d;border-radius:4px=
+;width:auto;border-top:0px solid transparent;font-weight:400;border-right:0=
+px solid transparent;border-bottom:0px solid transparent;border-left:0px so=
+lid transparent;padding-top:5px;padding-bottom:5px;font-family:Helvetica Ne=
+ue, Helvetica, Arial, sans-serif;font-size:14px;text-align:center;mso-borde=
+r-alt:none;word-break:keep-all;"><span style=3D"padding-left:20px;padding-r=
+ight:20px;font-size:14px;display:inline-block;letter-spacing:normal;"><span=
+ style=3D"margin: 0; word-break: break-word;"><span style=3D"line-height: 2=
+8px;" data-mce-style>Assistir</span></span></span></a></div></td></tr></tab=
+le></td></tr></tbody></table></td></tr></tbody></table><table class=3D"row =
+row-7" align=3D"center" width=3D"100%" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt;"><tbody><tr><td><table class=3D"row-content stack" align=3D"=
+center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentati=
+on" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color=
+: #ffffff; color: #000000; width: 540px;" width=3D"540"><tbody><tr><td clas=
+s=3D"column column-1" width=3D"100%" style=3D"mso-table-lspace: 0pt; mso-ta=
+ble-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; p=
+adding-top: 0px; padding-bottom: 0px; border-top: 0px; border-right: 0px; b=
+order-bottom: 0px; border-left: 0px;"><table class=3D"divider_block block-1=
+" width=3D"100%" border=3D"0" cellpadding=3D"10" cellspacing=3D"0" role=3D"=
+presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><=
+td class=3D"pad"><div class=3D"alignment" align=3D"center"><table border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%=
+" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"=
+divider_inner" style=3D"font-size: 1px; line-height: 1px; border-top: 1px s=
+olid #BBBBBB;"><span>&#8202;</span></td></tr></table></div></td></tr></tabl=
+e><table class=3D"text_block block-3" width=3D"100%" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; word-break: break-word;"><tr><td class=3D"pad"=
+ style=3D"padding-bottom:10px;padding-left:40px;padding-right:40px;padding-=
+top:20px;"><div style=3D"font-family: Arial, sans-serif"><div class style=
+=3D"font-size: 14px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-=
+serif; mso-line-height-alt: 16.8px; color: #545454; line-height: 1.2;"><p s=
+tyle=3D"margin: 0; font-size: 14px; mso-line-height-alt: 16.8px;">&nbsp;</p=
+><p style=3D"margin: 0; font-size: 14px; mso-line-height-alt: 16.8px;"><spa=
+n style=3D"background-color:transparent;"><span style=3D"font-size:16px;">V=
+enha aproveitar as oportunidades do mercado cripto para diversificar o seu =
+portf=C3=B3lio! <span class=3D"tinyMce-placeholder" style>=F0=9F=A4=A9=F0=
+=9F=9A=80</span></span></span></p></div></div></td></tr></table><table clas=
+s=3D"button_block block-4" width=3D"100%" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt;"><tr><td class=3D"pad" style=3D"padding-left:40px;padding=
+-right:40px;padding-top:10px;text-align:center;"><div class=3D"alignment" a=
+lign=3D"center"><a href=3D"brasilbitco.in/resumo-semanal" target=3D"_blank"=
+ style=3D"text-decoration:none;display:inline-block;color:#ffffff;backgroun=
+d-color:#00b9fc;border-radius:3px;width:auto;border-top:0px solid #8a3b8f;f=
+ont-weight:400;border-right:0px solid #8a3b8f;border-bottom:0px solid #8a3b=
+8f;border-left:0px solid #8a3b8f;padding-top:5px;padding-bottom:5px;font-fa=
+mily:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;text-align=
+:center;mso-border-alt:none;word-break:keep-all;"><span style=3D"padding-le=
+ft:15px;padding-right:15px;font-size:16px;display:inline-block;letter-spaci=
+ng:normal;"><span style=3D"word-break: break-word;"><span style data-mce-st=
+yle><span style=3D"line-height: 32px;" data-mce-style>ACESSAR PLATAFORMA</s=
+pan></span></span></span></a></div></td></tr></table><table class=3D"text_b=
+lock block-6" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; word-break: break-word;"><tr><td class=3D"pad" style=3D"padding-bottom=
+:50px;padding-left:40px;padding-right:40px;padding-top:40px;"><div style=3D=
+"font-family: Arial, sans-serif"><div class style=3D"font-size: 14px; font-=
+family: Arial, 'Helvetica Neue', Helvetica, sans-serif; mso-line-height-alt=
+: 16.8px; color: #808080; line-height: 1.2;"><p style=3D"margin: 0; font-si=
+ze: 14px; mso-line-height-alt: 16.8px;"><span style=3D"font-size:14px;">Gra=
+nde abra=C3=A7o,</span><br><span style=3D"font-size:14px;">Equipe da Brasil=
+ Bitcoin</span></p></div></div></td></tr></table></td></tr></tbody></table>=
+</td></tr></tbody></table><table class=3D"row row-8" align=3D"center" width=
+=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presenta=
+tion" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tbody><tr><t=
+d><table class=3D"row-content stack" align=3D"center" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt; background-color: #f7f7f7; color: #000000; wi=
+dth: 540px;" width=3D"540"><tbody><tr><td class=3D"column column-1" width=
+=3D"100%" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weigh=
+t: 400; text-align: left; border-top: 1px solid #DEDEDE; vertical-align: to=
+p; padding-top: 0px; padding-bottom: 0px; border-right: 0px; border-bottom:=
+ 0px; border-left: 0px;"><table class=3D"text_block block-1" width=3D"100%"=
+ border=3D"0" cellpadding=3D"25" cellspacing=3D"0" role=3D"presentation" st=
+yle=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word=
+;"><tr><td class=3D"pad"><div style=3D"font-family: Arial, sans-serif"><div=
+ class style=3D"font-size: 14px; font-family: Arial, 'Helvetica Neue', Helv=
+etica, sans-serif; mso-line-height-alt: 16.8px; color: #b5b5b5; line-height=
+: 1.2;"><p style=3D"margin: 0; font-size: 14px; text-align: center; mso-lin=
+e-height-alt: 16.8px;">Este =C3=A9 um e-mail autom=C3=A1tico e N=C3=83O dev=
+e ser respondido.</p></div></div></td></tr></table></td></tr></tbody></tabl=
+e></td></tr></tbody></table><table class=3D"row row-9" align=3D"center" wid=
+th=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-i=
+mage: url('https://brasilbitcoin.com.br/images/emails/v2/bg_dark.png'); bac=
+kground-repeat: repeat;"><tbody><tr><td><table class=3D"row-content stack" =
+align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"p=
+resentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: =
+#000000; width: 540px;" width=3D"540"><tbody><tr><td class=3D"column column=
+-1" width=3D"100%" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; f=
+ont-weight: 400; text-align: left; vertical-align: top; padding-top: 0px; p=
+adding-bottom: 20px; border-top: 0px; border-right: 0px; border-bottom: 0px=
+; border-left: 0px;"><table class=3D"icons_block block-1" width=3D"100%" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"pad" st=
+yle=3D"vertical-align: middle; color: transparent; font-family: inherit; fo=
+nt-size: 14px; padding-bottom: 25px; padding-top: 25px; text-align: center;=
+"><table class=3D"alignment" cellpadding=3D"0" cellspacing=3D"0" role=3D"pr=
+esentation" align=3D"center" style=3D"mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt;"><tr><td style=3D"vertical-align: middle; text-align: center; padd=
+ing-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 8px;">=
+<a href=3D"https://facebook.com/brbtcoficial" target=3D"_self" style=3D"tex=
+t-decoration: none;"><img class=3D"icon" src=3D"https://d15k2d11r6t6rl.clou=
+dfront.net/public/users/Integrators/BeeProAgency/739325_722484/unnamed_1.pn=
+g" alt height=3D"32" width=3D"32" align=3D"center" style=3D"display: block;=
+ height: auto; margin: 0 auto; border: 0;"></a></td><td style=3D"vertical-a=
+lign: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; pa=
+dding-left: 8px; padding-right: 8px;"><a href=3D"https://instagram.com/brbt=
+coficial" target=3D"_self" style=3D"text-decoration: none;"><img class=3D"i=
+con" src=3D"https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/=
+BeeProAgency/739325_722484/Instagram.png" alt height=3D"32" width=3D"32" al=
+ign=3D"center" style=3D"display: block; height: auto; margin: 0 auto; borde=
+r: 0;"></a></td><td style=3D"vertical-align: middle; text-align: center; pa=
+dding-top: 5px; padding-bottom: 5px; padding-left: 8px; padding-right: 8px;=
+"><a href=3D"https://br.linkedin.com/company/brbtcoficial" target=3D"_self"=
+ style=3D"text-decoration: none;"><img class=3D"icon" src=3D"https://d15k2d=
+11r6t6rl.cloudfront.net/public/users/Integrators/BeeProAgency/739325_722484=
+/LinkedIn.png" alt height=3D"32" width=3D"32" align=3D"center" style=3D"dis=
+play: block; height: auto; margin: 0 auto; border: 0;"></a></td><td style=
+=3D"vertical-align: middle; text-align: center; padding-top: 5px; padding-b=
+ottom: 5px; padding-left: 8px; padding-right: 8px;"><a href=3D"https://twit=
+ter.com/brbtcoficial" target=3D"_self" style=3D"text-decoration: none;"><im=
+g class=3D"icon" src=3D"https://d15k2d11r6t6rl.cloudfront.net/public/users/=
+Integrators/BeeProAgency/739325_722484/Twitter.png" alt height=3D"32" width=
+=3D"32" align=3D"center" style=3D"display: block; height: auto; margin: 0 a=
+uto; border: 0;"></a></td><td style=3D"vertical-align: middle; text-align: =
+center; padding-top: 5px; padding-bottom: 5px; padding-left: 8px; padding-r=
+ight: 5px;"><a href=3D"https://www.youtube.com/channel/UCUJ_aR0mT-a_QM07YSl=
+1_tw" target=3D"_self" style=3D"text-decoration: none;"><img class=3D"icon"=
+ src=3D"https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/BeeP=
+roAgency/739325_722484/YouTube.png" alt height=3D"32" width=3D"32" align=3D=
+"center" style=3D"display: block; height: auto; margin: 0 auto; border: 0;"=
+></a></td></tr></table></td></tr></table><table class=3D"text_block block-2=
+" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"p=
+resentation" style=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-br=
+eak: break-word;"><tr><td class=3D"pad" style=3D"padding-left:25px;padding-=
+right:25px;"><div style=3D"font-family: Arial, sans-serif"><div class style=
+=3D"font-size: 14px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-=
+serif; mso-line-height-alt: 16.8px; color: #666666; line-height: 1.2;"><p s=
+tyle=3D"margin: 0; text-align: center; font-size: 10px; mso-line-height-alt=
+: 12px;"><span style=3D"font-size:11px;">____________</span><br><br><br><sp=
+an style=3D"font-size:11px;">Deseja entrar em contato conosco?</span><br><b=
+r><span style=3D"font-size:11px;">E-mail -&nbsp;<a mailto style=3D"color: #=
+666666;">suporte@brasilbitcoin.com.br</a></span><br><span style=3D"font-siz=
+e:11px;">Chat no app - Segunda a sexta, das 08 =C3=A0s 20h</span><br><br><b=
+r><span style=3D"font-size:11px;">Est=C3=A1 gostando da plataforma? Deixe u=
+ma avalia=C3=A7=C3=A3o&nbsp;<span style=3D"color:#00b9fc;"><a href=3D"https=
+://brasilbitcoin.com.br/avalie" style=3D"color:#00b9fc;">aqui</a>.</span></=
+span><br><br><span style=3D"font-size:11px;">____________</span></p></div><=
+/div></td></tr></table><table class=3D"html_block block-3" width=3D"100%" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><tr><td class=3D"pad"><d=
+iv style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;text-a=
+lign:center;" align=3D"center"><br /><a href=3D"https://brasilbitcoin.com.b=
+r/newsletter/unsubscribe/blJNTUk5akVFUElXdGdJUk5WR2toT2xDREg3ZQ=3D=3D?mail_=
+id=3DeWtaUQ=3D=3D" style=3D"color:#666666;text-decoration:none;font-size:11=
+px">Descadastrar-se </a><a style=3D"color:#00b9fc;margin-left:8px;margin-ri=
+ght:8px;font-size:11px">=E2=80=A2</a><a href=3D"https://brasilbitcoin.com.b=
+r/termos-de-uso" style=3D"color:#666666;text-decoration:none;font-size:11px=
+"> Termos de Uso </a><a style=3D"color:#00b9fc;margin-left:8px;margin-right=
+:8px;font-size:11px">=E2=80=A2</a><a href=3D"https://brasilbitcoin.com.br/t=
+ermos-de-uso" style=3D"color:#666666;text-decoration:none;font-size:11px"> =
+Pol=C3=ADticas de Privacidade</a></div></td></tr></table><table class=3D"ht=
+ml_block block-4" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt;"><tr><td class=3D"pad"><div style=3D"font-family:Helvetica Neue, H=
+elvetica, Arial, sans-serif;text-align:center;" align=3D"center"><span styl=
+e=3D"text-decoration:none;color:#666666;font-size:11px"><br /><a href style=
+=3D"text-decoration:none;color:#666666;font-size:11px">Brasil Bitcoin Servi=
+=C3=A7os Digitais LTDA</a><br /><a href style=3D"text-decoration:none;color=
+:#666666;font-size:11px">CNPJ 29.519.837/0001-23</a><br /><a href style=3D"=
+text-decoration:none;color:#666666;font-size:11px">Av. Roque Petroni Junior=
+, 850</a><br /><a href style=3D"text-decoration:none;color:#666666;font-siz=
+e:11px">S=C3=A3o Paulo - SP</a></span></div></td></tr></table></td></tr></t=
+body></table></td></tr></tbody></table></td></tr></tbody></table></body></h=
+tml><img src=3D"https://brasilbitcoin.com.br/images/mail-analytic/mail-anal=
+ytic.png?uid=3DeVVGYWVJU08=3D&mail_id=3DeWtaUQ=3D=3D" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>484</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1671830916</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>11680</string>
+</dict>
+</plist>

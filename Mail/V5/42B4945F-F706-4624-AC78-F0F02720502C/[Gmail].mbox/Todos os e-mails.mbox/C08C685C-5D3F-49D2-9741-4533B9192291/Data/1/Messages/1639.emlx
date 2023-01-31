@@ -1,0 +1,2371 @@
+89032     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:5c6:b0:2f1:d123:ba04 with SMTP id p6csp1137662pxt;
+        Sun, 18 Sep 2022 12:56:37 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM4vWrCYQngbM7f9Y6U7KgmFQhwUL8Dx6feGzJ2oZAIGypYzRjvBPlBsK9xzJLlFyCugQWYz
+X-Received: by 2002:a17:90b:3147:b0:203:6eaa:4894 with SMTP id ip7-20020a17090b314700b002036eaa4894mr9112911pjb.230.1663530997508;
+        Sun, 18 Sep 2022 12:56:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1663530997; cv=none;
+        d=google.com; s=arc-20160816;
+        b=MegBfSBGjTIGFvxcXdrFAnPO29+Sds5/G6gY6KsjbpmAxIYqgMZbV0pu9SByEwH2Rx
+         9l+cSOOTLIZcM9mfq8EcSRrwaIZS557JR4pC19ruWdser8kCQfYDaRXCkEr2AOGCWuNM
+         RSP8dhMnxsGYKpz8txXRxPUVfbOChhBhW/YA0SoIAVTO2XHWlJqTa+9/zyHMH5EMagWQ
+         tSEQMSag6AWr8/LczhBL7qD4iMv9VTH/w2Nhdc8YL6MDMhnzvqdvkEHclsBfo65dg00+
+         2+POniiTBf/e+SMeBDJ8eJh7l+XzqcNEF19RvzcuS/DcGdw2lR/S5kd+rzy9dA9Xnd/c
+         CwwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=0iShMrMdkXSso+Uy4WIbMsIPC8Jk44tKjgTuHL/YTng=;
+        b=jJDmS0HnkzYfGQUKEALdtpqOoH3eBL4dRGH8EDzlB4Lbj4cM+ZsAIK32+O7JYfirDd
+         nC9++8KnpXZEiMZKkuZJH6b/cuKtksdLRgc+ndT54Tz1ZzhELFN8UFZib69hr1f6lBTt
+         10/7m5++TE2kZAI79CgSyxNHYQtR1zSIRyjLmRkKlhnYB94f6RZiy4vN1pf2ez0SQ2wb
+         YvGZbjPI10E6VLYZmRRA4gTxu7W8LEeealh5CQL7a4cqFlHqnsws6cVK8AzkPbyUQY/t
+         zdev0++5EVYL8mjJ2JO6WiM0nZt08FihCjWAJqZulS9DAql10L/++1L7ukq1KFxdpz8i
+         2WxA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=kDu7PDkx;
+       dkim=pass header.i=@maild.linkedin.com header.s=proddkim1024 header.b=CJ7+cKsb;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wh2ldj0kd1rp9pq@bounce.linkedin.com designates 2620:119:50c0:207::189 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wh2ldj0kd1rp9pq@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wh2ldj0kd1rp9pq@bounce.linkedin.com>
+Received: from maild-he.linkedin.com (maild-he.linkedin.com. [2620:119:50c0:207::189])
+        by mx.google.com with ESMTPS id e68-20020a636947000000b0042a88e6b1dfsi28401394pgc.770.2022.09.18.12.56.37
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 18 Sep 2022 12:56:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wh2ldj0kd1rp9pq@bounce.linkedin.com designates 2620:119:50c0:207::189 as permitted sender) client-ip=2620:119:50c0:207::189;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=kDu7PDkx;
+       dkim=pass header.i=@maild.linkedin.com header.s=proddkim1024 header.b=CJ7+cKsb;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wh2ldj0kd1rp9pq@bounce.linkedin.com designates 2620:119:50c0:207::189 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wh2ldj0kd1rp9pq@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1663530995;
+	bh=0iShMrMdkXSso+Uy4WIbMsIPC8Jk44tKjgTuHL/YTng=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=kDu7PDkxei0icwhY1cV7NkxqeEHL4hPlgymXtpaRFRmMcslKWhMto/QhMwSSMu4g1
+	 qJIYSFBLcZF8VEojxE/y12LhKIhsqNSj3vcDUmrBpKK2xSnNuD4QS4jcQv1O8xnY8U
+	 48iFQfksus3VGFVNbx1A6w0AaUTRYSm+fBsH8oS8x1P/hqsd6OIaaM/JJ8IKyRVAfu
+	 9+6HmE54W0UDIDCx6EkjSeBM3O3Mj8NHy0lnHL/Uo5SHicTViUuqdkro62SxyaD5qW
+	 +l7oZSJKc4hk+YFC3HDzn41P+79QBce240Kc/+6bQEbb3qzN7wLBB7TiszohOAKY6s
+	 8uaZRYitRuDrg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maild.linkedin.com;
+	s=proddkim1024; t=1663530995;
+	bh=0iShMrMdkXSso+Uy4WIbMsIPC8Jk44tKjgTuHL/YTng=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=CJ7+cKsbdVbd415nVw9aRdaRQx0ePSAVKeIm20yr7ftf0JT5s0SeCfp+fNmxURBgS
+	 rxvOWYONLpdskQnUlYv73eDDBbW0S9MtBhj+UBGU4EcC2Bs45BcHy2UbqfRorkVNdg
+	 c0z0JhJokMrV8UogXwuAcUIJRYvHP+gJM0BW3v9M=
+From: Alertas de vaga do LinkedIn <jobalerts-noreply@linkedin.com>
+Message-ID: <1909783326.2481577.1663530995521@ltx1-app94985.prod.linkedin.com>
+Subject: =?UTF-8?Q?1_vaga_nova_para_=E2=80=9CDesenvolvedor_da_web=E2=80=9C?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2481575_586729245.1663530995519"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Sun, 18 Sep 2022 19:56:35 +0000 (UTC)
+X-LinkedIn-Class: SAVEDSEARCH
+X-LinkedIn-Template: email_job_alert_digest_01
+X-LinkedIn-fbl: m2-aszolin8v4aobhy864yaoathovn49pa1eh20znx729mcwbyieqykoo6e8lt5biw6v2fz9r0tdmuwdcyvsg448867z0nbfx8942nwx9
+X-LinkedIn-Id: eau1wl-l87reiow-ln
+List-Unsubscribe: <https://www.linkedin.com/comm/jobs/alerts?lipi=%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=AQEq1MBbB2bM8g&amp;midSig=1SsFIUn_zc3Gs1&amp;trk=eml-email_job_alert_digest_01-unsub-0-unsub&amp;trkEmail=eml-email_job_alert_digest_01-unsub-0-unsub-null-eau1wl~l87reiow~ln-null-null&amp;eid=eau1wl-l87reiow-ln&amp;loid=AQHeHhLfmvGTnQAAAYNSLI2E6M2VezXzpfMhXMBbyygem2k5nPVofykJdkgQqVsbYWwoS25u9Oh4I9BoVsBBzqWiXqeHy87N402tDx1Cvk-_4RAlnZHivI__YiY>
+Feedback-ID: email_job_alert_digest_01:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_2481575_586729245.1663530995519
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+Seu alerta de vaga para Desenvolvedor da web em: 3000-405 foi criado
+       =20
+1 vaga nova corresponde =C3=A0s suas prefer=C3=AAncias. =20
+         =20
+Web Developer
+Canonical
+Europa, Oriente M=C3=A9dio e =C3=81frica
+Sua experi=C3=AAncia relevante: 1 ano de experi=C3=AAncia relacionada a Des=
+envolvedor de software<!---->
+Visualizar vaga:
+<!---->      https://www.linkedin.com/comm/jobs/view/2948680713/?trackingId=
+=3DCallmKYNc6rBNStsHv48jQ%3D%3D&amp;refId=3D86db575f-5e3f-4b08-87b9-d1a8b69=
+bd390&amp;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2=
+bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-jo=
+b_card-0-view_job&amp;trkEmail=3Deml-email_job_alert_digest_01-job_card-0-v=
+iew_job-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow-ln
+
+---------------------------------------------------------
+ =20
+Ver todas as vagas no LinkedIn:
+<!---->      https://www.linkedin.com/comm/jobs/search?geoId=3D115801048&am=
+p;f_TPR=3Da1663444591-&amp;savedSearchId=3D1286441033&amp;origin=3DJOB_ALER=
+T_EMAIL&amp;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBb=
+B2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-=
+job~alert-0-see~all~jobs~text&amp;trkEmail=3Deml-email_job_alert_digest_01-=
+job~alert-0-see~all~jobs~text-null-eau1wl~l87reiow~ln-null-null&amp;eid=3De=
+au1wl-l87reiow-ln
+<!---->
+<!---->
+Veja as vagas mais adequadas para seu perfil
+
+<!---->      https://www.linkedin.com/comm/premium/upsell?lipi=3D%2Be7NRbo0=
+Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_z=
+c3Gs1&amp;trk=3Deml-email_job_alert_digest_01-job~alert-0-premium~upsell~te=
+xt&amp;trkEmail=3Deml-email_job_alert_digest_01-job~alert-0-premium~upsell~=
+text-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow-ln
+ =20
+         =20
+     =20
+
+
+----------------
+
+Este e-mail foi enviado a Rafael Souza (Desenvolvedor da web na Solution.de=
+v)
+Saiba porque inclu=C3=ADmos isso:
+<!---->      https://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&a=
+mp;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&am=
+p;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-SecurityH=
+elp-0-textfooterglimmer&amp;trkEmail=3Deml-email_job_alert_digest_01-Securi=
+tyHelp-0-textfooterglimmer-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1=
+wl-l87reiow-ln
+Voc=C3=AA est=C3=A1 recebendo e-mails de alerta de vaga.
+
+         =20
+            Gerencie seus alertas de vaga:
+<!---->      https://www.linkedin.com/comm/jobs/alerts?lipi=3D%2Be7NRbo0Qzu=
+%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3G=
+s1&amp;trk=3Deml-email_job_alert_digest_01-null-0-null&amp;trkEmail=3Deml-e=
+mail_job_alert_digest_01-null-0-null-null-eau1wl~l87reiow~ln-null-null&amp;=
+eid=3Deau1wl-l87reiow-ln
+     =20
+         =20
+       =20
+Cancelar inscri=C3=A7=C3=A3o:
+<!---->      https://www.linkedin.com/comm/jobs/alerts?lipi=3D%2Be7NRbo0Qzu=
+%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3G=
+s1&amp;trk=3Deml-email_job_alert_digest_01-unsubscribe-0-textfooterglimmer&=
+amp;trkEmail=3Deml-email_job_alert_digest_01-unsubscribe-0-textfooterglimme=
+r-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow-ln&amp;loid=
+=3DAQHeHhLfmvGTnQAAAYNSLI2E6M2VezXzpfMhXMBbyygem2k5nPVofykJdkgQqVsbYWwoS25u=
+9Oh4I9BoVsBBzqWiXqeHy87N402tDx1Cvk-_4RAlnZHivI__YiY
+Ajuda:
+<!---->      https://www.linkedin.com/help/linkedin/answer/67?lang=3Dpt&amp=
+;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;=
+midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-help-0-text=
+footerglimmer&amp;trkEmail=3Deml-email_job_alert_digest_01-help-0-textfoote=
+rglimmer-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow-ln
+
+=C2=A9 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2 - Irlanda.LinkedIn =C3=A9 um nome comercial registrado da LinkedI=
+n Ireland Unlimited Company.LinkedIn e o logo do LinkedIn s=C3=A3o marcas r=
+egistradas do LinkedIn.
+------=_Part_2481575_586729245.1663530995519
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt" st=
+yle=3D"border-color: currentColor;"> <head> <meta http-equiv=3D"Content-Typ=
+e" content=3D"text/html;charset=3Dutf-8"> <meta name=3D"HandheldFriendly" c=
+ontent=3D"true"> <meta name=3D"viewport" content=3D"width=3Ddevice-width; i=
+nitial-scale=3D0.666667; user-scalable=3D0"> <meta name=3D"viewport" conten=
+t=3D"width=3Ddevice-width"> <title></title> <style>
+          @media (max-width: 512px) { .mercado-container { width: 100% !imp=
+ortant; } }
+        </style> <!--[if mso]><style type=3D"text/css"> </style><![endif]--=
+> <!--[if IE]><style type=3D"text/css"> </style><![endif]--> <style>
+@media (min-width: 576px) {
+  .container {
+    max-width: 576px;
+  }
+
+  .\!container {
+    max-width: 576px !important;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  .\!container {
+    max-width: 768px !important;
+  }
+}
+@media (min-width: 790px) {
+  .container {
+    max-width: 790px;
+  }
+
+  .\!container {
+    max-width: 790px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+
+  .\!container {
+    max-width: 992px !important;
+  }
+}
+@media (min-width: 1128px) {
+  .container {
+    max-width: 1128px;
+  }
+
+  .\!container {
+    max-width: 1128px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .\!container {
+    max-width: 1200px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+
+  .\!container {
+    max-width: 1440px !important;
+  }
+}
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1680px;
+  }
+
+  .\!container {
+    max-width: 1680px !important;
+  }
+}
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1920px;
+  }
+
+  .\!container {
+    max-width: 1920px !important;
+  }
+}
+@media only screen and (orientation: landscape) {
+  .promo-modal__content-image {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .base-detail-page__header .nav {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .base-detail-page__header .nav {
+    width: 1128px;
+  }
+}
+@media (max-width: 767px) {
+  .embedded-social-share .modal__outlet {
+    height: 100%;
+  }
+
+  .embedded-social-share .modal__outlet {
+    width: 100%;
+  }
+
+  .embedded-social-share .modal__outlet {
+    flex-direction: column;
+  }
+
+  .embedded-social-share .modal__outlet {
+    font-size: 12px;
+  }
+}
+@media (max-width: 767px) {
+  .nav .search-bar {
+    order: 4;
+  }
+}
+@media (max-width: 767px) {
+  .nav .sign-in-card {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .nav--minified-mobile .nav__cta-container > *:not(.nav__link-person) {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .nav .search-bar--minified-mobile {  }
+
+  .nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+  }
+
+  .nav .search-bar--minified-mobile {
+    height: 100%;
+  }
+
+  .nav .search-bar--minified-mobile {
+    flex-grow: 1;
+  }
+
+  .nav .search-bar--minified-mobile {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .nav .search-bar--minified-mobile {
+    order: initial;
+    width: initial;
+  }
+
+  .nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .tw-link-column-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .tw-link-column-item {
+    margin-bottom: 8px;
+  }
+
+  .tw-linkster .tw-link-column-item {
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__button {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .member-nav-menu .collapsible-dropdown__button {
+    margin-left: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__list {
+    right: 0px;
+  }
+
+  .member-nav-menu .collapsible-dropdown__list {
+    max-height: calc(100vh - 52px);
+  }
+
+  .member-nav-menu .collapsible-dropdown__list {
+    overflow-y: auto;
+  }
+}
+@media (max-width: 767px) {
+  .recent-searches.recent-searches--show {
+    position: fixed;
+  }
+
+  .recent-searches.recent-searches--show {
+    top: 168px;
+  }
+
+  .recent-searches.recent-searches--show {
+    left: 0px;
+  }
+
+  .recent-searches.recent-searches--show {
+    width: 100vw;
+  }
+
+  .recent-searches.recent-searches--show {
+    min-width: 100vw;
+  }
+
+  .recent-searches.recent-searches--show {
+    border-width: 0;
+  }
+}
+@media (max-width: 767px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.75);
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .search-bar .dismissable-input {
+    border-radius: 4px;
+  }
+
+  .search-bar .dismissable-input {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input {
+    border-style: solid;
+  }
+
+  .search-bar .dismissable-input {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .search-bar .dismissable-input {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .search-bar .dismissable-input {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+  }
+
+  .search-bar .dismissable-input {
+    font-size: 16px;
+  }
+
+  .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
+  }
+
+  .search-bar .dismissable-input:hover {
+    cursor: pointer;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.9);
+  }
+
+  .search-bar .dismissable-input:active {
+    cursor: pointer;
+  }
+
+  .search-bar .dismissable-input:active {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .search-bar .dismissable-input:disabled {
+    cursor: not-allowed;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .search-bar .dismissable-input:disabled {
+    cursor: not-allowed;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .search-bar .dismissable-input:disabled {
+    cursor: not-allowed;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .search-bar .dismissable-input:disabled {
+    cursor: not-allowed;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    border-style: solid;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    border-style: solid;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    border-style: solid;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #cf0007;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .input-error .search-bar .dismissable-input {
+    border-radius: 4px;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    border-style: solid;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    font-size: 16px;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: #8a0005;
+    box-shadow: 0 0 0 1px #8a0005;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    cursor: pointer;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: #8a0005;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    cursor: pointer;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    cursor: not-allowed;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    cursor: not-allowed;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    cursor: not-allowed;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    cursor: not-allowed;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .search-bar .dismissable-input {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (min-width: 992px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .search-bar .dismissable-input {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (max-width: 767px) {
+  .search-bar:not(.isExpanded) .base-search-bar__form {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  @media (max-width: 767px) {
+    .search-bar.isExpanded .search-bar__placeholder {
+      display: none;
+    }
+
+    @media (max-width: 767px) {
+      .search-bar.isExpanded .base-search-bar__form {
+        display: flex;
+      }
+
+      position: fixed;
+    .search-bar.isExpanded {
+        top: 0px;
+      }
+
+      .search-bar.isExpanded {
+        bottom: 0px;
+      }
+
+      .search-bar.isExpanded {
+        left: 0px;
+      }
+
+      .search-bar.isExpanded {
+        right: 0px;
+      }
+
+      .search-bar.isExpanded {
+        z-index: 1000;
+      }
+
+      .search-bar.isExpanded {
+        margin-bottom: 0px;
+      }
+
+      .search-bar.isExpanded {
+        height: 100%;
+      }
+
+      .search-bar.isExpanded {
+        background-color: #ffffff;
+      }
+
+      .search-bar.isExpanded .switcher-tabs {
+        display: inherit;
+      }
+
+    }
+
+  }
+}
+@media screen and (max-width: 767px) {
+  .stuck .search-bar {
+    transition: height 0.4s, margin-bottom 0.4s ease-in-out;
+  }
+
+  .stuck .search-bar {
+    margin-bottom: 0px;
+  }
+
+  .stuck .search-bar {
+    height: 0px;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    max-height: initial;
+    pointer-events: initial;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    border-width: 1px;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    border-style: solid;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+}
+@media (max-width: 767px) {
+  .tabs__list {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    position: fixed;
+  }
+
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    top: 158px;
+  }
+
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    left: 0px;
+  }
+
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    width: 100vw;
+  }
+
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    min-width: 100vw;
+  }
+}
+@media (max-width: 767px) {
+  .base-search-bar .dismissable-input {
+    max-height: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .base-main-card__media ~ .base-main-card__info {
+    margin-left: 0px;
+  }
+
+  .base-main-card__media ~ .base-main-card__info {
+    margin-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .filter .collapsible-dropdown__list {
+    max-height: 400px;
+  }
+}
+@media (forced-colors: active) {
+  .filter-button--selected {
+    border-width: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .duration {
+    font-size: 12px;
+  }
+
+  .duration {
+    font-weight: 400;
+  }
+}
+@media (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__button {
+    height: 100%;
+  }
+
+  .social-action-bar__button {
+    width: 100%;
+  }
+
+  .social-action-bar__button {
+    flex-direction: column;
+  }
+
+  .social-action-bar__button {
+    font-size: 12px;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__icon--svg {
+    margin: 0px;
+  }
+
+  .social-action-bar__icon--svg {
+    height: 24px;
+  }
+
+  .social-action-bar__icon--svg {
+    width: 24px;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .dark\:text-color-text-on-dark {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+@media (max-width: 767px) {
+  .babybear\:container-lined {
+    border-radius: 8px;
+  }
+
+  .babybear\:container-lined {
+    border-width: 1px;
+  }
+
+  .babybear\:container-lined {
+    border-style: solid;
+  }
+
+  .babybear\:container-lined {
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .babybear\:container-lined {
+    background-color: #ffffff;
+  }
+
+  .babybear\:invisible {
+    visibility: hidden;
+  }
+
+  .babybear\:static {
+    position: static;
+  }
+
+  .babybear\:right-4 {
+    right: 32px;
+  }
+
+  .babybear\:left-50\% {
+    left: 50%;
+  }
+
+  .babybear\:-top-0\.5 {
+    top: -4px;
+  }
+
+  .babybear\:-top-0 {
+    top: -0px;
+  }
+
+  .babybear\:z-0 {
+    z-index: 0;
+  }
+
+  .babybear\:my-2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .babybear\:mx-mobile-container-padding {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .babybear\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .babybear\:ml-0 {
+    margin-left: 0px;
+  }
+
+  .babybear\:mb-1 {
+    margin-bottom: 8px;
+  }
+
+  .babybear\:ml-1 {
+    margin-left: 8px;
+  }
+
+  .babybear\:mr-0 {
+    margin-right: 0px;
+  }
+
+  .babybear\:ml-\[-9999px\] {
+    margin-left: -9999px;
+  }
+
+  .babybear\:mb-1\.5 {
+    margin-bottom: 12px;
+  }
+
+  .babybear\:block {
+    display: block;
+  }
+
+  .babybear\:flex {
+    display: flex;
+  }
+
+  .babybear\:hidden {
+    display: none;
+  }
+
+  .babybear\:h-\[360px\] {
+    height: 360px;
+  }
+
+  .babybear\:h-\[186px\] {
+    height: 186px;
+  }
+
+  .babybear\:h-\[72px\] {
+    height: 72px;
+  }
+
+  .babybear\:h-\[27px\] {
+    height: 27px;
+  }
+
+  .babybear\:h-\[1px\] {
+    height: 1px;
+  }
+
+  .babybear\:h-\[48px\] {
+    height: 48px;
+  }
+
+  .babybear\:h-auto {
+    height: auto;
+  }
+
+  .babybear\:h-\[180px\] {
+    height: 180px;
+  }
+
+  .babybear\:max-h-\[250px\] {
+    max-height: 250px;
+  }
+
+  .babybear\:min-h-\[134px\] {
+    min-height: 134px;
+  }
+
+  .babybear\:w-\[360px\] {
+    width: 360px;
+  }
+
+  .babybear\:w-full {
+    width: 100%;
+  }
+
+  .babybear\:w-6 {
+    width: 48px;
+  }
+
+  .babybear\:w-auto {
+    width: auto;
+  }
+
+  .babybear\:w-\[1px\] {
+    width: 1px;
+  }
+
+  .babybear\:w-\[100vw\] {
+    width: 100vw;
+  }
+
+  .babybear\:w-\[calc\(100\%-68px\)\] {
+    width: calc(100% - 68px);
+  }
+
+  .babybear\:min-w-full {
+    min-width: 100%;
+  }
+
+  .babybear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .babybear\:flex-none {
+    flex: none;
+  }
+
+  .babybear\:flex-auto {
+    flex: 1 1 auto;
+  }
+
+  .babybear\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .babybear\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .babybear\:-translate-x-25\% {
+    transform: translateX(0) translateY(0) rotate(0) skewX(0) skewY(0) scal=
+eX(1) scaleY(1);
+  }
+
+  @media (max-width: 767px) {
+    .babybear\:-translate-x-25\% {
+      transform: translateX(0) translateY(0) rotate(0) skewX(0) skewY(0) sc=
+aleX(1) scaleY(1);
+    }
+
+    flex-direction: row;
+    .babybear\:flex-col {
+      flex-direction: column;
+    }
+
+    .babybear\:flex-wrap {
+      flex-wrap: wrap;
+    }
+
+    .babybear\:items-start {
+      align-items: flex-start;
+    }
+
+    .babybear\:items-center {
+      align-items: center;
+    }
+
+    .babybear\:justify-around {
+      justify-content: space-around;
+    }
+
+    .babybear\:self-center {
+      align-self: center;
+    }
+
+    .babybear\:rounded-\[0px\] {
+      border-radius: 0px;
+    }
+
+    .babybear\:border-b-1 {
+      border-bottom-width: 1px;
+    }
+
+    .babybear\:border-solid {
+      border-style: solid;
+    }
+
+    .babybear\:border-color-border-low-emphasis {
+      border-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .babybear\:bg-color-transparent {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    .babybear\:bg-color-brand {
+      background-color: #0a66c2;
+    }
+
+    .babybear\:p-2 {
+      padding: 16px;
+    }
+
+    .babybear\:p-1\.5 {
+      padding: 12px;
+    }
+
+    .babybear\:p-1 {
+      padding: 8px;
+    }
+
+    .babybear\:p-0 {
+      padding: 0px;
+    }
+
+    .babybear\:px-2 {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .babybear\:px-\[6px\] {
+      padding-left: 6px;
+      padding-right: 6px;
+    }
+
+    .babybear\:px-mobile-container-padding {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .babybear\:py-3 {
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .babybear\:py-1\.5 {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .babybear\:py-1 {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .babybear\:pb-2 {
+      padding-bottom: 16px;
+    }
+
+    .babybear\:pr-0 {
+      padding-right: 0px;
+    }
+
+    .babybear\:leading-\[150px\] {
+      line-height: 150px;
+    }
+
+    .babybear\:first\:ml-0:first-child {
+      margin-left: 0px;
+    }
+
+    .babybear\:last\:border-b-0:last-child {
+      border-bottom-width: 0;
+    }
+
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mamabear\:container-raised {
+    border-radius: 8px;
+  }
+
+  .mamabear\:container-raised {
+    background-color: #ffffff;
+  }
+
+  .mamabear\:container-raised {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .tab-sm.mamabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-sm.mamabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-sm.mamabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-selected:not(.mamabear\:tab-vertical) {
+    box-shadow: inset 0 -4px rgba(0, 0, 0, 0.9);
+  }
+
+  .tab-selected.mamabear\:tab-vertical {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .mamabear\:absolute {
+    position: absolute;
+  }
+
+  .mamabear\:right-4 {
+    right: 32px;
+  }
+
+  .mamabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .mamabear\:-top-1 {
+    top: -8px;
+  }
+
+  .mamabear\:flex {
+    display: flex;
+  }
+
+  .mamabear\:hidden {
+    display: none;
+  }
+
+  .mamabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .mamabear\:w-\[744px\] {
+    width: 744px;
+  }
+
+  .mamabear\:w-full {
+    width: 100%;
+  }
+
+  .mamabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .mamabear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .mamabear\:flex-row {
+    flex-direction: row;
+  }
+
+  .mamabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .mamabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .mamabear\:items-center {
+    align-items: center;
+  }
+
+  .mamabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:self-center {
+    align-self: center;
+  }
+
+  .mamabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .mamabear\:px-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .mamabear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mamabear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .papabear\:container-raised {
+    border-radius: 8px;
+  }
+
+  .papabear\:container-raised {
+    background-color: #ffffff;
+  }
+
+  .papabear\:container-raised {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .tab-sm.papabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-sm.papabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-sm.papabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-selected:not(.papabear\:tab-vertical) {
+    box-shadow: inset 0 -4px rgba(0, 0, 0, 0.9);
+  }
+
+  .tab-selected.papabear\:tab-vertical {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .papabear\:absolute {
+    position: absolute;
+  }
+
+  .papabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .papabear\:-top-1 {
+    top: -8px;
+  }
+
+  .papabear\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .papabear\:mt-\[-100px\] {
+    margin-top: -100px;
+  }
+
+  .papabear\:mb-\[18px\] {
+    margin-bottom: 18px;
+  }
+
+  .papabear\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .papabear\:mt-0\.5 {
+    margin-top: 4px;
+  }
+
+  .papabear\:mr-2 {
+    margin-right: 16px;
+  }
+
+  .papabear\:ml-column-gutter {
+    margin-left: 24px;
+  }
+
+  .papabear\:flex {
+    display: flex;
+  }
+
+  .papabear\:hidden {
+    display: none;
+  }
+
+  .papabear\:h-\[34px\] {
+    height: 34px;
+  }
+
+  .papabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .papabear\:min-h-\[96px\] {
+    min-height: 96px;
+  }
+
+  .papabear\:w-\[400px\] {
+    width: 400px;
+  }
+
+  .papabear\:w-content-max-w {
+    width: 1128px;
+  }
+
+  .papabear\:w-core-rail-width {
+    width: 790px;
+  }
+
+  .papabear\:w-right-rail-width {
+    width: calc(1128px - 24px - 790px);
+  }
+
+  .papabear\:w-auto {
+    width: auto;
+  }
+
+  .papabear\:w-\[1128px\] {
+    width: 1128px;
+  }
+
+  .papabear\:w-\[135px\] {
+    width: 135px;
+  }
+
+  .papabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .papabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .papabear\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .papabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .papabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .papabear\:justify-center {
+    justify-content: center;
+  }
+
+  .papabear\:self-start {
+    align-self: flex-start;
+  }
+
+  .papabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .papabear\:border-4 {
+    border-width: 4px;
+  }
+
+  .papabear\:p-details-container-padding {
+    padding: 24px;
+  }
+
+  .papabear\:p-0 {
+    padding: 0px;
+  }
+
+  .papabear\:py-2 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .papabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+
+  .papabear\:text-xl {
+    font-size: 24px;
+  }
+}
+</style></head> <body dir=3D"ltr" class=3D"font-sans bg-color-background-ca=
+nvas w-full m-0 p-0 pt-1" style=3D"border-color: currentColor; -webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; margin: 0px; width: 100%; background-color: #f3f2=
+f0; padding: 0px; padding-top: 8px; font-family: -apple-system, system-ui, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubun=
+tu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helve=
+tica, Arial, sans-serif;"> <div class=3D"h-0 opacity-0 text-transparent inv=
+isible overflow-hidden w-0 max-h-[0]" style=3D"border-color: currentColor; =
+visibility: hidden; height: 0px; max-height: 0; width: 0px; overflow: hidde=
+n; opacity: 0; mso-hide: all;">Web Developer e outros cargos est=C3=A3o dis=
+pon=C3=ADveis</div> <div class=3D"h-0 opacity-0 text-transparent invisible =
+overflow-hidden w-0 max-h-[0]" style=3D"border-color: currentColor; visibil=
+ity: hidden; height: 0px; max-height: 0; width: 0px; overflow: hidden; opac=
+ity: 0; mso-hide: all;"> =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+ =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 </div> <table class=3D"font-sans=
+ mercado-container w-[512px] max-w-[512px] mx-auto my-0 p-0 bg-color-backgr=
+ound-container" role=3D"presentation" valign=3D"top" border=3D"0" cellspaci=
+ng=3D"0" cellpadding=3D"0" width=3D"512" align=3D"center" style=3D"border-c=
+olor: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; margin-left: auto; margin-right: auto; margin-=
+top: 0px; margin-bottom: 0px; width: 512px; max-width: 512px; background-co=
+lor: #ffffff; padding: 0px; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=
+=3D"border-color: currentColor;"> <td class=3D"text-center p-3" style=3D"bo=
+rder-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; padding: 24px; text-align: center;"> <ta=
+ble class=3D"font-sans min-w-full" role=3D"presentation" valign=3D"top" bor=
+der=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"borde=
+r-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt; min-width: 100%; font-family: -apple-system=
+, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fir=
+a Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Col=
+or Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida G=
+rande', Helvetica, Arial, sans-serif;"> <tbody style=3D"border-color: curre=
+ntColor;"> <tr style=3D"border-color: currentColor;"> <td align=3D"left" va=
+lign=3D"middle" style=3D"border-color: currentColor; -webkit-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-siz=
+e-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"=
+https://www.linkedin.com/comm/feed/?lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D=
+&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-em=
+ail_job_alert_digest_01-header-0-home_glimmer&amp;trkEmail=3Deml-email_job_=
+alert_digest_01-header-0-home_glimmer-null-eau1wl~l87reiow~ln-null-null&amp=
+;eid=3Deau1wl-l87reiow-ln" target=3D"_blank" class=3D"w-[84px]" style=3D"bo=
+rder-color: currentColor; color: #0a66c2; cursor: pointer; display: inline-=
+block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size=
+-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; width: =
+84px;"> <img class=3D"block" alt=3D"LinkedIn" src=3D"https://www.linkedin.c=
+om/comm/dms/logo?badgeTheme=3Dmercado&amp;csrfToken=3Dcsrf&amp;midToken=3DA=
+QEq1MBbB2bM8g&amp;trkEmail=3Deml-email_job_alert_digest_01-null-null-null-n=
+ull-eau1wl%257El87reiow%257Eln-null-comms%257Ebadging%257Edynamic%257Eglimm=
+er&amp;_sig=3D0Vn_AVTg_c3Gs1" data-test-header-dynamic-badging-img style=3D=
+"border-color: currentColor; outline: none; text-decoration: none; -ms-inte=
+rpolation-mode: bicubic; display: block;"> </a> </td> <td valign=3D"middle"=
+ align=3D"right" style=3D"border-color: currentColor; -webkit-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <table cla=
+ss=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspac=
+ing=3D"0" cellpadding=3D"0" width=3D"100%" data-test-header-profile style=
+=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system=
+-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans',=
+ Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji=
+', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', =
+Helvetica, Arial, sans-serif;"> <tbody style=3D"border-color: currentColor;=
+"> <tr style=3D"border-color: currentColor;"> <td align=3D"right" valign=3D=
+"middle" class=3D"w-[32px]" style=3D"border-color: currentColor; -webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; w=
+idth: 32px;" width=3D"32"> <a href=3D"https://pt.linkedin.com/comm/in/rafae=
+landersonsouza?lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1=
+MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_=
+01-header-0-profile_glimmer&amp;trkEmail=3Deml-email_job_alert_digest_01-he=
+ader-0-profile_glimmer-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l=
+87reiow-ln" target=3D"_blank" style=3D"border-color: currentColor; color: #=
+0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%;"> <img alt=3D"Rafael Souza" src=3D"https:=
+//media-exp1.licdn.com/dms/image/C4D03AQEH4CxhkhtzrA/profile-displayphoto-s=
+hrink_200_200/0/1607511453788?e=3D1669248000&amp;v=3Dbeta&amp;t=3DlgwiIHBM2=
+xqfU3yastZkHMU7DjC-XRAVamSQdLWaKKs" class=3D"rounded-[100%] w-[32px] h-[32p=
+x]" style=3D"border-color: currentColor; outline: none; text-decoration: no=
+ne; -ms-interpolation-mode: bicubic; height: 32px; width: 32px; border-radi=
+us: 100%;" width=3D"32" height=3D"32"> </a> </td> </tr> </tbody> </table> <=
+/td> </tr> </tbody> </table> </td> </tr> <tr style=3D"border-color: current=
+Color;"> <td class=3D"px-3 pb-3" style=3D"border-color: currentColor; -webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; padding-left: 24px; padding-right: 24px; padding-bottom: 24px;"> <div s=
+tyle=3D"border-color: currentColor;"> <table class=3D"font-sans leading-reg=
+ular" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" style=3D"border-color: currentColor; -webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', R=
+oboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantar=
+ell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji',=
+ 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; line-hei=
+ght: 1.25;"> <tbody style=3D"border-color: currentColor;"> <tr style=3D"bor=
+der-color: currentColor;"> <td style=3D"border-color: currentColor; -webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust:=
+ 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt=
+;"> <h1 class=3D"text-display-sm font-normal leading-regular" data-test-id=
+=3D"email-header" style=3D"border-color: currentColor; margin: 0; font-size=
+: 24px; font-weight: 400; line-height: 1.25;"> <a href=3D"https://www.linke=
+din.com/comm/jobs/search?geoId=3D115801048&amp;f_TPR=3Da1663444591-&amp;sav=
+edSearchId=3D1286441033&amp;origin=3DJOB_ALERT_EMAIL&amp;lipi=3D%2Be7NRbo0Q=
+zu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc=
+3Gs1&amp;trk=3Deml-email_job_alert_digest_01-email~job~alert~digest-0-heade=
+r&amp;trkEmail=3Deml-email_job_alert_digest_01-email~job~alert~digest-0-hea=
+der-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow-ln" target=
+=3D"_blank" class=3D"text-system-gray-90" style=3D"border-color: currentCol=
+or; cursor: pointer; display: inline-block; text-decoration: none; -webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%; color: #282828;"> Seu alerta de vaga para <st=
+rong class=3D"font-bold" style=3D"border-color: currentColor; font-weight: =
+600;">Desenvolvedor da web</strong> </a> </h1> </td> </tr> <tr style=3D"bor=
+der-color: currentColor;"> <td class=3D"pt-1" style=3D"border-color: curren=
+tColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-ta=
+ble-rspace: 0pt; padding-top: 8px;"> <table class=3D"font-sans" role=3D"pre=
+sentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" style=3D"border-color: currentColor; -webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -=
+apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica=
+ Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans'=
+, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol=
+', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody style=3D"border-=
+color: currentColor;"> <tr style=3D"border-color: currentColor;"> <td style=
+=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt;"> <h2 class=3D"text-md font-normal=
+" data-test-id=3D"email-subheader" style=3D"border-color: currentColor; mar=
+gin: 0; font-size: 16px; font-weight: 400;"> 1 vaga nova em: 3000-405 corre=
+sponde =C3=A0s suas prefer=C3=AAncias. </h2> </td> </tr> </tbody> </table> =
+</td> </tr> <tr style=3D"border-color: currentColor;"> <td class=3D"pt-3" d=
+ata-test-id=3D"job-card" style=3D"border-color: currentColor; -webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padd=
+ing-top: 24px;"> <table class=3D"font-sans" role=3D"presentation" valign=3D=
+"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=
+=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system=
+-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans',=
+ Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji=
+', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', =
+Helvetica, Arial, sans-serif;"> <tbody style=3D"border-color: currentColor;=
+"> <tr style=3D"border-color: currentColor;"> <td class=3D"pr-2 w-6" valign=
+=3D"top" style=3D"border-color: currentColor; -webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 48px; padding=
+-right: 16px;" width=3D"48"> <a href=3D"https://www.linkedin.com/comm/jobs/=
+view/2948680713/?trackingId=3DCallmKYNc6rBNStsHv48jQ%3D%3D&amp;refId=3D86db=
+575f-5e3f-4b08-87b9-d1a8b69bd390&amp;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3=
+D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-e=
+mail_job_alert_digest_01-job_card-0-company_logo&amp;trkEmail=3Deml-email_j=
+ob_alert_digest_01-job_card-0-company_logo-null-eau1wl~l87reiow~ln-null-nul=
+l&amp;eid=3Deau1wl-l87reiow-ln" target=3D"_blank" style=3D"border-color: cu=
+rrentColor; color: #0a66c2; cursor: pointer; display: inline-block; text-de=
+coration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"inlin=
+e-block relative bg-color-entity-ghost-background w-6 h-6 rounded-[2px]" sr=
+c=3D"https://media-exp1.licdn.com/dms/image/C560BAQEbIYAkAURcYw/company-log=
+o_100_100/0/1650566106882?e=3D2147483647&amp;v=3Dbeta&amp;t=3DNj5cKjUbDQTY3=
+9MLKd9LqoB55dFOnsVNpYUe3bTaEUU" alt=3D"Canonical" style=3D"border-color: cu=
+rrentColor; outline: none; text-decoration: none; -ms-interpolation-mode: b=
+icubic; position: relative; display: inline-block; height: 48px; width: 48p=
+x; border-radius: 2px; background-color: #eae6df;" width=3D"48" height=3D"4=
+8"> </a> </td> <td style=3D"border-color: currentColor; -webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=
+=3D"https://www.linkedin.com/comm/jobs/view/2948680713/?trackingId=3DCallmK=
+YNc6rBNStsHv48jQ%3D%3D&amp;refId=3D86db575f-5e3f-4b08-87b9-d1a8b69bd390&amp=
+;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;=
+midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-job_card-0-=
+job_posting&amp;trkEmail=3Deml-email_job_alert_digest_01-job_card-0-job_pos=
+ting-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow-ln" target=
+=3D"_blank" style=3D"border-color: currentColor; color: #0a66c2; cursor: po=
+inter; display: inline-block; text-decoration: none; -webkit-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-siz=
+e-adjust: 100%;"> <table class=3D"font-sans" role=3D"presentation" valign=
+=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" st=
+yle=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, sys=
+tem-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira San=
+s', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Em=
+oji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande=
+', Helvetica, Arial, sans-serif;"> <tbody style=3D"border-color: currentCol=
+or;"> <tr style=3D"border-color: currentColor;"> <td class=3D"pb-0.25" styl=
+e=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; padding-bottom: 2px;"> <a href=3D=
+"https://www.linkedin.com/comm/jobs/view/2948680713/?trackingId=3DCallmKYNc=
+6rBNStsHv48jQ%3D%3D&amp;refId=3D86db575f-5e3f-4b08-87b9-d1a8b69bd390&amp;li=
+pi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;mid=
+Sig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-job_card-0-job=
+card_body&amp;trkEmail=3Deml-email_job_alert_digest_01-job_card-0-jobcard_b=
+ody-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow-ln" target=
+=3D"_blank" class=3D"font-bold text-md leading-regular text-color-brand" st=
+yle=3D"border-color: currentColor; cursor: pointer; display: inline-block; =
+text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; font-size: 16p=
+x; font-weight: 600; line-height: 1.25; color: #0a66c2;"> Web Developer </a=
+> </td> </tr> <tr style=3D"border-color: currentColor;"> <td class=3D"pb-0.=
+5" style=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bottom: 4px;"> <p =
+class=3D"text-system-gray-100 text-sm leading-[20px]" style=3D"border-color=
+: currentColor; margin: 0; font-weight: 400; font-size: 14px; line-height: =
+20px; color: #1f1f1f;"> Canonical =C2=B7 Europa, Oriente M=C3=A9dio e =C3=
+=81frica (Remoto) </p> </td> </tr> <tr style=3D"border-color: currentColor;=
+"> <td style=3D"border-color: currentColor; -webkit-text-size-adjust: 100%;=
+ -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"font=
+-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" style=3D"border-color: currentColor; -webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbod=
+y style=3D"border-color: currentColor;"> <tr style=3D"border-color: current=
+Color;"> <td style=3D"border-color: currentColor; -webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 0;" a=
+lign=3D"left"> <!--[if (gte mso 9)|(IE)]><table cellpadding=3D"0" cellspaci=
+ng=3D"0" border=3D"0" role=3D"presentation" style=3D"width: 100%;"><![endif=
+]--> <!--[if (gte mso 9)|(IE)]><tr> <td style=3D"padding-top: 4px;"><![endi=
+f]--> <div class=3D"job-card-flavor__container" style=3D"border-color: curr=
+entColor; display: inline-block; padding-top: 4px; padding-right: 24px;"> <=
+table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"border-color: =
+currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSyste=
+mFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, '=
+Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji=
+', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, =
+sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=3D"bo=
+rder-color: currentColor;"> <td class=3D"pr-1 w-3" style=3D"border-color: c=
+urrentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt; width: 24px; padding-right: 8px;" width=3D"24"> <img =
+src=3D"https://static-exp1.licdn.com/sc/h/ak0szf0336eao8wd8sqnpspz4" alt=3D=
+"=C3=ADcone de verifica=C3=A7=C3=A3o" class=3D"w-3 h-3 block" style=3D"bord=
+er-color: currentColor; outline: none; text-decoration: none; -ms-interpola=
+tion-mode: bicubic; display: block; height: 24px; width: 24px;" width=3D"24=
+" height=3D"24"> </td> <td style=3D"border-color: currentColor; -webkit-tex=
+t-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> =
+<p class=3D"job-card-flavor__detail" style=3D"border-color: currentColor; m=
+argin: 0; font-weight: 400; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif; font-size: 12px; line-height: 1.25; color: #666666;"> Sua =
+experi=C3=AAncia relevante: 1 ano de experi=C3=AAncia relacionada a Desenvo=
+lvedor de software </p> </td> </tr> </tbody> </table> </div> <!--[if (gte m=
+so 9)|(IE)]></td> </tr><![endif]--> <!--[if (gte mso 9)|(IE)]></table><![en=
+dif]--> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </a> </=
+td> </tr> </tbody> </table> </td> </tr> <tr style=3D"border-color: currentC=
+olor;"> <td class=3D"pt-3 text-left" style=3D"border-color: currentColor; -=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; padding-top: 24px; text-align: left;"> <table class=3D"font-sans" r=
+ole=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" width=3D"100%" style=3D"border-color: currentColor; -webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font=
+-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, =
+'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'D=
+roid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody style=
+=3D"border-color: currentColor;"> <tr style=3D"border-color: currentColor;"=
+> <td valign=3D"middle" align=3D"left" style=3D"border-color: currentColor;=
+ -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/jobs/search?geoId=3D11=
+5801048&amp;f_TPR=3Da1663444591-&amp;savedSearchId=3D1286441033&amp;origin=
+=3DJOB_ALERT_EMAIL&amp;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert=
+_digest_01-job~alert-0-see~all~jobs&amp;trkEmail=3Deml-email_job_alert_dige=
+st_01-job~alert-0-see~all~jobs-null-eau1wl~l87reiow~ln-null-null&amp;eid=3D=
+eau1wl-l87reiow-ln" target=3D"_blank" style=3D"border-color: currentColor; =
+color: #0a66c2; cursor: pointer; display: inline-block; text-decoration: no=
+ne; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%;"> <table class=3D"font-sans borde=
+r-separate" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" width=3D"auto" style=3D"border-color: currentColor=
+; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rs=
+pace: 0pt; border-collapse: separate; font-family: -apple-system, system-ui=
+, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ub=
+untu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', =
+'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Hel=
+vetica, Arial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> =
+<tr style=3D"border-color: currentColor;"> <td class=3D"btn-md btn-primary =
+border-color-brand button-link leading-regular !min-h-[auto] font-sans !sha=
+dow-none border-1 border-solid" style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; height: min-content; bord=
+er-radius: 24px; padding-top: 12px; padding-bottom: 12px; padding-left: 24p=
+x; padding-right: 24px; text-align: center; font-size: 16px; font-weight: 6=
+00; cursor: pointer; text-decoration: none; background-color: #0a66c2; colo=
+r: #ffffff; border-width: 1px; border-style: solid; border-color: #0a66c2; =
+font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Robo=
+to, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell=
+, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; line-height=
+: 1.25; min-height: auto; box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;"> <a=
+ href=3D"https://www.linkedin.com/comm/jobs/search?geoId=3D115801048&amp;f_=
+TPR=3Da1663444591-&amp;savedSearchId=3D1286441033&amp;origin=3DJOB_ALERT_EM=
+AIL&amp;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM=
+8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-job~=
+alert-0-see~all~jobs&amp;trkEmail=3Deml-email_job_alert_digest_01-job~alert=
+-0-see~all~jobs-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow=
+-ln" target=3D"_blank" tabindex=3D"-1" aria-hidden=3D"true" style=3D"border=
+-color: currentColor; color: #0a66c2; cursor: pointer; display: inline-bloc=
+k; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <span cla=
+ss=3D"no-underline text-white" style=3D"border-color: currentColor; color: =
+#ffffff; text-decoration: none;"> Ver todas as vagas </span> </a> </td> </t=
+r> </tbody> </table> </a> </td> </tr> </tbody> </table> </td> </tr> <tr dat=
+a-test-id=3D"premium-upsell" style=3D"border-color: currentColor;"> <td cla=
+ss=3D"pt-3" style=3D"border-color: currentColor; -webkit-text-size-adjust: =
+100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-ad=
+just: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 24px=
+;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"border-c=
+olor: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMa=
+cSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxy=
+gen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, A=
+rial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=
+=3D"border-color: currentColor;"> <td style=3D"border-color: currentColor; =
+-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"bo=
+rder-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, B=
+linkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubunt=
+u, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Se=
+goe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvet=
+ica, Arial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr=
+ style=3D"border-color: currentColor;"> <td align=3D"left" valign=3D"top" c=
+lass=3D"w-0" style=3D"border-color: currentColor; -webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 0px;" wid=
+th=3D"0"> <a href=3D"https://pt.linkedin.com/comm/in/rafaelandersonsouza?li=
+pi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;mid=
+Sig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-job~alert-0-pr=
+emium~upsell&amp;trkEmail=3Deml-email_job_alert_digest_01-job~alert-0-premi=
+um~upsell-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow-ln" t=
+arget=3D"_blank" style=3D"border-color: currentColor; color: #0a66c2; curso=
+r: pointer; display: inline-block; text-decoration: none; -webkit-text-size=
+-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; tex=
+t-size-adjust: 100%;"> <img class=3D"w-[84px]" alt=3D"=C3=8Dcone Premium" s=
+rc=3D"https://static-exp1.licdn.com/sc/h/40p617it49hlmq3d88bf4wguy" style=
+=3D"border-color: currentColor; outline: none; text-decoration: none; -ms-i=
+nterpolation-mode: bicubic; width: 84px;" width=3D"84"> </a> </td> </tr> <t=
+r style=3D"border-color: currentColor;"> <td class=3D"text-center" align=3D=
+"center" style=3D"border-color: currentColor; -webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: center;"=
+> <img class=3D"inline-block relative bg-color-entity-ghost-background clip=
+-path-circle-50 rounded-full w-16 h-16" src=3D"https://media-exp1.licdn.com=
+/dms/image/C4D03AQEH4CxhkhtzrA/profile-displayphoto-shrink_200_200/0/160751=
+1453788?e=3D1669248000&amp;v=3Dbeta&amp;t=3DlgwiIHBM2xqfU3yastZkHMU7DjC-XRA=
+VamSQdLWaKKs" alt=3D"Rafael Souza" style=3D"border-color: currentColor; out=
+line: none; text-decoration: none; -ms-interpolation-mode: bicubic; positio=
+n: relative; display: inline-block; height: 128px; width: 128px; border-rad=
+ius: 9999px; background-color: #eae6df; clip-path: circle(50%);" width=3D"1=
+28" height=3D"128"> </td> </tr> </tbody> </table> </td> </tr> <tr style=3D"=
+border-color: currentColor;"> <td class=3D"text-lg leading-regular text-cen=
+ter pt-2" style=3D"border-color: currentColor; -webkit-text-size-adjust: 10=
+0%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adju=
+st: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 16px; =
+text-align: center; font-size: 20px; line-height: 1.25;"> Veja as vagas mai=
+s adequadas para seu perfil </td> </tr> <tr style=3D"border-color: currentC=
+olor;"> <td class=3D"pt-2" style=3D"border-color: currentColor; -webkit-tex=
+t-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; pa=
+dding-top: 16px;"> <table class=3D"font-sans" role=3D"presentation" valign=
+=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" st=
+yle=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, sys=
+tem-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira San=
+s', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Em=
+oji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande=
+', Helvetica, Arial, sans-serif;"> <tbody style=3D"border-color: currentCol=
+or;"> <tr style=3D"border-color: currentColor;"> <td valign=3D"middle" alig=
+n=3D"middle" style=3D"border-color: currentColor; -webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"htt=
+ps://www.linkedin.com/comm/premium/upsell?lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g=
+%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3D=
+eml-email_job_alert_digest_01-null-0-null&amp;trkEmail=3Deml-email_job_aler=
+t_digest_01-null-0-null-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-=
+l87reiow-ln" target=3D"_blank" style=3D"border-color: currentColor; color: =
+#0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%;"> <table class=3D"font-sans border-separ=
+ate" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" width=3D"auto" style=3D"border-color: currentColor; -webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust:=
+ 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt=
+; border-collapse: separate; font-family: -apple-system, system-ui, BlinkMa=
+cSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxy=
+gen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, A=
+rial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=
+=3D"border-color: currentColor;"> <td class=3D"btn-sm btn-secondary !border=
+-[#424242] button-link leading-regular !min-h-[auto] font-sans !shadow-none=
+ border-1 border-solid" style=3D"-webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; height: min-content; border-radiu=
+s: 24px; padding-top: 7px; padding-bottom: 7px; padding-left: 16px; padding=
+-right: 16px; text-align: center; font-size: 14px; font-weight: 600; cursor=
+: pointer; text-decoration: none; background-color: rgba(0, 0, 0, 0); color=
+: rgba(0, 0, 0, 0.75); border-width: 1px; border-style: solid; font-family:=
+ -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helveti=
+ca Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid San=
+s', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symb=
+ol', 'Lucida Grande', Helvetica, Arial, sans-serif; line-height: 1.25; min-=
+height: auto; border-color: #424242; box-shadow: 0 0 #0000, 0 0 #0000, 0 0 =
+#0000;"> <a href=3D"https://www.linkedin.com/comm/premium/upsell?lipi=3D%2B=
+e7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1S=
+sFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-null-0-null&amp;trkEma=
+il=3Deml-email_job_alert_digest_01-null-0-null-null-eau1wl~l87reiow~ln-null=
+-null&amp;eid=3Deau1wl-l87reiow-ln" target=3D"_blank" tabindex=3D"-1" aria-=
+hidden=3D"true" style=3D"border-color: currentColor; color: #0a66c2; cursor=
+: pointer; display: inline-block; text-decoration: none; -webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%;"> <span class=3D"no-underline !text-[#424242]" style=3D=
+"border-color: currentColor; text-decoration: none; color: #424242;"> Exper=
+imente o Premium de gra=C3=A7a </span> </a> </td> </tr> </tbody> </table> <=
+/a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr>=
+ </tbody> </table> </div> </td> </tr> <tr style=3D"border-color: currentCol=
+or;"> <td class=3D"bg-color-background-canvas p-3" style=3D"border-color: c=
+urrentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt; background-color: #f3f2f0; padding: 24px;"> <table cl=
+ass=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"border-color: currentC=
+olor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text=
+-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, '=
+Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen S=
+ans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Sego=
+e UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-ser=
+if;"> <tbody style=3D"border-color: currentColor;"> <tr style=3D"border-col=
+or: currentColor;"> <td class=3D"text-center pb-2" style=3D"border-color: c=
+urrentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt; padding-bottom: 16px; text-align: center;"> <h2 class=
+=3D"text-lg" style=3D"border-color: currentColor; margin: 0; font-weight: 5=
+00; font-size: 20px;">Mantenha-se a par das atualiza=C3=A7=C3=B5es com o ap=
+licativo do LinkedIn</h2> </td> </tr> <tr style=3D"border-color: currentCol=
+or;"> <td class=3D"text-center" data-test-id=3D"footer-app-store-icon" styl=
+e=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; text-align: center;"> <a href=3D"=
+https://itunes.apple.com/us/app/linkedin/id288429040?pt=3D10746&amp;ct=3Dst=
+_appsite_flagship&amp;mt=3D8" style=3D"border-color: currentColor; color: #=
+0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%;"> <img alt=3D"Baixe na App Store" src=3D"=
+https://static-exp1.licdn.com/sc/h/uslxhb1orpuqowrx33atnpsu" class=3D"h-[40=
+px] w-[120px] pr-1" style=3D"border-color: currentColor; outline: none; tex=
+t-decoration: none; -ms-interpolation-mode: bicubic; height: 40px; width: 1=
+20px; padding-right: 8px;" width=3D"120" height=3D"40"> </a><a href=3D"http=
+s://play.google.com/store/apps/details?id=3Dcom.linkedin.android&amp;referr=
+er=3Dst_appsite_flagship" style=3D"border-color: currentColor; color: #0a66=
+c2; cursor: pointer; display: inline-block; text-decoration: none; -webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%;"> <img alt=3D"Baixe no Google Play" src=3D"ht=
+tps://static-exp1.licdn.com/sc/h/a460qa5pzdbqv5d5y7d8sbovh" class=3D"h-[40p=
+x] w-[134px]" style=3D"border-color: currentColor; outline: none; text-deco=
+ration: none; -ms-interpolation-mode: bicubic; height: 40px; width: 134px;"=
+ width=3D"134" height=3D"40"> </a> </td> </tr> <tr style=3D"border-color: c=
+urrentColor;"> <td class=3D"py-2" style=3D"border-color: currentColor; -web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; padding-top: 16px; padding-bottom: 16px;"><hr class=3D"border-none bg-=
+[#e0dfdd] h-[1px]" style=3D"border-color: currentColor; height: 1px; border=
+-style: none; background-color: #e0dfdd;"></td> </tr> </tbody> </table> <ta=
+ble class=3D"font-sans text-xs" role=3D"presentation" valign=3D"top" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"border-c=
+olor: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMa=
+cSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxy=
+gen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, A=
+rial, sans-serif; font-size: 12px;"> <tbody style=3D"border-color: currentC=
+olor;"> <tr style=3D"border-color: currentColor;"> <td class=3D"pb-1 m-0" s=
+tyle=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; margin: 0px; padding-bottom: 8=
+px;"> Este e-mail foi enviado a Rafael Souza (Desenvolvedor da web na Solut=
+ion.dev) </td> </tr> <tr style=3D"border-color: currentColor;"> <td class=
+=3D"pb-1 m-0" style=3D"border-color: currentColor; -webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin: 0px; pa=
+dding-bottom: 8px;"> <a href=3D"https://www.linkedin.com/help/linkedin/answ=
+er/4788?lang=3Dpt&amp;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert=
+_digest_01-SecurityHelp-0-footerglimmer&amp;trkEmail=3Deml-email_job_alert_=
+digest_01-SecurityHelp-0-footerglimmer-null-eau1wl~l87reiow~ln-null-null&am=
+p;eid=3Deau1wl-l87reiow-ln" target=3D"_blank" style=3D"border-color: curren=
+tColor; color: #0a66c2; cursor: pointer; display: inline-block; text-decora=
+tion: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%;">Saiba por que inclu=C3=
+=ADmos isso.</a> </td> </tr> <tr style=3D"border-color: currentColor;"> <td=
+ class=3D"pb-1 m-0" style=3D"border-color: currentColor; -webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin: 0=
+px; padding-bottom: 8px;">Voc=C3=AA est=C3=A1 recebendo e-mails de alerta d=
+e vaga.</td> </tr> <tr style=3D"border-color: currentColor;"> <td class=3D"=
+pb-1 m-0" style=3D"border-color: currentColor; -webkit-text-size-adjust: 10=
+0%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adju=
+st: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin: 0px; paddin=
+g-bottom: 8px;"> <a href=3D"https://www.linkedin.com/comm/jobs/alerts?lipi=
+=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSi=
+g=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-null-0-null&amp;=
+trkEmail=3Deml-email_job_alert_digest_01-null-0-null-null-eau1wl~l87reiow~l=
+n-null-null&amp;eid=3Deau1wl-l87reiow-ln" target=3D"_blank" trackingmodule=
+=3D"footer" trackingsuffix=3D"manage_alert_mercado" style=3D"border-color: =
+currentColor; color: #0a66c2; cursor: pointer; display: inline-block; text-=
+decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> Gerenciar alertas=
+ de vaga </a> =C2=A0=C2=A0=C2=B7=C2=A0=C2=A0 <a href=3D"https://www.linkedi=
+n.com/comm/jobs/alerts?lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert=
+_digest_01-unsubscribe-0-footerGlimmer&amp;trkEmail=3Deml-email_job_alert_d=
+igest_01-unsubscribe-0-footerGlimmer-null-eau1wl~l87reiow~ln-null-null&amp;=
+eid=3Deau1wl-l87reiow-ln&amp;loid=3DAQHeHhLfmvGTnQAAAYNSLI2E6M2VezXzpfMhXMB=
+byygem2k5nPVofykJdkgQqVsbYWwoS25u9Oh4I9BoVsBBzqWiXqeHy87N402tDx1Cvk-_4RAlnZ=
+HivI__YiY" target=3D"_blank" style=3D"border-color: currentColor; color: #0=
+a66c2; cursor: pointer; display: inline-block; text-decoration: none; -webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%;">Cancelar inscri=C3=A7=C3=A3o</a> =C2=A0=
+=C2=A0=C2=B7=C2=A0=C2=A0 <a href=3D"https://www.linkedin.com/help/linkedin/=
+answer/67?lang=3Dpt&amp;lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToke=
+n=3DAQEq1MBbB2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_aler=
+t_digest_01-help-0-footerglimmer&amp;trkEmail=3Deml-email_job_alert_digest_=
+01-help-0-footerglimmer-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-=
+l87reiow-ln" target=3D"_blank" style=3D"border-color: currentColor; color: =
+#0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%;">Ajuda</a> </td> </tr> <tr style=3D"bord=
+er-color: currentColor;"> <td class=3D"pb-1" style=3D"border-color: current=
+Color; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-tex=
+t-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; padding-bottom: 8px;"> <a href=3D"https://www.linkedin.com/=
+comm/feed/?lipi=3D%2Be7NRbo0Qzu%2BZIwUmUN05g%3D%3D&amp;midToken=3DAQEq1MBbB=
+2bM8g&amp;midSig=3D1SsFIUn_zc3Gs1&amp;trk=3Deml-email_job_alert_digest_01-f=
+ooter-0-logoGlimmer&amp;trkEmail=3Deml-email_job_alert_digest_01-footer-0-l=
+ogoGlimmer-null-eau1wl~l87reiow~ln-null-null&amp;eid=3Deau1wl-l87reiow-ln" =
+target=3D"_blank" style=3D"border-color: currentColor; color: #0a66c2; curs=
+or: pointer; display: inline-block; text-decoration: none; -webkit-text-siz=
+e-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; te=
+xt-size-adjust: 100%;"> <img src=3D"https://static-exp1.licdn.com/sc/h/9ehe=
+6n39fa07dc5edzv0rla4e" alt=3D"LinkedIn" class=3D"block h-[14px] w-[56px] im=
+age-rendering-crisp" style=3D"border-color: currentColor; outline: none; te=
+xt-decoration: none; image-rendering: -moz-crisp-edges; image-rendering: -o=
+-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: =
+crisp-edges; -ms-interpolation-mode: nearest-neighbor; display: block; heig=
+ht: 14px; width: 56px;" width=3D"56" height=3D"14"> </a> </td> </tr> <tr st=
+yle=3D"border-color: currentColor;"> <td data-test-copyright-text style=3D"=
+border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-a=
+djust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt;"> =C2=A9 2022 LinkedIn Ireland Unlimit=
+ed Company, Wilton Plaza, Wilton Place, Dublin 2 - Irlanda. LinkedIn =C3=A9=
+ um nome comercial registrado da LinkedIn Ireland Unlimited Company. <span =
+data-test-trademarks-text style=3D"border-color: currentColor;"> LinkedIn e=
+ o logo do LinkedIn s=C3=A3o marcas registradas do LinkedIn. </span> </td> =
+</tr> </tbody> </table> </td> </tr> </tbody> </table> <img alt role=3D"pres=
+entation" src=3D"https://www.linkedin.com/emimp/ip_WldGMU1YZHNMV3c0TjNKbGFX=
+OTNMV3h1OlpXMWhhV3hmYW05aVgyRnNaWEowWDJScFoyVnpkRjh3TVE9PTo=3D.gif" style=
+=3D"border-color: currentColor; outline: none; text-decoration: none; -ms-i=
+nterpolation-mode: bicubic; width: 1px; height: 1px;" width=3D"1" height=3D=
+"1"> </body> </html>
+------=_Part_2481575_586729245.1663530995519--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1629</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1663530997</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>10822</string>
+</dict>
+</plist>

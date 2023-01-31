@@ -1,0 +1,606 @@
+32938     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:a487:b0:2b8:7b8d:8f04 with SMTP id t7csp2804693pxv;
+ Tue, 12 Jul 2022 03:49:15 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1sqL2Qo5ajutM+89RuZM6K/sCVyYAprUL2YReh17fCH/gNeac5vmJjRHoXMrf2SXarUiCSH
+X-Received: by 2002:a05:6402:201:b0:431:665f:11f1 with SMTP id
+ t1-20020a056402020100b00431665f11f1mr30544664edv.378.1657622954726; Tue, 12
+ Jul 2022 03:49:14 -0700 (PDT)
+Return-Path: <catarina.duarte@santander.pt>
+Received: from esa19.santandergroup.c3s2.iphmx.com
+ (esa19.santandergroup.c3s2.iphmx.com. [216.71.157.86]) by mx.google.com with
+ ESMTPS id
+ a21-20020a1709063e9500b00726cf00b7c0si11803351ejj.469.2022.07.12.03.49.14 for
+ <faeldroom46@gmail.com> (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256
+ bits=128/128); Tue, 12 Jul 2022 03:49:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of catarina.duarte@santander.pt
+ designates 216.71.157.86 as permitted sender) client-ip=216.71.157.86;
+Authentication-Results: mx.google.com; dkim=pass header.i=@santander.pt
+ header.s=protectpt1 header.b=ewBOaClC; dkim=neutral (body hash did not
+ verify) header.i=@santandernet.onmicrosoft.com
+ header.s=selector2-santandernet-onmicrosoft-com header.b=ZyEnYgMr;
+ dkim=neutral (body hash did not verify)
+ header.i=@santandernet.onmicrosoft.com
+ header.s=selector2-santandernet-onmicrosoft-com header.b=ZyEnYgMr; arc=fail
+ (body hash mismatch); spf=pass (google.com: domain of
+ catarina.duarte@santander.pt designates 216.71.157.86 as permitted sender)
+ smtp.mailfrom=catarina.duarte@santander.pt; dmarc=pass (p=REJECT sp=REJECT
+ dis=NONE) header.from=santander.pt
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=santander.pt;
+ i=@santander.pt; q=dns/txt; s=protectpt1; t=1657622954; x=1689158954;
+ h=from:to:subject:date:message-id:mime-version;
+ bh=4YJJyadFrx4cysUs/QlPdAyBDL3FUwm3Zox6CSdrZ4c=;
+ b=ewBOaClCDvC40Fpi99Dt9bgV1Yc8FOCJdY9YnbaMt6f/5DUYiVki2JV/
+ 7qla5Rn7MFqlQ1FIy46SaKgp3MLsj1mTUzXU/R2PVlB2gAuHGRuAQiMR/
+ hIbeCaUAJpk6C2WHVMojOEEVxHWR3SI/7bi1c0NzkVMVauKlezcXdvRa7
+ E2isCWXuaaxTve/CZTuGLgRl+r6C5Kkch6qn4rcAwPY8N+jD8gnqGvcoN
+ xLkC/+ZxarDq+qLVY38KXnlXyTEVFk3qlKOFBq+yqkXsFcslqOCzS4834
+ HY+BxqM0I0oNE+UmdSD/JdSf1XSAm21UAVhVI0Ad/kxbysmOmF6rBpF1M A==;
+Received: from unknown (HELO ntxvvbafempbop03.scc.corp) ([193.127.250.34]) by
+ ob1.santandergroup.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256;
+ 12 Jul 2022 12:49:13 +0200
+Received: from mail01.cloud.corp (vmescl100xchp10.cloud.corp [180.205.32.110])
+ by ntxvvbafempbop03.scc.corp with smtp (TLS:
+ TLSv1/SSLv3,128bits,ECDHE-RSA-AES128-SHA) id
+ 195e_053b_58ad710d_14b1_4b0f_ad22_28c093cd9ac3; Tue, 12 Jul 2022 12:49:11
+ +0200
+Received: from VMNXBEDGEP04.gsnetcloud.com (180.205.27.53) by
+ VMESCL100XCHP10.cloud.corp (180.205.32.110) with Microsoft SMTP Server (TLS)
+ id 14.3.498.0; Tue, 12 Jul 2022 12:48:32 +0200
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (180.205.25.1) by
+ sts.gsnetcloud.com (180.205.25.104) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.28; Tue, 12 Jul 2022 12:48:34 +0200
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
+ b=lm6Y08LAikKuqTKTvFr5pLhqQHfaiK06aAKN9oTkHRJ2rp4BgQ7JK/ZqL3Nriet4Obb7YS8BJdHzJRl+9YkDWgFtRlUZ/lvzoi/iKo8uNHDYz//KppUhPxX7jWXID5+uJJ3dzJwoBm542CJ+stiXpQHNTgMP0va1zi3Y9Tp4EZAUDQDSuz0EIZGVFXJ+XkhjEekOb358rz4Lmk7vMy3bNwF4vqiAaDJQRgzF78vSd7xmq9bTWbVPU6z0IyiSaMk/OLwvrJf7dJE2nlu4yWUFf9NJN1P1X6cAp2mXC8RzOpG8jMepKm9eTQ72d6yeSrygHSJdb8xGvX/UdDK/94Jzrw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4XtVtoLFJQoUMvnHk9bggTjONcZPvUry2fyFYEByIUw=;
+ b=ZT2Jtsl2dGg6gVwEzZ42mQYoZecnqoezwbD+oiw03IPjrPkdIQ1NjZ4+2M6c6Ze1U6xftZ2P3XBeBPkUHq6aKszZxEG+ZhFPvVHUL/Hk/sHhX31v/1RM4WtHSxAFMCkL+FCpW0nC/DoKKlqHCxfiKcWygDEdNm2CO4QMq+mO3YbtOjzjPKjyF7nBESJ4oT67MqRi0Lw3Zzhpnbbz+TBg5Qgs4wktWTJkahiiRuQRewLOqwt2Ef9ndWJeVJtt3QTzpYCOOsdRDO1KICLfyu8EzFqfCGAyVTqznXdF1gxNbdgOfAmo9/Ls4CxkhJO7EhXYljodUqXF1Ebg11DfrhloTw==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=fail (sender ip is
+ 54.164.132.26) smtp.rcpttodomain=gmail.com smtp.mailfrom=santander.pt;
+ dmarc=fail (p=reject sp=reject pct=100) action=oreject
+ header.from=santander.pt; dkim=pass (signature was verified)
+ header.d=santandernet.onmicrosoft.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=santander.pt] dkim=[1,1,header.d=santander.pt]
+ dmarc=[1,1,header.from=santander.pt])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=santandernet.onmicrosoft.com; s=selector2-santandernet-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4XtVtoLFJQoUMvnHk9bggTjONcZPvUry2fyFYEByIUw=;
+ b=ZyEnYgMrzO8B158TQ957LLaQogvN3nDk4uj7ONAkNP2c3HHgNjjH3ce0oOkKcQyz6b9HCJbIfJ8fy7tiPrp2s64nrZ0PeAokfKryDh5di/P6t3VEuRhqeVxGu1VGeaZtz5SmOF9ZKC5n7wjP5ZHh8Fk8i5+q05e/MvafFCODIVs=
+Received: from AS8PR07CA0011.eurprd07.prod.outlook.com (2603:10a6:20b:451::29)
+ by AM0PR04MB7107.eurprd04.prod.outlook.com (2603:10a6:208:1a0::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26; Tue, 12 Jul
+ 2022 10:48:30 +0000
+Received: from AM5EUR03FT054.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:20b:451:cafe::37) by AS8PR07CA0011.outlook.office365.com
+ (2603:10a6:20b:451::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.11 via Frontend
+ Transport; Tue, 12 Jul 2022 10:48:30 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 54.164.132.26)
+ smtp.mailfrom=santander.pt; dkim=pass (signature was verified)
+ header.d=santandernet.onmicrosoft.com;dmarc=fail action=oreject
+ header.from=santander.pt;
+Received: from haraka02-inline-east-api-pop.app.spop.sjc.shn (54.164.132.26)
+ by AM5EUR03FT054.mail.protection.outlook.com (10.152.16.212) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5417.15 via Frontend Transport; Tue, 12 Jul 2022 10:48:29 +0000
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com
+ (mail-ve1eur01lp2054.outbound.protection.outlook.com [104.47.1.54])	by
+ haraka02-inline-east-api-pop.app.spop.sjc.shn (Haraka/2.8.24) with ESMTPS id
+ 96B03F09-8D8D-4EB2-B3A7-247691686611.1	envelope-from
+ <catarina.duarte@santander.pt>	(version=TLSv1/SSLv3
+ cipher=ECDHE-RSA-AES256-GCM-SHA384 verify=FAIL);	Tue, 12 Jul 2022 10:48:25
+ +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=H22LgtdmkonZXYycYZky8ofUPFPFht9Xoz2sEj+jiQWcQH6zbvNL4+wzKtJih6/xfhncokxdm95+27ZjzB6gTqv4NG0aoAn9e4OTx573gRJMyUtPPiZ7+TUy4V/U5o7NtKPlzL18tH+5E8KjmE/N0KWGvkvYLLZdwPQ1jIKLid0CrdL/gYLAcfBXDLqYdNq5Mta7LvmTWuCfAAA59rx4/hUas3ijUII+TPgUBabXBUhewf9etf77VCpBXB3W6HsSi9HgpQ/dQpi9RnbvzWj9Hu70Uq85L4ogO+DZxwvoQn5+FMdv4HWbc19NoruHhcIRtzyr2wBN3xRfh7ISK39/pQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4XtVtoLFJQoUMvnHk9bggTjONcZPvUry2fyFYEByIUw=;
+ b=c6Fm7di6tvD3Ckn5sv4WgZe5L93uzituQYkpcIrIHsfmH1KVyBZM5ClCINrCL14TL9I67u3Jb0htST/GrTjBu718ZPvgHnDa2e/WDRIun17YhMwUfMYX2WoXem6bkivK8B7uWuAoUQs6eyXpwyIXd3Se/g01qdAeMzS940VXylu6tuBi/F8Ff0pT8qMhDAsZG5D6Msfq4n+LOuX4KVr1thhY60qIZCJ6co6GM+W6coIIcsILAiYT+WJ5yTT9ivEkZ21igYVEQY5g7G62x5n9yl4fUxCFSgfQfw+iR2MKO7JOeJq3t45nc8Db16yYtpZL0XKxZBzSFP3uvvns3vEnQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=santander.pt; dmarc=pass action=none header.from=santander.pt;
+ dkim=pass header.d=santander.pt; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=santandernet.onmicrosoft.com; s=selector2-santandernet-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4XtVtoLFJQoUMvnHk9bggTjONcZPvUry2fyFYEByIUw=;
+ b=ZyEnYgMrzO8B158TQ957LLaQogvN3nDk4uj7ONAkNP2c3HHgNjjH3ce0oOkKcQyz6b9HCJbIfJ8fy7tiPrp2s64nrZ0PeAokfKryDh5di/P6t3VEuRhqeVxGu1VGeaZtz5SmOF9ZKC5n7wjP5ZHh8Fk8i5+q05e/MvafFCODIVs=
+Received: from AM8PR04MB7235.eurprd04.prod.outlook.com (2603:10a6:20b:1d1::8)
+ by DB6PR0401MB2262.eurprd04.prod.outlook.com (2603:10a6:4:48::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26; Tue, 12 Jul
+ 2022 10:48:23 +0000
+Received: from AM8PR04MB7235.eurprd04.prod.outlook.com
+ ([fe80::28f4:87b:da48:231b]) by AM8PR04MB7235.eurprd04.prod.outlook.com
+ ([fe80::28f4:87b:da48:231b%3]) with mapi id 15.20.5417.026; Tue, 12 Jul 2022
+ 10:48:23 +0000
+From: Catarina Alves Marracho Carvalho Duarte <catarina.duarte@santander.pt>
+To: "faeldroom46@gmail.com" <faeldroom46@gmail.com>
+Subject: Conta Santander Mundo 123
+Thread-Topic: Conta Santander Mundo 123
+Thread-Index: AdiV3N3W42DFVpz6RGyrImwpJVcxAw==
+Date: Tue, 12 Jul 2022 10:48:23 +0000
+Message-ID: <AM8PR04MB72355B1127ADB51D1DAE26539A869@AM8PR04MB7235.eurprd04.prod.outlook.com>
+Accept-Language: pt-PT, en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_41b88ec2-a72b-4523-9e84-0458a1764731_Enabled=true;
+ MSIP_Label_41b88ec2-a72b-4523-9e84-0458a1764731_SetDate=2022-07-12T10:48:20Z;
+ MSIP_Label_41b88ec2-a72b-4523-9e84-0458a1764731_Method=Privileged;
+ MSIP_Label_41b88ec2-a72b-4523-9e84-0458a1764731_Name=Public O365;
+ MSIP_Label_41b88ec2-a72b-4523-9e84-0458a1764731_SiteId=35595a02-4d6d-44ac-99e1-f9ab4cd872db;
+ MSIP_Label_41b88ec2-a72b-4523-9e84-0458a1764731_ActionId=f7a4f91a-9be6-4015-a730-261a39ae1977;
+ MSIP_Label_41b88ec2-a72b-4523-9e84-0458a1764731_ContentBits=0
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=santander.pt;
+X-MS-Office365-Filtering-Correlation-Id: 26598083-c19b-47c8-43e7-08da63f40f1b
+x-ms-traffictypediagnostic: DB6PR0401MB2262:EE_|AM5EUR03FT054:EE_|AM0PR04MB7107:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: AwfbBob2S28X48pTmjQucsJ1Z6eY266J9ftYz2sBnmR0Aa/4aesVoZCkBJREj9OMnSqM+VwbltojDiGzESCJIH7sNFLY6OW86ck67a7Pj/4q6EXH2LlUnUnBUg5LLzEny1/0oj265mxpQLlEIPNhcqrvHvLHNDBaX/eDGyTsYg5wnzWn5noedU8npVpHjJKpsrRAPZC8/xAMVKz5mLB7Q2+i1WhlZKg4ICvDLyjTaCwRIbvZeAfje4U3i4ruwUzjKGlBwRMLRJs/Dbt19/4NmpFL48aylBnYQ12iCoXhio9f2Nuge9tfl3uoEh4HNDkYkWV2cGAnTQ8Av/ElfS/GO1PLA5HUKvy1lw9NL/xSTdgfemIc6Yi4aGOeveaKIV856Vfn1EvNckfNgrGXGldMPYBxfndrpCaRbknfg0jZ1Xh7w11V80aGy/N8qDsBXB2lfZDp2xAQTNE/0cqG0VKO8kkojfAKY6KGAkUYLZ9mcN8Z46uCBmRG+xLZ7t7x2bSZiZuXi+C6guQPMri3sgDJrhTVODIQxFwfvDX54jnwkLenGrbyI6/jMRvfgGLLOMJ+pUk36jcusbnC+cGRjPeYrj993ll5BmSBm4V+kQ23SSOJSKyY3eluZS6SQLbHj/FNCbmL4RFXudFUpZTdq6XPCABkggDwMblM4R0o91dC+8p5EgaRwr7mjKswe42gL3Re5Ev7zQs2VLXecy/F1Ua6lPKeoQIX9uMX9xaOnhzQJZSWT2Kzkdw3RiW5UjO13MDB
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:pt;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7235.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(366004)(346002)(376002)(39860400002)(136003)(66556008)(5660300002)(99936003)(7116003)(66446008)(66476007)(76116006)(38100700002)(41300700001)(66946007)(52536014)(8936002)(8676002)(86362001)(6916009)(7696005)(316002)(64756008)(6506007)(26005)(9686003)(82960400001)(71200400001)(10290500003)(10300500001)(558084003)(33656002)(122000001)(2906002)(478600001)(38070700005)(55016003)(186003);DIR:OUT;SFP:1102;
+Content-Type: multipart/mixed;
+ boundary="_007_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_"
+MIME-Version: 1.0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0401MB2262
+Original-Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=santander.pt;
+X-SHN-DLP-SCAN: success
+Return-Path: catarina.duarte@santander.pt
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM5EUR03FT054.eop-EUR03.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 397cd06a-8e5e-4ac7-027e-08da63f40b26
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: v1/O1xItD3wk3h+9uqwRCXM+GZq58C0rjfyh+b3taVYpKXQVuWt/nlUomejlKKAX1oiMu2LFa0tZ1SWL3VwQ+hABhKcXX1We5PvokH7WNlHg5BCMuRjcHsETRPMerXUOXvcwoADmAmPYmeYm3SWFTpWItpu8EIAq1Npp+4V9Gw1iHV3HOCtyPGXKZrtki35kxq7hq+ms2kEJFbe9Zr68GfS2lrFtInfObDcxTCCYqt7RywGJlv8MDezjravg0gM6sLbZlAsx8Vlv92CmKyCAz1GftnOsjM03+6jmx5+DCkm/cCjvCJEHopjFwkeTG52dbAd+qLX/rAnxJNefdyAAzasQ6R3Q/vGGX9YPWpFSbHLE/Pevg3egm6YlNAsWZh5l6vuGMCyUtX7g4DkVk6uDN9a5fMtbKFMfbJenoB0kClgza86rYBjnSqPPaJ+dYOttnidRrIgGQqfYkNV3PaexLo2826Y4e0a932yKrK2FX+13njEn5e+9GmT4JX9AMrIiTJ09Rc6tpEX4d7+Onc3jF1oekBSrlTH+AO3aQbqpqLIlz2PqvIzxGUKnguNTgO7EtcXi6X/rju95knjhvA+tr0R7x0RafUdO9A+YGQ+MkhSBLtZfmuX5G9KsENkBMyi/ygCn9I8PmMJduO38Z8gYDWbCNOS9X2Bz985ABIHsOymyDel723oHBO7in/YvcaJQVdzJRKabIfLsGgDzYND6ruESU2nNmez0uLGMDbZ5Hus7SWRe14g/mmb0VfFjvP3m
+X-Forefront-Antispam-Report: CIP:54.164.132.26;CTRY:US;LANG:pt;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:haraka02-inline-east-api-pop.app.spop.sjc.shn;PTR:send2.mail.api-pop.i-shn.net;CAT:NONE;SFS:(13230016)(346002)(396003)(136003)(376002)(39860400002)(46966006)(40470700004)(36840700001)(33656002)(52536014)(10290500003)(8936002)(8676002)(7116003)(186003)(55016003)(82740400003)(356005)(5660300002)(82960400001)(478600001)(36860700001)(99936003)(40480700001)(336012)(81166007)(26005)(235185007)(10300500001)(28085005)(47076005)(40460700003)(6916009)(21480400003)(2906002)(7696005)(86362001)(6506007)(316002)(41300700001)(70206006)(82310400005)(70586007)(9686003);DIR:OUT;SFP:1102;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2022 10:48:29.9537 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26598083-c19b-47c8-43e7-08da63f40f1b
+X-MS-Exchange-CrossTenant-Id: 35595a02-4d6d-44ac-99e1-f9ab4cd872db
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=35595a02-4d6d-44ac-99e1-f9ab4cd872db;Ip=[54.164.132.26];Helo=[haraka02-inline-east-api-pop.app.spop.sjc.shn]
+X-MS-Exchange-CrossTenant-AuthSource: AM5EUR03FT054.eop-EUR03.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7107
+X-OriginatorOrg: santander.pt
+X-Header-Trust: 15f060513b2d0438be4c008a5eb2624f
+X-RCIS-Action: ALLOW
+
+
+--_007_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_
+Content-Type: multipart/RELATED;
+	boundary=_006_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_;
+	type="multipart/alternative"
+
+
+--_006_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_
+Content-Type: multipart/ALTERNATIVE;
+	boundary=_000_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_
+
+
+--_000_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Type: TEXT/PLAIN;
+	charset=iso-8859-1
+
+Bom Dia Rafael Souza,
+
+Conforme combinado, segue em anexo condi=E7=F5es da Conta Santander Mundo 1=
+23.
+
+Com os melhores cumprimentos,
+
+[cid:image010.png@01D585B6.D2F4FA70]
+
+[linea]
+
+Catarina Duarte
+Balc=E3o 0269 Coimbra Cruz de Celas
+Gestora Select
+Tlf: 239487070 | Fax: 239487071 | Tlm: 938882848
+Av. Dr. Armando Gon=E7alves, 5, 3000-059 Coimbra
+
+
+
+
+________________________________
+
+AVISO LEGAL
+
+Este e-mail =E9 meramente informativo e n=E3o est=E1 preparado para aceitar=
+ respostas. Em nenhuma situa=E7=E3o lhe ser=E1 solicitada a valida=E7=E3o d=
+e c=F3digos de acesso, autoriza=E7=E3o de opera=E7=F5es ou envio de dados p=
+essoais. Este e-mail (incluindo eventuais ficheiros anexos) =E9 confidencia=
+l e destinado exclusivamente ao seu destinat=E1rio.
+Se n=E3o for o destinat=E1rio pretendido, por favor contacte imediatamente =
+o Banco Santander Totta e apague a mensagem do seu sistema inform=E1tico.
+As mensagens transmitidas por este meio podem ser intercetadas, corrompidas=
+, perdidas, destru=EDdas ou chegarem ao seu destinat=E1rio com atraso, n=E3=
+o assumindo o Banco Santander Totta responsabilidade por estas circunst=E2n=
+cias.
+
+
+
+DISCLAIMER
+
+This email is for informational purposes only and is not prepared to accept=
+ responses. Under no circumstances will you be asked to validate access cod=
+es, authorization of operations or send personal data. This email (includin=
+g any attached files) is confidential and intended exclusively for its reci=
+pient.
+If you are not the intended recipient, please contact Banco Santander Totta=
+ immediately and delete the message from your computer system.
+Messages sent by this means may be intercepted, corrupted, lost, destroyed =
+or reach their recipient late, and Banco Santander Totta does not assume re=
+sponsibility for these circumstances.
+
+________________________________
+Antes de imprimir este mensaje o sus documentos anexos, aseg=FArese de que =
+es necesario.
+Proteger el medio ambiente est=E1 en nuestras manos.
+
+Before printing this e-mail or attachments, be sure it is necessary.
+It is in our hands to protect the environment.
+
+******************AVISO LEGAL**********************
+Este mensaje es privado y confidencial y solamente para la persona a la que=
+ va dirigido. Si usted ha recibido este mensaje por error, no debe revelar,=
+ copiar, distribuir o usarlo en ning=FAn sentido. Le rogamos lo comunique a=
+l remitente y borre dicho mensaje y cualquier documento adjunto que pudiera=
+ contener. No hay renuncia a la confidencialidad ni a ning=FAn privilegio p=
+or causa de transmisi=F3n err=F3nea o mal funcionamiento.
+Cualquier opini=F3n expresada en este mensaje pertenece =FAnicamente al aut=
+or remitente, y no representa necesariamente la opini=F3n de Grupo Santande=
+r, a no ser que expresamente se diga y el remitente est=E9 autorizado para =
+hacerlo. Los correos electr=F3nicos no son seguros, no garantizan la confid=
+encialidad ni la correcta recepci=F3n de los mismos, dado que pueden ser in=
+terceptados, manipulados, destruidos, llegar con demora, incompletos, o con=
+ virus. Grupo Santander no se hace responsable de las alteraciones que pudi=
+eran hacerse al mensaje una vez enviado.
+Este mensaje s=F3lo tiene una finalidad de informaci=F3n, y no debe interpr=
+etarse como una oferta de venta o de compra de valores ni de instrumentos f=
+inancieros relacionados. En el caso de que el destinatario de este mensaje =
+no consintiera la utilizaci=F3n del correo electr=F3nico v=EDa Internet, ro=
+gamos lo ponga en nuestro conocimiento.
+
+
+**********************DISCLAIMER*****************
+This message is private and confidential and it is intended exclusively for=
+ the addressee. If you receive this message by mistake, you should not diss=
+eminate, distribute or copy this e-mail. Please inform the sender and delet=
+e the message and attachments from your system. No confidentiality nor any =
+privilege regarding the information is waived or lost by any mistransmissio=
+n or malfunction.
+Any views or opinions contained in this message are solely those of the aut=
+hor, and do not necessarily represent those of Grupo Santander, unless othe=
+rwise specifically stated and the sender is authorized to do so. E-mail tra=
+nsmission cannot be guaranteed to be secure, confidential, or error-free, a=
+s information could be intercepted, corrupted, lost, destroyed, arrive late=
+, incomplete, or contain viruses. Grupo Santander does not accept responsib=
+ility for any changes in the contents of this message after it has been sen=
+t.
+This message is provided for informational purposes and should not be const=
+rued as a solicitation or offer to buy or sell any securities or related fi=
+nancial instruments. If the addressee of this message does not consent to t=
+he use of internet e-mail, please communicate it to us.
+
+
+
+--_000_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Type: TEXT/HTML;
+	charset=iso-8859-1
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Santander Text";
+	panose-1:2 11 5 4 2 2 1 2 1 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Bom Dia Rafael Souza,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"PT">Conforme combinado, segue em anexo=
+ condi=E7=F5es da Conta Santander Mundo 123.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"PT"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"PT">Com os melhores cumprimentos,<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"PT"><o:p>&nbsp;</o:p></span></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0">
+<tbody>
+<tr style=3D"height:29.65pt">
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 0cm;height:29.65pt">
+<p class=3D"MsoNormal" style=3D"line-height:105%"><span style=3D"font-size:=
+13.5pt;line-height:105%;font-family:&quot;Santander Text&quot;,sans-serif;c=
+olor:black"><img width=3D"199" height=3D"89" id=3D"Imagem_x0020_7" src=3D"c=
+id:image001.png@01D895E5.47B1E580" alt=3D"cid:image010.png@01D585B6.D2F4FA7=
+0"></span><span lang=3D"EN-GB" style=3D"font-size:13.5pt;line-height:105%;f=
+ont-family:&quot;Santander Text&quot;,sans-serif;color:black;mso-fareast-la=
+nguage:PT"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"padding:0cm 0cm 0cm 0cm;height:29.65pt">
+<p class=3D"MsoNormal" style=3D"line-height:105%"><span style=3D"font-size:=
+13.5pt;line-height:105%;font-family:&quot;Santander Text&quot;,sans-serif;c=
+olor:black"><img width=3D"30" height=3D"89" id=3D"Imagem_x0020_6" src=3D"ci=
+d:image002.png@01D895E5.47B1E580" alt=3D"linea"></span><span lang=3D"EN-GB"=
+ style=3D"font-size:13.5pt;line-height:105%;font-family:&quot;Santander Tex=
+t&quot;,sans-serif;color:black;mso-fareast-language:PT"><o:p></o:p></span><=
+/p>
+</td>
+<td width=3D"400" valign=3D"top" style=3D"width:300.0pt;padding:0cm 0cm 0cm=
+ 0cm;height:29.65pt">
+<p class=3D"MsoNormal" style=3D"line-height:13.5pt"><b><span lang=3D"PT" st=
+yle=3D"font-family:&quot;Santander Text&quot;,sans-serif;color:#505050;mso-=
+fareast-language:PT">Catarina Duarte</span></b><span lang=3D"PT" style=3D"f=
+ont-size:14.0pt;font-family:&quot;Santander Text&quot;,sans-serif;color:bla=
+ck;mso-fareast-language:PT"><br>
+</span><span lang=3D"PT" style=3D"font-size:10.0pt;font-family:&quot;Santan=
+der Text&quot;,sans-serif;color:#878787;mso-fareast-language:PT">Balc=E3o 0=
+269 Coimbra Cruz de Celas<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:13.5pt"><span lang=3D"PT" style=
+=3D"font-size:10.0pt;font-family:&quot;Santander Text&quot;,sans-serif;colo=
+r:#878787;mso-fareast-language:PT">Gestora Select<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:13.5pt"><span lang=3D"PT" style=
+=3D"font-size:10.0pt;font-family:&quot;Santander Text&quot;,sans-serif;colo=
+r:#878787;mso-fareast-language:PT">Tlf: 239487070 | Fax: 239487071 | Tlm: 9=
+38882848
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:13.5pt"><span lang=3D"PT" style=
+=3D"font-size:10.0pt;font-family:&quot;Santander Text&quot;,sans-serif;colo=
+r:#878787;mso-fareast-language:PT">Av. Dr. Armando Gon=E7alves, 5, 3000-059=
+ Coimbra<o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span lang=3D"PT"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"PT"><o:p>&nbsp;</o:p></span></p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Gray" size=3D"1"><br>
+AVISO LEGAL<br>
+<br>
+Este e-mail =E9 meramente informativo e n=E3o est=E1 preparado para aceitar=
+ respostas. Em nenhuma situa=E7=E3o lhe ser=E1 solicitada a valida=E7=E3o d=
+e c=F3digos de acesso, autoriza=E7=E3o de opera=E7=F5es ou envio de dados p=
+essoais. Este e-mail (incluindo eventuais ficheiros anexos)
+ =E9 confidencial e destinado exclusivamente ao seu destinat=E1rio. <br>
+Se n=E3o for o destinat=E1rio pretendido, por favor contacte imediatamente =
+o Banco Santander Totta e apague a mensagem do seu sistema inform=E1tico.
+<br>
+As mensagens transmitidas por este meio podem ser intercetadas, corrompidas=
+, perdidas, destru=EDdas ou chegarem ao seu destinat=E1rio com atraso, n=E3=
+o assumindo o Banco Santander Totta responsabilidade por estas circunst=E2n=
+cias.
+<br>
+<br>
+<br>
+<br>
+DISCLAIMER<br>
+<br>
+This email is for informational purposes only and is not prepared to accept=
+ responses. Under no circumstances will you be asked to validate access cod=
+es, authorization of operations or send personal data. This email (includin=
+g any attached files) is confidential
+ and intended exclusively for its recipient. <br>
+If you are not the intended recipient, please contact Banco Santander Totta=
+ immediately and delete the message from your computer system.
+<br>
+Messages sent by this means may be intercepted, corrupted, lost, destroyed =
+or reach their recipient late, and Banco Santander Totta does not assume re=
+sponsibility for these circumstances.
+<br>
+</font><br>
+<hr color=3D"green">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,&quot;sans-serif&quot;"><font color=3D"green">Antes de imprimir e=
+ste mensaje o sus documentos anexos, aseg=FArese de que es necesario.<br>
+Proteger el medio ambiente est=E1 en nuestras manos. <br>
+<br>
+Before printing this e-mail or attachments, be sure it is necessary.<br>
+It is in our hands to protect the environment. <br>
+<br>
+</p>
+</font>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,&quot;sans-serif&quot;">******************AVISO LEGAL************=
+**********<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"ES" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-ansi-language:es-ES">Este =
+mensaje es privado y confidencial y solamente para la persona a la que va d=
+irigido. Si usted ha recibido este mensaje por error, no debe
+ revelar, copiar, distribuir o usarlo en ning=FAn sentido. Le rogamos lo co=
+munique al remitente y borre dicho mensaje y cualquier documento adjunto qu=
+e pudiera contener. No hay renuncia a la confidencialidad ni a ning=FAn pri=
+vilegio por causa de transmisi=F3n err=F3nea
+ o mal funcionamiento.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"ES" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-ansi-language:es-ES">Cualq=
+uier opini=F3n expresada en este mensaje pertenece =FAnicamente al autor re=
+mitente, y no representa necesariamente la opini=F3n de Grupo Santander,
+ a no ser que expresamente se diga y el remitente est=E9 autorizado para ha=
+cerlo. Los correos electr=F3nicos no son seguros, no garantizan la confiden=
+cialidad ni la correcta recepci=F3n de los mismos, dado que pueden ser inte=
+rceptados, manipulados, destruidos, llegar
+ con demora, incompletos, o con virus. Grupo Santander no se hace responsab=
+le de las alteraciones que pudieran hacerse al mensaje una vez enviado.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"ES" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-ansi-language:es-ES">Este =
+mensaje s=F3lo tiene una finalidad de informaci=F3n, y no debe interpretars=
+e como una oferta de venta o de compra de valores ni de instrumentos
+ financieros relacionados. En el caso de que el destinatario de este mensaj=
+e no consintiera la utilizaci=F3n del correo electr=F3nico v=EDa Internet, =
+rogamos lo ponga en nuestro conocimiento.<o:p></o:p></span></p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+mso-ansi-language:EN-US">**********************DISCLAIMER*****************<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+mso-ansi-language:EN-US">This message is private and confidential and it is=
+ intended exclusively for the addressee. If you receive this message by mis=
+take, you
+ should not disseminate, distribute or copy this e-mail. Please inform the =
+sender and delete the message and attachments from your system. No confiden=
+tiality nor any privilege regarding the information is waived or lost by an=
+y
+<span class=3D"SpellE">mistransmission</span> or malfunction. <o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+mso-ansi-language:EN-US">Any views or opinions contained in this message ar=
+e solely those of the author, and do not necessarily represent those of Gru=
+po Santander,
+ unless otherwise specifically stated and the sender is authorized to do so=
+. E-mail transmission cannot be guaranteed to be secure, confidential, or e=
+rror-free, as information could be intercepted, corrupted, lost, destroyed,=
+ arrive late, incomplete, or contain
+ viruses. Grupo Santander does not accept responsibility for any changes in=
+ the contents of this message after it has been sent.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+mso-ansi-language:EN-US">This message is provided for informational purpose=
+s and should not be construed as a solicitation or offer to buy or sell any=
+ securities
+ or related financial instruments. If the addressee of this message does no=
+t consent to the use of internet e-mail, please communicate it to us.<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D;mso-ansi=
+-language:
+EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-ansi-language:EN-U=
+S"><o:p>&nbsp;</o:p></span></p>
+</div>
+</span>
+</body>
+</html>
+
+--_000_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_--
+
+--_006_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_
+Content-Transfer-Encoding: BASE64
+Content-Disposition: INLINE;
+	size=7688;
+	modification-date="Tue, 12 Jul 2022 10:48:23 GMT";
+	filename=image001.png;
+	creation-date="Tue, 12 Jul 2022 10:48:23 GMT"
+Content-Type: IMAGE/PNG;
+	name=image001.png
+X-Apple-Content-Length: 10387
+Content-Id: <image001.png@01D895E5.47B1E580>
+
+
+--_006_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_
+Content-Transfer-Encoding: BASE64
+Content-Disposition: INLINE;
+	size=178;
+	modification-date="Tue, 12 Jul 2022 10:48:23 GMT";
+	filename=image002.png;
+	creation-date="Tue, 12 Jul 2022 10:48:23 GMT"
+Content-Type: IMAGE/PNG;
+	name=image002.png
+X-Apple-Content-Length: 244
+Content-Id: <image002.png@01D895E5.47B1E580>
+
+
+--_006_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_--
+
+--_007_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_
+Content-Transfer-Encoding: BASE64
+Content-Disposition: ATTACHMENT;
+	size=531247;
+	modification-date="Tue, 12 Jul 2022 10:48:23 GMT";
+	filename="Conta Santander Mundo 123.pdf";
+	creation-date="Tue, 12 Jul 2022 10:45:53 GMT"
+Content-Type: APPLICATION/PDF;
+	name="Conta Santander Mundo 123.pdf"
+X-Apple-Content-Length: 717653
+
+
+--_007_AM8PR04MB72355B1127ADB51D1DAE26539A869AM8PR04MB7235eurp_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1995</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1657622954</integer>
+	<key>flags</key>
+	<integer>25770003584</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+		<integer>6</integer>
+	</array>
+	<key>remote-id</key>
+	<string>10125</string>
+</dict>
+</plist>

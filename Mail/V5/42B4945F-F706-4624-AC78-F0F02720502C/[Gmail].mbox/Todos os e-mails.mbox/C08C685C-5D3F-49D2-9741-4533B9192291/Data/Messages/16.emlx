@@ -1,0 +1,3060 @@
+165953    
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:e110:b0:3e4:c96d:8327 with SMTP id a16csp3002331pxw;
+        Tue, 24 Jan 2023 08:21:35 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXvvPTmQw7bcsxL5vIQM52DR1uZG0+wLivGKh/H9Laeij5v//04YvJ+wiP/FUuW2qUjrImZ4
+X-Received: by 2002:a05:6870:6787:b0:15f:3bb9:3975 with SMTP id gc7-20020a056870678700b0015f3bb93975mr14763369oab.59.1674577295402;
+        Tue, 24 Jan 2023 08:21:35 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1674577295; cv=none;
+        d=google.com; s=arc-20160816;
+        b=078VL4uy06+wb/xE3UqJa2cBnaaxz7wtHTcAHP4rQwfMTdIA8GqYIrjh7HWnLPMOxx
+         hNFdQPA2iWOYMvEQhib0bzUdbjiN3KT+bHdiQV6B2TZ3jzq4prrgWdB/ocPdxjGW0zuE
+         qzmvW7DybffsbaA/+/sODw72RGbnhQrwJoPCMHTYAwaaieewZRiSAlJspePdOQlfippu
+         U8Oe4AlcN1BRxQ/QzArR5Hqec2m6DmN/qYT1YbKKf42BR5apk3aiIbj2jDvsLbkIyOsZ
+         5Mez1jJEFVBjuwDN86SinBAZGCgC7oOfJt6a6a0ViDoMsIUj+PlRKytOIlLBnLFCMAaW
+         sc3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=D3u7RLS6sFrW6ep33ifOdzP4xciGOvx/N9+w8lTFTus=;
+        b=I29i3pOC0agIZxuXLjiOZKNpgVET1oMez1NsQ6lpENTrgm30K47C1UYp7zjXVxt+lt
+         /T4r+b6B1qpSz5q3FkJxg01EDgLCG9IrxhVKWaGt5lmzpakvByJqPG44irr6n8aKWTlU
+         oeyPosfXGuB3S7vZOiGYt9Y7pW5kLooxofOHPLEa61jjvtepIqqa/0Hwnq82mjA3VYSa
+         fq+ZyL9Po+3QaqZOzlNCBeIBrl/NKSbRWxCAgVZDa/xrJ8KPS5xt5ljwYy5mh7fn3r9N
+         DmtjKehIDTZD55JbqtY5UukAfh+ciW0B+87vHX7bBEUOhWliXZY6RpwCIHvAXhlzy5Xe
+         Lylg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=PkHrh4HQ;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b="Xks/F4xj";
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaufp7wmjgo88qckx@bounce.linkedin.com designates 2620:109:c003:104::197 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaufp7wmjgo88qckx@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaufp7wmjgo88qckx@bounce.linkedin.com>
+Received: from maile-ce.linkedin.com (maile-ce.linkedin.com. [2620:109:c003:104::197])
+        by mx.google.com with ESMTPS id bd5-20020a056870d78500b00144b90d886asi1957536oab.96.2023.01.24.08.21.35
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 24 Jan 2023 08:21:35 -0800 (PST)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaufp7wmjgo88qckx@bounce.linkedin.com designates 2620:109:c003:104::197 as permitted sender) client-ip=2620:109:c003:104::197;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=PkHrh4HQ;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b="Xks/F4xj";
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaufp7wmjgo88qckx@bounce.linkedin.com designates 2620:109:c003:104::197 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaufp7wmjgo88qckx@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1674577294;
+	bh=D3u7RLS6sFrW6ep33ifOdzP4xciGOvx/N9+w8lTFTus=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=PkHrh4HQ58blMKI4A4/4iBRk4nLbtba/HHL+giSg8TEwcbYBh0jt/Dls16qTU/ib6
+	 3AEhEWRXu1OXoLJBN7A/NN2ofNpWOpUngvcsr2ZKP4NzcCqqDyaG5mI///oEm2mSB9
+	 X3zx3rfejwoxBgFFIbFrkKi37VJtv+dnUZUx+C6eAMXULohDVBrjL3MFErWbXJc5FL
+	 ukA1H7GUbzlTxRXOpLGCxvwa/uHvvw31ACrNpWOjHjYGJUnnEDHfonJvnnENdYzdTB
+	 ZvlTTtxOPQSTBekqrp2q2wNsKJaNGcgtnZ00BgQTOIuVE2NFCZZtcZ0o+P82z2YS06
+	 KyE+pFHhPok8Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maile.linkedin.com;
+	s=proddkim1024; t=1674577294;
+	bh=D3u7RLS6sFrW6ep33ifOdzP4xciGOvx/N9+w8lTFTus=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=Xks/F4xjYY2+UMk7CLPt+uuK52D78Vwlqx7CctspO9uCfykxYS09umEZysZoycwvp
+	 uCRq8qg7+t5AutP5+ly20sohjvnOYxNAExxcrUMg/lALc+qWXZxiRBGE43qqjr2nIr
+	 ShPnCu96tg2wT+mv/xfAtzId1lHfupH38Mj5biak=
+From: Gary Vaynerchuk via LinkedIn <newsletters-noreply@linkedin.com>
+Message-ID: <1472033602.1331845.1674577293848@lva1-app59069.prod.linkedin.com>
+Subject: What ChatGPT means for 2023
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1331843_322118508.1674577293845"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Tue, 24 Jan 2023 16:21:33 +0000 (UTC)
+X-LinkedIn-Class: EMAIL-DEFAULT
+X-LinkedIn-Template: email_series_follow_newsletter_01
+X-LinkedIn-fbl: m2-aszxj0i737xl712l2b5ef22uke7bp0iaj5wlo12273v5goqslv8ue7yv3yj11z2y19m03bhg4s5mgq8mmo8o1wh3vhiffjq4kwkodp
+X-LinkedIn-Id: eau1wl-ldag30hc-j1
+List-Unsubscribe: <https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=urn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&midToken=AQEq1MBbB2bM8g&midSig=0k7KQ4CezRTqA1&trk=eml-email_series_follow_newsletter_01-unsub-0-unsub&trkEmail=eml-email_series_follow_newsletter_01-unsub-0-unsub-null-eau1wl~ldag30hc~j1-null-null&eid=eau1wl-ldag30hc-j1&loid=AQHAfBJsqH7eJgAAAYXkla4oeaEdW2pF4bac6ZQPRQe2gzaz78iriFnRkXhcY-uGI5AXX_OMCgPJtCQGOPswTECFhcgOr_FOUs3aHkABjM3vFwuNawR6bw>
+Feedback-ID: email_series_follow_newsletter_01:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_1331843_322118508.1674577293845
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+LinkedIn 360 l By GaryVee
+
+Por Gary Vaynerchuk
+
+<p style=3D"margin: 0; font-weight: 400;">Hello and happy new year, LinkedI=
+n family.</p><p style=3D"margin: 0; font-weight: 400;">In today=E2=80=99s J=
+anuary edition of LinkedIn 360, we=E2=80=99ll dive into why I think ChatGPT=
+ and AI tech in general present an exciting new landscape, and why we shoul=
+d be excited, not scared about where this advancement is taking us. I=E2=80=
+=99ll also share some thoughts on effective leadership and more.</p><p styl=
+e=3D"margin: 0; font-weight: 400;">I hope everyone reading this is having a=
+ strong start to 2023. Enjoy and thanks for reading!</p><figure><img alt=3D=
+"No alt text provided for this image" data-media-urn data-li-src=3D"https:/=
+/media.licdn.com/dms/image/D5612AQHjcDagqfP0fg/article-inline_image-shrink_=
+1500_2232/0/1674237809693?e=3D1680134400&amp;v=3Dbeta&amp;t=3DpMAgLiHc3US3a=
+V7kD0x5QPC88jXfKlXPYl7Re7isTAU" src=3D"https://media.licdn.com/dms/image/D5=
+612AQHjcDagqfP0fg/article-inline_image-shrink_1500_2232/0/1674237809693?e=
+=3D1680134400&amp;v=3Dbeta&amp;t=3DpMAgLiHc3US3aV7kD0x5QPC88jXfKlXPYl7Re7is=
+TAU" width=3D"480" style=3D"outline: none; text-decoration: none; -ms-inter=
+polation-mode: bicubic;"></figure><figure><a href=3D"https://www.linkedin.c=
+om/posts/garyvaynerchuk_nice-guys-and-gals-finish-first-the-world-activity-=
+7005517489044426752-34Q5?utm_source=3Dshare&amp;utm_medium=3Dmember_desktop=
+" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inli=
+ne-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"><im=
+g alt=3D"No alt text provided for this image" data-media-urn data-li-src=3D=
+"https://media.licdn.com/dms/image/D5612AQFCX0_qh5e04Q/article-inline_image=
+-shrink_1500_2232/0/1674237936810?e=3D1680134400&amp;v=3Dbeta&amp;t=3Dj9kdP=
+ITRDleNe7OkgfKZ24oro1hre9R7lqCGkQ1x7Tk" src=3D"https://media.licdn.com/dms/=
+image/D5612AQFCX0_qh5e04Q/article-inline_image-shrink_1500_2232/0/167423793=
+6810?e=3D1680134400&amp;v=3Dbeta&amp;t=3Dj9kdPITRDleNe7OkgfKZ24oro1hre9R7lq=
+CGkQ1x7Tk" width=3D"480" style=3D"outline: none; text-decoration: none; -ms=
+-interpolation-mode: bicubic;"></a></figure><p style=3D"margin: 0; font-wei=
+ght: 400;">The fact that this was one of my best performing posts last mont=
+h makes me so happy. It means that more people are finally starting to unde=
+rstand the importance of kindness in life and in business. Being kind isn=
+=E2=80=99t a =E2=80=9Cnice to have=E2=80=9D =E2=80=A6 I actually think it=
+=E2=80=99s one of the most practical and underrated tools one can use to re=
+ach real success.&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">On a d=
+aily basis, I rely on kindness to get me through anxious and challenging mo=
+ments in business. In times when it would be =E2=80=9Ceasier=E2=80=9D to la=
+sh out in anger or stress, being kind and being able to be the bigger perso=
+n shows an internal strength that will differentiate you from others. Unfor=
+tunately, too many still believe in sayings like =E2=80=9Cnice guys finish =
+last,=E2=80=9D or they think kindness is synonymous with being a pushover. =
+It=E2=80=99s actually quite the opposite =E2=80=93 kindness isn=E2=80=99t a=
+ weakness; it=E2=80=99s your ultimate secret weapon.&nbsp;</p><p style=3D"m=
+argin: 0; font-weight: 400;">When you=E2=80=99re in a confrontation with an=
+ employee, vendor, or client, kindness will let the other party open up to =
+you in a way that would otherwise never happen. When you have to deliver ba=
+d news or have tough conversations, practicing kindness helps create a safe=
+r environment to do so. The truth is that lots of people build businesses =
+=E2=80=A6 but if you want to build a business with true staying power, you =
+need to understand the value and practicality of kindness.</p><figure><img =
+alt=3D"No alt text provided for this image" data-media-urn data-li-src=3D"h=
+ttps://media.licdn.com/dms/image/D4E12AQHxb5QXfS3Qdg/article-inline_image-s=
+hrink_1000_1488/0/1674242649960?e=3D1680134400&amp;v=3Dbeta&amp;t=3DVszYbka=
+2uQIy-DO7SvPMw9_dYJZszuAQOjIVji14LiA" src=3D"https://media.licdn.com/dms/im=
+age/D4E12AQHxb5QXfS3Qdg/article-inline_image-shrink_1000_1488/0/16742426499=
+60?e=3D1680134400&amp;v=3Dbeta&amp;t=3DVszYbka2uQIy-DO7SvPMw9_dYJZszuAQOjIV=
+ji14LiA" width=3D"480" style=3D"outline: none; text-decoration: none; -ms-i=
+nterpolation-mode: bicubic;"></figure><p style=3D"margin: 0; font-weight: 4=
+00;">If you=E2=80=99re the leader of a company, if you=E2=80=99re the manag=
+er of a team or the CEO of a business =E2=80=A6 if you=E2=80=99re in any po=
+sition of power within an organization and you=E2=80=99re not diffusing the=
+ stress and tension happening underneath you, please, take a step back.&nbs=
+p;</p><p style=3D"margin: 0; font-weight: 400;">You work for your employees=
+, not the other way around. That means that when you=E2=80=99re putting out=
+ fires at the top, your stress shouldn=E2=80=99t trickle down and become ev=
+erybody else=E2=80=99s problem. Of course, it=E2=80=99s important to lead w=
+ith transparency; you never want to create delusion within a business .. bu=
+t at the end of the day, strong leaders are able to absorb that negativity =
+and convert it into empathy and kind candor so it doesn=E2=80=99t become po=
+ison that spreads to the rest of the company. </p><table class=3D"email-ifr=
+ame-wrapper" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt;"><tbody><tr><td class=3D"email-iframe-td-pad=
+ding-top" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt;"></td></tr><tr><td style=3D"-webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><img src=
+=3D"https://media.licdn.com/media/AAYQAgQJAAgAAQAAAAAAAEI_gKaSVYsWRCWh_qg9a=
+Kt9IQ.png" class=3D"email-iframe-image" style=3D"outline: none; text-decora=
+tion: none; -ms-interpolation-mode: bicubic;"></td></tr><tr><td class=3D"em=
+ail-iframe-td-padding-middle" style=3D"-webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%=
+; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><a href=3D"https://www.lin=
+kedin.com/pulse/what-chatgpt-means-2023-gary-vaynerchuk" target=3D"_blank" =
+class=3D"email-iframe-button" style=3D"color: #0a66c2; cursor: pointer; dis=
+play: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; =
+-ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: =
+100%;">View media</a></td></tr><tr><td class=3D"email-iframe-td-padding-bot=
+tom" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt;"></td></tr></tbody></table><p style=3D"margin: 0; fo=
+nt-weight: 400;">Let there be no confusion =E2=80=A6 there is no stopping t=
+echnology. Whenever there=E2=80=99s some new technological advancement ther=
+e=E2=80=99s always a wave of fear that follows from the masses. It happened=
+ with online shopping, it happened with online dating, with cryptocurrency,=
+ and now AI is getting that same skeptical response. My opinion is that it=
+=E2=80=99s not worth resisting!&nbsp;</p><p style=3D"margin: 0; font-weight=
+: 400;">Change is inevitable =E2=80=A6 instead of getting scared, we should=
+ try getting curious about what new doors, new possibilities, and new ways =
+of learning technology like ChatGPT can open up for students and educators.=
+&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">Don=E2=80=99t fear inno=
+vation =E2=80=A6 figure out how to take advantage of it. </p><figure><img a=
+lt=3D"No alt text provided for this image" data-media-urn data-li-src=3D"ht=
+tps://media.licdn.com/dms/image/D5612AQFE5TC8vCS3fA/article-inline_image-sh=
+rink_1500_2232/0/1674238297963?e=3D1680134400&amp;v=3Dbeta&amp;t=3DksI5Ss4B=
+NW_L931cQj-hmPq0VJ48D8F9Deu1HEiJdU8" src=3D"https://media.licdn.com/dms/ima=
+ge/D5612AQFE5TC8vCS3fA/article-inline_image-shrink_1500_2232/0/167423829796=
+3?e=3D1680134400&amp;v=3Dbeta&amp;t=3DksI5Ss4BNW_L931cQj-hmPq0VJ48D8F9Deu1H=
+EiJdU8" width=3D"480" style=3D"outline: none; text-decoration: none; -ms-in=
+terpolation-mode: bicubic;"></figure><table class=3D"email-iframe-wrapper" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt;"><tbody><tr><td class=3D"email-iframe-td-padding-top" sty=
+le=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text=
+-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt;"></td></tr><tr><td style=3D"-webkit-text-size-adjust: 100%; =
+-ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: =
+100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><img src=3D"https://me=
+dia.licdn.com/media/AAYQAgQJAAgAAQAAAAAAAEI_gKaSVYsWRCWh_qg9aKt9IQ.png" cla=
+ss=3D"email-iframe-image" style=3D"outline: none; text-decoration: none; -m=
+s-interpolation-mode: bicubic;"></td></tr><tr><td class=3D"email-iframe-td-=
+padding-middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt;"><a href=3D"https://www.linkedin.com/puls=
+e/what-chatgpt-means-2023-gary-vaynerchuk" target=3D"_blank" class=3D"email=
+-iframe-button" style=3D"color: #0a66c2; cursor: pointer; display: inline-b=
+lock; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">View me=
+dia</a></td></tr><tr><td class=3D"email-iframe-td-padding-bottom" style=3D"=
+-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt;"></td></tr></tbody></table><p style=3D"margin: 0; font-weight: 400=
+;">If you follow me on <a href=3D"https://www.instagram.com/garyvee/" targe=
+t=3D"_blank" rel=3D"nofollow noopener" style=3D"color: #0a66c2; cursor: poi=
+nter; display: inline-block; text-decoration: none; -webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%;">Instagram</a>, you=E2=80=99ve seen me make several posts ab=
+out ChatGPT by now =E2=80=93 the current count is three with a blog post on=
+ the way =E2=80=A6 Why am I so fired up about this technology? It=E2=80=99s=
+ because I=E2=80=99ve had this exact feeling before...&nbsp;</p><p style=3D=
+"margin: 0; font-weight: 400;">This is the same feeling I had in my freshma=
+n year of college. I was in my dorm room playing Madden =E2=80=9894 =E2=80=
+=93 dominating, by the way =E2=80=93 when my friend ran into my room and sa=
+id, =E2=80=9CHey, man. You gotta see this!=E2=80=9D I ran into the other ro=
+om where there were six guys hovering over one computer. I waited an hour a=
+nd a half to have my turn to navigate this new thing called the internet =
+=E2=80=A6 or as it was called back then, the information superhighway. In m=
+y first seven minutes of being online for the first time, I landed on a bas=
+eball card bulletin board where people were selling cards back and forth. T=
+hat was the instant I realized =E2=80=A6 holy crap, I don=E2=80=99t need to=
+ open up a ton of wine shops=E2=80=A6 I could use the internet to sell wine=
+.&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">Immediately, I knew th=
+at technology would change my life.&nbsp;</p><p style=3D"margin: 0; font-we=
+ight: 400;">Of course, there were a lot of people =E2=80=93 maybe even most=
+ people =E2=80=93 that needed way more convincing than I did. For them, the=
+ idea of selling anything online was absurd. The concept of entering in the=
+ir credit card information to purchase something off the internet was ridic=
+ulous and scary =E2=80=A6 fast forward to today and this is the same kind o=
+f skepticism I=E2=80=99m seeing surrounding ChatGPT and AI technology.&nbsp=
+;</p><p style=3D"margin: 0; font-weight: 400;">My challenge to you is =E2=
+=80=A6 instead of being scared, why not be curious? Instead of saying =E2=
+=80=9Cno,=E2=80=9D why not say =E2=80=9Cyes=E2=80=9D or =E2=80=9Cmaybe=E2=
+=80=9D?&nbsp;</p><p style=3D"margin: 0; font-weight: 400;">I really believe=
+ the tech behind ChatGPT is gonna change a ton of people=E2=80=99s lives. I=
+t=E2=80=99ll help writers, content creators, artists, and I=E2=80=99m sure =
+there are so many other use cases we haven=E2=80=99t even realized yet. Jus=
+t like the internet opened up a whole new realm of possibilities for people=
+ like me who didn=E2=80=99t thrive in the environment of the traditional sc=
+hooling system, I believe ChatGPT will create new possibilities for people =
+who will take advantage of AI-generated text to aid in their creative proce=
+sses. This isn=E2=80=99t a threat to creativity. It=E2=80=99s a partner to =
+it =E2=80=A6 and I think it=E2=80=99s incredibly profound. </p><table class=
+=3D"email-iframe-wrapper" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt;"><tbody><tr><td class=3D"email-=
+iframe-td-padding-top" style=3D"-webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt;"></td></tr><tr><td style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t;"><img src=3D"https://media.licdn.com/media/AAYQAgQJAAgAAQAAAAAAAEI_gKaSV=
+YsWRCWh_qg9aKt9IQ.png" class=3D"email-iframe-image" style=3D"outline: none;=
+ text-decoration: none; -ms-interpolation-mode: bicubic;"></td></tr><tr><td=
+ class=3D"email-iframe-td-padding-middle" style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><a href=3D"htt=
+ps://www.linkedin.com/pulse/what-chatgpt-means-2023-gary-vaynerchuk" target=
+=3D"_blank" class=3D"email-iframe-button" style=3D"color: #0a66c2; cursor: =
+pointer; display: inline-block; text-decoration: none; -webkit-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-s=
+ize-adjust: 100%;">View media</a></td></tr><tr><td class=3D"email-iframe-td=
+-padding-bottom" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt;"></td></tr></tbody></table><figure><img =
+alt=3D"No alt text provided for this image" data-media-urn data-li-src=3D"h=
+ttps://media.licdn.com/dms/image/D4E12AQGHwZx3VqnxIg/article-inline_image-s=
+hrink_1500_2232/0/1674247126692?e=3D1680134400&amp;v=3Dbeta&amp;t=3DevUZbIm=
+I5DGMvUDc7HV3DJwyj8pRKwlmZIUKb6uz1gU" src=3D"https://media.licdn.com/dms/im=
+age/D4E12AQGHwZx3VqnxIg/article-inline_image-shrink_1500_2232/0/16742471266=
+92?e=3D1680134400&amp;v=3Dbeta&amp;t=3DevUZbImI5DGMvUDc7HV3DJwyj8pRKwlmZIUK=
+b6uz1gU" width=3D"480" style=3D"outline: none; text-decoration: none; -ms-i=
+nterpolation-mode: bicubic;"></figure><p style=3D"margin: 0; font-weight: 4=
+00;">This month=E2=80=99s tactical tip from Team GaryVee:</p><p style=3D"ma=
+rgin: 0; font-weight: 400;">Behind-the-scenes into TGV's =E2=80=9Ccontent-a=
+nd-analytics-land!=E2=80=9D&nbsp;</p><p style=3D"margin: 0; font-weight: 40=
+0;"><a href=3D"https://www.instagram.com/p/Cg5N8wepM1m/" target=3D"_blank" =
+rel=3D"nofollow noopener" style=3D"color: #0a66c2; cursor: pointer; display=
+: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%=
+;">Learn more here</a>.</p><figure><img alt=3D"No alt text provided for thi=
+s image" data-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D5=
+612AQGfsVa3lwkMrA/article-inline_image-shrink_1500_2232/0/1674238683027?e=
+=3D1680134400&amp;v=3Dbeta&amp;t=3DiRY_9-fQfRqmIS7CrF23nFJr9kbjK4BoDBl1NVa5=
+wKE" src=3D"https://media.licdn.com/dms/image/D5612AQGfsVa3lwkMrA/article-i=
+nline_image-shrink_1500_2232/0/1674238683027?e=3D1680134400&amp;v=3Dbeta&am=
+p;t=3DiRY_9-fQfRqmIS7CrF23nFJr9kbjK4BoDBl1NVa5wKE" width=3D"480" style=3D"o=
+utline: none; text-decoration: none; -ms-interpolation-mode: bicubic;"></fi=
+gure><p style=3D"margin: 0; font-weight: 400;">Highlighting some comments t=
+hat caught my eye or that my team thought were noteworthy - appreciate all =
+of the comments, DMs and interactions :)</p><figure><a href=3D"https://www.=
+linkedin.com/feed/update/urn:li:ugcPost:7011740437853937665?commentUrn=3Dur=
+n%3Ali%3Acomment%3A%28ugcPost%3A7011740437853937665%2C7011771514102435840%2=
+9" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inl=
+ine-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"><i=
+mg alt=3D"No alt text provided for this image" data-media-urn data-li-src=
+=3D"https://media.licdn.com/dms/image/D4E12AQGcxTdtHtohKQ/article-inline_im=
+age-shrink_1000_1488/0/1674241970614?e=3D1680134400&amp;v=3Dbeta&amp;t=3DDU=
+sZJGsGSCDZJXrSp5kgs7Eto_NKnRRVFoaws38sBLA" src=3D"https://media.licdn.com/d=
+ms/image/D4E12AQGcxTdtHtohKQ/article-inline_image-shrink_1000_1488/0/167424=
+1970614?e=3D1680134400&amp;v=3Dbeta&amp;t=3DDUsZJGsGSCDZJXrSp5kgs7Eto_NKnRR=
+VFoaws38sBLA" width=3D"480" style=3D"outline: none; text-decoration: none; =
+-ms-interpolation-mode: bicubic;"></a></figure><figure><a href=3D"https://w=
+ww.linkedin.com/feed/update/urn:li:activity:7010953270386917376?commentUrn=
+=3Durn%3Ali%3Acomment%3A%28activity%3A7010953270386917376%2C701097947691424=
+1536%29" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; displa=
+y: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%;"><img alt=3D"No alt text provided for this image" data-media-urn data-li=
+-src=3D"https://media.licdn.com/dms/image/D4E12AQEKuS2DtW6ihQ/article-inlin=
+e_image-shrink_1000_1488/0/1674241995245?e=3D1680134400&amp;v=3Dbeta&amp;t=
+=3D_rxNZOrH_52kEWaPcAVJb23NHITfoRyPf9k-b3tBAeU" src=3D"https://media.licdn.=
+com/dms/image/D4E12AQEKuS2DtW6ihQ/article-inline_image-shrink_1000_1488/0/1=
+674241995245?e=3D1680134400&amp;v=3Dbeta&amp;t=3D_rxNZOrH_52kEWaPcAVJb23NHI=
+TfoRyPf9k-b3tBAeU" width=3D"480" style=3D"outline: none; text-decoration: n=
+one; -ms-interpolation-mode: bicubic;"></a></figure><figure><a href=3D"http=
+s://www.linkedin.com/feed/update/urn:li:ugcPost:7011756949813764096?comment=
+Urn=3Durn%3Ali%3Acomment%3A%28ugcPost%3A7011756949813764096%2C7013362630740=
+385792%29&amp;dashCommentUrn=3Durn%3Ali%3Afsd_comment%3A%287013362630740385=
+792%2Curn%3Ali%3AugcPost%3A7011756949813764096%29" target=3D"_blank" style=
+=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration=
+: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%;"><img alt=3D"No alt text prov=
+ided for this image" data-media-urn data-li-src=3D"https://media.licdn.com/=
+dms/image/D4E12AQHkr7N-uLVD5A/article-inline_image-shrink_1000_1488/0/16742=
+42009297?e=3D1680134400&amp;v=3Dbeta&amp;t=3DFxpx4x_yuag5WX3d5BwMOHmB6hYrOR=
+YbB_UFqPp9YGs" src=3D"https://media.licdn.com/dms/image/D4E12AQHkr7N-uLVD5A=
+/article-inline_image-shrink_1000_1488/0/1674242009297?e=3D1680134400&amp;v=
+=3Dbeta&amp;t=3DFxpx4x_yuag5WX3d5BwMOHmB6hYrORYbB_UFqPp9YGs" width=3D"480" =
+style=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicu=
+bic;"></a></figure><p style=3D"margin: 0; font-weight: 400;">I could not be=
+ more excited about the opportunity on Facebook Reels in 2023, really enjoy=
+ing interacting with the community there from my personal Fb profile =E2=9D=
+=A4=EF=B8=8F</p><figure><img alt=3D"No alt text provided for this image" da=
+ta-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQEX-HIN=
+TOe6pQ/article-inline_image-shrink_400_744/0/1674506526135?e=3D1680134400&a=
+mp;v=3Dbeta&amp;t=3Duecx7wDV0wJ8Y30Aax8AcUoRIZL8zzPzxP2KobEsDbk" src=3D"htt=
+ps://media.licdn.com/dms/image/D5612AQEX-HINTOe6pQ/article-inline_image-shr=
+ink_400_744/0/1674506526135?e=3D1680134400&amp;v=3Dbeta&amp;t=3Duecx7wDV0wJ=
+8Y30Aax8AcUoRIZL8zzPzxP2KobEsDbk" width=3D"480" style=3D"outline: none; tex=
+t-decoration: none; -ms-interpolation-mode: bicubic;"></figure><figure><img=
+ alt=3D"No alt text provided for this image" data-media-urn data-li-src=3D"=
+https://media.licdn.com/dms/image/D5612AQELWT36HcFe-w/article-inline_image-=
+shrink_400_744/0/1674506545753?e=3D1680134400&amp;v=3Dbeta&amp;t=3D2PahVYVY=
+dCBN9zFkxpwCrXoAWwNInLC3WHyZcu-CNTE" src=3D"https://media.licdn.com/dms/ima=
+ge/D5612AQELWT36HcFe-w/article-inline_image-shrink_400_744/0/1674506545753?=
+e=3D1680134400&amp;v=3Dbeta&amp;t=3D2PahVYVYdCBN9zFkxpwCrXoAWwNInLC3WHyZcu-=
+CNTE" width=3D"480" style=3D"outline: none; text-decoration: none; -ms-inte=
+rpolation-mode: bicubic;"></figure><figure><img alt=3D"No alt text provided=
+ for this image" data-media-urn data-li-src=3D"https://media.licdn.com/dms/=
+image/D5612AQHNwiSlD8aH5Q/article-inline_image-shrink_400_744/0/16745065659=
+98?e=3D1680134400&amp;v=3Dbeta&amp;t=3DT-5obhLNSp2emQcLFRAHNkaQS7qEo3y6Ew0g=
+KzKbph0" src=3D"https://media.licdn.com/dms/image/D5612AQHNwiSlD8aH5Q/artic=
+le-inline_image-shrink_400_744/0/1674506565998?e=3D1680134400&amp;v=3Dbeta&=
+amp;t=3DT-5obhLNSp2emQcLFRAHNkaQS7qEo3y6Ew0gKzKbph0" width=3D"480" style=3D=
+"outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;"></=
+figure><p style=3D"margin: 0; font-weight: 400;">Here's a few cool stories =
+from Facebook that shows the power of engagement and community building.</p=
+><p style=3D"margin: 0; font-weight: 400;">I saw these comments, which made=
+ me smile...&nbsp;=F0=9F=99=82&nbsp;I immediately reacted and responded on =
+a few of them!</p><p style=3D"margin: 0; font-weight: 400;">Just to show th=
+em that I am always listening...</p><p style=3D"margin: 0; font-weight: 400=
+;">One of the greatest parts of my career has been the enormous number of f=
+riendships I've created over the years... in real life and in my comment se=
+ctions. Many of those friendships start from interactions like these.</p><p=
+ style=3D"margin: 0; font-weight: 400;">I'm always reading my comments, ema=
+ils, and DMs... always looking, always listening. It's where I get a lot of=
+ the context that drives my content and my work. I implore all business own=
+ers, entrepreneurs, and creators that are reading this right now to double =
+down in the comment section. I promise that you'll truly find value, and mo=
+re importantly, you'll make relationships... and relationships are everythi=
+ng.</p><figure><img alt=3D"No alt text provided for this image" data-media-=
+urn data-li-src=3D"https://media.licdn.com/dms/image/D4E12AQE4dC-nCShVWw/ar=
+ticle-inline_image-shrink_1500_2232/0/1674505347761?e=3D1680134400&amp;v=3D=
+beta&amp;t=3DiIWc1b4q11Tn-rkzEYJ5Qu9d5pwT1e5JiDGdeCn1PmQ" src=3D"https://me=
+dia.licdn.com/dms/image/D4E12AQE4dC-nCShVWw/article-inline_image-shrink_150=
+0_2232/0/1674505347761?e=3D1680134400&amp;v=3Dbeta&amp;t=3DiIWc1b4q11Tn-rkz=
+EYJ5Qu9d5pwT1e5JiDGdeCn1PmQ" width=3D"480" style=3D"outline: none; text-dec=
+oration: none; -ms-interpolation-mode: bicubic;"></figure><p style=3D"margi=
+n: 0; font-weight: 400;">Entrepreneur Elf</p><table class=3D"email-iframe-w=
+rapper" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%=
+; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0p=
+t; mso-table-rspace: 0pt;"><tbody><tr><td class=3D"email-iframe-td-padding-=
+top" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt;"></td></tr><tr><td style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><img src=3D"ht=
+tps://media.licdn.com/media/AAYQAgQJAAgAAQAAAAAAAEI_gKaSVYsWRCWh_qg9aKt9IQ.=
+png" class=3D"email-iframe-image" style=3D"outline: none; text-decoration: =
+none; -ms-interpolation-mode: bicubic;"></td></tr><tr><td class=3D"email-if=
+rame-td-padding-middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt;"><a href=3D"https://www.linkedin.=
+com/pulse/what-chatgpt-means-2023-gary-vaynerchuk" target=3D"_blank" class=
+=3D"email-iframe-button" style=3D"color: #0a66c2; cursor: pointer; display:=
+ inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+">View media</a></td></tr><tr><td class=3D"email-iframe-td-padding-bottom" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt;"></td></tr></tbody></table><p style=3D"margin: 0; font-we=
+ight: 400;">Whether you=E2=80=99re the CEO of a huge company or an entrepre=
+neur starting a new business, B2B, B2C or anything in between, I want you t=
+o win. The way to do that isn=E2=80=99t with fancy tactics =E2=80=A6 it com=
+es with having that true entrepreneurial DNA.&nbsp;</p><p style=3D"margin: =
+0; font-weight: 400;">I believe in operators, but you need to believe in yo=
+urself! Don=E2=80=99t worry about the naysayers .. doubters always end up o=
+n the wrong side of history when they bet against true operators. If you=E2=
+=80=99re as good as you think you are, it=E2=80=99s all gonna play out.&nbs=
+p;</p><figure><img alt=3D"No alt text provided for this image" data-media-u=
+rn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQGy8m6DbmJy9A/art=
+icle-inline_image-shrink_1500_2232/0/1674240020255?e=3D1680134400&amp;v=3Db=
+eta&amp;t=3D17Gi-cxgu7nsV-cm7Kkx-WAVVHWRvDf4pbK-IDVXkhI" src=3D"https://med=
+ia.licdn.com/dms/image/D5612AQGy8m6DbmJy9A/article-inline_image-shrink_1500=
+_2232/0/1674240020255?e=3D1680134400&amp;v=3Dbeta&amp;t=3D17Gi-cxgu7nsV-cm7=
+Kkx-WAVVHWRvDf4pbK-IDVXkhI" width=3D"480" style=3D"outline: none; text-deco=
+ration: none; -ms-interpolation-mode: bicubic;"></figure><figure><a href=3D=
+"https://winelibrary.com/wines/malbec/2021-finca-sophenia-altosur-malbec-13=
+2688" target=3D"_blank" rel=3D"nofollow noopener" style=3D"color: #0a66c2; =
+cursor: pointer; display: inline-block; text-decoration: none; -webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%;"><img alt=3D"No alt text provided for this image"=
+ data-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQHGY=
+53r10ZgSg/article-inline_image-shrink_1000_1488/0/1674240169748?e=3D1680134=
+400&amp;v=3Dbeta&amp;t=3DOlHLa7dbztNhYahVfYGmT4OD95nCkNzdYBubIU-j36M" src=
+=3D"https://media.licdn.com/dms/image/D5612AQHGY53r10ZgSg/article-inline_im=
+age-shrink_1000_1488/0/1674240169748?e=3D1680134400&amp;v=3Dbeta&amp;t=3DOl=
+HLa7dbztNhYahVfYGmT4OD95nCkNzdYBubIU-j36M" width=3D"480" style=3D"outline: =
+none; text-decoration: none; -ms-interpolation-mode: bicubic;"></a></figure=
+><figure><img alt=3D"No alt text provided for this image" data-media-urn da=
+ta-li-src=3D"https://media.licdn.com/dms/image/D5612AQFlSWydmLPWhA/article-=
+inline_image-shrink_1500_2232/0/1674240203940?e=3D1680134400&amp;v=3Dbeta&a=
+mp;t=3D8ufGUtaCJajw1W_EbEZevJBCmPk7ycwWI4assJJMgQg" src=3D"https://media.li=
+cdn.com/dms/image/D5612AQFlSWydmLPWhA/article-inline_image-shrink_1500_2232=
+/0/1674240203940?e=3D1680134400&amp;v=3Dbeta&amp;t=3D8ufGUtaCJajw1W_EbEZevJ=
+BCmPk7ycwWI4assJJMgQg" width=3D"480" style=3D"outline: none; text-decoratio=
+n: none; -ms-interpolation-mode: bicubic;"></figure><ul><li>First all of yo=
+u should come to&nbsp;<a href=3D"https://www.linkedin.com/company/veecon/" =
+target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inline=
+-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">VeeCo=
+n</a>&nbsp;in May, second if you own any&nbsp;<a href=3D"https://www.linked=
+in.com/company/veefriends/" target=3D"_blank" style=3D"color: #0a66c2; curs=
+or: pointer; display: inline-block; text-decoration: none; -webkit-text-siz=
+e-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; te=
+xt-size-adjust: 100%;">VeeFriends</a>&nbsp;of any kind please go to the web=
+site and verify your account on the new site <a href=3D"https://veefriends.=
+com/" target=3D"_blank" rel=3D"nofollow noopener" style=3D"color: #0a66c2; =
+cursor: pointer; display: inline-block; text-decoration: none; -webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%;">here</a>.</li><li>Super excited about&nbsp;<a hr=
+ef=3D"https://www.linkedin.com/company/vaynerwatt/" target=3D"_blank" style=
+=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration=
+: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%;">VaynerWATT</a>&nbsp;my new T=
+V production studio for shows on linear and streaming networks =E2=80=A6 ch=
+eck it out <a href=3D"https://deadline.com/2023/01/gary-vaynerchuk-eric-wat=
+tenberg-matt-higgins-launch-vaynerwatt-1235219209/" target=3D"_blank" rel=
+=3D"nofollow noopener" style=3D"color: #0a66c2; cursor: pointer; display: i=
+nline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">=
+here</a>.</li><li>Really excited about this interview I did on The Diary of=
+ a CEO podcast, think it'll give many of you on LinkedIn a different perspe=
+ctive on the content I put out, please watch and listen to us&nbsp;<a href=
+=3D"https://www.youtube.com/watch?v=3Dji_N6orURuw" target=3D"_blank" style=
+=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration=
+: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%;">here</a>.</li><li>The VeeFri=
+ends Winter =E2=80=9822 Apparel Collection is available exclusively at <a h=
+ref=3D"http://shop.veefriends.com" target=3D"_blank" rel=3D"nofollow noopen=
+er" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-d=
+ecoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%=
+; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">shop.veefriends.com=
+</a> - find more details <a href=3D"https://blog.veefriends.com/veefriends-=
+22-winter-collection-47b4c851485a" target=3D"_blank" rel=3D"nofollow noopen=
+er" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-d=
+ecoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%=
+; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">here</a>.</li><li>I=
+f you're a small business, 2023 is the year to get yourself a modern market=
+ing plan! Check out my article for more details on <a href=3D"https://www.l=
+inkedin.com/pulse/why-now-time-all-small-business-owners-gary-vaynerchuk/?t=
+rackingId=3D2XZl34vrSJilRvkhuOzmPQ%3D%3D" target=3D"_blank" style=3D"color:=
+ #0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -w=
+ebkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; text-size-adjust: 100%;">why now is the time for all small busi=
+nesses</a>.</li><li>Need new songs? Check out today=E2=80=99s <a href=3D"ht=
+tps://garyvee.lnk.to/mondaytomondayIN" target=3D"_blank" rel=3D"nofollow no=
+opener" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; te=
+xt-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Monday to Monda=
+y playlist</a>.</li><li>VeeCon 2023 will be at =E2=80=9Cthe racing capital =
+of the world=E2=80=9D in Indianapolis, Indiana! See you from May 18th throu=
+gh May 20th 2023! <a href=3D"https://www.youtube.com/watch?v=3DJwbQqfXaBpQ"=
+ target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inlin=
+e-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">See =
+the full announcement video here.</a></li><li>The VaynerX world is hiring c=
+reative talent from all over the world! Would love to have you or a friend =
+join the crew. <a href=3D"https://www.garyvaynerchuk.com/hiring-social-medi=
+a-creative-talent-like-crazy/" target=3D"_blank" rel=3D"nofollow noopener" =
+style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decor=
+ation: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; text-size-adjust: 100%;">Click here to apply!</a=
+></li><li>I=E2=80=99m humbled to have teamed up with Macy=E2=80=99s and Toy=
+s=E2=80=9CR=E2=80=9DUs to bring VeeFriends to life with this limited editio=
+n collection of plushies and figurines. <a href=3D"https://garyvee.com/VeeF=
+riendsXMacys" target=3D"_blank" rel=3D"nofollow noopener" style=3D"color: #=
+0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%;">Shop here</a>.</li><li>Join me and the V=
+eeFriends community in <a href=3D"https://discord.gg/veefriends" target=3D"=
+_blank" rel=3D"nofollow noopener" style=3D"color: #0a66c2; cursor: pointer;=
+ display: inline-block; text-decoration: none; -webkit-text-size-adjust: 10=
+0%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adju=
+st: 100%;">the Discord group</a>.</li><li>Do you love the dirt? Are you an =
+=E2=80=9CI=E2=80=99ll figure it out=E2=80=9D kind of person? <a href=3D"htt=
+p://garyvee.com/entrylevel" target=3D"_blank" rel=3D"nofollow noopener" sty=
+le=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decorati=
+on: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%;">Here=E2=80=99s an entry le=
+vel opportunity to join the team</a>.</li><li>Two minutes to sign up=E2=80=
+=A6 two seconds daily to get the most ridiculous wine deals in the world! <=
+a href=3D"http://winetext.com/" target=3D"_blank" rel=3D"nofollow noopener"=
+ style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-deco=
+ration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%;">Sign up for WineText t=
+oday</a>. Want rare &amp; highly allocated offers? Join <a href=3D"https://=
+cellartext.com/access" target=3D"_blank" rel=3D"nofollow noopener" style=3D=
+"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration: n=
+one; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%;">CellarText</a>.</li><li>For tho=
+se of you new to my LinkedIn content - follow me on <a href=3D"https://www.=
+tiktok.com/@garyvee" target=3D"_blank" rel=3D"nofollow noopener" style=3D"c=
+olor: #0a66c2; cursor: pointer; display: inline-block; text-decoration: non=
+e; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-si=
+ze-adjust: 100%; text-size-adjust: 100%;">TikTok</a>, subscribe to my <a hr=
+ef=3D"https://www.youtube.com/channel/UCctXZhXmG-kf3tlIXgVZUlw" target=3D"_=
+blank" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; tex=
+t-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">YouTube channel<=
+/a>, follow me on <a href=3D"https://www.instagram.com/garyvee/" target=3D"=
+_blank" rel=3D"nofollow noopener" style=3D"color: #0a66c2; cursor: pointer;=
+ display: inline-block; text-decoration: none; -webkit-text-size-adjust: 10=
+0%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adju=
+st: 100%;">Instagram</a>, and hit me up on <a href=3D"http://twitter.com/@g=
+aryvee" target=3D"_blank" rel=3D"nofollow noopener" style=3D"color: #0a66c2=
+; cursor: pointer; display: inline-block; text-decoration: none; -webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%;">Twitter</a> :)</li><li>Check out <a href=3D"ht=
+tps://www.youtube.com/watch?v=3DhmvJFdfZqmY&amp;t" target=3D"_blank" style=
+=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration=
+: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%;">the latest episode of Market=
+ing for the Now</a> where we feature Vayner clients + partners to discuss "=
+best of" moments in 2022.</li><li>We=E2=80=99re hiring globally! Team GaryV=
+ee is looking for creative talent from around the world. <a href=3D"https:/=
+/boards.greenhouse.io/vaynermedia/jobs/3051123" target=3D"_blank" rel=3D"no=
+follow noopener" style=3D"color: #0a66c2; cursor: pointer; display: inline-=
+block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size=
+-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Learn =
+more and apply here</a>.</li><li>Check out <a href=3D"https://www.youtube.c=
+om/watch?v=3DeriGPuqRHRo" target=3D"_blank" style=3D"color: #0a66c2; cursor=
+: pointer; display: inline-block; text-decoration: none; -webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%;">my appearance on the Lost in Found podcast</a> curated=
+ by Catch+Release! We talk about my anticipation for AI copywriting, creati=
+ve strategy on social media, why brand is built on social, and much more.</=
+li></ul><figure><img alt=3D"No alt text provided for this image" data-media=
+-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQFV6Woiqaqitw/a=
+rticle-inline_image-shrink_1500_2232/0/1674240292765?e=3D1680134400&amp;v=
+=3Dbeta&amp;t=3DXsHGuU0rWGehU4qg04HkrTv2g5fzY2_-m3IeSVra8Yg" src=3D"https:/=
+/media.licdn.com/dms/image/D5612AQFV6Woiqaqitw/article-inline_image-shrink_=
+1500_2232/0/1674240292765?e=3D1680134400&amp;v=3Dbeta&amp;t=3DXsHGuU0rWGehU=
+4qg04HkrTv2g5fzY2_-m3IeSVra8Yg" width=3D"480" style=3D"outline: none; text-=
+decoration: none; -ms-interpolation-mode: bicubic;"></figure><p style=3D"ma=
+rgin: 0; font-weight: 400;">Since its public release, millions of people ha=
+ve been exploring the possibilities of ChatGPT. How can AI help aid you in =
+your business operations or your industry as a whole?</p><p style=3D"margin=
+: 0; font-weight: 400;"><em>If you enjoyed today=E2=80=99s LinkedIn 360, I =
+would love it if you subscribed for more. Can=E2=80=99t wait a full month? =
+You can keep up with me here on LinkedIn for daily business content, or sub=
+scribe to my weekly newsletter, </em><a href=3D"https://garyvaynerchuk.us2.=
+list-manage.com/subscribe?u=3D86038d4417ce1a95af9b5eb09&amp;id=3D23b1f26be4=
+" target=3D"_blank" rel=3D"nofollow noopener" style=3D"color: #0a66c2; curs=
+or: pointer; display: inline-block; text-decoration: none; -webkit-text-siz=
+e-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; te=
+xt-size-adjust: 100%;"><em>GaryVeekly</em></a><em>.&nbsp;</em></p>
+Ler mais
+      https://www.linkedin.com/comm/pulse/what-chatgpt-means-2023-gary-vayn=
+erchuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BR=
+A5v3V67TpaEndxr9ZuI9w%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D0k7KQ4CezRTq=
+A1&trk=3Deml-email_series_follow_newsletter_01-newsletter_content_preview_t=
+ext-0-readmore_button_&trkEmail=3Deml-email_series_follow_newsletter_01-new=
+sletter_content_preview_text-0-readmore_button_-null-eau1wl~ldag30hc~j1-nul=
+l-null&eid=3Deau1wl-ldag30hc-j1
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+    Conhece algu=C3=A9m que possa se interessar por esta newsletter? Compar=
+tilhe-a!
+Compartilhe esta s=C3=A9rie no LinkedIn
+      https://www.linkedin.com/e/v2?urlhash=3DfTDF&url=3Dhttps%3A%2F%2Fwww%=
+2Elinkedin%2Ecom%2FshareArticle%3Furl%3Dhttps%253A%252F%252Fwww%252Elinkedi=
+n%252Ecom%252Fpulse%252Fwhat-chatgpt-means-2023-gary-vaynerchuk&lipi=3Durn%=
+3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9Zu=
+I9w%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D0k7KQ4CezRTqA1&ek=3Demail_seri=
+es_follow_newsletter_01&e=3Deau1wl-ldag30hc-j1&eid=3Deau1wl-ldag30hc-j1&m=
+=3Dnull&ts=3Dnull&li=3D0&t=3Dplh =20
+Compartilhe esta s=C3=A9rie no Facebook
+      https://www.linkedin.com/e/v2?urlhash=3DNDtx&url=3Dhttps%3A%2F%2Fwww%=
+2Efacebook%2Ecom%2Fsharer%2Fsharer%2Ephp%3Fu%3Dhttps%3A%2F%2Fwww%2Elinkedin=
+%2Ecom%2Fpulse%2Fwhat-chatgpt-means-2023-gary-vaynerchuk&lipi=3Durn%3Ali%3A=
+page%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%=
+3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D0k7KQ4CezRTqA1&ek=3Demail_series_foll=
+ow_newsletter_01&e=3Deau1wl-ldag30hc-j1&eid=3Deau1wl-ldag30hc-j1&m=3Dnull&t=
+s=3Dnull&li=3D0&t=3Dplh =20
+Compartilhe esta s=C3=A9rie no Twitter
+      https://www.linkedin.com/e/v2?urlhash=3DYnWW&url=3Dhttps%3A%2F%2Fwww%=
+2Etwitter%2Ecom%2Fintent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom=
+%2Fpulse%2Fwhat-chatgpt-means-2023-gary-vaynerchuk&lipi=3Durn%3Ali%3Apage%3=
+Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&mid=
+Token=3DAQEq1MBbB2bM8g&midSig=3D0k7KQ4CezRTqA1&ek=3Demail_series_follow_new=
+sletter_01&e=3Deau1wl-ldag30hc-j1&eid=3Deau1wl-ldag30hc-j1&m=3Dnull&ts=3Dnu=
+ll&li=3D0&t=3Dplh =20
+ =20
+     =20
+         =20
+     =20
+
+----------------
+
+Este e-mail foi enviado a Rafael Souza (Desenvolvedor web na Solution.dev)
+Saiba por que inclu=C3=ADmos isso:
+      https://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&lipi=3Du=
+rn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr=
+9ZuI9w%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D0k7KQ4CezRTqA1&trk=3Deml-em=
+ail_series_follow_newsletter_01-SecurityHelp-0-textfooterglimmer&trkEmail=
+=3Deml-email_series_follow_newsletter_01-SecurityHelp-0-textfooterglimmer-n=
+ull-eau1wl~ldag30hc~j1-null-null&eid=3Deau1wl-ldag30hc-j1
+Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do LinkedIn.=
+ O autor pode ver que voc=C3=AA =C3=A9 assinante da newsletter.
+
+         =20
+           =20
+         =20
+       =20
+Cancelar inscri=C3=A7=C3=A3o:
+      https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=3Durn%=
+3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9Zu=
+I9w%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D0k7KQ4CezRTqA1&trk=3Deml-email=
+_series_follow_newsletter_01-unsubscribe-0-textfooterglimmer&trkEmail=3Deml=
+-email_series_follow_newsletter_01-unsubscribe-0-textfooterglimmer-null-eau=
+1wl~ldag30hc~j1-null-null&eid=3Deau1wl-ldag30hc-j1&loid=3DAQHAfBJsqH7eJgAAA=
+YXkla4oeaEdW2pF4bac6ZQPRQe2gzaz78iriFnRkXhcY-uGI5AXX_OMCgPJtCQGOPswTECFhcgO=
+r_FOUs3aHkABjM3vFwuNawR6bw
+Ajuda:
+      https://www.linkedin.com/help/linkedin/answer/67?lang=3Dpt&lipi=3Durn=
+%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9Z=
+uI9w%3D%3D&midToken=3DAQEq1MBbB2bM8g&midSig=3D0k7KQ4CezRTqA1&trk=3Deml-emai=
+l_series_follow_newsletter_01-help-0-textfooterglimmer&trkEmail=3Deml-email=
+_series_follow_newsletter_01-help-0-textfooterglimmer-null-eau1wl~ldag30hc~=
+j1-null-null&eid=3Deau1wl-ldag30hc-j1
+
+=C2=A9 2023 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2 - Irlanda.LinkedIn =C3=A9 um nome comercial registrado da LinkedI=
+n Ireland Unlimited Company.LinkedIn e o logo do LinkedIn s=C3=A3o marcas r=
+egistradas do LinkedIn.
+------=_Part_1331843_322118508.1674577293845
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt"> <=
+head> <meta http-equiv=3D"Content-Type" content=3D"text/html;charset=3Dutf-=
+8"> <meta name=3D"HandheldFriendly" content=3D"true"> <meta name=3D"viewpor=
+t" content=3D"width=3Ddevice-width; initial-scale=3D0.666667; user-scalable=
+=3D0"> <meta name=3D"viewport" content=3D"width=3Ddevice-width"> <title></t=
+itle> <style>
+          @media (max-width: 512px) { .mercado-container { width: 100% !imp=
+ortant; } }
+        </style> <style>
+          .full-width-button, .full-width-button table { display: none; } @=
+media (max-width: 320px) { .inline-button,
+          .inline-button table { display: none !important; } .full-width-bu=
+tton, .full-width-button table { display:
+          table !important; } }
+        </style> <!--[if mso]><style type=3D"text/css"> </style><![endif]--=
+> <!--[if IE]><style type=3D"text/css"> </style><![endif]--> <style>
+@media (min-width: 576px) {
+  .container {
+    max-width: 576px;
+  }
+
+  .\!container {
+    max-width: 576px !important;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  .\!container {
+    max-width: 768px !important;
+  }
+}
+@media (min-width: 790px) {
+  .container {
+    max-width: 790px;
+  }
+
+  .\!container {
+    max-width: 790px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+
+  .\!container {
+    max-width: 992px !important;
+  }
+}
+@media (min-width: 1128px) {
+  .container {
+    max-width: 1128px;
+  }
+
+  .\!container {
+    max-width: 1128px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .\!container {
+    max-width: 1200px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+
+  .\!container {
+    max-width: 1440px !important;
+  }
+}
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1680px;
+  }
+
+  .\!container {
+    max-width: 1680px !important;
+  }
+}
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1920px;
+  }
+
+  .\!container {
+    max-width: 1920px !important;
+  }
+}
+@media (min-width: 992px) {
+  .base-detail-page__header .nav {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1128px;
+  }
+}
+@media (max-width: 767px) {
+  .embedded-social-share .modal__outlet {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .nav .search-bar {
+    order: 4;
+  }
+}
+@media (max-width: 767px) {
+  .nav .sign-in-card {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .nav--minified-mobile .nav__cta-container > *:not(.nav__link-person) {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    order: initial;
+    width: initial;
+  }
+
+  .nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .tw-link-column-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .tw-link-column-item {
+    margin-bottom: 8px;
+  }
+
+  .tw-linkster .tw-link-column-item {
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__button {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__list {
+    right: 0px;
+    max-height: calc(100vh - 52px);
+    overflow-y: auto;
+  }
+}
+@media (max-width: 767px) {
+  .recent-searches.recent-searches--show {
+    position: fixed;
+    top: 168px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+    border-width: 0;
+  }
+}
+@media (max-width: 767px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.75);
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #cf0007;
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: #8a0005;
+    box-shadow: 0 0 0 1px #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:active {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:focus-within {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (min-width: 992px) {
+  .search-bar .dismissable-input {
+    width: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (max-width: 767px) {
+  .search-bar:not(.isExpanded) .base-search-bar__form {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  @media (max-width: 767px) {
+    .search-bar.isExpanded .search-bar__placeholder {
+      display: none;
+    }
+
+    .search-bar.isExpanded .base-search-bar__form {
+      display: flex;
+    }
+
+    position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 1000;
+        margin-bottom: 0px;
+        height: 100%;
+        background-color: #ffffff;
+    .search-bar.isExpanded .switcher-tabs {
+      display: inherit;
+    }
+
+  }
+}
+@media screen and (max-width: 767px) {
+  .stuck .search-bar {
+    transition: height 0.4s, margin-bottom 0.4s ease-in-out;
+    margin-bottom: 0px;
+    height: 0px;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    max-height: initial;
+    pointer-events: initial;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+}
+@media (max-width: 767px) {
+  .tabs__list {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    position: fixed;
+    top: 158px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+  }
+}
+@media (max-width: 767px) {
+  .base-search-bar .dismissable-input {
+    max-height: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .base-main-card__media ~ .base-main-card__info {
+    margin-left: 0px;
+    margin-top: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .mx-main-feed-card-no-gutter {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mx-main-feed-card-no-gutter {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
+@media (max-width: 767px) {
+  .px-main-feed-card-no-gutter {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .px-main-feed-card-no-gutter {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .filter .collapsible-dropdown__list {
+    max-height: 400px;
+  }
+}
+@media (forced-colors: active) {
+  .filter-button--selected {
+    border-width: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .base-card .duration {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+@media (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__button {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__icon--svg {
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    padding-right: 4px;
+  }
+}
+@media (min-width: 992px) {
+  .md\:flex-row {
+    flex-direction: row;
+  }
+}
+@media (min-width: 1200px) {
+  .lg\:block {
+    display: block;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
+
+  .lg\:bg-color-transparent {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .lg\:text-left {
+    text-align: left;
+  }
+}
+@media (max-width: 767px) {
+  .babybear\:invisible {
+    visibility: hidden;
+  }
+
+  .babybear\:static {
+    position: static;
+  }
+
+  .babybear\:right-4 {
+    right: 32px;
+  }
+
+  .babybear\:-top-1 {
+    top: -8px;
+  }
+
+  .babybear\:z-0 {
+    z-index: 0;
+  }
+
+  .babybear\:my-2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .babybear\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .babybear\:mx-mobile-container-padding {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .babybear\:ml-0 {
+    margin-left: 0px;
+  }
+
+  .babybear\:mb-1 {
+    margin-bottom: 8px;
+  }
+
+  .babybear\:mr-0 {
+    margin-right: 0px;
+  }
+
+  .babybear\:ml-\[-9999px\] {
+    margin-left: -9999px;
+  }
+
+  .babybear\:mb-1\.5 {
+    margin-bottom: 12px;
+  }
+
+  .babybear\:ml-1 {
+    margin-left: 8px;
+  }
+
+  .babybear\:flex {
+    display: flex;
+  }
+
+  .babybear\:hidden {
+    display: none;
+  }
+
+  .babybear\:h-\[360px\] {
+    height: 360px;
+  }
+
+  .babybear\:h-\[72px\] {
+    height: 72px;
+  }
+
+  .babybear\:h-\[27px\] {
+    height: 27px;
+  }
+
+  .babybear\:h-\[1px\] {
+    height: 1px;
+  }
+
+  .babybear\:h-\[48px\] {
+    height: 48px;
+  }
+
+  .babybear\:h-auto {
+    height: auto;
+  }
+
+  .babybear\:h-\[180px\] {
+    height: 180px;
+  }
+
+  .babybear\:max-h-\[225px\] {
+    max-height: 225px;
+  }
+
+  .babybear\:max-h-\[400px\] {
+    max-height: 400px;
+  }
+
+  .babybear\:max-h-\[250px\] {
+    max-height: 250px;
+  }
+
+  .babybear\:min-h-\[134px\] {
+    min-height: 134px;
+  }
+
+  .babybear\:w-\[360px\] {
+    width: 360px;
+  }
+
+  .babybear\:w-full {
+    width: 100%;
+  }
+
+  .babybear\:w-6 {
+    width: 48px;
+  }
+
+  .babybear\:w-\[27px\] {
+    width: 27px;
+  }
+
+  .babybear\:w-\[1px\] {
+    width: 1px;
+  }
+
+  .babybear\:w-\[100vw\] {
+    width: 100vw;
+  }
+
+  .babybear\:w-\[calc\(100\%-68px\)\] {
+    width: calc(100% - 68px);
+  }
+
+  .babybear\:min-w-full {
+    min-width: 100%;
+  }
+
+  .babybear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .babybear\:flex-none {
+    flex: none;
+  }
+
+  .babybear\:flex-auto {
+    flex: 1 1 auto;
+  }
+
+  .babybear\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .babybear\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .babybear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .babybear\:flex-row {
+    flex-direction: row;
+  }
+
+  .babybear\:flex-col {
+    flex-direction: column;
+  }
+
+  .babybear\:flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .babybear\:items-start {
+    align-items: flex-start;
+  }
+
+  .babybear\:items-center {
+    align-items: center;
+  }
+
+  .babybear\:justify-around {
+    justify-content: space-around;
+  }
+
+  .babybear\:self-center {
+    align-self: center;
+  }
+
+  .babybear\:rounded-\[0px\] {
+    border-radius: 0px;
+  }
+
+  .babybear\:border-b-1 {
+    border-bottom-width: 1px;
+  }
+
+  .babybear\:border-solid {
+    border-style: solid;
+  }
+
+  .babybear\:border-color-border-low-emphasis {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .babybear\:bg-color-transparent {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .babybear\:bg-color-brand {
+    background-color: #0a66c2;
+  }
+
+  .babybear\:p-2 {
+    padding: 16px;
+  }
+
+  .babybear\:p-0 {
+    padding: 0px;
+  }
+
+  .babybear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:px-\[4px\] {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .babybear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .babybear\:py-1\.5 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .babybear\:py-1 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .babybear\:pb-2 {
+    padding-bottom: 16px;
+  }
+
+  .babybear\:pr-0 {
+    padding-right: 0px;
+  }
+
+  .babybear\:leading-\[150px\] {
+    line-height: 150px;
+  }
+
+  .babybear\:last\:border-b-0:last-child {
+    border-bottom-width: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mamabear\:absolute {
+    position: absolute;
+  }
+
+  .mamabear\:right-4 {
+    right: 32px;
+  }
+
+  .mamabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .mamabear\:-top-1 {
+    top: -8px;
+  }
+
+  .mamabear\:mt-\[68px\] {
+    margin-top: 68px;
+  }
+
+  .mamabear\:flex {
+    display: flex;
+  }
+
+  .mamabear\:hidden {
+    display: none;
+  }
+
+  .mamabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .mamabear\:w-\[744px\] {
+    width: 744px;
+  }
+
+  .mamabear\:w-full {
+    width: 100%;
+  }
+
+  .mamabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .mamabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .mamabear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .mamabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .mamabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .mamabear\:flex-row {
+    flex-direction: row;
+  }
+
+  .mamabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .mamabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .mamabear\:items-center {
+    align-items: center;
+  }
+
+  .mamabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:self-center {
+    align-self: center;
+  }
+
+  .mamabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .mamabear\:tab-vertical.tab-sm,
+.mamabear\:tab-vertical .tab-md,
+.mamabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .mamabear\:px-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .mamabear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mamabear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .papabear\:absolute {
+    position: absolute;
+  }
+
+  .papabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .papabear\:-top-1 {
+    top: -8px;
+  }
+
+  .papabear\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .papabear\:\!mx-2 {
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
+
+  .papabear\:mt-\[68px\] {
+    margin-top: 68px;
+  }
+
+  .papabear\:mt-\[-100px\] {
+    margin-top: -100px;
+  }
+
+  .papabear\:mb-\[18px\] {
+    margin-bottom: 18px;
+  }
+
+  .papabear\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .papabear\:mt-0\.5 {
+    margin-top: 4px;
+  }
+
+  .papabear\:mr-2 {
+    margin-right: 16px;
+  }
+
+  .papabear\:ml-column-gutter {
+    margin-left: 24px;
+  }
+
+  .papabear\:flex {
+    display: flex;
+  }
+
+  .papabear\:hidden {
+    display: none;
+  }
+
+  .papabear\:h-\[34px\] {
+    height: 34px;
+  }
+
+  .papabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .papabear\:min-h-\[96px\] {
+    min-height: 96px;
+  }
+
+  .papabear\:w-\[400px\] {
+    width: 400px;
+  }
+
+  .papabear\:w-content-max-w {
+    width: 1128px;
+  }
+
+  .papabear\:w-core-rail-width {
+    width: 790px;
+  }
+
+  .papabear\:w-right-rail-width {
+    width: calc(1128px - 24px - 790px);
+  }
+
+  .papabear\:w-auto {
+    width: auto;
+  }
+
+  .papabear\:w-\[1128px\] {
+    width: 1128px;
+  }
+
+  .papabear\:w-\[135px\] {
+    width: 135px;
+  }
+
+  .papabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .papabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .papabear\:max-w-\[550px\] {
+    max-width: 550px;
+  }
+
+  .papabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .papabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .papabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .papabear\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .papabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .papabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .papabear\:justify-center {
+    justify-content: center;
+  }
+
+  .papabear\:self-start {
+    align-self: flex-start;
+  }
+
+  .papabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .papabear\:border-4 {
+    border-width: 4px;
+  }
+
+  .papabear\:tab-vertical.tab-sm,
+.papabear\:tab-vertical .tab-md,
+.papabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .papabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .papabear\:p-details-container-padding {
+    padding: 24px;
+  }
+
+  .papabear\:p-0 {
+    padding: 0px;
+  }
+
+  .papabear\:py-2 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .papabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+
+  .papabear\:text-xl {
+    font-size: 24px;
+  }
+}
+</style></head> <body dir=3D"ltr" class=3D"font-sans bg-color-background-ca=
+nvas w-full m-0 p-0 pt-1" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ma=
+rgin: 0px; width: 100%; background-color: #f3f2f0; padding: 0px; padding-to=
+p: 8px; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe U=
+I', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', C=
+antarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Em=
+oji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <=
+div class=3D"h-0 opacity-0 text-transparent invisible overflow-hidden w-0 m=
+ax-h-[0]" style=3D"visibility: hidden; height: 0px; max-height: 0; width: 0=
+px; overflow: hidden; opacity: 0; mso-hide: all;" data-email-preheader=3D"t=
+rue">Hello and happy new year, LinkedIn family. In today=E2=80=99s January =
+edition of=E2=80=A6</div> <div class=3D"h-0 opacity-0 text-transparent invi=
+sible overflow-hidden w-0 max-h-[0]" style=3D"visibility: hidden; height: 0=
+px; max-height: 0; width: 0px; overflow: hidden; opacity: 0; mso-hide: all;=
+"> =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0 </div> <table class=3D"font-sans mercado-container w-[51=
+2px] max-w-[512px] mx-auto my-0 p-0 bg-color-background-container" role=3D"=
+presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0" width=3D"512" align=3D"center" style=3D"-webkit-text-size-adjust: 100%; =
+-ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: =
+100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin-left: auto; marg=
+in-right: auto; margin-top: 0px; margin-bottom: 0px; width: 512px; max-widt=
+h: 512px; background-color: #ffffff; padding: 0px; font-family: -apple-syst=
+em, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'F=
+ira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple C=
+olor Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida=
+ Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"text-ce=
+nter p-3" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; padding: 24px; text-align: center;"> <table cla=
+ss=3D"font-sans min-w-full" role=3D"presentation" valign=3D"top" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min=
+-width: 100%; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'S=
+egoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sa=
+ns', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-seri=
+f;"> <tbody> <tr> <td align=3D"left" valign=3D"middle" style=3D"-webkit-tex=
+t-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> =
+<a href=3D"https://www.linkedin.com/comm/feed/?lipi=3Durn%3Ali%3Apage%3Aema=
+il_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;mid=
+Token=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=3Deml-email_seri=
+es_follow_newsletter_01-header-0-home_glimmer&amp;trkEmail=3Deml-email_seri=
+es_follow_newsletter_01-header-0-home_glimmer-null-eau1wl~ldag30hc~j1-null-=
+null&amp;eid=3Deau1wl-ldag30hc-j1" target=3D"_blank" class=3D"w-[84px]" sty=
+le=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decorati=
+on: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; width: 84px;"> <img class=
+=3D"block" alt=3D"LinkedIn" src=3D"https://www.linkedin.com/comm/dms/logo?b=
+adgeTheme=3Dmercado&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_=
+newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midSig=3D0k7KQ4CezRTqA1&am=
+p;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml-email_series_follow_newslett=
+er_01-null-0-comms%7Ebadging%7Edynamic%7Eglimmer-null-eau1wl%7Eldag30hc%7Ej=
+1-null-null&amp;trk=3Deml-email_series_follow_newsletter_01-null-0-comms%7E=
+badging%7Edynamic%7Eglimmer&amp;_sig=3D12Wko9E9zRTqA1" data-test-header-dyn=
+amic-badging-img style=3D"outline: none; text-decoration: none; -ms-interpo=
+lation-mode: bicubic; display: block;"> </a> </td> <td valign=3D"middle" al=
+ign=3D"right" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt;"> <table class=3D"font-sans" role=3D"presen=
+tation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wid=
+th=3D"100%" data-test-header-profile style=3D"-webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-=
+system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue'=
+, 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'App=
+le Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lu=
+cida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td align=3D"rig=
+ht" valign=3D"middle" class=3D"w-[32px]" style=3D"-webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 32px;" wi=
+dth=3D"32"> <a href=3D"https://pt.linkedin.com/comm/in/rafaelandersonsouza?=
+lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67=
+TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRT=
+qA1&amp;trk=3Deml-email_series_follow_newsletter_01-header-0-profile_glimme=
+r&amp;trkEmail=3Deml-email_series_follow_newsletter_01-header-0-profile_gli=
+mmer-null-eau1wl~ldag30hc~j1-null-null&amp;eid=3Deau1wl-ldag30hc-j1" target=
+=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inline-block=
+; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img alt=
+=3D"Rafael Souza" src=3D"https://media.licdn.com/dms/image/C4D03AQEH4Cxhkht=
+zrA/profile-displayphoto-shrink_200_200/0/1607511453788?e=3D1680134400&amp;=
+v=3Dbeta&amp;t=3DMsKB48syCBRx81qxdHPLlNRzc9-vGPZk9iYfiQw3cD0" class=3D"roun=
+ded-[100%] w-[32px] h-[32px]" style=3D"outline: none; text-decoration: none=
+; -ms-interpolation-mode: bicubic; height: 32px; width: 32px; border-radius=
+: 100%;" width=3D"32" height=3D"32"> </a> </td> </tr> </tbody> </table> </t=
+d> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"px-0 pb-3" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; padding-left: 0px; padding-right: 0px; padding-bottom: 24px;">=
+ <div> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', R=
+oboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantar=
+ell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji',=
+ 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody=
+> <tr> <td class=3D"pb-2 px-3" style=3D"-webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-left: 24px; paddin=
+g-right: 24px; padding-bottom: 16px;"> <h1 class=3D"text-sm font-medium fon=
+t-sans break-words tracking-widest leading-regular text-system-gray-70 uppe=
+rcase" data-test-id=3D"email-header" style=3D"margin: 0; overflow-wrap: bre=
+ak-word; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe =
+UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', =
+Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI E=
+moji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; fo=
+nt-size: 14px; font-weight: 500; text-transform: uppercase; line-height: 1.=
+25; letter-spacing: 0.1em; color: #666666;"> Newsletter no LinkedIn </h1> <=
+/td> </tr> <tr> <td data-test-id=3D"newsletter-entity-lockup" class=3D"pb-2=
+ px-3" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt; padding-left: 24px; padding-right: 24px; padding-b=
+ottom: 16px;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"t=
+op" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Se=
+goe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen San=
+s', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe =
+UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif=
+;"> <tbody> <tr> <td valign=3D"top" class=3D"pr-1 w-8" style=3D"-webkit-tex=
+t-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; wi=
+dth: 64px; padding-right: 8px;" width=3D"64"> <a href=3D"https://www.linked=
+in.com/comm/newsletters/6641420720876343296?lipi=3Durn%3Ali%3Apage%3Aemail_=
+email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midTok=
+en=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=3Deml-email_series_=
+follow_newsletter_01-newsletter_entity_lockup-0-newsletter_entity_cta&amp;t=
+rkEmail=3Deml-email_series_follow_newsletter_01-newsletter_entity_lockup-0-=
+newsletter_entity_cta-null-eau1wl~ldag30hc~j1-null-null&amp;eid=3Deau1wl-ld=
+ag30hc-j1" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; disp=
+lay: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%;"> <img class=3D"inline-block relative bg-color-entity-ghost-background=
+ w-8 h-8" src=3D"https://media.licdn.com/dms/image/D4E12AQGMnncpfIDhLQ/seri=
+es-logo_image-shrink_100_100/0/1662050735223?e=3D2147483647&amp;v=3Dbeta&am=
+p;t=3DOSpzpgOfT3aq2bUquQdgxlEk5_dqr8reBYi5INEeb04" alt=3D"LinkedIn 360 l By=
+ GaryVee" style=3D"outline: none; text-decoration: none; -ms-interpolation-=
+mode: bicubic; position: relative; display: inline-block; height: 64px; wid=
+th: 64px; background-color: #eae6df;" width=3D"64" height=3D"64"> </a> </td=
+> <td valign=3D"top" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size=
+-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tab=
+le-lspace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"font-sans" role=3D=
+"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-a=
+djust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui,=
+ BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubu=
+ntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', '=
+Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helv=
+etica, Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D=
+"https://www.linkedin.com/comm/newsletters/6641420720876343296?lipi=3Durn%3=
+Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI=
+9w%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=
+=3Deml-email_series_follow_newsletter_01-newsletter_entity_lockup-0-newslet=
+ter_entity_cta&amp;trkEmail=3Deml-email_series_follow_newsletter_01-newslet=
+ter_entity_lockup-0-newsletter_entity_cta-null-eau1wl~ldag30hc~j1-null-null=
+&amp;eid=3Deau1wl-ldag30hc-j1" target=3D"_blank" class=3D"no-underline" sty=
+le=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decorati=
+on: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; text-decoration-line: none;=
+"> <span class=3D"font-[700] text-md m-0 pb-0.25 break-words leading-regula=
+r text-system-gray-90" style=3D"margin: 0px; overflow-wrap: break-word; pad=
+ding-bottom: 2px; font-size: 16px; font-weight: 700; line-height: 1.25; col=
+or: #282828;"> LinkedIn 360 l By GaryVee </span> </a> </td> </tr> <tr> <td =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/newsletters/66=
+41420720876343296?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsle=
+tter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;mi=
+dSig=3D0k7KQ4CezRTqA1&amp;trk=3Deml-email_series_follow_newsletter_01-newsl=
+etter_entity_lockup-0-newsletter_entity_cta&amp;trkEmail=3Deml-email_series=
+_follow_newsletter_01-newsletter_entity_lockup-0-newsletter_entity_cta-null=
+-eau1wl~ldag30hc~j1-null-null&amp;eid=3Deau1wl-ldag30hc-j1" target=3D"_blan=
+k" class=3D"no-underline" style=3D"color: #0a66c2; cursor: pointer; display=
+: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%=
+; text-decoration-line: none;"> <span class=3D"text-sm m-0 text-cool-gray-7=
+0 break-words font-normal leading-regular" style=3D"margin: 0px; overflow-w=
+rap: break-word; font-size: 14px; font-weight: 400; line-height: 1.25; colo=
+r: #56687a;"> Gary Vaynerchuk's monthly recap of the most valuable content =
+on business, social media, marketing and more. </span> </a> </td> </tr> </t=
+body> </table> </td> </tr> </tbody> </table> </td> </tr> <tr> <td data-test=
+-id=3D"newsletter-author-lockup" class=3D"px-3 pb-2" valign=3D"middle" styl=
+e=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table=
+-rspace: 0pt; padding-left: 24px; padding-right: 24px; padding-bottom: 16px=
+;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;=
+ font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Rob=
+oto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarel=
+l, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', '=
+Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> =
+<tr> <td valign=3D"middle" align=3D"left" class=3D"pr-1 w-4" style=3D"-webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; width: 32px; padding-right: 8px;" width=3D"32"> <a href=3D"https://www.=
+linkedin.com/comm/in/garyvaynerchuk/pt?lipi=3Durn%3Ali%3Apage%3Aemail_email=
+_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3D=
+AQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=3Deml-email_series_follo=
+w_newsletter_01-newsletter_author_lockup-0-newsletter_author_cta&amp;trkEma=
+il=3Deml-email_series_follow_newsletter_01-newsletter_author_lockup-0-newsl=
+etter_author_cta-null-eau1wl~ldag30hc~j1-null-null&amp;eid=3Deau1wl-ldag30h=
+c-j1" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: =
+inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"=
+> <img class=3D"inline-block relative bg-color-entity-ghost-background clip=
+-path-circle-50 rounded-full w-4 h-4 align-middle" src=3D"https://media.lic=
+dn.com/dms/image/C4D03AQHqHC_kb600Iw/profile-displayphoto-shrink_400_400/0/=
+1560203090726?e=3D1680134400&amp;v=3Dbeta&amp;t=3Dyd1PevYiTqaE4_NZLUSWUd7Yr=
+HTLoUzH4_rRtKvH5_g" alt=3D"Imagem do autor" style=3D"outline: none; text-de=
+coration: none; -ms-interpolation-mode: bicubic; position: relative; displa=
+y: inline-block; height: 32px; width: 32px; border-radius: 9999px; backgrou=
+nd-color: #eae6df; vertical-align: middle; clip-path: circle(50%);" width=
+=3D"32" height=3D"32"> </a> </td> <td valign=3D"middle" class=3D"align-midd=
+le" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt; vertical-align: middle;"> <table class=3D"font-sans" =
+role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, sys=
+tem-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira San=
+s', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Em=
+oji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande=
+', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-s=
+ize-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; =
+text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a =
+href=3D"https://www.linkedin.com/comm/in/garyvaynerchuk/pt?lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3=
+D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=3Dem=
+l-email_series_follow_newsletter_01-newsletter_author_lockup-0-newsletter_a=
+uthor_cta&amp;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_a=
+uthor_lockup-0-newsletter_author_cta-null-eau1wl~ldag30hc~j1-null-null&amp;=
+eid=3Deau1wl-ldag30hc-j1" target=3D"_blank" class=3D"no-underline" style=3D=
+"color: #0a66c2; cursor: pointer; display: inline-block; text-decoration: n=
+one; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%; text-decoration-line: none;"> <s=
+pan class=3D"font-[700] text-sm m-0 pb-0.25 text-system-gray-90 leading-reg=
+ular" style=3D"margin: 0px; padding-bottom: 2px; font-size: 14px; font-weig=
+ht: 700; line-height: 1.25; color: #282828;">Gary Vaynerchuk</span> </a> </=
+td> </tr> <tr> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-a=
+djust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/=
+comm/in/garyvaynerchuk/pt?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follo=
+w_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1MBbB2bM8=
+g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=3Deml-email_series_follow_newsletter_=
+01-newsletter_author_lockup-0-newsletter_author_cta&amp;trkEmail=3Deml-emai=
+l_series_follow_newsletter_01-newsletter_author_lockup-0-newsletter_author_=
+cta-null-eau1wl~ldag30hc~j1-null-null&amp;eid=3Deau1wl-ldag30hc-j1" target=
+=3D"_blank" class=3D"no-underline" style=3D"color: #0a66c2; cursor: pointer=
+; display: inline-block; text-decoration: none; -webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; text-decoration-line: none;"> <span class=3D"text-xs m-0 text-co=
+ol-gray-70" data-test-id=3D"headline" style=3D"margin: 0px; font-size: 12px=
+; color: #56687a;"> Presidente da VaynerMedia, S=C3=B3cio na Vayner/RSE and=
+ 4 vezes autor de best-seller do NYT </span> </a> </td> </tr> </tbody> </ta=
+ble> </td> </tr> </tbody> </table> </td> </tr> <tr data-test-id=3D"newslett=
+er-hero-banner"> <td class=3D"bg-color-surface-accent-4 py-2 px-3 leading-r=
+egular" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%=
+; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0p=
+t; mso-table-rspace: 0pt; background-color: #dde7f1; padding-left: 24px; pa=
+dding-right: 24px; padding-top: 16px; padding-bottom: 16px; line-height: 1.=
+25;"> <a href=3D"https://www.linkedin.com/comm/pulse/what-chatgpt-means-202=
+3-gary-vaynerchuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsle=
+tter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;mi=
+dSig=3D0k7KQ4CezRTqA1&amp;trk=3Deml-email_series_follow_newsletter_01-newsl=
+etter_hero_banner-0-open_on_linkedin_cta&amp;trkEmail=3Deml-email_series_fo=
+llow_newsletter_01-newsletter_hero_banner-0-open_on_linkedin_cta-null-eau1w=
+l~ldag30hc~j1-null-null&amp;eid=3Deau1wl-ldag30hc-j1" target=3D"_blank" cla=
+ss=3D"text-color-text no-underline" style=3D"cursor: pointer; display: inli=
+ne-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; colo=
+r: rgba(0, 0, 0, 0.9); text-decoration-line: none;"> Veja o que outras pess=
+oas est=C3=A3o dizendo sobre este t=C3=B3pico:<span class=3D"text-color-bra=
+nd font-normal text-md leading-regular" style=3D"font-size: 16px; font-weig=
+ht: 400; line-height: 1.25; color: #0a66c2;"> Abrir no LinkedIn</span> </a>=
+ </td> </tr> <tr data-test-id=3D"newsletter-content-preview"> <td class=3D"=
+px-3 pt-2" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; padding-left: 24px; padding-right: 24px; paddi=
+ng-top: 16px;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"=
+top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Se=
+goe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen San=
+s', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe =
+UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif=
+;"> <tbody> <tr> <td class=3D"border-1 border-solid border-system-gray-50 r=
+ounded-md overflow-hidden" style=3D"-webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; overflow: hidden; border-radiu=
+s: 8px; border-width: 1px; border-style: solid; border-color: #b0b0b0;"> <t=
+able class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <t=
+d style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso=
+-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/pulse/what-c=
+hatgpt-means-2023-gary-vaynerchuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_seri=
+es_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1=
+MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=3Deml-email_series_follow_new=
+sletter_01-newsletter_content_preview-0-headline_&amp;trkEmail=3Deml-email_=
+series_follow_newsletter_01-newsletter_content_preview-0-headline_-null-eau=
+1wl~ldag30hc~j1-null-null&amp;eid=3Deau1wl-ldag30hc-j1" target=3D"_blank" s=
+tyle=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decora=
+tion: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"block w-f=
+ull" alt=3D"Imagem de capa da newsletter" src=3D"https://media.licdn.com/dm=
+s/image/D5612AQFd1-uOvQ-6DQ/article-cover_image-shrink_720_1280/0/167423755=
+1738?e=3D2147483647&amp;v=3Dbeta&amp;t=3DY2wVv_eeizBfxo75_Xs37R9JbnmoE891Oc=
+FDKPq9Smc" style=3D"outline: none; text-decoration: none; -ms-interpolation=
+-mode: bicubic; display: block; width: 100%;"> </a> </td> </tr> <tr> <td cl=
+ass=3D"p-2" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt; padding: 16px;"> <table class=3D"font-sans" r=
+ole=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso=
+-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, syst=
+em-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans=
+', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emo=
+ji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande'=
+, Helvetica, Arial, sans-serif;"> <tbody> <tr> <td style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a h=
+ref=3D"https://www.linkedin.com/comm/pulse/what-chatgpt-means-2023-gary-vay=
+nerchuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3B=
+RA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7=
+KQ4CezRTqA1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_cont=
+ent_preview-0-title_&amp;trkEmail=3Deml-email_series_follow_newsletter_01-n=
+ewsletter_content_preview-0-title_-null-eau1wl~ldag30hc~j1-null-null&amp;ei=
+d=3Deau1wl-ldag30hc-j1" target=3D"_blank" class=3D"no-underline font-medium=
+ text-sm m-0 text-system-gray-90" style=3D"cursor: pointer; display: inline=
+-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; margin=
+: 0px; font-size: 14px; font-weight: 500; color: #282828; text-decoration-l=
+ine: none;"> <h2 style=3D"margin: 0; font-weight: 500;"> What ChatGPT means=
+ for 2023 </h2> </a> </td> </tr> <tr data-test-id=3D"newsletter-content-pre=
+view--content"> <td class=3D"pt-0.5 series-article-body" style=3D"-webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Robo=
+to, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell=
+, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; font-size: =
+16px; padding-top: 4px;"> <p style=3D"margin: 0; font-weight: 400; margin-t=
+op: 0.8em; font-size: 1em; line-height: 1.5;">Hello and happy new year, Lin=
+kedIn family.</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em=
+; font-size: 1em; line-height: 1.5;">In today=E2=80=99s January edition of =
+LinkedIn 360, we=E2=80=99ll dive into why I think ChatGPT and AI tech in ge=
+neral present an exciting new landscape, and why we should be excited, not =
+scared about where this advancement is taking us. I=E2=80=99ll also share s=
+ome thoughts on effective leadership and more.</p><p style=3D"margin: 0; fo=
+nt-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">I hop=
+e everyone reading this is having a strong start to 2023. Enjoy and thanks =
+for reading!</p><figure><img alt=3D"No alt text provided for this image" da=
+ta-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQHjcDag=
+qfP0fg/article-inline_image-shrink_1500_2232/0/1674237809693?e=3D1680134400=
+&amp;v=3Dbeta&amp;t=3DpMAgLiHc3US3aV7kD0x5QPC88jXfKlXPYl7Re7isTAU" src=3D"h=
+ttps://media.licdn.com/dms/image/D5612AQHjcDagqfP0fg/article-inline_image-s=
+hrink_1500_2232/0/1674237809693?e=3D1680134400&amp;v=3Dbeta&amp;t=3DpMAgLiH=
+c3US3aV7kD0x5QPC88jXfKlXPYl7Re7isTAU" width=3D"480" style=3D"outline: none;=
+ text-decoration: none; -ms-interpolation-mode: bicubic; margin-top: 1em; d=
+isplay: block; max-width: 100%;"></figure><figure><a href=3D"https://www.li=
+nkedin.com/posts/garyvaynerchuk_nice-guys-and-gals-finish-first-the-world-a=
+ctivity-7005517489044426752-34Q5?utm_source=3Dshare&amp;utm_medium=3Dmember=
+_desktop" target=3D"_blank" style=3D"text-decoration: none; -webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; display: inline; cursor: pointer; color: #0a66c2; te=
+xt-decoration-line: none;"><img alt=3D"No alt text provided for this image"=
+ data-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQFCX=
+0_qh5e04Q/article-inline_image-shrink_1500_2232/0/1674237936810?e=3D1680134=
+400&amp;v=3Dbeta&amp;t=3Dj9kdPITRDleNe7OkgfKZ24oro1hre9R7lqCGkQ1x7Tk" src=
+=3D"https://media.licdn.com/dms/image/D5612AQFCX0_qh5e04Q/article-inline_im=
+age-shrink_1500_2232/0/1674237936810?e=3D1680134400&amp;v=3Dbeta&amp;t=3Dj9=
+kdPITRDleNe7OkgfKZ24oro1hre9R7lqCGkQ1x7Tk" width=3D"480" style=3D"outline: =
+none; text-decoration: none; -ms-interpolation-mode: bicubic; margin-top: 1=
+em; display: block; max-width: 100%;"></a></figure><p style=3D"margin: 0; f=
+ont-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">The =
+fact that this was one of my best performing posts last month makes me so h=
+appy. It means that more people are finally starting to understand the impo=
+rtance of kindness in life and in business. Being kind isn=E2=80=99t a =E2=
+=80=9Cnice to have=E2=80=9D =E2=80=A6 I actually think it=E2=80=99s one of =
+the most practical and underrated tools one can use to reach real success.&=
+nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-s=
+ize: 1em; line-height: 1.5;">On a daily basis, I rely on kindness to get me=
+ through anxious and challenging moments in business. In times when it woul=
+d be =E2=80=9Ceasier=E2=80=9D to lash out in anger or stress, being kind an=
+d being able to be the bigger person shows an internal strength that will d=
+ifferentiate you from others. Unfortunately, too many still believe in sayi=
+ngs like =E2=80=9Cnice guys finish last,=E2=80=9D or they think kindness is=
+ synonymous with being a pushover. It=E2=80=99s actually quite the opposite=
+ =E2=80=93 kindness isn=E2=80=99t a weakness; it=E2=80=99s your ultimate se=
+cret weapon.&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: =
+0.8em; font-size: 1em; line-height: 1.5;">When you=E2=80=99re in a confront=
+ation with an employee, vendor, or client, kindness will let the other part=
+y open up to you in a way that would otherwise never happen. When you have =
+to deliver bad news or have tough conversations, practicing kindness helps =
+create a safer environment to do so. The truth is that lots of people build=
+ businesses =E2=80=A6 but if you want to build a business with true staying=
+ power, you need to understand the value and practicality of kindness.</p><=
+figure><img alt=3D"No alt text provided for this image" data-media-urn data=
+-li-src=3D"https://media.licdn.com/dms/image/D4E12AQHxb5QXfS3Qdg/article-in=
+line_image-shrink_1000_1488/0/1674242649960?e=3D1680134400&amp;v=3Dbeta&amp=
+;t=3DVszYbka2uQIy-DO7SvPMw9_dYJZszuAQOjIVji14LiA" src=3D"https://media.licd=
+n.com/dms/image/D4E12AQHxb5QXfS3Qdg/article-inline_image-shrink_1000_1488/0=
+/1674242649960?e=3D1680134400&amp;v=3Dbeta&amp;t=3DVszYbka2uQIy-DO7SvPMw9_d=
+YJZszuAQOjIVji14LiA" width=3D"480" style=3D"outline: none; text-decoration:=
+ none; -ms-interpolation-mode: bicubic; margin-top: 1em; display: block; ma=
+x-width: 100%;"></figure><p style=3D"margin: 0; font-weight: 400; margin-to=
+p: 0.8em; font-size: 1em; line-height: 1.5;">If you=E2=80=99re the leader o=
+f a company, if you=E2=80=99re the manager of a team or the CEO of a busine=
+ss =E2=80=A6 if you=E2=80=99re in any position of power within an organizat=
+ion and you=E2=80=99re not diffusing the stress and tension happening under=
+neath you, please, take a step back.&nbsp;</p><p style=3D"margin: 0; font-w=
+eight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">You work =
+for your employees, not the other way around. That means that when you=E2=
+=80=99re putting out fires at the top, your stress shouldn=E2=80=99t trickl=
+e down and become everybody else=E2=80=99s problem. Of course, it=E2=80=99s=
+ important to lead with transparency; you never want to create delusion wit=
+hin a business .. but at the end of the day, strong leaders are able to abs=
+orb that negativity and convert it into empathy and kind candor so it doesn=
+=E2=80=99t become poison that spreads to the rest of the company. </p><tabl=
+e class=3D"email-iframe-wrapper" style=3D"-webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin-top: 1em; width: =
+100%; background-color: #f5f7f9; text-align: center;" width=3D"100%"><tbody=
+><tr><td class=3D"email-iframe-td-padding-top" style=3D"-webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-to=
+p: 64px;"></td></tr><tr><td style=3D"-webkit-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; =
+mso-table-lspace: 0pt; mso-table-rspace: 0pt;"><img src=3D"https://media.li=
+cdn.com/media/AAYQAgQJAAgAAQAAAAAAAEI_gKaSVYsWRCWh_qg9aKt9IQ.png" class=3D"=
+email-iframe-image" style=3D"outline: none; text-decoration: none; -ms-inte=
+rpolation-mode: bicubic; margin-top: 1em; display: block; max-width: 100%; =
+margin: auto; height: 64px; width: 64px;" width=3D"64" height=3D"64"></td><=
+/tr><tr><td class=3D"email-iframe-td-padding-middle" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padd=
+ing-top: 16px;"><a href=3D"https://www.linkedin.com/pulse/what-chatgpt-mean=
+s-2023-gary-vaynerchuk" target=3D"_blank" class=3D"email-iframe-button" sty=
+le=3D"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; cursor: =
+pointer; display: inline-block; border-radius: 34px; border-width: 1px; bor=
+der-style: solid; border-color: #0a66c2; padding-top: 0.4em; padding-bottom=
+: 0.4em; padding-left: 1em; padding-right: 1em; text-align: center; font-si=
+ze: 1em; font-weight: 600; line-height: 1.25; color: #0a66c2; text-decorati=
+on-line: none;">View media</a></td></tr><tr><td class=3D"email-iframe-td-pa=
+dding-bottom" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt; padding-bottom: 64px;"></td></tr></tbody></=
+table><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-size=
+: 1em; line-height: 1.5;">Let there be no confusion =E2=80=A6 there is no s=
+topping technology. Whenever there=E2=80=99s some new technological advance=
+ment there=E2=80=99s always a wave of fear that follows from the masses. It=
+ happened with online shopping, it happened with online dating, with crypto=
+currency, and now AI is getting that same skeptical response. My opinion is=
+ that it=E2=80=99s not worth resisting!&nbsp;</p><p style=3D"margin: 0; fon=
+t-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Change=
+ is inevitable =E2=80=A6 instead of getting scared, we should try getting c=
+urious about what new doors, new possibilities, and new ways of learning te=
+chnology like ChatGPT can open up for students and educators.&nbsp;</p><p s=
+tyle=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; lin=
+e-height: 1.5;">Don=E2=80=99t fear innovation =E2=80=A6 figure out how to t=
+ake advantage of it. </p><figure><img alt=3D"No alt text provided for this =
+image" data-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D561=
+2AQFE5TC8vCS3fA/article-inline_image-shrink_1500_2232/0/1674238297963?e=3D1=
+680134400&amp;v=3Dbeta&amp;t=3DksI5Ss4BNW_L931cQj-hmPq0VJ48D8F9Deu1HEiJdU8"=
+ src=3D"https://media.licdn.com/dms/image/D5612AQFE5TC8vCS3fA/article-inlin=
+e_image-shrink_1500_2232/0/1674238297963?e=3D1680134400&amp;v=3Dbeta&amp;t=
+=3DksI5Ss4BNW_L931cQj-hmPq0VJ48D8F9Deu1HEiJdU8" width=3D"480" style=3D"outl=
+ine: none; text-decoration: none; -ms-interpolation-mode: bicubic; margin-t=
+op: 1em; display: block; max-width: 100%;"></figure><table class=3D"email-i=
+frame-wrapper" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt; margin-top: 1em; width: 100%; background-c=
+olor: #f5f7f9; text-align: center;" width=3D"100%"><tbody><tr><td class=3D"=
+email-iframe-td-padding-top" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 64px;"></td></t=
+r><tr><td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt;"><img src=3D"https://media.licdn.com/media/AAYQ=
+AgQJAAgAAQAAAAAAAEI_gKaSVYsWRCWh_qg9aKt9IQ.png" class=3D"email-iframe-image=
+" style=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bi=
+cubic; margin-top: 1em; display: block; max-width: 100%; margin: auto; heig=
+ht: 64px; width: 64px;" width=3D"64" height=3D"64"></td></tr><tr><td class=
+=3D"email-iframe-td-padding-middle" style=3D"-webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 16px;"><=
+a href=3D"https://www.linkedin.com/pulse/what-chatgpt-means-2023-gary-vayne=
+rchuk" target=3D"_blank" class=3D"email-iframe-button" style=3D"text-decora=
+tion: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%; cursor: pointer; display:=
+ inline-block; border-radius: 34px; border-width: 1px; border-style: solid;=
+ border-color: #0a66c2; padding-top: 0.4em; padding-bottom: 0.4em; padding-=
+left: 1em; padding-right: 1em; text-align: center; font-size: 1em; font-wei=
+ght: 600; line-height: 1.25; color: #0a66c2; text-decoration-line: none;">V=
+iew media</a></td></tr><tr><td class=3D"email-iframe-td-padding-bottom" sty=
+le=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text=
+-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt; padding-bottom: 64px;"></td></tr></tbody></table><p style=3D=
+"margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-heigh=
+t: 1.5;">If you follow me on <a href=3D"https://www.instagram.com/garyvee/"=
+ target=3D"_blank" rel=3D"nofollow noopener" style=3D"text-decoration: none=
+; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; display: inline; cursor: pointer; c=
+olor: #0a66c2; text-decoration-line: none;">Instagram</a>, you=E2=80=99ve s=
+een me make several posts about ChatGPT by now =E2=80=93 the current count =
+is three with a blog post on the way =E2=80=A6 Why am I so fired up about t=
+his technology? It=E2=80=99s because I=E2=80=99ve had this exact feeling be=
+fore...&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em=
+; font-size: 1em; line-height: 1.5;">This is the same feeling I had in my f=
+reshman year of college. I was in my dorm room playing Madden =E2=80=9894 =
+=E2=80=93 dominating, by the way =E2=80=93 when my friend ran into my room =
+and said, =E2=80=9CHey, man. You gotta see this!=E2=80=9D I ran into the ot=
+her room where there were six guys hovering over one computer. I waited an =
+hour and a half to have my turn to navigate this new thing called the inter=
+net =E2=80=A6 or as it was called back then, the information superhighway. =
+In my first seven minutes of being online for the first time, I landed on a=
+ baseball card bulletin board where people were selling cards back and fort=
+h. That was the instant I realized =E2=80=A6 holy crap, I don=E2=80=99t nee=
+d to open up a ton of wine shops=E2=80=A6 I could use the internet to sell =
+wine.&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; =
+font-size: 1em; line-height: 1.5;">Immediately, I knew that technology woul=
+d change my life.&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-=
+top: 0.8em; font-size: 1em; line-height: 1.5;">Of course, there were a lot =
+of people =E2=80=93 maybe even most people =E2=80=93 that needed way more c=
+onvincing than I did. For them, the idea of selling anything online was abs=
+urd. The concept of entering in their credit card information to purchase s=
+omething off the internet was ridiculous and scary =E2=80=A6 fast forward t=
+o today and this is the same kind of skepticism I=E2=80=99m seeing surround=
+ing ChatGPT and AI technology.&nbsp;</p><p style=3D"margin: 0; font-weight:=
+ 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">My challenge to=
+ you is =E2=80=A6 instead of being scared, why not be curious? Instead of s=
+aying =E2=80=9Cno,=E2=80=9D why not say =E2=80=9Cyes=E2=80=9D or =E2=80=9Cm=
+aybe=E2=80=9D?&nbsp;</p><p style=3D"margin: 0; font-weight: 400; margin-top=
+: 0.8em; font-size: 1em; line-height: 1.5;">I really believe the tech behin=
+d ChatGPT is gonna change a ton of people=E2=80=99s lives. It=E2=80=99ll he=
+lp writers, content creators, artists, and I=E2=80=99m sure there are so ma=
+ny other use cases we haven=E2=80=99t even realized yet. Just like the inte=
+rnet opened up a whole new realm of possibilities for people like me who di=
+dn=E2=80=99t thrive in the environment of the traditional schooling system,=
+ I believe ChatGPT will create new possibilities for people who will take a=
+dvantage of AI-generated text to aid in their creative processes. This isn=
+=E2=80=99t a threat to creativity. It=E2=80=99s a partner to it =E2=80=A6 a=
+nd I think it=E2=80=99s incredibly profound. </p><table class=3D"email-ifra=
+me-wrapper" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt; margin-top: 1em; width: 100%; background-colo=
+r: #f5f7f9; text-align: center;" width=3D"100%"><tbody><tr><td class=3D"ema=
+il-iframe-td-padding-top" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 64px;"></td></tr><=
+tr><td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt;"><img src=3D"https://media.licdn.com/media/AAYQAgQ=
+JAAgAAQAAAAAAAEI_gKaSVYsWRCWh_qg9aKt9IQ.png" class=3D"email-iframe-image" s=
+tyle=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicub=
+ic; margin-top: 1em; display: block; max-width: 100%; margin: auto; height:=
+ 64px; width: 64px;" width=3D"64" height=3D"64"></td></tr><tr><td class=3D"=
+email-iframe-td-padding-middle" style=3D"-webkit-text-size-adjust: 100%; -m=
+s-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 10=
+0%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 16px;"><a hr=
+ef=3D"https://www.linkedin.com/pulse/what-chatgpt-means-2023-gary-vaynerchu=
+k" target=3D"_blank" class=3D"email-iframe-button" style=3D"text-decoration=
+: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; cursor: pointer; display: inl=
+ine-block; border-radius: 34px; border-width: 1px; border-style: solid; bor=
+der-color: #0a66c2; padding-top: 0.4em; padding-bottom: 0.4em; padding-left=
+: 1em; padding-right: 1em; text-align: center; font-size: 1em; font-weight:=
+ 600; line-height: 1.25; color: #0a66c2; text-decoration-line: none;">View =
+media</a></td></tr><tr><td class=3D"email-iframe-td-padding-bottom" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; padding-bottom: 64px;"></td></tr></tbody></table><figure><img =
+alt=3D"No alt text provided for this image" data-media-urn data-li-src=3D"h=
+ttps://media.licdn.com/dms/image/D4E12AQGHwZx3VqnxIg/article-inline_image-s=
+hrink_1500_2232/0/1674247126692?e=3D1680134400&amp;v=3Dbeta&amp;t=3DevUZbIm=
+I5DGMvUDc7HV3DJwyj8pRKwlmZIUKb6uz1gU" src=3D"https://media.licdn.com/dms/im=
+age/D4E12AQGHwZx3VqnxIg/article-inline_image-shrink_1500_2232/0/16742471266=
+92?e=3D1680134400&amp;v=3Dbeta&amp;t=3DevUZbImI5DGMvUDc7HV3DJwyj8pRKwlmZIUK=
+b6uz1gU" width=3D"480" style=3D"outline: none; text-decoration: none; -ms-i=
+nterpolation-mode: bicubic; margin-top: 1em; display: block; max-width: 100=
+%;"></figure><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; fo=
+nt-size: 1em; line-height: 1.5;">This month=E2=80=99s tactical tip from Tea=
+m GaryVee:</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; f=
+ont-size: 1em; line-height: 1.5;">Behind-the-scenes into TGV's =E2=80=9Ccon=
+tent-and-analytics-land!=E2=80=9D&nbsp;</p><p style=3D"margin: 0; font-weig=
+ht: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;"><a href=3D"h=
+ttps://www.instagram.com/p/Cg5N8wepM1m/" target=3D"_blank" rel=3D"nofollow =
+noopener" style=3D"text-decoration: none; -webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; display: inline; cursor: pointer; color: #0a66c2; text-decoration-line=
+: none;">Learn more here</a>.</p><figure><img alt=3D"No alt text provided f=
+or this image" data-media-urn data-li-src=3D"https://media.licdn.com/dms/im=
+age/D5612AQGfsVa3lwkMrA/article-inline_image-shrink_1500_2232/0/16742386830=
+27?e=3D1680134400&amp;v=3Dbeta&amp;t=3DiRY_9-fQfRqmIS7CrF23nFJr9kbjK4BoDBl1=
+NVa5wKE" src=3D"https://media.licdn.com/dms/image/D5612AQGfsVa3lwkMrA/artic=
+le-inline_image-shrink_1500_2232/0/1674238683027?e=3D1680134400&amp;v=3Dbet=
+a&amp;t=3DiRY_9-fQfRqmIS7CrF23nFJr9kbjK4BoDBl1NVa5wKE" width=3D"480" style=
+=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; =
+margin-top: 1em; display: block; max-width: 100%;"></figure><p style=3D"mar=
+gin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1=
+.5;">Highlighting some comments that caught my eye or that my team thought =
+were noteworthy - appreciate all of the comments, DMs and interactions :)</=
+p><figure><a href=3D"https://www.linkedin.com/feed/update/urn:li:ugcPost:70=
+11740437853937665?commentUrn=3Durn%3Ali%3Acomment%3A%28ugcPost%3A7011740437=
+853937665%2C7011771514102435840%29" target=3D"_blank" style=3D"text-decorat=
+ion: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; display: inline; cursor: p=
+ointer; color: #0a66c2; text-decoration-line: none;"><img alt=3D"No alt tex=
+t provided for this image" data-media-urn data-li-src=3D"https://media.licd=
+n.com/dms/image/D4E12AQGcxTdtHtohKQ/article-inline_image-shrink_1000_1488/0=
+/1674241970614?e=3D1680134400&amp;v=3Dbeta&amp;t=3DDUsZJGsGSCDZJXrSp5kgs7Et=
+o_NKnRRVFoaws38sBLA" src=3D"https://media.licdn.com/dms/image/D4E12AQGcxTdt=
+HtohKQ/article-inline_image-shrink_1000_1488/0/1674241970614?e=3D1680134400=
+&amp;v=3Dbeta&amp;t=3DDUsZJGsGSCDZJXrSp5kgs7Eto_NKnRRVFoaws38sBLA" width=3D=
+"480" style=3D"outline: none; text-decoration: none; -ms-interpolation-mode=
+: bicubic; margin-top: 1em; display: block; max-width: 100%;"></a></figure>=
+<figure><a href=3D"https://www.linkedin.com/feed/update/urn:li:activity:701=
+0953270386917376?commentUrn=3Durn%3Ali%3Acomment%3A%28activity%3A7010953270=
+386917376%2C7010979476914241536%29" target=3D"_blank" style=3D"text-decorat=
+ion: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; display: inline; cursor: p=
+ointer; color: #0a66c2; text-decoration-line: none;"><img alt=3D"No alt tex=
+t provided for this image" data-media-urn data-li-src=3D"https://media.licd=
+n.com/dms/image/D4E12AQEKuS2DtW6ihQ/article-inline_image-shrink_1000_1488/0=
+/1674241995245?e=3D1680134400&amp;v=3Dbeta&amp;t=3D_rxNZOrH_52kEWaPcAVJb23N=
+HITfoRyPf9k-b3tBAeU" src=3D"https://media.licdn.com/dms/image/D4E12AQEKuS2D=
+tW6ihQ/article-inline_image-shrink_1000_1488/0/1674241995245?e=3D1680134400=
+&amp;v=3Dbeta&amp;t=3D_rxNZOrH_52kEWaPcAVJb23NHITfoRyPf9k-b3tBAeU" width=3D=
+"480" style=3D"outline: none; text-decoration: none; -ms-interpolation-mode=
+: bicubic; margin-top: 1em; display: block; max-width: 100%;"></a></figure>=
+<figure><a href=3D"https://www.linkedin.com/feed/update/urn:li:ugcPost:7011=
+756949813764096?commentUrn=3Durn%3Ali%3Acomment%3A%28ugcPost%3A701175694981=
+3764096%2C7013362630740385792%29&amp;dashCommentUrn=3Durn%3Ali%3Afsd_commen=
+t%3A%287013362630740385792%2Curn%3Ali%3AugcPost%3A7011756949813764096%29" t=
+arget=3D"_blank" style=3D"text-decoration: none; -webkit-text-size-adjust: =
+100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-ad=
+just: 100%; display: inline; cursor: pointer; color: #0a66c2; text-decorati=
+on-line: none;"><img alt=3D"No alt text provided for this image" data-media=
+-urn data-li-src=3D"https://media.licdn.com/dms/image/D4E12AQHkr7N-uLVD5A/a=
+rticle-inline_image-shrink_1000_1488/0/1674242009297?e=3D1680134400&amp;v=
+=3Dbeta&amp;t=3DFxpx4x_yuag5WX3d5BwMOHmB6hYrORYbB_UFqPp9YGs" src=3D"https:/=
+/media.licdn.com/dms/image/D4E12AQHkr7N-uLVD5A/article-inline_image-shrink_=
+1000_1488/0/1674242009297?e=3D1680134400&amp;v=3Dbeta&amp;t=3DFxpx4x_yuag5W=
+X3d5BwMOHmB6hYrORYbB_UFqPp9YGs" width=3D"480" style=3D"outline: none; text-=
+decoration: none; -ms-interpolation-mode: bicubic; margin-top: 1em; display=
+: block; max-width: 100%;"></a></figure><p style=3D"margin: 0; font-weight:=
+ 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">I could not be =
+more excited about the opportunity on Facebook Reels in 2023, really enjoyi=
+ng interacting with the community there from my personal Fb profile =E2=9D=
+=A4=EF=B8=8F</p><figure><img alt=3D"No alt text provided for this image" da=
+ta-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQEX-HIN=
+TOe6pQ/article-inline_image-shrink_400_744/0/1674506526135?e=3D1680134400&a=
+mp;v=3Dbeta&amp;t=3Duecx7wDV0wJ8Y30Aax8AcUoRIZL8zzPzxP2KobEsDbk" src=3D"htt=
+ps://media.licdn.com/dms/image/D5612AQEX-HINTOe6pQ/article-inline_image-shr=
+ink_400_744/0/1674506526135?e=3D1680134400&amp;v=3Dbeta&amp;t=3Duecx7wDV0wJ=
+8Y30Aax8AcUoRIZL8zzPzxP2KobEsDbk" width=3D"480" style=3D"outline: none; tex=
+t-decoration: none; -ms-interpolation-mode: bicubic; margin-top: 1em; displ=
+ay: block; max-width: 100%;"></figure><figure><img alt=3D"No alt text provi=
+ded for this image" data-media-urn data-li-src=3D"https://media.licdn.com/d=
+ms/image/D5612AQELWT36HcFe-w/article-inline_image-shrink_400_744/0/16745065=
+45753?e=3D1680134400&amp;v=3Dbeta&amp;t=3D2PahVYVYdCBN9zFkxpwCrXoAWwNInLC3W=
+HyZcu-CNTE" src=3D"https://media.licdn.com/dms/image/D5612AQELWT36HcFe-w/ar=
+ticle-inline_image-shrink_400_744/0/1674506545753?e=3D1680134400&amp;v=3Dbe=
+ta&amp;t=3D2PahVYVYdCBN9zFkxpwCrXoAWwNInLC3WHyZcu-CNTE" width=3D"480" style=
+=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; =
+margin-top: 1em; display: block; max-width: 100%;"></figure><figure><img al=
+t=3D"No alt text provided for this image" data-media-urn data-li-src=3D"htt=
+ps://media.licdn.com/dms/image/D5612AQHNwiSlD8aH5Q/article-inline_image-shr=
+ink_400_744/0/1674506565998?e=3D1680134400&amp;v=3Dbeta&amp;t=3DT-5obhLNSp2=
+emQcLFRAHNkaQS7qEo3y6Ew0gKzKbph0" src=3D"https://media.licdn.com/dms/image/=
+D5612AQHNwiSlD8aH5Q/article-inline_image-shrink_400_744/0/1674506565998?e=
+=3D1680134400&amp;v=3Dbeta&amp;t=3DT-5obhLNSp2emQcLFRAHNkaQS7qEo3y6Ew0gKzKb=
+ph0" width=3D"480" style=3D"outline: none; text-decoration: none; -ms-inter=
+polation-mode: bicubic; margin-top: 1em; display: block; max-width: 100%;">=
+</figure><p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-s=
+ize: 1em; line-height: 1.5;">Here's a few cool stories from Facebook that s=
+hows the power of engagement and community building.</p><p style=3D"margin:=
+ 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;"=
+>I saw these comments, which made me smile...&nbsp;=F0=9F=99=82&nbsp;I imme=
+diately reacted and responded on a few of them!</p><p style=3D"margin: 0; f=
+ont-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Just=
+ to show them that I am always listening...</p><p style=3D"margin: 0; font-=
+weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">One of t=
+he greatest parts of my career has been the enormous number of friendships =
+I've created over the years... in real life and in my comment sections. Man=
+y of those friendships start from interactions like these.</p><p style=3D"m=
+argin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height:=
+ 1.5;">I'm always reading my comments, emails, and DMs... always looking, a=
+lways listening. It's where I get a lot of the context that drives my conte=
+nt and my work. I implore all business owners, entrepreneurs, and creators =
+that are reading this right now to double down in the comment section. I pr=
+omise that you'll truly find value, and more importantly, you'll make relat=
+ionships... and relationships are everything.</p><figure><img alt=3D"No alt=
+ text provided for this image" data-media-urn data-li-src=3D"https://media.=
+licdn.com/dms/image/D4E12AQE4dC-nCShVWw/article-inline_image-shrink_1500_22=
+32/0/1674505347761?e=3D1680134400&amp;v=3Dbeta&amp;t=3DiIWc1b4q11Tn-rkzEYJ5=
+Qu9d5pwT1e5JiDGdeCn1PmQ" src=3D"https://media.licdn.com/dms/image/D4E12AQE4=
+dC-nCShVWw/article-inline_image-shrink_1500_2232/0/1674505347761?e=3D168013=
+4400&amp;v=3Dbeta&amp;t=3DiIWc1b4q11Tn-rkzEYJ5Qu9d5pwT1e5JiDGdeCn1PmQ" widt=
+h=3D"480" style=3D"outline: none; text-decoration: none; -ms-interpolation-=
+mode: bicubic; margin-top: 1em; display: block; max-width: 100%;"></figure>=
+<p style=3D"margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em;=
+ line-height: 1.5;">Entrepreneur Elf</p><table class=3D"email-iframe-wrappe=
+r" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt; margin-top: 1em; width: 100%; background-color: #f5f7f=
+9; text-align: center;" width=3D"100%"><tbody><tr><td class=3D"email-iframe=
+-td-padding-top" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; padding-top: 64px;"></td></tr><tr><td st=
+yle=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-tex=
+t-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt;"><img src=3D"https://media.licdn.com/media/AAYQAgQJAAgAAQAA=
+AAAAAEI_gKaSVYsWRCWh_qg9aKt9IQ.png" class=3D"email-iframe-image" style=3D"o=
+utline: none; text-decoration: none; -ms-interpolation-mode: bicubic; margi=
+n-top: 1em; display: block; max-width: 100%; margin: auto; height: 64px; wi=
+dth: 64px;" width=3D"64" height=3D"64"></td></tr><tr><td class=3D"email-ifr=
+ame-td-padding-middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 16px;"><a href=3D"htt=
+ps://www.linkedin.com/pulse/what-chatgpt-means-2023-gary-vaynerchuk" target=
+=3D"_blank" class=3D"email-iframe-button" style=3D"text-decoration: none; -=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; cursor: pointer; display: inline-block=
+; border-radius: 34px; border-width: 1px; border-style: solid; border-color=
+: #0a66c2; padding-top: 0.4em; padding-bottom: 0.4em; padding-left: 1em; pa=
+dding-right: 1em; text-align: center; font-size: 1em; font-weight: 600; lin=
+e-height: 1.25; color: #0a66c2; text-decoration-line: none;">View media</a>=
+</td></tr><tr><td class=3D"email-iframe-td-padding-bottom" style=3D"-webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust:=
+ 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt=
+; padding-bottom: 64px;"></td></tr></tbody></table><p style=3D"margin: 0; f=
+ont-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Whet=
+her you=E2=80=99re the CEO of a huge company or an entrepreneur starting a =
+new business, B2B, B2C or anything in between, I want you to win. The way t=
+o do that isn=E2=80=99t with fancy tactics =E2=80=A6 it comes with having t=
+hat true entrepreneurial DNA.&nbsp;</p><p style=3D"margin: 0; font-weight: =
+400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">I believe in ope=
+rators, but you need to believe in yourself! Don=E2=80=99t worry about the =
+naysayers .. doubters always end up on the wrong side of history when they =
+bet against true operators. If you=E2=80=99re as good as you think you are,=
+ it=E2=80=99s all gonna play out.&nbsp;</p><figure><img alt=3D"No alt text =
+provided for this image" data-media-urn data-li-src=3D"https://media.licdn.=
+com/dms/image/D5612AQGy8m6DbmJy9A/article-inline_image-shrink_1500_2232/0/1=
+674240020255?e=3D1680134400&amp;v=3Dbeta&amp;t=3D17Gi-cxgu7nsV-cm7Kkx-WAVVH=
+WRvDf4pbK-IDVXkhI" src=3D"https://media.licdn.com/dms/image/D5612AQGy8m6Dbm=
+Jy9A/article-inline_image-shrink_1500_2232/0/1674240020255?e=3D1680134400&a=
+mp;v=3Dbeta&amp;t=3D17Gi-cxgu7nsV-cm7Kkx-WAVVHWRvDf4pbK-IDVXkhI" width=3D"4=
+80" style=3D"outline: none; text-decoration: none; -ms-interpolation-mode: =
+bicubic; margin-top: 1em; display: block; max-width: 100%;"></figure><figur=
+e><a href=3D"https://winelibrary.com/wines/malbec/2021-finca-sophenia-altos=
+ur-malbec-132688" target=3D"_blank" rel=3D"nofollow noopener" style=3D"text=
+-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: inline; c=
+ursor: pointer; color: #0a66c2; text-decoration-line: none;"><img alt=3D"No=
+ alt text provided for this image" data-media-urn data-li-src=3D"https://me=
+dia.licdn.com/dms/image/D5612AQHGY53r10ZgSg/article-inline_image-shrink_100=
+0_1488/0/1674240169748?e=3D1680134400&amp;v=3Dbeta&amp;t=3DOlHLa7dbztNhYahV=
+fYGmT4OD95nCkNzdYBubIU-j36M" src=3D"https://media.licdn.com/dms/image/D5612=
+AQHGY53r10ZgSg/article-inline_image-shrink_1000_1488/0/1674240169748?e=3D16=
+80134400&amp;v=3Dbeta&amp;t=3DOlHLa7dbztNhYahVfYGmT4OD95nCkNzdYBubIU-j36M" =
+width=3D"480" style=3D"outline: none; text-decoration: none; -ms-interpolat=
+ion-mode: bicubic; margin-top: 1em; display: block; max-width: 100%;"></a><=
+/figure><figure><img alt=3D"No alt text provided for this image" data-media=
+-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQFlSWydmLPWhA/a=
+rticle-inline_image-shrink_1500_2232/0/1674240203940?e=3D1680134400&amp;v=
+=3Dbeta&amp;t=3D8ufGUtaCJajw1W_EbEZevJBCmPk7ycwWI4assJJMgQg" src=3D"https:/=
+/media.licdn.com/dms/image/D5612AQFlSWydmLPWhA/article-inline_image-shrink_=
+1500_2232/0/1674240203940?e=3D1680134400&amp;v=3Dbeta&amp;t=3D8ufGUtaCJajw1=
+W_EbEZevJBCmPk7ycwWI4assJJMgQg" width=3D"480" style=3D"outline: none; text-=
+decoration: none; -ms-interpolation-mode: bicubic; margin-top: 1em; display=
+: block; max-width: 100%;"></figure><ul style=3D"margin-top: 1em; margin-ri=
+ght: 0px; margin-bottom: 0px; margin-left: 1.5em; display: block; padding: =
+0px;"><li style=3D"margin-left: 1em; font-size: 1em; line-height: 1.5; lett=
+er-spacing: -0.15%; color: #282828;">First all of you should come to&nbsp;<=
+a href=3D"https://www.linkedin.com/company/veecon/" target=3D"_blank" style=
+=3D"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: i=
+nline; cursor: pointer; color: #0a66c2; text-decoration-line: none;">VeeCon=
+</a>&nbsp;in May, second if you own any&nbsp;<a href=3D"https://www.linkedi=
+n.com/company/veefriends/" target=3D"_blank" style=3D"text-decoration: none=
+; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; display: inline; cursor: pointer; c=
+olor: #0a66c2; text-decoration-line: none;">VeeFriends</a>&nbsp;of any kind=
+ please go to the website and verify your account on the new site <a href=
+=3D"https://veefriends.com/" target=3D"_blank" rel=3D"nofollow noopener" st=
+yle=3D"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size=
+-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display=
+: inline; cursor: pointer; color: #0a66c2; text-decoration-line: none;">her=
+e</a>.</li><li style=3D"margin-left: 1em; font-size: 1em; line-height: 1.5;=
+ letter-spacing: -0.15%; color: #282828;">Super excited about&nbsp;<a href=
+=3D"https://www.linkedin.com/company/vaynerwatt/" target=3D"_blank" style=
+=3D"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: i=
+nline; cursor: pointer; color: #0a66c2; text-decoration-line: none;">Vayner=
+WATT</a>&nbsp;my new TV production studio for shows on linear and streaming=
+ networks =E2=80=A6 check it out <a href=3D"https://deadline.com/2023/01/ga=
+ry-vaynerchuk-eric-wattenberg-matt-higgins-launch-vaynerwatt-1235219209/" t=
+arget=3D"_blank" rel=3D"nofollow noopener" style=3D"text-decoration: none; =
+-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; text-size-adjust: 100%; display: inline; cursor: pointer; col=
+or: #0a66c2; text-decoration-line: none;">here</a>.</li><li style=3D"margin=
+-left: 1em; font-size: 1em; line-height: 1.5; letter-spacing: -0.15%; color=
+: #282828;">Really excited about this interview I did on The Diary of a CEO=
+ podcast, think it'll give many of you on LinkedIn a different perspective =
+on the content I put out, please watch and listen to us&nbsp;<a href=3D"htt=
+ps://www.youtube.com/watch?v=3Dji_N6orURuw" target=3D"_blank" style=3D"text=
+-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: inline; c=
+ursor: pointer; color: #0a66c2; text-decoration-line: none;">here</a>.</li>=
+<li style=3D"margin-left: 1em; font-size: 1em; line-height: 1.5; letter-spa=
+cing: -0.15%; color: #282828;">The VeeFriends Winter =E2=80=9822 Apparel Co=
+llection is available exclusively at <a href=3D"http://shop.veefriends.com"=
+ target=3D"_blank" rel=3D"nofollow noopener" style=3D"text-decoration: none=
+; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; display: inline; cursor: pointer; c=
+olor: #0a66c2; text-decoration-line: none;">shop.veefriends.com</a> - find =
+more details <a href=3D"https://blog.veefriends.com/veefriends-22-winter-co=
+llection-47b4c851485a" target=3D"_blank" rel=3D"nofollow noopener" style=3D=
+"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: inli=
+ne; cursor: pointer; color: #0a66c2; text-decoration-line: none;">here</a>.=
+</li><li style=3D"margin-left: 1em; font-size: 1em; line-height: 1.5; lette=
+r-spacing: -0.15%; color: #282828;">If you're a small business, 2023 is the=
+ year to get yourself a modern marketing plan! Check out my article for mor=
+e details on <a href=3D"https://www.linkedin.com/pulse/why-now-time-all-sma=
+ll-business-owners-gary-vaynerchuk/?trackingId=3D2XZl34vrSJilRvkhuOzmPQ%3D%=
+3D" target=3D"_blank" style=3D"text-decoration: none; -webkit-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; display: inline; cursor: pointer; color: #0a66c2; text-dec=
+oration-line: none;">why now is the time for all small businesses</a>.</li>=
+<li style=3D"margin-left: 1em; font-size: 1em; line-height: 1.5; letter-spa=
+cing: -0.15%; color: #282828;">Need new songs? Check out today=E2=80=99s <a=
+ href=3D"https://garyvee.lnk.to/mondaytomondayIN" target=3D"_blank" rel=3D"=
+nofollow noopener" style=3D"text-decoration: none; -webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; display: inline; cursor: pointer; color: #0a66c2; text-decora=
+tion-line: none;">Monday to Monday playlist</a>.</li><li style=3D"margin-le=
+ft: 1em; font-size: 1em; line-height: 1.5; letter-spacing: -0.15%; color: #=
+282828;">VeeCon 2023 will be at =E2=80=9Cthe racing capital of the world=E2=
+=80=9D in Indianapolis, Indiana! See you from May 18th through May 20th 202=
+3! <a href=3D"https://www.youtube.com/watch?v=3DJwbQqfXaBpQ" target=3D"_bla=
+nk" style=3D"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; d=
+isplay: inline; cursor: pointer; color: #0a66c2; text-decoration-line: none=
+;">See the full announcement video here.</a></li><li style=3D"margin-left: =
+1em; font-size: 1em; line-height: 1.5; letter-spacing: -0.15%; color: #2828=
+28;">The VaynerX world is hiring creative talent from all over the world! W=
+ould love to have you or a friend join the crew. <a href=3D"https://www.gar=
+yvaynerchuk.com/hiring-social-media-creative-talent-like-crazy/" target=3D"=
+_blank" rel=3D"nofollow noopener" style=3D"text-decoration: none; -webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; display: inline; cursor: pointer; color: #0a66=
+c2; text-decoration-line: none;">Click here to apply!</a></li><li style=3D"=
+margin-left: 1em; font-size: 1em; line-height: 1.5; letter-spacing: -0.15%;=
+ color: #282828;">I=E2=80=99m humbled to have teamed up with Macy=E2=80=99s=
+ and Toys=E2=80=9CR=E2=80=9DUs to bring VeeFriends to life with this limite=
+d edition collection of plushies and figurines. <a href=3D"https://garyvee.=
+com/VeeFriendsXMacys" target=3D"_blank" rel=3D"nofollow noopener" style=3D"=
+text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: inlin=
+e; cursor: pointer; color: #0a66c2; text-decoration-line: none;">Shop here<=
+/a>.</li><li style=3D"margin-left: 1em; font-size: 1em; line-height: 1.5; l=
+etter-spacing: -0.15%; color: #282828;">Join me and the VeeFriends communit=
+y in <a href=3D"https://discord.gg/veefriends" target=3D"_blank" rel=3D"nof=
+ollow noopener" style=3D"text-decoration: none; -webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; display: inline; cursor: pointer; color: #0a66c2; text-decoratio=
+n-line: none;">the Discord group</a>.</li><li style=3D"margin-left: 1em; fo=
+nt-size: 1em; line-height: 1.5; letter-spacing: -0.15%; color: #282828;">Do=
+ you love the dirt? Are you an =E2=80=9CI=E2=80=99ll figure it out=E2=80=9D=
+ kind of person? <a href=3D"http://garyvee.com/entrylevel" target=3D"_blank=
+" rel=3D"nofollow noopener" style=3D"text-decoration: none; -webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; display: inline; cursor: pointer; color: #0a66c2; te=
+xt-decoration-line: none;">Here=E2=80=99s an entry level opportunity to joi=
+n the team</a>.</li><li style=3D"margin-left: 1em; font-size: 1em; line-hei=
+ght: 1.5; letter-spacing: -0.15%; color: #282828;">Two minutes to sign up=
+=E2=80=A6 two seconds daily to get the most ridiculous wine deals in the wo=
+rld! <a href=3D"http://winetext.com/" target=3D"_blank" rel=3D"nofollow noo=
+pener" style=3D"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%=
+; display: inline; cursor: pointer; color: #0a66c2; text-decoration-line: n=
+one;">Sign up for WineText today</a>. Want rare &amp; highly allocated offe=
+rs? Join <a href=3D"https://cellartext.com/access" target=3D"_blank" rel=3D=
+"nofollow noopener" style=3D"text-decoration: none; -webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%; display: inline; cursor: pointer; color: #0a66c2; text-decor=
+ation-line: none;">CellarText</a>.</li><li style=3D"margin-left: 1em; font-=
+size: 1em; line-height: 1.5; letter-spacing: -0.15%; color: #282828;">For t=
+hose of you new to my LinkedIn content - follow me on <a href=3D"https://ww=
+w.tiktok.com/@garyvee" target=3D"_blank" rel=3D"nofollow noopener" style=3D=
+"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: inli=
+ne; cursor: pointer; color: #0a66c2; text-decoration-line: none;">TikTok</a=
+>, subscribe to my <a href=3D"https://www.youtube.com/channel/UCctXZhXmG-kf=
+3tlIXgVZUlw" target=3D"_blank" style=3D"text-decoration: none; -webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; display: inline; cursor: pointer; color: #0a66c2;=
+ text-decoration-line: none;">YouTube channel</a>, follow me on <a href=3D"=
+https://www.instagram.com/garyvee/" target=3D"_blank" rel=3D"nofollow noope=
+ner" style=3D"text-decoration: none; -webkit-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; =
+display: inline; cursor: pointer; color: #0a66c2; text-decoration-line: non=
+e;">Instagram</a>, and hit me up on <a href=3D"http://twitter.com/@garyvee"=
+ target=3D"_blank" rel=3D"nofollow noopener" style=3D"text-decoration: none=
+; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; display: inline; cursor: pointer; c=
+olor: #0a66c2; text-decoration-line: none;">Twitter</a> :)</li><li style=3D=
+"margin-left: 1em; font-size: 1em; line-height: 1.5; letter-spacing: -0.15%=
+; color: #282828;">Check out <a href=3D"https://www.youtube.com/watch?v=3Dh=
+mvJFdfZqmY&amp;t" target=3D"_blank" style=3D"text-decoration: none; -webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust:=
+ 100%; text-size-adjust: 100%; display: inline; cursor: pointer; color: #0a=
+66c2; text-decoration-line: none;">the latest episode of Marketing for the =
+Now</a> where we feature Vayner clients + partners to discuss "best of" mom=
+ents in 2022.</li><li style=3D"margin-left: 1em; font-size: 1em; line-heigh=
+t: 1.5; letter-spacing: -0.15%; color: #282828;">We=E2=80=99re hiring globa=
+lly! Team GaryVee is looking for creative talent from around the world. <a =
+href=3D"https://boards.greenhouse.io/vaynermedia/jobs/3051123" target=3D"_b=
+lank" rel=3D"nofollow noopener" style=3D"text-decoration: none; -webkit-tex=
+t-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; text-size-adjust: 100%; display: inline; cursor: pointer; color: #0a66c2=
+; text-decoration-line: none;">Learn more and apply here</a>.</li><li style=
+=3D"margin-left: 1em; font-size: 1em; line-height: 1.5; letter-spacing: -0.=
+15%; color: #282828;">Check out <a href=3D"https://www.youtube.com/watch?v=
+=3DeriGPuqRHRo" target=3D"_blank" style=3D"text-decoration: none; -webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; display: inline; cursor: pointer; color: #0a66=
+c2; text-decoration-line: none;">my appearance on the Lost in Found podcast=
+</a> curated by Catch+Release! We talk about my anticipation for AI copywri=
+ting, creative strategy on social media, why brand is built on social, and =
+much more.</li></ul><figure><img alt=3D"No alt text provided for this image=
+" data-media-urn data-li-src=3D"https://media.licdn.com/dms/image/D5612AQFV=
+6Woiqaqitw/article-inline_image-shrink_1500_2232/0/1674240292765?e=3D168013=
+4400&amp;v=3Dbeta&amp;t=3DXsHGuU0rWGehU4qg04HkrTv2g5fzY2_-m3IeSVra8Yg" src=
+=3D"https://media.licdn.com/dms/image/D5612AQFV6Woiqaqitw/article-inline_im=
+age-shrink_1500_2232/0/1674240292765?e=3D1680134400&amp;v=3Dbeta&amp;t=3DXs=
+HGuU0rWGehU4qg04HkrTv2g5fzY2_-m3IeSVra8Yg" width=3D"480" style=3D"outline: =
+none; text-decoration: none; -ms-interpolation-mode: bicubic; margin-top: 1=
+em; display: block; max-width: 100%;"></figure><p style=3D"margin: 0; font-=
+weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Since it=
+s public release, millions of people have been exploring the possibilities =
+of ChatGPT. How can AI help aid you in your business operations or your ind=
+ustry as a whole?</p><p style=3D"margin: 0; font-weight: 400; margin-top: 0=
+.8em; font-size: 1em; line-height: 1.5;"><em style=3D"font-style: italic;">=
+If you enjoyed today=E2=80=99s LinkedIn 360, I would love it if you subscri=
+bed for more. Can=E2=80=99t wait a full month? You can keep up with me here=
+ on LinkedIn for daily business content, or subscribe to my weekly newslett=
+er, </em><a href=3D"https://garyvaynerchuk.us2.list-manage.com/subscribe?u=
+=3D86038d4417ce1a95af9b5eb09&amp;id=3D23b1f26be4" target=3D"_blank" rel=3D"=
+nofollow noopener" style=3D"text-decoration: none; -webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; display: inline; cursor: pointer; color: #0a66c2; text-decora=
+tion-line: none;"><em style=3D"font-style: italic;">GaryVeekly</em></a><em =
+style=3D"font-style: italic;">.&nbsp;</em></p> </td> </tr> <tr> <td class=
+=3D"pt-2 no-underline" style=3D"-webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 16px; text-decoration=
+-line: none;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"t=
+op" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Se=
+goe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen San=
+s', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe =
+UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif=
+;"> <tbody> <tr> <td valign=3D"middle" align=3D"left" style=3D"-webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <=
+a href=3D"https://www.linkedin.com/comm/pulse/what-chatgpt-means-2023-gary-=
+vaynerchuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01=
+%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D=
+0k7KQ4CezRTqA1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_c=
+ontent_preview-0-readmore_button_&amp;trkEmail=3Deml-email_series_follow_ne=
+wsletter_01-newsletter_content_preview-0-readmore_button_-null-eau1wl~ldag3=
+0hc~j1-null-null&amp;eid=3Deau1wl-ldag30hc-j1" target=3D"_blank" style=3D"c=
+olor: #0a66c2; cursor: pointer; display: inline-block; text-decoration: non=
+e; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-si=
+ze-adjust: 100%; text-size-adjust: 100%;"> <table class=3D"font-sans border=
+-separate" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: sep=
+arate; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI=
+', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Ca=
+ntarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emo=
+ji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <t=
+body> <tr> <td class=3D"btn-md btn-primary border-color-brand button-link l=
+eading-regular !min-h-[auto] font-sans !shadow-none border-1 border-solid" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; height: min-content; border-radius: 24px; padding-top: 12=
+px; padding-bottom: 12px; padding-left: 24px; padding-right: 24px; text-ali=
+gn: center; font-size: 16px; font-weight: 600; cursor: pointer; text-decora=
+tion-line: none; background-color: #0a66c2; color: #ffffff; border-width: 1=
+px; border-style: solid; border-color: #0a66c2; font-family: -apple-system,=
+ system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira=
+ Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Colo=
+r Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gr=
+ande', Helvetica, Arial, sans-serif; line-height: 1.25; min-height: auto !i=
+mportant; box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000 !important;"> <a href=
+=3D"https://www.linkedin.com/comm/pulse/what-chatgpt-means-2023-gary-vayner=
+chuk?lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5=
+v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4=
+CezRTqA1&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_content=
+_preview-0-readmore_button_&amp;trkEmail=3Deml-email_series_follow_newslett=
+er_01-newsletter_content_preview-0-readmore_button_-null-eau1wl~ldag30hc~j1=
+-null-null&amp;eid=3Deau1wl-ldag30hc-j1" target=3D"_blank" tabindex=3D"-1" =
+aria-hidden=3D"true" style=3D"color: #0a66c2; cursor: pointer; display: inl=
+ine-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <=
+span class=3D"no-underline text-white" style=3D"color: #ffffff; text-decora=
+tion-line: none;"> Participe da conversa </span> </a> </td> </tr> </tbody> =
+</table> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> <=
+/td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr> <tr>=
+ <td class=3D"pt-2 px-3" style=3D"-webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso=
+-table-lspace: 0pt; mso-table-rspace: 0pt; padding-left: 24px; padding-righ=
+t: 24px; padding-top: 16px;"> <table class=3D"font-sans" role=3D"presentati=
+on" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif;"> <tbody> <tr> <td align=3D"left" style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> Conh=
+ece algu=C3=A9m que possa se interessar por esta newsletter? Compartilhe-a!=
+ </td> </tr> <tr> <td class=3D"pt-2" align=3D"center" style=3D"-webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; pad=
+ding-top: 16px;"> <table class=3D"font-sans mx-auto" role=3D"presentation" =
+valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"75=
+%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt; margin-left: auto; margin-right: auto; font-family: -a=
+pple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica =
+Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans',=
+ 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'=
+, 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr align=3D"mid=
+dle"> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/e/v2?urlh=
+ash=3DfTDF&amp;url=3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2FshareArticle%3Fur=
+l%3Dhttps%253A%252F%252Fwww%252Elinkedin%252Ecom%252Fpulse%252Fwhat-chatgpt=
+-means-2023-gary-vaynerchuk&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series=
+_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1MB=
+bB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;ek=3Demail_series_follow_newsletter=
+_01&amp;e=3Deau1wl-ldag30hc-j1&amp;eid=3Deau1wl-ldag30hc-j1&amp;m=3Dnewslet=
+ter_social_upsell&amp;ts=3Dlinkedin_upsell_cta&amp;li=3D0&amp;t=3Dplh" targ=
+et=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inline-blo=
+ck; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img cla=
+ss=3D"w-3 h-3 align-middle" src=3D"https://static.licdn.com/aero-v1/sc/h/dx=
+xwa7aq3z1rmvz7wmodrbt4k" alt=3D"Compartilhe esta s=C3=A9rie no LinkedIn" st=
+yle=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicubi=
+c; height: 24px; width: 24px; vertical-align: middle;" width=3D"24" height=
+=3D"24"> </a> </td> <td style=3D"-webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin=
+.com/e/v2?urlhash=3DNDtx&amp;url=3Dhttps%3A%2F%2Fwww%2Efacebook%2Ecom%2Fsha=
+rer%2Fsharer%2Ephp%3Fu%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2Fwhat-=
+chatgpt-means-2023-gary-vaynerchuk&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email=
+_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3D=
+AQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;ek=3Demail_series_follow_new=
+sletter_01&amp;e=3Deau1wl-ldag30hc-j1&amp;eid=3Deau1wl-ldag30hc-j1&amp;m=3D=
+newsletter_social_upsell&amp;ts=3Dfacebook_upsell_cta&amp;li=3D0&amp;t=3Dpl=
+h" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inl=
+ine-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <=
+img class=3D"w-3 h-3 align-middle" src=3D"https://static.licdn.com/aero-v1/=
+sc/h/dpe078783oyfx6qjv3mt2avpn" alt=3D"Compartilhe esta s=C3=A9rie no Faceb=
+ook" style=3D"outline: none; text-decoration: none; -ms-interpolation-mode:=
+ bicubic; height: 24px; width: 24px; vertical-align: middle;" width=3D"24" =
+height=3D"24"> </a> </td> <td style=3D"-webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%=
+; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.li=
+nkedin.com/e/v2?urlhash=3DYnWW&amp;url=3Dhttps%3A%2F%2Fwww%2Etwitter%2Ecom%=
+2Fintent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2Fwhat-=
+chatgpt-means-2023-gary-vaynerchuk&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email=
+_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3D=
+AQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;ek=3Demail_series_follow_new=
+sletter_01&amp;e=3Deau1wl-ldag30hc-j1&amp;eid=3Deau1wl-ldag30hc-j1&amp;m=3D=
+newsletter_social_upsell&amp;ts=3Dtwitter_upsell_cta&amp;li=3D0&amp;t=3Dplh=
+" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inli=
+ne-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <i=
+mg class=3D"w-3 h-3 align-middle" src=3D"https://static.licdn.com/aero-v1/s=
+c/h/1xn78fnzsemwl5bquyh865evs" alt=3D"Compartilhe esta s=C3=A9rie no Twitte=
+r" style=3D"outline: none; text-decoration: none; -ms-interpolation-mode: b=
+icubic; height: 24px; width: 24px; vertical-align: middle;" width=3D"24" he=
+ight=3D"24"> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </tabl=
+e> </td> </tr> </tbody> </table> </div> </td> </tr> <tr> <td class=3D"bg-co=
+lor-background-canvas p-3" style=3D"-webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f3f2f0; pad=
+ding: 24px;"> <table class=3D"font-sans text-xs" role=3D"presentation" vali=
+gn=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont=
+, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxyge=
+n Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-=
+serif; font-size: 12px;"> <tbody> <tr> <td class=3D"pb-1 m-0" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; margin: 0px; padding-bottom: 8px;"> Este e-mail foi enviado a Rafael S=
+ouza (Desenvolvedor web na Solution.dev) </td> </tr> <tr> <td class=3D"pb-1=
+ m-0" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; margin: 0px; padding-bottom: 8px;"> <a href=3D"http=
+s://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&amp;lipi=3Durn%3Al=
+i%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w=
+%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=3D=
+eml-email_series_follow_newsletter_01-SecurityHelp-0-footerglimmer&amp;trkE=
+mail=3Deml-email_series_follow_newsletter_01-SecurityHelp-0-footerglimmer-n=
+ull-eau1wl~ldag30hc~j1-null-null&amp;eid=3Deau1wl-ldag30hc-j1" target=3D"_b=
+lank" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text=
+-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Saiba por que inc=
+lu=C3=ADmos isso.</a> </td> </tr> <tr> <td class=3D"pb-1 m-0" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; margin: 0px; padding-bottom: 8px;">Voc=C3=AA est=C3=A1 recebendo e-mai=
+ls de notifica=C3=A7=C3=A3o do LinkedIn. O autor pode ver que voc=C3=AA =C3=
+=A9 assinante da newsletter.</td> </tr> <tr> <td class=3D"pb-1 m-0" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; margin: 0px; padding-bottom: 8px;"> <a href=3D"https://www.lin=
+kedin.com/comm/psettings/email-unsubscribe?lipi=3Durn%3Ali%3Apage%3Aemail_e=
+mail_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToke=
+n=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=3Deml-email_series_f=
+ollow_newsletter_01-unsubscribe-0-footerGlimmer&amp;trkEmail=3Deml-email_se=
+ries_follow_newsletter_01-unsubscribe-0-footerGlimmer-null-eau1wl~ldag30hc~=
+j1-null-null&amp;eid=3Deau1wl-ldag30hc-j1&amp;loid=3DAQHAfBJsqH7eJgAAAYXkla=
+4oeaEdW2pF4bac6ZQPRQe2gzaz78iriFnRkXhcY-uGI5AXX_OMCgPJtCQGOPswTECFhcgOr_FOU=
+s3aHkABjM3vFwuNawR6bw" target=3D"_blank" style=3D"color: #0a66c2; cursor: p=
+ointer; display: inline-block; text-decoration: none; -webkit-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-si=
+ze-adjust: 100%;">Cancelar inscri=C3=A7=C3=A3o</a> =C2=A0=C2=A0=C2=B7=C2=A0=
+=C2=A0 <a href=3D"https://www.linkedin.com/help/linkedin/answer/67?lang=3Dp=
+t&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BRA=
+5v3V67TpaEndxr9ZuI9w%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ=
+4CezRTqA1&amp;trk=3Deml-email_series_follow_newsletter_01-help-0-footerglim=
+mer&amp;trkEmail=3Deml-email_series_follow_newsletter_01-help-0-footerglimm=
+er-null-eau1wl~ldag30hc~j1-null-null&amp;eid=3Deau1wl-ldag30hc-j1" target=
+=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inline-block=
+; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Ajuda</a> <=
+/td> </tr> <tr> <td class=3D"pb-1" style=3D"-webkit-text-size-adjust: 100%;=
+ -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bottom: 8px;">=
+ <a href=3D"https://www.linkedin.com/comm/feed/?lipi=3Durn%3Ali%3Apage%3Aem=
+ail_email_series_follow_newsletter_01%3BRA5v3V67TpaEndxr9ZuI9w%3D%3D&amp;mi=
+dToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0k7KQ4CezRTqA1&amp;trk=3Deml-email_ser=
+ies_follow_newsletter_01-footer-0-logoGlimmer&amp;trkEmail=3Deml-email_seri=
+es_follow_newsletter_01-footer-0-logoGlimmer-null-eau1wl~ldag30hc~j1-null-n=
+ull&amp;eid=3Deau1wl-ldag30hc-j1" target=3D"_blank" style=3D"color: #0a66c2=
+; cursor: pointer; display: inline-block; text-decoration: none; -webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%;"> <img src=3D"https://static.licdn.com/aero-v1/=
+sc/h/9ehe6n39fa07dc5edzv0rla4e" alt=3D"LinkedIn" class=3D"block h-[14px] w-=
+[56px] image-rendering-crisp" style=3D"outline: none; text-decoration: none=
+; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image=
+-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-in=
+terpolation-mode: nearest-neighbor; display: block; height: 14px; width: 56=
+px;" width=3D"56" height=3D"14"> </a> </td> </tr> <tr> <td data-test-copyri=
+ght-text style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt;"> =C2=A9 2023 LinkedIn Ireland Unlimited Company=
+, Wilton Plaza, Wilton Place, Dublin 2 - Irlanda. LinkedIn =C3=A9 um nome c=
+omercial registrado da LinkedIn Ireland Unlimited Company. <span data-test-=
+trademarks-text> LinkedIn e o logo do LinkedIn s=C3=A3o marcas registradas =
+do LinkedIn. </span> </td> </tr> </tbody> </table> </td> </tr> </tbody> </t=
+able> <img alt role=3D"presentation" src=3D"https://www.linkedin.com/emimp/=
+ip_WldGMU1YZHNMV3hrWVdjek1HaGpMV294OlpXMWhhV3hmYzJWeWFXVnpYMlp2Ykd4dmQxOXVa=
+WGR6YkdWMGRHVnlYekF4OmRYSnVPbXhwT214cGJtdGxaRWx1UVhKMGFXTnNaVG8zTURJeU1qWXh=
+NalkxTVRVNE9ETTJNakkw.gif" style=3D"outline: none; text-decoration: none; -=
+ms-interpolation-mode: bicubic; width: 1px; height: 1px;" width=3D"1" heigh=
+t=3D"1"> </body> </html>
+------=_Part_1331843_322118508.1674577293845--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>15</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1674577295</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>12025</string>
+</dict>
+</plist>

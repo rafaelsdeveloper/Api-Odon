@@ -1,0 +1,910 @@
+53350     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a54:3f91:0:0:0:0:0 with SMTP id c17csp473142ecq; Thu, 28 May
+ 2020 06:00:06 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyddNvldyoHo/b9eKLa0sfxNJtlYFqk/s2aAcynEp2M6lCfDvmmOVOmVMni1BD8euLljz4o
+X-Received: by 2002:a17:906:404a:: with SMTP id
+ y10mr2719263ejj.130.1590670806033; Thu, 28 May 2020 06:00:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590670806; cv=none; d=google.com;
+ s=arc-20160816;
+ b=TeJoiXDF5kEGv1X/LiwjfMF1uBAcrNcktNDgjRjTb6xMs75dFhefUyaeh6hYx/bfxx
+ 5DxsWX556QszuS6+8ivnH7oquleCpFtUP260YSd1392o99sPfrmUggmuKoxfZj4K0l48
+ ZoveYgkRBDJ2j7Bwr46NZxphNbD3zIJva8wWyTHonz95KkwXY5IsHHXsu+fZRUFMA3Gr
+ F/9Bb2rEpLXYlfKdMgdoj1rCqE24N/AMdE7HPG+rpLPhIoDJdBPORnXZwK5h3i2h2V1T
+ 1Z5VUddyveDQNad+lMQK6k11b8PLC0uUlbHYz2hSBBhIRy3x2oprv3j42bzliE9EwoQF 3XYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; h=subject:message-id:to:mime-version:from:date:dkim-signature
+ :dkim-signature; bh=7wtz3pcMtXFS6vsIUo4g9hmRHgTip+D13+5TZmUnQFI=;
+ b=OJQf8a9zNQ6PUT+nc8A6mpF7f4JoJKjH8C14hh2UI+6ZJjFXp3gT5Q0bq9pzz0avBY
+ d1EhxsfPuOdsHlX2T6XzDDeCgiHbIhgKc0xy4gO+MOnuKyLKvFVuu9Mo8Yx5qaUtOAVo
+ nt3amIHNboc58EO8GrHluFAwPeiHKKRtmjJtd3Im8Rm8NaLev0atPzPr+uOC9KHSYPNN
+ pdMA6YZ9ijNIYUfrbfHTzB61g8IXXO9DV72yZYlqmyJghzAXedDcc9OjVIXxB/fH1Km6
+ r3SwjLwe+5XF0jSA7jqz8/sFQgWjTkrj9sCFld5CxBWXbWjRqRD9VtzD2kHDL2MULsqw sGpw==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass
+ header.i=@dripemail2.com header.s=s1 header.b=tKTmacTa; dkim=pass
+ header.i=@sendgrid.info header.s=smtpapi header.b=QRR7CL5w; spf=pass
+ (google.com: domain of
+ bounces+2693180-4cb9-faeldroom46=gmail.com@m.dripemail2.com designates
+ 168.245.123.156 as permitted sender)
+ smtp.mailfrom="bounces+2693180-4cb9-faeldroom46=gmail.com@m.dripemail2.com"
+Return-Path: <bounces+2693180-4cb9-faeldroom46=gmail.com@m.dripemail2.com>
+Received: from o21.sg.m.dripemail2.com (o21.sg.m.dripemail2.com.
+ [168.245.123.156]) by mx.google.com with ESMTPS id
+ y1si2462043edi.491.2020.05.28.06.00.04 for <faeldroom46@gmail.com>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128); Thu, 28
+ May 2020 06:00:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of
+ bounces+2693180-4cb9-faeldroom46=gmail.com@m.dripemail2.com designates
+ 168.245.123.156 as permitted sender) client-ip=168.245.123.156;
+Authentication-Results: mx.google.com; dkim=pass header.i=@dripemail2.com
+ header.s=s1 header.b=tKTmacTa; dkim=pass header.i=@sendgrid.info
+ header.s=smtpapi header.b=QRR7CL5w; spf=pass (google.com: domain of
+ bounces+2693180-4cb9-faeldroom46=gmail.com@m.dripemail2.com designates
+ 168.245.123.156 as permitted sender)
+ smtp.mailfrom="bounces+2693180-4cb9-faeldroom46=gmail.com@m.dripemail2.com"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dripemail2.com;
+ h=content-type:from:mime-version:to:subject; s=s1;
+ bh=7wtz3pcMtXFS6vsIUo4g9hmRHgTip+D13+5TZmUnQFI=; b=tKTmacT
+ aJR1FgVklY5zo++xgsfcB4RSiMBS/Ecl4KaImqaBXxdWPrDIj1yMD8v4/OAdRb7x
+ JlgxrP7DDoyGwcg8RYgy2kV/ogE1joKMsSWeVWpaQHSnn4hK5NEc0VIAbX/xKa53
+ WbelNhvR4Eojgkhfgrw2xEw5b8Ndd+ZkyFgk=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+ h=content-type:from:mime-version:to:subject:x-feedback-id; s=smtpapi;
+ bh=7wtz3pcMtXFS6vsIUo4g9hmRHgTip+D13+5TZmUnQFI=; b=QR
+ R7CL5wvRw7KXaONTEInH5gdkqykoYXoKgORGFCXVmPVb+3aO3VSXQoVSbMWBcxdv
+ MCRJY9oKBlR2yYo9D8Zu5J7+uM2sIJ841JbxwS4/VDZmAiNyi+1LsRSMor5vhuQU
+ 17+NtlqOhuzbWP7Fm5pg9Jp7MIM3ZUTXavOTECdV8=
+Received: by filter2187p1mdw1.sendgrid.net with SMTP id
+ filter2187p1mdw1-23088-5ECFB369-18 2020-05-28 12:49:45.315818376 +0000 UTC
+ m=+848941.803157562
+Received: from MjY5MzE4MA (unknown) by ismtpd0005p1iad1.sendgrid.net (SG) with
+ HTTP id k8zB9eFMQweX1WVExxzHsQ Thu, 28 May 2020 12:49:45.273 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary=186943ddd3b53df273f027aba31e488bc4ca3028e6b3caa9d519948f1649
+Date: Thu, 28 May 2020 13:00:00 +0000 (UTC)
+From: "Atena da Impulso" <atena@impulso.network>
+Mime-Version: 1.0
+To: faeldroom46@gmail.com
+Message-ID: <k8zB9eFMQweX1WVExxzHsQ@ismtpd0005p1iad1.sendgrid.net>
+Subject: =?UTF-8?B?8J+SrCBPIGNoYXQgZGEgSW1wdWxzbyBmaWNvdSBtYWlzIGbDoWNpbCE=?=
+X-Drip-SendingAccount: 2898155
+X-SG-EID: 65e2LO9qGM9G4FSxJzFgCQ831By4N7IAfvPHHVZodOAJLdwg5rPYkNcfp3yU809IoXQkL66psbfDwd
+ xHQnq60fws9M4l/tEt2HNeXssRnZ5Ws3G8JMJ7aANaww8mxEEPV4Hr+r6SqFZ9p6w7pfVrXNgab+tm
+ RrD9jojJKi+qQFSPzElIn1YiKaFho+cWCbOeSi0jHw6hKT8dR+ass5hWUDEK22ZascJQUvmmRNJhcc
+ k=
+X-SG-ID: gnwugAPEk90ONPODfP9Nu55FF3XXDvhTyt7SRD1G430a6/zx5T+N7/+dIvoaswzZ60ihW1FsW9SsFF
+ OMuBakc5rfFD9eDkSq3s/tR6x/qjX9PozKm9R0Qf5JCAWcC77bJSI+41iRxDTxK266srLm3MU0WJXm
+ 6aI2q1kaOEwl9P+luU1q884Fp1LjWHFDkhaTIEs7JZ/equSMN259Mo8GkXrVbIYbXBcJsjlUpqu4Lz
+ cH+Vl7pX1Z7D8pFAvztWA6H8ieEtdfoZ4mu1cQMY1XGRF1VVphY/lwhuN7r63AsO0cZ3g/VCSqZP47
+ AEGYxu8cpaDXYiZ/yfGYj7F+Uzvy39gYHNCNrWN02HYo0l2Qnb9VSL4M+iIy6dI8WpynMavX
+X-Feedback-ID: 2693180:l1fkQA9YLlZ4PTqywTL3Zu+zLq2XYmkeuiZ1WV+xvFE=:l1fkQA9YLlZ4PTqywTL3Zu+zLq2XYmkeuiZ1WV+xvFE=:SG
+
+
+--186943ddd3b53df273f027aba31e488bc4ca3028e6b3caa9d519948f1649
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Type: TEXT/PLAIN;
+	charset=UTF-8
+
+Aqui quem fala =C3=A9 a Atena, guardi=C3=A3 da Impulso Network!=20
+
+Esse e-mail =C3=A9 para te contar uma grande novidade sobre o Chat da Impul=
+so Network: agora voc=C3=AA pode realizar seu login no chat diretamente pel=
+o painel inicial da plataforma, com apenas um clique e sem precisar fornece=
+r senha!
+
+Image
+
+Veja como =C3=A9 simples:
+
+Fa=C3=A7a seu login em impulso.network;
+No painel inicial, clique na op=C3=A7=C3=A3o Chat;
+Clique na op=C3=A7=C3=A3o =E2=80=9CAcessar com um clique=E2=80=9D;
+Prontinho! A sua senha do Chat =C3=A9 alterada, permitindo que o login seja=
+ feito sem a necessidade de informar suas credenciais.
+Agora voc=C3=AA acessar mais rapidamente essa incr=C3=ADvel ferramenta de n=
+etworking e aprendizado que a Impulso Network disponibiliza para voc=C3=AA!
+=20
+
+ENTRAR NA IMPULSO NETWORK
+
+=20
+Voc=C3=AA ainda n=C3=A3o conhece o Chat da Impulso Network?
+O Chat =F0=9F=97=A8 da Impulso Network =C3=A9 um espa=C3=A7o para trocar co=
+nhecimento com programadores, designers, testers e profissionais de diferen=
+tes =C3=A1reas da tecnologia, com mais de 100 canais de discuss=C3=A3o para=
+ compartilhar, ensinar e aprender.
+
+Al=C3=A9m disso, o chat tamb=C3=A9m conta com canais de temas que v=C3=A3o =
+al=C3=A9m da tecnologia! Esse =C3=A9, por exemplo, o caso do canal english,=
+ voltado para quem deseja praticar a l=C3=ADngua inglesa, e do canal invest=
+imentos, onde as pessoas trocam informa=C3=A7=C3=B5es, dicas e novidades so=
+bre mercado financeiro.
+
+Confira alguns canais bem legais que voc=C3=AA pode participar:
+
+react-native jvm-java-kotlin react english deno front-end node python cafez=
+im-remoto devops javascript front-end-web desabafos filmes-series-books dot=
+net open-source ruby
+Al=C3=A9m disso, voc=C3=AA sabia que suas a=C3=A7=C3=B5es no Chat podem ren=
+der a voc=C3=AA pontos de reputa=C3=A7=C3=A3o? Estes pontos aumentam seu n=
+=C3=ADvel dentro da plataforma, e cada novo n=C3=ADvel dar=C3=A1 a voc=C3=
+=AA acesso a recompensas e conquistas exclusivas! Confira quantos pontos vo=
+c=C3=AA pode ganhar em cada a=C3=A7=C3=A3o:
+
+Enviar mensagens em canais do chat: +3=20
+Reagir a mensagens de outros impulsers: +2=20
+Receber rea=C3=A7=C3=B5es em mensagens: +3=20
+Que tal entrar no chat agora mesmo para come=C3=A7ar a ampliar seu networki=
+ng e trocar conhecimento?
+
+ENTRAR NA IMPULSO NETWORK
+
+Espero te encontrar por l=C3=A1!
+
+Abra=C3=A7os,
+
+=09
+Atena
+Gest=C3=A3o de Comunidade
+
+Twitter | Instagram | LinkedIn | Github | YouTube
+
+visite impulso.network | descadastre-se
+
+Rua da Gl=C3=B3ria, 190, sala 1002. Gl=C3=B3ria, Rio de Janeiro, RJ, Brasil.
+
+---------------------
+Twitter ( https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbG=
+l2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL3R3aXR0ZXIuY=
+29tL1VuaXZlcnNvSW1wdWxzbz9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ ) | Instagram=
+=20
+( https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2=
+lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL3d3dy5pbnN0YWdyYW0uY=
+29tL3VuaXZlcnNvLmltcHVsc28_X19zPTFnbmlvdjhkZHlleG5xdWF2bXgyIn0 ) | LinkedIn=
+=20
+( https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2=
+lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL3d3dy5saW5rZWRpbi5jb=
+20vY29tcGFueS91bml2ZXJzb2ltcHVsc28_X19zPTFnbmlvdjhkZHlleG5xdWF2bXgyIn0 ) | =
+Github=20
+( https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2=
+lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2dpdGh1Yi5jb20vVW5pd=
+mVyc29JbXB1bHNvP19fcz0xZ25pb3Y4ZGR5ZXhucXVhdm14MiJ9 ) | YouTube=20
+( https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2=
+lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL3d3dy55b3V0dWJlLmNvb=
+S9jL1VuaXZlcnNvSW1wdWxzbz9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ )
+
+visite impulso.network ( https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg=
+5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwcz=
+ovL2ltcHVsc28ubmV0d29yaz9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ ) |
+descadastre-se ( https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSI=
+sImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL3d3dy=
+5nZXRkcmlwLmNvbS9zdWJzY3JpYmVycy8xZ25pb3Y4ZGR5ZXhucXVhdm14Mi91bnN1YnNjcmliZ=
+T9icm9hZGNhc3Q9NzU2MDcyNDY3XHUwMDI2ZD10ZDR4M3lwMDQxNWloNWo5dWx2MVx1MDAyNmV4=
+Y2x1ZGVfY2xpY2s9MVx1MDAyNl9fcz0xZ25pb3Y4ZGR5ZXhucXVhdm14MiJ9 )
+
+Rua da Gl=C3=B3ria, 190, sala 1002. Gl=C3=B3ria, Rio de Janeiro, RJ, Brasil.
+
+--186943ddd3b53df273f027aba31e488bc4ca3028e6b3caa9d519948f1649
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Type: TEXT/HTML;
+	charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"font-family: 'proxima=
+-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: bo=
+rder-box; font-size: 16px; line-height: 1.5;">
+
+<head>
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width">
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+=20=20
+<style>img {
+max-width: 100%; margin-bottom: 14px;
+}
+body {
+background-color: #ffffff; -ms-text-size-adjust: 100%; -webkit-text-size-ad=
+just: none; width: 100% !important; height: 100%; line-height: 1.6;
+}
+.ExternalClass {
+width: 100%;
+}
+.ExternalClass {
+line-height: 100%;
+}
+img {
+-ms-interpolation-mode: bicubic;
+}
+a:visited {
+color: #000000 !important;
+}
+a:hover {
+color: #000000 !important;
+}
+a:active {
+color: #000000 !important;
+}
+.cta-button:hover {
+color: #ffffff; background-color: #B67A0D; text-decoration: none; border-co=
+lor: #B67A0D; border: 12px solid #B67A0D;
+}
+[owa] .cta-button:hover {
+color: #ffffff; background-color: #B67A0D; text-decoration: none; border-co=
+lor: #B67A0D; border: 12px solid #B67A0D;
+}
+[class=3D"cta-button"]:hover {
+color: #ffffff; background-color: #B67A0D; text-decoration: none; border-co=
+lor: #B67A0D; border: 12px solid #B67A0D;
+}
+.cta-button:visited {
+color: #ffffff; background-color: #B67A0D; text-decoration: none; border-co=
+lor: #B67A0D; border: 12px solid #B67A0D;
+}
+[owa] .cta-button:visited {
+color: #ffffff; background-color: #B67A0D; text-decoration: none; border-co=
+lor: #B67A0D; border: 12px solid #B67A0D;
+}
+[class=3D"cta-button"]:visited {
+color: #ffffff; background-color: #B67A0D; text-decoration: none; border-co=
+lor: #B67A0D; border: 12px solid #B67A0D;
+}
+.cta-button:active {
+color: #ffffff; background-color: #B67A0D; text-decoration: none; border-co=
+lor: #B67A0D; border: 12px solid #B67A0D;
+}
+[owa] .cta-button:active {
+color: #ffffff; background-color: #B67A0D; text-decoration: none; border-co=
+lor: #B67A0D; border: 12px solid #B67A0D;
+}
+[class=3D"cta-button"]:active {
+color: #ffffff; background-color: #B67A0D; text-decoration: none; border-co=
+lor: #B67A0D; border: 12px solid #B67A0D;
+}
+</style></head>
+
+<body style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetic=
+a, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height:=
+ 1.6; background-color: #ffffff; -ms-text-size-adjust: 100%; -webkit-text-s=
+ize-adjust: none; width: 100% !important; height: 100%;" bgcolor=3D"#ffffff=
+">
+  <!--[if mso 16]>
+    <style type=3D"text/css">
+        a{
+            text-decoration:none !important;
+        }
+    </style>
+<![endif]-->
+
+  <table class=3D"body-wrap" style=3D"font-family: 'proxima-nova', &quot;He=
+lvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-s=
+ize: 16px; line-height: 1.5; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+background-color: #ffffff; width: 100%;" bgcolor=3D"#ffffff">
+    <tr style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvet=
+ica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-heigh=
+t: 1.5;">
+      <td class=3D"container" style=3D"font-family: 'proxima-nova', &quot;H=
+elvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-=
+size: 16px; line-height: 1.5; color: #666C71; vertical-align: top; display:=
+ block !important; max-width: 600px !important; overflow: visible; clear: b=
+oth !important; margin: 0;" valign=3D"top">
+        <div class=3D"content" style=3D"font-family: 'proxima-nova', &quot;=
+Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font=
+-size: 16px; line-height: 1.5; max-width: 600px; overflow: visible; display=
+: block; margin: 0;">
+          <table class=3D"main" width=3D"100%" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvet=
+ica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-heigh=
+t: 1.5; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+            <tr style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;=
+, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; li=
+ne-height: 1.5;">
+              <td class=3D"main-content" style=3D"font-family: 'Helvetica N=
+eue', 'Helvetica', 'Arial', sans-serif; box-sizing: border-box; font-size: =
+16px; line-height: 1.5; color: #222222; vertical-align: top; padding: 0;" v=
+align=3D"top">
+
+				<!-- START EMAIL CONTENT -->
+
+				<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helveti=
+ca, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height=
+: 1.5; color: #666C71; margin-bottom: 16px; font-weight: normal;">Ol=C3=A1 =
+Fael, tudo bem?=C2=A0=F0=9F=98=8A</p>
+
+<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; color: #666C71; margin-bottom: 16px; font-weight: normal;">Aqui quem fal=
+a =C3=A9 a <strong style=3D"font-family: 'proxima-nova', &quot;Helvetica&qu=
+ot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px;=
+ line-height: 1.5; font-weight: bold;">Atena</strong>, guardi=C3=A3 da <str=
+ong style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica,=
+ Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1=
+.5; font-weight: bold;">Impulso Network</strong>!=C2=A0<br style=3D"font-fa=
+mily: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; =
+box-sizing: border-box; font-size: 16px; line-height: 1.5;">
+<br style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica,=
+ Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1=
+.5;">
+Esse e-mail =C3=A9 para te contar uma grande novidade sobre o <strong style=
+=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, s=
+ans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5; font-=
+weight: bold;">Chat da Impulso Network</strong>: agora voc=C3=AA pode <stro=
+ng style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; font-weight: bold;">realizar seu login no chat diretamente pelo painel i=
+nicial da plataforma</strong>, com apenas um clique e sem precisar fornecer=
+ senha!<br style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Hel=
+vetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-he=
+ight: 1.5;">
+<br style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica,=
+ Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1=
+.5;">
+<img alt=3D"Image" src=3D"https://do0ne7yeju3uz.cloudfront.net/uploads/imag=
+e_upload/image/948154/026b3098-0bfa-4240-a35d-28f0dce7e05f.gif" style=3D"fo=
+nt-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-se=
+rif; box-sizing: border-box; font-size: 16px; line-height: 1.5; max-width: =
+100%; margin-bottom: 14px; -ms-interpolation-mode: bicubic; margin-top: 14p=
+x;"><br style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvet=
+ica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-heigh=
+t: 1.5;">
+<br style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica,=
+ Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1=
+.5;">
+Veja como =C3=A9 <strong style=3D"font-family: 'proxima-nova', &quot;Helvet=
+ica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size:=
+ 16px; line-height: 1.5; font-weight: bold;">simples</strong>:</p>
+
+<ol style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica,=
+ Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1=
+.5; color: #666C71; margin-bottom: 16px; font-weight: normal; margin-left: =
+20px; margin-right: 0; padding-left: 0; padding-right: 0; list-style-type: =
+decimal;">
+	<li style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica=
+, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: =
+1.5; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; li=
+st-style-type: decimal;">Fa=C3=A7a seu login em <strong style=3D"font-famil=
+y: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box=
+-sizing: border-box; font-size: 16px; line-height: 1.5; font-weight: bold;"=
+><a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRl=
+bGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2ltcHVsc28=
+ubmV0d29yaz9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ" style=3D"font-family: 'pro=
+xima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing=
+: border-box; font-size: 16px; line-height: 1.5; color: #000000; text-decor=
+ation: underline;"><span style=3D"font-family: 'proxima-nova', &quot;Helvet=
+ica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size:=
+ 16px; line-height: 1.5;">impulso.network</span></a></strong>;</li>
+	<li style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica=
+, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: =
+1.5; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; li=
+st-style-type: decimal;">No painel inicial, clique na op=C3=A7=C3=A3o <stro=
+ng style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; font-weight: bold;">Chat</strong>;</li>
+	<li style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica=
+, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: =
+1.5; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; li=
+st-style-type: decimal;">Clique na op=C3=A7=C3=A3o =E2=80=9CAcessar com um =
+clique=E2=80=9D;</li>
+	<li style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica=
+, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: =
+1.5; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; li=
+st-style-type: decimal;"><strong style=3D"font-family: 'proxima-nova', &quo=
+t;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; fo=
+nt-size: 16px; line-height: 1.5; font-weight: bold;">Prontinho</strong>! A =
+sua senha do Chat =C3=A9 alterada, permitindo que o login seja feito sem a =
+necessidade de informar suas credenciais.</li>
+</ol>
+
+<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; color: #666C71; margin-bottom: 16px; font-weight: normal;">Agora voc=C3=
+=AA acessar mais rapidamente essa incr=C3=ADvel ferramenta de networking e =
+aprendizado que a Impulso Network disponibiliza para voc=C3=AA!<br style=3D=
+"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans=
+-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5;">
+=C2=A0</p>
+
+<div style=3D"display: inline-block; font-family: 'proxima-nova', &quot;Hel=
+vetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-si=
+ze: 16px; line-height: 1.5; margin: 0 auto;"><a href=3D"https://t.dripemail=
+2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTV=
+paDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2FwcC5pbXB1bHNvLm5ldHdvcmsvP19fcz0xZ25pb3=
+Y4ZGR5ZXhucXVhdm14MiJ9" style=3D"color: #26265e !important; letter-spacing:=
+ 3px; text-transform: uppercase; font-size: 12px; font-weight: bold; text-a=
+lign: center; text-decoration: none !important; border-radius: 30px; displa=
+y: block; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Ar=
+ial, sans-serif; box-sizing: border-box; line-height: 1.5; padding: 10px 15=
+px; border: 2px solid #26265e;">ENTRAR NA IMPULSO NETWORK</a><br style=3D"f=
+ont-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-s=
+erif; box-sizing: border-box; font-size: 16px; line-height: 1.5;">
+=C2=A0</div>
+
+<h2 style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica,=
+ Arial, sans-serif; box-sizing: border-box; font-size: 18px; line-height: 1=
+.5; font-weight: bold; color: #222222 !important; margin: 0 0 12px;">Voc=C3=
+=AA ainda n=C3=A3o conhece o Chat da Impulso Network?</h2>
+
+<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; color: #666C71; margin-bottom: 16px; font-weight: normal;">O Chat =F0=9F=
+=97=A8 da Impulso Network =C3=A9 um espa=C3=A7o para trocar conhecimento co=
+m programadores, designers, testers e profissionais de diferentes =C3=A1rea=
+s da tecnologia, com mais de 100 canais de discuss=C3=A3o para compartilhar=
+, ensinar e aprender.</p>
+
+<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; color: #666C71; margin-bottom: 16px; font-weight: normal;">Al=C3=A9m dis=
+so, o chat tamb=C3=A9m conta com canais de temas que v=C3=A3o al=C3=A9m da =
+tecnologia! Esse =C3=A9, por exemplo, o caso do canal <strong style=3D"font=
+-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-seri=
+f; box-sizing: border-box; font-size: 16px; line-height: 1.5; font-weight: =
+bold;">english</strong>, voltado para quem deseja praticar a l=C3=ADngua in=
+glesa, e do canal <strong style=3D"font-family: 'proxima-nova', &quot;Helve=
+tica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size=
+: 16px; line-height: 1.5; font-weight: bold;">investimentos</strong>, onde =
+as pessoas trocam informa=C3=A7=C3=B5es, dicas e novidades sobre mercado fi=
+nanceiro.</p>
+
+<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; color: #666C71; margin-bottom: 16px; font-weight: normal;">Confira algun=
+s canais bem legais que voc=C3=AA pode participar:</p>
+
+<div style=3D"line-height: 2; font-family: 'proxima-nova', &quot;Helvetica&=
+quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16p=
+x;"><a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsI=
+mRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQu=
+aW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvcmVhY3QtbmF0aXZlP19fcz0xZ25pb3Y4ZGR5ZXhucXV=
+hdm14MiJ9" style=3D"text-decoration: none; font-family: 'proxima-nova', &qu=
+ot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; f=
+ont-size: 16px; line-height: 1.5; color: #000000;"><span style=3D"font-fami=
+ly: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; bo=
+x-sizing: border-box; font-size: 16px; line-height: 1.5;"><span style=3D"ba=
+ckground-color: #26265e; color: #FFF; margin-right: 3px; font-family: 'prox=
+ima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing:=
+ border-box; font-size: 16px; line-height: 1.5; padding: 5px;">react-native=
+</span></span></a> <a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIj=
+oiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJod=
+HRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvanZtLWphdmEta290bGluP19fcz0x=
+Z25pb3Y4ZGR5ZXhucXVhdm14MiJ9" style=3D"text-decoration: none; font-family: =
+'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-si=
+zing: border-box; font-size: 16px; line-height: 1.5; color: #000000;"><span=
+ style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Ar=
+ial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5;=
+"><span style=3D"margin-right: 3px; background-color: #26265e; color: #FFF;=
+ font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans=
+-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5; padding:=
+ 5px;">jvm-java-kotlin</span></span></a> <a href=3D"https://t.dripemail2.co=
+m/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDV=
+qOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvcmVhY3=
+Q_X19zPTFnbmlvdjhkZHlleG5xdWF2bXgyIn0" style=3D"text-decoration: none; font=
+-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-seri=
+f; box-sizing: border-box; font-size: 16px; line-height: 1.5; color: #00000=
+0;"><span style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helv=
+etica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-hei=
+ght: 1.5;"><span style=3D"margin-right: 3px; background-color: #26265e; col=
+or: #FFF; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Ar=
+ial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5;=
+ padding: 5px;">react</span></span></a> <a href=3D"https://t.dripemail2.com=
+/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVq=
+OXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvZW5nbGl=
+zaD9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ" style=3D"text-decoration: none; fo=
+nt-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-se=
+rif; box-sizing: border-box; font-size: 16px; line-height: 1.5; color: #000=
+000;"><span style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, He=
+lvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-h=
+eight: 1.5;"><span style=3D"margin-right: 3px; background-color: #26265e; c=
+olor: #FFF; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; padding: 5px;">english</span></span></a> <a href=3D"https://t.dripemail2=
+.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVp=
+aDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvZGV=
+ubz9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ" style=3D"text-decoration: none; fo=
+nt-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-se=
+rif; box-sizing: border-box; font-size: 16px; line-height: 1.5; color: #000=
+000;"><span style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, He=
+lvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-h=
+eight: 1.5;"><span style=3D"margin-right: 3px; background-color: #26265e; c=
+olor: #FFF; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; padding: 5px;">deno</span></span></a> <a href=3D"https://t.dripemail2.co=
+m/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDV=
+qOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvZnJvbn=
+QtZW5kP19fcz0xZ25pb3Y4ZGR5ZXhucXVhdm14MiJ9" style=3D"text-decoration: none;=
+ font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans=
+-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5; color: #=
+000000;"><span style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;,=
+ Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; lin=
+e-height: 1.5;"><span style=3D"margin-right: 3px; background-color: #26265e=
+; color: #FFF; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetic=
+a, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height:=
+ 1.5; padding: 5px;">front-end</span></span></a> <a href=3D"https://t.dripe=
+mail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA=
+0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZW=
+wvbm9kZT9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ" style=3D"text-decoration: non=
+e; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sa=
+ns-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5; color:=
+ #000000;"><span style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot=
+;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; l=
+ine-height: 1.5;"><span style=3D"margin-right: 3px; background-color: #2626=
+5e; color: #FFF; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvet=
+ica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-heigh=
+t: 1.5; padding: 5px;">node</span></span></a> <a href=3D"https://t.dripemai=
+l2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MT=
+VpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvc=
+Hl0aG9uP19fcz0xZ25pb3Y4ZGR5ZXhucXVhdm14MiJ9" style=3D"text-decoration: none=
+; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, san=
+s-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5; color: =
+#000000;"><span style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;=
+, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; li=
+ne-height: 1.5;"><span style=3D"margin-right: 3px; background-color: #26265=
+e; color: #FFF; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helveti=
+ca, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height=
+: 1.5; padding: 5px;">python</span></span></a> <a href=3D"https://t.dripema=
+il2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0M=
+TVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwv=
+Y2FmZXppbS1yZW1vdG8_X19zPTFnbmlvdjhkZHlleG5xdWF2bXgyIn0" style=3D"text-deco=
+ration: none; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica=
+, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: =
+1.5; color: #000000;"><span style=3D"font-family: 'proxima-nova', &quot;Hel=
+vetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-si=
+ze: 16px; line-height: 1.5;"><span style=3D"margin-right: 3px; background-c=
+olor: #26265e; color: #FFF; font-family: 'proxima-nova', &quot;Helvetica&qu=
+ot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px;=
+ line-height: 1.5; padding: 5px;">cafezim-remoto</span></span></a> <a href=
+=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5=
+X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5=
+uZXR3b3JrL2NoYW5uZWwvZGV2b3BzP19fcz0xZ25pb3Y4ZGR5ZXhucXVhdm14MiJ9" style=3D=
+"text-decoration: none; font-family: 'proxima-nova', &quot;Helvetica&quot;,=
+ Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; lin=
+e-height: 1.5; color: #000000;"><span style=3D"font-family: 'proxima-nova',=
+ &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-bo=
+x; font-size: 16px; line-height: 1.5;"><span style=3D"margin-right: 3px; ba=
+ckground-color: #26265e; color: #FFF; font-family: 'proxima-nova', &quot;He=
+lvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-s=
+ize: 16px; line-height: 1.5; padding: 5px;">devops</span></span></a> <a hre=
+f=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ=
+5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby=
+5uZXR3b3JrL2NoYW5uZWwvamF2YXNjcmlwdD9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ" s=
+tyle=3D"text-decoration: none; font-family: 'proxima-nova', &quot;Helvetica=
+&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16=
+px; line-height: 1.5; color: #000000;"><span style=3D"font-family: 'proxima=
+-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: bo=
+rder-box; font-size: 16px; line-height: 1.5;"><span style=3D"margin-right: =
+3px; background-color: #26265e; color: #FFF; font-family: 'proxima-nova', &=
+quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box;=
+ font-size: 16px; line-height: 1.5; padding: 5px;">javascript</span></span>=
+</a> <a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIs=
+ImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQ=
+uaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvZnJvbnQtZW5kLXdlYj9fX3M9MWduaW92OGRkeWV4bn=
+F1YXZteDIifQ" style=3D"text-decoration: none; font-family: 'proxima-nova', =
+&quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box=
+; font-size: 16px; line-height: 1.5; color: #000000;"><span style=3D"font-f=
+amily: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;=
+ box-sizing: border-box; font-size: 16px; line-height: 1.5;"><span style=3D=
+"margin-right: 3px; background-color: #26265e; color: #FFF; font-family: 'p=
+roxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizi=
+ng: border-box; font-size: 16px; line-height: 1.5; padding: 5px;">front-end=
+-web</span></span></a> <a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2=
+lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiO=
+iJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvZGVzYWJhZm9zP19fcz0xZ25p=
+b3Y4ZGR5ZXhucXVhdm14MiJ9" style=3D"text-decoration: none; font-family: 'pro=
+xima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing=
+: border-box; font-size: 16px; line-height: 1.5; color: #000000;"><span sty=
+le=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial,=
+ sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5;"><s=
+pan style=3D"margin-right: 3px; background-color: #26265e; color: #FFF; fon=
+t-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-ser=
+if; box-sizing: border-box; font-size: 16px; line-height: 1.5; padding: 5px=
+;">desabafos</span></span></a> <a href=3D"https://t.dripemail2.com/c/eyJhY2=
+NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiL=
+CJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3b3JrL2NoYW5uZWwvZmlsbWVzLXNlcmll=
+cy1ib29rcz9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ" style=3D"text-decoration: n=
+one; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, =
+sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5; colo=
+r: #000000;"><span style=3D"font-family: 'proxima-nova', &quot;Helvetica&qu=
+ot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px;=
+ line-height: 1.5;"><span style=3D"margin-right: 3px; background-color: #26=
+265e; color: #FFF; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helv=
+etica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-hei=
+ght: 1.5; padding: 5px;">filmes-series-books</span></span></a> <a href=3D"h=
+ttps://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkI=
+joidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR3=
+b3JrL2NoYW5uZWwvZG90bmV0P19fcz0xZ25pb3Y4ZGR5ZXhucXVhdm14MiJ9" style=3D"text=
+-decoration: none; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helv=
+etica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-hei=
+ght: 1.5; color: #000000;"><span style=3D"font-family: 'proxima-nova', &quo=
+t;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; fo=
+nt-size: 16px; line-height: 1.5;"><span style=3D"margin-right: 3px; backgro=
+und-color: #26265e; color: #FFF; font-family: 'proxima-nova', &quot;Helveti=
+ca&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: =
+16px; line-height: 1.5; padding: 5px;">dotnet</span></span></a> <a href=3D"=
+https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lk=
+IjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW1wdWxzby5uZXR=
+3b3JrL2NoYW5uZWwvb3Blbi1zb3VyY2U_X19zPTFnbmlvdjhkZHlleG5xdWF2bXgyIn0" style=
+=3D"text-decoration: none; font-family: 'proxima-nova', &quot;Helvetica&quo=
+t;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; =
+line-height: 1.5; color: #000000;"><span style=3D"font-family: 'proxima-nov=
+a', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border=
+-box; font-size: 16px; line-height: 1.5;"><span style=3D"margin-right: 3px;=
+ background-color: #26265e; color: #FFF; font-family: 'proxima-nova', &quot=
+;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; fon=
+t-size: 16px; line-height: 1.5; padding: 5px;">open-source</span></span></a=
+> <a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImR=
+lbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2NoYXQuaW=
+1wdWxzby5uZXR3b3JrL2NoYW5uZWwvcnVieT9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ" s=
+tyle=3D"text-decoration: none; font-family: 'proxima-nova', &quot;Helvetica=
+&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16=
+px; line-height: 1.5; color: #000000;"><span style=3D"font-family: 'proxima=
+-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: bo=
+rder-box; font-size: 16px; line-height: 1.5;"><span style=3D"margin-right: =
+3px; background-color: #26265e; color: #FFF; font-family: 'proxima-nova', &=
+quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box;=
+ font-size: 16px; line-height: 1.5; padding: 5px;">ruby</span></span></a></=
+div>
+
+<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; color: #666C71; margin-bottom: 16px; font-weight: normal;">Ah, e tem mai=
+s:=C2=A0voc=C3=AA sabia que suas <strong style=3D"font-family: 'proxima-nov=
+a', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border=
+-box; font-size: 16px; line-height: 1.5; font-weight: bold;">a=C3=A7=C3=B5e=
+s no Chat</strong> podem render a voc=C3=AA <strong style=3D"font-family: '=
+proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-siz=
+ing: border-box; font-size: 16px; line-height: 1.5; font-weight: bold;">pon=
+tos de reputa=C3=A7=C3=A3o</strong>? Estes pontos aumentam seu=C2=A0n=C3=AD=
+vel dentro da plataforma, e cada novo n=C3=ADvel dar=C3=A1 a voc=C3=AA aces=
+so a <strong style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, H=
+elvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-=
+height: 1.5; font-weight: bold;">recompensas e conquistas exclusivas</stron=
+g>!<br style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helveti=
+ca, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height=
+: 1.5;">
+<br style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica,=
+ Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1=
+.5;">
+Confira quantos pontos voc=C3=AA pode ganhar em cada a=C3=A7=C3=A3o:</p>
+
+<ul style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica,=
+ Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1=
+.5; color: #666C71; margin-bottom: 16px; font-weight: normal; margin-left: =
+20px; margin-right: 0; padding-left: 0; padding-right: 0;">
+	<li style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica=
+, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: =
+1.5; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0;">E=
+nviar mensagens em canais do chat: +3=C2=A0</li>
+	<li style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica=
+, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: =
+1.5; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0;">R=
+eagir a mensagens de outros impulsers: +2=C2=A0</li>
+	<li style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica=
+, Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: =
+1.5; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0;">R=
+eceber rea=C3=A7=C3=B5es em mensagens: +3=C2=A0</li>
+</ul>
+
+<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; color: #666C71; margin-bottom: 16px; font-weight: normal;">Que tal <stro=
+ng style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; font-weight: bold;">entrar no chat</strong> agora mesmo para come=C3=A7a=
+r a ampliar seu networking e trocar conhecimento?</p>
+
+<div style=3D"display: inline-block; font-family: 'proxima-nova', &quot;Hel=
+vetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-si=
+ze: 16px; line-height: 1.5; margin: 0 auto;"><a href=3D"https://t.dripemail=
+2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTV=
+paDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL2FwcC5pbXB1bHNvLm5ldHdvcmsvP19fcz0xZ25pb3=
+Y4ZGR5ZXhucXVhdm14MiJ9" style=3D"color: #26265e !important; letter-spacing:=
+ 3px; text-transform: uppercase; font-size: 12px; font-weight: bold; text-a=
+lign: center; text-decoration: none !important; border-radius: 30px; displa=
+y: block; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Ar=
+ial, sans-serif; box-sizing: border-box; line-height: 1.5; padding: 10px 15=
+px; border: 2px solid #26265e;">ENTRAR NA IMPULSO NETWORK</a></div>
+
+<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; color: #666C71; margin-bottom: 16px; font-weight: normal;"><br style=3D"=
+font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-=
+serif; box-sizing: border-box; font-size: 16px; line-height: 1.5;">
+Espero te encontrar por l=C3=A1!</p>
+
+<p style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.=
+5; color: #666C71; margin-bottom: 16px; font-weight: normal;">Abra=C3=A7os,=
+</p>
+
+
+				<!-- END EMAIL CONTENT -->
+=09=09=09=09
+				<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"line-h=
+eight: 1.4; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, =
+Arial, sans-serif; box-sizing: border-box; font-size: 16px; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt;">
+                  <tbody style=3D"font-family: 'proxima-nova', &quot;Helvet=
+ica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size:=
+ 16px; line-height: 1.5;">
+                    <tr style=3D"font-family: 'proxima-nova', &quot;Helveti=
+ca&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: =
+16px; line-height: 1.5;">
+                      <td style=3D"font-family: 'proxima-nova', &quot;Helve=
+tica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size=
+: 16px; line-height: 1.5; color: #666C71; vertical-align: top; padding: 0 2=
+0px 0 0;" valign=3D"middle">
+                        <img width=3D"80" height=3D"auto" style=3D"margin-t=
+op: 0; margin-bottom: 0; width: 80px; font-family: 'proxima-nova', &quot;He=
+lvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font-s=
+ize: 16px; line-height: 1.5; max-width: 100%; -ms-interpolation-mode: bicub=
+ic;" src=3D"https://impulso-fotos-assinaturas-email.s3.amazonaws.com/atena@=
+3x.jpg">
+                      </td>
+                      <td style=3D"vertical-align: middle; font-family: 'pr=
+oxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizin=
+g: border-box; font-size: 16px; line-height: 1.5; color: #666C71;" valign=
+=3D"middle">
+                        <table style=3D"border-left-width: 3px; border-left=
+-color: #26255e; border-left-style: solid; font-family: 'proxima-nova', &qu=
+ot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; f=
+ont-size: 16px; line-height: 1.5; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt;">
+                          <tbody style=3D"font-family: 'proxima-nova', &quo=
+t;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; fo=
+nt-size: 16px; line-height: 1.5;">
+                            <tr style=3D"font-family: 'proxima-nova', &quot=
+;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; fon=
+t-size: 16px; line-height: 1.5;">
+                              <td style=3D"padding-left: 20px; font-family:=
+ 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-s=
+izing: border-box; font-size: 16px; line-height: 1.5; color: #666C71; verti=
+cal-align: top;" valign=3D"top">
+                                <p style=3D"font-weight: bold; font-size: 1=
+8px; color: #26255e; margin-top: 5px; margin-bottom: 5px; font-family: 'pro=
+xima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing=
+: border-box; line-height: 1.5;">
+                                  Atena<br style=3D"font-family: 'proxima-n=
+ova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: bord=
+er-box; font-size: 16px; line-height: 1.5;">
+                                  <span style=3D"font-weight: normal; font-=
+size: 16px; color: #666C71; font-family: 'proxima-nova', &quot;Helvetica&qu=
+ot;, Helvetica, Arial, sans-serif; box-sizing: border-box; line-height: 1.5=
+;">Gest=C3=A3o de Comunidade</span></p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+=09=09=09=09
+                </td>
+            </tr>
+          </table>
+        </div>
+=20=20=20=20=20=20=20=20
+        <div class=3D"content" style=3D"font-family: 'proxima-nova', &quot;=
+Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; font=
+-size: 16px; line-height: 1.5; max-width: 600px; overflow: visible; display=
+: block; margin: 0;">
+          <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, s=
+ans-serif; box-sizing: border-box; font-size: 16px; line-height: 1.5; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt;">
+            <tr style=3D"font-family: 'proxima-nova', &quot;Helvetica&quot;=
+, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 16px; li=
+ne-height: 1.5;">
+              <td class=3D"footer-content" style=3D"font-family: 'Helvetica=
+ Neue', 'Helvetica', 'Arial', sans-serif; box-sizing: border-box; font-size=
+: 16px; line-height: 1.5; color: #777; vertical-align: top; width: 100%; cl=
+ear: both; padding: 25px 0;" valign=3D"top">
+                <p style=3D"margin-top: 0; text-align: left; font-family: '=
+proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-siz=
+ing: border-box; font-size: 16px; line-height: 1.5; color: #666C71; margin-=
+bottom: 16px; font-weight: normal;" align=3D"left"><a href=3D"https://t.dri=
+pemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5c=
+DA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL1VuaXZlcnNvSW1wdWxz=
+bz9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ" rel=3D"noopener" style=3D"font-size=
+: 16px; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Aria=
+l, sans-serif; box-sizing: border-box; line-height: 1.5; color: #000000; te=
+xt-decoration: underline;" target=3D"_blank" title=3D"Twitter">Twitter</a> =
+| <a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImR=
+lbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL3d3dy5pbn=
+N0YWdyYW0uY29tL3VuaXZlcnNvLmltcHVsc28_X19zPTFnbmlvdjhkZHlleG5xdWF2bXgyIn0" =
+rel=3D"noopener" style=3D"font-size: 16px; font-family: 'proxima-nova', &qu=
+ot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; l=
+ine-height: 1.5; color: #000000; text-decoration: underline;" target=3D"_bl=
+ank" title=3D"Instagram">Instagram</a> | <a href=3D"https://t.dripemail2.co=
+m/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDV=
+qOXVsdjEiLCJ1cmwiOiJodHRwczovL3d3dy5saW5rZWRpbi5jb20vY29tcGFueS91bml2ZXJzb2=
+ltcHVsc28_X19zPTFnbmlvdjhkZHlleG5xdWF2bXgyIn0" rel=3D"noopener" style=3D"fo=
+nt-size: 16px; font-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetic=
+a, Arial, sans-serif; box-sizing: border-box; line-height: 1.5; color: #000=
+000; text-decoration: underline;" target=3D"_blank" title=3D"LinkedIn">Link=
+edIn</a> | <a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5OD=
+E1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL=
+2dpdGh1Yi5jb20vVW5pdmVyc29JbXB1bHNvP19fcz0xZ25pb3Y4ZGR5ZXhucXVhdm14MiJ9" re=
+l=3D"noopener" style=3D"font-size: 16px; font-family: 'proxima-nova', &quot=
+;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; lin=
+e-height: 1.5; color: #000000; text-decoration: underline;" target=3D"_blan=
+k" title=3D"YouTube">Github</a> | <a href=3D"https://t.dripemail2.com/c/eyJ=
+hY2NvdW50X2lkIjoiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdj=
+EiLCJ1cmwiOiJodHRwczovL3d3dy55b3V0dWJlLmNvbS9jL1VuaXZlcnNvSW1wdWxzbz9fX3M9M=
+WduaW92OGRkeWV4bnF1YXZteDIifQ" rel=3D"noopener" style=3D"font-size: 16px; f=
+ont-family: 'proxima-nova', &quot;Helvetica&quot;, Helvetica, Arial, sans-s=
+erif; box-sizing: border-box; line-height: 1.5; color: #000000; text-decora=
+tion: underline;" target=3D"_blank" title=3D"YouTube">YouTube</a></p>
+
+<p style=3D"font-size: 12px; text-align: left; font-family: 'proxima-nova',=
+ &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-bo=
+x; line-height: 1.5; color: #666C71; margin-bottom: 16px; font-weight: norm=
+al;" align=3D"left"><a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkI=
+joiMjg5ODE1NSIsImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJo=
+dHRwczovL2ltcHVsc28ubmV0d29yaz9fX3M9MWduaW92OGRkeWV4bnF1YXZteDIifQ" style=
+=3D"font-size: 12px; color: #666C71 !important; font-family: 'proxima-nova'=
+, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-b=
+ox; line-height: 1.5; text-decoration: underline;">visite impulso.network</=
+a> | <a href=3D"https://t.dripemail2.com/c/eyJhY2NvdW50X2lkIjoiMjg5ODE1NSIs=
+ImRlbGl2ZXJ5X2lkIjoidGQ0eDN5cDA0MTVpaDVqOXVsdjEiLCJ1cmwiOiJodHRwczovL3d3dy5=
+nZXRkcmlwLmNvbS9zdWJzY3JpYmVycy8xZ25pb3Y4ZGR5ZXhucXVhdm14Mi91bnN1YnNjcmliZT=
+9icm9hZGNhc3Q9NzU2MDcyNDY3XHUwMDI2ZD10ZDR4M3lwMDQxNWloNWo5dWx2MVx1MDAyNmV4Y=
+2x1ZGVfY2xpY2s9MVx1MDAyNl9fcz0xZ25pb3Y4ZGR5ZXhucXVhdm14MiJ9" style=3D"font-=
+size: 12px; color: #666C71 !important; font-family: 'proxima-nova', &quot;H=
+elvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-box; line-=
+height: 1.5; text-decoration: underline;">descadastre-se</a></p>
+
+<p style=3D"font-size: 12px; text-align: left; font-family: 'proxima-nova',=
+ &quot;Helvetica&quot;, Helvetica, Arial, sans-serif; box-sizing: border-bo=
+x; line-height: 1.5; color: #666C71; margin-bottom: 16px; font-weight: norm=
+al;" align=3D"left">Rua da Gl=C3=B3ria, 190, sala 1002. Gl=C3=B3ria, Rio de=
+ Janeiro, RJ, Brasil.</p>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+=20=20=20=20=20=20=20=20
+      </td>
+    </tr>
+  </table>
+
+<img src=3D"http://o.dripemail2.com/wf/open?upn=3DT-2B7yvjO0sYzwGv1SgRnIPgC=
+aa9h4boETvuuNG4huMx8l289b25gy638l8zaSHFa61RiPaLSpmLjTbxLEw6OiPbQmIzNzvMNKH3=
+DAh6lWemHd-2B8MtpQ178Fb6Y5kLjFiXGtL6R6Ldr8Vmdqu41NFPUy9XgPNHe1B5MyOhkxjNBPo=
+hlR-2F11WHTach86jaS72ac2GCgFSpOcR0-2F6Z9ytwDWJ29c4SeK-2FDDBDflrb5oMDJbqogqD=
+gAp3sAMfJ0EYdshJMn3R5XVGYpy-2F6tPfk-2FVSQLdxsGUNh1XG2KW4G8Ish8b5-2ByiUzsAuP=
+xQEsIwV-2BoWnMmiLoKyoM5FaZ4I-2Fvq-2Bq620E5sXCrzNtRCAmM74YgDoHM3nRftU1V2uh0i=
+bTVEpPMaTeW6mM-2BoWEEeri9iL-2Fu4lZGI5wXpS10dnTM63WJvoTk7Kkpk-2FwxwL3mgDPTS8=
+t9LCACN-2BE5i0sPphd5J8yFx-2FuiSQHmwsrt3D7GbUIogK0WbEKXTzaYj69xBhUP5qRnkiYlD=
+Z-2FB0iQgvPEOmKOVfmcY7WB0UgLHzaxd57O-2FPCqUyepp1W4effipAT6GKIROdYsP-2F1dMe5=
+j3yTZ0xild3IJv2d4ewlxEevxw40E6ug-3D" alt=3D"" width=3D"1" height=3D"1" bord=
+er=3D"0" style=3D"height:1px !important;width:1px !important;border-width:0=
+ !important;margin-top:0 !important;margin-bottom:0 !important;margin-right=
+:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bot=
+tom:0 !important;padding-right:0 !important;padding-left:0 !important;"/>
+</body>
+
+</html>
+
+
+--186943ddd3b53df273f027aba31e488bc4ca3028e6b3caa9d519948f1649--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>6521</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1590670806</integer>
+	<key>flags</key>
+	<integer>25770064897</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>3782</string>
+</dict>
+</plist>

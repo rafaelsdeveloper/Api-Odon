@@ -1,0 +1,2082 @@
+67266     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a5d:6b43:0:0:0:0:0 with SMTP id x3csp1489597wrw;
+        Wed, 2 Feb 2022 07:40:53 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwxIQwLIz84lVP0pzoC402hzTha6LeLu0d2Ixw60irg1CkinJbYQTxWb0bo0ljeL6ekM49i
+X-Received: by 2002:ac8:12c9:: with SMTP id b9mr23113209qtj.420.1643816453298;
+        Wed, 02 Feb 2022 07:40:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1643816453; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Zf/SVrfEsuMkMC4+6JTBrUzQ9h2ouD1iC82jQfQxDbocyZcrk4vX6W+wNjKlFXqAws
+         7u1/GB0wc1NbncMgfFxmB+yJ8Bn7poU+PG9eLQoxUybLeIp2nxVNzQYHD1SS2fArQxUs
+         PAvPeOKGDPyJkI9cTFZV22IxV9263wH/Q83JWgbxBwBsb7WuhpecQr0EmRD2GQb24kQP
+         2dlfmtpQdvFKl2XWVYW/jdx2/ZrqAOvv8EOkfbEYFLSUrksFkvnB/2q1mRlcTB0vnaEC
+         X2L5CeYZ2yxX2VC029ivTNe5fqOFAuuwx/pla06etddPwJ7YV2xp14660PGdZx/PLb8h
+         CRRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:date:from:message-id:subject:content-transfer-encoding
+         :mime-version:dkim-signature:dkim-signature;
+        bh=kXvCz8a5Csxc6mMYW0sSjI4LggJueJIOkMywLMMHvoA=;
+        b=L9ASaLJ36S9EgZp3hJ0oZKBYxdHsg4GLF6dQ6T8D0OAJxL0eClkKBOflcTBW8ggQ4k
+         G9XLJUSWjRcd7pRHL4NussP9rhr8nEixFmxHeHITFDFC4x8gmiVWR5ZOa1B1kJGAf/SR
+         m57/efacyGM+eNwC0ejr4nx1llL6ofo02yyscp01akJH8oIDzqDHBqBlzoMQ8RKY+U8+
+         QdAaxwps+L/hgNTBEuw9mH3Euf7rGDekxiZ/FbMkXCNqb7yXhMlF7EwxyrkmOHV0NVsn
+         39Cvltd7gjvp+HedR6cYCubmielpdVB9r2xnSwVYqnOdFRmHc14gTvM3h6sI6czCidz7
+         ETLQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@uber.com header.s=s1 header.b=X6dd32N1;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=jon4RP6X;
+       spf=pass (google.com: domain of bounces+13641-d4a4-faeldroom46=gmail.com@em.uber.com designates 167.89.17.53 as permitted sender) smtp.mailfrom="bounces+13641-d4a4-faeldroom46=gmail.com@em.uber.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=uber.com
+Return-Path: <bounces+13641-d4a4-faeldroom46=gmail.com@em.uber.com>
+Received: from o8.email.uber.com (o8.email.uber.com. [167.89.17.53])
+        by mx.google.com with ESMTPS id r12si5539483qkp.512.2022.02.02.07.40.53
+        for <faeldroom46@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Feb 2022 07:40:53 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+13641-d4a4-faeldroom46=gmail.com@em.uber.com designates 167.89.17.53 as permitted sender) client-ip=167.89.17.53;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@uber.com header.s=s1 header.b=X6dd32N1;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=jon4RP6X;
+       spf=pass (google.com: domain of bounces+13641-d4a4-faeldroom46=gmail.com@em.uber.com designates 167.89.17.53 as permitted sender) smtp.mailfrom="bounces+13641-d4a4-faeldroom46=gmail.com@em.uber.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=uber.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uber.com;
+	h=mime-version:content-transfer-encoding:subject:content-type:from:
+	x-feedback-id:to;
+	s=s1; bh=kXvCz8a5Csxc6mMYW0sSjI4LggJueJIOkMywLMMHvoA=;
+	b=X6dd32N1CHgY0pKdWFb/h8GB3Rrg4RnOQaE5re2R9119qRJDaZ8Zz4RJnIWhEk5WrnfI
+	/qIuI7HD4Dr7YqIPUFm/ocB5VwD5i1gOtQPo2MJXFreR295YUFyUdax/9EAwba7Kb6UUr7
+	7xruH32wgTpsja1N2xi06MIOiVJIqAaDKsIFa6HTZzOZ5EpbfCyiODgd5DELkJnJ4cOUEs
+	Db8NI4DnatuTb20R5lDywBSwzh8uiNY86h+DtCV+H24/qyytGw/X4dttkG9AqJ3SFzhT6W
+	v7wuUR1s7lcBznK8iMD5y2cCVjM1W8tmG3Tb9RAnTMSl5NGFJcV1Gimsp7zaNpvw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=mime-version:content-transfer-encoding:subject:content-type:from:
+	x-feedback-id:to;
+	s=smtpapi; bh=kXvCz8a5Csxc6mMYW0sSjI4LggJueJIOkMywLMMHvoA=;
+	b=jon4RP6Xq9f7fGVNk8p1QX5YBsQgA8eX+Q/zJUtzaoyRC6EuFNwHU3yG87LUaIp27wDx
+	7zaRGcCopVyQu7YyoTtBCk0fC5ojd6o35VYecsWcHYjUhh694L4/qVEoOc8gxMBnB50jtG
+	QEHLSi3hEorx5S7ZOdzuMQj9LUDAdajh0=
+Received: by filterdrecv-867544584f-nhjm2 with SMTP id filterdrecv-867544584f-nhjm2-1-61FAA604-88
+        2022-02-02 15:40:52.5916174 +0000 UTC m=+13281656.295189040
+Received: from localhost (unknown)
+	by geopod-ismtpd-1-0 (SG) with ESMTP
+	id fueZ9pepS3WDn5eeZe7VxA
+	for <faeldroom46@gmail.com>;
+	Wed, 02 Feb 2022 15:40:52.559 +0000 (UTC)
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Subject: Rafael, obrigado por se registar na Uber
+X-Uber-Id: 3aa233be-e3f3-4bf5-b038-5e716e8815d3
+Message-Id: <3aa233be-e3f3-4bf5-b038-5e716e8815d3@mail.uber.com>
+Content-Type: text/html; charset=utf-8
+From: Uber <uber@uber.com>
+Date: Wed, 02 Feb 2022 15:40:52 +0000 (UTC)
+X-Feedback-ID: 13641:SG
+X-SG-EID: 
+ =?us-ascii?Q?dK63Id144yQiS+=2Fk8b2VX6hJb=2FhEknWpdZlZDqP7t8s8ktWcwxjA=2FMkokNgqMg?=
+ =?us-ascii?Q?pQ0E47MsAVAYto73hBBs8g5SfNLE9tGedX8kHZJ?=
+ =?us-ascii?Q?b1QeJ868NXbbTv=2FSD80piN2nsz2XdjCrdYRXPWJ?=
+ =?us-ascii?Q?IMvVnpdXAQy5GoI00D+lvq9qtD1kdOzAur6hhoo?=
+ =?us-ascii?Q?HXRKvYtPLnIvYoZfM+mIspOwbA8Alse+d51TGqc?=
+ =?us-ascii?Q?FkF9DdspvYWVYUDtE=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb7=2Fkv8eDEDScbid8+AIdNQPCMMWQ6VxLgfT5jle08V?=
+ =?us-ascii?Q?PJIYR3TmAy8Q3CuNTovs=2FL1jagkMQ9IuyfFoqru?=
+ =?us-ascii?Q?D56u8lNkdPig96awp5+oaU4yVf89BhC5pzBlGST?=
+ =?us-ascii?Q?xk=2FYZdxdoU+qr4Zl5EGSlk3m2XA1RAI7+F1kcOw?=
+ =?us-ascii?Q?OyH1IeCJ4q5jy1Z88MGQHGSxKYZ=2FPb+2yxJNTIO?=
+ =?us-ascii?Q?m6Yu8xXBRcZkIzKeibysHdVJozSWXT1HBul+1pb?=
+ =?us-ascii?Q?6ASK5GU2iyMvHIItlIdB2om5Ee9=2FL24Vw=2F=2Ff=2Fu3?=
+ =?us-ascii?Q?C1FIRU7iTZrIVA4qBQsYtakae6xBvpRWuYEOC7k?=
+ =?us-ascii?Q?8S7SYBbk=2FZ0GIoT0mIQTlCZTO2Ow=3D?=
+To: faeldroom46@gmail.com
+X-Entity-ID: 92v7Mj6XZLD3rChEwyNQYg==
+
+<!doctype html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width">
+<!--[if !mso]><!-- -->
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<!--<![endif]-->
+<!--[if gte mso 9]><xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml><![endif]-->
+
+<style type=3D"text/css">
+a[x-apple-data-detectors] { color: inherit !important; text-decoration: non=
+e !important; font-size: inherit !important; font-family: inherit !importan=
+t; font-weight: inherit !important; line-height: inherit !important } table=
+{ mso-table-lspace: 0; mso-table-rspace: 0; mso-table-lspace: 0; border: no=
+ne; border-collapse: collapse; border-spacing: 0;} p {margin: 0 !important;=
+} h1, .h1 { font-size: 60px !important; line-height: 66px !important; } h2,=
+ .h2 { font-size: 44px !important; line-height: 50px !important; } ul, ol {=
+margin:0; margin-left:8px !important;} u + .body ul, u + .body ol { margin-=
+left: 8px !important; } @media only screen and (max-width: 640px) { u + .bo=
+dy ul, u + .body ol { margin-left: 18px !important;} }
+
+.btn a:hover { background-color: #266ef1 !important; border-color: #266ef1 =
+!important; } .textcta a:hover { color:#266ef1 !important; } .hoverbox:hove=
+r { background-color: #266ef1 !important; }
+
+.show670, .show414 {display:none;} @media screen and (max-width:670px) { .t=
+1of12, .t2of12, .t3of12, .t4of12, .t5of12, .t6of12, .t7of12, .t8of12, .t9of=
+12, .t10of12, .t11of12, .t12of12, .full { width: 100% !important; max-width=
+: none !important; } .show670 { display: block !important; max-height: none=
+ !important; overflow:visible !important; } .hide670 { display: none !impor=
+tant; } } @media screen and (min-width:671px) { .force700{width: 700px !imp=
+ortant;} }=20
+@media screen and (max-width:414px) { h1, h2, .h1, .h2{ font-size: 34px !im=
+portant; line-height: 40px !important;} .h1scale {font-size: 54px !importan=
+t; line-height: 60px !important;} .h2scale {font-size: 42px !important; lin=
+e-height: 48px !important;} .p1scale{font-size: 16px !important;line-height=
+: 22px !important;} .show414 { display: block !important; max-height: none =
+!important; overflow:visible !important; } .hide414 { display: none !import=
+ant; } } @media screen and (max-width:375px) { .h1scale {font-size: 46px !i=
+mportant; line-height: 52px !important;} .h2scale {font-size: 40px !importa=
+nt; line-height: 46px !important;} }
+
+@font-face{font-family: 'UberMove-Medium'; src: url('https://s3.amazonaws.c=
+om/uber-static/emails/2018/global/fonts/UberMove/UberMove-Medium.woff') for=
+mat('woff'), url('https://s3.amazonaws.com/uber-static/emails/2018/global/f=
+onts/UberMove/UberMove-Medium.ttf') format('truetype'); font-weight: normal=
+ !important; font-style: normal !important; mso-font-alt: 'Arial'}@font-fac=
+e{font-family: 'UberMoveText-Regular'; src: url('https://s3.amazonaws.com/u=
+ber-static/emails/2018/global/fonts/UberMove/UberMoveText-Regular.woff') fo=
+rmat('woff'), url('https://s3.amazonaws.com/uber-static/emails/2018/global/=
+fonts/UberMove/UberMoveText-Regular.ttf') format('truetype'); font-weight: =
+normal !important; font-style: normal !important; mso-font-alt: 'Arial'}
+@font-face{font-family: 'UberMoveText-Medium'; src: url('https://s3.amazona=
+ws.com/uber-static/emails/2018/global/fonts/UberMove/UberMoveText-Medium.wo=
+ff') format('woff'), url('https://s3.amazonaws.com/uber-static/emails/2018/=
+global/fonts/UberMove/UberMoveText-Medium.ttf') format('truetype'); font-we=
+ight: normal !important; font-style: normal !important; mso-font-alt: 'Aria=
+l'}@font-face{font-family: 'UberMoveText-Bold'; src: url('https://s3.amazon=
+aws.com/uber-static/emails/2018/global/fonts/UberMove/UberMoveText-Bold.wof=
+f') format('woff'), url('https://s3.amazonaws.com/uber-static/emails/2018/g=
+lobal/fonts/UberMove/UberMoveText-Bold.ttf') format('truetype'); font-weigh=
+t: normal !important; font-style: normal !important; mso-font-alt: 'Arial'}
+@font-face{font-family: 'Uber Move Text'; src: url('https://s3.amazonaws.co=
+m/uber-static/emails/2018/global/fonts/UberMove/UberMoveText-Bold.woff') fo=
+rmat('woff'), url('https://s3.amazonaws.com/uber-static/emails/2018/global/=
+fonts/UberMove/UberMoveText-Bold.ttf') format('truetype'); font-weight: bol=
+d; mso-font-alt: 'Arial'}@font-face{font-family: 'Uber Move Text'; src: url=
+('https://s3.amazonaws.com/uber-static/emails/2018/global/fonts/UberMove/Ub=
+erMoveText-Medium.woff') format('woff'), url('https://s3.amazonaws.com/uber=
+-static/emails/2018/global/fonts/UberMove/UberMoveText-Medium.ttf') format(=
+'truetype'); font-weight: 500; mso-font-alt: 'Arial'}
+@font-face{font-family: 'Uber Move Text'; src: url('https://s3.amazonaws.co=
+m/uber-static/emails/2018/global/fonts/UberMove/UberMoveText-Regular.woff')=
+ format('woff'), url('https://s3.amazonaws.com/uber-static/emails/2018/glob=
+al/fonts/UberMove/UberMoveText-Regular.ttf') format('truetype'); font-weigh=
+t: normal; mso-font-alt: 'Arial'}@font-face{font-family: 'Uber Move'; src: =
+url('https://s3.amazonaws.com/uber-static/emails/2018/global/fonts/UberMove=
+/UberMove-Medium.woff') format('woff'), url('https://s3.amazonaws.com/uber-=
+static/emails/2018/global/fonts/UberMove/UberMove-Medium.ttf') format('true=
+type'); font-weight: 500; mso-font-alt: 'Arial'}
+
+@media (max-width: 414px) {
+  .EM1 {background: url('https://d3smpkehiq8afm.cloudfront.net/email/2021/0=
+4/ap_CreativeRefresh_Onboarding_Driver/email_1_hero_image_m_1x.png') !impor=
+tant; background-size: 100% !important; background-repeat: no-repeat !impor=
+tant; background-position: bottom right !important; height:auto !important;=
+ background-color: #E9F0FF !important;}
+  .EM7 {background: url('https://d3smpkehiq8afm.cloudfront.net/email/2021/0=
+4/ap_CreativeRefresh_Onboarding_Driver/email_7_hero_image_m_1x.png') !impor=
+tant; background-size: 100% !important; background-repeat: no-repeat !impor=
+tant; background-position: bottom right !important; height:auto !important;=
+ background-color: #E9F0FF !important;}
+  .mobPad {padding-bottom: 170px !important;}
+} =20
+</style>
+
+</head>
+<body class=3D"body" dir=3Dltr style=3D"-ms-text-size-adjust:100%;-webkit-t=
+ext-size-adjust:100%;background-color:#d6d6d5;margin:0;min-width:100%;paddi=
+ng:0;width:100%">
+<span data-blockuuid=3D"b49fd699-63c5-44bb-81c3-7ee0384eb4ab" style=3D"disp=
+lay: none; max-height: 0px; font-size: 0px; overflow: hidden; mso-hide: all=
+;">
+  Pr=C3=B3ximo passo: fazer o upload dos seus documentos.
+
+</span>
+<span id=3D"TemplateUUID_209015af-48fe-43ec-99ec-080e4fc89c24"></span>
+ =20
+<span id=3D"WorkflowUUID_f359e900-0633-4151-bb89-fecd24bf451c"></span>  =20
+
+<style>.yahooHide{display:none!important}</style>
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"background-color:#d6d6d5;border:0;border-collapse:collapse;border-spac=
+ing:0;" bgcolor=3D"#d6d6d5" class=3D"">
+<tbody>
+<tr>
+<td align=3D"center" style=3D"display: block;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"700" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border:0;border-collapse:collapse;border-spacing:0;max-width:700px;" c=
+lass=3D"force700">
+<tbody>
+<tr>
+<td style=3D"background-color:#ffffff">
+<!-- RB Header Master 1.2 cesfab 5.20.20 -->=20
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border: none; border-collapse: collapse; border-spacing: 0; mso-table-=
+lspace: 0; mso-table-rspace: 0; width: 100%;" data-blockuuid=3D"a6f799ae-61=
+cc-4302-af3c-802e08d24f3f">
+  <tbody>
+  <tr>
+    <td class=3D"outsidegutter" align=3D"left" style=3D"direction:ltr;text-=
+align:left;padding: 10px 14px 10px 14px; padding-left: 0;
+       background-color: #000000;=20
+      "
+       background=3D"https://d3smpkehiq8afm.cloudfront.net/assets/Logos/dar=
+k_mode_background/darkmode_BG_black.jpg" >
+
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"bord=
+er: none; border-collapse: collapse; border-spacing: 0; mso-table-lspace: 0=
+; mso-table-rspace: 0; width: 100%;" class=3D"">
+      <tbody>
+        <tr>
+        <td width=3D"14" style=3D"direction:ltr;text-align:left;padding-lef=
+t:0; padding-right:0;"><img src=3D"https://s3.amazonaws.com/uber-static/ema=
+ils/2016/10/halloweenrider/sp_12x12.png" width=3D"14" height=3D"54" style=
+=3D"-ms-interpolation-mode: bicubic; clear: both; display: block; max-width=
+: 100%; outline: none; text-decoration: none; " border=3D"0" alt=3D"">
+        </td>
+
+        <td style=3D"direction:ltr;text-align:left; font-size:0; " >
+        <!--[if (gte mso 9)|(IE)]>
+        <table width=3D"672" cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" style=3D"display:inline-block;">
+        <tr>
+        <td width=3D"56">
+        <![endif]-->
+
+        <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t1=
+of12" style=3D"border: none; border-collapse: collapse; border-spacing: 0; =
+max-width: 56px; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%; dis=
+play: inline-block; vertical-align: middle;">
+        <tbody>
+          <tr>
+          <td style=3D"direction:ltr;text-align:left;padding-left: 12px; pa=
+dding-right: 12px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" align=3D"left" style=3D"border: none; border-collapse: collapse; =
+border-spacing: 0; mso-table-lspace: 0; mso-table-rspace: 0; table-layout: =
+fixed; width: 100%;">
+              <tbody>
+                <tr>
+                <td height=3D"2" style=3D"direction:ltr;text-align:left;fon=
+t-size:0; line-height:1px;">
+                &nbsp;
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+          </tr>
+        </tbody>
+        </table>
+
+
+
+      <!--[if (gte mso 9)|(IE)]>
+    </td>
+
+
+    <td width=3D"616">
+  <![endif]-->
+
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t11of12"=
+ style=3D"border: none; border-collapse: collapse; border-spacing: 0; max-w=
+idth: 616px; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%; display=
+: inline-block; vertical-align: middle;">
+    <tbody>
+      <tr>
+      <td style=3D"direction:ltr;text-align:left;padding-left: 0; padding-r=
+ight: 0;">
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%=
+" align=3D"left" style=3D"border: none; border-collapse: collapse; border-s=
+pacing: 0; mso-table-lspace: 0; mso-table-rspace: 0; table-layout: fixed; w=
+idth: 100%;">
+        <tbody>
+          <tr>
+            <td style=3D"direction:ltr;text-align:left;font-size:0;">
+              <!--[if (gte mso 9)|(IE)]>
+              <table width=3D"616" align=3D"left" cellpadding=3D"0" cellspa=
+cing=3D"0" border=3D"0">
+              <tr>
+              <td width=3D"408">
+              <![endif]-->
+
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"t4of12" style=3D"border: none; border-collapse: collapse; border-spacin=
+g: 0; display: inline-block; max-width: 408px; mso-table-lspace: 0; mso-tab=
+le-rspace: 0; vertical-align: middle; width: 100%;">
+                <tbody>
+                  <tr>
+                  <td style=3D"direction:ltr;text-align:left;padding-left: =
+12px; padding-right: 12px;">
+                      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" align=3D"left" style=3D"border: none; border-collapse: co=
+llapse; border-spacing: 0; mso-table-lspace: 0; mso-table-rspace: 0; table-=
+layout: fixed; width: 100%;">
+                        <tbody>
+
+
+
+                   =20
+                      <!-- U B E R - - - - - - -->
+                      <tr>
+                        <td style=3D"direction:ltr;text-align: left; font-s=
+ize: 0;">
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" align=3D"left" style=3D"border: none; border-collapse=
+: collapse; border-spacing: 0; mso-table-lspace: 0; mso-table-rspace: 0; ta=
+ble-layout: fixed; width: 100%;">
+                        <tbody><tr>
+                        <td style=3D"direction:ltr;text-align:left;font-siz=
+e:0; padding-top: 0px; padding-bottom: 0px; ">
+                        =20
+                           <a href=3D"https://email.uber.com/ls/click?upn=
+=3DIb78WjkFQ66GYzavQJcfTSdKELsahKdbQ-2BLLWq1SrRo-3DN7G6_VXHFfP6nuT2o0MX56pO=
+UNb54BDjn6oYYeavQQ-2FpNTj6DasPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdB=
+z6AYYuk1ArmlsIe99VAnM9VuVaCrzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQB=
+k1Be09yMDvdVE6qYqCi7mZIVbxZy5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2=
+B8qhyesCTHJUkNwdKISrqG93ziPyTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN9=
+3ZGC4Lns8mt3pv5nIpV2XDKysm8RGWl0ssezMWuc-2Bd4QcG3Q0eLo-2Fd90VotSqaGvprdnqq7=
+yJAQw1cQ93z61yVaJBd7vuH-2BslSl0IXrFlr6ulxzaFQWF22gffERhp7iP5L5yAVAJCaWWsn7x=
+Hxo0htLktTGu38e5MYyKihWq-2Fx-2BCF8Zm6-2FEUllobX7B0l3CgpM6S01PzCZ-2BEQkJ-2Fn=
+fZ1QARQkMVotZ9dBHpb7RA4IRnnb23t61K3WCOY-3D" style=3D"text-decoration: none"=
+>
+                        <img src=3D"https://s3.amazonaws.com/uber-static/em=
+ails/Global/Logos/cshead/uber-logo-69x43_2x_white.png" width=3D"69" height=
+=3D"43" alt=3D"Uber" style=3D"-ms-interpolation-mode: bicubic; clear: both;=
+ display: block; max-width: 100%; outline: none; text-decoration: none;">
+                           </a>
+                             =20
+                        </td>
+                        </tr>
+                        </tbody></table>
+                        </td>
+                      </tr>
+                      <!-- END U B E R - - - - - - -->
+
+
+                 =20
+
+                  </tbody>
+
+</table>
+</td>
+</tr>
+</tbody></table>
+
+<!--[if (gte mso 9)|(IE)]>
+</td>
+<td width=3D"208">
+<![endif]-->
+
+
+                            =20
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+
+
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+
+
+
+<!-- line under -->
+
+
+
+
+
+
+
+
+</tbody></table>
+<!-- close RB Header Master --> =20
+
+
+
+
+
+
+
+
+
+ =20
+
+
+
+
+     =20
+     =20
+     =20
+     =20
+             =20
+     =20
+
+
+
+
+<!--  driver Courier HPC  cf_2020/06/10 L3  B3  -->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border-collapse: collapse; width: 100%;" data-blockuuid=3D"a0036556-46=
+3f-48c4-b27c-6c62d80dc5a3">
+   <tbody><tr>
+      <td class=3D"outsidegutter" align=3D"left" style=3D"direction:ltr;tex=
+t-align:left; background-color: #E9F0FF; padding: 0 14px 0 14px; padding-bo=
+ttom: 30px; padding-top: 30px;">
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"b=
+order-collapse: collapse; width: 100%;">
+            <tbody><tr>
+               <td style=3D"direction:ltr;text-align:left;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+   <tr>
+      <td>
+         <![endif]-->
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t=
+10of12" align=3D"center" style=3D"Margin: 0 auto; border-collapse: collapse=
+; max-width: 560px; width: 100%;">
+            <tbody><tr>
+               <td style=3D"direction:ltr;text-align:left;padding-left: 12p=
+x; padding-right: 12px;">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%" align=3D"left" style=3D"border-collapse: collapse; table-layo=
+ut: fixed; width: 100%;">
+                     <tbody><tr>
+                        <td style=3D"direction:ltr;text-align:left;">
+                              <h1 style=3D"Margin: 0; color: #000000; font-=
+family: 'Uber Move', 'HelveticaNeue', Helvetica, Arial, sans-serif; font-si=
+ze: 34px; font-weight: 500; line-height: 40px; mso-line-height-rule: exactl=
+y; padding: 0; padding-bottom: 7px; padding-top: 7px;">Bem-vindo(a), Rafael=
+,
+</h1>
+
+                        </td>
+                     </tr>
+                     <tr>
+                     	<td class=3D"p1" style=3D"direction:ltr;text-align:le=
+ft;color: #000000; font-family: 'Uber Move Text', 'HelveticaNeue', Helvetic=
+a, Arial, sans-serif; font-size: 20px; font-weight: normal; line-height: 26=
+px; padding-bottom: 23px; padding-top: 7px;"><div>Antes de come=C3=A7ar a a=
+umentar os seus rendimentos com a Uber, tem de fazer o upload de alguns doc=
+umentos na sua conta de motorista. A forma mais r=C3=A1pida de o fazer =C3=
+=A9 atrav=C3=A9s da Aplica=C3=A7=C3=A3o Uber=C2=A0Driver.</div>
+</td>
+                     </tr>
+
+                    =20
+                     <tr>
+
+
+                     	<td style=3D"direction:ltr;text-align:left;padding-bo=
+ttom: 13px;">
+                     		<!--[if (gte mso 9)|(IE)]>
+<table width=3D"Upload documents" align=3D"left" cellpadding=3D"0" cellspac=
+ing=3D"0" border=3D"0">
+<tr>
+<td>
+<![endif]-->
+    <div class=3D"" lang=3D"x-btn" style=3D"font-family: 'Uber Move Text', =
+'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight=
+: 700; line-height: 22px;"> <a href=3D"https://email.uber.com/ls/click?upn=
+=3DGvm6NQ15nR9BfldZQeSI7GdBYvCVQ6CNvMJeGzEPKk-2Fa3cr4UVN9FSpk0xar7mYSv6iJPo=
+nWqbIO-2BR7mKh3TmQ-3D-3DvN0y_VXHFfP6nuT2o0MX56pOUNb54BDjn6oYYeavQQ-2FpNTj6D=
+asPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1ArmlsIe99VAnM9VuVaC=
+rzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMDvdVE6qYqCi7mZIVbxZ=
+y5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCTHJUkNwdKISrqG93ziP=
+yTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8mt3pv5nIpV2XDKysm8=
+RGWl0ssVjhxAJql66U-2FoJL9gFDeEqdWUqmjfaW-2FjwZ6witzLOBtJ3J1tn88cOw8DW82QBNT=
+l9ZHlzko-2B04jECb6FVQVyie70WcpZ-2BN0e0IGdlBb6m6sqFZS-2BiVdGsLuUOpSIMTBRDLHb=
+x-2FvO7-2F-2F97TEBFln2FmxGrZWnxXYJCkmfyNEjXKlp2CrQuAH-2BIDUf-2BGC9XD9Jg9oHh=
+U3Rej9W-2Fn6S6Nc18-3D" style=3D"background-color: #000000; border-color: #0=
+00000; border-radius: 0px; border-style: solid; border-width: 13px 18px; co=
+lor: #ffffff; display: inline-block; letter-spacing: 1px; max-width: 300px;=
+ min-width: 100px; text-align: center; text-decoration: none; transition: a=
+ll 0.2s ease-in;"><span style=3D"float:left;text-align:left;">Fazer upload =
+de documentos</span>=20
+    <!--[if !mso]><!-- --><span style=3D"float:right;padding-top:3px; displ=
+ay:inline-block;"> <img src=3D"https://s3.amazonaws.com/uber-static/emails/=
+2018/global/arrows/arrow2_white_left.png" width=3D"14" height=3D"13" style=
+=3D"-ms-interpolation-mode: bicubic; Margin-left: 7px; border: none; clear:=
+ both; display: block; margin-top: 2px; max-width: 100%; outline: none; tex=
+t-decoration: none;" alt=3D"" class=3D""></span>
+    <!--<![endif]-->=20
+    </a> </div>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+                     	</td>
+                     </tr>
+
+
+                  </tbody></table>
+               </td>
+            </tr>
+         </tbody></table>
+         <!--[if (gte mso 9)|(IE)]>
+      </td>
+   </tr>
+</table>
+<![endif]-->
+               </td>
+            </tr>
+         </tbody></table>
+      </td>
+   </tr>
+</tbody></table>
+<!--  close driver Courier HPC B3  -->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border:0;border-collapse:collapse;border-spacing:0;margin:auto;max-wid=
+th:700px;" class=3D"">
+<tbody>
+<tr>
+<td align=3D"center">
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"background-color:#fff;border:0;border-collapse:collapse;border-spacing=
+:0;margin:auto;" bgcolor=3D"#ffffff" class=3D"basetable">
+<tbody>
+<tr>
+<td align=3D"center">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"700" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td align=3D"center">
+<![endif]-->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"basetable" style=3D"border:0;border-collapse:collapse;border-spacing:0=
+;">
+<tbody>
+<tr>
+<td align=3D"center" style=3D"background-color:#ffffff">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"basetable" style=3D"border:0;border-collapse:collapse;border-spacing:0=
+;">
+<tbody>
+<tr>
+<td>
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"100%" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"basetable" style=3D"border:0;border-collapse:collapse;border-spacing:0=
+;">
+<tbody>
+<tr>
+<td>
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"100%" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border:0;border-collapse:collapse;border-spacing:0;" class=3D"">
+<tbody>
+<tr>
+<td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  B_LIST  B_LIST 1.2 cf 7/7/20 -->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border-collapse: collapse; width: 100%;" data-blockuuid=3D"a2cb1b30-2c=
+41-4cab-976c-baef818ef39f">
+<tbody>
+
+<tr>
+<td height=3D"25" style=3D"font-size:0; line-height: 1px; ">&nbsp;
+</td>
+</tr>
+
+<tr>
+<td class=3D"outsidegutter" align=3D"left" style=3D"direction:ltr;text-alig=
+n:left; ; padding:15px 14px 15px 14px;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-col=
+lapse: collapse; width: 100%;">
+<tbody><tr>
+<td style=3D"direction:ltr;text-align:left;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t10of12" a=
+lign=3D"center" style=3D"Margin: 0 auto; border-collapse: collapse; max-wid=
+th: 560px; width: 100%;">
+<tbody><tr>
+<td style=3D"direction:ltr;text-align:left;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"border-collapse: collapse; table-layout: fixed; width: =
+100%;">
+<tbody>
+
+<tr>
+<td style=3D"direction:ltr;text-align:left; padding-left: 12px; padding-rig=
+ht: 12px;" >
+<h4 class=3D"" style=3D"Margin: 0; padding: 0; mso-line-height-rule: exactl=
+y; font-family: 'Uber Move', 'HelveticaNeue', Helvetica, Arial, sans-serif;=
+ font-size: 28px; line-height: 36px; font-weight: 500; padding:10px 0 20px =
+0; color: #000000;">
+Sugest=C3=B5es =C3=BAteis
+</h4>
+</td>
+</tr>
+
+
+<tr>
+<td style=3D"direction:ltr;text-align:left;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"border-collapse: collapse; table-layout: fixed; width: =
+100%;">
+<tbody>
+<!-- Sub Bloc ---- -->
+
+
+
+
+
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+
+
+
+   =20
+     =20
+     =20
+
+
+    =20
+   =20
+   =20
+     =20
+     =20
+     =20
+     =20
+       =20
+
+ =20
+   =20
+    =20
+        =20
+   =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr data-blockuuid=3D"da793717-eca2-4036-b7c9-c46ac0521fea">
+     <td style=3D"direction:ltr;text-align:left;padding-top: 0px;" >
+
+      <!--[if (gte mso 9)|(IE)]>
+      <table width=3D"560" align=3D"left" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0">
+         <tr>
+            <td width=3D"56">
+               <![endif]-->
+               <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"t1of12" align=3D"left" style=3D"border-collapse: collapse; max-width: =
+56px; width: 100%;">
+                  <tbody><tr>
+                     <td style=3D"direction:ltr;text-align:left;padding-lef=
+t: 12px; padding-right: 12px; padding-top:8px; padding-bottom: 10px;">
+                       <img src=3D"https://d3smpkehiq8afm.cloudfront.net/em=
+ail/2020/06/cf_courierOB/check_mark.png" width=3D"32" height=3D"" style=3D"=
+display: block; width:100%; max-width: 32px; height:auto; outline: none; te=
+xt-decoration: none;" border=3D"0" alt=3D"">
+                     </td>
+                  </tr>
+               </tbody></table>
+               <!--[if (gte mso 9)|(IE)]>
+            </td>
+
+            <td width=3D"504">
+               <![endif]-->
+               <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"t9of12" align=3D"left" style=3D"border-collapse: collapse; max-width: =
+504px; width: 100%;">
+                  <tbody><tr>
+                     <td style=3D"direction:ltr;text-align:left;padding-lef=
+t: 12px; padding-right: 12px; padding-top:8px; padding-bottom: 10px;">
+
+                      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" class=3D"basetable" width=3D"100%" align=3D"left" style=3D"table-layout:=
+ fixed; width: 100%;">
+   =20
+<tr>
+  <td class=3D"p2b" style=3D"color: #000000; font-family: 'Uber Move Text',=
+ 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 16px; font-weigh=
+t: 700; line-height: 22px; padding-bottom: 0px; padding-top: 0px;">Certifiq=
+ue-se de que est=C3=A1 a fazer o upload do documento certo</td>
+</tr>
+
+<tr>
+  <td class=3D"p2" style=3D"color: #000000; font-family: 'Uber Move Text', =
+'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight=
+: normal; line-height: 22px; padding-bottom: 7px; padding-top: 7px;"><p>Os =
+erros acontecem. Verifique bem os seus documentos para evitar rejei=C3=A7=
+=C3=B5es.</p>
+</td>
+</tr>
+
+</table> =20
+                       =20
+                     </td>
+                  </tr>
+               </tbody></table>
+               <!--[if (gte mso 9)|(IE)]>
+            </td>
+         </tr>
+      </table>
+      <![endif]-->
+
+     </td>
+  </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+
+
+
+   =20
+     =20
+     =20
+
+
+    =20
+   =20
+   =20
+     =20
+     =20
+     =20
+     =20
+       =20
+
+ =20
+   =20
+    =20
+        =20
+   =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr data-blockuuid=3D"0e2cdfd0-ffb2-4c8f-8dfc-d4dc6976d55a">
+     <td style=3D"direction:ltr;text-align:left;padding-top: 0px;" >
+
+      <!--[if (gte mso 9)|(IE)]>
+      <table width=3D"560" align=3D"left" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0">
+         <tr>
+            <td width=3D"56">
+               <![endif]-->
+               <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"t1of12" align=3D"left" style=3D"border-collapse: collapse; max-width: =
+56px; width: 100%;">
+                  <tbody><tr>
+                     <td style=3D"direction:ltr;text-align:left;padding-lef=
+t: 12px; padding-right: 12px; padding-top:8px; padding-bottom: 10px;">
+                       <img src=3D"https://d3smpkehiq8afm.cloudfront.net/em=
+ail/2020/06/cf_courierOB/magnifying_lens.png" width=3D"32" height=3D"" styl=
+e=3D"display: block; width:100%; max-width: 32px; height:auto; outline: non=
+e; text-decoration: none;" border=3D"0" alt=3D"">
+                     </td>
+                  </tr>
+               </tbody></table>
+               <!--[if (gte mso 9)|(IE)]>
+            </td>
+
+            <td width=3D"504">
+               <![endif]-->
+               <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"t9of12" align=3D"left" style=3D"border-collapse: collapse; max-width: =
+504px; width: 100%;">
+                  <tbody><tr>
+                     <td style=3D"direction:ltr;text-align:left;padding-lef=
+t: 12px; padding-right: 12px; padding-top:8px; padding-bottom: 10px;">
+
+                      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" class=3D"basetable" width=3D"100%" align=3D"left" style=3D"table-layout:=
+ fixed; width: 100%;">
+   =20
+<tr>
+  <td class=3D"p2b" style=3D"color: #000000; font-family: 'Uber Move Text',=
+ 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 16px; font-weigh=
+t: 700; line-height: 22px; padding-bottom: 0px; padding-top: 0px;">Certifiq=
+ue-se de que todos os detalhes necess=C3=A1rios est=C3=A3o preenchidos e le=
+g=C3=ADveis</td>
+</tr>
+
+<tr>
+  <td class=3D"p2" style=3D"color: #000000; font-family: 'Uber Move Text', =
+'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight=
+: normal; line-height: 22px; padding-bottom: 7px; padding-top: 7px;"><p>O s=
+eu documento tem de conter todos os detalhes necess=C3=A1rios e tem de ser =
+de f=C3=A1cil leitura.</p>
+</td>
+</tr>
+
+</table> =20
+                       =20
+                     </td>
+                  </tr>
+               </tbody></table>
+               <!--[if (gte mso 9)|(IE)]>
+            </td>
+         </tr>
+      </table>
+      <![endif]-->
+
+     </td>
+  </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+
+
+
+   =20
+     =20
+     =20
+
+
+    =20
+   =20
+   =20
+     =20
+     =20
+     =20
+     =20
+       =20
+
+ =20
+   =20
+    =20
+        =20
+   =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr data-blockuuid=3D"57973bba-a5ca-4809-8b90-17ba5f408a84">
+     <td style=3D"direction:ltr;text-align:left;padding-top: 0px;" >
+
+      <!--[if (gte mso 9)|(IE)]>
+      <table width=3D"560" align=3D"left" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0">
+         <tr>
+            <td width=3D"56">
+               <![endif]-->
+               <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"t1of12" align=3D"left" style=3D"border-collapse: collapse; max-width: =
+56px; width: 100%;">
+                  <tbody><tr>
+                     <td style=3D"direction:ltr;text-align:left;padding-lef=
+t: 12px; padding-right: 12px; padding-top:8px; padding-bottom: 10px;">
+                       <img src=3D"https://d3smpkehiq8afm.cloudfront.net/em=
+ail/2020/06/cf_courierOB/document_icon.png" width=3D"32" height=3D"" style=
+=3D"display: block; width:100%; max-width: 32px; height:auto; outline: none=
+; text-decoration: none;" border=3D"0" alt=3D"">
+                     </td>
+                  </tr>
+               </tbody></table>
+               <!--[if (gte mso 9)|(IE)]>
+            </td>
+
+            <td width=3D"504">
+               <![endif]-->
+               <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"t9of12" align=3D"left" style=3D"border-collapse: collapse; max-width: =
+504px; width: 100%;">
+                  <tbody><tr>
+                     <td style=3D"direction:ltr;text-align:left;padding-lef=
+t: 12px; padding-right: 12px; padding-top:8px; padding-bottom: 10px;">
+
+                      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" class=3D"basetable" width=3D"100%" align=3D"left" style=3D"table-layout:=
+ fixed; width: 100%;">
+   =20
+<tr>
+  <td class=3D"p2b" style=3D"color: #000000; font-family: 'Uber Move Text',=
+ 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 16px; font-weigh=
+t: 700; line-height: 22px; padding-bottom: 0px; padding-top: 0px;">Apenas d=
+ocumentos originais</td>
+</tr>
+
+<tr>
+  <td class=3D"p2" style=3D"color: #000000; font-family: 'Uber Move Text', =
+'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight=
+: normal; line-height: 22px; padding-bottom: 7px; padding-top: 7px;"><p>N=
+=C3=A3o podemos aceitar fotoc=C3=B3pias de documentos, por isso, certifique=
+-se de que faz o upload apenas dos documentos originais.</p>
+</td>
+</tr>
+
+</table> =20
+                       =20
+                     </td>
+                  </tr>
+               </tbody></table>
+               <!--[if (gte mso 9)|(IE)]>
+            </td>
+         </tr>
+      </table>
+      <![endif]-->
+
+     </td>
+  </tr>
+
+
+
+
+
+
+
+
+<!-- END Sub bloc -->
+</tbody></table>
+</td>
+</tr>
+
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+
+</tbody></table>
+<!--  close B_LIST 1.1 cf 6/9/20  --><!--  courier em1 doc status  cf_2020/=
+06/10 L3  B3  -->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border-collapse: collapse; width: 100%;" data-blockuuid=3D"8654c7b6-a1=
+30-462b-9ce2-f9ff4102e3b2">
+   <tbody><tr>
+      <td class=3D"outsidegutter" align=3D"left" style=3D"direction:ltr;tex=
+t-align:left;padding: 0 14px 0 14px; padding-top: 0px;">
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"b=
+order-collapse: collapse; width: 100%;">
+            <tbody><tr>
+               <td style=3D"direction:ltr;text-align:left;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"672" align=3D"left" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0">
+   <tr>
+      <td width=3D"56">
+         <![endif]-->
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t=
+1of12" align=3D"left" style=3D"border-collapse: collapse; max-width: 56px; =
+width: 100%;">
+            <tbody><tr>
+               <td style=3D"direction:ltr;text-align:left;padding-left: 12p=
+x; padding-right: 12px;">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%" align=3D"left" style=3D"border-collapse: collapse; table-layo=
+ut: fixed; width: 100%;">
+                     <tbody><tr>
+                        <td height=3D"2" style=3D"direction:ltr;text-align:=
+left;font-size:0; line-height:1px;">
+                          &nbsp;
+                        </td>
+                     </tr>
+                  </tbody></table>
+               </td>
+            </tr>
+         </tbody></table>
+         <!--[if (gte mso 9)|(IE)]>
+      </td>
+      <td width=3D"616">
+         <![endif]-->
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t=
+11of12" align=3D"left" style=3D"border-collapse: collapse; max-width: 616px=
+; width: 100%;">
+         	<tbody><tr>
+						<td style=3D"direction:ltr;text-align:left;padding-bottom: 10px; padd=
+ing-left: 12px; padding-right: 12px; padding-top: 20px;">
+							<img src=3D"https://d3smpkehiq8afm.cloudfront.net/email/2020/06/cf_c=
+ourierOB/clock_arrow_right.png" width=3D"24" height=3D"" style=3D"-ms-inter=
+polation-mode: bicubic; clear: both; display: block; height: auto; max-widt=
+h: 24px; outline: none; text-decoration: none; width: 100%;" border=3D"0" a=
+lt=3D"">
+						</td>
+					</tr>
+         	<tr>
+               <td style=3D"direction:ltr;text-align:left;padding-left: 12p=
+x; padding-right: 12px;">
+
+
+
+<!--[if !mso 9]><!--><div class=3D"show670" style=3D"mso-hide:all;display:n=
+one;max-height:0px;overflow:hidden;">=20
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"border-collapse: collapse; table-layout: fixed; width: =
+100%;">
+                  =09
+                  	<tbody><tr>
+                  		<td class=3D"h5" style=3D"direction:ltr;text-align:left=
+;color: #000000; font-family: 'Uber Move', 'HelveticaNeue', Helvetica, Aria=
+l, sans-serif; font-size: 24px; font-weight: 500; line-height: 30px; paddin=
+g-bottom: 7px; padding-top: 7px;">Verifique o estado dos seus documentos na=
+ Aplica=C3=A7=C3=A3o Uber=C2=A0Driver
+</td>
+                  	</tr>
+
+                  </tbody></table>
+</div><!--<![endif]-->
+                 =20
+               </td>   =09
+            </tr>  =20
+            <tr>
+               <td style=3D"direction:ltr;text-align:left;padding-left: 12p=
+x; padding-right: 12px;">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%" align=3D"left" style=3D"border-collapse: collapse; table-layo=
+ut: fixed; width: 100%;">
+                     <tbody><tr>
+                        <td width=3D"70%" valign=3D"top" style=3D"direction=
+:ltr;text-align:left;padding-bottom: 10px">
+                        =09
+               =09
+<div class=3D"hide670">
+
+
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"border-collapse: collapse; table-layout: fixed; width: =
+100%;">
+=09
+	<tbody><tr>
+		<td class=3D"h5" style=3D"direction:ltr;text-align:left;color: #000000; f=
+ont-family: 'Uber Move', 'HelveticaNeue', Helvetica, Arial, sans-serif; fon=
+t-size: 24px; font-weight: 500; line-height: 30px; padding-bottom: 7px; pad=
+ding-top: 7px;">
+			Verifique o estado dos seus documentos na Aplica=C3=A7=C3=A3o Uber=C2=A0=
+Driver
+	=09
+		</td>
+	</tr>
+</tbody></table>=09
+</div>
+
+
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"border-collapse: collapse; table-layout: fixed; width: =
+100%;">=09
+   <tbody><tr>
+      <td class=3D"p2" style=3D"direction:ltr;text-align:left;color: #00000=
+0; font-family: 'Uber Move Text', 'HelveticaNeue', Helvetica, Arial, sans-s=
+erif; font-size: 16px; font-weight: normal; line-height: 22px; padding-bott=
+om: 13px; padding-top: 7px;"><div>Pode sempre verificar o estado de cada do=
+cumento na Aplica=C3=A7=C3=A3o Uber=C2=A0Driver.</div>
+</td>
+   </tr>
+   <tr>
+   	<td style=3D"direction:ltr;text-align:left;padding-bottom: 35px;">
+   		<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"baset=
+able" width=3D"100%" align=3D"left" style=3D"border-collapse: collapse; tab=
+le-layout: fixed; width: 100%;">
+	  <tbody><tr>
+	    <td class=3D"cta textcta" lang=3D"x-textcta" style=3D"direction:ltr;te=
+xt-align:left;font-family: 'Uber Move Text', 'HelveticaNeue', Helvetica, Ar=
+ial, sans-serif; font-size: 16px; font-weight: 700; line-height: 22px;"><a =
+href=3D"https://email.uber.com/ls/click?upn=3DCCrJCwNWAJTkIvp6KZ3VUR56YD-2F=
+ul-2FK8ASVV6irWv3W07JztYnkC5HZ9bOffhPXNRe6G_VXHFfP6nuT2o0MX56pOUNb54BDjn6oY=
+YeavQQ-2FpNTj6DasPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1Arml=
+sIe99VAnM9VuVaCrzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMDvdV=
+E6qYqCi7mZIVbxZy5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCTHJU=
+kNwdKISrqG93ziPyTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8mt3=
+pv5nIpV2XDKysm8RGWl0ssZFZXJYx1b76ndZnQMI8csjOz5LcOhqiRRrDjOFT0qYeuEQF8fgRRY=
+JSIFRDBo9hNZFGSVNJFGPlM6EHJH-2BaLdk1NmYMdsnGGMRJkhYQZyGTifT09FekEXfEgpodO3A=
+JEcDEO2tcjUMFnmzo2tux9PDICutQXsbtibiWOIl-2BFflYDfeTv-2FvGJvSIWP-2FMeAAE7riL=
+0424hFNbS4qcPGO-2F2qI-3D" style=3D"text-decoration:none; color:#266ef1;">Fa=
+zer o download da Aplica=C3=A7=C3=A3o Uber=C2=A0Driver
+<span style=3D"padding-left:6px;font-size:14px;" class=3D"arrow">=E2=9D=AF<=
+/span></a></td>
+	  </tr>
+	</tbody></table>
+   	</td>
+   </tr>
+</tbody></table>
+
+                        </td>=09
+
+                         <td width=3D"30%" valign=3D"bottom" style=3D"direc=
+tion:ltr;text-align:left;">
+                         	<img src=3D"https://d3smpkehiq8afm.cloudfront.net=
+/email/2020/06/cf_driverOB/woman_phone_d.png" width=3D"195" height=3D"" sty=
+le=3D"-ms-interpolation-mode: bicubic; clear: both; display: block; height:=
+ auto; max-width: 195px; outline: none; text-decoration: none; width: 100%;=
+" border=3D"0" alt=3D"">
+                         </td>    =20
+                     </tr>
+                  </tbody></table>
+               </td>
+            </tr>
+         </tbody></table>
+         <!--[if (gte mso 9)|(IE)]>
+      </td>
+   </tr>
+</table>
+<![endif]-->
+               </td>
+            </tr>
+         </tbody></table>
+      </td>
+   </tr>
+</tbody></table>
+<!--  close courier em1 doc status B3  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   =20
+ =20
+       =20
+ =20
+
+ =20
+     =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+
+
+
+
+
+
+
+
+   =20
+   =20
+ =20
+ =20
+
+
+ =20
+ =20
+   =20
+     =20
+   =20
+   =20
+ =20
+
+
+
+
+
+   =20
+   =20
+   =20
+   =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+
+
+
+
+ =20
+
+
+ =20
+ =20
+
+
+
+
+ =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  B_HELP 3.0c ces 4/23/21   -->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border: none; border-collapse: collapse; mso-table-lspace: 0; mso-tabl=
+e-rspace: 0; width: 100%;" data-blockuuid=3D"996a0802-0774-42ab-a7ab-9db63c=
+13807c">
+   <tbody>
+
+
+
+
+
+    <tr>
+      <td class=3D"outsidegutter" align=3D"left" style=3D"direction:ltr;tex=
+t-align:left; background-color:#f6f6f6; padding-left: 14px; padding-right: =
+14px;  padding-top: 7px; padding-bottom: 30px; ">
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"b=
+order: none; border-collapse: collapse; mso-table-lspace: 0; mso-table-rspa=
+ce: 0; width: 100%;" class=3D"">
+            <tbody><tr>
+               <td style=3D"direction:ltr;text-align:left;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+   <tr>
+      <td>
+         <![endif]-->
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t=
+10of12" align=3D"center" style=3D"Margin: 0 auto; border-collapse: collapse=
+; max-width: 560px; width: 100%;">
+            <tbody><tr>
+               <td class=3D"p2" style=3D"direction:ltr;text-align:left; col=
+or: #000000; font-family: 'Uber Move Text', 'HelveticaNeue', Helvetica, Ari=
+al, sans-serif; font-size: 16px; font-weight: normal; line-height: 22px; pa=
+dding-bottom: 0px; padding-left: 12px; padding-right: 12px; padding-top: 15=
+px;">
+
+
+               Tem d=C3=BAvidas?
+             </td>
+            </tr>
+            <tr>
+                <td style=3D"direction:ltr;text-align:left;padding-left: 12=
+px; padding-right: 12px;">
+                  <h5 style=3D"Margin: 0; color: #000000; font-family: 'Ube=
+r Move', 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 24px; fo=
+nt-weight: 500; line-height: 30px; mso-line-height-rule: exactly; padding: =
+0; padding-bottom: 10px; padding-top: 0;">Estamos aqui para ajudar</h5>
+               </td>
+            </tr>
+
+
+            <tr>
+               <td style=3D"direction:ltr;text-align:left;padding-bottom: 5=
+px; padding-left: 0; padding-right: 0; padding-top: 13px;">               =20
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"155" align=3D"left" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0">
+   <tr>
+
+
+     =20
+      <td width=3D"155" valign=3D"top">
+         <![endif]-->
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t=
+4of12" align=3D"left" style=3D"border-collapse: collapse; max-width: 155px;=
+ width: 100%;">
+            <tbody><tr>
+               <td valign=3D"top" style=3D"direction:ltr;text-align:left;pa=
+dding-bottom: 13px; padding-left: 12px; padding-right: 12px;">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%" align=3D"left" style=3D"border-collapse: collapse; table-layo=
+ut: auto; width: 100%;">
+                     <tbody><tr>
+                        <td width=3D"30" valign=3D"top" style=3D"direction:=
+ltr;text-align:left;">
+                          <img src=3D"https://d3smpkehiq8afm.cloudfront.net=
+/assets/icons/mktg/objects_48x48/smartphone.png" width=3D"20" height=3D"" s=
+tyle=3D"-ms-interpolation-mode: bicubic; clear: both; display: block; heigh=
+t: auto; max-width: 20px; outline: none; text-decoration: none; width: 100%=
+;" border=3D"0" alt=3D"">
+                        </td>
+                        <td class=3D"" valign=3D"top" style=3D"direction:lt=
+r;text-align:left;">
+                           <table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" class=3D"basetable" width=3D"100%" align=3D"left" style=3D"border-c=
+ollapse: collapse; table-layout: fixed; width: 100%;">
+                       <tbody><tr>
+                         <td class=3D"cta textcta" lang=3D"x-textcta" style=
+=3D"direction:ltr;text-align:left;font-family: 'Uber Move Text', 'Helvetica=
+Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; lin=
+e-height: 22px;"><a href=3D"https://email.uber.com/ls/click?upn=3D5TQkI4cGx=
+aIGltwScN15UhHAF3rC-2FB-2BJt7nEXl8naXJyT-2FVLpeRDYnThsdGlb6-2Bw5qSbw12A-2Fp=
+kGFyXqRCRAUg-3D-3D9-gN_VXHFfP6nuT2o0MX56pOUNb54BDjn6oYYeavQQ-2FpNTj6DasPRUv=
+oBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1ArmlsIe99VAnM9VuVaCrzTt-2=
+FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMDvdVE6qYqCi7mZIVbxZy5HF7y=
+zNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCTHJUkNwdKISrqG93ziPyTUlzZ=
+v7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8mt3pv5nIpV2XDKysm8RGWl0s=
+sWkXBHHEZ8dCzX8sYXWkYyEZg-2FJvSIoIkuZdgA-2BLSarzkYcuPT1e-2FPUiBivt72SO9Evb3=
+oG9vGuXIuNf5T8SthWmar-2FnqxU-2FDrnIycXEmgD9GvI6K2QPhAwfPQUOkP8dpbRz0WicYCkb=
+ryJ8Rb0rIqYLvVjluwqB1iGoSXmjRaNPM5I72EFt2QxgS1tin8XoF8c028QNcfh2J3Kn70-2BuL=
+60-3D" style=3D"text-decoration:none; color:#266ef1;">Obter apoio online<sp=
+an style=3D"padding-left:6px;font-size:14px;" class=3D"arrow">=E2=9D=AF</sp=
+an></a></td>
+                       </tr>
+                     </tbody></table>
+                        </td>
+                     </tr>
+                  </tbody></table>
+               </td>
+            </tr>
+         </tbody></table>
+         <!--[if (gte mso 9)|(IE)]>
+      </td>
+     =20
+
+     =20
+
+     =20
+
+
+   </tr>
+</table>
+<![endif]-->
+
+               </td>
+            </tr>
+
+
+
+
+
+         </tbody></table>
+         <!--[if (gte mso 9)|(IE)]>
+      </td>
+   </tr>
+</table>
+<![endif]-->
+               </td>
+            </tr>
+         </tbody></table>
+      </td>
+   </tr>
+
+
+
+</tbody></table>
+<!--  close STRD Help cf_2020/04/16 L3 B3    -->
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+<!-- END LIST-->
+</td>
+</tr>
+<!-- END BODY-->
+</tbody>
+</table>
+<!-- footer update 08/09/2021 AP -->=20
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"background-color: #000000; width: 100%;" data-blockuuid=3D"a1d91b24-13=
+e5-429e-96c4-c2ef820675b0">
+<tr>
+<td class=3D"outsidegutter" align=3D"left" style=3D"direction:ltr;text-alig=
+n:left;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width: 100=
+%;" class=3D"">
+
+
+
+<!-- Top half -->
+
+
+<tr>
+<td style=3D"direction:ltr;text-align:left;padding: 30px 14px 30px 14px;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t10of12" a=
+lign=3D"center" style=3D"Margin: 0 auto; max-width: 560px; width: 100%;">
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"direction: rtl; table-layout: fixed; width: 100%;">
+<tr>
+<td class=3D"ignoreTd" style=3D"font-size:0; text-align: left;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of12" st=
+yle=3D"direction: ltr; display: inline-block; max-width: 560px; vertical-al=
+ign: top; width: 100%;">
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 100%;">
+<tr>
+<td>
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"468" align=3D"left" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0">
+<tr>
+<td width=3D"168">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t3of12" al=
+ign=3D"left" style=3D"max-width: 168px; width: 100%;">
+<tr>
+<td style=3D"direction:ltr;text-align:left;padding: 0 12px;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 100%;">
+
+<tr>
+<td class=3D"white" style=3D"color: rgb(0, 0, 0); font-family: 'Uber Move T=
+ext', 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 12px; line-=
+height: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+
+
+<a href=3D"https://email.uber.com/ls/click?upn=3D5TQkI4cGxaIGltwScN15UlfkA2=
+gZ-2FTs5DN22hKpY1o2IAGrpn2QbAOfFD3mfKQ-2FP99Xj_VXHFfP6nuT2o0MX56pOUNb54BDjn=
+6oYYeavQQ-2FpNTj6DasPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1A=
+rmlsIe99VAnM9VuVaCrzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMD=
+vdVE6qYqCi7mZIVbxZy5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCT=
+HJUkNwdKISrqG93ziPyTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8=
+mt3pv5nIpV2XDKysm8RGWl0ssQejNoOktd1s79Eu8WiybnP0aryiPI-2B73zfUWntB2jl8rVP0l=
+ywq-2F6gOB5ViUbTZz4QdfschtErcXvXxob6VTNCE6SsYrl7WfUWkrQ-2FdYuloYDWXziiX0pA5=
+7QRyJNbqBZq1jwPql62BK2oicOseKnVjQbJrv-2B1O3H4Jf85b9xT1PFqOrObeo6F-2FpSfl-2F=
+3xUhutJYTPu70M1HI2qHeSW-2Ffw-3D" style=3D"color: rgb(255, 255, 255); text-d=
+ecoration: none;">Centro de Ajuda</a>
+
+
+</td>
+</tr>
+
+
+
+
+<tr>
+<td class=3D"white" style=3D"color: rgb(0, 0, 0); font-family: 'Uber Move T=
+ext', 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 12px; line-=
+height: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+
+<a href=3D"https://email.uber.com/ls/click?upn=3DIb78WjkFQ66GYzavQJcfTRVF4y=
+6hWmUZY7Hwhd7R7a8wMsLfxkX5OePuyDfD-2FRlOLAxmh03iJhYa0rnHzdaXUfD2Jzph-2BeVOL=
+yIL771YhHBrPc-2F2jU7eg3N2i85OM4yp2Jbua26pYI-2BxWL3NTCTwxhDaQXPSK1DnHK6iEk7v=
+J5Aj1UY6zUErB8IoDs5-2F4wVa-2Bnl07675mfvPszd1iXgnkVB3nkFfRbGH-2BMjcwzD5tlK3d=
+rMmXTPcJdsVcKrFJw-2FC6kRRyheFzgtfemLxUItD8lC8CFO0-2Fg45BbQ8sWTqVhqc1lNBhCvf=
+A9gXx3pR2MJCcZsEgezr4KNWGeKLMrdZUD7Na-2FpVdmDxLIbX3M46P-2Fp0GcZB9RlF8IDTkVo=
+HkYv8-2FYMEHCBhRU2vV1ZSFzU1K4WS8-2B-2F5p3cdK-2Bgv-2BgVmvtlc1Bzx-2BvG3S3oAH3=
+wyAjmSj-2Fx6DcYHx59f4pYapXBZyAvceblJwfxyR3AcD1Vbq48nS2uvRMkSh-2FqzIgNJF8-2F=
+Mvm5Z2kUjesbyrs52kynY6Fg8pmAzdxo-2BQpyuJeNzb2O9Xw27JkrDx8zFPp-2BS3fSqE33meS=
+59Vr-2FRWKXTSpxd7HFerXY9-2Fuuv0AEpBnprItw2KPghMYk7VA-2FTmWfmrhRUxYC53rTY9xb=
+TEpWLXtt-2Brdq7kbXtGuI8y7DwcBNyPAD-2BuKTx73jxf3mmCOSFPd4vMxe6Y2XnC5PJDWia2-=
+2Bo2UZlg8eiWZqb4BmoqiQwQTs7f9jOON-2BZyKMsAciILaqQttj6-2BeI-2B90oF8dSl1Dogky=
+n68zXgLXN8zKYI2uju-2FSEXwWB3HCIajXoVNjU9y530jY2PaNj3IwbPv1nwc4vvyMuac7B5rTI=
+5FVY-2BeLn7t0oHQVN0V5o2iL30WTtxsP9-2BKuuvZxHwN5k1v-2FArK3287DY1O90qYhY54MPP=
+56SpLNINT8EOy8it4B3l-2BaYHOefdGMF-2BDgQpyjOipggY9pCmmKiSsMcsG9SXPsb5FYljTFS=
+vwgge6swKW8INq4ll5c8ZUVqv-2FmOE9z2vX6n6WbUVnVp-2Bn-2FJDKUT8ABqWCCjy2NHZZZ06=
+UA-2BvPzhZjq3QOZWPqNY4OtGYBAmbKFlEgKaWFcv8w88Ox-2Bv-2FfvuP1f0jOxWU-3DvgNs_V=
+XHFfP6nuT2o0MX56pOUNb54BDjn6oYYeavQQ-2FpNTj6DasPRUvoBVYy4GAjHqHY3GGLUiQiCGL=
+QXYiL9joIJuxxObcdBz6AYYuk1ArmlsIe99VAnM9VuVaCrzTt-2FIXWCqW-2FqiuoLySuWSMnJS=
+bo3JhTg9-2BDD9qrQBk1Be09yMDvdVE6qYqCi7mZIVbxZy5HF7yzNGFI8BCLyR2j6LFDxdUunLf=
+nCJjIfuDMlphJqUj-2B8qhyesCTHJUkNwdKISrqG93ziPyTUlzZv7YU-2FhRdGq2W05jfos7Dvp=
+n0aII7j22wIcnwoJN93ZGC4Lns8mt3pv5nIpV2XDKysm8RGWl0ssbVPQ563ZQxC58mGpWydNcbp=
+p4zMx8M8dbpUpqOM0DOr3bkKSkyIcYUl8kNB96YVZakxZhWRNIKvkLXN5ZWLZGMQlHV5W8h7hlo=
+ZR9rZCNiqGpvA-2F6Z-2FPRrM2s5orRWqJRin-2F3sTBL9BhjdEva3slbpX0VxINhr0s-2BhzWa=
+5caMvA7wrFQUVrsSOMrswYI9xPJvpobiEZ50UHskQJONTGoiw-3D" style=3D"text-decorat=
+ion: none; color: #ffffff;">Cancelar subscri=C3=A7=C3=A3o</a>
+
+</td>
+</tr>
+
+
+<tr>
+<td class=3D"white" style=3D"color: rgb(0, 0, 0); font-family: 'Uber Move T=
+ext', 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 12px; line-=
+height: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+
+
+<a href=3D"https://email.uber.com/ls/click?upn=3DIb78WjkFQ66GYzavQJcfTaUW2m=
+LjCZlesuzr-2FyzEQzD9L-2F1tKRCOuyZn2F4t4pFGWRIT_VXHFfP6nuT2o0MX56pOUNb54BDjn=
+6oYYeavQQ-2FpNTj6DasPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1A=
+rmlsIe99VAnM9VuVaCrzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMD=
+vdVE6qYqCi7mZIVbxZy5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCT=
+HJUkNwdKISrqG93ziPyTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8=
+mt3pv5nIpV2XDKysm8RGWl0ssR5k8083AtUFYHu7UGGCT4gK-2Bm7AqIF-2FRO9dxHg8-2F1GVn=
+nhQoO-2FCgG4-2BnSVOIPiYWkq7oGWxNQ0QsLbqLbDkhQvWnpZZfUABg85Dw3OxTJ-2FQWJOQSZ=
+4qScrUqnu-2BWfAdy0qdP1f8A-2F53sjvB5jkjJjxsV7J1UCyNkCp1Xi8WcS096GnpTFAG2qApf=
+23v4CFLsg6yQ-2F3BYpiLLzOyUJd4-2Fgk-3D" style=3D"color: rgb(255, 255, 255); =
+text-decoration: none;">Termos</a>
+
+
+</td>
+</tr>
+
+
+
+
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+<td width=3D"300" valign=3D"top" style=3D"vertical-align: top;">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t3of12" al=
+ign=3D"left" style=3D"max-width: 300px; width: 100%;">
+<tr>
+<td style=3D"direction:ltr;text-align:left;padding: 0 12px;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 100%;">
+<tr>
+<td class=3D"white" style=3D"color: rgb(0, 0, 0); font-family: 'Uber Move T=
+ext', 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 12px; line-=
+height: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+
+
+<a href=3D"https://email.uber.com/ls/click?upn=3DYGN8gJ2VNI5N3gw1Q1-2B8bsJl=
+03J9Lelu-2BI-2FyOeTxL0E-3Dez1X_VXHFfP6nuT2o0MX56pOUNb54BDjn6oYYeavQQ-2FpNTj=
+6DasPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1ArmlsIe99VAnM9VuV=
+aCrzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMDvdVE6qYqCi7mZIVb=
+xZy5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCTHJUkNwdKISrqG93z=
+iPyTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8mt3pv5nIpV2XDKys=
+m8RGWl0ssSWaTnpBCmoCAt7EBPkCAa0YxIrTMM0lxjvsW5TEYpc1726OBuO8ZX-2Fe6ZF15pj1q=
+3l1-2B3dx3vtJPi-2BpLi5slumskHOK84LBPrAg9x-2FVKOUa-2Fetsr8v4vZZmUxip32rBTPCU=
+6pVmf-2FAjEUqpyy1-2ByUMyNRvfkAcwoTTfcCL-2FEr4oBS1UedwkxN4Wq-2FZlv8QC2S8H0Kg=
+tCfWftb46VoWcRLs-3D" style=3D"color: rgb(255, 255, 255); text-decoration: n=
+one;">Privacidade</a>=20
+
+
+</td>
+</tr>
+
+
+
+<tr>
+<td class=3D"white" style=3D"color: rgb(0, 0, 0); font-family: 'Uber Move T=
+ext', 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 12px; line-=
+height: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+<a href=3D"https://email.uber.com/ls/click?upn=3DV85kKYB2DyCKrfe-2B0z0sb3iy=
+gz07gRQ9q3dl-2FOOOkTMm-2Bm-2F-2BK-2FjpEdzj-2BIZ9EIaktDvv_VXHFfP6nuT2o0MX56p=
+OUNb54BDjn6oYYeavQQ-2FpNTj6DasPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcd=
+Bz6AYYuk1ArmlsIe99VAnM9VuVaCrzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQ=
+Bk1Be09yMDvdVE6qYqCi7mZIVbxZy5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-=
+2B8qhyesCTHJUkNwdKISrqG93ziPyTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN=
+93ZGC4Lns8mt3pv5nIpV2XDKysm8RGWl0ssdHz-2FBD5LFnOSZX4QU5npQpqcAZ-2BpsmQX90Uc=
+6P-2FCqJraccrW9WNY5P9B-2FQiKVMfnpOT2Yw4JoXLb-2BSul7USNEKalAOxpSaYzqo-2BkLF-=
+2F9W-2Bp6BItVDlg2ftRvDMz7BYs2HcRAFOVH2Alh6-2F0uK2gRkoPpBzr8Kn-2FifJ1bXWlYgO=
+P1NIA0SUY3qlCiYCUTpMpiwM2DAcE601bRJrsK2cqS50-3D" style=3D"color: rgb(255, 2=
+55, 255); text-decoration: none;">Prefer=C3=AAncias de e-mail</a>
+</td>
+</tr>
+
+
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+<!-- END top half -->
+<!-- bottom half -->
+<tr>
+<td style=3D"direction:ltr;text-align:left; padding: 0px 14px 30px 14px;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td width=3D"560">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t10of12" a=
+lign=3D"center" style=3D"Margin: 0 auto; max-width: 560px; width: 100%;">
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"direction: rtl; table-layout: fixed; width: 100%;">
+<tr>
+<td style=3D"font-size:0; text-align: left">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"left" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0">
+<tr>
+<td width=3D"224">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t4of12" st=
+yle=3D"direction: ltr; display: inline-block; max-width: 224px; vertical-al=
+ign: top; width: 100%;">
+<tr>
+<td style=3D"direction:ltr;text-align:left;padding: 0 12px;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"  align=3D"left" sty=
+le=3D"table-layout: fixed;">
+<tr>
+<td style=3D"padding-bottom: 12px; direction:ltr;text-align:left;">
+
+<!-- social table -->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 130px;">
+<tr>
+<td width=3D"43" align=3D"center" style=3D"direction: ltr; text-align: left=
+;">
+<a href=3D"https://email.uber.com/ls/click?upn=3DIb78WjkFQ66GYzavQJcfTRWpHy=
+K462Casauti9fF16PhmQEFMRe9NVvl8eK5F0SWNezI_VXHFfP6nuT2o0MX56pOUNb54BDjn6oYY=
+eavQQ-2FpNTj6DasPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1Armls=
+Ie99VAnM9VuVaCrzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMDvdVE=
+6qYqCi7mZIVbxZy5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCTHJUk=
+NwdKISrqG93ziPyTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8mt3p=
+v5nIpV2XDKysm8RGWl0ssfIDcPTJw1YCgoqJbDIdg-2FSOKm5BCGTxD7jmn9wAOBiNgxhBxAyZl=
+pkFJwtuEZlBfdcCZJUzdKVMvhqvRfNQTEkMRE0Oa386GqhnTmOjwfw6qjcNVIaWkHl7SV9zIBH1=
+a-2FjefvMG5FCGf560r1yOk2Ra2LwqxNVFn4sDC97etQ7ilBKQAkRiSVACqUwDCE9oks-2Fn7m9=
+utLpKXdjXa6gNMsI-3D"> <img src=3D"https://s3.amazonaws.com/uber-static/emai=
+ls/2018/global/icons/08_28_18facebook.png" width=3D"13" height=3D"" border=
+=3D"0" style=3D"display: block; height: auto; max-height: 17px; max-width: =
+13px; width: 100%;">
+</a>
+</td>
+<td width=3D"43" align=3D"center" style=3D"direction: ltr; text-align: left=
+;">
+<a href=3D"https://email.uber.com/ls/click?upn=3DNqiw80pY7XgntvQOWxaNjp-2Fl=
+LYbvNSaa2j15YOe0-2Bi0-3Dt2at_VXHFfP6nuT2o0MX56pOUNb54BDjn6oYYeavQQ-2FpNTj6D=
+asPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1ArmlsIe99VAnM9VuVaC=
+rzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMDvdVE6qYqCi7mZIVbxZ=
+y5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCTHJUkNwdKISrqG93ziP=
+yTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8mt3pv5nIpV2XDKysm8=
+RGWl0ssdpdps0zNXdxFOKUHl-2FQ-2BMWvOh3KwO-2FaBFSDtWqyLxaBsxVk-2FZjZlC7dLHG0J=
+YOLESUKuhVm9-2FkDZs6m0y5KjbPIHwQBGyJ8IMjsg-2FxO3eNucrKxgHr3vRmTIZPWN9WyROGO=
+S5DPxw2ymQVqZfqgeBFFNVMiWtJz0xSU4aiA95Yr0llTG5KlpCaj8pI1i-2FUdBhApRu2tCKcDe=
+h977WLQZko-3D"> <img src=3D"https://s3.amazonaws.com/uber-static/emails/201=
+8/global/icons/08_28_18twitter.png" width=3D"19" height=3D"" border=3D"0" s=
+tyle=3D"display: block; height: auto; max-height: 17px; max-width: 19px; wi=
+dth: 100%;">
+</a>
+</td>
+<td width=3D"43" align=3D"center" style=3D"direction: ltr; text-align: left=
+;">
+<a href=3D"https://email.uber.com/ls/click?upn=3DIb78WjkFQ66GYzavQJcfTZTAJ8=
+gErqde1eHJBIUBJiSREewYC5u3bn8re-2BDlU9p4XxBc_VXHFfP6nuT2o0MX56pOUNb54BDjn6o=
+YYeavQQ-2FpNTj6DasPRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1Arm=
+lsIe99VAnM9VuVaCrzTt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMDvd=
+VE6qYqCi7mZIVbxZy5HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCTHJ=
+UkNwdKISrqG93ziPyTUlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8mt=
+3pv5nIpV2XDKysm8RGWl0ssWdxxVhaLN-2F-2B1InT2Dkq-2BrmB1Bk6-2FQthcO6BCtRqYHhpF=
+-2BiUQcNFWV8hPL0uhJSlGrai-2F5KOxnkgPdrDZYPtTVHzC3JxGYwUYQ38Fk33wV2YwKVr0wjK=
+Ew1NeavdenWSr9N86mvm0dLD5JdoRGTRzPg5Dj0iOneYim7nXn3nleaYRIQrxo6OPxE4krCO7zn=
+X6EnWMh9mA0qe-2FvRb8hm89XE-3D"> <img src=3D"https://s3.amazonaws.com/uber-s=
+tatic/emails/2018/global/icons/08_28_18instagram.png" width=3D"16" height=
+=3D"" border=3D"0" style=3D"display: block; height: auto; max-height: 17px;=
+ max-width: 16px; width: 100%;">
+</a>
+</td>
+</tr>
+</table>
+<!-- END social table -->
+=20
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+<td width=3D"336">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of12" st=
+yle=3D"direction: ltr; display: inline-block; max-width: 336px; vertical-al=
+ign: top; width: 100%;">
+<tr>
+<td style=3D"direction:ltr;text-align:left;padding: 0 12px;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 100%;">
+<tr>
+<td style=3D"direction:ltr;text-align:left;color: #e5e5e5; font-family: 'Ub=
+er Move Text', 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 10=
+px; line-height: 18px;">
+
+
+
+
+
+
+
+
+
+Uber B.V.
+
+
+<br>
+
+
+
+
+Mr. Treublaan 7<br>
+1097 DP Amsterdam=20
+
+
+<br>
+
+<a href=3D"https://email.uber.com/ls/click?upn=3DPvPLYFgIPSLtJDhc42E7KZ9iqh=
+sfdvtIx4OUY9mV2-2BQ-3DlmeF_VXHFfP6nuT2o0MX56pOUNb54BDjn6oYYeavQQ-2FpNTj6Das=
+PRUvoBVYy4GAjHqHY3GGLUiQiCGLQXYiL9joIJuxxObcdBz6AYYuk1ArmlsIe99VAnM9VuVaCrz=
+Tt-2FIXWCqW-2FqiuoLySuWSMnJSbo3JhTg9-2BDD9qrQBk1Be09yMDvdVE6qYqCi7mZIVbxZy5=
+HF7yzNGFI8BCLyR2j6LFDxdUunLfnCJjIfuDMlphJqUj-2B8qhyesCTHJUkNwdKISrqG93ziPyT=
+UlzZv7YU-2FhRdGq2W05jfos7Dvpn0aII7j22wIcnwoJN93ZGC4Lns8mt3pv5nIpV2XDKysm8RG=
+Wl0sscwher9svFXkImRWEy0hhjBqDRa0JqjFphnze-2B-2BQzotCUB7uJ0ySJ92gOVxOeSkhGYo=
+tbI6lF0A2NHrXTR9osILoy0z0HOApsxJVMtbJ2S3dSyqD2Y9UWsssNScmbjbA6FL0nyCjOnn1wV=
+Y1O3vWd2igVvBtnGggn9kCu7xShuY8OywtOBz9AGfSYPJ1UJUHNgfQxe4XmGcdjUABa8I6ytM-3=
+D" style=3D"text-decoration: none; color: #e5e5e5">Uber.com</a>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+<!-- END bottom half -->
+
+</table>
+</td>
+</tr>
+</table>
+<!-- close footer update - ap -->
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+
+<img src=3D"https://email.uber.com/wf/open?upn=3DT-2B7yvjO0sYzwGv1SgRnIPgCa=
+a9h4boETvuuNG4huMx-2FmsEnm4JtloJyYB95n4rxIIK45uTDkZNPYfpNC3CK-2F2FepjZR0wCI=
+MSibJDAUqsvhhFBEpzObkcxLz5EiJfJat3dmZaOnVn-2FVEs2T-2FRMnAfwZMtJ9C-2Fc3eEEsu=
+k55G4VHasZHBouoCtyKRYwe81QLbQK0z4w8QgFXseOh-2FF-2B89FThvvHJhkJyP5U-2BdM012Q=
+U8-2FVGGf76lwXfuHNNgCwItBPbME3SM2EaInlsob7ujA5rrm7yGfxe8UsK2t-2FE936UwcYZVK=
+ovQQFdeTdJA5dnPlFEj4mjMEjqrfbBPuUFTviyaMKMQf7qMQKyp6vcP5-2Fv1F-2Fj3Ng8TLhSR=
+sNDrGT4BazWq3PY-2BWy-2Brvhj8FrgRNFReHyENk7leXuKtl3R1Hbuvt4Cu-2FqeZc9GNtEoYK=
+RLyX5BYd12PPWMAFhb-2BIK62N2b0ecr9emNTaFahw7PHo4tY9wHDZBKk-2FaJ2tWRTOMVhdxoW=
+gDoM2c4LMd1L28WNNz-2BCEJjhMTTmnwaw60boa67Q-3D" alt=3D"" width=3D"1" height=
+=3D"1" border=3D"0" style=3D"height:1px !important;width:1px !important;bor=
+der-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;m=
+argin-right:0 !important;margin-left:0 !important;padding-top:0 !important;=
+padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !impo=
+rtant;"/></body></html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>2939</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1643816453</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>8401</string>
+</dict>
+</plist>

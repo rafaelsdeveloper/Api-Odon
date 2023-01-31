@@ -1,0 +1,762 @@
+45934     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a5d:664a:0:0:0:0:0 with SMTP id f10csp2270692wrw; Mon, 31
+ Aug 2020 04:30:45 -0700 (PDT)
+X-Received: by 2002:a5b:b45:: with SMTP id b5mr1539037ybr.294.1598873445636;
+ Mon, 31 Aug 2020 04:30:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1598873445; cv=none; d=google.com;
+ s=arc-20160816;
+ b=XqZaeFAlkafGL+rtM/Tv7ePU2xo4upjKKdRgkSmo+TcdNBc7QmrZnSWJgAUDTfL8CN
+ UwtAfRE2sMnPoV7qw5XHCHa4r6NqA+FXO/IE/np4kQamCdZz88k9kr76nP1ZGROMWvkX
+ j0lDp1SEUWkPP59wUzkRaJOcYyTS4Pn++tzKCfVC0X66kmZ9xcGWLCqqz07yK+1TvX/w
+ ljz8Qt4fum69tYcMlRBbokD2VwiMEsI+lgFCR+A0vs4wyLCtlz0y2zZ3zDLVAPf7Es1m
+ VLvTf5CwS58zc0PHa6tMh/wgtQrkUoyUmkietbdiUPychWEVHWQ8TCp9TMVZhVxx3iKA 2ihQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; h=to:from:subject:date:message-id:reply-to:mime-version
+ :dkim-signature; bh=VAWD9Jc4nJZiRij1vOzCSVWLBJwsxLITfAB6TjvYl84=;
+ b=i0hZbo+IgwPFhDGXZQ+bmQjMX8WgLJv9Cx4Saz/tPHDwEkqRaaMnUN80GfivQO5Ydc
+ SDFVSxzEyg98PVeQgbs+xeZ7NBZspifxtQde6EdUOqhYV5Lg6SUt1+dUuQPqoKjzvpBN
+ gDCNBMaLWShIIC24vsUC7WuuaA+ykkDUCEptom1HX3W/EYdU5cTjV6ABd9L8HKMAQNjo
+ KDXEs3cGW8BeChWi2pk/CXN64p1s2lPgb8r7RKbEDC+mZoBEOdpCj6KLI4VUTff8RAMi
+ IfsmsUNqYE2Ii3oQS/8KCLkiqKH+s/Uh/X6AOdYjeyPmouiUVt0vtnIOglDVP+D9yh3o 4S3A==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=oyIIqiAt; spf=pass (google.com: domain of
+ 3zd9mxw0jc1gl8d828ki13itz6c08b.2ec504b3heecuw6c08b.2ec@trix.bounces.google.com
+ designates 209.85.220.69 as permitted sender)
+ smtp.mailfrom=3Zd9MXw0JC1gL8D828KI13ITZ6C08B.2EC504B3HEECUW6C08B.2EC@trix.bounces.google.com;
+ dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <3Zd9MXw0JC1gL8D828KI13ITZ6C08B.2EC504B3HEECUW6C08B.2EC@trix.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com.
+ [209.85.220.69]) by mx.google.com with SMTPS id
+ o128sor1838236ybc.26.2020.08.31.04.30.45 for <faeldroom46@gmail.com> (Google
+ Transport Security); Mon, 31 Aug 2020 04:30:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of
+ 3zd9mxw0jc1gl8d828ki13itz6c08b.2ec504b3heecuw6c08b.2ec@trix.bounces.google.com
+ designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com; dkim=pass header.i=@gmail.com
+ header.s=20161025 header.b=oyIIqiAt; spf=pass (google.com: domain of
+ 3zd9mxw0jc1gl8d828ki13itz6c08b.2ec504b3heecuw6c08b.2ec@trix.bounces.google.com
+ designates 209.85.220.69 as permitted sender)
+ smtp.mailfrom=3Zd9MXw0JC1gL8D828KI13ITZ6C08B.2EC504B3HEECUW6C08B.2EC@trix.bounces.google.com;
+ dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:reply-to:message-id:date:subject:from:to;
+ bh=VAWD9Jc4nJZiRij1vOzCSVWLBJwsxLITfAB6TjvYl84=;
+ b=oyIIqiAtKU4DcE7wa6XJx8MnqyzL8uGOmYccacRAeNO6M1AUYHVF965qmBaD58fiJG
+ ffNG8puY07LsB+spaXd6+7+T7bIdCKl9oN//AJNRogWWAWzJTm50ydH7Of1taRJxB94u
+ j7aNXpvE7f1C7aqfBxlQ6dzbg5HMDTmEYbCbYGCkuIdr+jPKWalN4bQzbtyQHwqZV+fV
+ BndOTl50j6W2+Fb7RFJn53Cxh2AVNiDq7cDYQ7xgAdepjhXkyP2A1OQYGg13NzjIhh2x
+ 3YJ+qC8eRWwGIfFL11f6rY7NSRj0rFpn6qoqEf7FTctF90Q6A7/fmqv+eUIt8JNCtwBL vdeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net;
+ s=20161025;
+ h=x-gm-message-state:mime-version:reply-to:message-id:date:subject :from:to;
+ bh=VAWD9Jc4nJZiRij1vOzCSVWLBJwsxLITfAB6TjvYl84=;
+ b=dXoGc+9rdpwkfkOv6Jh6oqk5KF6Ruz3UsR27rzn17pma80WGM2DU7+sLXghB0DXCMA
+ VChy404gZHWsOEWX4vB5A09ayeYANd47vmUm3fTMUYTK5RfxmLjQ54VyjkixhDY4EZik
+ 9AjItQqWThmp7h6OP8IbAE18SzztPJw0HI9h2W+9nuXrIpkVxqv/w0tE0ujkmTCjP5qH
+ usS86MticrXnY+NMqmxIJRcEXTrT6aMyV8s5uMTbcRzAveM6Pfqe27+yOH4Zjd8LZ2Zp
+ 6pNFmLfkZXam9twHtybNXnkKZY1uxECyWxNRtWn5ggdYeJRHBcEtOea4U0enupMNKqkN qxLg==
+X-Gm-Message-State: AOAM530EQqSiX8FDyj4H9WXsye1rvR01USd5r5LhbIKMr9qqxdQLUNEt
+ PkJoQfmCTMWyLFdLwTkbOv8DMWIzsPubERYqIwP/
+X-Google-Smtp-Source: ABdhPJyZy5OIdVLsZ/sp1/uGcR3rk0O7KUdDM27LwJ7edULyGP+GAuaS4+yrcF/RPrqXN9AZcqKpxBKS5xPBLQwbs8LX
+MIME-Version: 1.0
+X-Received: by 2002:a25:d9c4:: with SMTP id
+ q187mr1369843ybg.519.1598873445151; Mon, 31 Aug 2020 04:30:45 -0700 (PDT)
+Reply-To: viniciusbds39@gmail.com
+X-No-Auto-Attachment: 1
+Message-ID: <000000000000bd38a005ae2abbae@google.com>
+Date: Mon, 31 Aug 2020 11:30:45 +0000
+Subject: =?UTF-8?B?SW5xdcOpcml0byBkZSBUZWxlY29tdW5pY2HDp8O1ZXM=?=
+From: viniciusbds39@gmail.com
+To: faeldroom46@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000bd388f05ae2abbab"
+
+
+--000000000000bd388f05ae2abbab
+Content-Transfer-Encoding: BASE64
+Content-Type: TEXT/PLAIN;
+	charset=UTF-8;
+	delsp=yes;
+	format=flowed
+
+RXN0ZSDDqSB1bSBjb252aXRlIHBhcmEgdm9jw6ogcHJlZW5jaGVyIG8gc2VndWludGUgZm9ybXVs
+w6FyaW86DQpJbnF1w6lyaXRvIGRlIFRlbGVjb211bmljYcOnw7Vlcw0KDQpQYXJhIHByZWVuY2hl
+ciBvIGZvcm11bMOhcmlvLCB2aXNpdGU6DQpodHRwczovL2RvY3MuZ29vZ2xlLmNvbS9mb3Jtcy9k
+L2UvMUZBSXBRTFNmTDI1WWUyQnB5RHZicXNHUFpoN1VkTnpKcE9JR283ZmZRR2JKaDgtZlRybVdT
+dFEvdmlld2Zvcm0/dmM9MCZhbXA7Yz0wJmFtcDt3PTEmYW1wO2Zscj0wJmFtcDt1c3A9bWFpbF9m
+b3JtX2xpbmsNCg0KRXN0ZSDDqSB1bSBjb252aXRlIHBhcmEgdm9jw6ogcHJlZW5jaGVyIG8gZm9y
+bXVsw6FyaW86DQoNCkZvcm11bMOhcmlvcyBHb29nbGU6IGNyaWUgZSBhbmFsaXNlIHBlc3F1aXNh
+cy4NCg==
+--000000000000bd388f05ae2abbab
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-Type: TEXT/HTML;
+	charset=UTF-8
+
+<html><body style=3D"font-family: Roboto,Helvetica,Arial,sans-serif; margin=
+: 0; padding: 0; height: 100%; width: 100%;"><table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D"background-color:rgb(0,150,136);" width=
+=3D"100%" role=3D"presentation"><tbody><tr height=3D"64px"><td style=3D"pad=
+ding: 0 24px;"><img alt=3D"Formul=C3=A1rios Google" height=3D"26px" style=
+=3D"display: inline-block; margin: 0; vertical-align: middle;" width=3D"143=
+px" src=3D"https://www.gstatic.com/docs/forms/google_forms_logo_lockup_whit=
+e_2x.png"></td></tr></tbody></table><div style=3D"padding: 24px; background=
+-color:rgb(217,239,237)"><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"max-width: 672px; min-width: 154px;" widt=
+h=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"font-size: 13px; l=
+ine-height: 18px; color: #424242; font-weight: 700">Est=C3=A1 com problemas=
+ para ver ou enviar este formul=C3=A1rio?</td></tr><tr height=3D"8px"><td><=
+/td></tr><tr><td><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"100%"><tbody><tr><td><a href=3D"https://docs.google.com/forms/d/e/1F=
+AIpQLSfL25Ye2BpyDvbqsGPZh7UdNzJpOIGo7ffQGbJh8-fTrmWStQ/viewform?vc=3D0&amp;=
+c=3D0&amp;w=3D1&amp;flr=3D0&amp;usp=3Dmail_form_link" style=3D"border-radiu=
+s: 3px; box-sizing: border-box; display: inline-block; font-size: 13px; fon=
+t-weight: 700; height: 40px; line-height: 40px; padding: 0 24px; text-align=
+: center; text-decoration: none; text-transform: uppercase; vertical-align:=
+ middle; color: #fff; background-color: rgb(0,150,136);" target=3D"_blank" =
+rel=3D"noopener">Preencher no Formul=C3=A1rios Google</a></td></tr></tbody>=
+</table></td></tr><tr height=3D"24px"><td></td></tr></tbody></table><div al=
+ign=3D"center" style=3D"background-color: #fff; border-bottom: 1px solid #e=
+0e0e0;margin: 0 auto; max-width: 624px; min-width: 154px;padding: 0 24px;">=
+<table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" style=3D"backgr=
+ound-color: #fff;" width=3D"100%" role=3D"presentation"><tbody><tr height=
+=3D"24px"><td></td></tr><tr><td><span style=3D"display: table-cell; vertica=
+l-align: top; font-size: 13px; line-height: 18px; color: #424242;" dir=3D"a=
+uto">Este =C3=A9 um convite para voc=C3=AA preencher o formul=C3=A1rio:</sp=
+an></td></tr><tr height=3D"20px"><td></tr><tr style=3D"font-size: 20px; lin=
+e-height: 24px;"><td dir=3D"auto"><a href=3D"https://docs.google.com/forms/=
+d/e/1FAIpQLSfL25Ye2BpyDvbqsGPZh7UdNzJpOIGo7ffQGbJh8-fTrmWStQ/viewform?vc=3D=
+0&amp;c=3D0&amp;w=3D1&amp;flr=3D0&amp;usp=3Dmail_form_link" style=3D"color:=
+ rgb(0,150,136); text-decoration: none; vertical-align: middle; font-weight=
+: 500">Inqu=C3=A9rito de Telecomunica=C3=A7=C3=B5es</a><div itemprop=3D"act=
+ion" itemscope itemtype=3D"http://schema.org/ViewAction"><meta itemprop=3D"=
+url" content=3D"https://docs.google.com/forms/d/e/1FAIpQLSfL25Ye2BpyDvbqsGP=
+Zh7UdNzJpOIGo7ffQGbJh8-fTrmWStQ/viewform?vc=3D0&amp;c=3D0&amp;w=3D1&amp;flr=
+=3D0&amp;usp=3Dmail_goto_form"><meta itemprop=3D"name" content=3D"Preencher=
+ formul=C3=A1rio"></div></td></tr><tr height=3D"16px"></tr><tr><td style=3D=
+"display: table-cell; vertical-align: top; font-size: 13px; line-height: 18=
+px; color: #424242;" dir=3D"auto">Inqu=C3=A9rito de Satisfa=C3=A7=C3=A3o no=
+ Setor de Telecomunica=C3=A7=C3=B5es</td></tr><tr height=3D"24px"></tr><tr>=
+<td><div class=3D"ss-form" style=3D""><form action=3D"https://docs.google.c=
+om/forms/u/0/d/e/1FAIpQLSfL25Ye2BpyDvbqsGPZh7UdNzJpOIGo7ffQGbJh8-fTrmWStQ/f=
+ormResponse" method=3D"POST" id=3D"ss-form" target=3D"_self" style=3D""><ol=
+ role=3D"list" class=3D"ss-question-list" style=3D"padding-left: 0;list-sty=
+le-type:none;">
+<div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-text" style=3D"margi=
+n:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertic=
+al-align:middle;margin-left:0;margin-top:0;max-width:100%;"><label class=3D=
+"ss-q-item-label" for=3D"emailAddress" style=3D""><div class=3D"ss-q-title"=
+ style=3D"display:block;font-weight:bold;margin-top:.83em;margin-bottom:.83=
+em;">Endere=C3=A7o de e-mail
+<label for=3D"emailAddress" aria-label=3D"(campo obrigat=C3=B3rio)" style=
+=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div></label>
+<input type=3D"email" name=3D"emailAddress" value=3D"" class=3D"ss-q-short =
+ss-printable-text-line" id=3D"emailAddress" dir=3D"auto" aria-label=3D"Prec=
+isa ser um endere=C3=A7o de e-mail v=C3=A1lido" title=3D"Precisa ser um end=
+ere=C3=A7o de e-mail v=C3=A1lido" aria-required=3D"true" style=3D"">
+
+
+</div></div></div>
+<div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-radio" style=3D"marg=
+in:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;verti=
+cal-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_665152469" style=3D""><div cl=
+ass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83em=
+;margin-bottom:.83em;">Tem alguma operadora actualmente?=20
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(campo obrigat=C3=
+=B3rio)" style=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+
+<ul class=3D"ss-choices" role=3D"radiogroup" aria-label=3D"Tem alguma opera=
+dora actualmente?   " style=3D"list-style:none;padding:0;margin:.5em 0 0;">=
+<li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.3em;padding-bo=
+ttom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1160393510" value=3D"MEO" id=3D"group_1160393510_1" role=3D"radio" class=3D=
+"ss-q-radio" aria-label=3D"MEO" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">MEO</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1160393510" value=3D"NOS" id=3D"group_1160393510_2" role=3D"radio" class=3D=
+"ss-q-radio" aria-label=3D"NOS" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">NOS</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1160393510" value=3D"VODAFONE" id=3D"group_1160393510_3" role=3D"radio" cla=
+ss=3D"ss-q-radio" aria-label=3D"VODAFONE" aria-required=3D"true" style=3D""=
+></span>
+<span class=3D"ss-choice-label" style=3D"">VODAFONE</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1160393510" value=3D"NOWO" id=3D"group_1160393510_4" role=3D"radio" class=
+=3D"ss-q-radio" aria-label=3D"NOWO" aria-required=3D"true" style=3D""></spa=
+n>
+<span class=3D"ss-choice-label" style=3D"">NOWO</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1160393510" value=3D"NENHUMA" id=3D"group_1160393510_5" role=3D"radio" clas=
+s=3D"ss-q-radio" aria-label=3D"NENHUMA" aria-required=3D"true" style=3D""><=
+/span>
+<span class=3D"ss-choice-label" style=3D"">NENHUMA</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;"><label><span class=3D"ss-choice-item-control goog=
+-inline-block" style=3D"position:relative;display:inline-block;"><input typ=
+e=3D"radio" name=3D"entry.1160393510" value=3D"__other_option__" id=3D"grou=
+p_1160393510_6" role=3D"radio" class=3D"ss-q-radio ss-q-other-toggle" aria-=
+required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Outro:</span></label>
+<span class=3D"ss-q-other-container goog-inline-block" style=3D"position:re=
+lative;display:inline-block;"><input type=3D"text" name=3D"entry.1160393510=
+.other_option_response" value=3D"" class=3D"ss-q-other" id=3D"entry_1160393=
+510_other_option_response" dir=3D"auto" aria-label=3D"Outro" style=3D""></s=
+pan>
+</li></ul>
+
+</div></div></div> <div class=3D"ss-form-question errorbox-good" role=3D"li=
+stitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-radio" style=3D"marg=
+in:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;verti=
+cal-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_364841644" style=3D""><div cl=
+ass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83em=
+;margin-bottom:.83em;">Que tipo de servi=C3=A7o possui?=20
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(campo obrigat=C3=
+=B3rio)" style=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+
+<ul class=3D"ss-choices" role=3D"radiogroup" aria-label=3D"Que tipo de serv=
+i=C3=A7o possui?   " style=3D"list-style:none;padding:0;margin:.5em 0 0;"><=
+li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.3em;padding-bot=
+tom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+846400013" value=3D"TV+NET+VOZ" id=3D"group_846400013_1" role=3D"radio" cla=
+ss=3D"ss-q-radio" aria-label=3D"TV+NET+VOZ" aria-required=3D"true" style=3D=
+""></span>
+<span class=3D"ss-choice-label" style=3D"">TV+NET+VOZ</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+846400013" value=3D"TV+NET+VOZ+M=C3=B3vel" id=3D"group_846400013_2" role=3D=
+"radio" class=3D"ss-q-radio" aria-label=3D"TV+NET+VOZ+M=C3=B3vel" aria-requ=
+ired=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">TV+NET+VOZ+M=C3=B3vel</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+846400013" value=3D"Nenhum" id=3D"group_846400013_3" role=3D"radio" class=
+=3D"ss-q-radio" aria-label=3D"Nenhum" aria-required=3D"true" style=3D""></s=
+pan>
+<span class=3D"ss-choice-label" style=3D"">Nenhum</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+846400013" value=3D"Outro" id=3D"group_846400013_4" role=3D"radio" class=3D=
+"ss-q-radio" aria-label=3D"Outro" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Outro</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;"><label><span class=3D"ss-choice-item-control goog=
+-inline-block" style=3D"position:relative;display:inline-block;"><input typ=
+e=3D"radio" name=3D"entry.846400013" value=3D"__other_option__" id=3D"group=
+_846400013_5" role=3D"radio" class=3D"ss-q-radio ss-q-other-toggle" aria-re=
+quired=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Outro:</span></label>
+<span class=3D"ss-q-other-container goog-inline-block" style=3D"position:re=
+lative;display:inline-block;"><input type=3D"text" name=3D"entry.846400013.=
+other_option_response" value=3D"" class=3D"ss-q-other" id=3D"entry_84640001=
+3_other_option_response" dir=3D"auto" aria-label=3D"Outro" style=3D""></spa=
+n>
+</li></ul>
+
+</div></div></div> <div class=3D"ss-form-question errorbox-good" role=3D"li=
+stitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-radio" style=3D"marg=
+in:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;verti=
+cal-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_546482145" style=3D""><div cl=
+ass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83em=
+;margin-bottom:.83em;">Quantos Cart=C3=B5es de Telem=C3=B3vel Inclu=C3=ADdo=
+s?
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(campo obrigat=C3=
+=B3rio)" style=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+
+<ul class=3D"ss-choices" role=3D"radiogroup" aria-label=3D"Quantos Cart=C3=
+=B5es de Telem=C3=B3vel Inclu=C3=ADdos?  " style=3D"list-style:none;padding=
+:0;margin:.5em 0 0;"><li class=3D"ss-choice-item" style=3D"margin:0;line-he=
+ight:1.3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+2018849676" value=3D"Nenhum" id=3D"group_2018849676_1" role=3D"radio" class=
+=3D"ss-q-radio" aria-label=3D"Nenhum" aria-required=3D"true" style=3D""></s=
+pan>
+<span class=3D"ss-choice-label" style=3D"">Nenhum</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+2018849676" value=3D"1" id=3D"group_2018849676_2" role=3D"radio" class=3D"s=
+s-q-radio" aria-label=3D"1" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">1</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+2018849676" value=3D"2" id=3D"group_2018849676_3" role=3D"radio" class=3D"s=
+s-q-radio" aria-label=3D"2" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">2</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+2018849676" value=3D"3" id=3D"group_2018849676_4" role=3D"radio" class=3D"s=
+s-q-radio" aria-label=3D"3" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">3</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+2018849676" value=3D"4" id=3D"group_2018849676_5" role=3D"radio" class=3D"s=
+s-q-radio" aria-label=3D"4" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">4</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+2018849676" value=3D"5 ou mais" id=3D"group_2018849676_6" role=3D"radio" cl=
+ass=3D"ss-q-radio" aria-label=3D"5 ou mais" aria-required=3D"true" style=3D=
+""></span>
+<span class=3D"ss-choice-label" style=3D"">5 ou mais</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;"><label><span class=3D"ss-choice-item-control goog=
+-inline-block" style=3D"position:relative;display:inline-block;"><input typ=
+e=3D"radio" name=3D"entry.2018849676" value=3D"__other_option__" id=3D"grou=
+p_2018849676_7" role=3D"radio" class=3D"ss-q-radio ss-q-other-toggle" aria-=
+required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Outro:</span></label>
+<span class=3D"ss-q-other-container goog-inline-block" style=3D"position:re=
+lative;display:inline-block;"><input type=3D"text" name=3D"entry.2018849676=
+.other_option_response" value=3D"" class=3D"ss-q-other" id=3D"entry_2018849=
+676_other_option_response" dir=3D"auto" aria-label=3D"Outro" style=3D""></s=
+pan>
+</li></ul>
+
+</div></div></div> <div class=3D"ss-form-question errorbox-good" role=3D"li=
+stitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item  ss-text" style=3D"margin:12px 0;"><div =
+class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertical-align:middle;=
+margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_472647929" style=3D""><div cl=
+ass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83em=
+;margin-bottom:.83em;">Quanto est=C3=A1 a pagar? (Pergunta Opcional)
+</div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+<input type=3D"text" name=3D"entry.472647929" value=3D"" class=3D"ss-q-shor=
+t" id=3D"entry_472647929" dir=3D"auto" aria-label=3D"Quanto est=C3=A1 a pag=
+ar? (Pergunta Opcional)  " title=3D"" style=3D"">
+
+
+</div></div></div> <div class=3D"ss-form-question errorbox-good" role=3D"li=
+stitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-radio" style=3D"marg=
+in:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;verti=
+cal-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_1607587536" style=3D""><div c=
+lass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83e=
+m;margin-bottom:.83em;">Tem fideliza=C3=A7=C3=A3o a cumprir?=20
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(campo obrigat=C3=
+=B3rio)" style=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+
+<ul class=3D"ss-choices" role=3D"radiogroup" aria-label=3D"Tem fideliza=C3=
+=A7=C3=A3o a cumprir?   " style=3D"list-style:none;padding:0;margin:.5em 0 =
+0;"><li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.3em;paddin=
+g-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1224284214" value=3D"SIM" id=3D"group_1224284214_1" role=3D"radio" class=3D=
+"ss-q-radio" aria-label=3D"SIM" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">SIM</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1224284214" value=3D"N=C3=83O" id=3D"group_1224284214_2" role=3D"radio" cla=
+ss=3D"ss-q-radio" aria-label=3D"N=C3=83O" aria-required=3D"true" style=3D""=
+></span>
+<span class=3D"ss-choice-label" style=3D"">N=C3=83O</span>
+</label></li></ul>
+
+</div></div></div> <div class=3D"ss-form-question errorbox-good" role=3D"li=
+stitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-date" style=3D"margi=
+n:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertic=
+al-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_1694561618" style=3D""><div c=
+lass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83e=
+m;margin-bottom:.83em;">Data Fim de fideliza=C3=A7=C3=A3o?
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(campo obrigat=C3=
+=B3rio)" style=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+<div class=3D"ss-q-date" role=3D"group" aria-label=3D"Data Fim de fideliza=
+=C3=A7=C3=A3o?  " style=3D""><div class=3D"ss-datetime-box goog-inline-bloc=
+k" role=3D"group" style=3D"border:1px solid #dcdcdc;margin-right:2em;min-he=
+ight:32px;padding-left:3px;vertical-align:middle;margin:4px 3px;position:re=
+lative;display:inline-block;"> <select name=3D"entry.1694561618_month" clas=
+s=3D"ss-month-dropdown" id=3D"entry.1694561618_month" aria-label=3D"M=C3=AA=
+s" aria-required=3D"true" style=3D""><option value=3D"" style=3D"">M=C3=AAs=
+</option>
+<option value=3D"1" style=3D"">Janeiro</option> <option value=3D"2" style=
+=3D"">Fevereiro</option> <option value=3D"3" style=3D"">Mar=C3=A7o</option>=
+ <option value=3D"4" style=3D"">Abril</option> <option value=3D"5" style=3D=
+"">Maio</option> <option value=3D"6" style=3D"">Junho</option> <option valu=
+e=3D"7" style=3D"">Julho</option> <option value=3D"8" style=3D"">Agosto</op=
+tion> <option value=3D"9" style=3D"">Setembro</option> <option value=3D"10"=
+ style=3D"">Outubro</option> <option value=3D"11" style=3D"">Novembro</opti=
+on> <option value=3D"12" style=3D"">Dezembro</option></select>   <select na=
+me=3D"entry.1694561618_day" class=3D"ss-day-dropdown" id=3D"entry.169456161=
+8_day" aria-label=3D"Dia do m=C3=AAs" aria-required=3D"true" style=3D""><op=
+tion value=3D"" style=3D"">Dia</option>
+<option value=3D"1" style=3D"">1</option> <option value=3D"2" style=3D"">2<=
+/option> <option value=3D"3" style=3D"">3</option> <option value=3D"4" styl=
+e=3D"">4</option> <option value=3D"5" style=3D"">5</option> <option value=
+=3D"6" style=3D"">6</option> <option value=3D"7" style=3D"">7</option> <opt=
+ion value=3D"8" style=3D"">8</option> <option value=3D"9" style=3D"">9</opt=
+ion> <option value=3D"10" style=3D"">10</option> <option value=3D"11" style=
+=3D"">11</option> <option value=3D"12" style=3D"">12</option> <option value=
+=3D"13" style=3D"">13</option> <option value=3D"14" style=3D"">14</option> =
+<option value=3D"15" style=3D"">15</option> <option value=3D"16" style=3D""=
+>16</option> <option value=3D"17" style=3D"">17</option> <option value=3D"1=
+8" style=3D"">18</option> <option value=3D"19" style=3D"">19</option> <opti=
+on value=3D"20" style=3D"">20</option> <option value=3D"21" style=3D"">21</=
+option> <option value=3D"22" style=3D"">22</option> <option value=3D"23" st=
+yle=3D"">23</option> <option value=3D"24" style=3D"">24</option> <option va=
+lue=3D"25" style=3D"">25</option> <option value=3D"26" style=3D"">26</optio=
+n> <option value=3D"27" style=3D"">27</option> <option value=3D"28" style=
+=3D"">28</option> <option value=3D"29" style=3D"">29</option> <option value=
+=3D"30" style=3D"">30</option> <option value=3D"31" style=3D"">31</option><=
+/select>=20
+<select name=3D"entry.1694561618_year" id=3D"entry.1694561618_year" aria-la=
+bel=3D"Ano" aria-required=3D"true" style=3D""><option value=3D"" style=3D""=
+>Ano</option>
+<option value=3D"1897" style=3D"">1897</option> <option value=3D"1898" styl=
+e=3D"">1898</option> <option value=3D"1899" style=3D"">1899</option> <optio=
+n value=3D"1900" style=3D"">1900</option> <option value=3D"1901" style=3D""=
+>1901</option> <option value=3D"1902" style=3D"">1902</option> <option valu=
+e=3D"1903" style=3D"">1903</option> <option value=3D"1904" style=3D"">1904<=
+/option> <option value=3D"1905" style=3D"">1905</option> <option value=3D"1=
+906" style=3D"">1906</option> <option value=3D"1907" style=3D"">1907</optio=
+n> <option value=3D"1908" style=3D"">1908</option> <option value=3D"1909" s=
+tyle=3D"">1909</option> <option value=3D"1910" style=3D"">1910</option> <op=
+tion value=3D"1911" style=3D"">1911</option> <option value=3D"1912" style=
+=3D"">1912</option> <option value=3D"1913" style=3D"">1913</option> <option=
+ value=3D"1914" style=3D"">1914</option> <option value=3D"1915" style=3D"">=
+1915</option> <option value=3D"1916" style=3D"">1916</option> <option value=
+=3D"1917" style=3D"">1917</option> <option value=3D"1918" style=3D"">1918</=
+option> <option value=3D"1919" style=3D"">1919</option> <option value=3D"19=
+20" style=3D"">1920</option> <option value=3D"1921" style=3D"">1921</option=
+> <option value=3D"1922" style=3D"">1922</option> <option value=3D"1923" st=
+yle=3D"">1923</option> <option value=3D"1924" style=3D"">1924</option> <opt=
+ion value=3D"1925" style=3D"">1925</option> <option value=3D"1926" style=3D=
+"">1926</option> <option value=3D"1927" style=3D"">1927</option> <option va=
+lue=3D"1928" style=3D"">1928</option> <option value=3D"1929" style=3D"">192=
+9</option> <option value=3D"1930" style=3D"">1930</option> <option value=3D=
+"1931" style=3D"">1931</option> <option value=3D"1932" style=3D"">1932</opt=
+ion> <option value=3D"1933" style=3D"">1933</option> <option value=3D"1934"=
+ style=3D"">1934</option> <option value=3D"1935" style=3D"">1935</option> <=
+option value=3D"1936" style=3D"">1936</option> <option value=3D"1937" style=
+=3D"">1937</option> <option value=3D"1938" style=3D"">1938</option> <option=
+ value=3D"1939" style=3D"">1939</option> <option value=3D"1940" style=3D"">=
+1940</option> <option value=3D"1941" style=3D"">1941</option> <option value=
+=3D"1942" style=3D"">1942</option> <option value=3D"1943" style=3D"">1943</=
+option> <option value=3D"1944" style=3D"">1944</option> <option value=3D"19=
+45" style=3D"">1945</option> <option value=3D"1946" style=3D"">1946</option=
+> <option value=3D"1947" style=3D"">1947</option> <option value=3D"1948" st=
+yle=3D"">1948</option> <option value=3D"1949" style=3D"">1949</option> <opt=
+ion value=3D"1950" style=3D"">1950</option> <option value=3D"1951" style=3D=
+"">1951</option> <option value=3D"1952" style=3D"">1952</option> <option va=
+lue=3D"1953" style=3D"">1953</option> <option value=3D"1954" style=3D"">195=
+4</option> <option value=3D"1955" style=3D"">1955</option> <option value=3D=
+"1956" style=3D"">1956</option> <option value=3D"1957" style=3D"">1957</opt=
+ion> <option value=3D"1958" style=3D"">1958</option> <option value=3D"1959"=
+ style=3D"">1959</option> <option value=3D"1960" style=3D"">1960</option> <=
+option value=3D"1961" style=3D"">1961</option> <option value=3D"1962" style=
+=3D"">1962</option> <option value=3D"1963" style=3D"">1963</option> <option=
+ value=3D"1964" style=3D"">1964</option> <option value=3D"1965" style=3D"">=
+1965</option> <option value=3D"1966" style=3D"">1966</option> <option value=
+=3D"1967" style=3D"">1967</option> <option value=3D"1968" style=3D"">1968</=
+option> <option value=3D"1969" style=3D"">1969</option> <option value=3D"19=
+70" style=3D"">1970</option> <option value=3D"1971" style=3D"">1971</option=
+> <option value=3D"1972" style=3D"">1972</option> <option value=3D"1973" st=
+yle=3D"">1973</option> <option value=3D"1974" style=3D"">1974</option> <opt=
+ion value=3D"1975" style=3D"">1975</option> <option value=3D"1976" style=3D=
+"">1976</option> <option value=3D"1977" style=3D"">1977</option> <option va=
+lue=3D"1978" style=3D"">1978</option> <option value=3D"1979" style=3D"">197=
+9</option> <option value=3D"1980" style=3D"">1980</option> <option value=3D=
+"1981" style=3D"">1981</option> <option value=3D"1982" style=3D"">1982</opt=
+ion> <option value=3D"1983" style=3D"">1983</option> <option value=3D"1984"=
+ style=3D"">1984</option> <option value=3D"1985" style=3D"">1985</option> <=
+option value=3D"1986" style=3D"">1986</option> <option value=3D"1987" style=
+=3D"">1987</option> <option value=3D"1988" style=3D"">1988</option> <option=
+ value=3D"1989" style=3D"">1989</option> <option value=3D"1990" style=3D"">=
+1990</option> <option value=3D"1991" style=3D"">1991</option> <option value=
+=3D"1992" style=3D"">1992</option> <option value=3D"1993" style=3D"">1993</=
+option> <option value=3D"1994" style=3D"">1994</option> <option value=3D"19=
+95" style=3D"">1995</option> <option value=3D"1996" style=3D"">1996</option=
+> <option value=3D"1997" style=3D"">1997</option> <option value=3D"1998" st=
+yle=3D"">1998</option> <option value=3D"1999" style=3D"">1999</option> <opt=
+ion value=3D"2000" style=3D"">2000</option> <option value=3D"2001" style=3D=
+"">2001</option> <option value=3D"2002" style=3D"">2002</option> <option va=
+lue=3D"2003" style=3D"">2003</option> <option value=3D"2004" style=3D"">200=
+4</option> <option value=3D"2005" style=3D"">2005</option> <option value=3D=
+"2006" style=3D"">2006</option> <option value=3D"2007" style=3D"">2007</opt=
+ion> <option value=3D"2008" style=3D"">2008</option> <option value=3D"2009"=
+ style=3D"">2009</option> <option value=3D"2010" style=3D"">2010</option> <=
+option value=3D"2011" style=3D"">2011</option> <option value=3D"2012" style=
+=3D"">2012</option> <option value=3D"2013" style=3D"">2013</option> <option=
+ value=3D"2014" style=3D"">2014</option> <option value=3D"2015" style=3D"">=
+2015</option> <option value=3D"2016" style=3D"">2016</option> <option value=
+=3D"2017" style=3D"">2017</option> <option value=3D"2018" style=3D"">2018</=
+option> <option value=3D"2019" style=3D"">2019</option> <option value=3D"20=
+20" selected style=3D"">2020</option> <option value=3D"2021" style=3D"">202=
+1</option> <option value=3D"2022" style=3D"">2022</option> <option value=3D=
+"2023" style=3D"">2023</option> <option value=3D"2024" style=3D"">2024</opt=
+ion> <option value=3D"2025" style=3D"">2025</option> <option value=3D"2026"=
+ style=3D"">2026</option> <option value=3D"2027" style=3D"">2027</option> <=
+option value=3D"2028" style=3D"">2028</option> <option value=3D"2029" style=
+=3D"">2029</option> <option value=3D"2030" style=3D"">2030</option> <option=
+ value=3D"2031" style=3D"">2031</option> <option value=3D"2032" style=3D"">=
+2032</option> <option value=3D"2033" style=3D"">2033</option> <option value=
+=3D"2034" style=3D"">2034</option> <option value=3D"2035" style=3D"">2035</=
+option> <option value=3D"2036" style=3D"">2036</option> <option value=3D"20=
+37" style=3D"">2037</option> <option value=3D"2038" style=3D"">2038</option=
+> <option value=3D"2039" style=3D"">2039</option> <option value=3D"2040" st=
+yle=3D"">2040</option> <option value=3D"2041" style=3D"">2041</option> <opt=
+ion value=3D"2042" style=3D"">2042</option> <option value=3D"2043" style=3D=
+"">2043</option> <option value=3D"2044" style=3D"">2044</option> <option va=
+lue=3D"2045" style=3D"">2045</option> <option value=3D"2046" style=3D"">204=
+6</option> <option value=3D"2047" style=3D"">2047</option> <option value=3D=
+"2048" style=3D"">2048</option> <option value=3D"2049" style=3D"">2049</opt=
+ion> <option value=3D"2050" style=3D"">2050</option> <option value=3D"2051"=
+ style=3D"">2051</option> <option value=3D"2052" style=3D"">2052</option> <=
+option value=3D"2053" style=3D"">2053</option> <option value=3D"2054" style=
+=3D"">2054</option> <option value=3D"2055" style=3D"">2055</option> <option=
+ value=3D"2056" style=3D"">2056</option> <option value=3D"2057" style=3D"">=
+2057</option> <option value=3D"2058" style=3D"">2058</option> <option value=
+=3D"2059" style=3D"">2059</option> <option value=3D"2060" style=3D"">2060</=
+option> <option value=3D"2061" style=3D"">2061</option> <option value=3D"20=
+62" style=3D"">2062</option> <option value=3D"2063" style=3D"">2063</option=
+> <option value=3D"2064" style=3D"">2064</option> <option value=3D"2065" st=
+yle=3D"">2065</option> <option value=3D"2066" style=3D"">2066</option> <opt=
+ion value=3D"2067" style=3D"">2067</option> <option value=3D"2068" style=3D=
+"">2068</option> <option value=3D"2069" style=3D"">2069</option> <option va=
+lue=3D"2070" style=3D"">2070</option></select>
+</div>
+</div></div></div></div> <div class=3D"ss-form-question errorbox-good" role=
+=3D"listitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-radio" style=3D"marg=
+in:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;verti=
+cal-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_13568359" style=3D""><div cla=
+ss=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83em;=
+margin-bottom:.83em;">Est=C3=A1 satisfeito?=20
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(campo obrigat=C3=
+=B3rio)" style=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+
+<ul class=3D"ss-choices" role=3D"radiogroup" aria-label=3D"Est=C3=A1 satisf=
+eito?   " style=3D"list-style:none;padding:0;margin:.5em 0 0;"><li class=3D=
+"ss-choice-item" style=3D"margin:0;line-height:1.3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+361918963" value=3D"Sim" id=3D"group_361918963_1" role=3D"radio" class=3D"s=
+s-q-radio" aria-label=3D"Sim" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Sim</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+361918963" value=3D"N=C3=A3o" id=3D"group_361918963_2" role=3D"radio" class=
+=3D"ss-q-radio" aria-label=3D"N=C3=A3o" aria-required=3D"true" style=3D""><=
+/span>
+<span class=3D"ss-choice-label" style=3D"">N=C3=A3o</span>
+</label></li></ul>
+
+</div></div></div> <div class=3D"ss-form-question errorbox-good" role=3D"li=
+stitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-radio" style=3D"marg=
+in:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;verti=
+cal-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_1816233868" style=3D""><div c=
+lass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83e=
+m;margin-bottom:.83em;">Tem interesse em receber uma nova proposta?
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(campo obrigat=C3=
+=B3rio)" style=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+
+<ul class=3D"ss-choices" role=3D"radiogroup" aria-label=3D"Tem interesse em=
+ receber uma nova proposta?  " style=3D"list-style:none;padding:0;margin:.5=
+em 0 0;"><li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.3em;p=
+adding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+263934439" value=3D"Sim" id=3D"group_263934439_1" role=3D"radio" class=3D"s=
+s-q-radio" aria-label=3D"Sim" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Sim</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+263934439" value=3D"N=C3=A3o" id=3D"group_263934439_2" role=3D"radio" class=
+=3D"ss-q-radio" aria-label=3D"N=C3=A3o" aria-required=3D"true" style=3D""><=
+/span>
+<span class=3D"ss-choice-label" style=3D"">N=C3=A3o</span>
+</label></li></ul>
+
+</div></div></div> <div class=3D"ss-form-question errorbox-good" role=3D"li=
+stitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item  ss-text" style=3D"margin:12px 0;"><div =
+class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertical-align:middle;=
+margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_2139567371" style=3D""><div c=
+lass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83e=
+m;margin-bottom:.83em;">N=C3=BAmero de contacto + Nome
+</div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+<input type=3D"text" name=3D"entry.2139567371" value=3D"" class=3D"ss-q-sho=
+rt" id=3D"entry_2139567371" dir=3D"auto" aria-label=3D"N=C3=BAmero de conta=
+cto + Nome  " title=3D"" style=3D"">
+
+
+</div></div></div>
+<input type=3D"hidden" name=3D"draftResponse" value=3D"[null,null,&quot;-23=
+8780687251332920&quot;]
+" style=3D"">
+<input type=3D"hidden" name=3D"pageHistory" value=3D"0" style=3D"">
+
+<input type=3D"hidden" name=3D"usp" value=3D"mail_form_submit" style=3D"">
+<input type=3D"hidden" name=3D"captchaemail" value=3D"true" style=3D"">
+
+<input type=3D"hidden" name=3D"fbzx" value=3D"-238780687251332920" style=3D=
+"">
+<div class=3D"ss-send-email-receipt" style=3D"margin-bottom: 4px;" dir=3D"l=
+tr"><label for=3D"emailReceipt" style=3D"display:inline;"><input type=3D"ch=
+eckbox" name=3D"emailReceipt" value=3D"true" id=3D"emailReceipt" style=3D""=
+>
+Envie para mim uma c=C3=B3pia das minhas respostas.</label></div>
+<div class=3D"ss-item ss-navigate" style=3D"margin:12px 0;"><table id=3D"na=
+vigation-table" style=3D""><tbody><tr><td class=3D"ss-form-entry goog-inlin=
+e-block" id=3D"navigation-buttons" dir=3D"ltr" style=3D"margin-bottom:1.5em=
+;vertical-align:middle;margin-left:0;margin-top:0;max-width:100%;position:r=
+elative;display:inline-block;">
+<input type=3D"submit" name=3D"submit" value=3D"Revisar e enviar" id=3D"ss-=
+submit" class=3D"jfk-button jfk-button-action " style=3D"">
+<div class=3D"ss-password-warning ss-secondary-text" style=3D"color:#666;">=
+Nunca envie senhas pelo Formul=C3=A1rios Google.</div></td>
+</tr></tbody></table></div></ol></form></div>
+<div class=3D"ss-footer" style=3D""><div class=3D"ss-attribution" style=3D"=
+"></div>
+<div class=3D"ss-legal" style=3D""><div class=3D"disclaimer-separator" styl=
+e=3D""></div>
+<div class=3D"disclaimer" dir=3D"ltr" style=3D""><div class=3D"powered-by-l=
+ogo" style=3D"margin-top:2em;"><span class=3D"powered-by-text" style=3D"">P=
+owered by</span>
+<a href=3D"https://www.google.com/forms/about/?utm_source=3Dproduct&amp;utm=
+_medium=3Dforms_logo&amp;utm_campaign=3Dforms" style=3D""><div class=3D"ss-=
+logo-container" style=3D""><img src=3D"https://ssl.gstatic.com/docs/forms/f=
+orms_logo_2_small_dark_2x.png" height=3D"21px" width=3D"108px" alt=3D"Formu=
+l=C3=A1rios Google" style=3D""></div></a></div>
+<div class=3D"ss-terms" style=3D"color:#777;font-size:11px;margin-top:1.5em=
+;"><span class=3D"disclaimer-msg" style=3D"">Este conte=C3=BAdo n=C3=A3o fo=
+i criado nem aprovado pelo Google.</span>
+<br>
+<a href=3D"https://docs.google.com/forms/u/0/d/e/1FAIpQLSfL25Ye2BpyDvbqsGPZ=
+h7UdNzJpOIGo7ffQGbJh8-fTrmWStQ/reportabuse?source=3Dhttps://docs.google.com=
+/forms/d/e/1FAIpQLSfL25Ye2BpyDvbqsGPZh7UdNzJpOIGo7ffQGbJh8-fTrmWStQ/viewfor=
+m?sid%3D14e1942d5e4e33f%26vc%3D0%26c%3D0%26w%3D1%26flr%3D0%26token%3DXGZ-RH=
+QBAAA.Z24sLNPcvgb7LI-u2_z-aA.it0RP_3NL3IMRncLooPeuw" style=3D"">Denunciar a=
+buso</a>
+-
+<a href=3D"http://www.google.com/accounts/TOS" style=3D"">Termos de Servi=
+=C3=A7o</a>
+-
+<a href=3D"http://www.google.com/google-d-s/terms.html" style=3D"">Termos A=
+dicionais</a></div></div></div></div>
+</td></tr><tr height=3D"24px"></tr></tbody></table></div><table align=3D"ce=
+nter" cellpadding=3D"0" cellspacing=3D"0" style=3D"max-width: 672px; min-wi=
+dth: 154px;" width=3D"100%" role=3D"presentation"><tbody><tr height=3D"24px=
+"><td></td></tr><tr><td><a href=3D"https://docs.google.com/forms?usp=3Dmail=
+_form_link" style=3D"color: #424242; font-size: 13px;">Crie seu pr=C3=B3pri=
+o formul=C3=A1rio do Google.</a></td></tr></tbody></table></div></body></ht=
+ml>
+--000000000000bd388f05ae2abbab--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>5968</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1598873445</integer>
+	<key>flags</key>
+	<integer>25770065024</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+		<integer>6</integer>
+	</array>
+	<key>remote-id</key>
+	<string>4530</string>
+</dict>
+</plist>

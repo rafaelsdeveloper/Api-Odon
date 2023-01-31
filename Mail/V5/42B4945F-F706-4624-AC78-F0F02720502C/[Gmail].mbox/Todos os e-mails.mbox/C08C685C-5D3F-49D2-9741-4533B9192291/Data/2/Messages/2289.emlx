@@ -1,0 +1,925 @@
+66453     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:55ca:b0:288:b2b8:61cb with SMTP id ef10csp260304pxb;
+        Wed, 4 May 2022 06:23:39 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwrgSwLBmGfkCWRPZtgo7i+fwRwNf5JO1Kb4gLbfgNcorct3q9anqlXa0SnPYKX/AzbudlS
+X-Received: by 2002:a17:90a:e7d2:b0:1dc:3762:c72d with SMTP id kb18-20020a17090ae7d200b001dc3762c72dmr10284602pjb.243.1651670618844;
+        Wed, 04 May 2022 06:23:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1651670618; cv=none;
+        d=google.com; s=arc-20160816;
+        b=k8ehMmDmwug/sTUs4LITK/vXZ091KjNT2uyCBDjtpxd6sKqCe48RhdHj5/CIeOAJsU
+         cvdguox+ImIG64bVXV4jIYFRgi9b4BzWjaP7P7BNlPHAz9bNImIaU4NYELA54Y61I5bf
+         bSpM/HDqvgP6ATdMzccyApSjCwsuR9MMqGLLwtW4wvQyEtvy6MJNXAoHe1V1KdLcg5Dc
+         AraQcRTpe/EeMCKjloONRtYjsuqWAhREeyijXyQw7uphPoi5zSt0n400wJCO1r6j+rFX
+         pO3Ukt6faPqnubKWiwEt4YJLSZyOFDolCouHc+6XVlI2/50aghegGO8MSRjTjpLqsCzJ
+         bKJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=LD1zSdT0+lXITPEn90WQvvHl7zSUkYdxAbtH/9ZMd+w=;
+        b=XQvMFruWsmwprM0z7uLA1ZXed9ciWvWM5iTsTL6xPsqaVigzXGc7rlKDeBa8tNhZxh
+         cuPMzDRVAtMDpaUQKPRSEVctukkWRR76PF74mjOKBfCe3w3w+wvm1FlFIjXyme+383iE
+         xtEiVXhw512/EBNGjlbA1Lhw67wYgHYuUadeOpF714phTyP+b4VGuj6YeJIO6bN4EhXt
+         SWiZUp738ouV6u7r3V1CeF7skerB0Ki2TzOw9TdOwV8Rcv0Y6ftxR1z27/7+FeL4/QwX
+         UzMY2gOQC8iCUpXiIBY0HF3WKNF4HtUNN9fHgdJ5p4+V9eeB6z36wSX2WYZO5axh+BbA
+         IZdg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=vpeIKtOm;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=FuK4IpPu;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9s1cgzvaz5tyirzo@bounce.linkedin.com designates 108.174.0.202 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9s1cgzvaz5tyirzo@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9s1cgzvaz5tyirzo@bounce.linkedin.com>
+Received: from maile-hb.linkedin.com (maile-hb.linkedin.com. [108.174.0.202])
+        by mx.google.com with ESMTPS id z9-20020a170902ccc900b0015d1dbd6abasi19121092ple.237.2022.05.04.06.23.38
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 04 May 2022 06:23:38 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9s1cgzvaz5tyirzo@bounce.linkedin.com designates 108.174.0.202 as permitted sender) client-ip=108.174.0.202;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=vpeIKtOm;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=FuK4IpPu;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9s1cgzvaz5tyirzo@bounce.linkedin.com designates 108.174.0.202 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9s1cgzvaz5tyirzo@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1651670616;
+	bh=LD1zSdT0+lXITPEn90WQvvHl7zSUkYdxAbtH/9ZMd+w=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=vpeIKtOmf6hJgmvZI5H1mZIhTHhzTKyZZOjYAJWS13UK7mEtGV9ruDDps3rziSFEB
+	 V0nNuxAcSBYX2ukdnv2oQ67cCdesbQuKUnau/xOmFePJsUct+mfK7E8RKTKYqEIpr1
+	 S2Iz1wxp4HR0uUQPf9yKQMB1fqmOb3rCIryRNhDWSTMYq63wg3Iu+oXbXMr//XpD6D
+	 JcyIvWl6EMm+R1l9/PziZco4kR5HHtTgiqE79TNR9eYXfgVuxADWzgFBbYBRTapzGg
+	 6ct5t+T3+CPWUmmKzb2Fw85uQoeIfRUb3qHiFIxp4DU5ho/Fx6DxkMH/uhRrwDJqty
+	 lDtnMsgRt0QuA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maile.linkedin.com;
+	s=proddkim1024; t=1651670616;
+	bh=LD1zSdT0+lXITPEn90WQvvHl7zSUkYdxAbtH/9ZMd+w=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=FuK4IpPu+Ng2Mnp9M0FH7C5+p+KS0GnPJvedQNRXpOWUeg0nupQ52CSnvMIWtB8pk
+	 7FbLl1MfawF4gq2ZItu9W+1ICR/0o3/P+wQcnQ7oGawun6BQXsOJ+EOuef5zK7TPU8
+	 q4kck30XjddYUrloMxJCUeHhQHi7CBLq3NbhStI0=
+From: Richard Branson via LinkedIn <newsletters-noreply@linkedin.com>
+Message-ID: <1423039393.3790435.1651670615899@ltx1-app46345.prod.linkedin.com>
+Subject: Ask Richard: How can parents help their dyslexic children thrive,
+ and how can schools better support dyslexic students?
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3790433_1398685839.1651670615892"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Wed, 4 May 2022 13:23:35 +0000 (UTC)
+X-LinkedIn-Class: EMAIL-DEFAULT
+X-LinkedIn-Template: email_series_follow_newsletter_01
+X-LinkedIn-fbl: m2-aszs34owji4gwa4kv74485k7d49awfg4tzry9pzizl9vbug7ozlttdzscss1l1urx3h67is3aj9zeypcr6y54yw0033ei1w7mfn3hp
+X-LinkedIn-Id: eau1wl-l2rltis6-d4
+List-Unsubscribe: <https://www.linkedin.com/e/v2?e=eau1wl-l2rltis6-d4&t=lun&midToken=AQEq1MBbB2bM8g&midSig=22eJtthx-z2Gg1&ek=email_series_follow_newsletter_01&li=42&m=unsub&ts=unsub&eid=eau1wl-l2rltis6-d4&loid=AQH9OCPeyduJEwAAAYCPPYbQgskkxpxwVU4kMJLSNASMdond_fTywqMmvId7v9PqDeaKB6nCVpvTblpCZUTCLElBvPnINxyG0ZJQKcPmOcct-ivplazMZA>
+Feedback-ID: email_series_follow_newsletter_01:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_3790433_1398685839.1651670615892
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+NEWSLETTER ON LINKEDIN
+Ask Richard: How can parents help their dyslexic children thrive, and how c=
+an schools better support dyslexic students?
+By Richard Branson
+
+It has been nothing short of amazing to see the response from=C2=A0our camp=
+aign with Made By Dyslexia and=C2=A0LinkedIn=C2=A0to add =E2=80=98Dyslexic =
+Thinking=E2=80=99 as a recognised skill on the platform. For my=C2=A0newsle=
+tter=C2=A0this month, I invited people to ask me any questions they have ab=
+out dyslexia, and to share their personal experiences. Reading through so m=
+any questions and stories from dyslexic thinkers all around the world left =
+me more certain than ever that dyslexia is a superpower =E2=80=93 but also =
+remains surrounded by many stigmas and barriers. I read stories where peopl=
+e were kicked out of class, told to =E2=80=98go to church=E2=80=99, and rec=
+eived =E2=80=98snail awards=E2=80=99 at school. I heard from lawyers, engin=
+eers, people with=C2=A0PhDs,=C2=A0and psychologists who weren=E2=80=99t dia=
+gnosed until late in their careers. I also heard from musicians, artists, e=
+ntrepreneurs, CEOs, analysts, professors, and people working in theatre and=
+ fashion who said their dyslexia was pivotal to their success. Many people =
+also left comments wondering if they were indeed dyslexic, and were unsure=
+=C2=A0how to find out.=C2=A0Made By Dyslexia have a really=C2=A0simple onli=
+ne quiz=C2=A0which is a good first step to take. For a formal assessment, y=
+ou can refer to the=C2=A0British Dyslexia Association, the=C2=A0Internation=
+al Dyslexia Association=C2=A0and the=C2=A0Helen Arkell Dyslexia Charity. Ba=
+ck to the questions, many parents reached out asking for advice on how to h=
+elp their children embrace their dyslexia and unlock their full potential. =
+A lot of people also asked how schools can better support and be more inclu=
+sive of dyslexic thinkers, so I decided to answer both questions.=C2=A0 Alt=
+hough I didn=E2=80=99t know I had dyslexia until I was an adult, my parents=
+ were always incredibly supportive of my creative ideas and curious ways of=
+ thinking. Despite my poor grades and terrible spelling, they never doubted=
+ me - but they never fussed over me either. My mum taught me to never let m=
+y insecurities or so-called =E2=80=98weaknesses=E2=80=99 hold me back in li=
+fe. When so much of your worth as a young person is attached to grades and =
+report cards (especially in those days), my parents reminded me that what r=
+eally matters in life is how you treat people, and how you follow=C2=A0your=
+ passions. My=C2=A0advice=C2=A0to any parent with a dyslexic child (especia=
+lly if they are feeling discouraged and exhausted), is to help your child d=
+iscover their passions and strengths, and support their pursuits as much as=
+ possible. This is so important to help build self-esteem, which is often k=
+nocked by school curriculums and unknowing peers. We need to constantly rem=
+ind dyslexic kids of the achievements that dyslexics (such as Albert Einste=
+in and Walt Disney) have made, and the skills (such as creativity, empathy,=
+ problem-solving and resilience) that dyslexic thinking gives you. These sk=
+ills are in such high demand in today=E2=80=99s workplaces, and we need to =
+always remember that! Made By Dyslexia has some=C2=A0fantastic resources an=
+d tips=C2=A0for parents too, which I can=E2=80=99t recommend enough. When i=
+t comes to practical support, it=E2=80=99s good to lean on evidence-based, =
+multi-sensory interventions, and brilliant tech tools like text-to-speech c=
+onverters, voice notes, predictive text, highlighting tools and=C2=A0Micros=
+oft=E2=80=99s Immersive Reader. Made by Dyslexia=E2=80=99s=C2=A0fact sheets=
+=C2=A0are a great place to start, and the free training the offer is video-=
+based and really great for parents. When it comes to schools, I=E2=80=99d l=
+ike to think there is more support and awareness than in my day, but it=E2=
+=80=99s clear there is still a long way to go. Teachers all around the worl=
+d should be trained=C2=A0to spot dyslexia, and to give dyslexic children ev=
+ery chance to thrive. Identifying dyslexia is such a crucial point. I find =
+it staggering that=C2=A0one in five people have dyslexia, yet 80% of studen=
+ts leave school unidentified.=C2=A0It=E2=80=99s so important to bridge this=
+ gap because the=C2=A0earlier it is discovered and supported, the sooner th=
+e student can catch up and keep up. When I was in school, I didn=E2=80=99t =
+even know what dyslexia was. Teachers called me dumb and lazy, and I starte=
+d to believe them. It was only when I dropped out of school and realised my=
+ ability to think big, solve problems, and empathise was much more useful t=
+han a spelling bee trophy. I wonder how different my education would have b=
+een if I had been empowered by the system instead of rejected by it?=C2=A0 =
+Education bodies need to deepen their understanding of dyslexia, and stop t=
+reating it as a disability or a disadvantage. Students should be better sup=
+ported in the areas they struggle with (such as reading and spelling), and =
+better equipped to hone their dyslexic strengths (including storytelling an=
+d imagination). This will also go a long way in preventing bullying and nas=
+ty stigmas. If teachers are given the tools, resources and flexibility to s=
+pot, support and empower dyslexic students =E2=80=93 the world will go a lo=
+ng way. Again, Made By Dyslexia=C2=A0offers some fantastic (and free) train=
+ing=C2=A0in partnership with Microsoft, which provides really practical tea=
+ching strategies and solutions. Standardised exams have also got to go. The=
+ world needs dyslexic thinking, but children are still being taught to conf=
+orm and do well on generic tests. As I=C2=A0wrote about in The Times=C2=A0e=
+arlier this year: I once did an IQ test as an eight-year-old. I don=E2=80=
+=99t think I filled in anything. Go forward 30 or so years, I was running E=
+urope=E2=80=99s largest private group of companies. I didn=E2=80=99t know t=
+he difference between gross and net profit, but it didn=E2=80=99t matter...=
+ What mattered was my character, whether I was good at inspiring people and=
+ motivating people, whether I wanted to make a real difference in the world=
+. Thank you to everyone who shared your stories and your questions this mon=
+th. By having more conversations like this, we can empower dyslexic thinker=
+s all around the world.=C2=A0 Until next month, Richard
+
+Join the conversation:
+https://www.linkedin.com/e/v2/pulse?e=3Deau1wl-l2rltis6-d4&amp;lipi=3Durn%3=
+Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56f=
+Qw%3D%3D&amp;a=3Dpulse_web_view_article_detail_new_url&amp;midToken=3DAQEq1=
+MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1&amp;ek=3Demail_series_follow_newslett=
+er_01&amp;li=3D3&amp;m=3Dfooter_promo&amp;ts=3Dprimary_cta_link&amp;permLin=
+k=3Dask-richard-how-can-parents-help-dyslexic-children-thrive-branson
+
+.....................................
+
+Alterar frequ=C3=AAncia: https://www.linkedin.com/e/v2?e=3Deau1wl-l2rltis6-=
+d4&t=3Dlun&midToken=3DAQEq1MBbB2bM8g&midSig=3D22eJtthx-z2Gg1&ek=3Demail_ser=
+ies_follow_newsletter_01&li=3D43&m=3Dunsub&ts=3Dfreq&eid=3Deau1wl-l2rltis6-=
+d4&loid=3DAQEnt9-axOHPCQAAAYCPPYbR3osoSSIkZlVllJ2ji6YNEUbhkoPOIyfVH_XOUoRZL=
+R4w1NJ1orv2-f3854BBisrtAFecluvcIUpPKmJrSEF6r_V7ZGqobA
+
+Cancelar inscri=C3=A7=C3=A3o: https://www.linkedin.com/e/v2?e=3Deau1wl-l2rl=
+tis6-d4&t=3Dlun&midToken=3DAQEq1MBbB2bM8g&midSig=3D22eJtthx-z2Gg1&ek=3Demai=
+l_series_follow_newsletter_01&li=3D42&m=3Dunsub&ts=3Dunsub&eid=3Deau1wl-l2r=
+ltis6-d4&loid=3DAQH9OCPeyduJEwAAAYCPPYbQgskkxpxwVU4kMJLSNASMdond_fTywqMmvId=
+7v9PqDeaKB6nCVpvTblpCZUTCLElBvPnINxyG0ZJQKcPmOcct-ivplazMZA
+
+Ajuda: https://www.linkedin.com/e/v2?e=3Deau1wl-l2rltis6-d4&lipi=3Durn%3Ali=
+%3Apage%3Aemail_email_series_follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%=
+3D%3D&a=3DcustomerServiceUrl&midToken=3DAQEq1MBbB2bM8g&midSig=3D22eJtthx-z2=
+Gg1&ek=3Demail_series_follow_newsletter_01&li=3D41&m=3Dfooter&ts=3Dhelp&art=
+icleId=3D67
+
+
+Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do LinkedIn.
+
+Este e-mail foi enviado para Rafael Souza (Desenvolvedor da web na Solution=
+.dev).
+Saiba por que inclu=C3=ADmos isso: https://www.linkedin.com/e/v2?e=3Deau1wl=
+-l2rltis6-d4&lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_=
+01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&a=3DcustomerServiceUrl&midToken=3DAQEq1MB=
+bB2bM8g&midSig=3D22eJtthx-z2Gg1&ek=3Demail_series_follow_newsletter_01&arti=
+cleId=3D4788
+
+=C2=A9 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2. LinkedIn =C3=A9 um nome comercial registrado da LinkedIn Ireland=
+ Unlimited Company. LinkedIn e a logomarca do LinkedIn s=C3=A3o marcas regi=
+stradas do LinkedIn.
+------=_Part_3790433_1398685839.1651670615892
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns=3D"http://www.w3=
+.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt" style=3D"color:#282828;font-si=
+ze:16px;font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',R=
+oboto,'Helvetica Neue','Fira Sans',Ubuntu,Oxygen,'Oxygen Sans',Cantarell,'D=
+roid Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Emoji','Segoe UI =
+Symbol','Lucida Grande',Helvetica,Arial,sans-serif;"> <head> <meta http-equ=
+iv=3D"Content-Type" content=3D"text/html;charset=3Dutf-8"> <meta name=3D"Ha=
+ndheldFriendly" content=3D"true"> <meta name=3D"viewport" content=3D"width=
+=3Ddevice-width; initial-scale=3D0.666667; user-scalable=3D0"> <meta name=
+=3D"viewport" content=3D"width=3Ddevice-width"> <title></title><!--[if mso]=
+><style type=3D"text/css">body {font-family: Helvetica Neue, Helvetica, Ari=
+al, sans-serif;}.mercado-email-container {width: 512px !important;}h1, h2, =
+h3, h4, h5, h6 {font-weight: 700 !important;}</style><![endif]--><!--[if IE=
+]><style type=3D"text/css">.mercado-email-container {width: 512px !importan=
+t;}h1, h2, h3, h4, h5, h6 {font-weight: 700 !important;}</style><![endif]--=
+> <style type=3D"text/css">@media only screen and (max-width:32em) {
+  .mercado-email-container { width:100% !important; }
+}
+@media only screen and (max-width:20em) {}
+@media only screen and (max-device-width:30em) {}
+@media screen and (device-width:30em) and (device-height:22.5em), screen an=
+d (device-width:22.5em) and (device-height:30em), screen and (device-width:=
+20em) and (device-height:15em) {}
+@media screen and (-webkit-min-device-pixel-ratio:0) {}
+@media screen and (max-device-width:25.88em) and (max-device-height:48.5em)=
+ {}
+@media only screen and (max-width:32em) {
+  .mercado-email-container { width:100% !important; }
+}
+@media only screen and (max-width:20em) {}
+@media only screen and (max-device-width:30em) {}
+@media screen and (device-width:30em) and (device-height:22.5em), screen an=
+d (device-width:22.5em) and (device-height:30em), screen and (device-width:=
+20em) and (device-height:15em) {}
+@media screen and (-webkit-min-device-pixel-ratio:0) {}
+@media screen and (max-device-width:25.88em) and (max-device-height:48.5em)=
+ {}
+@media only screen and (max-width:30em) {
+  .newsletter-email-content { padding:1em !important; }
+}
+</style> </head> <body style=3D"padding:0;margin:0 auto;color:#282828;-webk=
+it-text-size-adjust:100%;width:100% !important;-ms-text-size-adjust:100%;fo=
+nt-size:16px;font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe =
+UI',Roboto,'Helvetica Neue','Fira Sans',Ubuntu,Oxygen,'Oxygen Sans',Cantare=
+ll,'Droid Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Emoji','Sego=
+e UI Symbol','Lucida Grande',Helvetica,Arial,sans-serif;"> <div style=3D"ov=
+erflow:hidden;color:transparent;visibility:hidden;mso-hide:all;width:0;font=
+-size:0;opacity:0;height:0;"> It has been nothing short of amazing to see t=
+he response from&nbsp;our campaign with... </div> <table role=3D"presentati=
+on" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" bgcolor=3D"#F3F2EF" style=3D"background-color:#F3F2EF;table-layou=
+t:fixed;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace=
+:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td=
+ align=3D"center" style=3D"padding-top:24px;-webkit-text-size-adjust:100%;m=
+so-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <cent=
+er style=3D"width:100%;"> <table role=3D"presentation" border=3D"0" class=
+=3D"mercado-email-container" cellspacing=3D"0" cellpadding=3D"0" width=3D"5=
+12" bgcolor=3D"#FFFFFF" style=3D"background-color:#FFFFFF;margin:0 auto;max=
+-width:512px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;width:inher=
+it;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;=
+"> <tbody> <tr> <td bgcolor=3D"#FFFFFF" style=3D"background-color:#FFFFFF;p=
+adding:18px 32px 0 32px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;=
+mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presentati=
+on" border=3D"0" class=3D"mercado-email-container" cellspacing=3D"0" cellpa=
+dding=3D"0" width=3D"100%" bgcolor=3D"#FFFFFF" style=3D"background-color:#F=
+FFFFF;margin:0 auto;max-width:512px;-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;width:100% !important;mso-table-lspace:0pt;-ms-text-size-adjust=
+:100%;border-collapse:separate;min-width:100% !important;"> <tbody> <tr> <t=
+d style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lsp=
+ace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presentation" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-tex=
+t-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-=
+adjust:100%;border-collapse:separate;"> <tbody> <tr> <td align=3D"left" val=
+ign=3D"middle" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;=
+mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.lin=
+kedin.com/comm/feed/?midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1&=
+amp;trk=3Deml-email_series_follow_newsletter_01-header-37-home&amp;trkEmail=
+=3Deml-email_series_follow_newsletter_01-header-37-home-null-eau1wl%7El2rlt=
+is6%7Ed4-null-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_serie=
+s_follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D" style=3D"cursor:poin=
+ter;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-block;text-d=
+ecoration:none;-ms-text-size-adjust:100%;"> <img alt=3D"LinkedIn" border=3D=
+"0" src=3D"https://static.licdn.com/sc/p/com.linkedin.email-assets-frontend=
+%3Aemail-assets-frontend-static-content%2B__latest__/f/%2Femail-assets-fron=
+tend%2Fimages%2Flogos%2Flogo_mercado_linkedin_84x21.png" height=3D"21" widt=
+h=3D"84" style=3D"outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF=
+;max-width:unset !important;text-decoration:none;"></a></td> <td valign=3D"=
+middle" width=3D"100%" align=3D"right" style=3D"-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a=
+ href=3D"https://www.linkedin.com/comm/in/rafaelandersonsouza?midToken=3DAQ=
+Eq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1&amp;trk=3Deml-email_series_follow_=
+newsletter_01-header-46-profile&amp;trkEmail=3Deml-email_series_follow_news=
+letter_01-header-46-profile-null-eau1wl%7El2rltis6%7Ed4-null-neptune%2Fprof=
+ile%7Evanity%2Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_=
+newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D" style=3D"cursor:pointer;margi=
+n:0;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-block;text-d=
+ecoration:none;-ms-text-size-adjust:100%;"> <table role=3D"presentation" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-tex=
+t-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td align=3D"le=
+ft" valign=3D"middle" style=3D"padding:0 0 0 10px;padding-top:7px;-webkit-t=
+ext-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-siz=
+e-adjust:100%;"></td> <td valign=3D"middle" width=3D"40" style=3D"padding-t=
+op:7px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;padding-left:10px=
+;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <img alt=3D"Rafael Souza=
+" border=3D"0" height=3D"32" width=3D"32" src=3D"https://media-exp1.licdn.c=
+om/dms/image/C4D03AQEH4CxhkhtzrA/profile-displayphoto-shrink_100_100/0/1607=
+511453788?e=3D2147483647&amp;v=3Dbeta&amp;t=3DBXzEowst0lteThC0JO_aU8CjmPmnC=
+6xKyHE4zwwNdCY" style=3D"border-radius:50%;outline:none;-ms-interpolation-m=
+ode:bicubic;color:#FFFFFF;max-width:unset !important;text-decoration:none;"=
+></td> </tr> </tbody> </table></a></td> </tr> </tbody> </table></td> </tr> =
+</tbody> </table></td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100=
+%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <t=
+able role=3D"presentation" border=3D"0" class=3D"newsletter-email-content" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"padding:2em;-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D"p=
+adding-top:1em;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;padding-bottom:1em;"> <p style=3D"mar=
+gin:0;word-wrap:break-word;color:#666666;word-break:break-word;font-weight:=
+400;-ms-word-break:break-all;letter-spacing:2px;font-size:14px;line-height:=
+1.429;overflow-wrap:break-word;">NEWSLETTER ON LINKEDIN</p></td> </tr> <tr =
+style=3D"padding-top:0;padding-bottom:0;"> <td style=3D"-webkit-text-size-a=
+djust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;padding-bottom:1em;"> <table role=3D"presentation" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adju=
+st:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%=
+;border-collapse:separate;"> <tbody> <tr style=3D"padding-top:0;padding-bot=
+tom:0;"> <td valign=3D"top" style=3D"-webkit-text-size-adjust:100%;mso-tabl=
+e-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-right:0=
+.5em;"> <a href=3D"https://www.linkedin.com/comm/newsletters/67927504804192=
+41984?midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1&amp;trk=3Deml-e=
+mail_series_follow_newsletter_01-hero-6-null&amp;trkEmail=3Deml-email_serie=
+s_follow_newsletter_01-hero-6-null-null-eau1wl%7El2rltis6%7Ed4-null-neptune=
+%2Fnewsletters&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsl=
+etter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D" style=3D"cursor:pointer;color:#0A6=
+6C2;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:none=
+;-ms-text-size-adjust:100%;"><img alt=3D"" border=3D"0" height=3D"64" width=
+=3D"64" src=3D"https://media-exp1.licdn.com/dms/image/C4D12AQE-5qG3fAfcJw/s=
+eries-logo_image-shrink_300_300/0/1619517910861?e=3D2147483647&amp;v=3Dbeta=
+&amp;t=3DfcGQrJRYv8PZKnuM1yUs20Tt1UpwqVazjivSnROrN7M" style=3D"outline:none=
+;-ms-interpolation-mode:bicubic;color:#FFFFFF;max-width:unset !important;te=
+xt-decoration:none;"></a></td> <td width=3D"100%" valign=3D"top" style=3D"-=
+webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;"> <table role=3D"presentation" border=3D"0" cellspac=
+ing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;=
+border-collapse:separate;"> <tbody> <tr style=3D"padding-top:0;padding-bott=
+om:0;"> <td style=3D"padding-top:0;-webkit-text-size-adjust:100%;mso-table-=
+rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-bottom:0;=
+"><a href=3D"https://www.linkedin.com/comm/newsletters/6792750480419241984?=
+midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1&amp;trk=3Deml-email_s=
+eries_follow_newsletter_01-hero-6-null&amp;trkEmail=3Deml-email_series_foll=
+ow_newsletter_01-hero-6-null-null-eau1wl%7El2rltis6%7Ed4-null-neptune%2Fnew=
+sletters&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_=
+01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-w=
+ebkit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-t=
+ext-size-adjust:100%;"> <span style=3D"word-wrap:break-word;color:#000000;w=
+ord-break:break-word;font-weight:700;-ms-word-break:break-all;font-size:16p=
+x;line-height:1.25;overflow-wrap:break-word;">Ask Richard</span></a></td> <=
+/tr> <tr style=3D"padding-top:0;padding-bottom:0;"> <td style=3D"padding-to=
+p:0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt=
+;-ms-text-size-adjust:100%;padding-bottom:0;"><a href=3D"https://www.linked=
+in.com/comm/newsletters/6792750480419241984?midToken=3DAQEq1MBbB2bM8g&amp;m=
+idSig=3D22eJtthx-z2Gg1&amp;trk=3Deml-email_series_follow_newsletter_01-hero=
+-6-null&amp;trkEmail=3Deml-email_series_follow_newsletter_01-hero-6-null-nu=
+ll-eau1wl%7El2rltis6%7Ed4-null-neptune%2Fnewsletters&amp;lipi=3Durn%3Ali%3A=
+page%3Aemail_email_series_follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%=
+3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;dis=
+play:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <span s=
+tyle=3D"word-wrap:break-word;color:#737373;word-break:break-word;font-weigh=
+t:400;-ms-word-break:break-all;font-size:14px;line-height:1.429;overflow-wr=
+ap:break-word;">A place where you can ask me anything, and we can learn fro=
+m one another.</span></a></td> </tr> </tbody> </table></td> </tr> </tbody> =
+</table></td> </tr> <tr style=3D"padding-top:0;padding-bottom:0;"> <td alig=
+n=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-=
+table-lspace:0pt;-ms-text-size-adjust:100%;padding-bottom:1.5em;"> <table r=
+ole=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-t=
+able-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbod=
+y> <tr style=3D"padding-top:0;padding-bottom:0;"> <td valign=3D"middle" sty=
+le=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;padding-right:0.5em;"> <a href=3D"https://www.=
+linkedin.com/comm/profile/view?id=3DAAsAAAwp1RMBB_PBf6Qezb9b0ZC_anXZ7nrADfU=
+&amp;amp;midToken=3DAQEq1MBbB2bM8g&amp;amp;midSig=3D22eJtthx-z2Gg1&amp;amp;=
+trk=3Deml-email_series_follow_newsletter_01-null-0-null&amp;amp;trkEmail=3D=
+eml-email_series_follow_newsletter_01-null-0-null-null-eau1wl%7El2rltis6%7E=
+d4-npv-nprofile%7Eview&amp;amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_=
+follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D" style=3D"border-radius=
+:50%;cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display:inl=
+ine-block;text-decoration:none;-ms-text-size-adjust:100%;"><img alt=3D"Rich=
+ard Branson" border=3D"0" height=3D"32" width=3D"32" src=3D"https://media-e=
+xp1.licdn.com/dms/image/C4D03AQHh6_Wth5f3rQ/profile-displayphoto-shrink_800=
+_800/0/1625181962692?e=3D2147483647&amp;v=3Dbeta&amp;t=3DWJiu0TdxCwwJ3w0XVv=
+vjUpCiSa51oc0Kl54tZ7-w5JM" style=3D"border-radius:50%;outline:none;-ms-inte=
+rpolation-mode:bicubic;color:#FFFFFF;max-width:unset !important;text-decora=
+tion:none;"></a></td> <td valign=3D"middle" width=3D"100%" style=3D"-webkit=
+-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-s=
+ize-adjust:100%;"> <table role=3D"presentation" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border=
+-collapse:separate;"> <tbody> <tr style=3D"padding-top:0;padding-bottom:0;"=
+> <td style=3D"padding-top:0;-webkit-text-size-adjust:100%;mso-table-rspace=
+:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-bottom:0;"><a h=
+ref=3D"https://www.linkedin.com/comm/profile/view?id=3DAAsAAAwp1RMBB_PBf6Qe=
+zb9b0ZC_anXZ7nrADfU&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2G=
+g1&amp;trk=3Deml-email_series_follow_newsletter_01-null-0-null&amp;trkEmail=
+=3Deml-email_series_follow_newsletter_01-null-0-null-null-eau1wl%7El2rltis6=
+%7Ed4-npv-nprofile%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_f=
+ollow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D" style=3D"cursor:pointer=
+;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-block;text-deco=
+ration:none;-ms-text-size-adjust:100%;padding-right:0.25em;"> <span style=
+=3D"word-wrap:break-word;color:#000000;word-break:break-word;font-weight:70=
+0;-ms-word-break:break-all;font-size:14px;line-height:1.429;overflow-wrap:b=
+reak-word;">Richard Branson</span></a></td> </tr> <tr style=3D"padding-top:=
+0;padding-bottom:0;"> <td style=3D"padding-top:0;-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;pad=
+ding-bottom:0;"><a href=3D"https://www.linkedin.com/comm/profile/view?id=3D=
+AAsAAAwp1RMBB_PBf6Qezb9b0ZC_anXZ7nrADfU&amp;midToken=3DAQEq1MBbB2bM8g&amp;m=
+idSig=3D22eJtthx-z2Gg1&amp;trk=3Deml-email_series_follow_newsletter_01-null=
+-0-null&amp;trkEmail=3Deml-email_series_follow_newsletter_01-null-0-null-nu=
+ll-eau1wl%7El2rltis6%7Ed4-npv-nprofile%7Eview&amp;lipi=3Durn%3Ali%3Apage%3A=
+email_email_series_follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D" sty=
+le=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display:in=
+line-block;text-decoration:none;-ms-text-size-adjust:100%;padding-right:0.2=
+5em;"> <span style=3D"word-wrap:break-word;color:#737373;word-break:break-w=
+ord;font-weight:400;-ms-word-break:break-all;font-size:12px;line-height:1.3=
+33;overflow-wrap:break-word;">Founder at Virgin Group</span></a></td> </tr>=
+ </tbody> </table></td> </tr> </tbody> </table></td> </tr> <tr style=3D"pad=
+ding-top:0;"> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0=
+pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"present=
+ation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"border-radius:8px;overflow:hidden;-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collap=
+se:separate;"> <tbody> <tr style=3D"padding-top: 0;"> <td width=3D"100%" st=
+yle=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:=
+0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.linkedin.com/e/v2/pu=
+lse?e=3Deau1wl-l2rltis6-d4&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_=
+follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&amp;a=3Dpulse_web_view_=
+article_detail_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-=
+z2Gg1&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D2&amp;m=3Dhero&am=
+p;ts=3Dimage_link&amp;permLink=3Dask-richard-how-can-parents-help-dyslexic-=
+children-thrive-branson" style=3D"cursor:pointer;background-color:#f7f9fb;b=
+order-radius:8px;background-repeat:;color:#0A66C2;-webkit-text-size-adjust:=
+100%;display:inline-block;text-decoration:none;width:100%;-ms-text-size-adj=
+ust:100%;background-position:;"><img border=3D"0" src=3D"https://media-exp1=
+.licdn.com/dms/image/C4E12AQEumLFPpL0jAg/article-cover_image-shrink_720_128=
+0/0/1651668979863?e=3D2147483647&amp;v=3Dbeta&amp;t=3D3HSpYSbcTNcbTaFowWkQa=
+GTxqNhTtJl1_1T2F3Y9tDA" alt=3D"Imagem de capa da newsletter" width=3D"512" =
+style=3D"border-radius:8px;max-height:500px;outline:none;margin:0 auto;-ms-=
+interpolation-mode:bicubic;color:#FFFFFF;max-width:100%;text-decoration:non=
+e;display:block;"></a></td> </tr> <tr> <td style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;=
+"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"padding-top:1em;-webkit-text-size-adjust:100=
+%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;borde=
+r-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;pad=
+ding-bottom:0.5em;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3Deau1=
+wl-l2rltis6-d4&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsl=
+etter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&amp;a=3Dpulse_web_view_article_deta=
+il_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1&amp;ek=
+=3Demail_series_follow_newsletter_01&amp;li=3D1&amp;m=3Dhero&amp;ts=3Dtitle=
+_link&amp;permLink=3Dask-richard-how-can-parents-help-dyslexic-children-thr=
+ive-branson" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust=
+:100%;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"=
+> <h2 style=3D"margin:0;color:#000000;font-weight:500;font-size:20px;line-h=
+eight:1.2;">Ask Richard: How can parents help their dyslexic children thriv=
+e, and how can schools better support dyslexic students?</h2></a></td> </tr=
+> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-=
+table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presentation" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-w=
+ebkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-t=
+ext-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D"=
+-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms=
+-text-size-adjust:100%;padding-bottom:1em;"> <p style=3D"margin:0;color:#00=
+0000;font-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5;"></p><=
+p style=3D"margin:0;font-weight:400;font-size:1em;margin-top:0.8em;line-hei=
+ght:1.5;">It has been nothing short of amazing to see the response from&nbs=
+p;<a href=3D"https://www.virgin.com/branson-family/richard-branson-blog/wor=
+king-together-to-redefine-dyslexia" target=3D"_blank" rel=3D"nofollow noope=
+ner" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;di=
+splay:inline;text-decoration:none;-ms-text-size-adjust:100%;">our campaign =
+with Made By Dyslexia and&nbsp;LinkedIn</a>&nbsp;to add =E2=80=98Dyslexic T=
+hinking=E2=80=99 as a recognised skill on the platform. For my&nbsp;newslet=
+ter&nbsp;this month, I invited people to ask me any questions they have abo=
+ut dyslexia, and to share their personal experiences. Reading through so ma=
+ny questions and stories from dyslexic thinkers all around the world left m=
+e more certain than ever that dyslexia is a superpower =E2=80=93 but also r=
+emains surrounded by many stigmas and barriers.</p><p style=3D"margin:0;fon=
+t-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5;">I read storie=
+s where people were kicked out of class, told to =E2=80=98go to church=E2=
+=80=99, and received =E2=80=98snail awards=E2=80=99 at school. I heard from=
+ lawyers, engineers, people with&nbsp;PhDs,&nbsp;and psychologists who were=
+n=E2=80=99t diagnosed until late in their careers. I also heard from musici=
+ans, artists, entrepreneurs, CEOs, analysts, professors, and people working=
+ in theatre and fashion who said their dyslexia was pivotal to their succes=
+s. Many people also left comments wondering if they were indeed dyslexic, a=
+nd were unsure&nbsp;how to find out.&nbsp;Made By Dyslexia have a really&nb=
+sp;<a href=3D"https://www.madebydyslexia.org/quiz" target=3D"_blank" rel=3D=
+"nofollow noopener" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size=
+-adjust:100%;display:inline;text-decoration:none;-ms-text-size-adjust:100%;=
+">simple online quiz</a>&nbsp;which is a good first step to take. For a for=
+mal assessment, you can refer to the&nbsp;<a href=3D"https://www.bdadyslexi=
+a.org.uk/" target=3D"_blank" rel=3D"nofollow noopener" style=3D"cursor:poin=
+ter;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline;text-decorat=
+ion:none;-ms-text-size-adjust:100%;">British Dyslexia Association</a>, the&=
+nbsp;<a href=3D"https://dyslexiaida.org/" target=3D"_blank" rel=3D"nofollow=
+ noopener" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:1=
+00%;display:inline;text-decoration:none;-ms-text-size-adjust:100%;">Interna=
+tional Dyslexia Association</a>&nbsp;and the&nbsp;<a href=3D"http://www.hel=
+enarkell.org.uk/" target=3D"_blank" rel=3D"nofollow noopener" style=3D"curs=
+or:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline;text-=
+decoration:none;-ms-text-size-adjust:100%;">Helen Arkell Dyslexia Charity</=
+a>.</p> <div> <a href=3D"https://www.linkedin.com/pulse/ask-richard-how-can=
+-parents-help-dyslexic-children-thrive-branson" style=3D"cursor:pointer;pad=
+ding:0.8em 1.5em;margin:1em 0 2em;color:#0A66C2;-webkit-text-size-adjust:10=
+0%;font-weight:400;display:block;text-decoration:none;-ms-text-size-adjust:=
+100%;font-size:1em;line-height:1.25;border-color:#0a66c2;background-color:#=
+FFFFFF;border-radius:34px;mso-table-rspace:0pt;mso-table-lspace:0pt;border-=
+width:1px;border-style:solid;text-align:center;">View media in original art=
+icle</a> </div><p style=3D"margin:0;font-weight:400;font-size:1em;margin-to=
+p:0.8em;line-height:1.5;">Back to the questions, many parents reached out a=
+sking for advice on how to help their children embrace their dyslexia and u=
+nlock their full potential. A lot of people also asked how schools can bett=
+er support and be more inclusive of dyslexic thinkers, so I decided to answ=
+er both questions.&nbsp;</p><p style=3D"margin:0;font-weight:400;font-size:=
+1em;margin-top:0.8em;line-height:1.5;">Although I didn=E2=80=99t know I had=
+ dyslexia until I was an adult, my parents were always incredibly supportiv=
+e of my creative ideas and curious ways of thinking. Despite my poor grades=
+ and terrible spelling, they never doubted me - but they never fussed over =
+me either. My mum taught me to never let my insecurities or so-called =E2=
+=80=98weaknesses=E2=80=99 hold me back in life. When so much of your worth =
+as a young person is attached to grades and report cards (especially in tho=
+se days), my parents reminded me that what really matters in life is how yo=
+u treat people, and how you follow&nbsp;your passions.</p> <div style=3D"te=
+xt-align:center;"> <img alt=3D"No alt text provided for this image" data-me=
+dia-urn=3D"" data-li-src=3D"https://media-exp1.licdn.com/dms/image/C4E12AQE=
+UJXwtVr1bnQ/article-inline_image-shrink_1500_2232/0/1651669549379?e=3D21474=
+83647&amp;v=3Dbeta&amp;t=3DTvA4km6Q-vcyBPblS-eN_9K5dhojXMUtd7JrAHjXY2w" src=
+=3D"https://media-exp1.licdn.com/dms/image/C4E12AQEUJXwtVr1bnQ/article-inli=
+ne_image-shrink_1500_2232/0/1651669549379?e=3D2147483647&amp;v=3Dbeta&amp;t=
+=3DTvA4km6Q-vcyBPblS-eN_9K5dhojXMUtd7JrAHjXY2w" width=3D"480" style=3D"outl=
+ine:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;max-width:100%;text-d=
+ecoration:none;display:block;margin-top:1em;"> </div><p style=3D"margin:0;f=
+ont-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5;">My&nbsp;adv=
+ice&nbsp;to any parent with a dyslexic child (especially if they are feelin=
+g discouraged and exhausted), is to help your child discover their passions=
+ and strengths, and support their pursuits as much as possible. This is so =
+important to help build self-esteem, which is often knocked by school curri=
+culums and unknowing peers. We need to constantly remind dyslexic kids of t=
+he achievements that dyslexics (such as Albert Einstein and Walt Disney) ha=
+ve made, and the skills (such as creativity, empathy, problem-solving and r=
+esilience) that dyslexic thinking gives you. These skills are in such high =
+demand in today=E2=80=99s workplaces, and we need to always remember that! =
+Made By Dyslexia has some&nbsp;<a href=3D"https://www.madebydyslexia.org/pa=
+rents/" target=3D"_blank" rel=3D"nofollow noopener" style=3D"cursor:pointer=
+;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline;text-decoration=
+:none;-ms-text-size-adjust:100%;">fantastic resources and tips</a>&nbsp;for=
+ parents too, which I can=E2=80=99t recommend enough. When it comes to prac=
+tical support, it=E2=80=99s good to lean on evidence-based, multi-sensory i=
+nterventions, and brilliant tech tools like text-to-speech converters, voic=
+e notes, predictive text, highlighting tools and&nbsp;<a href=3D"https://ww=
+w.microsoft.com/en-gb/education/products/learning-tools" target=3D"_blank" =
+rel=3D"nofollow noopener" style=3D"cursor:pointer;color:#0A66C2;-webkit-tex=
+t-size-adjust:100%;display:inline;text-decoration:none;-ms-text-size-adjust=
+:100%;">Microsoft=E2=80=99s Immersive Reader</a>. Made by Dyslexia=E2=80=99=
+s&nbsp;<a href=3D"https://www.madebydyslexia.org/parents/" target=3D"_blank=
+" rel=3D"nofollow noopener" style=3D"cursor:pointer;color:#0A66C2;-webkit-t=
+ext-size-adjust:100%;display:inline;text-decoration:none;-ms-text-size-adju=
+st:100%;">fact sheets</a>&nbsp;are a great place to start, and the free tra=
+ining the offer is video-based and really great for parents. </p><p style=
+=3D"margin:0;font-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5=
+;">When it comes to schools, I=E2=80=99d like to think there is more suppor=
+t and awareness than in my day, but it=E2=80=99s clear there is still a lon=
+g way to go. Teachers all around the world should be trained&nbsp;to spot d=
+yslexia, and to give dyslexic children every chance to thrive. Identifying =
+dyslexia is such a crucial point. I find it staggering that&nbsp;one in fiv=
+e people have dyslexia, yet 80% of students leave school unidentified.&nbsp=
+;It=E2=80=99s so important to bridge this gap because the&nbsp;earlier it i=
+s discovered and supported, the sooner the student can catch up and keep up=
+. When I was in school, I didn=E2=80=99t even know what dyslexia was. Teach=
+ers called me dumb and lazy, and I started to believe them. It was only whe=
+n I dropped out of school and realised my ability to think big, solve probl=
+ems, and empathise was much more useful than a spelling bee trophy. I wonde=
+r how different my education would have been if I had been empowered by the=
+ system instead of rejected by it?&nbsp;</p> <div style=3D"text-align:cente=
+r;"> <img alt=3D"No alt text provided for this image" data-media-urn=3D"" d=
+ata-li-src=3D"https://media-exp1.licdn.com/dms/image/C4E12AQGV5ynyGLivsw/ar=
+ticle-inline_image-shrink_1000_1488/0/1651669843329?e=3D2147483647&amp;v=3D=
+beta&amp;t=3DeVCCdmlchfUFyv-glQB1N_5FY1dQPRq7JGaHqS07_Tg" src=3D"https://me=
+dia-exp1.licdn.com/dms/image/C4E12AQGV5ynyGLivsw/article-inline_image-shrin=
+k_1000_1488/0/1651669843329?e=3D2147483647&amp;v=3Dbeta&amp;t=3DeVCCdmlchfU=
+Fyv-glQB1N_5FY1dQPRq7JGaHqS07_Tg" width=3D"480" style=3D"outline:none;-ms-i=
+nterpolation-mode:bicubic;color:#FFFFFF;max-width:100%;text-decoration:none=
+;display:block;margin-top:1em;"> </div><p style=3D"margin:0;font-weight:400=
+;font-size:1em;margin-top:0.8em;line-height:1.5;">Education bodies need to =
+deepen their understanding of dyslexia, and stop treating it as a disabilit=
+y or a disadvantage. Students should be better supported in the areas they =
+struggle with (such as reading and spelling), and better equipped to hone t=
+heir dyslexic strengths (including storytelling and imagination). This will=
+ also go a long way in preventing bullying and nasty stigmas. If teachers a=
+re given the tools, resources and flexibility to spot, support and empower =
+dyslexic students =E2=80=93 the world will go a long way. Again, Made By Dy=
+slexia&nbsp;<a href=3D"https://education.microsoft.com/en-us/learningPath/9=
+39a69c9" target=3D"_blank" rel=3D"nofollow noopener" style=3D"cursor:pointe=
+r;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline;text-decoratio=
+n:none;-ms-text-size-adjust:100%;">offers some fantastic (and free) trainin=
+g</a>&nbsp;in partnership with Microsoft, which provides really practical t=
+eaching strategies and solutions. Standardised exams have also got to go. T=
+he world needs dyslexic thinking, but children are still being taught to co=
+nform and do well on generic tests. As I&nbsp;<a href=3D"https://www.thetim=
+es.co.uk/article/times-education-commission-richard-branson-i-was-a-school-=
+dropout-and-we-re-still-killing-creativity-and-risk-5fc7jf66m" target=3D"_b=
+lank" rel=3D"nofollow noopener" style=3D"cursor:pointer;color:#0A66C2;-webk=
+it-text-size-adjust:100%;display:inline;text-decoration:none;-ms-text-size-=
+adjust:100%;">wrote about in The Times</a>&nbsp;earlier this year: </p> <bl=
+ockquote style=3D"padding:0 0 0 1.5em;margin:1.5em 0;color:#282828;border-l=
+eft:4px solid rgba(0,0,0,.75);display:block;font-size:1em;line-height:1.5;f=
+ont-style:italic;"> I once did an IQ test as an eight-year-old. I don=E2=80=
+=99t think I filled in anything. Go forward 30 or so years, I was running E=
+urope=E2=80=99s largest private group of companies. I didn=E2=80=99t know t=
+he difference between gross and net profit, but it didn=E2=80=99t matter...=
+ What mattered was my character, whether I was good at inspiring people and=
+ motivating people, whether I wanted to make a real difference in the world=
+. </blockquote><p style=3D"margin:0;font-weight:400;font-size:1em;margin-to=
+p:0.8em;line-height:1.5;">Thank you to everyone who shared your stories and=
+ your questions this month. By having more conversations like this, we can =
+empower dyslexic thinkers all around the world.&nbsp;</p><p style=3D"margin=
+:0;font-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5;">Until n=
+ext month,</p><p style=3D"margin:0;font-weight:400;font-size:1em;margin-top=
+:0.8em;line-height:1.5;">Richard</p><p style=3D"margin:0;font-weight:400;fo=
+nt-size:1em;margin-top:0.8em;line-height:1.5;"></p></td> </tr> <tr> <td sty=
+le=3D"padding-top:0.5em;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;=
+mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" role=3D"presentation" align=3D"left" style=
+=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;display:inline-block=
+;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;">=
+ <tbody> <tr> <td align=3D"center" valign=3D"middle" style=3D"-webkit-text-=
+size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;font-size:16px;-=
+ms-text-size-adjust:100%;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=
+=3Deau1wl-l2rltis6-d4&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follo=
+w_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&amp;a=3Dpulse_web_view_artic=
+le_detail_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1=
+&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D3&amp;m=3Dfooter_promo=
+&amp;ts=3Dprimary_cta_link&amp;permLink=3Dask-richard-how-can-parents-help-=
+dyslexic-children-thrive-branson" style=3D"cursor:pointer;word-wrap:normal;=
+color:#0A66C2;word-break:normal;white-space:normal;-webkit-text-size-adjust=
+:100%;display:block;text-decoration:none;-ms-text-size-adjust:100%;overflow=
+-wrap:normal;text-align:center;"> <table role=3D"presentation" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-s=
+ize-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adj=
+ust:100%;border-collapse:separate;"> <tbody> <tr> <td bgcolor=3D"#0A66C2" s=
+tyle=3D"padding:12px 24px;color:#FFFFFF;-webkit-text-size-adjust:100%;font-=
+weight:400;display:inline-block;text-decoration:none;font-size:16px;-ms-tex=
+t-size-adjust:100%;line-height:1.25em;border-color:#0A66C2;background-color=
+:#0A66C2;border-radius:34px;mso-table-rspace:0pt;mso-table-lspace:0pt;borde=
+r-width:1px;border-style:solid;"><a href=3D"https://www.linkedin.com/e/v2/p=
+ulse?e=3Deau1wl-l2rltis6-d4&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series=
+_follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&amp;a=3Dpulse_web_view=
+_article_detail_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx=
+-z2Gg1&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D3&amp;m=3Dfooter=
+_promo&amp;ts=3Dprimary_cta_link&amp;permLink=3Dask-richard-how-can-parents=
+-help-dyslexic-children-thrive-branson" style=3D"cursor:pointer;word-wrap:n=
+ormal;color:#FFFFFF;word-break:normal;white-space:normal;-webkit-text-size-=
+adjust:100%;display:block;text-decoration:none;-ms-text-size-adjust:100%;ov=
+erflow-wrap:normal;text-align:center;">Participe da conversa</a></td> </tr>=
+ </tbody> </table></a></td> </tr><!--[if !mso]><!--> <tr> <td height=3D"3" =
+style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspac=
+e:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" border=3D"0" cellspac=
+ing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-tabl=
+e-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse=
+:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=
+=3D"height:1px;font-size:1px;line-height:1px"> &nbsp; </div></td> </tr> </t=
+body> </table></td> </tr><!--<![endif]--> </tbody> </table></td> </tr> </tb=
+ody> </table></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td=
+> </tr> <tr> <td style=3D"padding-top:1.5em;-webkit-text-size-adjust:100%;m=
+so-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-=
+bottom:1.5em;"> <p style=3D"margin:0;color:#000000;font-weight:400;font-siz=
+e:16px;line-height:1.25;">Conhece algu=C3=A9m que possa se interessar por e=
+sta newsletter? Compartilhe-a!</p></td> </tr> <tr> <td style=3D"-webkit-tex=
+t-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-=
+adjust:100%;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"75%" style=3D"margin:0 auto;-webkit-text-size-ad=
+just:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:10=
+0%;border-collapse:separate;"> <tbody> <tr align=3D"middle"> <td style=3D"-=
+webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;"><a href=3D"https://www.linkedin.com/e/v2?e=3Deau1wl=
+-l2rltis6-d4&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newslet=
+ter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&amp;t=3Dplh&amp;midToken=3DAQEq1MBbB2=
+bM8g&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D7&amp;m=3Dfooter_p=
+romo&amp;urlhash=3Dv2ji&amp;url=3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fshar=
+eArticle%3Fmini%3Dtrue%26url%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2=
+Fask-richard-how-can-parents-help-dyslexic-children-thrive-branson" style=
+=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display:inli=
+ne-block;text-decoration:none;-ms-text-size-adjust:100%;"><img src=3D"https=
+://static.licdn.com/sc/p/com.linkedin.email-assets-frontend%3Aemail-assets-=
+frontend-static-content%2B__latest__/f/%2Femail-assets-frontend%2Fimages%2F=
+email%2Fartdeco%2Fsocial%2F24%2Flinkedin-color.png" height=3D"24" width=3D"=
+24" alt=3D"Compartilhe esta s=C3=A9rie no LinkedIn" style=3D"outline:none;-=
+ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;"></a></td=
+> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.linkedin.com=
+/e/v2?e=3Deau1wl-l2rltis6-d4&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_serie=
+s_follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&amp;t=3Dplh&amp;midTo=
+ken=3DAQEq1MBbB2bM8g&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D8&=
+amp;m=3Dfooter_promo&amp;urlhash=3DPUpN&amp;url=3Dhttps%3A%2F%2Fwww%2Efaceb=
+ook%2Ecom%2Fsharer%2Fsharer%2Ephp%3Fu%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%=
+2Fpulse%2Fask-richard-how-can-parents-help-dyslexic-children-thrive-branson=
+" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;displ=
+ay:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"><img src=
+=3D"https://static.licdn.com/sc/p/com.linkedin.email-assets-frontend%3Aemai=
+l-assets-frontend-static-content%2B__latest__/f/%2Femail-assets-frontend%2F=
+images%2Femail%2Fartdeco%2Fsocial%2F24%2Ffacebook-color.png" height=3D"24" =
+width=3D"24" alt=3D"Compartilhe esta s=C3=A9rie no Facebook" style=3D"outli=
+ne:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;"=
+></a></td> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;=
+mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.lin=
+kedin.com/e/v2?e=3Deau1wl-l2rltis6-d4&amp;lipi=3Durn%3Ali%3Apage%3Aemail_em=
+ail_series_follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&amp;t=3Dplh&=
+amp;midToken=3DAQEq1MBbB2bM8g&amp;ek=3Demail_series_follow_newsletter_01&am=
+p;li=3D9&amp;m=3Dfooter_promo&amp;urlhash=3DEYgk&amp;url=3Dhttps%3A%2F%2Fww=
+w%2Etwitter%2Ecom%2Fintent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ec=
+om%2Fpulse%2Fask-richard-how-can-parents-help-dyslexic-children-thrive-bran=
+son" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;di=
+splay:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"><img sr=
+c=3D"https://static.licdn.com/sc/p/com.linkedin.email-assets-frontend%3Aema=
+il-assets-frontend-static-content%2B__latest__/f/%2Femail-assets-frontend%2=
+Fimages%2Femail%2Fartdeco%2Fsocial%2F24%2Ftwitter-color.png" height=3D"24" =
+width=3D"24" alt=3D"Compartilhe esta s=C3=A9rie no Twitter" style=3D"outlin=
+e:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;">=
+</a></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </tr> <=
+tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tab=
+le-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presentation" bor=
+der=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" bgcolor=3D"#F3=
+F2EF" align=3D"left" style=3D"background-color:#F3F2EF;padding-top:16px;col=
+or:#000000;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lsp=
+ace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;text-align:left;=
+"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace=
+:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"24" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size=
+-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust=
+:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adju=
+st:100%;"> <div style=3D"height:0px;font-size:0px;line-height:0px"> &nbsp; =
+</div></td> </tr> </tbody> </table></td> <td style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100=
+%;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rsp=
+ace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:sepa=
+rate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-r=
+space:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"=
+presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100=
+%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-ls=
+pace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr>=
+ <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-=
+lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" border=3D"0" cel=
+lspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adjust:100%;mso=
+-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-col=
+lapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;m=
+so-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <div =
+style=3D"height:12px;font-size:12px;line-height:12px"> &nbsp; </div></td> <=
+/tr> </tbody> </table></td> </tr> <tr> <td align=3D"left" style=3D"padding:=
+0;color:#000000;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;text-align:left;"> <p style=3D"margi=
+n:0;word-wrap:break-word;color:#000000;word-break:break-word;font-weight:40=
+0;-ms-word-break:break-all;font-size:12px;line-height:1.333;overflow-wrap:b=
+reak-word;">Este e-mail foi enviado para Rafael Souza (Desenvolvedor da web=
+ na Solution.dev). <a href=3D"https://www.linkedin.com/e/v2?e=3Deau1wl-l2rl=
+tis6-d4&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_0=
+1%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&amp;a=3DcustomerServiceUrl&amp;midToken=3D=
+AQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1&amp;ek=3Demail_series_follow_new=
+sletter_01&amp;articleId=3D4788" style=3D"cursor:pointer;color:#0A66C2;-web=
+kit-text-size-adjust:100%;text-decoration:underline;display:inline-block;-m=
+s-text-size-adjust:100%;">Saiba por que inclu=C3=ADmos isto.</a></p></td> <=
+/tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;=
+border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100=
+%;"> <div style=3D"height:16px;font-size:16px;line-height:16px"> &nbsp; </d=
+iv></td> </tr> </tbody> </table></td> </tr> <tr> <td align=3D"left" style=
+=3D"padding:0;color:#000000;-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:left;"> <p st=
+yle=3D"margin:0;color:#000000;font-weight:400;font-size:12px;line-height:1.=
+333;">Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do Lin=
+kedIn. O autor da newsletter pode ver que voc=C3=AA =C3=A9 assinante.</p></=
+td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-a=
+djust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size=
+-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust=
+:100%;"> <div style=3D"height:16px;font-size:16px;line-height:16px"> &nbsp;=
+ </div></td> </tr> </tbody> </table></td> </tr> <tr> <td align=3D"left" sty=
+le=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;text-align:left;"> <table role=3D"presentation=
+" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-t=
+able-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbod=
+y> <tr> <td valign=3D"middle" align=3D"left" style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;vertical-align:middle;mso-table-lspace:0pt;-m=
+s-text-size-adjust:100%;text-align:left;"><a href=3D"https://www.linkedin.c=
+om/e/v2?e=3Deau1wl-l2rltis6-d4&amp;t=3Dlun&amp;midToken=3DAQEq1MBbB2bM8g&am=
+p;midSig=3D22eJtthx-z2Gg1&amp;ek=3Demail_series_follow_newsletter_01&amp;li=
+=3D42&amp;m=3Dunsub&amp;ts=3Dunsub&amp;eid=3Deau1wl-l2rltis6-d4&amp;loid=3D=
+AQH9OCPeyduJEwAAAYCPPYbQgskkxpxwVU4kMJLSNASMdond_fTywqMmvId7v9PqDeaKB6nCVpv=
+TblpCZUTCLElBvPnINxyG0ZJQKcPmOcct-ivplazMZA" style=3D"cursor:pointer;color:=
+#0A66C2;-webkit-text-size-adjust:100%;text-decoration:underline;display:inl=
+ine-block;-ms-text-size-adjust:100%;"> <span style=3D"color:#0A66C2;font-we=
+ight:400;font-size:12px;line-height:1.333;">Cancelar inscri=C3=A7=C3=A3o</s=
+pan></a>&nbsp;&nbsp;=C2=B7&nbsp;&nbsp;<a href=3D"https://www.linkedin.com/e=
+/v2?e=3Deau1wl-l2rltis6-d4&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_=
+follow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D&amp;a=3DcustomerService=
+Url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1&amp;ek=3Demai=
+l_series_follow_newsletter_01&amp;li=3D41&amp;m=3Dfooter&amp;ts=3Dhelp&amp;=
+articleId=3D67" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adj=
+ust:100%;text-decoration:underline;display:inline-block;-ms-text-size-adjus=
+t:100%;"> <span style=3D"color:#0A66C2;font-weight:400;font-size:12px;line-=
+height:1.333;">Ajuda</span></a></td> </tr> <tr> <td style=3D"-webkit-text-s=
+ize-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adj=
+ust:100%;"> <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> =
+<tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-ta=
+ble-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height:16px;font-=
+size:16px;line-height:16px"> &nbsp; </div></td> </tr> </tbody> </table></td=
+> </tr> </tbody> </table></td> </tr> <tr> <td align=3D"left" style=3D"paddi=
+ng:0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0p=
+t;-ms-text-size-adjust:100%;text-align:left;"><a href=3D"https://www.linked=
+in.com/comm/feed/?midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D22eJtthx-z2Gg1&amp=
+;trk=3Deml-email_series_follow_newsletter_01-footer-39-home&amp;trkEmail=3D=
+eml-email_series_follow_newsletter_01-footer-39-home-null-eau1wl%7El2rltis6=
+%7Ed4-null-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_f=
+ollow_newsletter_01%3BDSEsXFxiSnSJbGOKN56fQw%3D%3D" style=3D"cursor:pointer=
+;color:#0A66C2;-webkit-text-size-adjust:100%;text-decoration:underline;disp=
+lay:inline-block;-ms-text-size-adjust:100%;"><img alt=3D"LinkedIn" border=
+=3D"0" height=3D"14" src=3D"https://static.licdn.com/sc/p/com.linkedin.emai=
+l-assets-frontend%3Aemail-assets-frontend-static-content%2B__latest__/f/%2F=
+email-assets-frontend%2Fimages%2Flogos%2Flogo_linkedin_mercado_blue_112x28.=
+png" width=3D"56" style=3D"outline:none;-ms-interpolation-mode:bicubic;colo=
+r:#FFFFFF;max-width:unset !important;display:block;text-decoration:none;"><=
+/a></td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"=
+1" border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-s=
+ize-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adj=
+ust:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-a=
+djust:100%;"> <div style=3D"height:16px;font-size:16px;line-height:16px"> &=
+nbsp; </div></td> </tr> </tbody> </table></td> </tr> <tr> <td align=3D"left=
+" style=3D"padding:0;color:#000000;-webkit-text-size-adjust:100%;mso-table-=
+rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:left;"=
+> <p style=3D"margin:0;color:#000000;font-weight:400;font-size:12px;line-he=
+ight:1.333;">=C2=A9 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, =
+Wilton Place, Dublin 2. LinkedIn =C3=A9 um nome comercial registrado da Lin=
+kedIn Ireland Unlimited Company. LinkedIn e a logomarca do LinkedIn s=C3=A3=
+o marcas registradas do LinkedIn.</p></td> </tr> <tr> <td style=3D"-webkit-=
+text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-si=
+ze-adjust:100%;"> <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-=
+table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbo=
+dy> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;ms=
+o-table-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height:24px;f=
+ont-size:24px;line-height:24px"> &nbsp; </div></td> </tr> </tbody> </table>=
+</td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> <td style=
+=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt=
+;-ms-text-size-adjust:100%;"> <table width=3D"24" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table-r=
+space:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:se=
+parate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D=
+"height:0px;font-size:0px;line-height:0px"> &nbsp; </div></td> </tr> </tbod=
+y> </table></td> </tr> </tbody> </table></td> </tr> </tbody> </table> </cen=
+ter></td> </tr> </tbody> </table> <img alt=3D"" role=3D"presentation" src=
+=3D"https://www.linkedin.com/emimp/ip_WldGMU1YZHNMV3d5Y214MGFYTTJMV1EwOlpXM=
+WhhV3hmYzJWeWFXVnpYMlp2Ykd4dmQxOXVaWGR6YkdWMGRHVnlYekF4OmRYSnVPbXhwT214cGJt=
+dGxaRWx1UVhKMGFXTnNaVG8yT1RJM05qQXhOelF3TlRNMk1ESTVNVGcx.gif" style=3D"outl=
+ine:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;=
+width:1px;height:1px;"> </body> </html>
+------=_Part_3790433_1398685839.1651670615892--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>2276</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1651670618</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>9372</string>
+</dict>
+</plist>

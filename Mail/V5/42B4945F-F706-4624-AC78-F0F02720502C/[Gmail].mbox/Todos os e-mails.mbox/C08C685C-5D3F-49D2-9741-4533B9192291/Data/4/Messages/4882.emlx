@@ -1,0 +1,867 @@
+31295     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:adf:8b8d:0:0:0:0:0 with SMTP id o13csp368524wra; Thu, 25 Feb
+ 2021 02:34:29 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzKQ1zugSqyqgi32tdoQvgDiFklp+MU59iHscRDSP3XCv4pJaZiCipuRVlPOtkpfrI4iA99
+X-Received: by 2002:a17:907:2642:: with SMTP id
+ ar2mr2008141ejc.145.1614249268944; Thu, 25 Feb 2021 02:34:28 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1614249268; cv=none; d=google.com;
+ s=arc-20160816;
+ b=hgRObGouLGh2V0aqTfAdr4B4wlOlLeddk3phlcPbqSOHFbf8NdBRm/JPYfLG4NH5kd
+ 89SYwhihQPcTD8V1JmDNE8yPR4wv12LNyV4lq1xa2GeDHAFwQ9h9hdvFfj7yOYzhNn7/
+ 3Ri2JKQM9/hfqiVUllu5MHclryUGlWe3pOCnA/MAehUVngNylO0eOKpGCbDJ2EscxozP
+ uGoNIGoGTpagFyoJbAxCq+leb3BbuOLRSMHT52hJXKuv2EJvHQZas6NhOc1M0NsJyoXr
+ nlIzuWgVWMNxW/tRjteEuyypDIVL6pkqa8bqHt3hfw2Ry4/oY8nqtGkrQlzkfUvCLg8O D97Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20160816; h=categories:content-transfer-encoding:mime-version:subject
+ :message-id:to:from:date:dkim-signature:dkim-signature;
+ bh=HBr4ZDJgM47I0yduCy864zvQSj8EFoSa4CgkC4kO5X8=;
+ b=uaLJ8PQtUQ/LitZ/xWt0O4FTTlqtOgjw4soB4fYwJr8W0RoRaFX0TiH/RTn8Nui6t7
+ cnd/wWlI5CHw8oS96pOb2jIhAW51o98fJJJSFSvknkI9q2G2UwKlgSlnc8O1+dIJbNux
+ LHALsNXHqwN5uMgRuDORpj4oJmkVfZBJY5DSUsS7JUxNbdEH42GH3HuP2zaOMnYN2uUf
+ SsnuYxIPSjqjRtsxY8mNuHkpnW+zKPObQqaqcZOd5REBEk9AoQgvLSPdedJP3DnuoZJ6
+ kg+898t1mHTL043IeGKnpT3xSQHCqiJBhc8JIXxq2PZ9r3sSlvdJbn5TVg2uJ1N6O4IV U1Uw==
+ARC-Authentication-Results: i=1; mx.google.com; dkim=pass header.i=@github.com
+ header.s=s20150108 header.b=YwBSAUFB; dkim=pass header.i=@sendgrid.info
+ header.s=smtpapi header.b=hBNuzBoh; spf=pass (google.com: domain of
+ bounces+848413-454c-faeldroom46=gmail.com@sgmail.github.com designates
+ 192.254.112.98 as permitted sender)
+ smtp.mailfrom="bounces+848413-454c-faeldroom46=gmail.com@sgmail.github.com";
+ dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <bounces+848413-454c-faeldroom46=gmail.com@sgmail.github.com>
+Received: from o3.sgmail.github.com (o3.sgmail.github.com. [192.254.112.98])
+ by mx.google.com with ESMTPS id m19si2933053edr.329.2021.02.25.02.34.28 for
+ <faeldroom46@gmail.com> (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256
+ bits=128/128); Thu, 25 Feb 2021 02:34:28 -0800 (PST)
+Received-SPF: pass (google.com: domain of
+ bounces+848413-454c-faeldroom46=gmail.com@sgmail.github.com designates
+ 192.254.112.98 as permitted sender) client-ip=192.254.112.98;
+Authentication-Results: mx.google.com; dkim=pass header.i=@github.com
+ header.s=s20150108 header.b=YwBSAUFB; dkim=pass header.i=@sendgrid.info
+ header.s=smtpapi header.b=hBNuzBoh; spf=pass (google.com: domain of
+ bounces+848413-454c-faeldroom46=gmail.com@sgmail.github.com designates
+ 192.254.112.98 as permitted sender)
+ smtp.mailfrom="bounces+848413-454c-faeldroom46=gmail.com@sgmail.github.com";
+ dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+ h=from:to:subject:mime-version:content-type:content-transfer-encoding;
+ s=s20150108; bh=HBr4ZDJgM47I0yduCy864zvQSj8EFoSa4CgkC4kO5X8=; b=
+ YwBSAUFBXKOZZrt/jIbkygR6GoVvHpD95anKLyaPbwiqNBImBDjyX9EwjDq7U6jL
+ LhlTnbOB3x3XN/eFBsuR6UBwucJu2cPiAV2ULIzsSXAzmaQLKZTL4r6YKB0vsiU8
+ LbGWaCEr6aPs1b49zblaARBazQwyV9yXUSjKYPpXDqc=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+ h=from:to:subject:mime-version:content-type:content-transfer-encoding:x-feedback-id;
+ s=smtpapi; bh=HBr4ZDJgM47I0yduCy864zvQSj8EFoSa4CgkC4kO5X8=; b=hB
+ NuzBohPNBBQ/8QV0mVjAwrd9aTVA0Y/f2KurBaD3fsY8C/sIEi9vZ6ffCRZHeTGE
+ p4eRaPuQJH3EkQ4RsMucjSpr4rEzB+s+B486SafpmCt+ScOyNPSFPOHcC9OJPnsk
+ VQaajs8NGad9OyV5q8pUir285v6KwSvpJWwM1y6s0=
+Received: by filter2131p1las1.sendgrid.net with SMTP id
+ filter2131p1las1-9327-60377D33-8 2021-02-25 10:34:27.278709527 +0000 UTC
+ m=+639061.842580703
+Received: from github-highworker-fffb977.ac4-iad.github.net (unknown) by
+ ismtpd0109p1mdw1.sendgrid.net (SG) with ESMTP id Mz-ee2EyTG2KDuVjMm8hjQ for
+ <faeldroom46@gmail.com>; Thu, 25 Feb 2021 10:34:27.124 +0000 (UTC)
+Received: from github.com (localhost [127.0.0.1]) by
+ github-highworker-fffb977.ac4-iad.github.net (Postfix) with ESMTP id
+ EBCEE2B0026A for <faeldroom46@gmail.com>; Thu, 25 Feb 2021 02:34:26 -0800
+ (PST)
+Date: Thu, 25 Feb 2021 10:34:27 +0000 (UTC)
+From: GitHub <noreply@github.com>
+To: rafaelsdeveloper <faeldroom46@gmail.com>
+Message-ID: <60377d32ea177_78c61a9027d@github-highworker-fffb977.ac4-iad.github.net.mail>
+Subject: [GitHub] Welcome to GitHub, @rafaelsdeveloper!
+Mime-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Auto-Response-Suppress: All
+categories: welcome
+X-SG-EID: 65e2LO9qGM9G4FSxJzFgCQ831By4N7IAfvPHHVZodOCrQIXskMv57FdSX5wk7wMcmXegTl+nPcwEEb
+ jnEcr3qaSO+Qh7nY0tIlclfgG2sJPT860p/26H1ElL2/lVRtG8h9cQ4C9IoeT/+Z3571q5zEEtlRfT
+ Coxq4DJ1O7mC75PVTWCXWXSNHO8k+U0C69k8iZazIJ/N1y8cEpDrkcWfPQ==
+X-SG-ID: vsx7nv/2zpleokjqD6CJiS3lcz8Q2CP4mEOmUjO20qM=
+X-Entity-ID: /f+S0XqulHHajbNb6hGdxg==
+X-Feedback-ID: 848413:6xvVEJqleZlAW7/vhv7PzD/cv5tamo2SWZDKyvugGvg=:IZeajuoTrtr8UX8CJ8yh6Q==:SG
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">=0D
+<html lang=3D"en">=0D
+  <head>=0D
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8=
+">=0D
+    <title>Welcome to GitHub!</title>=0D
+=0D
+  <style type=3D"text/css">=0D
+		#outlook a{=0D
+			padding:0;=0D
+		}=0D
+		body{=0D
+			width:100% !important;=0D
+			min-width:100%;=0D
+			-webkit-font-smoothing:antialiased;=0D
+			-webkit-text-size-adjust:100%;=0D
+			-ms-text-size-adjust:100%;=0D
+			margin:0;=0D
+			padding:0;=0D
+			background:#fafafa;=0D
+		}=0D
+		.resources-container{=0D
+			padding: 40px 40px 0px;=0D
+		}=0D
+		.link-heading{=0D
+			font-weight: 600;=0D
+			font-size: 18px;=0D
+			color: #444d56;=0D
+			align-self: flex-start;=0D
+			text-align: left;=0D
+		}=0D
+		.resource-container{=0D
+			margin-bottom: 40px;=0D
+			width: 100%;=0D
+		}=0D
+		.link-text-container{=0D
+			margin-left: 30px;=0D
+			width: 80%;=0D
+		}=0D
+		.links-container{=0D
+			margin-top: 16px;=0D
+			border-bottom: #e1e4e8 solid 1px;=0D
+			border-top: #e1e4e8 solid 1px;=0D
+		}=0D
+		.resource-img{=0D
+			padding-right: 20px;=0D
+		}=0D
+		.resource-image-container {=0D
+			float: right;=0D
+		}=0D
+		.link{=0D
+			padding: 8px 16px;=0D
+			text-align: left;=0D
+		}=0D
+		.links-container > .link ~ .link{=0D
+    	border-top: #e1e4e8 solid 1px;=0D
+		}=0D
+		.link-chevron{=0D
+			float: right;=0D
+		}=0D
+		.welcome-message{=0D
+			margin:0;=0D
+			font-size:14px;=0D
+			font-weight:300;=0D
+			color:#444d56;=0D
+			line-height:20px;=0D
+			padding:0 30px;=0D
+			text-align:center;=0D
+			margin-bottom:15px;=0D
+		}=0D
+		.ExternalClass{=0D
+			width:100%;=0D
+		}=0D
+		.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.=
+ExternalClass td,.ExternalClass div{=0D
+			line-height:100%;=0D
+		}=0D
+		#backgroundTable{=0D
+			margin:0;=0D
+			padding:0;=0D
+			width:100% !important;=0D
+			line-height:100% !important;=0D
+		}=0D
+		img{=0D
+			outline:none;=0D
+			text-decoration:none;=0D
+			-ms-interpolation-mode:bicubic;=0D
+			width:auto;=0D
+			max-width:100%;=0D
+		}=0D
+		center{=0D
+			width:100%;=0D
+			min-width:580px;=0D
+		}=0D
+		.center-text{=0D
+			text-align:center;=0D
+		}=0D
+		a img{=0D
+			border:none;=0D
+		}=0D
+		p{=0D
+			margin:0;=0D
+			word-wrap:normal;=0D
+			hyphens:none;=0D
+			font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;=0D
+			font-size:14px;=0D
+			font-weight:normal;=0D
+			color:#333;=0D
+			line-height:20px;=0D
+		}=0D
+		p a{=0D
+			color:#4183C4;=0D
+			text-decoration:none;=0D
+		}=0D
+		table{=0D
+			border-spacing:0;=0D
+			border-collapse:collapse;=0D
+		}=0D
+		td{=0D
+			word-break:break-word;=0D
+			-webkit-hyphens:auto;=0D
+			-moz-hyphens:auto;=0D
+			hyphens:auto;=0D
+			border-collapse:collapse !important;=0D
+		}=0D
+		table,tr,td{=0D
+			padding:0;=0D
+			vertical-align:top;=0D
+			text-align:center;=0D
+		}=0D
+		hr.rule{=0D
+			margin:15px 0;=0D
+			color:#d9d9d9;=0D
+			background-color:#d9d9d9;=0D
+			height:1px;=0D
+			border:none;=0D
+		}=0D
+		table.body{=0D
+			height:100%;=0D
+			width:100%;=0D
+			background:#fafafa;=0D
+		}=0D
+		table.container{=0D
+			width:580px;=0D
+			margin:0 auto;=0D
+			text-align:inherit;=0D
+		}=0D
+		table.row{=0D
+			padding:0;=0D
+			width:100%;=0D
+			position:relative;=0D
+		}=0D
+		table.container table.row{=0D
+			display:block;=0D
+		}=0D
+		td.wrapper{=0D
+			padding:10px 20px 0 0;=0D
+			position:relative;=0D
+		}=0D
+		table.columns,table.column{=0D
+			margin:0 auto;=0D
+		}=0D
+		table.columns td,table.column td{=0D
+			padding:0 0 10px;=0D
+		}=0D
+		table.row td.last,table.container td.last{=0D
+			padding-right:0;=0D
+		}=0D
+		table.twelve{=0D
+			width:540px;=0D
+		}=0D
+		table.twelve center{=0D
+			min-width:540px;=0D
+		}=0D
+		table.twelve .panel center{=0D
+			min-width:540px;=0D
+		}=0D
+		.body .columns td.twelve,.body .column td.twelve{=0D
+			width:100%;=0D
+		}=0D
+		td.expander{=0D
+			visibility:hidden;=0D
+			width:0;=0D
+			padding:0 !important;=0D
+		}=0D
+		table.center,td.center{=0D
+			text-align:center;=0D
+		}=0D
+		img.center{=0D
+			margin:0 auto;=0D
+			float:none;=0D
+		}=0D
+		body,table.body,h1,h2,h3,h4,h5,h6,p,td{=0D
+			color:#333333;=0D
+			font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,=
+sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";=0D
+			font-weight:normal;=0D
+			padding:0;=0D
+			margin:0;=0D
+			text-align:center;=0D
+			line-height:1.3;=0D
+		}=0D
+		h1,h2,h3,h4,h5,h6{=0D
+			word-break:normal;=0D
+			font-weight:300;=0D
+		}=0D
+		body,table.body,p,td{=0D
+			font-size:14px;=0D
+			line-height:20px;=0D
+		}=0D
+		a{=0D
+			color:#4183C4;=0D
+			text-decoration:none;=0D
+		}=0D
+		a:hover{=0D
+			color:#4183C4;=0D
+		}=0D
+		a:active{=0D
+			color:#4183C4;=0D
+		}=0D
+		a:visited{=0D
+			color:#4183C4;=0D
+		}=0D
+		h1 a,h2 a,h3 a,h4 a,h5 a,h6 a,h1 a:active,h2 a:active,h3 a:active,h4 a:ac=
+tive,h5 a:active,h6 a:active,h1 a:visited,h2 a:visited,h3 a:visited,h4 a:vi=
+sited,h5 a:visited,h6 a:visited{=0D
+			color:#4183C4;=0D
+		}=0D
+		.panel{=0D
+			background:#ffffff;=0D
+			background-color:#ffffff;=0D
+			border:1px solid #dddddd;=0D
+			padding:20px;=0D
+			border-radius:3px;=0D
+			box-shadow:0 1px 3px rgba(0,0,0,0.05);=0D
+		}=0D
+		div.cta-button-wrap{=0D
+			padding:20px 0 25px;=0D
+			text-align:center;=0D
+			color:#ffffff;=0D
+		}=0D
+		div.cta-button-wrap a{=0D
+			display:inline-block;=0D
+			width:auto !important;=0D
+			text-align:center;=0D
+			background:#4183C4;=0D
+			background-color:#4183C4;=0D
+			border-radius:5px;=0D
+			-webkit-border-radius:5px;=0D
+			padding:12px 44px;=0D
+			box-shadow:0 3px 0 #25588c;=0D
+			font-weight:bold;=0D
+			text-decoration:none;=0D
+			color:#ffffff;=0D
+			letter-spacing:normal;=0D
+			font-size:17px;=0D
+			font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,=
+sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";=0D
+			margin:0 auto;=0D
+			-webkit-text-size-adjust:none;=0D
+		}=0D
+		body.outlook p{=0D
+			display:inline !important;=0D
+		}=0D
+		h1.primary-heading{=0D
+			text-align:center;=0D
+			margin:10px 0 25px;=0D
+			font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,=
+sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";=0D
+			font-size:38px;=0D
+			letter-spacing:-1px;=0D
+			color:#333;=0D
+			font-weight:300;=0D
+			line-height:1;=0D
+		}=0D
+		.panel p{=0D
+			font-weight:300;=0D
+			margin-bottom:15px;=0D
+		}=0D
+		h2{=0D
+			font-size:28px;=0D
+			margin:20px 0 15px;=0D
+		}=0D
+		img.logo-wordmark{=0D
+			padding:25px 0 17px;=0D
+			text-align:center;=0D
+		}=0D
+		table.columns td.branding{=0D
+			text-align:center;=0D
+			padding:10px 0;=0D
+		}=0D
+		img.hero-img,img.content-image{=0D
+			margin:15px 0;=0D
+			width:100%;=0D
+		}=0D
+		img.welcometocat{=0D
+			width:352px;=0D
+		}=0D
+		table.layout-content div.content p{=0D
+			margin:15px 0 5px;=0D
+			font-size:14px;=0D
+			font-weight:normal;=0D
+			color:#333;=0D
+			line-height:20px;=0D
+		}=0D
+		table.layout-content div.content p:first-child{=0D
+			margin-top:5px;=0D
+		}=0D
+		p.footer-text{=0D
+			margin:0;=0D
+			font-size:12px;=0D
+			color:#999;=0D
+			text-align:center;=0D
+		}=0D
+		p.subtext{=0D
+			margin-top:0;=0D
+			margin-bottom:10px;=0D
+			font-size:17px;=0D
+			font-weight:300;=0D
+			line-height:18px;=0D
+			color:#555;=0D
+		}=0D
+		div.content-footer p{=0D
+			margin-bottom:20px;=0D
+		}=0D
+		td.wrapper.last{=0D
+			padding:0;=0D
+		}=0D
+		table.layout-footer div.unsubscribe{=0D
+			padding:20px 0 0;=0D
+			color:#888;=0D
+			text-align:center;=0D
+		}=0D
+		table.layout-footer div.footer-links{=0D
+			padding:20px 0;=0D
+			text-align:center;=0D
+		}=0D
+		table.layout-footer div.content{=0D
+			margin:0 0 15px;=0D
+		}=0D
+	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] h1.primary-heading{=0D
+			font-size:28px !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] h2.content-heading{=0D
+			font-size:22px !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] div.panel p{=0D
+			line-height:17px !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		.resource-container{=0D
+			flex-direction: column;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		.link-text-container{=0D
+			margin-left: 0px !important;=0D
+			width: 100% !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		.resources-container{=0D
+			padding: 40px 30px !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		.welcome-message{=0D
+			padding: 0 20px !important;=0D
+			line-height:40px !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] img{=0D
+			width:auto !important;=0D
+			height:auto !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] center{=0D
+			min-width:0 !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] .container{=0D
+			width:95% !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] .row{=0D
+			width:100% !important;=0D
+			display:table !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] .wrapper{=0D
+			display:block !important;=0D
+			padding-right:0 !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] .columns,table[class=3Dbody] .column{=0D
+			table-layout:fixed !important;=0D
+			float:none !important;=0D
+			width:100% !important;=0D
+			padding-right:0 !important;=0D
+			padding-left:0 !important;=0D
+			display:block !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] .wrapper.first .columns,table[class=3Dbody] .wrapper.=
+first .column{=0D
+			display:table !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] table.columns td,table[class=3Dbody] table.column td{=
+=0D
+			width:100% !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] .columns td.twelve,table[class=3Dbody] .column td.twe=
+lve{=0D
+			width:100% !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] table.columns td.expander{=0D
+			width:1px !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		div[class=3Dpanel],td[class=3Dpanel],table[class=3Dpanel]{=0D
+			padding:12px !important;=0D
+		}=0D
+=0D
+}	@media only screen and (max-width: 600px){=0D
+		table[class=3Dbody] img.logo-wordmark{=0D
+			width:102px !important;=0D
+		}=0D
+=0D
+}</style></head>=0D
+  <body bgcolor=3D"#fafafa" topmargin=3D"0" leftmargin=3D"0" marginheight=
+=3D"0" marginwidth=3D"0" style=3D"min-width: 100%;-webkit-font-smoothing: a=
+ntialiased;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;margin=
+: 0;padding: 0;background: #fafafa;color: #333333;font-family: 'Helvetica N=
+eue', Helvetica, Arial, sans-serif;font-weight: normal;text-align: center;l=
+ine-height: 20px;font-size: 14px;width: 100% !important;">=0D
+    <table class=3D"body" style=3D"border-spacing:0;border-collapse:collaps=
+e;padding:0;vertical-align:top;text-align:center;height:100%;width:100%;bac=
+kground:#fafafa;color:#333333;font-weight:normal;margin:0;line-height:20px;=
+font-size:14px;">=0D
+      <tr style=3D"padding:0;vertical-align:top;text-align:center;">=0D
+        <td class=3D"center" align=3D"center" valign=3D"top" style=3D"paddi=
+ng:0;vertical-align:top;text-align:center;color:#333333;font-weight:normal;=
+margin:0;line-height:20px;font-size:14px;border-collapse:collapse !importan=
+t;">=0D
+          <center style=3D"width:100%;min-width:580px;">=0D
+            <!--email content-->=0D
+            <table class=3D"row header" style=3D"border-spacing:0;border-co=
+llapse:collapse;padding:0px;vertical-align:top;text-align:center;width:100%=
+;position:relative;">=0D
+              <tr style=3D"padding:0;vertical-align:top;text-align:center;"=
+>=0D
+                <td class=3D"center" align=3D"center" style=3D"padding:0;ve=
+rtical-align:top;text-align:center;color:#333333;font-weight:normal;margin:=
+0;line-height:20px;font-size:14px;border-collapse:collapse !important;">=0D
+                  <center style=3D"width:100%;min-width:580px;">=0D
+                    <table class=3D"container" style=3D"border-spacing:0;bo=
+rder-collapse:collapse;padding:0;vertical-align:top;text-align:inherit;widt=
+h:580px;margin:0 auto;">=0D
+                      <tr style=3D"padding:0;vertical-align:top;text-align:=
+center;">=0D
+                        <td class=3D"wrapper last" style=3D"padding:0;verti=
+cal-align:top;text-align:center;color:#333333;font-weight:normal;margin:0;l=
+ine-height:20px;font-size:14px;position:relative;padding-right:0px;border-c=
+ollapse:collapse !important;">=0D
+                          <table class=3D"twelve columns" style=3D"border-s=
+pacing:0;border-collapse:collapse;padding:0;vertical-align:top;text-align:c=
+enter;margin:0 auto;width:540px;">=0D
+                            <tr style=3D"padding:0;vertical-align:top;text-=
+align:center;">=0D
+                              <td style=3D"padding:0px 0px 10px;vertical-al=
+ign:top;text-align:center;color:#333333;font-weight:normal;margin:0;line-he=
+ight:20px;font-size:14px;border-collapse:collapse !important;">=0D
+                                <div class=3D"mark" style=3D"text-align:cen=
+ter;">=0D
+                                  <a href=3D"https://github.com" style=3D"t=
+ext-align:center;color:#4183C4;text-decoration:none;">=0D
+                                    <img alt=3D"GitHub, Inc." src=3D"https:=
+//github.githubassets.com/images/email/global/wordmark.png" width=3D"102" h=
+eight=3D"28" class=3D"center logo-wordmark" style=3D"outline: none;text-dec=
+oration: none;-ms-interpolation-mode: bicubic;width: auto;max-width: 100%;b=
+order: none;margin: 0 auto;float: none;padding: 25px 0 17px;text-align: cen=
+ter;">=0D
+                                  </a>=0D
+                                  </div>=0D
+                                </td>=0D
+                                <td class=3D"expander" style=3D"padding:0 !=
+important;vertical-align:top;text-align:center;color:#333333;font-weight:no=
+rmal;margin:0;line-height:20px;font-size:14px;visibility:hidden;width:0px;b=
+order-collapse:collapse !important;">=0D
+                                </td>=0D
+                              </tr>=0D
+                            </table>=0D
+                            <!--/.twelve.columns-->=0D
+                          </td>=0D
+                        </tr>=0D
+                      </table>=0D
+                      <!--/.container-->=0D
+                    </center>=0D
+                  </td>=0D
+                </tr>=0D
+              </table>=0D
+              <!--/.row.header-->=0D
+              <table class=3D"container" style=3D"border-spacing:0;border-c=
+ollapse:collapse;padding:0;vertical-align:top;text-align:inherit;width:580p=
+x;margin:0 auto;">=0D
+                <tr style=3D"padding:0;vertical-align:top;text-align:center=
+;">=0D
+                  <td style=3D"padding:0;vertical-align:top;text-align:cent=
+er;color:#333333;font-weight:normal;margin:0;line-height:20px;font-size:14p=
+x;border-collapse:collapse !important;">=0D
+                    <table class=3D"row" style=3D"border-spacing:0;border-c=
+ollapse:collapse;padding:0px;vertical-align:top;text-align:center;width:100=
+%;position:relative;display:block;">=0D
+                      <tr style=3D"padding:0;vertical-align:top;text-align:=
+center;">=0D
+                        <td class=3D"wrapper last" style=3D"padding:0;verti=
+cal-align:top;text-align:center;color:#333333;font-weight:normal;margin:0;l=
+ine-height:20px;font-size:14px;position:relative;padding-right:0px;border-c=
+ollapse:collapse !important;">=0D
+                          <div class=3D"panel" style=3D"background:#ffffff;=
+background-color:#ffffff;border:1px solid #dddddd;padding:20px;border-radiu=
+s:3px;">=0D
+                            <table class=3D"twelve columns" style=3D"border=
+-spacing:0;border-collapse:collapse;padding:0;vertical-align:top;text-align=
+:center;margin:0 auto;width:540px;">=0D
+                              <tr style=3D"padding:0;vertical-align:top;tex=
+t-align:center;">=0D
+                                <td style=3D"padding:0px 0px 10px;vertical-=
+align:top;text-align:center;color:#333333;font-weight:normal;margin:0;line-=
+height:20px;font-size:14px;border-collapse:collapse !important;">=0D
+                                  <div class=3D"content">=0D
+																		<svg height=3D"44" width=3D"44" class=3D"octicon octicon-=
+mark-github" viewBox=3D"0 0 16 16" version=3D"1.1" aria-hidden=3D"true"><pa=
+th fill-rule=3D"evenodd" d=3D"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 =
+7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.0=
+9-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.=
+21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.3=
+1-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2=
+-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51=
+.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.=
+01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">=
+</path></svg>=0D
+                                    <h1 class=3D"primary-heading" mc:edit=
+=3D"primaryheading" style=3D"color:#333;font-weight:300;padding:0;margin:25=
+px;text-align:center;line-height:1;font-size:30px;letter-spacing:-1px;">Wel=
+come to GitHub, <strong>@rafaelsdeveloper</strong>!</h1>=0D
+                                    <p mc:edit=3D"introparagraph" class=3D"=
+welcome-message">You=E2=80=99re the newest member in this community of over=
+ 36 million people who use GitHub to host and review code, manage projects,=
+ and build software.</p>=0D
+=0D
+                                    <img mc:edit=3D"welcomeimage" class=3D"=
+welcometocat" src=3D"https://github.githubassets.com/images/email/welcome-e=
+mail/welcometocat.png" width=3D"350" style=3D"outline: none;text-decoration=
+: none;-ms-interpolation-mode: bicubic;width: 352px;max-width: 100%;" alt=
+=3D"welcometocat">=0D
+=0D
+																		<div width=3D"350" class=3D"resources-container">=0D
+  <table class=3D"resource-container">=0D
+    <tr>=0D
+      <td class=3D"resource-image-container">=0D
+        <img src=3D"https://github.githubassets.com/images/icons/onboarding=
+-marketing-icon-profile.png" class=3D"resource-img" height=3D"44" alt=3D"on=
+boarding-icon">=0D
+      </td>=0D
+      <td class=3D"link-text-container">=0D
+        <h3 class=3D"link-heading">A few links to help you get started</h3>=
+=0D
+        <div class=3D"links-container">=0D
+          <div class=3D"link">=0D
+  <a href=3D"https://github.com/rafaelsdeveloper?email_source=3Dwelcome">=
+=0D
+    Complete your GitHub profile=0D
+  </a>=0D
+  <img src=3D"https://github.githubassets.com/images/icons/chevron-right-oc=
+ticon.png" height=3D"16" alt=3D"chevron-right" class=3D"link-chevron">=0D
+</div>=0D
+=0D
+          <div class=3D"link">=0D
+  <a href=3D"https://docs.github.com/articles/set-up-git?email_source=3Dwel=
+come">=0D
+    Set up your computer for GitHub=0D
+  </a>=0D
+  <img src=3D"https://github.githubassets.com/images/icons/chevron-right-oc=
+ticon.png" height=3D"16" alt=3D"chevron-right" class=3D"link-chevron">=0D
+</div>=0D
+=0D
+          <div class=3D"link">=0D
+  <a href=3D"https://guides.github.com?email_source=3Dwelcome">=0D
+    Learn more about using GitHub=0D
+  </a>=0D
+  <img src=3D"https://github.githubassets.com/images/icons/chevron-right-oc=
+ticon.png" height=3D"16" alt=3D"chevron-right" class=3D"link-chevron">=0D
+</div>=0D
+=0D
+        </div>=0D
+      </td>=0D
+    </tr>=0D
+  </table>=0D
+=0D
+   <table class=3D"resource-container">=0D
+    <tr>=0D
+      <td class=3D"resource-image-container">=0D
+        <img src=3D"https://github.githubassets.com/images/icons/code-hosti=
+ng-marketing-icon.png" class=3D"resource-img" height=3D"44" alt=3D"code-hos=
+ting-icon">=0D
+      </td>=0D
+      <td class=3D"link-text-container">=0D
+        <h3 class=3D"link-heading">Ready to work on projects?</h3>=0D
+        <div class=3D"links-container">=0D
+          <div class=3D"link">=0D
+  <a href=3D"https://github.com/new?email_source=3Dwelcome">=0D
+    Create a new repository=0D
+  </a>=0D
+  <img src=3D"https://github.githubassets.com/images/icons/chevron-right-oc=
+ticon.png" height=3D"16" alt=3D"chevron-right" class=3D"link-chevron">=0D
+</div>=0D
+=0D
+          <div class=3D"link">=0D
+  <a href=3D"https://github.com/new/import?email_source=3Dwelcome">=0D
+    Import an existing repository=0D
+  </a>=0D
+  <img src=3D"https://github.githubassets.com/images/icons/chevron-right-oc=
+ticon.png" height=3D"16" alt=3D"chevron-right" class=3D"link-chevron">=0D
+</div>=0D
+=0D
+          <div class=3D"link">=0D
+  <a href=3D"https://github.com/explore?email_source=3Dwelcome">=0D
+    Explore open source projects=0D
+  </a>=0D
+  <img src=3D"https://github.githubassets.com/images/icons/chevron-right-oc=
+ticon.png" height=3D"16" alt=3D"chevron-right" class=3D"link-chevron">=0D
+</div>=0D
+=0D
+        </div>=0D
+      </td>=0D
+    </tr>=0D
+  </table>=0D
+</div>=0D
+=0D
+                                  </div>=0D
+                                  <!--/.content-->=0D
+                                </td>=0D
+                                <td class=3D"expander" style=3D"padding:0 !=
+important;vertical-align:top;text-align:center;color:#333333;font-weight:no=
+rmal;margin:0;line-height:20px;font-size:14px;visibility:hidden;width:0px;b=
+order-collapse:collapse !important;">=0D
+                                </td>=0D
+                              </tr>=0D
+                            </table>=0D
+                            <!--/.twelve-columns-->=0D
+                          </div>=0D
+                          <!--/.panel-->=0D
+                        </td>=0D
+                      </tr>=0D
+                    </table>=0D
+                    <!--/.row-->=0D
+                  </td>=0D
+                </tr>=0D
+              </table>=0D
+              <!--/.container-->=0D
+              <table class=3D"row layout-footer" style=3D"border-spacing:0;=
+border-collapse:collapse;padding:0px;vertical-align:top;text-align:center;w=
+idth:100%;position:relative;">=0D
+                <tr style=3D"padding:0;vertical-align:top;text-align:center=
+;">=0D
+                  <td class=3D"center" align=3D"center" style=3D"padding:0;=
+vertical-align:top;text-align:center;color:#333333;font-weight:normal;margi=
+n:0;line-height:20px;font-size:14px;border-collapse:collapse !important;">=
+=0D
+                    <center style=3D"width:100%;min-width:580px;">=0D
+                      <table class=3D"container" style=3D"border-spacing:0;=
+border-collapse:collapse;padding:0;vertical-align:top;text-align:inherit;wi=
+dth:580px;margin:0 auto;">=0D
+                        <tr style=3D"padding:0;vertical-align:top;text-alig=
+n:center;">=0D
+                          <td class=3D"wrapper last" style=3D"padding:0;ver=
+tical-align:top;text-align:center;color:#333333;font-weight:normal;margin:0=
+;line-height:20px;font-size:14px;position:relative;padding-right:0px;border=
+-collapse:collapse !important;">=0D
+                            <table class=3D"twelve columns" style=3D"border=
+-spacing:0;border-collapse:collapse;padding:0;vertical-align:top;text-align=
+:center;margin:0 auto;width:540px;">=0D
+                              <tr style=3D"padding:0;vertical-align:top;tex=
+t-align:center;">=0D
+                                <td style=3D"padding:0px 0px 10px;vertical-=
+align:top;text-align:center;color:#333333;font-weight:normal;margin:0;line-=
+height:20px;font-size:14px;border-collapse:collapse !important;">=0D
+                                  <div class=3D"footer-links" style=3D"padd=
+ing:20px 0;text-align:center;">=0D
+                                    <p class=3D"footer-text" style=3D"margi=
+n:0;font-size:12px;font-weight:normal;color:#999;line-height:20px;padding:0=
+;text-align:center;">=0D
+                                      <a href=3D"https://github.com/setting=
+s/emails" style=3D"color:#4183C4;text-decoration:none;">Email preferences</=
+a>=0D
+                                  </p>=0D
+                                  <p class=3D"footer-text" style=3D"margin:=
+0;font-size:12px;font-weight:normal;color:#999;line-height:20px;padding:0;t=
+ext-align:center;"><a href=3D"https://docs.github.com/articles/github-terms=
+-of-service/" style=3D"color:#4183C4;text-decoration:none;">Terms</a> =E2=
+=80=A2 <a href=3D"https://docs.github.com/articles/github-privacy-policy/" =
+style=3D"color:#4183C4;text-decoration:none;">Privacy</a> =E2=80=A2 <a href=
+=3D"https://github.com/login" style=3D"color:#4183C4;text-decoration:none;"=
+>Log in to GitHub</a>=0D
+                                </p>=0D
+                              </div>=0D
+                                <div class=3D"content" style=3D"margin:0 0 =
+15px 0;">=0D
+                                  <p class=3D"footer-text" style=3D"margin:=
+0;font-size:12px;font-weight:normal;color:#999;line-height:20px;padding:0;t=
+ext-align:center;">=0D
+																		GitHub, Inc., 88 Colin P. Kelly Street, San Francisco, CA=
+ 94107=0D
+																	</p>=0D
+                                </div>=0D
+                              </td>=0D
+                              <td class=3D"expander" style=3D"padding:0 !im=
+portant;vertical-align:top;text-align:center;color:#333333;font-weight:norm=
+al;margin:0;line-height:20px;font-size:14px;visibility:hidden;width:0px;bor=
+der-collapse:collapse !important;">=0D
+                              </td>=0D
+                            </tr>=0D
+                          </table>=0D
+                          <!--/.twelve.columns-->=0D
+                        </td>=0D
+                      </tr>=0D
+                    </table>=0D
+                    <!--/.container-->=0D
+                  </center>=0D
+                </td>=0D
+              </tr>=0D
+            </table>=0D
+            <!--/.row.footer-->=0D
+            <!--/email content-->=0D
+          </center>=0D
+        </td>=0D
+      </tr>=0D
+    </table>=0D
+    <!--/.body-->=0D
+  </body>=0D
+</html>=0D
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation-id</key>
+	<integer>4790</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1614249268</integer>
+	<key>flags</key>
+	<integer>8590195713</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>5499</string>
+</dict>
+</plist>

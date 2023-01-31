@@ -1,0 +1,2633 @@
+108968    
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:5c6:b0:2f1:d123:ba04 with SMTP id p6csp422854pxt;
+        Fri, 23 Sep 2022 06:19:34 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7JCHWDjCJR/Vsh76WeYid29B3pI1fw6IuXvSdAgMAVGzoxFWseDFLrLPsl8RIhpdUjcCCD
+X-Received: by 2002:a63:4042:0:b0:43b:ddc8:235 with SMTP id n63-20020a634042000000b0043bddc80235mr7659516pga.498.1663939174233;
+        Fri, 23 Sep 2022 06:19:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1663939174; cv=none;
+        d=google.com; s=arc-20160816;
+        b=S224IALZbJA1GCbE+HxJQIMoPOxfa46/ttoZcslVAvdGFR2ZGBOxT/58gT3HWzKrNy
+         7vf8ZYEyPfvNyLfaQpMlB8e8skGiWFmgw2MO+8O3yEJjXBIWOL4JDUs2OnLQDCXoL+11
+         +o8oizCoA85Wrp7Df9xCJXWVnN65AEBx0PamSKvBv9ncQFz/nSlT0jEwjiF9AnxyUztK
+         CYxMFyNsr9k8PU1112VkTmbzyzOe8nsn3VxE1WUIEseOaTntpFsnpORzgbPu+/Y0IJdd
+         RRT4kEcKxILFRqNZSn2Lw+fJzmWZxcrNSOgKO7xBHnf6adteSVT5yF7uoAOj66wk67Bu
+         dHYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=ZXWWCikbrLWHS7DqwUY5Zm0HNgwlIBkryFG5DwDSlMc=;
+        b=NsnH+4fQZzBZJwh98hWrhXm23s+6mRdwE7GtOaWDBU0SuJXy9VGucpTefS0OHwTUlS
+         CpVhQysZa968vfyvB2haCf8aOLdnO9A1ysO2rX4gA0/vwiPHNGbmeqefRmr4ir/dYDb/
+         uGUVJ2y9Vkmnq8TjZvS1HIfSmx33BigiqbDyCXvJp2i/zJ440Suck6exCuvRVDpXseIZ
+         0/Gg6tZRNhkaSAySXtdQbOUXkbsw5VNCY+7cgdE3Bqj61LTvovxq5UrEOxyZY8Fd27uL
+         o+sjfkE5MTLPCB4zs92ipF2T7+EicVdG7llxqHYVqAkJo6K2/ZK5V+BDnHGpR+Mry9gm
+         pDmg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=xoDe9AeX;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=dQ7v1i2N;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wm1jc4y3d4hk8ku@bounce.linkedin.com designates 2620:119:50c0:207::205 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wm1jc4y3d4hk8ku@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wm1jc4y3d4hk8ku@bounce.linkedin.com>
+Received: from maile-he.linkedin.com (maile-he.linkedin.com. [2620:119:50c0:207::205])
+        by mx.google.com with ESMTPS id v19-20020a634813000000b0043486074814si9147836pga.661.2022.09.23.06.19.33
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 23 Sep 2022 06:19:34 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wm1jc4y3d4hk8ku@bounce.linkedin.com designates 2620:119:50c0:207::205 as permitted sender) client-ip=2620:119:50c0:207::205;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=xoDe9AeX;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=dQ7v1i2N;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wm1jc4y3d4hk8ku@bounce.linkedin.com designates 2620:119:50c0:207::205 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9wm1jc4y3d4hk8ku@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1663939171;
+	bh=ZXWWCikbrLWHS7DqwUY5Zm0HNgwlIBkryFG5DwDSlMc=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=xoDe9AeXcqKVPSFpF3ryAq/cRIHunth74mtH2ytiKynGywR7KjNmmsDKXFlfFjUoM
+	 Ycc7NJo1s0jwSFVbd6oCg0XsxfywTHhvF0fboUjKTdNM27IrR38f2jiTirkuWU7vTt
+	 VEwegggzmJRE1xTxjEIkZ/MXSclfJeaTVGKs1x/eyLH+12UQEIMdBiJdzju3laN2RL
+	 Dmj1k4fPaYnIzFZXZ1ncOyf1tYfBVNnSc8ebm2LtLKGzsLfgWLzxAFaFyiRERr8qGA
+	 ShR/j3SC4IHxRzOE9AFj926M5vNsUGVlSX/9iNGrsK3Sc2GfhECKFwG6ySGIGEFN7d
+	 nM7SFTgPKr35A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maile.linkedin.com;
+	s=proddkim1024; t=1663939171;
+	bh=ZXWWCikbrLWHS7DqwUY5Zm0HNgwlIBkryFG5DwDSlMc=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=dQ7v1i2NYoxZUp647J4kdfHz0q8muXTit0gMoGMQH1mksgi5vAfCbTHBSsfoXVOgC
+	 lo41yAqZ2pIk0RgImdbCkW/HtRsrbnyQud/6uPWRuSsHLlxtvPmpmTc7f9IJZCaUzR
+	 BBnW9jz8JYul4UJFACT52pHqUwQgQ6fzy3X9wwPo=
+From: Denyze Santosvia LinkedIn <newsletters-noreply@linkedin.com>
+Message-ID: <723657294.5057376.1663939170567@lva1-app61264.prod.linkedin.com>
+Subject: As Soft Skills mais solicitadas para  Mercado de Trabalho
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5057374_1613298814.1663939170564"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Fri, 23 Sep 2022 13:19:30 +0000 (UTC)
+X-LinkedIn-Class: EMAIL-DEFAULT
+X-LinkedIn-Template: email_series_follow_newsletter_01
+X-LinkedIn-fbl: m2-aszwkqx5uqphs32i6dlkpbwpxbh9eeevqottslbgai4cve2q30ucwo5pyqd59kjvhikt63x3vkdmka22xml5hy7zdkkvqrmiio4fot
+X-LinkedIn-Id: eau1wl-l8eif3wk-9n
+List-Unsubscribe: <https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=JG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=AQEq1MBbB2bM8g&amp;midSig=0fbwlgxGBvaqs1&amp;trk=eml-email_series_follow_newsletter_01-unsub-0-unsub&amp;trkEmail=eml-email_series_follow_newsletter_01-unsub-0-unsub-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=eau1wl-l8eif3wk-9n&amp;loid=AQGl4VB0NkDwRwAAAYNqgM4mqsaEjfqwD0ICbzUVU9jZyY7Udo-H0oLL0QPIBgYNN04BC6JTkmFoWq7IXpvKugWyyDjh1VbIFKzx3LVfmBzCYucaxx1z7w>
+Feedback-ID: email_series_follow_newsletter_01:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_5057374_1613298814.1663939170564
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+A sua carreira em evolu=C3=A7=C3=A3o
+
+Por Denyze Santos
+
+&lt;p&gt;Lideran=C3=A7a e Intelig=C3=AAncia Emocional &lt;/p&gt;&lt;p&gt;&a=
+mp;nbsp;Tema da minha live desta ter=C3=A7a com o convidado &lt;a target=3D=
+"_blank" rel=3D"nofollow noopener"&gt;Eric Maggio&lt;/a&gt;, Psic=C3=B3logo=
+ Cl=C3=ADnico e organizacional, Consultor e Professor. Se voc=C3=AA n=C3=A3=
+o assistiu no final desse artigo ter=C3=A1 o link da live. &lt;/p&gt;&lt;p&=
+gt;O meu objetivo para essa tem=C3=A1tica foi pela grande demanda de seguid=
+ores e clientes que me procuram para orient=C3=A1-los como buscar um desenv=
+olvimento para assumir posi=C3=A7=C3=B5es de gest=C3=A3o e consequentemente=
+ uma lideran=C3=A7a, como uma das falas de um dos meus clientes que busca u=
+ma vaga de Coordena=C3=A7=C3=A3o na sua =C3=A1rea, &lt;/p&gt;&lt;blockquote=
+&gt;=E2=80=9Ceu n=C3=A3o fiquei na vaga porque eles queriam um profissional=
+ com experi=C3=AAncia em gest=C3=A3o e lideran=C3=A7a, eu j=C3=A1 sou um su=
+pervisor, mas acredito que preciso de mais experi=C3=AAncia=E2=80=9D. &lt;/=
+blockquote&gt;&lt;p&gt;Na verdade, ele j=C3=A1 tem experi=C3=AAncia, lidera=
+ equipes, tem resultados, por=C3=A9m, ele n=C3=A3o desenvolveu o autoconhec=
+imento sobre o seu perfil para o que ele j=C3=A1 faz, e com isso n=C3=A3o c=
+onseguiu se vender na entrevista. &lt;/p&gt;&lt;p&gt;Voc=C3=AA j=C3=A1 pass=
+ou por isso?&amp;nbsp;&lt;/p&gt;&lt;p&gt;Para quem n=C3=A3o assistiu a live=
+ segue aqui um resumo do que tratamos ontem, assim como falas dos participa=
+ntes que compartilharam suas vis=C3=B5es sobre a tem=C3=A1tica.&amp;nbsp;&l=
+t;/p&gt;&lt;div class=3D"slate-resizable-image-embed slate-image-embed__res=
+ize-full-width"&gt;&lt;img alt=3D"N=C3=A3o foi fornecido texto alternativo =
+para esta imagem" data-media-urn=3D"" data-li-src=3D"https://media-exp1.lic=
+dn.com/dms/image/D4D12AQFbMXMtz6Y8uA/article-inline_image-shrink_1000_1488/=
+0/1663936288534?e=3D1669248000&amp;amp;v=3Dbeta&amp;amp;t=3DYG9IyQ-gzy-ux7q=
+6kEwquTKdpA3n6XjPFexX4BBKIp4" src=3D"https://media-exp1.licdn.com/dms/image=
+/D4D12AQFbMXMtz6Y8uA/article-inline_image-shrink_1000_1488/0/1663936288534?=
+e=3D1669248000&amp;amp;v=3Dbeta&amp;amp;t=3DYG9IyQ-gzy-ux7q6kEwquTKdpA3n6Xj=
+PFexX4BBKIp4" width=3D"480"&gt;&lt;/div&gt;&lt;p&gt;Como abertura de fala d=
+o professor, "liderar =C3=A9 influenciar, inspirar, conduzir, e o l=C3=ADde=
+r n=C3=A3o nasce pronto, tudo precisa de uma pr=C3=A1tica, precisa de desen=
+volvimento dia a dia". Em pesquisa, 85% dos l=C3=ADderes assumiram uma posi=
+=C3=A7=C3=A3o de lideran=C3=A7a sem conhecer o seu papel. A lideran=C3=A7a =
+n=C3=A3o =C3=A9 definida pelo cargo e nem pelo crach=C3=A1 e sim pela sua f=
+orma de conduzir seus liderados.&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;Como=
+ dica do professor, a lideran=C3=A7a voc=C3=AA deve come=C3=A7ar por voc=C3=
+=AA a se autoliderar, ter atitudes, com seus pr=C3=B3prios objetivos, acomp=
+anhar, seguir os processos, ent=C3=A3o antes de liderar uma equipe comece g=
+erindo suas pr=C3=B3prias a=C3=A7=C3=B5es.&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp=
+;nbsp;Para voc=C3=AA que busca atuar como L=C3=ADder, demostre para o seu g=
+estor o interesse, busque estar com os l=C3=ADderes que te inspiram, realiz=
+e cursos e n=C3=A3o ter medo de assumir riscos, assim como a leitura de liv=
+ros, segue algumas dicas dos livros que ele j=C3=A1 leu. &lt;/p&gt;&lt;pre =
+spellcheck=3D"false"&gt;Dicas de Livros:&amp;nbsp;1501 maneiras para voc=C3=
+=AA premiar seus colaboradores, as 21 indispens=C3=A1veis qualidades de um =
+l=C3=ADder, l=C3=ADder 360,(John maxwell) A lideran=C3=A7a, =C3=A9 uma ques=
+t=C3=A3o de atitude (SENAC), seja um l=C3=ADder de verdade (Jonh Haggai) Ge=
+st=C3=A3o da Singularidade, (Eduardo Carmello).
+&lt;/pre&gt;&lt;p&gt;&amp;nbsp;&lt;strong&gt;A INTELIG=C3=8ANCIA EMOCIONAL =
+&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Um&amp;nbsp;l=C3=ADder&amp;nbsp;bem-suced=
+ido =C3=A9 aquele que possui um alto equil=C3=ADbrio emocional. Isso porque=
+ ele consegue compreender os seus liderados e incentiv=C3=A1-los.&lt;/p&gt;=
+&lt;p&gt;&amp;nbsp;=C3=89 importante lembrar que as nossas emo=C3=A7=C3=B5e=
+s afetam todas as =C3=A1reas da nossa vida, inclusive a profissional. Quand=
+o o nosso n=C3=ADvel de intelig=C3=AAncia emocional =C3=A9 alto, conseguimo=
+s ser mais produtivos, trabalhamos melhor em equipe e desenvolvemos rela=C3=
+=A7=C3=B5es interpessoais saud=C3=A1veis.&lt;/p&gt;&lt;p&gt;&amp;nbsp;Essas=
+ s=C3=A3o caracter=C3=ADsticas essenciais para um bom l=C3=ADder, incluindo=
+ a&amp;nbsp;autoconsci=C3=AAncia, que o ajuda a pensar no coletivo, visando=
+ sempre o desenvolvimento da equipe.&lt;/p&gt;&lt;p&gt;&amp;nbsp;Desenvolve=
+r o autoconhecimento, saber no que =C3=A9 bom, que te faz brilhar os olhos,=
+ o que te dar alegria, o que voc=C3=AA n=C3=A3o gosta, quais seus sentiment=
+os, seus sonhos? S=C3=A3o perguntas simples que muitos n=C3=A3o sabem falar=
+ numa entrevista de emprego.&lt;/p&gt;&lt;p&gt;&amp;nbsp;Para isso =C3=A9 p=
+reciso desacelerar para voc=C3=AA conseguir visualizar o cen=C3=A1rio de fo=
+rma inteligente e assertivo.&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;strong&gt;Como=
+ dica&lt;/strong&gt;, busque feedback sobre voc=C3=AA com pessoas que convi=
+vem com voc=C3=AA, busque autoajuda de profissionais. Evitar se comparar co=
+m outras pessoas e n=C3=A3o terceirizar sua automotiva=C3=A7=C3=A3o.&lt;/p&=
+gt;&lt;p&gt;&amp;nbsp;Executar a intelig=C3=AAncia emocional tamb=C3=A9m pe=
+lo que voc=C3=AA acredita, ser positivo, ser emp=C3=A1tico, as habilidades =
+sociais, ser bom ouvinte.&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;Assim, &lt;=
+a href=3D"https://www.linkedin.com/feed/" target=3D"_blank"&gt;&lt;strong&g=
+t;Eric Maggio&lt;/strong&gt;&lt;/a&gt; finaliza com uma frase de Ayrton Sen=
+na: Ele (Deus) =C3=A9 o dono de tudo. Devo a Ele a oportunidade que tive de=
+ chegar onde cheguei. Muitas pessoas t=C3=AAm essa capacidade, mas n=C3=A3o=
+ t=C3=AAm a oportunidade. Ele a deu para mim, n=C3=A3o sei por qu=C3=AA. S=
+=C3=B3 sei que n=C3=A3o posso desperdi=C3=A7=C3=A1-la.&lt;/p&gt;&lt;p&gt;Qu=
+ero saber de voc=C3=AA. O que voc=C3=AA vem fazendo para o seu autodesenvol=
+vimento?&lt;/p&gt;&lt;div class=3D"email_iframe_replacement"&gt;&lt;a href=
+=3D"https://www.linkedin.com/pulse/soft-skills-mais-solicitadas-para-mercad=
+o-de-trabalho-denyze-santos"&gt;View media in original article&lt;/a&gt;&lt=
+;/div&gt;&lt;p&gt;Compartilha qual o seu aprendizado com esse artigo.&lt;/p=
+&gt;&lt;p&gt;N=C3=A3o percam todas as ter=C3=A7as as 21hs aqui no meu perfi=
+l lives com convidados e clientes compartilhando tem=C3=A1ticas super neces=
+s=C3=A1rias onde envolve carreira e mercado de trabalho com meu m=C3=A9todo=
+. &lt;/p&gt;
+Ler mais
+<!---->      https://www.linkedin.com/comm/pulse/soft-skills-mais-solicitad=
+as-para-mercado-de-trabalho-denyze-santos?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%=
+3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-=
+email_series_follow_newsletter_01-newsletter_content_preview_text-0-readmor=
+e_button_&amp;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_c=
+ontent_preview_text-0-readmore_button_-null-eau1wl~l8eif3wk~9n-null-null&am=
+p;eid=3Deau1wl-l8eif3wk-9n
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+    Conhece algu=C3=A9m que possa se interessar por esta newsletter? Compar=
+tilhe-a!
+Compartilhe esta s=C3=A9rie no LinkedIn
+<!---->      https://www.linkedin.com/e/v2?urlhash=3DLJhO&amp;url=3Dhttps%3=
+A%2F%2Fwww%2Elinkedin%2Ecom%2FshareArticle%3Furl%3Dhttps%253A%252F%252Fwww%=
+252Elinkedin%252Ecom%252Fpulse%252Fsoft-skills-mais-solicitadas-para-mercad=
+o-de-trabalho-denyze-santos&amp;lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;mid=
+Token=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;ek=3Demail_series_fo=
+llow_newsletter_01&amp;e=3Deau1wl-l8eif3wk-9n&amp;eid=3Deau1wl-l8eif3wk-9n&=
+amp;m=3Dnull&amp;ts=3Dnull&amp;li=3D0&amp;t=3Dplh =20
+Compartilhe esta s=C3=A9rie no Facebook
+<!---->      https://www.linkedin.com/e/v2?urlhash=3DM5Wt&amp;url=3Dhttps%3=
+A%2F%2Fwww%2Efacebook%2Ecom%2Fsharer%2Fsharer%2Ephp%3Fu%3Dhttps%3A%2F%2Fwww=
+%2Elinkedin%2Ecom%2Fpulse%2Fsoft-skills-mais-solicitadas-para-mercado-de-tr=
+abalho-denyze-santos&amp;lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;ek=3Demail_series_follow_=
+newsletter_01&amp;e=3Deau1wl-l8eif3wk-9n&amp;eid=3Deau1wl-l8eif3wk-9n&amp;m=
+=3Dnull&amp;ts=3Dnull&amp;li=3D0&amp;t=3Dplh =20
+Compartilhe esta s=C3=A9rie no Twitter
+<!---->      https://www.linkedin.com/e/v2?urlhash=3DWEiC&amp;url=3Dhttps%3=
+A%2F%2Fwww%2Etwitter%2Ecom%2Fintent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elin=
+kedin%2Ecom%2Fpulse%2Fsoft-skills-mais-solicitadas-para-mercado-de-trabalho=
+-denyze-santos&amp;lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1=
+MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;ek=3Demail_series_follow_newslett=
+er_01&amp;e=3Deau1wl-l8eif3wk-9n&amp;eid=3Deau1wl-l8eif3wk-9n&amp;m=3Dnull&=
+amp;ts=3Dnull&amp;li=3D0&amp;t=3Dplh =20
+ =20
+     =20
+         =20
+     =20
+
+
+----------------
+
+Este e-mail foi enviado a Rafael Souza (Desenvolvedor da web na Solution.de=
+v)
+Saiba porque inclu=C3=ADmos isso:
+<!---->      https://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&a=
+mp;lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;mi=
+dSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_follow_newsletter_01-Secur=
+ityHelp-0-textfooterglimmer&amp;trkEmail=3Deml-email_series_follow_newslett=
+er_01-SecurityHelp-0-textfooterglimmer-null-eau1wl~l8eif3wk~9n-null-null&am=
+p;eid=3Deau1wl-l8eif3wk-9n
+Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do LinkedIn.=
+ O autor da newsletter pode ver que voc=C3=AA =C3=A9 assinante.
+
+         =20
+           =20
+         =20
+       =20
+Cancelar inscri=C3=A7=C3=A3o:
+<!---->      https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=
+=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D=
+0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_follow_newsletter_01-unsubscribe-=
+0-textfooterglimmer&amp;trkEmail=3Deml-email_series_follow_newsletter_01-un=
+subscribe-0-textfooterglimmer-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3De=
+au1wl-l8eif3wk-9n&amp;loid=3DAQGl4VB0NkDwRwAAAYNqgM4mqsaEjfqwD0ICbzUVU9jZyY=
+7Udo-H0oLL0QPIBgYNN04BC6JTkmFoWq7IXpvKugWyyDjh1VbIFKzx3LVfmBzCYucaxx1z7w
+Ajuda:
+<!---->      https://www.linkedin.com/help/linkedin/answer/67?lang=3Dpt&amp=
+;lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midS=
+ig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_follow_newsletter_01-help-0-=
+textfooterglimmer&amp;trkEmail=3Deml-email_series_follow_newsletter_01-help=
+-0-textfooterglimmer-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l8e=
+if3wk-9n
+
+=C2=A9 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2 - Irlanda.LinkedIn =C3=A9 um nome comercial registrado da LinkedI=
+n Ireland Unlimited Company.LinkedIn e o logo do LinkedIn s=C3=A3o marcas r=
+egistradas do LinkedIn.
+------=_Part_5057374_1613298814.1663939170564
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt" st=
+yle=3D"border-color: currentColor;"> <head> <meta http-equiv=3D"Content-Typ=
+e" content=3D"text/html;charset=3Dutf-8"> <meta name=3D"HandheldFriendly" c=
+ontent=3D"true"> <meta name=3D"viewport" content=3D"width=3Ddevice-width; i=
+nitial-scale=3D0.666667; user-scalable=3D0"> <meta name=3D"viewport" conten=
+t=3D"width=3Ddevice-width"> <title></title> <style>
+          @media (max-width: 512px) { .mercado-container { width: 100% !imp=
+ortant; } }
+        </style> <!--[if mso]><style type=3D"text/css"> </style><![endif]--=
+> <!--[if IE]><style type=3D"text/css"> </style><![endif]--> <style>
+@media (min-width: 576px) {
+  .container {
+    max-width: 576px;
+  }
+
+  .\!container {
+    max-width: 576px !important;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  .\!container {
+    max-width: 768px !important;
+  }
+}
+@media (min-width: 790px) {
+  .container {
+    max-width: 790px;
+  }
+
+  .\!container {
+    max-width: 790px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+
+  .\!container {
+    max-width: 992px !important;
+  }
+}
+@media (min-width: 1128px) {
+  .container {
+    max-width: 1128px;
+  }
+
+  .\!container {
+    max-width: 1128px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .\!container {
+    max-width: 1200px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+
+  .\!container {
+    max-width: 1440px !important;
+  }
+}
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1680px;
+  }
+
+  .\!container {
+    max-width: 1680px !important;
+  }
+}
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1920px;
+  }
+
+  .\!container {
+    max-width: 1920px !important;
+  }
+}
+@media only screen and (orientation: landscape) {
+  .promo-modal__content-image {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .base-detail-page__header .nav {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .base-detail-page__header .nav {
+    width: 1128px;
+  }
+}
+@media (max-width: 767px) {
+  .embedded-social-share .modal__outlet {
+    height: 100%;
+  }
+
+  .embedded-social-share .modal__outlet {
+    width: 100%;
+  }
+
+  .embedded-social-share .modal__outlet {
+    flex-direction: column;
+  }
+
+  .embedded-social-share .modal__outlet {
+    font-size: 12px;
+  }
+}
+@media (max-width: 767px) {
+  .nav .search-bar {
+    order: 4;
+  }
+}
+@media (max-width: 767px) {
+  .nav .sign-in-card {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .nav--minified-mobile .nav__cta-container > *:not(.nav__link-person) {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .nav .search-bar--minified-mobile {  }
+
+  .nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+  }
+
+  .nav .search-bar--minified-mobile {
+    height: 100%;
+  }
+
+  .nav .search-bar--minified-mobile {
+    flex-grow: 1;
+  }
+
+  .nav .search-bar--minified-mobile {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .nav .search-bar--minified-mobile {
+    order: initial;
+    width: initial;
+  }
+
+  .nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .tw-link-column-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .tw-link-column-item {
+    margin-bottom: 8px;
+  }
+
+  .tw-linkster .tw-link-column-item {
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__button {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .member-nav-menu .collapsible-dropdown__button {
+    margin-left: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__list {
+    right: 0px;
+  }
+
+  .member-nav-menu .collapsible-dropdown__list {
+    max-height: calc(100vh - 52px);
+  }
+
+  .member-nav-menu .collapsible-dropdown__list {
+    overflow-y: auto;
+  }
+}
+@media (max-width: 767px) {
+  .recent-searches.recent-searches--show {
+    position: fixed;
+  }
+
+  .recent-searches.recent-searches--show {
+    top: 168px;
+  }
+
+  .recent-searches.recent-searches--show {
+    left: 0px;
+  }
+
+  .recent-searches.recent-searches--show {
+    width: 100vw;
+  }
+
+  .recent-searches.recent-searches--show {
+    min-width: 100vw;
+  }
+
+  .recent-searches.recent-searches--show {
+    border-width: 0;
+  }
+}
+@media (max-width: 767px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.75);
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .search-bar .dismissable-input {
+    border-radius: 4px;
+  }
+
+  .search-bar .dismissable-input {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input {
+    border-style: solid;
+  }
+
+  .search-bar .dismissable-input {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .search-bar .dismissable-input {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .search-bar .dismissable-input {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+  }
+
+  .search-bar .dismissable-input {
+    font-size: 16px;
+  }
+
+  .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
+  }
+
+  .search-bar .dismissable-input:hover {
+    cursor: pointer;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.9);
+  }
+
+  .search-bar .dismissable-input:active {
+    cursor: pointer;
+  }
+
+  .search-bar .dismissable-input:active {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .search-bar .dismissable-input:disabled {
+    cursor: not-allowed;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .search-bar .dismissable-input:disabled {
+    cursor: not-allowed;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .search-bar .dismissable-input:disabled {
+    cursor: not-allowed;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .search-bar .dismissable-input:disabled {
+    cursor: not-allowed;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    border-style: solid;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    border-style: solid;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    border-style: solid;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .base-search-bar .input-error .typeahead-input.search-bar .dismissable-in=
+put {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #cf0007;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .input-error .search-bar .dismissable-input {
+    border-radius: 4px;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    border-style: solid;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    font-size: 16px;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: #8a0005;
+    box-shadow: 0 0 0 1px #8a0005;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    cursor: pointer;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: #8a0005;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    cursor: pointer;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    cursor: not-allowed;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    cursor: not-allowed;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    cursor: not-allowed;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    cursor: not-allowed;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled,
+.input-error .search-bar .dismissable-input:disabled:hover,
+.input-error .search-bar .dismissable-input:disabled:focus,
+.input-error .search-bar .dismissable-input:disabled:active {
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .search-bar .dismissable-input {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (min-width: 992px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .search-bar .dismissable-input {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (max-width: 767px) {
+  .search-bar:not(.isExpanded) .base-search-bar__form {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  @media (max-width: 767px) {
+    .search-bar.isExpanded .search-bar__placeholder {
+      display: none;
+    }
+
+    @media (max-width: 767px) {
+      .search-bar.isExpanded .base-search-bar__form {
+        display: flex;
+      }
+
+      position: fixed;
+    .search-bar.isExpanded {
+        top: 0px;
+      }
+
+      .search-bar.isExpanded {
+        bottom: 0px;
+      }
+
+      .search-bar.isExpanded {
+        left: 0px;
+      }
+
+      .search-bar.isExpanded {
+        right: 0px;
+      }
+
+      .search-bar.isExpanded {
+        z-index: 1000;
+      }
+
+      .search-bar.isExpanded {
+        margin-bottom: 0px;
+      }
+
+      .search-bar.isExpanded {
+        height: 100%;
+      }
+
+      .search-bar.isExpanded {
+        background-color: #ffffff;
+      }
+
+      .search-bar.isExpanded .switcher-tabs {
+        display: inherit;
+      }
+
+    }
+
+  }
+}
+@media screen and (max-width: 767px) {
+  .stuck .search-bar {
+    transition: height 0.4s, margin-bottom 0.4s ease-in-out;
+  }
+
+  .stuck .search-bar {
+    margin-bottom: 0px;
+  }
+
+  .stuck .search-bar {
+    height: 0px;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    max-height: initial;
+    pointer-events: initial;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    border-width: 1px;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    border-style: solid;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+}
+@media (max-width: 767px) {
+  .tabs__list {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    position: fixed;
+  }
+
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    top: 158px;
+  }
+
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    left: 0px;
+  }
+
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    width: 100vw;
+  }
+
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    min-width: 100vw;
+  }
+}
+@media (max-width: 767px) {
+  .base-search-bar .dismissable-input {
+    max-height: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .base-main-card__media ~ .base-main-card__info {
+    margin-left: 0px;
+  }
+
+  .base-main-card__media ~ .base-main-card__info {
+    margin-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .filter .collapsible-dropdown__list {
+    max-height: 400px;
+  }
+}
+@media (forced-colors: active) {
+  .filter-button--selected {
+    border-width: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .base-card .duration {
+    font-size: 12px;
+  }
+
+  .base-card .duration {
+    font-weight: 400;
+  }
+}
+@media (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__button {
+    height: 100%;
+  }
+
+  .social-action-bar__button {
+    width: 100%;
+  }
+
+  .social-action-bar__button {
+    flex-direction: column;
+  }
+
+  .social-action-bar__button {
+    font-size: 12px;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__icon--svg {
+    margin: 0px;
+  }
+
+  .social-action-bar__icon--svg {
+    height: 24px;
+  }
+
+  .social-action-bar__icon--svg {
+    width: 24px;
+  }
+}
+@media (max-width: 767px) {
+  .babybear\:container-lined {
+    border-radius: 8px;
+  }
+
+  .babybear\:container-lined {
+    border-width: 1px;
+  }
+
+  .babybear\:container-lined {
+    border-style: solid;
+  }
+
+  .babybear\:container-lined {
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .babybear\:container-lined {
+    background-color: #ffffff;
+  }
+
+  .babybear\:invisible {
+    visibility: hidden;
+  }
+
+  .babybear\:static {
+    position: static;
+  }
+
+  .babybear\:right-4 {
+    right: 32px;
+  }
+
+  .babybear\:left-50\% {
+    left: 50%;
+  }
+
+  .babybear\:-top-0\.5 {
+    top: -4px;
+  }
+
+  .babybear\:-top-0 {
+    top: -0px;
+  }
+
+  .babybear\:z-0 {
+    z-index: 0;
+  }
+
+  .babybear\:my-2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .babybear\:mx-mobile-container-padding {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .babybear\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .babybear\:ml-0 {
+    margin-left: 0px;
+  }
+
+  .babybear\:mb-1 {
+    margin-bottom: 8px;
+  }
+
+  .babybear\:ml-1 {
+    margin-left: 8px;
+  }
+
+  .babybear\:mr-0 {
+    margin-right: 0px;
+  }
+
+  .babybear\:ml-\[-9999px\] {
+    margin-left: -9999px;
+  }
+
+  .babybear\:mb-1\.5 {
+    margin-bottom: 12px;
+  }
+
+  .babybear\:block {
+    display: block;
+  }
+
+  .babybear\:flex {
+    display: flex;
+  }
+
+  .babybear\:hidden {
+    display: none;
+  }
+
+  .babybear\:h-\[360px\] {
+    height: 360px;
+  }
+
+  .babybear\:h-\[186px\] {
+    height: 186px;
+  }
+
+  .babybear\:h-\[72px\] {
+    height: 72px;
+  }
+
+  .babybear\:h-\[27px\] {
+    height: 27px;
+  }
+
+  .babybear\:h-\[1px\] {
+    height: 1px;
+  }
+
+  .babybear\:h-\[48px\] {
+    height: 48px;
+  }
+
+  .babybear\:h-auto {
+    height: auto;
+  }
+
+  .babybear\:h-\[180px\] {
+    height: 180px;
+  }
+
+  .babybear\:max-h-\[250px\] {
+    max-height: 250px;
+  }
+
+  .babybear\:min-h-\[134px\] {
+    min-height: 134px;
+  }
+
+  .babybear\:w-\[360px\] {
+    width: 360px;
+  }
+
+  .babybear\:w-full {
+    width: 100%;
+  }
+
+  .babybear\:w-6 {
+    width: 48px;
+  }
+
+  .babybear\:w-auto {
+    width: auto;
+  }
+
+  .babybear\:w-\[1px\] {
+    width: 1px;
+  }
+
+  .babybear\:w-\[100vw\] {
+    width: 100vw;
+  }
+
+  .babybear\:w-\[calc\(100\%-68px\)\] {
+    width: calc(100% - 68px);
+  }
+
+  .babybear\:min-w-full {
+    min-width: 100%;
+  }
+
+  .babybear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .babybear\:flex-none {
+    flex: none;
+  }
+
+  .babybear\:flex-auto {
+    flex: 1 1 auto;
+  }
+
+  .babybear\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .babybear\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .babybear\:flex-row {
+    flex-direction: row;
+  }
+
+  .babybear\:flex-col {
+    flex-direction: column;
+  }
+
+  .babybear\:flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .babybear\:items-start {
+    align-items: flex-start;
+  }
+
+  .babybear\:items-center {
+    align-items: center;
+  }
+
+  .babybear\:justify-around {
+    justify-content: space-around;
+  }
+
+  .babybear\:self-center {
+    align-self: center;
+  }
+
+  .babybear\:rounded-\[0px\] {
+    border-radius: 0px;
+  }
+
+  .babybear\:border-b-1 {
+    border-bottom-width: 1px;
+  }
+
+  .babybear\:border-solid {
+    border-style: solid;
+  }
+
+  .babybear\:border-color-border-low-emphasis {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .babybear\:bg-color-transparent {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .babybear\:bg-color-brand {
+    background-color: #0a66c2;
+  }
+
+  .babybear\:p-2 {
+    padding: 16px;
+  }
+
+  .babybear\:p-1\.5 {
+    padding: 12px;
+  }
+
+  .babybear\:p-1 {
+    padding: 8px;
+  }
+
+  .babybear\:p-0 {
+    padding: 0px;
+  }
+
+  .babybear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:px-\[6px\] {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .babybear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .babybear\:py-1\.5 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .babybear\:py-1 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .babybear\:pb-2 {
+    padding-bottom: 16px;
+  }
+
+  .babybear\:pr-0 {
+    padding-right: 0px;
+  }
+
+  .babybear\:leading-\[150px\] {
+    line-height: 150px;
+  }
+
+  .babybear\:first\:ml-0:first-child {
+    margin-left: 0px;
+  }
+
+  .babybear\:last\:border-b-0:last-child {
+    border-bottom-width: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mamabear\:container-raised {
+    border-radius: 8px;
+  }
+
+  .mamabear\:container-raised {
+    background-color: #ffffff;
+  }
+
+  .mamabear\:container-raised {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .tab-sm.mamabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-sm.mamabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-sm.mamabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-selected:not(.mamabear\:tab-vertical) {
+    box-shadow: inset 0 -4px rgba(0, 0, 0, 0.9);
+  }
+
+  .tab-selected.mamabear\:tab-vertical {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .mamabear\:absolute {
+    position: absolute;
+  }
+
+  .mamabear\:right-4 {
+    right: 32px;
+  }
+
+  .mamabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .mamabear\:-top-1 {
+    top: -8px;
+  }
+
+  .mamabear\:mt-\[68px\] {
+    margin-top: 68px;
+  }
+
+  .mamabear\:flex {
+    display: flex;
+  }
+
+  .mamabear\:hidden {
+    display: none;
+  }
+
+  .mamabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .mamabear\:w-\[744px\] {
+    width: 744px;
+  }
+
+  .mamabear\:w-full {
+    width: 100%;
+  }
+
+  .mamabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .mamabear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .mamabear\:flex-row {
+    flex-direction: row;
+  }
+
+  .mamabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .mamabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .mamabear\:items-center {
+    align-items: center;
+  }
+
+  .mamabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:self-center {
+    align-self: center;
+  }
+
+  .mamabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .mamabear\:px-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .mamabear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mamabear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .papabear\:container-raised {
+    border-radius: 8px;
+  }
+
+  .papabear\:container-raised {
+    background-color: #ffffff;
+  }
+
+  .papabear\:container-raised {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .tab-sm.papabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-sm.papabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-sm.papabear\:tab-vertical,
+.tab-md.tab-vertical,
+.tab-lg.tab-vertical {
+    justify-content: flex-start;
+  }
+
+  .tab-selected:not(.papabear\:tab-vertical) {
+    box-shadow: inset 0 -4px rgba(0, 0, 0, 0.9);
+  }
+
+  .tab-selected.papabear\:tab-vertical {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .papabear\:absolute {
+    position: absolute;
+  }
+
+  .papabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .papabear\:-top-1 {
+    top: -8px;
+  }
+
+  .papabear\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .papabear\:mt-\[68px\] {
+    margin-top: 68px;
+  }
+
+  .papabear\:mt-\[-100px\] {
+    margin-top: -100px;
+  }
+
+  .papabear\:mb-\[18px\] {
+    margin-bottom: 18px;
+  }
+
+  .papabear\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .papabear\:mt-0\.5 {
+    margin-top: 4px;
+  }
+
+  .papabear\:mr-2 {
+    margin-right: 16px;
+  }
+
+  .papabear\:ml-column-gutter {
+    margin-left: 24px;
+  }
+
+  .papabear\:flex {
+    display: flex;
+  }
+
+  .papabear\:hidden {
+    display: none;
+  }
+
+  .papabear\:h-\[34px\] {
+    height: 34px;
+  }
+
+  .papabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .papabear\:min-h-\[96px\] {
+    min-height: 96px;
+  }
+
+  .papabear\:w-\[400px\] {
+    width: 400px;
+  }
+
+  .papabear\:w-content-max-w {
+    width: 1128px;
+  }
+
+  .papabear\:w-core-rail-width {
+    width: 790px;
+  }
+
+  .papabear\:w-right-rail-width {
+    width: calc(1128px - 24px - 790px);
+  }
+
+  .papabear\:w-auto {
+    width: auto;
+  }
+
+  .papabear\:w-\[1128px\] {
+    width: 1128px;
+  }
+
+  .papabear\:w-\[135px\] {
+    width: 135px;
+  }
+
+  .papabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .papabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .papabear\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .papabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .papabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .papabear\:justify-center {
+    justify-content: center;
+  }
+
+  .papabear\:self-start {
+    align-self: flex-start;
+  }
+
+  .papabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .papabear\:border-4 {
+    border-width: 4px;
+  }
+
+  .papabear\:p-details-container-padding {
+    padding: 24px;
+  }
+
+  .papabear\:p-0 {
+    padding: 0px;
+  }
+
+  .papabear\:py-2 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .papabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+
+  .papabear\:text-xl {
+    font-size: 24px;
+  }
+}
+</style></head> <body dir=3D"ltr" class=3D"font-sans bg-color-background-ca=
+nvas w-full m-0 p-0 pt-1" style=3D"border-color: currentColor; -webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; margin: 0px; width: 100%; background-color: #f3f2=
+f0; padding: 0px; padding-top: 8px; font-family: -apple-system, system-ui, =
+BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubun=
+tu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helve=
+tica, Arial, sans-serif;"> <div class=3D"h-0 opacity-0 text-transparent inv=
+isible overflow-hidden w-0 max-h-[0]" style=3D"border-color: currentColor; =
+visibility: hidden; height: 0px; max-height: 0; width: 0px; overflow: hidde=
+n; opacity: 0; mso-hide: all;">Lideran=C3=A7a e Intelig=C3=AAncia Emocional=
+ =C2=A0Tema da minha live desta ter=C3=A7a com o=E2=80=A6</div> <div class=
+=3D"h-0 opacity-0 text-transparent invisible overflow-hidden w-0 max-h-[0]"=
+ style=3D"border-color: currentColor; visibility: hidden; height: 0px; max-=
+height: 0; width: 0px; overflow: hidden; opacity: 0; mso-hide: all;"> =CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0 </div> <table class=3D"font-sans mercado-container w-[512px] m=
+ax-w-[512px] mx-auto my-0 p-0 bg-color-background-container" role=3D"presen=
+tation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wid=
+th=3D"512" align=3D"center" style=3D"border-color: currentColor; -webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; m=
+argin-left: auto; margin-right: auto; margin-top: 0px; margin-bottom: 0px; =
+width: 512px; max-width: 512px; background-color: #ffffff; padding: 0px; fo=
+nt-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto=
+, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, =
+'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Seg=
+oe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody styl=
+e=3D"border-color: currentColor;"> <tr style=3D"border-color: currentColor;=
+"> <td class=3D"text-center p-3" style=3D"border-color: currentColor; -webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; padding: 24px; text-align: center;"> <table class=3D"font-sans min-w-fu=
+ll" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0" width=3D"100%" style=3D"border-color: currentColor; -webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;=
+ min-width: 100%; font-family: -apple-system, system-ui, BlinkMacSystemFont=
+, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxyge=
+n Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-=
+serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=3D"border-=
+color: currentColor;"> <td align=3D"left" valign=3D"middle" style=3D"border=
+-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/f=
+eed/?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;=
+midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_follow_newsletter_01-hea=
+der-0-home_glimmer&amp;trkEmail=3Deml-email_series_follow_newsletter_01-hea=
+der-0-home_glimmer-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l8eif=
+3wk-9n" target=3D"_blank" class=3D"w-[84px]" style=3D"border-color: current=
+Color; color: #0a66c2; cursor: pointer; display: inline-block; text-decorat=
+ion: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; width: 84px;"> <img class=
+=3D"block" alt=3D"LinkedIn" src=3D"https://www.linkedin.com/comm/dms/logo?b=
+adgeTheme=3Dmercado&amp;csrfToken=3Dcsrf&amp;midToken=3DAQEq1MBbB2bM8g&amp;=
+trkEmail=3Deml-email_series_follow_newsletter_01-null-null-null-null-eau1wl=
+%257El8eif3wk%257E9n-null-comms%257Ebadging%257Edynamic%257Eglimmer&amp;_si=
+g=3D31W3g9bDVvaqs1" data-test-header-dynamic-badging-img style=3D"border-co=
+lor: currentColor; outline: none; text-decoration: none; -ms-interpolation-=
+mode: bicubic; display: block;"> </a> </td> <td valign=3D"middle" align=3D"=
+right" style=3D"border-color: currentColor; -webkit-text-size-adjust: 100%;=
+ -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"font=
+-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" data-test-header-profile style=3D"border-c=
+olor: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMa=
+cSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxy=
+gen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, A=
+rial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=
+=3D"border-color: currentColor;"> <td align=3D"right" valign=3D"middle" cla=
+ss=3D"w-[32px]" style=3D"border-color: currentColor; -webkit-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-siz=
+e-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 32px;"=
+ width=3D"32"> <a href=3D"https://pt.linkedin.com/comm/in/rafaelandersonsou=
+za?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;mi=
+dSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_follow_newsletter_01-heade=
+r-0-profile_glimmer&amp;trkEmail=3Deml-email_series_follow_newsletter_01-he=
+ader-0-profile_glimmer-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l=
+8eif3wk-9n" target=3D"_blank" style=3D"border-color: currentColor; color: #=
+0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%;"> <img alt=3D"Rafael Souza" src=3D"https:=
+//media-exp1.licdn.com/dms/image/C4D03AQEH4CxhkhtzrA/profile-displayphoto-s=
+hrink_200_200/0/1607511453788?e=3D1669248000&amp;v=3Dbeta&amp;t=3DlgwiIHBM2=
+xqfU3yastZkHMU7DjC-XRAVamSQdLWaKKs" class=3D"rounded-[100%] w-[32px] h-[32p=
+x]" style=3D"border-color: currentColor; outline: none; text-decoration: no=
+ne; -ms-interpolation-mode: bicubic; height: 32px; width: 32px; border-radi=
+us: 100%;" width=3D"32" height=3D"32"> </a> </td> </tr> </tbody> </table> <=
+/td> </tr> </tbody> </table> </td> </tr> <tr style=3D"border-color: current=
+Color;"> <td class=3D"px-0 pb-3" style=3D"border-color: currentColor; -webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; padding-left: 0px; padding-right: 0px; padding-bottom: 24px;"> <div sty=
+le=3D"border-color: currentColor;"> <table class=3D"font-sans" role=3D"pres=
+entation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" w=
+idth=3D"100%" style=3D"border-color: currentColor; -webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -a=
+pple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica =
+Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans',=
+ 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'=
+, 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody style=3D"border-c=
+olor: currentColor;"> <tr style=3D"border-color: currentColor;"> <td class=
+=3D"pb-2 px-3" style=3D"border-color: currentColor; -webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-left: =
+24px; padding-right: 24px; padding-bottom: 16px;"> <h1 class=3D"text-sm fon=
+t-medium font-sans break-words tracking-widest leading-regular text-system-=
+gray-70 uppercase" data-test-id=3D"email-header" style=3D"border-color: cur=
+rentColor; margin: 0; overflow-wrap: break-word; font-family: -apple-system=
+, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fir=
+a Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Col=
+or Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida G=
+rande', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; te=
+xt-transform: uppercase; line-height: 1.25; letter-spacing: 0.1em; color: #=
+666666;"> Newsletter no LinkedIn </h1> </td> </tr> <tr style=3D"border-colo=
+r: currentColor;"> <td data-test-id=3D"newsletter-entity-lockup" class=3D"p=
+b-2 px-3" style=3D"border-color: currentColor; -webkit-text-size-adjust: 10=
+0%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adju=
+st: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-left: 24px;=
+ padding-right: 24px; padding-bottom: 16px;"> <table class=3D"font-sans" ro=
+le=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"border-color: currentColor; -webkit-text-s=
+ize-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; =
+text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-=
+family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, '=
+Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dr=
+oid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe =
+UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody style=
+=3D"border-color: currentColor;"> <tr style=3D"border-color: currentColor;"=
+> <td valign=3D"top" class=3D"pr-1 w-8" style=3D"border-color: currentColor=
+; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rs=
+pace: 0pt; width: 64px; padding-right: 8px;" width=3D"64"> <a href=3D"https=
+://www.linkedin.com/comm/newsletters/6952442930536046592?lipi=3DJG6G1CwQTFq=
+7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1=
+&amp;trk=3Deml-email_series_follow_newsletter_01-newsletter_entity_lockup-0=
+-newsletter_entity_cta&amp;trkEmail=3Deml-email_series_follow_newsletter_01=
+-newsletter_entity_lockup-0-newsletter_entity_cta-null-eau1wl~l8eif3wk~9n-n=
+ull-null&amp;eid=3Deau1wl-l8eif3wk-9n" target=3D"_blank" style=3D"border-co=
+lor: currentColor; color: #0a66c2; cursor: pointer; display: inline-block; =
+text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img class=
+=3D"inline-block relative bg-color-entity-ghost-background w-8 h-8" src=3D"=
+https://media-exp1.licdn.com/dms/image/D4D12AQGqXK5aEf6KrQ/series-logo_imag=
+e-shrink_200_200/0/1662932586286?e=3D2147483647&amp;v=3Dbeta&amp;t=3DBqTzS_=
+JchwXKVT3l-uZ9j4eCKHSTqQNKSOCItayR0KQ" alt=3D"A sua carreira em evolu=C3=A7=
+=C3=A3o" style=3D"border-color: currentColor; outline: none; text-decoratio=
+n: none; -ms-interpolation-mode: bicubic; position: relative; display: inli=
+ne-block; height: 64px; width: 64px; background-color: #eae6df;" width=3D"6=
+4" height=3D"64"> </a> </td> <td valign=3D"top" style=3D"border-color: curr=
+entColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt;"> <table class=3D"font-sans" role=3D"presentation" valig=
+n=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" s=
+tyle=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, sy=
+stem-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sa=
+ns', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color E=
+moji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grand=
+e', Helvetica, Arial, sans-serif;"> <tbody style=3D"border-color: currentCo=
+lor;"> <tr style=3D"border-color: currentColor;"> <td style=3D"border-color=
+: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/newslet=
+ters/6952442930536046592?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_fo=
+llow_newsletter_01-newsletter_entity_lockup-0-newsletter_entity_cta&amp;trk=
+Email=3Deml-email_series_follow_newsletter_01-newsletter_entity_lockup-0-ne=
+wsletter_entity_cta-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l8ei=
+f3wk-9n" target=3D"_blank" class=3D"no-underline" style=3D"border-color: cu=
+rrentColor; color: #0a66c2; cursor: pointer; display: inline-block; -webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust:=
+ 100%; text-size-adjust: 100%; text-decoration: none;"> <span class=3D"font=
+-[700] text-md m-0 pb-0.25 break-words leading-regular text-system-gray-90"=
+ style=3D"border-color: currentColor; margin: 0px; overflow-wrap: break-wor=
+d; padding-bottom: 2px; font-size: 16px; font-weight: 700; line-height: 1.2=
+5; color: #282828;"> A sua carreira em evolu=C3=A7=C3=A3o </span> </a> </td=
+> </tr> <tr style=3D"border-color: currentColor;"> <td style=3D"border-colo=
+r: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%=
+; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0p=
+t; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/newsle=
+tters/6952442930536046592?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_fo=
+llow_newsletter_01-newsletter_entity_lockup-0-newsletter_entity_cta&amp;trk=
+Email=3Deml-email_series_follow_newsletter_01-newsletter_entity_lockup-0-ne=
+wsletter_entity_cta-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l8ei=
+f3wk-9n" target=3D"_blank" class=3D"no-underline" style=3D"border-color: cu=
+rrentColor; color: #0a66c2; cursor: pointer; display: inline-block; -webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust:=
+ 100%; text-size-adjust: 100%; text-decoration: none;"> <span class=3D"text=
+-sm m-0 text-cool-gray-70 break-words font-normal leading-regular" style=3D=
+"border-color: currentColor; margin: 0px; overflow-wrap: break-word; font-s=
+ize: 14px; font-weight: 400; line-height: 1.25; color: #56687a;"> Atrav=C3=
+=A9s do Linkedin, voc=C3=AA ter=C3=A1 uma vitrine que ser=C3=A1 o ponto de =
+sele=C3=A7=C3=A3o para a sua oportunidade e carreira. </span> </a> </td> </=
+tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr> <tr style=
+=3D"border-color: currentColor;"> <td data-test-id=3D"newsletter-author-loc=
+kup" class=3D"px-3 pb-2" valign=3D"middle" style=3D"border-color: currentCo=
+lor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-=
+size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table=
+-rspace: 0pt; padding-left: 24px; padding-right: 24px; padding-bottom: 16px=
+;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"border-c=
+olor: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMa=
+cSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxy=
+gen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, A=
+rial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=
+=3D"border-color: currentColor;"> <td valign=3D"middle" align=3D"left" clas=
+s=3D"pr-1 w-4" style=3D"border-color: currentColor; -webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 32px; p=
+adding-right: 8px;" width=3D"32"> <a href=3D"https://br.linkedin.com/comm/i=
+n/denyzesantos?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB=
+2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_follow_newslet=
+ter_01-newsletter_author_lockup-0-newsletter_author_cta&amp;trkEmail=3Deml-=
+email_series_follow_newsletter_01-newsletter_author_lockup-0-newsletter_aut=
+hor_cta-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l8eif3wk-9n" tar=
+get=3D"_blank" style=3D"border-color: currentColor; color: #0a66c2; cursor:=
+ pointer; display: inline-block; text-decoration: none; -webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%;"> <img class=3D"inline-block relative bg-color-entity-gh=
+ost-background clip-path-circle-50 rounded-full w-4 h-4 align-middle" src=
+=3D"https://media-exp1.licdn.com/dms/image/C4D03AQH8f3phYW2M-A/profile-disp=
+layphoto-shrink_400_400/0/1660942184381?e=3D1669248000&amp;v=3Dbeta&amp;t=
+=3DzETPYX1L96QCjJ2mvtLrICVRxKFu87mvylFeE28Tyqg" alt=3D"Imagem do autor" sty=
+le=3D"border-color: currentColor; outline: none; text-decoration: none; -ms=
+-interpolation-mode: bicubic; position: relative; display: inline-block; he=
+ight: 32px; width: 32px; border-radius: 9999px; background-color: #eae6df; =
+vertical-align: middle; clip-path: circle(50%);" width=3D"32" height=3D"32"=
+> </a> </td> <td valign=3D"middle" class=3D"align-middle" style=3D"border-c=
+olor: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; vertical-align: middle;"> <table class=3D"font=
+-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" style=3D"border-color: currentColor; -webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbod=
+y style=3D"border-color: currentColor;"> <tr style=3D"border-color: current=
+Color;"> <td style=3D"border-color: currentColor; -webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"htt=
+ps://br.linkedin.com/comm/in/denyzesantos?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%=
+3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-=
+email_series_follow_newsletter_01-newsletter_author_lockup-0-newsletter_aut=
+hor_cta&amp;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_aut=
+hor_lockup-0-newsletter_author_cta-null-eau1wl~l8eif3wk~9n-null-null&amp;ei=
+d=3Deau1wl-l8eif3wk-9n" target=3D"_blank" class=3D"no-underline" style=3D"b=
+order-color: currentColor; color: #0a66c2; cursor: pointer; display: inline=
+-block; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; text-decoration: none;"> <spa=
+n class=3D"font-[700] text-sm m-0 pb-0.25 text-system-gray-90 leading-regul=
+ar" style=3D"border-color: currentColor; margin: 0px; padding-bottom: 2px; =
+font-size: 14px; font-weight: 700; line-height: 1.25; color: #282828;">Deny=
+ze Santos</span> </a> </td> </tr> <tr style=3D"border-color: currentColor;"=
+> <td style=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; =
+-ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: =
+100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://br=
+.linkedin.com/comm/in/denyzesantos?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;=
+midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_s=
+eries_follow_newsletter_01-newsletter_author_lockup-0-newsletter_author_cta=
+&amp;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_author_loc=
+kup-0-newsletter_author_cta-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau=
+1wl-l8eif3wk-9n" target=3D"_blank" class=3D"no-underline" style=3D"border-c=
+olor: currentColor; color: #0a66c2; cursor: pointer; display: inline-block;=
+ -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; text-decoration: none;"> <span class=
+=3D"text-xs m-0 text-cool-gray-70" data-test-id=3D"headline" style=3D"borde=
+r-color: currentColor; margin: 0px; font-size: 12px; color: #56687a;"> Link=
+edin Top Voices 2022 l Especialista em Carreira l Recoloca=C3=A7=C3=A3o l C=
+onsultora l Curr=C3=ADculo l Linkedin, sua vitrine Online I Orienta=C3=A7=
+=C3=A3o Profissional l Palestrante </span> </a> </td> </tr> </tbody> </tabl=
+e> </td> </tr> </tbody> </table> </td> </tr> <tr data-test-id=3D"newsletter=
+-hero-banner" style=3D"border-color: currentColor;"> <td class=3D"bg-color-=
+surface-accent-4 py-2 px-3 leading-regular" style=3D"border-color: currentC=
+olor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text=
+-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt; background-color: #dde7f1; padding-left: 24px; padding-right=
+: 24px; padding-top: 16px; padding-bottom: 16px; line-height: 1.25;"> <a hr=
+ef=3D"https://www.linkedin.com/comm/pulse/soft-skills-mais-solicitadas-para=
+-mercado-de-trabalho-denyze-santos?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;=
+midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_s=
+eries_follow_newsletter_01-newsletter_hero_banner-0-open_on_linkedin_cta&am=
+p;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_hero_banner-0=
+-open_on_linkedin_cta-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l8=
+eif3wk-9n" target=3D"_blank" class=3D"text-color-text no-underline" style=
+=3D"border-color: currentColor; cursor: pointer; display: inline-block; -we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%; color: rgba(0, 0, 0, 0.9); text-decorati=
+on: none;"> Veja o que outras pessoas est=C3=A3o dizendo sobre este t=C3=B3=
+pico:<span class=3D"text-color-brand font-normal text-md leading-regular" s=
+tyle=3D"border-color: currentColor; font-size: 16px; font-weight: 400; line=
+-height: 1.25; color: #0a66c2;"> Abrir no LinkedIn</span> </a> </td> </tr> =
+<tr data-test-id=3D"newsletter-content-preview" style=3D"border-color: curr=
+entColor;"> <td class=3D"px-3 pt-2" style=3D"border-color: currentColor; -w=
+ebkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace=
+: 0pt; padding-left: 24px; padding-right: 24px; padding-top: 16px;"> <table=
+ class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"border-color: curre=
+ntColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont=
+, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxyge=
+n Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-=
+serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=3D"border-=
+color: currentColor;"> <td class=3D"border-1 border-solid border-system-gra=
+y-30 rounded-md overflow-hidden" style=3D"-webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; overflow: hidden; border=
+-radius: 8px; border-width: 1px; border-style: solid; border-color: #e6e6e6=
+;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"border-c=
+olor: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMa=
+cSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxy=
+gen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, A=
+rial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=
+=3D"border-color: currentColor;"> <td style=3D"border-color: currentColor; =
+-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt;"> <a href=3D"https://www.linkedin.com/comm/pulse/soft-skills-mais-=
+solicitadas-para-mercado-de-trabalho-denyze-santos?lipi=3DJG6G1CwQTFq7kSBru=
+pH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;t=
+rk=3Deml-email_series_follow_newsletter_01-newsletter_content_preview-0-hea=
+dline_&amp;trkEmail=3Deml-email_series_follow_newsletter_01-newsletter_cont=
+ent_preview-0-headline_-null-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-=
+l8eif3wk-9n" target=3D"_blank" style=3D"border-color: currentColor; color: =
+#0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%;"> <img class=3D"block w-full" alt=3D"Ima=
+gem de capa da newsletter" src=3D"https://media-exp1.licdn.com/dms/image/D4=
+D12AQFP86KyXQUeHA/article-cover_image-shrink_720_1280/0/1663935986469?e=3D2=
+147483647&amp;v=3Dbeta&amp;t=3Dsv3rIHtLnrRNd5WC-PKBYff7ay3jjKL0eXUGcDnIRmc"=
+ style=3D"border-color: currentColor; outline: none; text-decoration: none;=
+ -ms-interpolation-mode: bicubic; display: block; width: 100%;"> </a> </td>=
+ </tr> <tr style=3D"border-color: currentColor;"> <td class=3D"p-2" style=
+=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; padding: 16px;"> <table class=3D"f=
+ont-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0" width=3D"100%" style=3D"border-color: currentColor; -w=
+ebkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace=
+: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI=
+', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Ca=
+ntarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emo=
+ji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <t=
+body style=3D"border-color: currentColor;"> <tr style=3D"border-color: curr=
+entColor;"> <td style=3D"border-color: currentColor; -webkit-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-siz=
+e-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"=
+https://www.linkedin.com/comm/pulse/soft-skills-mais-solicitadas-para-merca=
+do-de-trabalho-denyze-santos?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midTok=
+en=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_=
+follow_newsletter_01-newsletter_content_preview-0-title_&amp;trkEmail=3Deml=
+-email_series_follow_newsletter_01-newsletter_content_preview-0-title_-null=
+-eau1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l8eif3wk-9n" target=3D"_blan=
+k" class=3D"no-underline font-medium text-sm m-0 text-system-gray-90" style=
+=3D"border-color: currentColor; cursor: pointer; display: inline-block; -we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%; margin: 0px; font-size: 14px; font-weigh=
+t: 500; color: #282828; text-decoration: none;"> <h2 style=3D"border-color:=
+ currentColor; margin: 0; font-weight: 500;"> As Soft Skills mais solicitad=
+as para Mercado de Trabalho </h2> </a> </td> </tr> <tr data-test-id=3D"news=
+letter-content-preview--content" style=3D"border-color: currentColor;"> <td=
+ class=3D"pt-0.5 series-article-body" style=3D"border-color: currentColor; =
+-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe =
+UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', =
+Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI E=
+moji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; fo=
+nt-size: 16px; padding-top: 4px;"> <p style=3D"border-color: currentColor; =
+margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height=
+: 1.5;">Lideran=C3=A7a e Intelig=C3=AAncia Emocional </p><p style=3D"border=
+-color: currentColor; margin: 0; font-weight: 400; margin-top: 0.8em; font-=
+size: 1em; line-height: 1.5;">&nbsp;Tema da minha live desta ter=C3=A7a com=
+ o convidado <a target=3D"_blank" rel=3D"nofollow noopener" style=3D"border=
+-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: inline=
+; cursor: pointer; color: #0a66c2; text-decoration: none;">Eric Maggio</a>,=
+ Psic=C3=B3logo Cl=C3=ADnico e organizacional, Consultor e Professor. Se vo=
+c=C3=AA n=C3=A3o assistiu no final desse artigo ter=C3=A1 o link da live. <=
+/p><p style=3D"border-color: currentColor; margin: 0; font-weight: 400; mar=
+gin-top: 0.8em; font-size: 1em; line-height: 1.5;">O meu objetivo para essa=
+ tem=C3=A1tica foi pela grande demanda de seguidores e clientes que me proc=
+uram para orient=C3=A1-los como buscar um desenvolvimento para assumir posi=
+=C3=A7=C3=B5es de gest=C3=A3o e consequentemente uma lideran=C3=A7a, como u=
+ma das falas de um dos meus clientes que busca uma vaga de Coordena=C3=A7=
+=C3=A3o na sua =C3=A1rea, </p><blockquote style=3D"border-color: currentCol=
+or; margin-top: 1.5em; margin-bottom: 1.5em; margin-left: 0px; margin-right=
+: 0px; display: block; border-left-width: 4px; border-style: solid; border-=
+left-color: #424242; padding-top: 0px; padding-bottom: 0px; padding-right: =
+0px; padding-left: 1.5em; font-size: 1em; font-style: italic; line-height: =
+1.5; color: #282828;">=E2=80=9Ceu n=C3=A3o fiquei na vaga porque eles queri=
+am um profissional com experi=C3=AAncia em gest=C3=A3o e lideran=C3=A7a, eu=
+ j=C3=A1 sou um supervisor, mas acredito que preciso de mais experi=C3=AAnc=
+ia=E2=80=9D. </blockquote><p style=3D"border-color: currentColor; margin: 0=
+; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">N=
+a verdade, ele j=C3=A1 tem experi=C3=AAncia, lidera equipes, tem resultados=
+, por=C3=A9m, ele n=C3=A3o desenvolveu o autoconhecimento sobre o seu perfi=
+l para o que ele j=C3=A1 faz, e com isso n=C3=A3o conseguiu se vender na en=
+trevista. </p><p style=3D"border-color: currentColor; margin: 0; font-weigh=
+t: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Voc=C3=AA j=
+=C3=A1 passou por isso?&nbsp;</p><p style=3D"border-color: currentColor; ma=
+rgin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: =
+1.5;">Para quem n=C3=A3o assistiu a live segue aqui um resumo do que tratam=
+os ontem, assim como falas dos participantes que compartilharam suas vis=C3=
+=B5es sobre a tem=C3=A1tica.&nbsp;</p><div class=3D"slate-resizable-image-e=
+mbed slate-image-embed__resize-full-width" style=3D"border-color: currentCo=
+lor;"><img alt=3D"N=C3=A3o foi fornecido texto alternativo para esta imagem=
+" data-media-urn data-li-src=3D"https://media-exp1.licdn.com/dms/image/D4D1=
+2AQFbMXMtz6Y8uA/article-inline_image-shrink_1000_1488/0/1663936288534?e=3D1=
+669248000&amp;v=3Dbeta&amp;t=3DYG9IyQ-gzy-ux7q6kEwquTKdpA3n6XjPFexX4BBKIp4"=
+ src=3D"https://media-exp1.licdn.com/dms/image/D4D12AQFbMXMtz6Y8uA/article-=
+inline_image-shrink_1000_1488/0/1663936288534?e=3D1669248000&amp;v=3Dbeta&a=
+mp;t=3DYG9IyQ-gzy-ux7q6kEwquTKdpA3n6XjPFexX4BBKIp4" width=3D"480" style=3D"=
+border-color: currentColor; outline: none; text-decoration: none; -ms-inter=
+polation-mode: bicubic; margin-top: 1em; display: block; max-width: 100%;">=
+</div><p style=3D"border-color: currentColor; margin: 0; font-weight: 400; =
+margin-top: 0.8em; font-size: 1em; line-height: 1.5;">Como abertura de fala=
+ do professor, "liderar =C3=A9 influenciar, inspirar, conduzir, e o l=C3=AD=
+der n=C3=A3o nasce pronto, tudo precisa de uma pr=C3=A1tica, precisa de des=
+envolvimento dia a dia". Em pesquisa, 85% dos l=C3=ADderes assumiram uma po=
+si=C3=A7=C3=A3o de lideran=C3=A7a sem conhecer o seu papel. A lideran=C3=A7=
+a n=C3=A3o =C3=A9 definida pelo cargo e nem pelo crach=C3=A1 e sim pela sua=
+ forma de conduzir seus liderados.&nbsp;</p><p style=3D"border-color: curre=
+ntColor; margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em; li=
+ne-height: 1.5;">&nbsp;Como dica do professor, a lideran=C3=A7a voc=C3=AA d=
+eve come=C3=A7ar por voc=C3=AA a se autoliderar, ter atitudes, com seus pr=
+=C3=B3prios objetivos, acompanhar, seguir os processos, ent=C3=A3o antes de=
+ liderar uma equipe comece gerindo suas pr=C3=B3prias a=C3=A7=C3=B5es.&nbsp=
+;</p><p style=3D"border-color: currentColor; margin: 0; font-weight: 400; m=
+argin-top: 0.8em; font-size: 1em; line-height: 1.5;">&nbsp;Para voc=C3=AA q=
+ue busca atuar como L=C3=ADder, demostre para o seu gestor o interesse, bus=
+que estar com os l=C3=ADderes que te inspiram, realize cursos e n=C3=A3o te=
+r medo de assumir riscos, assim como a leitura de livros, segue algumas dic=
+as dos livros que ele j=C3=A1 leu. </p><pre spellcheck=3D"false" style=3D"b=
+order-color: currentColor; margin-top: 1.5em; margin-bottom: 1.5em; margin-=
+left: 0px; margin-right: 0px; display: block; overflow-x: auto; white-space=
+: pre-wrap; border-radius: 4px; background-color: #38434f; padding: 32px; f=
+ont-family: monospace; line-height: 1.25; color: #ffffff;">Dicas de Livros:=
+&nbsp;1501 maneiras para voc=C3=AA premiar seus colaboradores, as 21 indisp=
+ens=C3=A1veis qualidades de um l=C3=ADder, l=C3=ADder 360,(John maxwell) A =
+lideran=C3=A7a, =C3=A9 uma quest=C3=A3o de atitude (SENAC), seja um l=C3=AD=
+der de verdade (Jonh Haggai) Gest=C3=A3o da Singularidade, (Eduardo Carmell=
+o).
+</pre><p style=3D"border-color: currentColor; margin: 0; font-weight: 400; =
+margin-top: 0.8em; font-size: 1em; line-height: 1.5;">&nbsp;<strong style=
+=3D"border-color: currentColor;">A INTELIG=C3=8ANCIA EMOCIONAL </strong></p=
+><p style=3D"border-color: currentColor; margin: 0; font-weight: 400; margi=
+n-top: 0.8em; font-size: 1em; line-height: 1.5;">Um&nbsp;l=C3=ADder&nbsp;be=
+m-sucedido =C3=A9 aquele que possui um alto equil=C3=ADbrio emocional. Isso=
+ porque ele consegue compreender os seus liderados e incentiv=C3=A1-los.</p=
+><p style=3D"border-color: currentColor; margin: 0; font-weight: 400; margi=
+n-top: 0.8em; font-size: 1em; line-height: 1.5;">&nbsp;=C3=89 importante le=
+mbrar que as nossas emo=C3=A7=C3=B5es afetam todas as =C3=A1reas da nossa v=
+ida, inclusive a profissional. Quando o nosso n=C3=ADvel de intelig=C3=AAnc=
+ia emocional =C3=A9 alto, conseguimos ser mais produtivos, trabalhamos melh=
+or em equipe e desenvolvemos rela=C3=A7=C3=B5es interpessoais saud=C3=A1vei=
+s.</p><p style=3D"border-color: currentColor; margin: 0; font-weight: 400; =
+margin-top: 0.8em; font-size: 1em; line-height: 1.5;">&nbsp;Essas s=C3=A3o =
+caracter=C3=ADsticas essenciais para um bom l=C3=ADder, incluindo a&nbsp;au=
+toconsci=C3=AAncia, que o ajuda a pensar no coletivo, visando sempre o dese=
+nvolvimento da equipe.</p><p style=3D"border-color: currentColor; margin: 0=
+; font-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">&=
+nbsp;Desenvolver o autoconhecimento, saber no que =C3=A9 bom, que te faz br=
+ilhar os olhos, o que te dar alegria, o que voc=C3=AA n=C3=A3o gosta, quais=
+ seus sentimentos, seus sonhos? S=C3=A3o perguntas simples que muitos n=C3=
+=A3o sabem falar numa entrevista de emprego.</p><p style=3D"border-color: c=
+urrentColor; margin: 0; font-weight: 400; margin-top: 0.8em; font-size: 1em=
+; line-height: 1.5;">&nbsp;Para isso =C3=A9 preciso desacelerar para voc=C3=
+=AA conseguir visualizar o cen=C3=A1rio de forma inteligente e assertivo.</=
+p><p style=3D"border-color: currentColor; margin: 0; font-weight: 400; marg=
+in-top: 0.8em; font-size: 1em; line-height: 1.5;">&nbsp;<strong style=3D"bo=
+rder-color: currentColor;">Como dica</strong>, busque feedback sobre voc=C3=
+=AA com pessoas que convivem com voc=C3=AA, busque autoajuda de profissiona=
+is. Evitar se comparar com outras pessoas e n=C3=A3o terceirizar sua automo=
+tiva=C3=A7=C3=A3o.</p><p style=3D"border-color: currentColor; margin: 0; fo=
+nt-weight: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">&nbsp=
+;Executar a intelig=C3=AAncia emocional tamb=C3=A9m pelo que voc=C3=AA acre=
+dita, ser positivo, ser emp=C3=A1tico, as habilidades sociais, ser bom ouvi=
+nte.&nbsp;</p><p style=3D"border-color: currentColor; margin: 0; font-weigh=
+t: 400; margin-top: 0.8em; font-size: 1em; line-height: 1.5;">&nbsp;Assim, =
+<a href=3D"https://www.linkedin.com/feed/" target=3D"_blank" style=3D"borde=
+r-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; display: inlin=
+e; cursor: pointer; color: #0a66c2; text-decoration: none;"><strong style=
+=3D"border-color: currentColor;">Eric Maggio</strong></a> finaliza com uma =
+frase de Ayrton Senna: Ele (Deus) =C3=A9 o dono de tudo. Devo a Ele a oport=
+unidade que tive de chegar onde cheguei. Muitas pessoas t=C3=AAm essa capac=
+idade, mas n=C3=A3o t=C3=AAm a oportunidade. Ele a deu para mim, n=C3=A3o s=
+ei por qu=C3=AA. S=C3=B3 sei que n=C3=A3o posso desperdi=C3=A7=C3=A1-la.</p=
+><p style=3D"border-color: currentColor; margin: 0; font-weight: 400; margi=
+n-top: 0.8em; font-size: 1em; line-height: 1.5;">Quero saber de voc=C3=AA. =
+O que voc=C3=AA vem fazendo para o seu autodesenvolvimento?</p><div class=
+=3D"email_iframe_replacement" style=3D"border-color: currentColor;"><a href=
+=3D"https://www.linkedin.com/pulse/soft-skills-mais-solicitadas-para-mercad=
+o-de-trabalho-denyze-santos" style=3D"-moz-text-size-adjust: 100%; text-siz=
+e-adjust: 100%; cursor: pointer; margin-left: 0px; margin-right: 0px; margi=
+n-top: 1em; margin-bottom: 2em; display: block; border-radius: 34px; border=
+-width: 1px; border-style: solid; border-color: #0a66c2; background-color: =
+#ffffff; padding-top: 0.8em; padding-bottom: 0.8em; padding-left: 1.5em; pa=
+dding-right: 1.5em; text-align: center; font-size: 1em; font-weight: 400; l=
+ine-height: 1.25; color: #0a66c2; text-decoration: none; mso-table-rspace: =
+0pt; mso-table-lspace: 0pt; -webkit-text-size-adjust: 100%; -ms-text-size-a=
+djust: 100%;">View media in original article</a></div><p style=3D"border-co=
+lor: currentColor; margin: 0; font-weight: 400; margin-top: 0.8em; font-siz=
+e: 1em; line-height: 1.5;">Compartilha qual o seu aprendizado com esse arti=
+go.</p><p style=3D"border-color: currentColor; margin: 0; font-weight: 400;=
+ margin-top: 0.8em; font-size: 1em; line-height: 1.5;">N=C3=A3o percam toda=
+s as ter=C3=A7as as 21hs aqui no meu perfil lives com convidados e clientes=
+ compartilhando tem=C3=A1ticas super necess=C3=A1rias onde envolve carreira=
+ e mercado de trabalho com meu m=C3=A9todo. </p> </td> </tr> <tr style=3D"b=
+order-color: currentColor;"> <td class=3D"pt-2 no-underline" style=3D"borde=
+r-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt; padding-top: 16px; text-decoration: none;">=
+ <table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"border-color=
+: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSys=
+temFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen,=
+ 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emo=
+ji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial=
+, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr style=3D"=
+border-color: currentColor;"> <td valign=3D"middle" align=3D"left" style=3D=
+"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tabl=
+e-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com=
+/comm/pulse/soft-skills-mais-solicitadas-para-mercado-de-trabalho-denyze-sa=
+ntos?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;=
+midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_follow_newsletter_01-new=
+sletter_content_preview-0-readmore_button_&amp;trkEmail=3Deml-email_series_=
+follow_newsletter_01-newsletter_content_preview-0-readmore_button_-null-eau=
+1wl~l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l8eif3wk-9n" target=3D"_blank" s=
+tyle=3D"border-color: currentColor; color: #0a66c2; cursor: pointer; displa=
+y: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%;"> <table class=3D"font-sans border-separate" role=3D"presentation" valig=
+n=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"auto" s=
+tyle=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: separate; fon=
+t-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,=
+ 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, '=
+Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Sego=
+e UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody style=
+=3D"border-color: currentColor;"> <tr style=3D"border-color: currentColor;"=
+> <td class=3D"btn-md btn-primary border-color-brand button-link leading-re=
+gular !min-h-[auto] font-sans !shadow-none border-1 border-solid" style=3D"=
+-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt; height: min-content; border-radius: 24px; padding-top: 12px; paddi=
+ng-bottom: 12px; padding-left: 24px; padding-right: 24px; text-align: cente=
+r; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: non=
+e; background-color: #0a66c2; color: #ffffff; border-width: 1px; border-sty=
+le: solid; border-color: #0a66c2; font-family: -apple-system, system-ui, Bl=
+inkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu=
+, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Seg=
+oe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helveti=
+ca, Arial, sans-serif; line-height: 1.25; min-height: auto; box-shadow: 0 0=
+ #0000, 0 0 #0000, 0 0 #0000;"> <a href=3D"https://www.linkedin.com/comm/pu=
+lse/soft-skills-mais-solicitadas-para-mercado-de-trabalho-denyze-santos?lip=
+i=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=
+=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_series_follow_newsletter_01-newslette=
+r_content_preview-0-readmore_button_&amp;trkEmail=3Deml-email_series_follow=
+_newsletter_01-newsletter_content_preview-0-readmore_button_-null-eau1wl~l8=
+eif3wk~9n-null-null&amp;eid=3Deau1wl-l8eif3wk-9n" target=3D"_blank" tabinde=
+x=3D"-1" aria-hidden=3D"true" style=3D"border-color: currentColor; color: #=
+0a66c2; cursor: pointer; display: inline-block; text-decoration: none; -web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%;"> <span class=3D"no-underline text-white"=
+ style=3D"border-color: currentColor; color: #ffffff; text-decoration: none=
+;"> Participe da conversa </span> </a> </td> </tr> </tbody> </table> </a> <=
+/td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tb=
+ody> </table> </td> </tr> </tbody> </table> </td> </tr> <tr style=3D"border=
+-color: currentColor;"> <td class=3D"pt-2 px-3" style=3D"border-color: curr=
+entColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; padding-left: 24px; padding-right: 24px; padding-top: 16=
+px;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"border-=
+color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkM=
+acSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Ox=
+ygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe U=
+I Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, =
+Arial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr styl=
+e=3D"border-color: currentColor;"> <td align=3D"left" style=3D"border-color=
+: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt;"> Conhece algu=C3=A9m que possa se interessar por =
+esta newsletter? Compartilhe-a! </td> </tr> <tr style=3D"border-color: curr=
+entColor;"> <td class=3D"pt-2" align=3D"center" style=3D"border-color: curr=
+entColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; padding-top: 16px;"> <table class=3D"font-sans mx-auto" =
+role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" width=3D"75%" style=3D"border-color: currentColor; -webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; marg=
+in-left: auto; margin-right: auto; font-family: -apple-system, system-ui, B=
+linkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubunt=
+u, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Se=
+goe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvet=
+ica, Arial, sans-serif;"> <tbody style=3D"border-color: currentColor;"> <tr=
+ align=3D"middle" style=3D"border-color: currentColor;"> <td style=3D"borde=
+r-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/e/v2?=
+urlhash=3DLJhO&amp;url=3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2FshareArticle%=
+3Furl%3Dhttps%253A%252F%252Fwww%252Elinkedin%252Ecom%252Fpulse%252Fsoft-ski=
+lls-mais-solicitadas-para-mercado-de-trabalho-denyze-santos&amp;lipi=3DJG6G=
+1CwQTFq7kSBrupH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgx=
+GBvaqs1&amp;ek=3Demail_series_follow_newsletter_01&amp;e=3Deau1wl-l8eif3wk-=
+9n&amp;eid=3Deau1wl-l8eif3wk-9n&amp;m=3Dnewsletter_social_upsell&amp;ts=3Dl=
+inkedin_upsell_cta&amp;li=3D0&amp;t=3Dplh" target=3D"_blank" style=3D"borde=
+r-color: currentColor; color: #0a66c2; cursor: pointer; display: inline-blo=
+ck; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img cla=
+ss=3D"w-3 h-3 align-middle" src=3D"https://static-exp1.licdn.com/aero-v1/sc=
+/h/dxxwa7aq3z1rmvz7wmodrbt4k" alt=3D"Compartilhe esta s=C3=A9rie no LinkedI=
+n" style=3D"border-color: currentColor; outline: none; text-decoration: non=
+e; -ms-interpolation-mode: bicubic; height: 24px; width: 24px; vertical-ali=
+gn: middle;" width=3D"24" height=3D"24"> </a> </td> <td style=3D"border-col=
+or: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/e/v2?urlha=
+sh=3DM5Wt&amp;url=3Dhttps%3A%2F%2Fwww%2Efacebook%2Ecom%2Fsharer%2Fsharer%2E=
+php%3Fu%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2Fsoft-skills-mais-sol=
+icitadas-para-mercado-de-trabalho-denyze-santos&amp;lipi=3DJG6G1CwQTFq7kSBr=
+upH1jw%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;=
+ek=3Demail_series_follow_newsletter_01&amp;e=3Deau1wl-l8eif3wk-9n&amp;eid=
+=3Deau1wl-l8eif3wk-9n&amp;m=3Dnewsletter_social_upsell&amp;ts=3Dfacebook_up=
+sell_cta&amp;li=3D0&amp;t=3Dplh" target=3D"_blank" style=3D"border-color: c=
+urrentColor; color: #0a66c2; cursor: pointer; display: inline-block; text-d=
+ecoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%=
+; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"w-3 =
+h-3 align-middle" src=3D"https://static-exp1.licdn.com/aero-v1/sc/h/dpe0787=
+83oyfx6qjv3mt2avpn" alt=3D"Compartilhe esta s=C3=A9rie no Facebook" style=
+=3D"border-color: currentColor; outline: none; text-decoration: none; -ms-i=
+nterpolation-mode: bicubic; height: 24px; width: 24px; vertical-align: midd=
+le;" width=3D"24" height=3D"24"> </a> </td> <td style=3D"border-color: curr=
+entColor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/e/v2?urlhash=3DWEi=
+C&amp;url=3Dhttps%3A%2F%2Fwww%2Etwitter%2Ecom%2Fintent%2Ftweet%3Furl%3Dhttp=
+s%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2Fsoft-skills-mais-solicitadas-para-=
+mercado-de-trabalho-denyze-santos&amp;lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&a=
+mp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;ek=3Demail_ser=
+ies_follow_newsletter_01&amp;e=3Deau1wl-l8eif3wk-9n&amp;eid=3Deau1wl-l8eif3=
+wk-9n&amp;m=3Dnewsletter_social_upsell&amp;ts=3Dtwitter_upsell_cta&amp;li=
+=3D0&amp;t=3Dplh" target=3D"_blank" style=3D"border-color: currentColor; co=
+lor: #0a66c2; cursor: pointer; display: inline-block; text-decoration: none=
+; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-siz=
+e-adjust: 100%; text-size-adjust: 100%;"> <img class=3D"w-3 h-3 align-middl=
+e" src=3D"https://static-exp1.licdn.com/aero-v1/sc/h/1xn78fnzsemwl5bquyh865=
+evs" alt=3D"Compartilhe esta s=C3=A9rie no Twitter" style=3D"border-color: =
+currentColor; outline: none; text-decoration: none; -ms-interpolation-mode:=
+ bicubic; height: 24px; width: 24px; vertical-align: middle;" width=3D"24" =
+height=3D"24"> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </ta=
+ble> </td> </tr> </tbody> </table> </div> </td> </tr> <tr style=3D"border-c=
+olor: currentColor;"> <td class=3D"bg-color-background-canvas p-3" style=3D=
+"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tabl=
+e-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f3f2f0; padding: 2=
+4px;"> <table class=3D"font-sans text-xs" role=3D"presentation" valign=3D"t=
+op" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=
+=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system=
+-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans',=
+ Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji=
+', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', =
+Helvetica, Arial, sans-serif; font-size: 12px;"> <tbody style=3D"border-col=
+or: currentColor;"> <tr style=3D"border-color: currentColor;"> <td class=3D=
+"pb-1 m-0" style=3D"border-color: currentColor; -webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margin: 0px; paddi=
+ng-bottom: 8px;"> Este e-mail foi enviado a Rafael Souza (Desenvolvedor da =
+web na Solution.dev) </td> </tr> <tr style=3D"border-color: currentColor;">=
+ <td class=3D"pb-1 m-0" style=3D"border-color: currentColor; -webkit-text-s=
+ize-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; =
+text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; margi=
+n: 0px; padding-bottom: 8px;"> <a href=3D"https://www.linkedin.com/help/lin=
+kedin/answer/4788?lang=3Dpt&amp;lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&amp;mid=
+Token=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email_seri=
+es_follow_newsletter_01-SecurityHelp-0-footerglimmer&amp;trkEmail=3Deml-ema=
+il_series_follow_newsletter_01-SecurityHelp-0-footerglimmer-null-eau1wl~l8e=
+if3wk~9n-null-null&amp;eid=3Deau1wl-l8eif3wk-9n" target=3D"_blank" style=3D=
+"border-color: currentColor; color: #0a66c2; cursor: pointer; display: inli=
+ne-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Sai=
+ba por que inclu=C3=ADmos isso.</a> </td> </tr> <tr style=3D"border-color: =
+currentColor;"> <td class=3D"pb-1 m-0" style=3D"border-color: currentColor;=
+ -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt; margin: 0px; padding-bottom: 8px;">Voc=C3=AA est=C3=A1 recebendo =
+e-mails de notifica=C3=A7=C3=A3o do LinkedIn. O autor da newsletter pode ve=
+r que voc=C3=AA =C3=A9 assinante.</td> </tr> <tr style=3D"border-color: cur=
+rentColor;"> <td class=3D"pb-1 m-0" style=3D"border-color: currentColor; -w=
+ebkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace=
+: 0pt; margin: 0px; padding-bottom: 8px;"> <a href=3D"https://www.linkedin.=
+com/comm/psettings/email-unsubscribe?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3D%3D&am=
+p;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Deml-email=
+_series_follow_newsletter_01-unsubscribe-0-footerGlimmer&amp;trkEmail=3Deml=
+-email_series_follow_newsletter_01-unsubscribe-0-footerGlimmer-null-eau1wl~=
+l8eif3wk~9n-null-null&amp;eid=3Deau1wl-l8eif3wk-9n&amp;loid=3DAQGl4VB0NkDwR=
+wAAAYNqgM4mqsaEjfqwD0ICbzUVU9jZyY7Udo-H0oLL0QPIBgYNN04BC6JTkmFoWq7IXpvKugWy=
+yDjh1VbIFKzx3LVfmBzCYucaxx1z7w" target=3D"_blank" style=3D"border-color: cu=
+rrentColor; color: #0a66c2; cursor: pointer; display: inline-block; text-de=
+coration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Cancelar inscri=C3=
+=A7=C3=A3o</a> =C2=A0=C2=A0=C2=B7=C2=A0=C2=A0 <a href=3D"https://www.linked=
+in.com/help/linkedin/answer/67?lang=3Dpt&amp;lipi=3DJG6G1CwQTFq7kSBrupH1jw%=
+3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3De=
+ml-email_series_follow_newsletter_01-help-0-footerglimmer&amp;trkEmail=3Dem=
+l-email_series_follow_newsletter_01-help-0-footerglimmer-null-eau1wl~l8eif3=
+wk~9n-null-null&amp;eid=3Deau1wl-l8eif3wk-9n" target=3D"_blank" style=3D"bo=
+rder-color: currentColor; color: #0a66c2; cursor: pointer; display: inline-=
+block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size=
+-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">Ajuda<=
+/a> </td> </tr> <tr style=3D"border-color: currentColor;"> <td class=3D"pb-=
+1" style=3D"border-color: currentColor; -webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bottom: 8px;"> <a =
+href=3D"https://www.linkedin.com/comm/feed/?lipi=3DJG6G1CwQTFq7kSBrupH1jw%3=
+D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D0fbwlgxGBvaqs1&amp;trk=3Dem=
+l-email_series_follow_newsletter_01-footer-0-logoGlimmer&amp;trkEmail=3Deml=
+-email_series_follow_newsletter_01-footer-0-logoGlimmer-null-eau1wl~l8eif3w=
+k~9n-null-null&amp;eid=3Deau1wl-l8eif3wk-9n" target=3D"_blank" style=3D"bor=
+der-color: currentColor; color: #0a66c2; cursor: pointer; display: inline-b=
+lock; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img s=
+rc=3D"https://static-exp1.licdn.com/aero-v1/sc/h/9ehe6n39fa07dc5edzv0rla4e"=
+ alt=3D"LinkedIn" class=3D"block h-[14px] w-[56px] image-rendering-crisp" s=
+tyle=3D"border-color: currentColor; outline: none; text-decoration: none; i=
+mage-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-re=
+ndering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-inter=
+polation-mode: nearest-neighbor; display: block; height: 14px; width: 56px;=
+" width=3D"56" height=3D"14"> </a> </td> </tr> <tr style=3D"border-color: c=
+urrentColor;"> <td data-test-copyright-text style=3D"border-color: currentC=
+olor; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text=
+-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt;"> =C2=A9 2022 LinkedIn Ireland Unlimited Company, Wilton Pla=
+za, Wilton Place, Dublin 2 - Irlanda. LinkedIn =C3=A9 um nome comercial reg=
+istrado da LinkedIn Ireland Unlimited Company. <span data-test-trademarks-t=
+ext style=3D"border-color: currentColor;"> LinkedIn e o logo do LinkedIn s=
+=C3=A3o marcas registradas do LinkedIn. </span> </td> </tr> </tbody> </tabl=
+e> </td> </tr> </tbody> </table> <img alt role=3D"presentation" src=3D"http=
+s://www.linkedin.com/emimp/ip_WldGMU1YZHNMV3c0WldsbU0zZHJMVGx1OlpXMWhhV3hmY=
+zJWeWFXVnpYMlp2Ykd4dmQxOXVaWGR6YkdWMGRHVnlYekF4Og=3D=3D.gif" style=3D"borde=
+r-color: currentColor; outline: none; text-decoration: none; -ms-interpolat=
+ion-mode: bicubic; width: 1px; height: 1px;" width=3D"1" height=3D"1"> </bo=
+dy> </html>
+------=_Part_5057374_1613298814.1663939170564--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>662</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1663939174</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>10850</string>
+</dict>
+</plist>

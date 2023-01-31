@@ -1,0 +1,863 @@
+45361     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a11:310:b0:2d1:65d2:222b with SMTP id id16csp201070pxb;
+        Thu, 4 Aug 2022 00:10:43 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4hYx/6mPbP3JcxWPNEjml7nkNdlnWF0n6KNMl7Eq3yKbFWEsH/yo+mYlPu5GJNwztXQlSd
+X-Received: by 2002:a05:620a:258d:b0:6b6:6e77:7622 with SMTP id x13-20020a05620a258d00b006b66e777622mr346610qko.95.1659597043032;
+        Thu, 04 Aug 2022 00:10:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1659597043; cv=none;
+        d=google.com; s=arc-20160816;
+        b=pcX7wVAh5DyYwGyl/GfOT9npdFVgCYX+gyQ6s5ipwwG6khU6KEfhUO4Abug3FwXJO8
+         o+t/KJi4DwO9OLs98bQNiGGo4jwfeY/mbf6ZUNk8jtSOKYhR2CiAKPot/tMtGRNCGVHa
+         rkluHLnFEOmkjIUCxKNbTUz+cwtv5qerHo7CKSsJMYOV9trV1TRgV5brXfNsiJYsiTwA
+         0wizQZGj2OQ0OjJxmMJdEN7zcqcqag14nNLMUR2jSMmIXPR/risylM6dTMKud07wCYIX
+         6Fdv6GwQs3gFjYitgkWyb9d9ElFW8FKJfKxSXTQcUjUzE98WkGBfrdDpmG0+NYubRcMI
+         c85A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:precedence:mime-version:subject:message-id:to:reply-to
+         :from:date:list-unsubscribe:dkim-signature:dkim-signature;
+        bh=9sHnmbAbLkThJ4stdVKBChCoHdyRaDki8gTfKBeM8bY=;
+        b=nWC0jn+2K08Aw4H0hZc8h8kGl6/H8kTDTyoXoz+5NmPvgFfnk3QdzZypxRHKIKiUQs
+         YsW+EkDg5kmizjGvS/kPEl7PZGM7Dea53Ob73RPYEWBxBM5R5umcyfglw7SkM4IugWyd
+         tkMdWufngvg2xDPXS04jMsJAIRCFbX52+uonDDQUzlz0bK+6CWstb52IcX7Y4F2ka8ht
+         Zb1mL3zzms5m6+bkMYNJlXRD7bxFrqBUusIctzhZaHEtK+NFGCWjelniSROl0zbp+mIz
+         rBNXGGg557mXmhzOkzKdZINXHTNwEnbYFB4grURbT7PObuVoRYfEPaXfJ7aqVapulQi1
+         C6ZQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@bf03.hubspotemail.net header.s=hs2 header.b=W4fw+0I+;
+       dkim=pass header.i=@activestate.com header.s=hs2 header.b=hYx4Fq28;
+       spf=pass (google.com: domain of 1axb0gwt7uovwxfcyo1a3osnf0b5c24qumfh1g-faeldroom46=gmail.com@bf03.hubspotemail.net designates 158.247.19.5 as permitted sender) smtp.mailfrom="1axb0gwt7uovwxfcyo1a3osnf0b5c24qumfh1g-faeldroom46=gmail.com@bf03.hubspotemail.net";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=activestate.com
+Return-Path: <1axb0gwt7uovwxfcyo1a3osnf0b5c24qumfh1g-faeldroom46=gmail.com@bf03.hubspotemail.net>
+Received: from bid46r7.bf03.hubspotemail.net (bid46r7.bf03.hubspotemail.net. [158.247.19.5])
+        by mx.google.com with ESMTPS id r8-20020a05620a298800b006b584eb2f7bsi179921qkp.586.2022.08.04.00.10.42
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 04 Aug 2022 00:10:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 1axb0gwt7uovwxfcyo1a3osnf0b5c24qumfh1g-faeldroom46=gmail.com@bf03.hubspotemail.net designates 158.247.19.5 as permitted sender) client-ip=158.247.19.5;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@bf03.hubspotemail.net header.s=hs2 header.b=W4fw+0I+;
+       dkim=pass header.i=@activestate.com header.s=hs2 header.b=hYx4Fq28;
+       spf=pass (google.com: domain of 1axb0gwt7uovwxfcyo1a3osnf0b5c24qumfh1g-faeldroom46=gmail.com@bf03.hubspotemail.net designates 158.247.19.5 as permitted sender) smtp.mailfrom="1axb0gwt7uovwxfcyo1a3osnf0b5c24qumfh1g-faeldroom46=gmail.com@bf03.hubspotemail.net";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=activestate.com
+Received: by 172.16.28.112 with SMTP id axhgpp6gfjb4az7d5rbu6wb4yobr6kep7ctz1u;
+        Thu, 4 Aug 2022 07:10:38 GMT
+DKIM-Signature: v=1; s=hs2; d=bf03.hubspotemail.net; 
+        i=@bf03.hubspotemail.net; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=9sHnmbAbLkThJ4stdVKBChCoHdyRaDki8gTfKBeM8bY=; 
+        b=W4fw+0I+yZysq+SgorR7C8J04VsvKU58GcNYmkb24D3VnpmagbdrYZ5j9WjUZ+
+         RB5kR8tADEYDQDPUboW6bQNdIsc+aXknUKux99FR3DktKMyeKtWQiRokrTcnOrf
+         +/dOyDMxP6K1C1aoyf2nrJpeZfW86ckSuzLqYEDEudtONAZ1keb4AoVnmh5VAuQ
+         6X+Xx1u6fl9mrbO65x2H9KmUQw0y2GqfvjQyMmpWDaRS2XLj2uos4YbPVs6+Uoo
+         YGqvDeeCyFtOU/esEEV+p7cL2NakdPo/AZzp8ziYIMKpqcfyvgiOkTeaUFuvcZU
+         T9IODJS3tv7QE/ug/7rrF4gIYsog==; q=dns/txt; t=1659597038; 
+        x=1659769838;
+DKIM-Signature: v=1; s=hs2; d=activestate.com; 
+        i=@activestate.com; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=9sHnmbAbLkThJ4stdVKBChCoHdyRaDki8gTfKBeM8bY=; 
+        b=hYx4Fq289tkaGrXyMVyN9jGxbktkdLKu3zPOFlGDC75U3vY9xdVpnCMSqHGyoE
+         7NZJA4lleQoqDA+G25jmGKJsfgYJeTRBDOAOSg+xCrMP7N/KUabeX7VPJjlZHYK
+         hA7zf1jgZyQTufc5hD4f4+kfzjWRE6Z4fqPsgrtgfVHnHrmM3L/cj2XezZThQOl
+         62Ty1k4pevxpfOH7Tah0RnbNnmk1+e+rTWWcHmRhjHSFPIwMVRXfanU3aYdKuCS
+         6nNamk9gl7yRUBdmNhH6p8xS5Eq6TQUVKVdF5aoXI0mVZoGXjZR+lEF4X+DUru0
+         0iHW23Ung0VtSMg2dpsul9F02yHw==; q=dns/txt; t=1659597038; 
+        x=1659769838;
+Return-Path: <1axb0gwt7uovwxfcyo1a3osnf0b5c24qumfh1g-faeldroom46=gmail.com@bf03.hubspotemail.net>
+X-HS-Cid: 1axe8q7sc9w2kri40ur7atr5z5b68pn5ylaexg
+List-Unsubscribe: <mailto:1axcxte3in45lz7svygvht325wgk480aaderdg-faeldroom46=gmail.com@bf03.hubspotemail.net?subject=unsubscribe>
+Date: Thu, 4 Aug 2022 00:10:38 -0700
+From: ActiveState Team <marcom@activestate.com>
+Reply-To: marcom@activestate.com
+To: faeldroom46@gmail.com
+Message-ID: <1659597037982.17a21596-0c5d-4f31-a843-c7d82eda86ef@bf03.hubspotemail.net>
+Subject: Give the ActiveState Platform another try?
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_891929_1355006235.1659597038046"
+Precedence: bulk
+X-Report-Abuse-To: abuse@hubspot.com (see
+ https://policy.hubspot.com/abuse-complaints)
+Feedback-ID: aede2oc:aidtynas:aib1s:HubSpot
+
+------=_Part_891929_1355006235.1659597038046
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Customize, secure and collaborate on your Python, Perl or Tcl project.
+
+Hi Drum,
+
+We noticed that you haven=E2=80=99t logged into your ActiveState Platform a=
+ccount since you first created it 3 weeks ago.
+
+Is there something missing that we can help with? Just as a refresher, the =
+Platform lets you setup a free Python/Perl/Tcl runtime that is:
+
+- Customizable: Use just the packages you need
+- Secure: Easily view & fix vulnerabilities
+- Collaborative: Share & configure your runtime with your team
+
+Dive back in and get the Python/Perl/Tcl environment you need:
+
+Revisit Your Project
+(https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VVxZdk5v35pJW1Q-Qm97WywM=
+YW8LzBkh4Nj9VGN5NMMlD3pdr7V1-WJV7CgBlxW6gcDkd7KtYsRW7PZtv95Fn_45W91tDJf1v4c=
+6lW634LP66L-JjkW1km8kd41LNs3W6Zbmf51rxc_mN2CXctZxMCyzW2HM38Z5YpvfnVX9XRT3JY=
+GZrW37kqtW8Pvm6PW4qnskD7YyX7JN4szF7Yc6pXLVfkml21BrMK-N1KzX3bC5rYcVq2r2r4jXz=
+kvW5Xjxc83Y07JkW1p-cYL8xZSf0N7c1Zx_zJpZRW9dZD1V1BYwTbVGDy-B2Bh7wyW7_Djb-88d=
+sJqW3M82nR3l1SCW39rh1 )
+
+Not sure where to start? This video gives you a complete overview of the Ac=
+tiveState Platform as a modern package management tool.
+(https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VVxZdk5v35pJW1Q-Qm97WywM=
+YW8LzBkh4Nj9VGN5NMMkL5mNXrV3Zsc37CgTMrN4dXYl6tY5PMW4m41573-GM4BVY37xk6Y_5VZ=
+W6Cs1yp53GKJnW2p4z0S97VgZYVpd0Tq7hLCzbVCl_WQ8fj9gSW4FqMQd3GFw3kM9R9BTjVg3SW=
+7T9nD54ZLmr5W3tyvv94XrG_MW8hG1Cy6bCNK2W5-dX6R8v0cZ9W247SKq3JLXVHW2w4MJQ28_R=
+7gW6prhFt5nqsP3W87pwJw5x8b33W89ptg21px_T0N4z2lCFjZ8dnW674ZTB17FrrzVxcxP86Jh=
+XrpW8pGf7c4vDsFnN1qgXkgZFGcVW1VhKkJ6HtjsgVqvdHL4dQ1WVW2rHJcH3xN8h_W17H5CL6D=
+205fW6XlczD4zqCH9W56KR1m4zg9qsW8j16hF66HVk2Vkk5h740dWrnVvf72V1vpbrw3kVJ1 )
+
+Let us know if you have any questions by replying to this email!
+
+- The ActiveState Team
+
+Facebook (https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VVxZdk5v35pJW1Q=
+-Qm97WywMYW8LzBkh4Nj9VGN5NMMlX3pdrrV1-WJV7CgQvYN8wlFr9WkBbNW6gQv653YYytVW5b=
+dsWF8CyCQvW1bJkFX88Dd3GW8vJ8hD3y9z3tW4lQ7h769M5XBW8vKhS129TN-dW5jyZhP2hD25z=
+W5PHKBT5LLw5bN4Sdr08tTbttW2lNQ3r5Sl6L7W4c2hzt23RW8YW9jrdrq1rt5MvW7P4dFj3L6L=
+zjW4bgxTP2sL8CvW2NbjR73wRqD0V8LMNk5d1dWsN2DHV2sTGHcbW3-71Mh3xcKL9W4zsT8g16f=
+PrqW53xyRK8Cv6tMW9kXdYw1kk3-NVK1WJK3Y2_cYW1VlwgJ30xtnW39vC1 )
+LinkedIn (https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VVxZdk5v35pJW1Q=
+-Qm97WywMYW8LzBkh4Nj9VGN5NMMlX3pdrrV1-WJV7CgSzfW9cSn_x7m7h05W8kw25z5Tgb62W7=
+HgFMN7mRmk5W2k-5mf2YcDgsW2-mDkG7vt3g4W5zdkVS33SWnwV3cX6v3Y59BRW2f8Rv36C33Ys=
+W3Tb4wh8VnFvSW30b75w11xsXmW4_jtsL3vKVHqW284RQ66Wv2bhW1bvg6F8HCQqNVpG6tz30dv=
+dXW3CGtck7prdY8W6FgrTM1z1Y55W2c3Ylg53lZRJVPbgNC1cv_mLVcvp_n2LWrHQN1xT8HJh33=
+CYW5Dqbfk1Ps8RDW3vwm5H1Nz0LDW7sJwWG5k3sLTW6sgQw3108D2g3g_31 )
+Twitter (https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VVxZdk5v35pJW1Q-=
+Qm97WywMYW8LzBkh4Nj9VGN5NMMlD3pdr7V1-WJV7CgV5zW1l_r-s4-nnC5W772lG81KfM2QW54=
+Pjjt4PghGBW44tGr73TQZcjW13Wvnw2NJ6-fW6DwFvS1JJn5PVMpyKc7rhv_1VKyMws5CpN81MV=
+dz69Rn_jJW7b9vHH1wqS8HW13BLZX7fYkwlW2Wy9T12XD90CW9hbYC41kXSs0W7Ht58y6B2Tp5W=
+91G3xx2CR4j9W1z21zz1XwkL6N61kML0WqVqgW9kw43V6qTqCZW2fM1437QWMBJW5RslqT4Rmr-=
+PW6wKbP82HK_88W4yMd_C1dTG0q3lqL1 )
+Instagram (https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VVxZdk5v35pJW1=
+Q-Qm97WywMYW8LzBkh4Nj9VGN5NMMlX3pdrrV1-WJV7CgMq5W48LZt47lKlG3W2MWv1V8ck-x2W=
+6SbY4l50PPL6W3RZpyY6DCZGPW2X6SSQ3P28bMW4PV6411ts8s4W266bDN4j6R3tN1mD_CF5lPf=
+WW4lRbv57H-g7tW4yVBlc1QLSQNW8qHFMr7tZz0_W8y_R504T6_M1W3BwGfh6pdM90W1sXTkz7z=
+G1Y0W8wCk8_8RvN0RN8MvTXGtH9CtMnGQP0RtGW7W9455M41RwHZRVs1Pv47SfNwjW4-FGM01zF=
+WY3W3ZXtHL40Xk1sVK3Zt62Fg3SwN2-mxj08vG3RW86TwZj5X-ZNY3gD01 )
+
+ActiveState Software, 1000 - 1177 West Hastings Street, , Vancouver, BC V6E=
+ 2K3, ,=20
+
+Unsubscribe (https://go.activestate.com/hs/manage-preferences/unsubscribe-a=
+ll?languagePreference=3Den&d=3DVndxG85yqRQjVPd4xS3ZTQVtW43T5bK2m40KfW3T0pbm=
+43T2QJW94SvDR15gBJzW8MGFTY4PrVPDW67vdwV5QFGM4N6xdZ4ZWBbg0N6Ybr8qXk_7QVbw6yy=
+2QsnFlW2nFjW73k8P-Kw25lPHppcV2&v=3D3&_hsenc=3Dp2ANqtz---hMmOXNH1PXn2hLtuRLU=
+Y4tO2LeWnUCSkvtHLW3ccQuYjUWyHX9woRLFe3-nCwOLsZ7M1zUiNEFa-HAFaXk1g_tXibw&_hs=
+mi=3D214447842 )
+
+Manage preferences (https://go.activestate.com/hs/manage-preferences/unsubs=
+cribe?languagePreference=3Den&d=3DVndxG85yqRQjVPd4xS3ZTQVtW43T5bK2m40KfW3T0=
+pbm43T2QJW94SvDR15gBJzW8MGFTY4PrVPDW67vdwV5QFGM4N6xdZ4ZWBbg0N6Ybr8qXk_7QVbw=
+6yy2QsnFlW2nFjW73k8P-Kw25lPHppcV2&v=3D3&_hsenc=3Dp2ANqtz---hMmOXNH1PXn2hLtu=
+RLUY4tO2LeWnUCSkvtHLW3ccQuYjUWyHX9woRLFe3-nCwOLsZ7M1zUiNEFa-HAFaXk1g_tXibw&=
+_hsmi=3D214447842 )
+------=_Part_891929_1355006235.1659597038046
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3=
+.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:=
+v=3D"urn:schemas-microsoft-com:vml" lang=3D"en"><head><link rel=3D"styleshe=
+et" type=3D"text/css" hs-webfonts=3D"true" href=3D"https://fonts.googleapis=
+.com/css?family=3DLato|Lato:i,b,bi">
+    <title>Give the ActiveState Platform another try?</title>
+    <meta property=3D"og:title" content=3D"Give the ActiveState Platform an=
+other try?">
+    <meta name=3D"twitter:title" content=3D"Give the ActiveState Platform a=
+nother try?">
+   =20
+   =20
+   =20
+<meta name=3D"x-apple-disable-message-reformatting">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+    <!--[if gte mso 9]>
+  <xml>
+      <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+  </xml>
+ =20
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type=3D"text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+</style>
+<![endif]-->
+   =20
+     =20
+   =20
+  <meta name=3D"generator" content=3D"HubSpot"><meta property=3D"og:url" co=
+ntent=3D"https://go.activestate.com/-temporary-slug-5539117f-7b3b-45fd-a640=
+-96a52d240dcc"><meta name=3D"robots" content=3D"noindex,follow"><!--[if !((=
+mso)|(IE))]><!-- --><style type=3D"text/css">.moz-text-html .hse-column-con=
+tainer{max-width:600px !important;width:600px !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-=
+html .hse-section .hse-size-12{max-width:600px !important;width:600px !impo=
+rtant}
+[owa] .hse-column-container{max-width:600px !important;width:600px !importa=
+nt}[owa] .hse-column{display:table-cell;vertical-align:top}
+[owa] .hse-section .hse-size-12{max-width:600px !important;width:600px !imp=
+ortant}
+@media only screen and (min-width:640px){.hse-column-container{max-width:60=
+0px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-12=
+{max-width:600px !important;width:600px !important}
+}@media only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_ema=
+il_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;wid=
+th:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px =
+!important;padding-right:20px !important}
+ul,blockquote{margin:0;padding:1em 40px}}</style><!--<![endif]--><style typ=
+e=3D"text/css">body[data-outlook-cycle] img.stretch-on-mobile,body[data-out=
+look-cycle] .hs_rss_email_entries_table img{height:auto !important;width:10=
+0% !important}
+body[data-outlook-cycle] .hs_padded{padding-left:20px !important;padding-ri=
+ght:20px !important}
+a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !im=
+portant;font-size:inherit !important;font-family:inherit !important;font-we=
+ight:inherit !important;line-height:inherit !important}
+#outlook a{padding:0}.yshortcuts a{border-bottom:none !important}a{text-dec=
+oration:underline}
+.ExternalClass{width:100%}.ExternalClass,.ExternalClass p,.ExternalClass td=
+,.ExternalClass div,.ExternalClass span,.ExternalClass font{line-height:100=
+%}
+p{margin:0}body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-we=
+bkit-font-smoothing:antialiased;moz-osx-font-smoothing:grayscale}
+@media only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_emai=
+l_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;widt=
+h:100% !important}
+}@media only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_ema=
+il_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;wid=
+th:100% !important}
+}</style></head>
+  <body bgcolor=3D"#f6f6f6" style=3D"margin:0 !important; padding:0 !import=
+ant; font-family:Arial, sans-serif; font-size:16px; color:#2c363a; word-bre=
+ak:break-word">
+   =20
+<div id=3D"preview_text" style=3D"display:none!important;font-size:1px;colo=
+r:#f6f6f6;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:h=
+idden;">Customize, secure and collaborate on your Python, Perl or Tcl proje=
+ct.</div>
+   =20
+<!--[if gte mso 9]>
+<v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+ =20
+    <v:fill type=3D"tile" color=3D"#f6f6f6"/>
+ =20
+</v:background>
+<![endif]-->
+    <div class=3D"hse-body-background" style=3D"background-color:#f6f6f6" b=
+gcolor=3D"#f6f6f6">
+      <table role=3D"presentation" class=3D"hse-body-wrapper-table" cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"border-spacing:0 !important; border-c=
+ollapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; margin:0; pad=
+ding:0; width:100% !important; min-width:320px !important; height:100% !imp=
+ortant" width=3D"100%" height=3D"100%">
+        <tbody><tr>
+          <td class=3D"hse-body-wrapper-td" valign=3D"top" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:16px; color:#2c363a; word-break:break-word">
+            <div id=3D"hs_cos_wrapper_main" class=3D"hs_cos_wrapper hs_cos_=
+wrapper_widget hs_cos_wrapper_type_dnd_area" style=3D"color: inherit; font-=
+size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" d=
+ata-hs-cos-type=3D"dnd_area">  <div id=3D"section_1593464474115" class=3D"h=
+se-section hse-section-first" style=3D"padding-left:10px; padding-right:10p=
+x; padding-top:20px">
+   =20
+   =20
+    <!--[if !((mso)|(IE))]><!-- -->
+      <div class=3D"hse-column-container hse-border hse-border-top" style=
+=3D"min-width:280px; max-width:600px; width:100%; Margin-left:auto; Margin-=
+right:auto; border-collapse:collapse; border-spacing:0; border-left:1px sol=
+id #cccccc; border-right:1px solid #cccccc; box-sizing:border-box; border-t=
+op:1px solid #cccccc; background-color:#ffffff" bgcolor=3D"#ffffff">
+    <!--<![endif]-->
+   =20
+    <!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;max-widt=
+h:600px;width:100%;Margin-left:auto;Margin-right:auto;border-collapse:colla=
+pse;border-spacing:0;">
+      <table align=3D"center" style=3D"border-collapse:collapse;mso-table-l=
+space:0pt;mso-table-rspace:0pt;width:600px;border-left:1px solid #cccccc;bo=
+rder-right:1px solid #cccccc;border-top:1px solid #cccccc" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" class=3D"hse-border hse-border-to=
+p" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:598px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"598" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rsp=
+ace:0pt;width:598px">
+<![endif]-->
+<div id=3D"column_1597947705777_0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module_15934644740892" class=3D"hs_cos_wrapper =
+hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; =
+font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widg=
+et" data-hs-cos-type=3D"module"><!-- image_email.module - email-default-mod=
+ules -->
+=09
+<table class=3D"hse-image-wrapper" role=3D"presentation" width=3D"100%" cel=
+lpadding=3D"0" cellspacing=3D"0" style=3D"border-spacing:0 !important; bord=
+er-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt">
+    <tbody>
+        <tr>
+            <td align=3D"left" valign=3D"top" style=3D"border-collapse:coll=
+apse; mso-line-height-rule:exactly; font-family:Arial, sans-serif; color:#2=
+c363a; word-break:break-word; text-align:left; padding:20px 20px 10px 18px;=
+ font-size:0px">
+               =20
+                    <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cD=
+qDn04/VVxZdk5v35pJW1Q-Qm97WywMYW8LzBkh4Nj9VGN5NMMlD3q3npV1-WJV7CgGrjW8fNZZx=
+7dmvZcW7YWhTb1G46HVW1yWmqv6J_0XHW7Hvq434n1NYpN7BLC8dl9VxQN1Z_BHP4jq6vN3Lxqy=
+HTKlvmW88Hj8L61g63MW2RC8Y02bQlyXW2rdRCr87zKNlW5mNkKm852NrlW4vpH8D58X5gGW6fT=
+HNW28cJn-N4ZKxtn1w54lVWbyJW8MVhByW96HkXs7qVghfW7_95Bv79qnYgW5xJh8p37WXjDW2c=
+ym5b7mGj9WW3xlDY112_W34N2909g-LlRd9W6ryb946gS2N_33rc1" target=3D"_blank" st=
+yle=3D"color:#00a4bd; mso-line-height-rule:exactly" data-hs-link-id=3D"0">
+               =20
+                <img alt=3D"" src=3D"https://go.activestate.com/hs-fs/hubfs=
+/ActiveState_March2019%20Theme/image/activestate-logo.png?width=3D320&amp;u=
+pscale=3Dtrue&amp;name=3Dactivestate-logo.png" style=3D"outline:none; text-=
+decoration:none; -ms-interpolation-mode:bicubic; border:none; max-width:100=
+%; font-size:16px" width=3D"160" align=3D"middle" srcset=3D"https://go.acti=
+vestate.com/hs-fs/hubfs/ActiveState_March2019%20Theme/image/activestate-log=
+o.png?upscale=3Dtrue&amp;width=3D320&amp;upscale=3Dtrue&amp;name=3Dactivest=
+ate-logo.png 160w, https://go.activestate.com/hs-fs/hubfs/ActiveState_March=
+2019%20Theme/image/activestate-logo.png?upscale=3Dtrue&amp;width=3D640&amp;=
+upscale=3Dtrue&amp;name=3Dactivestate-logo.png 320w" sizes=3D"(max-width: 1=
+60px) 100vw, 160px">
+               =20
+                    </a>
+               =20
+            </td>
+        </tr>
+    </tbody>
+</table></div>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:16px; color:#2c363a; word-break:break-word; pa=
+dding:10px 30px 15px 20px"><div id=3D"hs_cos_wrapper_module_15949454432111"=
+ class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" =
+style=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs=
+-cos-general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_=
+wrapper_module_15949454432111_" class=3D"hs_cos_wrapper hs_cos_wrapper_widg=
+et hs_cos_wrapper_type_rich_text" style=3D"color: inherit; font-size: inher=
+it; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-=
+type=3D"rich_text"><p style=3D"mso-line-height-rule:exactly; font-size:15px=
+; line-height:150%"><span style=3D"font-family: Arial, sans-serif;">Hi Drum=
+,</span></p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>&nbsp;</p>
+<h2 style=3D"margin:0; mso-line-height-rule:exactly; font-weight:normal; fo=
+nt-size:15px; line-height:150%"><span style=3D"font-family: Arial, sans-ser=
+if;">We noticed that you haven=E2=80=99t logged into your <a href=3D"https:=
+//go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VVxZdk5v35pJW1Q-Qm97WywMYW8LzBk=
+h4Nj9VGN5NMMlD3q3npV1-WJV7CgKDqN61XPf97LsT6W8xS_6D4lKCY-W1rLT944y2T6mW3QHjM=
+z6GKyGlT8Jbp2_Cq4zW5VWpjM973psFW49y5Xq7j-t62W3l58wX4tbCsXW4Z06mk7K7S-4W21Tp=
+pg5Z_QHzN3pksFJGJbrrW3gSn9525X9tqW1mKdhW642C82W2TH8xB3222YpW40--Y68_Xf8zW7L=
+PzK-70LNdXN3zp5mgLHNsVW20tb8J6ybLQ9W8M5xHK3j5wCZW7t8_1L2LFw_7W7kPpLm1kk4GkW=
+3qQFnF6Dsp_J3dRf1" rel=3D"noopener" style=3D"mso-line-height-rule:exactly; =
+color:#2a4dc0" data-hs-link-id=3D"0" target=3D"_blank">ActiveState Platform=
+ account</a> since you first created it 4 weeks ago.</span></h2>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+><span style=3D"font-family: Arial, sans-serif;">Is there something missing=
+ that we can help with? Just as a refresher, the Platform lets you setup a =
+free Python/Perl/Tcl runtime that is:</span></p>
+<ul style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%=
+">
+<li aria-level=3D"1" style=3D"mso-line-height-rule:exactly"><span style=3D"=
+font-family: Arial, sans-serif;"><strong>Customizable</strong>: Use just th=
+e packages you need</span></li>
+<li aria-level=3D"1" style=3D"mso-line-height-rule:exactly"><span style=3D"=
+font-family: Arial, sans-serif;"><strong>Secure:</strong> Easily view &amp;=
+ fix vulnerabilities</span></li>
+<li aria-level=3D"1" style=3D"mso-line-height-rule:exactly"><span style=3D"=
+font-family: Arial, sans-serif;"><strong>Collaborative:</strong> Share &amp=
+; configure your runtime with your team</span></li>
+</ul>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+><span style=3D"font-family: Arial, sans-serif;">Dive back in and get the P=
+ython/Perl/Tcl environment you need:</span></p></div></div></td></tr></tbod=
+y></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:16px; color:#2c363a; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_module_16535903153801" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><!-- button_email.module - e=
+mail-default-modules -->
+ =20
+  <table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+role=3D"presentation" style=3D"border-spacing:0 !important; mso-table-lspac=
+e:0pt; mso-table-rspace:0pt; border-collapse:separate!important">
+    <tbody><tr>
+        <!--[if mso]>
+      <td align=3D"center" valign=3D"middle" bgcolor=3D"#2a4dc0" role=3D"pr=
+esentation"  valign=3D"middle" style=3D"border-radius:10px;cursor:auto;back=
+ground-color:#2a4dc0;padding:12px 18px;">
+    <![endif]-->
+    <!--[if !mso]><!-- -->
+      <td align=3D"center" valign=3D"middle" bgcolor=3D"#2a4dc0" role=3D"pr=
+esentation" style=3D"border-collapse:collapse; mso-line-height-rule:exactly=
+; font-family:Arial, sans-serif; font-size:16px; color:#2c363a; word-break:=
+break-word; border-radius:10px; cursor:auto; background-color:#2a4dc0">
+   <!--<![endif]-->
+        <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VVxZdk=
+5v35pJW1Q-Qm97WywMYW8LzBkh4Nj9VGN5NMMlD3q3npV1-WJV7CgKThW6g9Jxl20v638W5LxvD=
+62KSm6rN2pM4ngLvcjnW5qXSy15G3GgzVqnycC5XV82yW7PSQ3g2JJTDJW3wfsVS3S87LfW25Zq=
+l18pk-ntW1Q2wFb2cP5RXW7Sfncw5YyZTvM4yJw7bpv8MW2CFbrk5yk_C1W82ss6x1xrjYSW5PW=
+kKv1pmnjsW7TvN4873skg3W7fXXmB1J24SRW7jR3wt5DqJSKW8_MXr963-RCqVT4y0M4ljc5xW4=
+-xXwm58Qb00W8_v-vT132Pb8N5T3RFcS-1y431BQ1" target=3D"_blank" style=3D"color=
+:#00a4bd; mso-line-height-rule:exactly; font-size:15px; font-family:Arial, =
+sans-serif; Margin:0; text-transform:none; text-decoration:none; padding:12=
+px 18px; display:block" data-hs-link-id=3D"1">
+          <strong style=3D"color:#f6f6f6;font-weight:bold;text-decoration:n=
+one;font-style:normal;">Revisit Your Project</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table>
+</div></td></tr></tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:16px; color:#2c363a; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_module_16490949788681" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_mo=
+dule_16490949788681_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_=
+wrapper_type_rich_text" style=3D"color: inherit; font-size: inherit; line-h=
+eight: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"ri=
+ch_text"><p style=3D"mso-line-height-rule:exactly; font-size:15px; line-hei=
+ght:150%">Not sure where to start? This video gives you a complete overview=
+ of the ActiveState Platform as a <a href=3D"https://go.activestate.com/e3t=
+/Ctc/5C+113/cDqDn04/VVxZdk5v35pJW1Q-Qm97WywMYW8LzBkh4Nj9VGN5NMMkL5nCTJV3Zsc=
+37CgDhTN5MnkTcq3nGqW3n-R365FQl4PW432tjD6wj0hSVH4ZR64FbprbW97l4VM2qTZV4W4v59=
+XG2g2B_gW2RvPCw3Xpw4xW15CQdH7yH5B4W6g1CHM7pMj7KW6fs1Nv4GT9dfW3vmmvk3p6Ln_W4=
+mZcrd4pXt7rW47XMDV8K3BM9W8kWB4n5CGVkGW3q-3HC54xBhzW8Wm9tb4K1-tkW60w6Ds2_MhL=
+NW6KGdrt46Y2qqW8vRRHY3wtzW5W8YckpY8y9R3dW85j8l_8B7__jW4cbdbb17jgrqW72tm_G1d=
+lmWwN71sTjHc2-q6W5_kN828sC4ZkW4vwDDK1V7cT_W8qh69G2smTy0W6LVKMj7sL4WCW58PWP_=
+7qBm8RN20Kq1fpmQmLW6mL8gz2YWsYlW4dXhNR1tTshQ31ll1" rel=3D"noopener" style=
+=3D"mso-line-height-rule:exactly; color:#2a4dc0" data-hs-link-id=3D"0" targ=
+et=3D"_blank">modern package management tool.</a></p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>Let us know if you have any questions by replying to this email!</p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>- The ActiveState Team</p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>&nbsp;</p></div></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"builtin_section-1" class=3D"hse-section hse-section-last" styl=
+e=3D"padding-left:10px; padding-right:10px; padding-bottom:20px">
+   =20
+   =20
+    <!--[if !((mso)|(IE))]><!-- -->
+      <div class=3D"hse-column-container hse-border-bottom hse-border" styl=
+e=3D"min-width:280px; max-width:600px; width:100%; Margin-left:auto; Margin=
+-right:auto; border-collapse:collapse; border-spacing:0; border-left:1px so=
+lid #cccccc; border-right:1px solid #cccccc; box-sizing:border-box; border-=
+bottom:1px solid #cccccc; background-color:#ffffff; padding-bottom:24px" bg=
+color=3D"#ffffff">
+    <!--<![endif]-->
+   =20
+    <!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;max-widt=
+h:600px;width:100%;Margin-left:auto;Margin-right:auto;border-collapse:colla=
+pse;border-spacing:0;">
+      <table align=3D"center" style=3D"border-collapse:collapse;mso-table-l=
+space:0pt;mso-table-rspace:0pt;width:600px;border-bottom:1px solid #cccccc;=
+border-left:1px solid #cccccc;border-right:1px solid #cccccc" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" class=3D"hse-border-bottom h=
+se-border" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:598px;padding-bottom:24px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"598" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rsp=
+ace:0pt;width:598px">
+<![endif]-->
+<div id=3D"builtin_column_1-0" class=3D"hse-column hse-size-12">
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-=
+table-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" =
+style=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-famil=
+y:Arial, sans-serif; font-size:16px; color:#2c363a; word-break:break-word; =
+padding:0px 20px 0px 30px"><div id=3D"hs_cos_wrapper_module_15996030201021"=
+ class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" =
+style=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs=
+-cos-general-type=3D"widget" data-hs-cos-type=3D"module"><!-- email_divider=
+.module - email-default-modules -->
+<!--[if gte mso 9]>
+<v:rect xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true" stroke=3D"f=
+alse" style=3D"width:548px; height:2pt;" fillcolor=3D"none">
+<v:fill type=3D"tile"/>
+<v:textbox inset=3D"0,0,0,0">
+<div>
+<![endif]-->
+<table role=3D"presentation" width=3D"100%" align=3D"center" border=3D"0" s=
+tyle=3D"position:relative; top:-1px; min-width:20px; width:100%; max-width:=
+100%; border-spacing:0; mso-table-lspace:0pt; mso-table-rspace:0pt; border-=
+collapse:collapse; font-size:1px">
+  <tbody><tr>
+   =20
+   =20
+    =09<td width=3D"auto" style=3D"border-collapse:collapse; mso-line-heigh=
+t-rule:exactly; font-family:Arial, sans-serif; font-size:16px; color:#2c363=
+a; word-break:break-word; line-height:0">&nbsp;</td>
+   =20
+   =20
+    <td width=3D"50%" valign=3D"middle" style=3D"border-collapse:collapse; =
+mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-size:16px=
+; color:#2c363a; word-break:break-word; line-height:0; border:transparent; =
+border-bottom:1px solid #2c363a; mso-border-bottom-alt:1px solid #2c363a; b=
+order-bottom-width:1px">&nbsp;</td>
+   =20
+   =20
+    =09<td width=3D"auto" style=3D"border-collapse:collapse; mso-line-heigh=
+t-rule:exactly; font-family:Arial, sans-serif; font-size:16px; color:#2c363=
+a; word-break:break-word; line-height:0">&nbsp;</td>
+   =20
+  </tr>
+</tbody></table>
+<!--[if gte mso 9]></div></v:textbox></v:rect><![endif]--></div></td></tr><=
+/tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:16px; color:#2c363a; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_module_15934650175217" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><!-- follow_me_email.module =
+- email-default-modules -->
+<table role=3D"presentation" align=3D"center" style=3D"border-spacing:0 !im=
+portant; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0=
+pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_social_modu=
+le" width=3D"auto">
+  <tbody>
+    <tr align=3D"center">
+     =20
+      <td style=3D"border-collapse:collapse; mso-line-height-rule:exactly; =
+font-family:Arial, sans-serif; font-size:16px; color:#2c363a; word-break:br=
+eak-word">
+        <table role=3D"presentation" align=3D"center" style=3D"border-spaci=
+ng:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-=
+rspace:0pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_soc=
+ial_module_single" width=3D"auto">
+          <tbody>
+            <tr align=3D"center">
+             =20
+              <td class=3D"display_block_on_small_screens" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:16px; color:#2c363a; word-break:break-word; padding:8px 5px;=
+ line-height:1; vertical-align:middle" valign=3D"middle">
+                <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cDqDn0=
+4/VVxZdk5v35pJW1Q-Qm97WywMYW8LzBkh4Nj9VGN5NMMlX3q3nJV1-WJV7CgJc0W5bDl621GZR=
+5nW8HnHtY6dHqVsW8S-lFC1TMX3WW38rgfn4fHWQSVtGhLp2DRk9jW4N4j355TGKRVN28wyL7_4=
+-7pW4ckc-41CXK0rW4XcXQG6p4c3QW4gkZBJ69x5plW56HjVN68xTHnW9g9ZB_5VK8yfW2s1sW-=
+495645W4vDXsZ12sQFhW1Q1GQw11TnxFW2f8lgN6sBQCLW8J_tTp5_GTQzVYR2Mx9j9kCcW95N2=
+Js8TP485W8JwshP5xBymmW2kM8r51tZX5nW3rtS3r7MHhWrN8tjtSB6zX4HW7FyPq88LsBRL3bj=
+91" style=3D"color:#00a4bd; mso-line-height-rule:exactly; text-decoration:n=
+one !important" data-hs-link-id=3D"0" target=3D"_blank">
+                 =20
+                 =20
+                  <img src=3D"https://go.activestate.com/hs/hsstatic/Templa=
+teAssets/static-1.108/img/hs_default_template_images/modules/Follow+Me+-+Em=
+ail/facebook_original_black.png" alt=3D"Facebook" height=3D"25" style=3D"ou=
+tline:none; text-decoration:none; -ms-interpolation-mode:bicubic; border:no=
+ne; width:auto!important; height:25px!important; vertical-align:middle" val=
+ign=3D"middle" width=3D"auto">
+                 =20
+                </a>
+              </td>
+             =20
+             =20
+          </tr>
+        </tbody>
+      </table>
+  =09=09</td>
+     =20
+      <td style=3D"border-collapse:collapse; mso-line-height-rule:exactly; =
+font-family:Arial, sans-serif; font-size:16px; color:#2c363a; word-break:br=
+eak-word">
+        <table role=3D"presentation" align=3D"center" style=3D"border-spaci=
+ng:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-=
+rspace:0pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_soc=
+ial_module_single" width=3D"auto">
+          <tbody>
+            <tr align=3D"center">
+             =20
+              <td class=3D"display_block_on_small_screens" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:16px; color:#2c363a; word-break:break-word; padding:8px 5px;=
+ line-height:1; vertical-align:middle" valign=3D"middle">
+                <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cDqDn0=
+4/VVxZdk5v35pJW1Q-Qm97WywMYW8LzBkh4Nj9VGN5NMMlX3q3nJV1-WJV7CgGprW85-yJL18xQ=
+zKW79Br824zCLjTN51LzB_353jPW7B4k0M7NvdG2W8XxbB12MRfkSW6Y52f52CPmWKW8zKZ0h5t=
+b-jhW7CQJlw5dVtwRW8xB1N21gMT7tVxMsJM4v06WpVrdnlc92KzhnW3hS8xg2HwdCDW5pTLP86=
+4hzJdW94LM5h1y-j19W5cNR-Y4DdND2W7X342y7fLxPxW2v-VBC4NSfxFW8MbZ4b3tsxjqW4FfW=
+cQ3TTjLpW20pk9S1w7mh7W9lfPNb61_c-NW6ZDKy96PCzP6VVQPHv3t03twW6D_80x1jY4Gw3lM=
+q1" style=3D"color:#00a4bd; mso-line-height-rule:exactly; text-decoration:n=
+one !important" data-hs-link-id=3D"0" target=3D"_blank">
+                 =20
+                 =20
+                  <img src=3D"https://go.activestate.com/hs/hsstatic/Templa=
+teAssets/static-1.108/img/hs_default_template_images/modules/Follow+Me+-+Em=
+ail/linkedin_original_black.png" alt=3D"LinkedIn" height=3D"25" style=3D"ou=
+tline:none; text-decoration:none; -ms-interpolation-mode:bicubic; border:no=
+ne; width:auto!important; height:25px!important; vertical-align:middle" val=
+ign=3D"middle" width=3D"auto">
+                 =20
+                </a>
+              </td>
+             =20
+             =20
+          </tr>
+        </tbody>
+      </table>
+  =09=09</td>
+     =20
+      <td style=3D"border-collapse:collapse; mso-line-height-rule:exactly; =
+font-family:Arial, sans-serif; font-size:16px; color:#2c363a; word-break:br=
+eak-word">
+        <table role=3D"presentation" align=3D"center" style=3D"border-spaci=
+ng:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-=
+rspace:0pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_soc=
+ial_module_single" width=3D"auto">
+          <tbody>
+            <tr align=3D"center">
+             =20
+              <td class=3D"display_block_on_small_screens" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:16px; color:#2c363a; word-break:break-word; padding:8px 5px;=
+ line-height:1; vertical-align:middle" valign=3D"middle">
+                <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cDqDn0=
+4/VVxZdk5v35pJW1Q-Qm97WywMYW8LzBkh4Nj9VGN5NMMlD3q3npV1-WJV7CgY62W304FmW8JDG=
+8CW6nfJj03XG0-wW7jwvyb7zWLrsN2jtYM2hZxZZW4T6YG76TPfQnW7BRw-W15dZ8tW4qDX586l=
+HZnfW5mHTbt4w9XlLW4-yLRk4-cLGWW3qXCP22lTrf7N6k2C-6djFycV6jtM23vDMJ0VQ-Pc16M=
+q-CNW203wWN4bWRpjW1nq40b1-7yzkW1-hKQq2jn0vRVq00ft56vT11W6hJvJ08tMprYMKB37-c=
+yTgwW3-cZQ28bXFHKW11hx7d5RJfrgW4-p2Hv1wNkBB3pyC1" style=3D"color:#00a4bd; m=
+so-line-height-rule:exactly; text-decoration:none !important" data-hs-link-=
+id=3D"0" target=3D"_blank">
+                 =20
+                 =20
+                  <img src=3D"https://go.activestate.com/hs/hsstatic/Templa=
+teAssets/static-1.108/img/hs_default_template_images/modules/Follow+Me+-+Em=
+ail/twitter_original_black.png" alt=3D"Twitter" height=3D"25" style=3D"outl=
+ine:none; text-decoration:none; -ms-interpolation-mode:bicubic; border:none=
+; width:auto!important; height:25px!important; vertical-align:middle" valig=
+n=3D"middle" width=3D"auto">
+                 =20
+                </a>
+              </td>
+             =20
+             =20
+          </tr>
+        </tbody>
+      </table>
+  =09=09</td>
+     =20
+      <td style=3D"border-collapse:collapse; mso-line-height-rule:exactly; =
+font-family:Arial, sans-serif; font-size:16px; color:#2c363a; word-break:br=
+eak-word">
+        <table role=3D"presentation" align=3D"center" style=3D"border-spaci=
+ng:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-=
+rspace:0pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_soc=
+ial_module_single" width=3D"auto">
+          <tbody>
+            <tr align=3D"center">
+             =20
+              <td class=3D"display_block_on_small_screens" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:16px; color:#2c363a; word-break:break-word; padding:8px 5px;=
+ line-height:1; vertical-align:middle" valign=3D"middle">
+                <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cDqDn0=
+4/VVxZdk5v35pJW1Q-Qm97WywMYW8LzBkh4Nj9VGN5NMMlX3q3nJV1-WJV7CgYmKW8r_ChQ37X4=
+z2W7d8DH93ZjJxbW83gffB6HRBkzN3W7Wnrlww0rN29gw-Q98XmJN5dRV__VcZSpW3lPy5Y5QRC=
+YBW1Dlv2F976WdVW8RpnQ547xVDwW6ggxCy5zTN3TV7_Bwb15vNTYW6d4gD85CPLgbW7KKDP45_=
+d9DrW19zb1_7cgVp6W3cFWWD2XsN9MW1kVjHP4jcNVtW6QGRsT3jVQTcW6t6_qx2dFHWRW2rxC2=
+d6PrVW8W7947zg7R8MKCVl9_Yc3-YczgW8t-Gcj5f9lw-W2XlvV324k8kYW1X1p8F3dwpKs336R=
+1" style=3D"color:#00a4bd; mso-line-height-rule:exactly; text-decoration:no=
+ne !important" data-hs-link-id=3D"0" target=3D"_blank">
+                 =20
+                 =20
+                  <img src=3D"https://go.activestate.com/hs/hsstatic/Templa=
+teAssets/static-1.108/img/hs_default_template_images/modules/Follow+Me+-+Em=
+ail/instagram_original_black.png" alt=3D"Instagram" height=3D"25" style=3D"=
+outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; border:=
+none; width:auto!important; height:25px!important; vertical-align:middle" v=
+align=3D"middle" width=3D"auto">
+                 =20
+                </a>
+              </td>
+             =20
+             =20
+          </tr>
+        </tbody>
+      </table>
+  =09=09</td>
+     =20
+    </tr>
+  </tbody>
+</table></div></td></tr></tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:16px; color:#2c363a; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_footer_module" class=3D"hs_cos_w=
+rapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: in=
+herit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type=
+=3D"widget" data-hs-cos-type=3D"module"><!-- email_footer.module - email-de=
+fault-modules -->
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+<table role=3D"presentation" class=3D"hse-footer hse-secondary" width=3D"10=
+0%" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-spacing:0 !importan=
+t; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; fo=
+nt-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496=
+d; margin-bottom:0; padding:0">
+    <tbody>
+        <tr>
+            <td align=3D"center" valign=3D"top" style=3D"border-collapse:co=
+llapse; mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-s=
+ize:16px; color:#2c363a; word-break:break-word; text-align:center; margin-b=
+ottom:0; line-height:135%; padding:10px 20px">
+               =20
+                <p style=3D"mso-line-height-rule:exactly; font-family:Lato,=
+Tahoma,sans-serif; font-size:12px; font-weight:normal; text-decoration:none=
+; font-style:normal; color:#929eb2; direction:lrt" dir=3D"lrt">
+                  ActiveState Software, 1000 - 1177 West Hastings Street, V=
+ancouver, BC V6E 2K3
+                </p>
+                <p style=3D"mso-line-height-rule:exactly">
+                 =20
+                  <a data-unsubscribe=3D"true" href=3D"https://go.activesta=
+te.com/hs/manage-preferences/unsubscribe-all?languagePreference=3Den&amp;d=
+=3DVndxG85yqRQjVPd4xS3ZTQVtW43T5bK2m40KfW3T0pbm43T2QJW94SvDR15gBJzW8MGFTY4P=
+rVPDW67vdwV5QFGM4N6xdZ4ZWBbg0N6Ybr8qXk_7QVbw6yy2QsnFlW2nFjW73k8P-Kw25lPHppc=
+V2&amp;v=3D3&amp;utm_campaign=3Dlastlogindate&amp;utm_source=3Dhs_automatio=
+n&amp;utm_medium=3Demail&amp;utm_content=3D214447842&amp;_hsenc=3Dp2ANqtz--=
+gUP-McZrkgO5eNAWkiY3uBC_qs5x_t0vaHir6Z4GXy2nYKlCMItV0eFHf0g_QPRNoPLR1awDoIp=
+iLFPqZr6pH419Siw&amp;_hsmi=3D214447842" style=3D"mso-line-height-rule:exact=
+ly; font-family:Lato,Tahoma,sans-serif; font-size:12px; color:#929eb2; font=
+-weight:normal; text-decoration:underline; font-style:normal" data-hs-link-=
+id=3D"0" target=3D"_blank">Unsubscribe</a>
+                 =20
+                  <a data-unsubscribe=3D"true" href=3D"https://go.activesta=
+te.com/hs/manage-preferences/unsubscribe?languagePreference=3Den&amp;d=3DVn=
+dxG85yqRQjVPd4xS3ZTQVtW43T5bK2m40KfW3T0pbm43T2QJW94SvDR15gBJzW8MGFTY4PrVPDW=
+67vdwV5QFGM4N6xdZ4ZWBbg0N6Ybr8qXk_7QVbw6yy2QsnFlW2nFjW73k8P-Kw25lPHppcV2&am=
+p;v=3D3&amp;utm_campaign=3Dlastlogindate&amp;utm_source=3Dhs_automation&amp=
+;utm_medium=3Demail&amp;utm_content=3D214447842&amp;_hsenc=3Dp2ANqtz--gUP-M=
+cZrkgO5eNAWkiY3uBC_qs5x_t0vaHir6Z4GXy2nYKlCMItV0eFHf0g_QPRNoPLR1awDoIpiLFPq=
+Zr6pH419Siw&amp;_hsmi=3D214447842" style=3D"mso-line-height-rule:exactly; f=
+ont-family:Lato,Tahoma,sans-serif; font-size:12px; color:#929eb2; font-weig=
+ht:normal; text-decoration:underline; font-style:normal" data-hs-link-id=3D=
+"0" target=3D"_blank">Manage preferences</a>
+                 =20
+                </p>
+               =20
+            </td>
+        </tr>
+    </tbody>
+</table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+</div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+ =20
+<img src=3D"https://go.activestate.com/e3t/Cto/5C+113/cDqDn04/VVxZdk5v35pJW=
+1Q-Qm97WywMYW8LzBkh4Nj9VGW5NMM5L3CQbYJ122" alt=3D"" width=3D"1" height=3D"1=
+" border=3D"0" style=3D"display:none!important;min-height:1px!important;wid=
+th:1px!important;border-width:0!important;margin-top:0!important;margin-bot=
+tom:0!important;margin-right:0!important;margin-left:0!important;padding-to=
+p:0!important;padding-bottom:0!important;padding-right:0!important;padding-=
+left:0!important"></body></html>
+------=_Part_891929_1355006235.1659597038046--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1221</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1659597043</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>10391</string>
+</dict>
+</plist>

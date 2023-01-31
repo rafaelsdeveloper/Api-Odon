@@ -1,0 +1,981 @@
+45818     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a5d:6b43:0:0:0:0:0 with SMTP id x3csp335167wrw;
+        Fri, 28 Jan 2022 03:17:27 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxnwwKODHNadVKBRR+aZz+0UVROul5ygga4N/T5qKOPtc4dK/DbKqKFcDl7Hk/dfRE7HJ5j
+X-Received: by 2002:a05:622a:349:: with SMTP id r9mr5667474qtw.37.1643368646984;
+        Fri, 28 Jan 2022 03:17:26 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1643368646; cv=none;
+        d=google.com; s=arc-20160816;
+        b=BpeSSdlPDDVbuqfBeitKN89ztxD2cDLonI3tyjXEtlDtR9pte9rEa3OA4OmszgCjOQ
+         iw16ftqWlv/invYRPfO6tftwyl/KJnwThifT43xwm0QWLn2qtoVZmhHVjBc2XaytYb//
+         fFo6s2+XgAi5Kr4wsdlbwxnFfxy507ATf5cnaU3K50VxBCvjKZvDCz4mptvWPOmycxeW
+         u60GlCuV3Frn459YtMetgg63+3+5efnMxhUIbOpsNx5ZE8fMogOPVTwq/rG5w/rB6clI
+         zaHROj19W5B8DpnGHAHeoEFJGuVXXK8LlKtdd8r357LLHHMrUNfJib0T9LpqAA3n7VbL
+         GW2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:mime-version:to:reply-to:from:subject:date:message-id
+         :dkim-signature:dkim-signature;
+        bh=31JA1Dhpe3DIV+5Bc4MP66kC2lyPyzMnqd3wLq52jl0=;
+        b=qy9+r70QTRS9Lk3KB+dBuf+MI/hkkz8RDpj8GAzmteru5XdJDOuAnZsqcwuoBUtKbO
+         BDRCu1ynSJBfe78Q6wafj9riHqoehF8HtEqb1bWpxuulY8zZantoKdxOxJSbp9Usocd/
+         z2EYVRym2HsiIkkdGYfrd5lI1YeGjysS/eBnwq4zmSXsQ8vPUs/LdkZaOyFBDLEPl4Z3
+         2fYTSW2EEt5N6lK5wADrAv7r84k3hIDVuZjADfszIcucRuJGX953Sl4nChPjOtgDfm8q
+         3J49jsB87B0AZjId/Uu2KNJQTyaYC8DWUA7PNUEfFsfFauphDikLVCLq6Wo6LC6H5WQu
+         MTqA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@hostinger.com header.s=etmhifdcpz2au5zs2clyyvxba7jwe5r4 header.b=jhJkwSi6;
+       dkim=pass header.i=@amazonses.com header.s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug header.b=Gs0jXr60;
+       spf=pass (google.com: domain of 0100017ea0678784-dbc7caeb-9d4a-4e22-a2fd-bf5aab38469e-000000@post.hostinger.com designates 54.240.48.189 as permitted sender) smtp.mailfrom=0100017ea0678784-dbc7caeb-9d4a-4e22-a2fd-bf5aab38469e-000000@post.hostinger.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=hostinger.com
+Return-Path: <0100017ea0678784-dbc7caeb-9d4a-4e22-a2fd-bf5aab38469e-000000@post.hostinger.com>
+Received: from a48-189.smtp-out.amazonses.com (a48-189.smtp-out.amazonses.com. [54.240.48.189])
+        by mx.google.com with ESMTPS id d22si12037967qtd.527.2022.01.28.03.17.26
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 28 Jan 2022 03:17:26 -0800 (PST)
+Received-SPF: pass (google.com: domain of 0100017ea0678784-dbc7caeb-9d4a-4e22-a2fd-bf5aab38469e-000000@post.hostinger.com designates 54.240.48.189 as permitted sender) client-ip=54.240.48.189;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@hostinger.com header.s=etmhifdcpz2au5zs2clyyvxba7jwe5r4 header.b=jhJkwSi6;
+       dkim=pass header.i=@amazonses.com header.s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug header.b=Gs0jXr60;
+       spf=pass (google.com: domain of 0100017ea0678784-dbc7caeb-9d4a-4e22-a2fd-bf5aab38469e-000000@post.hostinger.com designates 54.240.48.189 as permitted sender) smtp.mailfrom=0100017ea0678784-dbc7caeb-9d4a-4e22-a2fd-bf5aab38469e-000000@post.hostinger.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=hostinger.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=etmhifdcpz2au5zs2clyyvxba7jwe5r4; d=hostinger.com; t=1643368646;
+	h=Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type;
+	bh=C3sJgSerOHJQWFsK1RsotULrdpSs8HMe+jxujO7S14I=;
+	b=jhJkwSi6FWdJKtGl6kvtK6G2NuIpzH3n5GCzR9AX6bKxOKiFtiK4ScnZv3R3cUyN
+	jmVG6v693IE7fzVAxEdgQRdY6hDeOAJwbbw2ihwa9VhKrA3+Yx5+qq62BIUXrL+BOTF
+	4H0FLTvq4Bw8NHfTladg++ntgqaIeRKb8VSN/jrw=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1643368646;
+	h=Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:Feedback-ID;
+	bh=C3sJgSerOHJQWFsK1RsotULrdpSs8HMe+jxujO7S14I=;
+	b=Gs0jXr60eAFa9MG0ts5SL+5I355gvWZNfCxFdiZol7DpMo0cU3bbUqwku6HVbPpu
+	BlrdtitwG3yRCUpmTh3jckLlE1epL0KC8XLUlXbMcaZclB2MZ1uK3BifIKJb4QnAG9r
+	q6bsti53Qlwr1pW3sUNJlVzQNEDvmZ5366wzGvcc=
+Message-ID: <0100017ea0678784-dbc7caeb-9d4a-4e22-a2fd-bf5aab38469e-000000@email.amazonses.com>
+Date: Fri, 28 Jan 2022 11:17:26 +0000
+Subject: o resumo do seu pedido
+From: Hostinger <pt@hostinger.com>
+Reply-To: pt@hostinger.com
+To: faeldroom46@gmail.com
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="_=_swift_1643368646_c6b48efcc564976e9089d72ef0267447_=_"
+Feedback-ID: 1.us-east-1.OXcSJBEU7OEt73Q4BMyxhM/TAVT+i6ms0syx/CDM3Dw=:AmazonSES
+X-SES-Outgoing: 2022.01.28-54.240.48.189
+
+
+--_=_swift_1643368646_c6b48efcc564976e9089d72ef0267447_=_
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+
+--_=_swift_1643368646_c6b48efcc564976e9089d72ef0267447_=_
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!-- Preheader -->
+
+<!-- First part of the email -->
+
+<!-- Table --=
+>
+
+<!-- Second part of the email -->
+
+
+
+<!-- Footer -->
+
+=
+
+
+
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"en" xml:la=
+ng=3D"en" xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-=
+microsoft-com:office:office"
+ style=3D"padding:0; margin:0; width:100% !i=
+mportant; height: 100% !important; background-color:#ededed !important">
+=
+
+<head>
+=09<meta charset=3D"UTF-8">
+=09<title>Hostinger</title>
+=09=
+<style type=3D"text/css">
+=09=09@media(max-device-width: 480px) {
+=09=
+=09=09.font-size-mobile {
+=09=09=09=09font-size: 20px !important;
+=09=
+=09=09}
+=09=09}
+
+=09=09.hostname {
+=09=09=09color: #957fd5 !importa=
+nt;
+=09=09=09text-decoration: underline !important;
+=09=09}
+
+=09=09=
+.hostname a {
+=09=09=09color: #957fd5 !important;
+=09=09=09text-decorat=
+ion: underline !important;
+=09=09}
+=09:root { color-scheme: light only;=
+ }
+</style>
+</head>
+<!--[if mso]><xml xmlns:w=3D"urn:schemas-microsof=
+t-com:office:word"><w:WordDocument><w:AutoHyphenation/></w:WordDocument></x=
+ml><![endif]-->
+
+<body style=3D"font-family: Verdana, Sans-Serif; margi=
+n-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; padding-top: 0=
+; padding-bottom: 0; padding-left: 0; padding-right: 0; width:100% !importa=
+nt; background-color:#ededed !important"
+ bgcolor=3D"#ededed">
+=09<tabl=
+e align=3D"center" cellpadding=3D"0" border=3D"0" cellspacing=3D"0" bgcolor=
+=3D"#ededed" style=3D"background-color:#ededed !important;">
+=09=09<tbody=
+>
+=09=09=09<tr style=3D"padding-bottom: 0; padding-top: 0px; margin-botto=
+m: 0px; margin-top: 0px;">
+=09=09=09=09<td style=3D"padding-bottom: 0; pa=
+dding-top: 0px; margin-bottom: 0px; margin-top: 0px;">
+=09=09=09=09=09<di=
+v style=3D"display: none; max-height: 0px; overflow: hidden;">
+=09=09=09=
+=09=09 Veja informa=C3=A7=C3=B5es importantes aqui dentro.
+=09=09=09=09=
+=09</div>
+=09=09=09=09=09<div style=3D"display: none; max-height: 0px; ov=
+erflow: hidden;">
+=09=09=09=09=09=09=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0 =C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0 =C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C
+=09=09=09=09=09=09=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0 =C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C
+=09=09=09=09=09=09=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0 =C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C
+=09=09=09=09=09=09=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0 =C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=
+=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0 =C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=
+=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=
+=8C
+=09=09=09=09=09</div>
+=09=09=09=09=09<table width=3D"660" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:660px; background-co=
+lor:#7054e2; padding-bottom: 0; padding-top: 0px; margin-bottom: 0px; margi=
+n-top: 0px;"
+=09=09=09=09=09 bgcolor=3D"#ededed">
+=09=09=09=09=09=09<tb=
+ody style=3D"padding-bottom: 0; padding-top: 0px; margin-bottom: 0px; margi=
+n-top: 0px;">
+=09=09=09=09=09=09=09<tr style=3D"padding-bottom: 0; paddin=
+g-top: 0px; margin-bottom: 0px; margin-top: 0px;">
+=09=09=09=09=09=09=09=
+=09<td style=3D"padding-left: 60px; padding-right: 60px; padding-top: 60px;=
+ padding-bottom: 60px;">
+=09=09=09=09=09=09=09=09=09<table width=3D"540" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+=09=09=09=09=09=09=09=
+=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" style=
+=3D"padding-right: 360px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<img src=
+=3D"https://cdn.hostinger.com/mailer/inline-logo-wite.png" alt=3D"Hostinger=
+ Brand logo">
+                                            </td>
+       =
+                                     <td align=3D"right">
+=09=09=09=09=09=
+=09=09=09=09=09        <a href=3D"https://mailer.hostinger.io/280225322/05c=
+de4eed570126ef58300823b3c6663/2696?e=3DeNolylsOgyAQQNHd9FNqLVKaGJdChmHUSeQR=
+AZvuvrT9vCd3KyXlpxCYINDebTEXDisdXSqCwxkZKYuT6SXYiftVKoWPHnuQ4wLOandTMCyt7Ni=
+jtnIkPUg31%2BJNjvVAmsgD75cveHJc%2FZTf%2BZcIPgGv4X%2BYxo2OYpQzjDF8ACmDNwk%3D=
+&s=3Ddd596cc302be16f20ceada384e7d7b76fc032cd560d239c72e687913965f992b" targ=
+et=3D"_blank">=20
+                                                    =20
+ =
+                                                       <img src=3D"https://=
+cdn.hostinger.com/mailer/item-count-3.png" alt=3D"Cart icon">
+=09=09=09=
+=09=09=09=09=09=09=09=09        =20
+                                       =
+         </a>
+                                            </td>
+       =
+                                 </tr>
+                                  =
+  </table>
+                                </td>
+                      =
+      </tr>
+                            <tr style=3D"padding-bottom: 0; p=
+adding-top: 0px; margin-bottom: 0px; margin-top: 0px;">
+                 =
+               <td style=3D"padding-left: 60px; padding-right: 60px; paddin=
+g-bottom: 10px; text-align:center; color: white" align=3D"center">
+      =
+                              <h1 style=3D"padding-bottom: 0px; padding-top=
+: 0px; padding-left: 0px; padding-right: 0px; margin-bottom: 0px; margin-to=
+p: 0px; margin-right: 0px; margin-left: 0px; font-family: Verdana, Sans-Ser=
+if; line-height: 1.5; font-weight: 700; font-size: 30px;"><b> N=C3=A3o espe=
+res at=C3=A9 segunda para come=C3=A7ar  </b></h1>
+                       =
+         </td>
+                            </tr>
+                      =
+      <tr style=3D"padding-bottom: 0; padding-top: 0px; margin-bottom: 0px;=
+ margin-top: 0px;">
+                                <td style=3D"padding-=
+left: 60px; padding-right: 60px; padding-bottom: 50px; text-align:center; c=
+olor: white" align=3D"center">
+                                    <p cla=
+ss=3D"font-size-mobile" style=3D"padding-bottom: 0px; padding-top: 0px; pad=
+ding-left: 0px; padding-right: 0px; margin-bottom: 0px; margin-top: 0px; ma=
+rgin-right: 0px; margin-left: 0px; font-family: Verdana, Sans-Serif; line-h=
+eight: 1.5; font-size: 16px;"><br> Finalize seu pedido hoje! </p>
+       =
+                         </td>
+                            </tr>
+      =
+                      <tr style=3D"padding-bottom: 0; padding-top: 0px; mar=
+gin-bottom: 0px; margin-top: 0px;">
+                                <td s=
+tyle=3D"padding-left: 220px; padding-right: 220px; padding-bottom: 60px;">=
+
+                                    <!--          BUTTON      -->
+    =
+                                <table border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0">
+                                        <tr>
+            =
+                                <td align=3D"center" style=3D"border-radius=
+: 3px; width: 220px; height: 58px" bgcolor=3D"#fc5155">
+                 =
+                               <a href=3D"https://mailer.hostinger.io/28022=
+5322/05cde4eed570126ef58300823b3c6663/2696?e=3DeNolykEOgjAQQNHbuKRWLBUTwlGa=
+6XSASWhp6IDx9lZd%2Fpe%2FiOTyVAozJFqbZSvCaaa9yaI4nRsjFXUyvRQHdb8aa%2FGhUYPpJ=
+gi%2BDzcL7VTLdxp7bzrqWxPGQ6Ir27EjDRSB18sXIgU%2B4lDe5ZcIMQPP6X%2B4ypV2cTY4FP=
+gA8m02mA%3D%3D&s=3Dd0beb5b1153574da18250f95214e36e15b0b48679ca7677f03fc4d90=
+509ef2b7" target=3D"_blank" style=3D"font-size: 15px; font-weight:bold; fon=
+t-family: Verdana, Sans-Serif; color: #ffffff; text-decoration: none; text-=
+decoration: none;border-radius: 3px; padding: 15px; display: inline-block;"=
+>
+                                                    <font color=3D"#FFF=
+FFF" >Finalizar pedido</font></a>
+                                       =
+     </td>
+                                        </tr>
+              =
+                      </table>
+                                </td>
+  =
+                          </tr>
+                            <tr style=3D"=
+padding-bottom: 0; padding-top: 0px; margin-bottom: 0px; margin-top: 0px;">=
+
+                                <td align=3D"center" bgcolor=3D"#7054e2"=
+ style=3D"padding-left: 60px; padding-right: 60px; padding-top:0 px; paddin=
+g-bottom: 0px; margin-top: 0px; margin-bottom: 0px;">
+                   =
+                 <table bgcolor=3D"#f7f9ff" style=3D"width:540px; padding-t=
+op:0 px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; margin=
+-top: 0px; margin-bottom: 0px;" width=3D"540px;" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" >
+                                        <tr st=
+yle=3D"width:540px; padding-top: 0px; padding-bottom: 0px; padding-left: 0p=
+x; padding-right: 0px; margin-top: 0px; margin-bottom: 0px;" width=3D"540px=
+">
+                                            <td style=3D"padding-top: =
+12px; padding-bottom: 12px; padding-left: 0px; padding-right: 0px; margin-t=
+op: 0px; margin-bottom: 0px;" align=3D"center">
+                         =
+                       <p class=3D"font-size-mobile" style=3D"padding-left:=
+ 0px; padding-right: 0px; padding-bottom: 0; padding-top: 0px; margin-botto=
+m: 0px; margin-top: 0px; margin-right: 0px; margin-left: 0px; font-family: =
+Verdana, Sans-Serif; line-height: 1.5; font-weight: 700; font-size: 14px; c=
+olor:#6747c7">Tenhas 72% de desconto em tua compra </p>
+                 =
+                           </td>
+                                        =
+</tr>
+                                    </table>
+                    =
+            </td>
+                            </tr>
+                   =
+     </tbody>
+                    </table>
+                </td>
+    =
+        </tr>
+=09<tr style=3D"padding-bottom: 0; padding-top: 0px; margin=
+-bottom: 0px; margin-top: 0px;">
+=09=09<td style=3D"padding-left: 60px; p=
+adding-right: 60px;" bgcolor=3D"#ffffff">
+=09=09=09<table width=3D"540" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:540px; backg=
+round-color:#ffffff; border: solid 2px #f4f8ff; border-top: none"
+=09=09=
+=09 bgcolor=3D"#ffffff">
+=09=09=09=09<thead bgcolor=3D"#f7f9ff" style=3D"=
+background-color: #f7f9ff" align=3D"left">
+=09=09=09=09=09<th class=3D"fo=
+nt-size-mobile" style=3D"text-align: left; font-family: Verdana, Sans-Serif=
+; font-size:12px; line-height:1.5; padding-top: 15px; padding-left: 30px; p=
+adding-bottom: 15px; padding-right: 30px; margin-left: 0; margin-top: 0; ma=
+rgin-bottom: 0; margin-right: 0; color: #1e1f4e;">DESCRI=C3=87=C3=83O</th>=
+
+=09=09=09=09=09<th class=3D"font-size-mobile" style=3D"text-align: right=
+; font-family: Verdana, Sans-Serif; font-size:12px; line-height:1.5; paddin=
+g-top: 15px; padding-left: 30px; padding-bottom: 15px; padding-right: 40px;=
+ margin-left: 0; margin-top: 0; margin-bottom: 0; margin-right: 0; color: #=
+1e1f4e;">PRE=C3=87O</th>
+=09=09=09=09</thead>
+=09=09=09=09<tbody>
+=09=
+=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09<td class=3D"font-size-=
+mobile" valign=3D"top" style=3D"word-break: break-word; text-align: left; f=
+ont-family: Verdana, Sans-Serif; font-size:12px; line-height:1.5; padding-t=
+op: 20px; padding-left: 30px; padding-bottom: 0; margin-left: 0; margin-top=
+: 0; margin-bottom: 0; margin-right: 0; color: #1e1f4e;">
+=09=09=09=09=09=
+=09=09- Alojamento Compartilhado Premium </td>
+=09=09=09=09=09=09<td clas=
+s=3D"font-size-mobile" valign=3D"top" style=3D"text-align: right; font-fami=
+ly: Verdana, Sans-Serif; font-size:12px; line-height:1.5; padding-top: 20px=
+; padding-bottom: 0; padding-right: 30px; margin-left: 0; margin-top: 0; ma=
+rgin-bottom: 0; margin-right: 0; color: #1e1f4e;">383.52 EUR</td>
+=09=09=
+=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09<td=
+ class=3D"font-size-mobile" valign=3D"top" style=3D"word-break: break-word;=
+ text-align: left; font-family: Verdana, Sans-Serif; font-size:12px; line-h=
+eight:1.5; padding-top: 20px; padding-left: 30px; padding-bottom: 0; margin=
+-left: 0; margin-top: 0; margin-bottom: 0; margin-right: 0; color: #1e1f4e;=
+">
+=09=09=09=09=09=09=09- Ativa=C3=A7=C3=A3o do Certificado SSL </td>
+=
+=09=09=09=09=09=09<td class=3D"font-size-mobile" valign=3D"top" style=3D"te=
+xt-align: right; font-family: Verdana, Sans-Serif; font-size:12px; line-hei=
+ght:1.5; padding-top: 20px; padding-bottom: 0; padding-right: 30px; margin-=
+left: 0; margin-top: 0; margin-bottom: 0; margin-right: 0; color: #1e1f4e;"=
+>11.95 EUR</td>
+=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09<tr>=
+
+=09=09=09=09=09=09<td class=3D"font-size-mobile" valign=3D"top" style=3D=
+"word-break: break-word; text-align: left; font-family: Verdana, Sans-Serif=
+; font-size:12px; line-height:1.5; padding-top: 20px; padding-left: 30px; p=
+adding-bottom: 0; margin-left: 0; margin-top: 0; margin-bottom: 0; margin-r=
+ight: 0; color: #1e1f4e;">
+=09=09=09=09=09=09=09- Prote=C3=A7=C3=A3o Clou=
+dflare </td>
+=09=09=09=09=09=09<td class=3D"font-size-mobile" valign=3D"t=
+op" style=3D"text-align: right; font-family: Verdana, Sans-Serif; font-size=
+:12px; line-height:1.5; padding-top: 20px; padding-bottom: 0; padding-right=
+: 30px; margin-left: 0; margin-top: 0; margin-bottom: 0; margin-right: 0; c=
+olor: #1e1f4e;">9.95 EUR</td>
+=09=09=09=09=09</tr>
+=09=09=09=09=09=09=
+=09=09=09 =09=09=09=09<tr>
+=09=09=09=09=09<td class=3D"font-size-mobile" =
+valign=3D"top" style=3D"word-break: break-word; text-align: left; font-fami=
+ly: Verdana, Sans-Serif; font-size:12px; line-height:1.5; padding-top: 20px=
+; padding-left: 30px; padding-bottom: 0; margin-left: 0; margin-top: 0; mar=
+gin-bottom: 0; margin-right: 0; color: #1e1f4e;">
+=09=09=09=09=09=09- Imp=
+ostos
+=09=09=09=09=09=09<td class=3D"font-size-mobile" valign=3D"top" sty=
+le=3D"text-align: right; font-family: Verdana, Sans-Serif; font-size:12px; =
+line-height:1.5; padding-top: 20px; padding-bottom: 0; padding-right: 30px;=
+ margin-left: 0; margin-top: 0; margin-bottom: 0; margin-right: 0; color: #=
+1e1f4e;"><span class=3D"font-size-mobile" style=3D"text-align: right; font-=
+family: Verdana, Sans-Serif; font-size:13px; line-height:1.5; padding-top: =
+20px; padding-left: 0; padding-bottom: 20px; padding-right: 0; margin-left:=
+ 0; margin-top: 0; margin-bottom: 0; margin-right: 0; color: #1e1f4e; font-=
+weight: 400">95.55 EUR</span><br/></td>
+=09=09=09=09=09=09</tr>
+=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09
+=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td colspan=3D3 st=
+yle=3D"text-align: right; padding-top: 15px">
+=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09<del style=3D"text-align: right; fon=
+t-family: Verdana, Sans-Serif; font-size:12px; line-height:1.5; padding-top=
+: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 30px; margin-=
+left: 0; margin-top: 0; margin-bottom: 0; margin-right: 0; color: #c0c0c0;"=
+></del>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</=
+td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=
+=09=09=09=09=09 =09=09=09=09=09<tr>
+=09=09=09=09=09=09<td colspan=3D3 cla=
+ss=3D"font-size-mobile" style=3D"text-align: right; font-family: Verdana, S=
+ans-Serif; font-size:13px; line-height:1.5; padding-top: 0px; padding-left:=
+ 0; padding-bottom: 10px; padding-right: 30px; margin-left: 0; margin-top: =
+0; margin-bottom: 0; margin-right: 0; color: #1e1f4e; font-weight: 700">Tot=
+al:
+=09=09=09=09=09=09=09<span class=3D"font-size-mobile" style=3D"text-a=
+lign: right; font-family: Verdana, Sans-Serif; font-size:13px; line-height:=
+1.5; padding-top: 20px; padding-left: 0; padding-bottom: 20px; padding-righ=
+t: 0; margin-left: 0; margin-top: 0; margin-bottom: 0; margin-right: 0; tex=
+t-decoration: line-through; color: #1e1f4e; font-weight: 400">510.97 EUR</s=
+pan>
+=09=09=09=09=09=09=09=09=09=09=09=09                    <br>
+=09=
+=09=09=09=09=09=09=09=09=09=09=09                    <span class=3D"font-si=
+ze-mobile" style=3D"text-align: right; font-family: Verdana, Sans-Serif; fo=
+nt-size:15px; line-height:1.5; padding-top: 20px; padding-left: 0; padding-=
+bottom: 20px; padding-right: 0; margin-left: 0; margin-top: 0; margin-botto=
+m: 0; margin-right: 0; color: #6747c7; font-weight: 700">141.11 EUR</span>=
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=
+=09=09                    =09=09=09=09=09                </tbody>
+=09=09=
+=09=09=09            </table>
+=09=09=09=09=09        </td>
+=09=09=09=09=
+=09    </tr>
+            <tr style=3D"padding-bottom: 0; padding-top: 0px=
+; margin-bottom: 0px; margin-top: 0px;">
+                <td bgcolor=3D"#=
+ffffff" style=3D"padding-top: 40px"></td>
+            </tr>
+=09=09=09<t=
+r style=3D"padding-bottom: 0; margin-bottom: 0px; margin-top: 0px;">
+=09=
+=09=09=09<td bgcolor=3D"#ffffff" style=3D"padding-left: 220px; padding-righ=
+t: 220px; padding-bottom: 30px; padding-top: 0px;" align=3D"center">
+=09=
+=09=09=09=09<!--          BUTTON      -->
+=09=09=09=09=09<table border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09<tr>
+=09=09=
+=09=09=09=09=09<td align=3D"center" style=3D"border-radius: 3px; width: 220=
+px; height: 58px" bgcolor=3D"#7054e2">
+=09=09=09=09=09=09=09=09<a href=3D=
+"https://mailer.hostinger.io/280225322/05cde4eed570126ef58300823b3c6663/269=
+6?e=3DeNolykEOgjAQQNHbuKQWbCsmxKM0w3SASWhp2gHj7UVd%2Fpe%2FiOT6UAozJFqbZavCa=
+abSZFGcjo2RqjqYXoqDul2Nc3jXqMHYCcLYh9ZBN501Wo39aCz1nQnPXaKv216QBorA6%2BULkQ=
+Lvcajv%2BkuEmIHn9D%2F8yScV8S54FGg%2FKUY2yg%3D%3D&s=3Dff596b36a259a0c35ce613=
+cc8557a579ab600e6c728e6782da4be25ea0c3277d" target=3D"_blank" style=3D"font=
+-size: 14px; font-weight:bold; font-family: Verdana, Sans-Serif; color: #ff=
+ffff; text-decoration: none; text-decoration: none;border-radius: 3px; padd=
+ing: 7px; display: inline-block;">
+=09=09=09=09=09=09=09=09=09<font color=
+=3D"#FFFFFF">Finalizar pedido</font></a>
+=09=09=09=09=09=09=09</td>
+=09=
+=09=09=09=09=09</tr>
+=09=09=09=09=09</table>
+=09=09=09=09</td>
+=09=09=
+=09</tr>
+<tr style=3D"padding-bottom: 0; padding-top: 0px; margin-bottom:=
+ 0px; margin-top: 0px;">
+=09<td bgcolor=3D"#ffffff" style=3D"padding-top:=
+ 20px"></td>
+</tr>
+<tr style=3D"padding-bottom: 0; padding-top: 0px; ma=
+rgin-bottom: 0px; margin-top: 0px;">
+=09<td style=3D"padding-bottom: 0; p=
+adding-top: 0px; margin-bottom: 0px; margin-top: 0px;" align=3D"center">
+=
+=09=09<table width=3D"660" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ style=3D"width:660px; background-color:#ffffff; padding-bottom: 0; padding=
+-top: 0px; margin-bottom: 0px; margin-top: 0px;"
+=09=09 bgcolor=3D"#fffff=
+f">
+=09=09=09<tr>
+=09=09=09=09<td align=3D"center" style=3D"padding-lef=
+t: 60px; padding-right: 60px;">
+=09=09=09=09=09<p class=3D"font-size-mobi=
+le" style=3D"padding-bottom: 0px; padding-top: 0px; padding-left: 0px; padd=
+ing-right: 0px; margin-bottom: 30px; margin-top: 0px; margin-right: 0px; ma=
+rgin-left: 0px; font-family: Verdana, Sans-Serif; line-height: 1.5; font-si=
+ze: 18px; color: #1e1f4e; font-weight: 700">Finalize seu pedido hoje e apro=
+veite recursos incr=C3=ADveis como:</p>
+=09=09=09=09</td>
+=09=09=09</tr=
+>
+=09=09=09<tr>
+=09=09=09=09<td align=3D"center" style=3D"padding-botto=
+m: 60px; padding-left: 60px; padding-right: 60px;">
+=09=09=09=09=09<!--[i=
+f mso]>
+                                <table align=3D"center" width=3D"=
+540" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:540;">=
+
+                                    <tr>
+                             =
+           <td>
+                                            <center>
+  =
+                              <![endif]-->
+=09=09=09=09=09<table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D"bac=
+kground-color:#ffffff; padding-top: 20px;">
+=09=09=09=09=09=09<tbody>
+=
+=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09<td align=3D"left" styl=
+e=3D"padding-bottom: 50px; padding-right: 10px;">
+=09=09=09=09=09=09=09=
+=09=09<img src=3D"https://cdn.hostingermail.com/mailer/chat-bubbles.png" al=
+t=3D"Chat">
+                                        </td>
+             =
+                           <td align=3D"left" style=3D"padding-bottom: 50px=
+;">
+                                            <p class=3D"font-size-mob=
+ile" style=3D"font-family: Verdana, Sans-Serif; font-size:14px; font-weight=
+:700; line-height:1.29; padding-top: 0px; padding-left: 0px; padding-right:=
+ 0; margin-left: 0; margin-top: 0; margin-bottom: 0; margin-right: 0; color=
+: #817c8f; padding-bottom: 0;">Veloz suporte ao vivo 24/7</p>
+           =
+                             </td>
+                                    </=
+tr>
+                                    <tr>
+                          =
+              <td align=3D"left" style=3D"padding-bottom: 50px; padding-rig=
+ht: 10px;">
+                                            <img src=3D"https=
+://cdn.hostingermail.com/mailer/rocket.png" alt=3D"Superior speed">
+     =
+                                   </td>
+                                =
+        <td align=3D"left" style=3D"padding-bottom: 50px;">
+             =
+                               <p class=3D"font-size-mobile" style=3D"font-=
+family: Verdana, Sans-Serif; font-size:14px; font-weight:700; line-height:1=
+.29; padding-top: 0px; padding-left: 0px; padding-right: 0; margin-left: 0;=
+ margin-top: 0; margin-bottom: 0; margin-right: 0; color: #817c8f; padding-=
+bottom: 0;">Velocidade e desempenho superior</p>
+                        =
+                </td>
+                                    </tr>
+       =
+                             <tr>
+                                       =
+ <td align=3D"left" style=3D"padding-bottom: 50px; padding-right: 10px;">=
+
+                                            <img src=3D"https://cdn.host=
+ingermail.com/mailer/installer.png" alt=3D"Easy-to-use">
+                =
+                        </td>
+                                        <td=
+ align=3D"left"  style=3D"padding-bottom: 50px;">
+                       =
+                     <p class=3D"font-size-mobile" style=3D"font-family: Ve=
+rdana, Sans-Serif; font-size:14px; font-weight:700; line-height:1.29; paddi=
+ng-top: 0px; padding-left: 0px; padding-right: 0; margin-left: 0; margin-to=
+p: 0; margin-bottom: 0; margin-right: 0; color: #817c8f; padding-bottom: 0;=
+">Auto-instalador de 1-clique</p>
+                                       =
+ </td>
+                                    </tr>
+                      =
+              <tr>
+                                        <td align=3D"l=
+eft" style=3D"padding-right: 10px;">
+                                    =
+        <img src=3D"https://cdn.hostingermail.com/mailer/controller.png" al=
+t=3D"Domain name">
+                                        </td>
+      =
+                                  <td align=3D"left">
+                   =
+                         <p class=3D"font-size-mobile" style=3D"font-family=
+: Verdana, Sans-Serif; font-size:14px; font-weight:700; line-height:1.29; p=
+adding-top: 0px; padding-left: 0px; padding-right: 0; margin-left: 0; margi=
+n-top: 0; margin-bottom: 0; margin-right: 0; color: #817c8f; padding-bottom=
+: 0;">Painel de controle f=C3=A1cil de usar</p>
+                         =
+               </td>
+                                    </tr>
+        =
+                            </tbody>
+                                </ta=
+ble>
+                                <!--[if mso]>
+                    =
+            </center>
+                                </td>
+           =
+                     </tr>
+                                </table>
+   =
+                             <![endif]-->
+                            </t=
+d>
+                        </tr>
+=09=09=09<tr style=3D"padding-bottom: =
+0; padding-top: 0px; margin-bottom: 0px; margin-top: 0px;">
+=09=09=09=09<=
+td>
+=09=09=09=09=09<table width=3D"660" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" style=3D"width:660px; background-color:#f7f9ff; padding-top=
+: 0px; padding-bottom: 0px;" bgcolor=3D"#f7f9ff">
+=09=09=09=09=09=09<tr s=
+tyle=3D"margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px; padding-t=
+op: 0px;">
+=09=09=09=09=09=09=09<td align=3D"center" style=3D"margin-top:=
+ 0px; margin-bottom: 0px; padding-bottom: 20px; padding-top: 40px; padding-=
+left: 60px; padding-right: 60px;">
+=09=09=09=09=09=09=09=09<img style=3D"=
+margin-bottom: 0px; margin-top: 0px; margin-right: 0px; margin-left: 0px; p=
+adding-bottom: 0px; padding-top: 0px; padding-left: 0px; padding-right: 0px=
+;" src=3D"https://cdn.hostinger.com/mailer/ratings.png" alt=3D"Stars rating=
+">
+=09=09=09                            </td>
+=09=09=09                =
+        </tr>
+=09=09=09                        <tr style=3D"margin-top: 0=
+px; margin-bottom: 0px; padding-bottom: 0px; padding-top: 0px;">
+=09=09=
+=09                            <td align=3D"center" style=3D"margin-top: 0p=
+x; margin-bottom: 0px; padding-bottom: 20px; padding-top: 10px; padding-lef=
+t: 60px; padding-right: 60px;">
+=09=09=09                                =
+<p class=3D"font-size-mobile" style=3D"margin-bottom: 0px; margin-top: 0px;=
+ margin-right: 0px; margin-left: 0px; padding-bottom: 0px; padding-top: 0px=
+; padding-left: 0px; padding-right: 0px; font-family: Verdana, Sans-Serif; =
+line-height: 1.2; font-weight: 700; font-size: 18px; color: #817c8f">Os cli=
+entes nos amam</p>
+=09=09=09                            </td>
+=09=09=09=
+                        </tr>
+=09=09=09                        <tr style=
+=3D"margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px; padding-top: =
+0px;">
+=09=09=09                            <td align=3D"center" style=3D=
+"margin-top: 0px; margin-bottom: 0px; padding-bottom: 20px; padding-top: 0p=
+x; padding-left: 60px; padding-right: 60px;">
+=09=09=09                  =
+              <p class=3D"font-size-mobile" style=3D"margin-bottom: 0px; ma=
+rgin-top: 0px; margin-right: 0px; margin-left: 0px; padding-bottom: 0px; pa=
+dding-top: 0px; padding-left: 0px; padding-right: 0px; font-family: Verdana=
+, Sans-Serif; line-height: 2.0; font-size: 14px; color: #817c8f"><span clas=
+s=3D"font-size-mobile" style=3D"padding-bottom: 0px; padding-top: 0px; padd=
+ing-left: 0px; padding-right: 0px; margin-bottom: 0px; margin-top: 0px; mar=
+gin-right: 0px; margin-left: 0px; font-family: Verdana, Sans-Serif; line-he=
+ight: 1.5; font-weight: 700; font-size: 14px; color: #957fd5">4.8 DE 5</spa=
+n> estrelas baseadas em 650+ reviews do Google. <br> <span class=3D"hostnam=
+e"> <a href=3D"https://mailer.hostinger.io/280225322/05cde4eed570126ef58300=
+823b3c6663/2696?e=3DeNrLKCkpKLbS10%2FXS87Xz04v1nd1CypzMgcAYDMHog%3D%3D&s=3D=
+11597fab8a0306143463e85a4258e4ea64d5a0394f28714b3366acb8ec7f5b44">Leia as r=
+eviews &gt;&gt; </span></p>
+=09=09=09                            </td>
+=
+=09=09=09                        </tr>
+=09=09=09                        <=
+tr style=3D"margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px; paddi=
+ng-top: 0px;">
+=09=09=09                            <td align=3D"center" =
+style=3D"margin-top: 0px; margin-bottom: 0px; padding-bottom: 10px; padding=
+-top: 10px; padding-left: 60px; padding-right: 60px;">
+=09=09=09         =
+                       <img style=3D"margin-bottom: 0px; margin-top: 0px; p=
+adding-bottom: 0px; padding-top: 0px; padding-left: 0px; padding-right: 0px=
+;" src=3D"https://cdn.hostinger.com/mailer/protection.png" alt=3D"We provid=
+e protection">
+=09=09=09                            </td>
+=09=09=09    =
+                    </tr>
+=09=09=09                        <tr style=3D"m=
+argin-top: 0px; margin-bottom: 0px; padding-bottom: 0px; padding-top: 0px;"=
+>
+=09=09=09                            <td align=3D"center" style=3D"marg=
+in-top: 0px; margin-bottom: 0px; padding-bottom: 20px; padding-top: 0px; pa=
+dding-left: 60px; padding-right: 60px;">
+=09=09=09                       =
+         <p class=3D"font-size-mobile" style=3D"margin-bottom: 0px; margin-=
+top: 0px; margin-right: 0px; margin-left: 0px; padding-bottom: 0px; padding=
+-top: 0px; padding-left: 0px; padding-right: 0px; font-family: Verdana, San=
+s-Serif; line-height: 1.2; font-weight: 700; font-size: 18px; color: #817c8=
+f"> Garantia de reembolso em 30 dias!</p>
+=09=09=09                      =
+      </td>
+=09=09=09                        </tr>
+=09=09=09           =
+             <tr style=3D"margin-top: 0px; margin-bottom: 0px; padding-bott=
+om: 0px; padding-top: 0px;">
+=09=09=09                            <td ali=
+gn=3D"center" style=3D"margin-top: 0px; margin-bottom: 0px; padding-bottom:=
+ 20px; padding-top: 10px; padding-left: 60px; padding-right: 60px;">
+=09=
+=09=09                                <p class=3D"font-size-mobile" style=
+=3D"margin-bottom: 0px; margin-top: 0px; margin-right: 0px; margin-left: 0p=
+x; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; padding-right:=
+ 0px; font-family: Verdana, Sans-Serif; line-height: 2.0; font-size: 14px; =
+color: #817c8f"><span class=3D"font-size-mobile" style=3D"padding-bottom: 0=
+px; padding-top: 0px; padding-left: 0px; padding-right: 0px; margin-bottom:=
+ 0px; margin-top: 0px; margin-right: 0px; margin-left: 0px; font-family: Ve=
+rdana, Sans-Serif; line-height: 1.2; font-weight: 700; font-size: 14px; col=
+or: #957fd5">EXPERIMENTE SEM RISCOS</span> <br> <span class=3D"hostname"> <=
+a href=3D"https://mailer.hostinger.io/280225322/05cde4eed570126ef58300823b3=
+c6663/2696?e=3DeNolzEsKwCAMRdHddFYdFgqlSxHRtAaMiomIu%2B%2FH4Ts8bhApvGvde1ch=
+s2C6oaoiusLVkl9LjujG2YQM51YdHEAW4%2FIBgcdGBw%2F%2Bp7NULN5pPszLL1UxM2E2%2FwD=
+7BSqG&s=3D1b1f41fe9fc19481ad494887b3135ae3d5291878329595bcd7ccd591e990db18"=
+>Leia nossa pol=C3=ADtica de reembolsos &gt;&gt; </span></a></p>
+=09=09=
+=09                            </td>
+=09=09=09                        </t=
+r>
+=09=09=09                        <tr style=3D"margin-top: 0px; margin-=
+bottom: 0px; padding-bottom: 0px; padding-top: 0px;">
+=09=09=09          =
+                  <td align=3D"center" style=3D"margin-top: 0px; margin-bot=
+tom: 0px; padding-bottom: 10px; padding-top: 20px; padding-left: 60px; padd=
+ing-right: 60px;">
+=09=09=09                                <img style=3D=
+"margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px; padding-top: 0px=
+; padding-left: 0px; padding-right: 0px; " src=3D"https://cdn.hostinger.com=
+/mailer/chat.png" alt=3D"Ask us">
+=09=09=09                            </=
+td>
+=09=09=09                        </tr>
+=09=09=09                   =
+     <tr style=3D"margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px;=
+ padding-top: 0px;">
+=09=09=09                            <td align=3D"ce=
+nter" style=3D"margin-top: 0px; margin-bottom: 0px; padding-bottom: 20px; p=
+adding-top: 0px; padding-left: 60px; padding-right: 60px;">
+=09=09=09    =
+                            <p class=3D"font-size-mobile" style=3D"margin-b=
+ottom: 0px; margin-top: 0px; margin-right: 0px; margin-left: 0px; padding-b=
+ottom: 0px; padding-top: 0px; padding-left: 0px; padding-right: 0px;  font-=
+family: Verdana, Sans-Serif; line-height: 1.2; font-weight: 700; font-size:=
+ 18px; color: #817c8f">Tens alguma pergunta?</p>
+=09=09=09               =
+             </td>
+=09=09=09                        </tr>
+=09=09=09    =
+                    <tr style=3D"margin-top: 0px; margin-bottom: 0px; paddi=
+ng-bottom: 0px; padding-top: 0px;">
+=09=09=09                            =
+<td align=3D"center" style=3D"margin-top: 0px; margin-bottom: 0px; padding-=
+bottom: 20px; padding-top: 10px; padding-left: 60px; padding-right: 60px;">=
+
+=09=09=09                                <p class=3D"font-size-mobile" s=
+tyle=3D"margin-bottom: 0px; margin-top: 0px; margin-right: 0px; margin-left=
+: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; padding-ri=
+ght: 0px; font-family: Verdana, Sans-Serif; line-height: 2.0; font-size: 14=
+px; color: #817c8f">N=C3=B3s estamos prontos pra ajudar-te. <br><span class=
+=3D"hostname"> <a href=3D"https://mailer.hostinger.io/280225322/05cde4eed57=
+0126ef58300823b3c6663/2696?e=3DeNolykEKxCAMQNHbzK51WShIjyLBBg0YDSYivX3b6fI%=
+2FfjYT3Z2bc665qVFN2FcxFwUqlqW0RPXonlEVEqrLWOQYxkHb6BE9MlD5vcB40mCvl%2F4zAgt=
+Qqt8RHn6oW9jOGz5fLS0%3D&s=3D84b59a7c9a987c8634c7abac10e10fd713cc8df277b643f=
+1aec087340c9cbd95">Vamos conversar &gt;&gt; </span></p>
+=09=09=09        =
+                    </td>
+=09=09=09                        </tr>
+=09=09=
+=09                        <tr style=3D"margin-top: 0px; margin-bottom: 0px=
+; padding-bottom: 0px; padding-top: 0px;">
+=09=09=09                     =
+       <td align=3D"center" style=3D"padding-top: 40px; padding-bottom: 40p=
+x; padding-left: 60px; padding-right: 60px;">
+=09=09=09                  =
+              <img style=3D"margin-top: 0px; margin-bottom: 0px; padding-bo=
+ttom: 0px; padding-top: 0px; padding-left: 0px; padding-right: 0px; " src=
+=3D"https://cdn.hostinger.com/mailer/hostinger-team-original.png" alt=3D"Ho=
+stinger signature">
+=09=09=09                            </td>
+=09=09=
+=09                        </tr>
+=09=09=09                    </table>
+=
+=09=09=09                </td>
+                            </tr>
+      =
+                      </table>
+                            </td>
+=09=09=
+=09            </tr>
+=09=09=09            <tr>
+=09=09=09               =
+ <td align=3D"center" style=3D"padding-top: 30px; padding-left: 60px; paddi=
+ng-right: 60px">
+=09=09=09                    <table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0">
+=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=
+=09=09=09=09=09=09  <td style=3D"padding-right: 5px; padding-left: 5px;"><a=
+ border=3D"0" style=3D"border: none" href=3D"https://mailer.hostinger.io/28=
+0225322/05cde4eed570126ef58300823b3c6663/2696?e=3DeNrLKCkpKLbS1y8vL9dLS0xOT=
+crPz9ZLzs%2FV98gvLsnMS08t0gcA6%2FQNFw%3D%3D&s=3D2527ad1cefaac1dcc0b8d7b52df=
+39eca29fc6981eeddb9adb7883be1c32911dc"><img src=3D"https://cdn.hostinger.co=
+m/mailer/facebook.png" alt=3D"Facebook Icon"></td>
+=09=09=09=09=09=09=09=
+=09=09  <td style=3D"padding-right: 5px; padding-left: 5px;"><a border=3D"0=
+" style=3D"border: none;" href=3D"https://mailer.hostinger.io/280225322/05c=
+de4eed570126ef58300823b3c6663/2696?e=3DeNrLKCkpKLbS1y8vL9fLzCsuSUwvSszVS87P=
+1c%2FILy7JzEtPLYpPz8lPSswBAFsSEGQ%3D&s=3D22d409f43ea3e1228b66e97670c060b9d0=
+b783c6ec028c0ebe166016353d6d80"><img src=3D"https://cdn.hostinger.com/maile=
+r/instagram.png" alt=3D"Instagram Icon"></td>
+=09=09=09=09=09=09=09=09=09=
+  <td style=3D"padding-right: 5px; padding-left: 5px;"><a border=3D"0" styl=
+e=3D"border: none" href=3D"https://mailer.hostinger.io/280225322/05cde4eed5=
+70126ef58300823b3c6663/2696?e=3DeNrLKCkpKLbS1y8pzywpSS3SS87P1ffILy7JzEtPLQI=
+ApesLLg%3D%3D&s=3Df7752cc2ee5d6d31317dfa5ecefe20160471de36f4fff87fc5706cdf6=
+5b8cdff"><img src=3D"https://cdn.hostinger.com/mailer/twitter.png" alt=3D"T=
+witter Icon"></td>
+=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09          =
+          </table>
+=09=09=09                </td>
+=09=09=09            =
+</tr>
+=09=09=09            <tr>
+=09=09=09                <td align=3D"c=
+enter" style=3D"padding-top: 30px; padding-left: 60px; padding-right: 60px"=
+>
+=09=09=09                    <table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0"  width=3D"540" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" style=3D"width:540;">
+=09=09=09                        <tr>
+=09=09=
+=09                            <td align=3D"center">
+=09=09=09           =
+                     <p class=3D"font-size-mobile" style=3D"text-align: cen=
+ter; color:#817c8f; font-family: Verdana, Sans-Serif; font-size:12px; line-=
+height:1.40; padding-top: 0; padding-left: 0; padding-bottom: 0; padding-ri=
+ght: 0; margin-left: 0; margin-top: 0; margin-bottom: 0; margin-right: 0;">=
+Recebestes este email porque est=C3=A1s registrado na Hostinger. <a class=
+=3D"font-size-mobile" style=3D"text-align: center; color:#817c8f; font-fami=
+ly: Verdana, Sans-Serif; font-size:12px; line-height:1.40; padding-top: 0; =
+padding-left:0; padding-bottom: 0; padding-right: 0; margin-left: 0; margin=
+-top: 0; margin-bottom: 0; margin-right: 0;" href=3D"https://mailer.hosting=
+er.io/280225322/05cde4eed570126ef58300823b3c6663/2696?e=3DeNoNx9sRwiAQAMCK5=
+EQEgt3cK%2BZmEBkg%2FSf7t8dafX4AuGPT6o7%2FXNa%2BOlxf0E%2BqxiA2kao%2Bhv6siY4J=
+JvB%2Bxpx58%2Bwxph2Firwyhv0eJc%2BFYtISolyMRyBM&s=3D76dbac5a95c75df78d8062c2=
+ff7bb7e70bd77d70bceb1588bcc85ce60d563ed0">Desativar lembretes para este pag=
+amentot</a></p>
+=09=09=09                        </tr>
+=09=09=09       =
+             </table>
+=09=09=09                </td>
+=09=09=09         =
+   </tr>
+=09=09=09            <tr>
+=09=09=09                <td align=
+=3D"center" style=3D"padding-top: 15px; padding-left: 60px; padding-right: =
+60px; padding-bottom: 60px">
+=09=09=09                    <table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"540" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"width:540;">
+=09=09=09           =
+             <tr>
+=09=09=09                            <td align=3D"cente=
+r">
+=09=09=09                                <p class=3D"font-size-mobile=
+" style=3D"text-align: center; color:#817c8f; font-family: Verdana, Sans-Se=
+rif; font-size:12px; line-height:normal; padding-top: 0; padding-left: 0; p=
+adding-bottom: 0; padding-right: 0; margin-left: 0; margin-top: 0; margin-b=
+ottom: 0; margin-right: 0;">=C2=A9 2004=E2=81=A0=E2=80=93=E2=81=A02022 Host=
+inger International Ltd.</p>
+=09=09=09                        </tr>
+=09=
+=09=09                    </table>
+=09=09=09                </td>
+=09=
+=09=09            </tr>
+=09=09=09        </tbody>
+=09=09=09    </table>=
+
+=09=09=09<img alt=3D"pixel" src=3D"https://mailer.hostinger.io/o/2802253=
+22/05cde4eed570126ef58300823b3c6663/2696"></body>
+=09=09=09</html>
+
+--_=_swift_1643368646_c6b48efcc564976e9089d72ef0267447_=_--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>2899</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1643368646</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>8358</string>
+</dict>
+</plist>

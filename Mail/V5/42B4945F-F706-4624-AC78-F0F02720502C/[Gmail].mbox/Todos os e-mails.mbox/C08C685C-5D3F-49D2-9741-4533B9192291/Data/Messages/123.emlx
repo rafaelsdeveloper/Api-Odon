@@ -1,0 +1,767 @@
+52003     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:e110:b0:3e4:c96d:8327 with SMTP id a16csp1683337pxw;
+        Wed, 18 Jan 2023 02:54:06 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXujaIDeh/lobnlQyBZ5xEy/goGfUvaOONaB7esNmlV8JYX+KbKXtFAd/IFrBmaVcM/sFdvg
+X-Received: by 2002:a05:622a:2308:b0:3b6:3466:eee9 with SMTP id ck8-20020a05622a230800b003b63466eee9mr10141828qtb.25.1674039246375;
+        Wed, 18 Jan 2023 02:54:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1674039246; cv=none;
+        d=google.com; s=arc-20160816;
+        b=MyJuUUUNEauatbVm1ElkIDdKoZneNSLeZJ+rNcXl763vsnuheD+sd8wa4nLCraIAB0
+         lSrufMIIkxj7YEx+IlpoInBJeFtrJzNunAlK5vOMXhGTtjAs0456We05/WeimVI5f13u
+         N2Vg42RZOHOaslI2AkCP51Z5TKj0Z9VmGiBJyMCNzwPw1Z0B6/7f+y4ol6KJFSVXbDYh
+         6GYmo8bkgjzntPGUJWpIm70N6wz3oC/RcWK9wHjoxESMGV/90TOxQX/7+A6igmF1F2AI
+         UVDg5InnWVe0FcZptKnAqIt5P6fVpDE3r9yRo6qgYK9elFLxNqkNzsxR9nr7BXqJ3qsJ
+         wd3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:mime-version:from:date:dkim-signature
+         :dkim-signature;
+        bh=4vGpLBm4TuLgoME1VwHK/ByGme2sVa3TI1vtsJU9y2E=;
+        b=oPP6pOeEI+AT4rr8XL0jbTPZHQtPpQeCkZGbLjd0eaOPcPiJ8ctCfrQ3wvwYu7MT2V
+         fi1rOC8NdlxmHiz74DHZBWR1ouF8Ep9xZDSfECf09tuIEo6oFm/97TtDQRUTDxXhd8TT
+         DuPwat0Hy9UIQW3kRa+/ZcslZ3tG27rsZDksYtW2+Dq1v73YDd6YmmI2XQe6CDDiikuQ
+         gOU//v43FdM/1a3/VbDje9RPKiyNmBHkjqFEhsSu/koYBCAG+d7wCoCX4s0OFJWrKxSL
+         g7YNU41HvsG+0OsFJjq8HF1BGMx5YyEZkgmIvSILq1p+Qs/+SYj5nqkshfAq+pnhhiGL
+         bVLA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@spotify.com header.s=s1 header.b=KJep82Nc;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=EFH2Imbt;
+       spf=pass (google.com: domain of bounces+54769-7674-faeldroom46=gmail.com@em.spotify.com designates 149.72.133.64 as permitted sender) smtp.mailfrom="bounces+54769-7674-faeldroom46=gmail.com@em.spotify.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=spotify.com
+Return-Path: <bounces+54769-7674-faeldroom46=gmail.com@em.spotify.com>
+Received: from wrqvvrqh.outbound-mail.sendgrid.net (wrqvvrqh.outbound-mail.sendgrid.net. [149.72.133.64])
+        by mx.google.com with ESMTPS id w13-20020ac8718d000000b003b63c29b591si2941302qto.260.2023.01.18.02.54.06
+        for <faeldroom46@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Jan 2023 02:54:06 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+54769-7674-faeldroom46=gmail.com@em.spotify.com designates 149.72.133.64 as permitted sender) client-ip=149.72.133.64;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@spotify.com header.s=s1 header.b=KJep82Nc;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=EFH2Imbt;
+       spf=pass (google.com: domain of bounces+54769-7674-faeldroom46=gmail.com@em.spotify.com designates 149.72.133.64 as permitted sender) smtp.mailfrom="bounces+54769-7674-faeldroom46=gmail.com@em.spotify.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=spotify.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spotify.com;
+	h=content-type:from:mime-version:subject:x-feedback-id:to:cc:
+	content-type:from:subject:to;
+	s=s1; bh=4vGpLBm4TuLgoME1VwHK/ByGme2sVa3TI1vtsJU9y2E=;
+	b=KJep82NcFRdnv0tCGGo4FStUoLy4yBJ8kxLx19vzf0whN2oTfd2khhrEf0y8Z+9NFCcq
+	vd58F7yenFlutwcGYmG3d0pTar4oXYPaNlA4nnC04Q7fU6nfFI6E2Py3V3BWrPpm02/BOw
+	WPmdYIogI9CQnVEZgcXUSdG0N3d3eMn/jr6rMfpAmRTxzIC2kquIfI7b/nHMk0Hs+6RtE5
+	dmq6ffdpQEf/HUluYtROitivPMxnuUJhZMW8s4upqvkKbljrcPydGnTu0ttlPr9RV4b4TS
+	JhMlcSiVK2orld34a/ZoAWp6Oji/hSjbxJttDeIYFNFLMohL10P95N8m+0qjMnSg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-type:from:mime-version:subject:x-feedback-id:to:cc:
+	content-type:from:subject:to;
+	s=smtpapi; bh=4vGpLBm4TuLgoME1VwHK/ByGme2sVa3TI1vtsJU9y2E=;
+	b=EFH2ImbtL7rDLJkaBMu9edPywD5qmTPh3kysDW+FhAIrsY4wZpt4DC340J9fOmzrGC49
+	4Atnm5CETmBzJ/epBN4HsS18buKUxqGiuCUWuWhabIPp+uwOSqKFBOJT7rAf12LFNHj6ED
+	bwUOjrxvesw/lnAt2fn/Ku2H1HI7eJ2hc=
+Received: by filterdrecv-84485d4f46-95w6h with SMTP id filterdrecv-84485d4f46-95w6h-1-63C7CFCD-22
+        2023-01-18 10:54:05.946605256 +0000 UTC m=+5312757.240989242
+Received: from NTQ3Njk (unknown)
+	by geopod-ismtpd-3-2 (SG) with HTTP
+	id mZ8bi50DSeGggTRkKQ5Nsg
+	Wed, 18 Jan 2023 10:54:05.814 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=ffe20a487322b508477fc52770bc0748d3740a797a8ea221ce2ea33399a9
+Date: Wed, 18 Jan 2023 10:54:05 +0000 (UTC)
+From: Spotify <no-reply@spotify.com>
+Mime-Version: 1.0
+Message-ID: <mZ8bi50DSeGggTRkKQ5Nsg@geopod-ismtpd-3-2>
+Subject: Adormece com estes sons tranquilizadores.
+X-Feedback-ID: 54769:SG
+X-SG-EID: 
+ =?us-ascii?Q?0C9L=2FeBRtgYa=2FF8y6aOTnwpGIngFWQ11NoR8o2fvCVMN9thUS8ZNdG1JBR+Ynp?=
+ =?us-ascii?Q?5TqR0Hpm2LFUl=2FBnY7BDTNZTMGm18yFmnXMpiLf?=
+ =?us-ascii?Q?U0g1Pv2bMoAEx3o1+DWu1EM4dMGjJ+dGlRBFhOG?=
+ =?us-ascii?Q?ruQOfQY87wZZ951=2FiOHN0UjPewnYLbRkGC40SC5?=
+ =?us-ascii?Q?HT5evh+d0oe4=2Fl=2F1l0jH4Kjy8fKug07zmo2mOpQ?=
+ =?us-ascii?Q?zLc09q7XLsf3wF0gDLo1bVlzG+YHDp3oURdC+0?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb4nNHeq1gRehdlbWbOoJzV3pHucTvXShPwBDsZgguo?=
+ =?us-ascii?Q?XR8gu=2F8RQ8zmPyvJOas0JB61y0FxjkVItkdFDTD?=
+ =?us-ascii?Q?sQiPkccK7Kxt+enMIEtEzCgSG38W1Q4ByGTmtK1?=
+ =?us-ascii?Q?3aVTGvsrG=2FNLHPDuG4nljc4wggvTi6DiXRd2l=2FU?=
+ =?us-ascii?Q?0pLvJIHj1udx2AKipm87sWdCdYvK8nXvlXeOyLy?=
+ =?us-ascii?Q?dyE=2F5qb6opdtRCz3F4MaLkLmEj1S40NVcxNbQGP?=
+ =?us-ascii?Q?EugB1kObMG7o1MT2Q6=2FrY7fO2Mu=2FJpVMqPXXP6i?=
+ =?us-ascii?Q?1sYUjr93wEIMLWiPJutirwhaAzPkX=2FZPPqT1vi0?=
+ =?us-ascii?Q?TBKR0xSzwtYMghF6RAvcwXiyxGlAYAp0dbOfhxv?=
+ =?us-ascii?Q?Qbpp2QtzAGqmbr3wbKrHZ3ERwduoSYo6dI+rbwC?=
+ =?us-ascii?Q?yjll5ENrrIU11bQ3UpcfwB9kHkLvSOeLMsI+Ggk?=
+ =?us-ascii?Q?8zE9waWqg8MOv0m8Sl=2F3nhQPmbnQja0fAC0YYbc?= =?us-ascii?Q?=3D?=
+To: faeldroom46@gmail.com
+X-Entity-ID: 2vxnRJdGdooKCfSUhf9vyA==
+
+--ffe20a487322b508477fc52770bc0748d3740a797a8ea221ce2ea33399a9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+
+Sons que te ajudam=20
+ a sonhar mais alto.=20
+
+
+Estas listas de reprodu=C3=A7=C3=A3o foram criadas para te dar sono. Experi=
+menta ouvi-las quando for hora de dormir.=20
+
+##=20
+Lista de reprodu=C3=A7=C3=A3o 1 https://open.spotify.com/playlist/37i9dQZF1=
+DX2PQDq3PdrHQ | Lista de reprodu=C3=A7=C3=A3o 2 https://open.spotify.com/pl=
+aylist/37i9dQZF1DWVEt8B7a1H1M
+
+Ouvir agora ( https://open.spotify.com/genre/0JQ5DAqbMKFCuoRTxhYWow )
+
+
+Precisas de m=C3=BAsica=20
+ para adormecer, mas n=C3=A3o queres=20
+ gastar bateria em excesso?
+
+
+O nosso temporizador de sono=20
+ desliga o =C3=A1udio automaticamente.=20
+
+
+Como utilizar a fun=C3=A7=C3=A3o de temporizador de sono:=20
+
+1. | Seleciona o =C3=A1udio que queres ouvir.=20
+2. |=20
+
+Toca no bot=C3=A3o "=E2=80=A6" no canto superior direito.=20
+3.  | Puxa e seleciona o temporizador de sono.
+4. | Escolhe um limite de tempo.=20
+
+Ir para a cama com o Spotify=20
+ =C3=A9 um descanso.=20
+
+
+Explorar =C3=A1udio para dormir ( https://open.spotify.com/genre/0JQ5DAqbMK=
+FCuoRTxhYWow )
+
+
+-------------
+
+Obt=C3=A9m o Spotify para:
+  * iPhone (https://itunes.apple.com/app/spotify-music/id324684580)
+  * iPad (https://itunes.apple.com/app/spotify-music/id324684580)
+  * Android (https://play.google.com/store/apps/details?id=3Dcom.spotify.mu=
+sic)
+  * Outros (https://www.spotify.com/download/)
+
+Esta mensagem foi enviada a faeldroom46@gmail.com.
+Caso n=C3=A3o pretendas receber estes e-mails da Spotify no futuro, podes e=
+ditar o teu perfil ( https://www.spotify.com/accounts/profile ) ou anular a=
+ subscri=C3=A7=C3=A3o ( https://www.spotify.com/account/unsubscribe?t=3DBcH=
+RDYQgDADQVVyARLBXcZzalks%2FChHQ3G3ve3Z9fqnsPr7ez1Ye8EcAoONS27TyD34P40BVAvVp=
+Y4au3Ny1Ck1rdSwUGfGQtK5bTnqIRIANYzlFcyZAYgUW3l8%3D&a=3Dunsubscribe ).
+
+
+  * Termos de utiliza=C3=A7=C3=A3o https://www.spotify.com/legal/end-user-a=
+greement/
+  * Pol=C3=ADtica de privacidade https://www.spotify.com/legal/privacy-poli=
+cy/
+  * Contacte-nos https://www.spotify.com/about-us/contact/
+
+
+Spotify AB, Regeringsgatan 19, 111 53, Stockholm, Sweden
+
+--ffe20a487322b508477fc52770bc0748d3740a797a8ea221ce2ea33399a9
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html><html xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"margin=
+:0;padding:0"><head><meta charset=3D"utf-8"><meta name=3D"viewport" content=
+=3D"width=3Ddevice-width, initial-scale=3D1"><title>Adormece com estes sons=
+ tranquilizadores. </title><style type=3D"text/css">@media only screen and =
+(min-device-width: 481px) {div[id=3D"main"] {width: 480px !important;}}</st=
+yle><!--[if mso]><style>body, table, tr, td, h1, h2, h3, h4, h5, h6, center=
+ p, a, span, table.MsoNormalTable {font-family: "Helvetica", "Arial", sans-=
+serif !important}</style><![endif]--><style data-styled=3D"dbOHBu" data-sty=
+led-version=3D"4.4.1">
+/* sc-component-id: sc-jzJRlG */
+.dbOHBu{display:none;}</style></head><body topmargin=3D"0" leftmargin=3D"0"=
+ rightmargin=3D"0" bottommargin=3D"0" marginheight=3D"0" marginwidth=3D"0" =
+style=3D"-webkit-font-smoothing:antialiased;width:100% !important;-webkit-t=
+ext-size-adjust:none;margin:0;padding:0"><!--TEST-FORM--><span style=3D"bor=
+der:none;padding:0;margin:0;display:none;font-size:1px">Sons que te ajudam =
+a sonhar mais alto.</span>
+<!--[if (mso) | (IE)]><table cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" valign=3D"top" width=3D"480" align=3D"center"><tr><td valign=3D"top" ali=
+gn=3D"left" style=3D" word-break:normal; border-collapse:collapse; font-fam=
+ily:'Circular', Helvetica, Arial, sans-serif; font-size:12px; line-height:1=
+8px; color:#555555;"><![endif]--><table style=3D"border-collapse:collapse;p=
+adding:0;max-width:480px;width:100%;border:0;background-color:#ffffff;margi=
+n:0 auto;word-break:break-word" cellpadding=3D"0" cellspacing=3D"0"><tbody =
+style=3D"border:none;padding:0;margin:0"><tr style=3D"border:none;margin:0p=
+x;padding:0px"><td style=3D"border:none;padding:0;margin:0"><div id=3D"main=
+" style=3D"border:none;padding:0;margin:0"><table class=3D"header-root" sty=
+le=3D"border-collapse:collapse;padding:0;background-color:#2d46b9;text-alig=
+n:left;width:100%;height:50px"><tbody style=3D"border:none;padding:0;margin=
+:0"><tr style=3D"border:none;margin:0px;padding:0px;height:24px" data-testi=
+d=3D"table-padding-top"><td colspan=3D"3" style=3D"border:none;padding:0;ma=
+rgin:0;height:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:0=
+px"><td data-testid=3D"table-padding-left" style=3D"border:none;padding:0;m=
+argin:0;width:24px"></td><td style=3D"border:none;padding:0;margin:0"><a hr=
+ef=3D"https://wl.spotify.com/ss/c/luBzz2tVm8UlIamR0anXqUf3BsHtXUcUR3rnz7Tdb=
+j8/3sy/T2AICga6Rw2A964U2ZKwWA/h0/NlCmxi0prZ6jEBFXnyL0Fkls17Gy09ZLDDhrrHCWYt=
+k" style=3D"text-decoration:none;color:#1ed760"><img alt=3D"" class=3D"logo=
+" style=3D"display:block;max-width:100%;margin-right:auto;height:37px" heig=
+ht=3D"37" src=3D"https://message-editor.scdn.co/01d755a8-bce5-4e78-ba3f-f9f=
+259494669"></a></td><td data-testid=3D"table-padding-right" style=3D"border=
+:none;padding:0;margin:0;width:24px"></td></tr><tr style=3D"border:none;mar=
+gin:0px;padding:0px;height:24px" data-testid=3D"table-padding-bottom"><td c=
+olspan=3D"3" style=3D"border:none;padding:0;margin:0;height:24px"></td></tr=
+></tbody></table><table style=3D"border-collapse:collapse;padding:0;width:1=
+00%;background-color:#2d46b9;font-family:&quot;helvetica&quot;, &quot;arial=
+&quot;, sans-serif !important;font-size:36px" dir=3D"auto"><tbody style=3D"=
+border:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px;padding=
+:0px"><td data-testid=3D"table-padding-left" style=3D"border:none;padding:0=
+;margin:0;width:24px"></td><td style=3D"border:none;padding:0;margin:0"><p =
+style=3D"border:none;padding:0;margin:0;background-color:#2d46b9;color:#1ed=
+760;font-size:36px;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sa=
+ns-serif !important;font-weight:400;text-align:left"><b style=3D"border:non=
+e;padding:0;margin:0">Sons que te ajudam <br /> a sonhar mais alto. <b styl=
+e=3D"border:none;padding:0;margin:0"></b></b></p></td><td data-testid=3D"ta=
+ble-padding-right" style=3D"border:none;padding:0;margin:0;width:24px"></td=
+></tr><tr style=3D"border:none;margin:0px;padding:0px;height:24px" data-tes=
+tid=3D"table-padding-bottom"><td colspan=3D"3" style=3D"border:none;padding=
+:0;margin:0;height:24px"></td></tr></tbody></table><table style=3D"border-c=
+ollapse:collapse;padding:0;width:100%;background-color:#2d46b9;font-family:=
+&quot;helvetica&quot;, &quot;arial&quot;, sans-serif !important;font-size:1=
+8px" dir=3D"auto"><tbody style=3D"border:none;padding:0;margin:0"><tr style=
+=3D"border:none;margin:0px;padding:0px;height:16px" data-testid=3D"table-pa=
+dding-top"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;height=
+:16px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px"><td data-=
+testid=3D"table-padding-left" style=3D"border:none;padding:0;margin:0;width=
+:24px"></td><td style=3D"border:none;padding:0;margin:0"><p style=3D"border=
+:none;padding:0;margin:0;background-color:#2d46b9;color:#ffffff;font-size:1=
+8px;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif !impor=
+tant;font-weight:400;text-align:left"><b style=3D"border:none;padding:0;mar=
+gin:0">Estas listas de reprodu=C3=A7=C3=A3o foram criadas para te dar sono.=
+ Experimenta ouvi-las quando for hora de dormir. <b style=3D"border:none;pa=
+dding:0;margin:0"></b></b></p></td><td data-testid=3D"table-padding-right" =
+style=3D"border:none;padding:0;margin:0;width:24px"></td></tr><tr style=3D"=
+border:none;margin:0px;padding:0px;height:24px" data-testid=3D"table-paddin=
+g-bottom"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;height:=
+24px"></td></tr></tbody></table><table class=3D"hero-image-root" style=3D"b=
+order-collapse:collapse;padding:0;background-color:#ffffff;width:100%" dir=
+=3D"auto"><tbody style=3D"border:none;padding:0;margin:0"><tr style=3D"bord=
+er:none;margin:0px;padding:0px"><td data-testid=3D"image-fragment-td" style=
+=3D"border:none;padding:0;margin:0;padding-top:0px;padding-bottom:0px"><tab=
+le style=3D"border-collapse:collapse;padding:0;width:100%" data-testid=3D"a=
+lignment-container"><tbody style=3D"border:none;padding:0;margin:0"><tr sty=
+le=3D"border:none;margin:0px;padding:0px"><td style=3D"border:none;padding:=
+0;margin:0;width:100%" data-testid=3D"alignment-container-content"><div sty=
+le=3D"border:none;padding:0;margin:0"><!--[if mso]><img alt=3D"##" style=3D=
+"width: 100%; display: block" width=3D"100%" src=3Dhttps://message-editor.s=
+cdn.co/a84dd28c-9103-4d37-914e-db5793cd8994" /><![endif]--><!--[if mso]><di=
+v style=3D"mso-hide: all"><![endif]--><div data-testid=3D"image-container" =
+style=3D"border:none;padding:0;margin:0;padding-right:0px;padding-left:0px;=
+height:inherit;overflow:inherit"><img data-testid=3D"image-fragment-image" =
+alt=3D"##" class=3D"hero-image-image" style=3D"display:block;max-width:100%=
+;border-radius:;width:100%;height:inherit;margin-bottom:-1px" src=3D"https:=
+//message-editor.scdn.co/a84dd28c-9103-4d37-914e-db5793cd8994"></div><!--[i=
+f mso]></div><![endif]--></div></td></tr></tbody></table></td></tr></tbody>=
+</table><table style=3D"border-collapse:collapse;padding:0;width:100%;heigh=
+t:100%;background-color:#ffffff"><tbody style=3D"border:none;padding:0;marg=
+in:0"><tr style=3D"border:none;margin:0px;padding:0px"><td style=3D"border:=
+none;padding:0;margin:0;width:50%;height:100%;min-height:1px;vertical-align=
+:top"><table class=3D"hero-image-root" style=3D"border-collapse:collapse;pa=
+dding:0;background-color:#ffffff;width:100%" dir=3D"auto"><tbody style=3D"b=
+order:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px;padding:=
+0px"><td data-testid=3D"image-fragment-td" style=3D"border:none;padding:0;m=
+argin:0;padding-top:0px;padding-bottom:16px"><table style=3D"border-collaps=
+e:collapse;padding:0;width:100%" data-testid=3D"alignment-container"><tbody=
+ style=3D"border:none;padding:0;margin:0"><tr style=3D"border:none;margin:0=
+px;padding:0px"><td style=3D"border:none;padding:0;margin:0;width:100%" dat=
+a-testid=3D"alignment-container-content"><a href=3D"https://wl.spotify.com/=
+ss/c/jB8Q9cVeEn3mlrUL0ylOydzb1k9gOnZ6NeMcNh3PiuZGRYm_pyAFlVGeC-ulj0tYLjVQmu=
+5CWM_HOi_cO_UfIg/3sy/T2AICga6Rw2A964U2ZKwWA/h1/REUtNshzuQFjq_TtPlYKbAuINU6_=
+D9SKpWg6YsQl-Pg" clicktracking=3D"on" universal=3D"false" style=3D"text-dec=
+oration:none;color:#1ed760"><!--[if mso]><img alt=3D"Lista de reprodu=C3=A7=
+=C3=A3o 1" style=3D"width: 100%; display: block" width=3D"100%" src=3Dhttps=
+://i.scdn.co/image/ab67706f000000027e858e4098c8a256ca51d770" /><![endif]-->=
+<!--[if mso]><div style=3D"mso-hide: all"><![endif]--><div data-testid=3D"i=
+mage-container" style=3D"border:none;padding:0;margin:0;padding-right:0px;p=
+adding-left:0px;height:inherit;overflow:inherit"><img data-testid=3D"image-=
+fragment-image" alt=3D"Lista de reprodu=C3=A7=C3=A3o 1" class=3D"hero-image=
+-image" style=3D"display:block;max-width:100%;border-radius:;width:100%;hei=
+ght:inherit;margin-bottom:-1px" src=3D"https://i.scdn.co/image/ab67706f0000=
+00027e858e4098c8a256ca51d770"></div><!--[if mso]></div><![endif]--></a></td=
+></tr></tbody></table></td></tr></tbody></table></td><td style=3D"border:no=
+ne;padding:0;margin:0;width:50%;height:100%;min-height:1px;vertical-align:t=
+op"><table class=3D"hero-image-root" style=3D"border-collapse:collapse;padd=
+ing:0;background-color:#ffffff;width:100%" dir=3D"auto"><tbody style=3D"bor=
+der:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px;padding:0p=
+x"><td data-testid=3D"image-fragment-td" style=3D"border:none;padding:0;mar=
+gin:0;padding-top:0px;padding-bottom:16px"><table style=3D"border-collapse:=
+collapse;padding:0;width:100%" data-testid=3D"alignment-container"><tbody s=
+tyle=3D"border:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px=
+;padding:0px"><td style=3D"border:none;padding:0;margin:0;width:100%" data-=
+testid=3D"alignment-container-content"><a href=3D"https://wl.spotify.com/ss=
+/c/jB8Q9cVeEn3mlrUL0ylOydzb1k9gOnZ6NeMcNh3PiuZGRYm_pyAFlVGeC-ulj0tYc8aIv2z4=
+GFdnD6Xr-w7JBg/3sy/T2AICga6Rw2A964U2ZKwWA/h2/4zQg9ZVmsJhgrfpB1B0z9Ogw7uoVHC=
+QHF2PDM_-YvBM" clicktracking=3D"on" universal=3D"false" style=3D"text-decor=
+ation:none;color:#1ed760"><!--[if mso]><img alt=3D"Lista de reprodu=C3=A7=
+=C3=A3o 2" style=3D"width: 100%; display: block" width=3D"100%" src=3Dhttps=
+://i.scdn.co/image/ab67706f0000000288677370d15c47b2cf47e2dc" /><![endif]-->=
+<!--[if mso]><div style=3D"mso-hide: all"><![endif]--><div data-testid=3D"i=
+mage-container" style=3D"border:none;padding:0;margin:0;padding-right:0px;p=
+adding-left:0px;height:inherit;overflow:inherit"><img data-testid=3D"image-=
+fragment-image" alt=3D"Lista de reprodu=C3=A7=C3=A3o 2" class=3D"hero-image=
+-image" style=3D"display:block;max-width:100%;border-radius:;width:100%;hei=
+ght:inherit;margin-bottom:-1px" src=3D"https://i.scdn.co/image/ab67706f0000=
+000288677370d15c47b2cf47e2dc"></div><!--[if mso]></div><![endif]--></a></td=
+></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><=
+table class=3D"call-to-action-root" data-testid=3D"call-to-action-root" sty=
+le=3D"border-collapse:collapse;padding:0;width:100%;background-color:#fffff=
+f;text-align:center"><tbody style=3D"border:none;padding:0;margin:0"><tr st=
+yle=3D"border:none;margin:0px;padding:0px;height:32px" data-testid=3D"table=
+-padding-top"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;hei=
+ght:32px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px"><td da=
+ta-testid=3D"table-padding-left" style=3D"border:none;padding:0;margin:0;wi=
+dth:24px"></td><td style=3D"border:none;padding:0;margin:0"><table style=3D=
+"border-collapse:collapse;padding:0;width:100%"><tbody style=3D"border:none=
+;padding:0;margin:0"><tr style=3D"border:none;margin:0px;padding:0px"><td c=
+lass=3D"font" style=3D"border:none;padding:0;margin:0;font-family:&quot;hel=
+vetica&quot;, &quot;arial&quot;, sans-serif;font-weight:700;line-height:1.1=
+em;letter-spacing:0.15px;font-size:14px;text-decoration:none;text-align:cen=
+ter;text-transform:uppercase"><div style=3D"border:none;padding:0;margin:0;=
+text-align:center;line-height:0">
+<!--[if mso]><div style=3D"line-height:1em;"><v:roundrect xmlns:v=3D"urn:sc=
+hemas-microsoft-com:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+href=3D"https://open.spotify.com/genre/0JQ5DAqbMKFCuoRTxhYWow" style=3D"v-t=
+ext-anchor: middle; width: 240px; max-width: 240px; height: 48px; text-deco=
+ration: none; color: '#ffffff'; font-family: 'Helvetica', 'Arial', sans-ser=
+if; font-size: 13px; font-weight: bold; line-height: 48px" arcsize=3D"50%" =
+fillcolor=3D"#000000" strokecolor=3D"#000000"><w:anchorlock /><center style=
+=3D"color: #ffffff; font-family: 'Helvetica', 'Arial', sans-serif; font-siz=
+e: 13px; font-weight: bold; line-height: 16px; text-transform:uppercase">Ou=
+vir agora</center></v:roundrect></div><![endif]-->
+<!--[if mso]><div style=3D"mso-hide: all"><![endif]--><a href=3D"https://wl=
+.spotify.com/uni/ss/c/jB8Q9cVeEn3mlrUL0ylOyZ2nhlm-hlHiuGNdENJbpMZ-k5LIh3nXr=
+vbA1Rau4EPnd0t1bSSqIy-wklLRFmN12g/3sy/T2AICga6Rw2A964U2ZKwWA/h3/-U8s7T2MhOK=
+87XQWjlJ2mLs5ljNgb2avU51nji3iPGU" clicktracking=3D"on" universal=3D"true" c=
+lass=3D"call-to-action-button" style=3D"text-decoration:none;color:#ffffff;=
+margin-left:auto;margin-right:auto;max-width:240px;background-color:#000000=
+;border-radius:24px;display:block" data-testid=3D"call-to-action-button"><t=
+able class=3D"call-to-action-container" style=3D"border-collapse:collapse;p=
+adding:0;mso-hide:all;width:100%;max-width:240px;min-height:48px"><tbody st=
+yle=3D"border:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px;=
+padding:0px"><td class=3D"call-to-action-inner-padding" style=3D"border:non=
+e;padding:0;margin:0;width:24px"></td><td style=3D"border:none;padding:0;ma=
+rgin:0;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif;fon=
+t-weight:700;line-height:1.1em;letter-spacing:0.15px;font-size:14px;text-de=
+coration:none;text-align:center;text-transform:uppercase;color:#ffffff" cla=
+ss=3D"font call-to-action-cell">Ouvir agora</td><td class=3D"call-to-action=
+-inner-padding" style=3D"border:none;padding:0;margin:0;width:24px"></td></=
+tr></tbody></table></a>
+<!--[if mso]></div><![endif]--></div></td></tr></tbody></table></td><td dat=
+a-testid=3D"table-padding-right" style=3D"border:none;padding:0;margin:0;wi=
+dth:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px;height:=
+24px" data-testid=3D"table-padding-bottom"><td colspan=3D"3" style=3D"borde=
+r:none;padding:0;margin:0;height:24px"></td></tr></tbody></table><table sty=
+le=3D"border-collapse:collapse;padding:0;width:100%;background-color:#fffff=
+f;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif !importa=
+nt;font-size:28px" dir=3D"auto"><tbody style=3D"border:none;padding:0;margi=
+n:0"><tr style=3D"border:none;margin:0px;padding:0px;height:24px" data-test=
+id=3D"table-padding-top"><td colspan=3D"3" style=3D"border:none;padding:0;m=
+argin:0;height:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:=
+0px"><td data-testid=3D"table-padding-left" style=3D"border:none;padding:0;=
+margin:0;width:24px"></td><td style=3D"border:none;padding:0;margin:0"><p s=
+tyle=3D"border:none;padding:0;margin:0;background-color:#ffffff;color:#0000=
+00;font-size:28px;font-family:&quot;helvetica&quot;, &quot;arial&quot;, san=
+s-serif !important;font-weight:400;text-align:left"><b style=3D"border:none=
+;padding:0;margin:0">Precisas de m=C3=BAsica <br /> para adormecer, mas n=
+=C3=A3o queres <br /> gastar bateria em excesso?<b style=3D"border:none;pad=
+ding:0;margin:0"></b></b></p></td><td data-testid=3D"table-padding-right" s=
+tyle=3D"border:none;padding:0;margin:0;width:24px"></td></tr><tr style=3D"b=
+order:none;margin:0px;padding:0px;height:24px" data-testid=3D"table-padding=
+-bottom"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;height:2=
+4px"></td></tr></tbody></table><table style=3D"border-collapse:collapse;pad=
+ding:0;width:100%;background-color:#ffffff;font-family:&quot;helvetica&quot=
+;, &quot;arial&quot;, sans-serif !important;font-size:16px" dir=3D"auto"><t=
+body style=3D"border:none;padding:0;margin:0"><tr style=3D"border:none;marg=
+in:0px;padding:0px"><td data-testid=3D"table-padding-left" style=3D"border:=
+none;padding:0;margin:0;width:24px"></td><td style=3D"border:none;padding:0=
+;margin:0"><p style=3D"border:none;padding:0;margin:0;background-color:#fff=
+fff;color:#000000;font-size:16px;font-family:&quot;helvetica&quot;, &quot;a=
+rial&quot;, sans-serif !important;font-weight:400;text-align:left"><b style=
+=3D"border:none;padding:0;margin:0">O nosso temporizador de sono <br /> des=
+liga o =C3=A1udio automaticamente. <b style=3D"border:none;padding:0;margin=
+:0"></b></b></p></td><td data-testid=3D"table-padding-right" style=3D"borde=
+r:none;padding:0;margin:0;width:24px"></td></tr><tr style=3D"border:none;ma=
+rgin:0px;padding:0px;height:24px" data-testid=3D"table-padding-bottom"><td =
+colspan=3D"3" style=3D"border:none;padding:0;margin:0;height:24px"></td></t=
+r></tbody></table><table style=3D"border-collapse:collapse;padding:0;width:=
+100%;background-color:#2d46b9;font-family:&quot;helvetica&quot;, &quot;aria=
+l&quot;, sans-serif !important;font-size:28px" dir=3D"auto"><tbody style=3D=
+"border:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px;paddin=
+g:0px;height:24px" data-testid=3D"table-padding-top"><td colspan=3D"3" styl=
+e=3D"border:none;padding:0;margin:0;height:24px"></td></tr><tr style=3D"bor=
+der:none;margin:0px;padding:0px"><td data-testid=3D"table-padding-left" sty=
+le=3D"border:none;padding:0;margin:0;width:24px"></td><td style=3D"border:n=
+one;padding:0;margin:0"><p style=3D"border:none;padding:0;margin:0;backgrou=
+nd-color:#2d46b9;color:#ffffff;font-size:28px;font-family:&quot;helvetica&q=
+uot;, &quot;arial&quot;, sans-serif !important;font-weight:400;text-align:l=
+eft"><b style=3D"border:none;padding:0;margin:0">Como utilizar a fun=C3=A7=
+=C3=A3o de temporizador de sono: <b style=3D"border:none;padding:0;margin:0=
+"></b></b></p></td><td data-testid=3D"table-padding-right" style=3D"border:=
+none;padding:0;margin:0;width:24px"></td></tr><tr style=3D"border:none;marg=
+in:0px;padding:0px;height:24px" data-testid=3D"table-padding-bottom"><td co=
+lspan=3D"3" style=3D"border:none;padding:0;margin:0;height:24px"></td></tr>=
+</tbody></table><table style=3D"border-collapse:collapse;padding:0;width:10=
+0%;height:100%;background-color:#ffffff"><tbody style=3D"border:none;paddin=
+g:0;margin:0"><tr style=3D"border:none;margin:0px;padding:0px"><td style=3D=
+"border:none;padding:0;margin:0;width:50%;height:100%;min-height:1px;vertic=
+al-align:top"><table style=3D"border-collapse:collapse;padding:0;width:100%=
+;background-color:#ffffff;font-family:&quot;helvetica&quot;, &quot;arial&qu=
+ot;, sans-serif !important;font-size:48px" dir=3D"auto"><tbody style=3D"bor=
+der:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px;padding:0p=
+x;height:24px" data-testid=3D"table-padding-top"><td colspan=3D"3" style=3D=
+"border:none;padding:0;margin:0;height:24px"></td></tr><tr style=3D"border:=
+none;margin:0px;padding:0px"><td data-testid=3D"table-padding-left" style=
+=3D"border:none;padding:0;margin:0;width:24px"></td><td style=3D"border:non=
+e;padding:0;margin:0"><p style=3D"border:none;padding:0;margin:0;background=
+-color:#ffffff;color:#1ed760;font-size:48px;font-family:&quot;helvetica&quo=
+t;, &quot;arial&quot;, sans-serif !important;font-weight:400;text-align:cen=
+ter"><b style=3D"border:none;padding:0;margin:0">1.<b style=3D"border:none;=
+padding:0;margin:0"></b></b></p></td><td data-testid=3D"table-padding-right=
+" style=3D"border:none;padding:0;margin:0;width:24px"></td></tr><tr style=
+=3D"border:none;margin:0px;padding:0px;height:24px" data-testid=3D"table-pa=
+dding-bottom"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;hei=
+ght:24px"></td></tr></tbody></table></td><td style=3D"border:none;padding:0=
+;margin:0;width:50%;height:100%;min-height:1px;vertical-align:top"><table s=
+tyle=3D"border-collapse:collapse;padding:0;width:100%;background-color:#fff=
+fff;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif !impor=
+tant;font-size:18px" dir=3D"auto"><tbody style=3D"border:none;padding:0;mar=
+gin:0"><tr style=3D"border:none;margin:0px;padding:0px;height:24px" data-te=
+stid=3D"table-padding-top"><td colspan=3D"3" style=3D"border:none;padding:0=
+;margin:0;height:24px"></td></tr><tr style=3D"border:none;margin:0px;paddin=
+g:0px"><td data-testid=3D"table-padding-left" style=3D"border:none;padding:=
+0;margin:0;width:32px"></td><td style=3D"border:none;padding:0;margin:0"><p=
+ style=3D"border:none;padding:0;margin:0;background-color:#ffffff;color:#00=
+0000;font-size:18px;font-family:&quot;helvetica&quot;, &quot;arial&quot;, s=
+ans-serif !important;font-weight:400;text-align:left">Seleciona o =C3=A1udi=
+o que queres ouvir. </p></td><td data-testid=3D"table-padding-right" style=
+=3D"border:none;padding:0;margin:0;width:32px"></td></tr><tr style=3D"borde=
+r:none;margin:0px;padding:0px;height:32px" data-testid=3D"table-padding-bot=
+tom"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;height:32px"=
+></td></tr></tbody></table></td></tr></tbody></table><table style=3D"border=
+-collapse:collapse;padding:0;width:100%;height:100%;background-color:#fffff=
+f"><tbody style=3D"border:none;padding:0;margin:0"><tr style=3D"border:none=
+;margin:0px;padding:0px"><td style=3D"border:none;padding:0;margin:0;width:=
+50%;height:100%;min-height:1px;vertical-align:top"><table style=3D"border-c=
+ollapse:collapse;padding:0;width:100%;background-color:#ffffff;font-family:=
+&quot;helvetica&quot;, &quot;arial&quot;, sans-serif !important;font-size:4=
+8px" dir=3D"auto"><tbody style=3D"border:none;padding:0;margin:0"><tr style=
+=3D"border:none;margin:0px;padding:0px;height:24px" data-testid=3D"table-pa=
+dding-top"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;height=
+:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px"><td data-=
+testid=3D"table-padding-left" style=3D"border:none;padding:0;margin:0;width=
+:24px"></td><td style=3D"border:none;padding:0;margin:0"><p style=3D"border=
+:none;padding:0;margin:0;background-color:#ffffff;color:#1ed760;font-size:4=
+8px;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif !impor=
+tant;font-weight:400;text-align:center"><b style=3D"border:none;padding:0;m=
+argin:0">2.<b style=3D"border:none;padding:0;margin:0"></b></b></p></td><td=
+ data-testid=3D"table-padding-right" style=3D"border:none;padding:0;margin:=
+0;width:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px;hei=
+ght:24px" data-testid=3D"table-padding-bottom"><td colspan=3D"3" style=3D"b=
+order:none;padding:0;margin:0;height:24px"></td></tr></tbody></table></td><=
+td style=3D"border:none;padding:0;margin:0;width:50%;height:100%;min-height=
+:1px;vertical-align:top"><table style=3D"border-collapse:collapse;padding:0=
+;width:100%;background-color:#ffffff;font-family:&quot;helvetica&quot;, &qu=
+ot;arial&quot;, sans-serif !important;font-size:18px" dir=3D"auto"><tbody s=
+tyle=3D"border:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px=
+;padding:0px"><td data-testid=3D"table-padding-left" style=3D"border:none;p=
+adding:0;margin:0;width:32px"></td><td style=3D"border:none;padding:0;margi=
+n:0"><p style=3D"border:none;padding:0;margin:0;background-color:#ffffff;co=
+lor:#000000;font-size:18px;font-family:&quot;helvetica&quot;, &quot;arial&q=
+uot;, sans-serif !important;font-weight:400;text-align:left"><br />
+Toca no bot=C3=A3o &quot;=E2=80=A6&quot; no canto superior direito. </p></t=
+d><td data-testid=3D"table-padding-right" style=3D"border:none;padding:0;ma=
+rgin:0;width:32px"></td></tr><tr style=3D"border:none;margin:0px;padding:0p=
+x;height:24px" data-testid=3D"table-padding-bottom"><td colspan=3D"3" style=
+=3D"border:none;padding:0;margin:0;height:24px"></td></tr></tbody></table><=
+/td></tr></tbody></table><table style=3D"border-collapse:collapse;padding:0=
+;width:100%;height:100%;background-color:#ffffff"><tbody style=3D"border:no=
+ne;padding:0;margin:0"><tr style=3D"border:none;margin:0px;padding:0px"><td=
+ style=3D"border:none;padding:0;margin:0;width:50%;height:100%;min-height:1=
+px;vertical-align:top"><table style=3D"border-collapse:collapse;padding:0;w=
+idth:100%;background-color:#ffffff;font-family:&quot;helvetica&quot;, &quot=
+;arial&quot;, sans-serif !important;font-size:48px" dir=3D"auto"><tbody sty=
+le=3D"border:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px;p=
+adding:0px;height:24px" data-testid=3D"table-padding-top"><td colspan=3D"3"=
+ style=3D"border:none;padding:0;margin:0;height:24px"></td></tr><tr style=
+=3D"border:none;margin:0px;padding:0px"><td data-testid=3D"table-padding-le=
+ft" style=3D"border:none;padding:0;margin:0;width:24px"></td><td style=3D"b=
+order:none;padding:0;margin:0"><p style=3D"border:none;padding:0;margin:0;b=
+ackground-color:#ffffff;color:#1ed760;font-size:48px;font-family:&quot;helv=
+etica&quot;, &quot;arial&quot;, sans-serif !important;font-weight:400;text-=
+align:center"><b style=3D"border:none;padding:0;margin:0">3. <b style=3D"bo=
+rder:none;padding:0;margin:0"></b></b></p></td><td data-testid=3D"table-pad=
+ding-right" style=3D"border:none;padding:0;margin:0;width:24px"></td></tr><=
+tr style=3D"border:none;margin:0px;padding:0px;height:24px" data-testid=3D"=
+table-padding-bottom"><td colspan=3D"3" style=3D"border:none;padding:0;marg=
+in:0;height:24px"></td></tr></tbody></table></td><td style=3D"border:none;p=
+adding:0;margin:0;width:50%;height:100%;min-height:1px;vertical-align:top">=
+<table style=3D"border-collapse:collapse;padding:0;width:100%;background-co=
+lor:#ffffff;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-seri=
+f !important;font-size:18px" dir=3D"auto"><tbody style=3D"border:none;paddi=
+ng:0;margin:0"><tr style=3D"border:none;margin:0px;padding:0px;height:32px"=
+ data-testid=3D"table-padding-top"><td colspan=3D"3" style=3D"border:none;p=
+adding:0;margin:0;height:32px"></td></tr><tr style=3D"border:none;margin:0p=
+x;padding:0px"><td data-testid=3D"table-padding-left" style=3D"border:none;=
+padding:0;margin:0;width:32px"></td><td style=3D"border:none;padding:0;marg=
+in:0"><p style=3D"border:none;padding:0;margin:0;background-color:#ffffff;c=
+olor:#000000;font-size:18px;font-family:&quot;helvetica&quot;, &quot;arial&=
+quot;, sans-serif !important;font-weight:400;text-align:left">Puxa e seleci=
+ona o temporizador de sono.</p></td><td data-testid=3D"table-padding-right"=
+ style=3D"border:none;padding:0;margin:0;width:32px"></td></tr><tr style=3D=
+"border:none;margin:0px;padding:0px;height:32px" data-testid=3D"table-paddi=
+ng-bottom"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;height=
+:32px"></td></tr></tbody></table></td></tr></tbody></table><table style=3D"=
+border-collapse:collapse;padding:0;width:100%;height:100%;background-color:=
+#ffffff"><tbody style=3D"border:none;padding:0;margin:0"><tr style=3D"borde=
+r:none;margin:0px;padding:0px"><td style=3D"border:none;padding:0;margin:0;=
+width:50%;height:100%;min-height:1px;vertical-align:top"><table style=3D"bo=
+rder-collapse:collapse;padding:0;width:100%;background-color:#ffffff;font-f=
+amily:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif !important;font-=
+size:48px" dir=3D"auto"><tbody style=3D"border:none;padding:0;margin:0"><tr=
+ style=3D"border:none;margin:0px;padding:0px;height:24px" data-testid=3D"ta=
+ble-padding-top"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;=
+height:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px"><td=
+ data-testid=3D"table-padding-left" style=3D"border:none;padding:0;margin:0=
+;width:24px"></td><td style=3D"border:none;padding:0;margin:0"><p style=3D"=
+border:none;padding:0;margin:0;background-color:#ffffff;color:#1ed760;font-=
+size:48px;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif =
+!important;font-weight:400;text-align:center"><b style=3D"border:none;paddi=
+ng:0;margin:0">4.<b style=3D"border:none;padding:0;margin:0"></b></b></p></=
+td><td data-testid=3D"table-padding-right" style=3D"border:none;padding:0;m=
+argin:0;width:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:0=
+px;height:24px" data-testid=3D"table-padding-bottom"><td colspan=3D"3" styl=
+e=3D"border:none;padding:0;margin:0;height:24px"></td></tr></tbody></table>=
+</td><td style=3D"border:none;padding:0;margin:0;width:50%;height:100%;min-=
+height:1px;vertical-align:top"><table style=3D"border-collapse:collapse;pad=
+ding:0;width:100%;background-color:#ffffff;font-family:&quot;helvetica&quot=
+;, &quot;arial&quot;, sans-serif !important;font-size:18px" dir=3D"auto"><t=
+body style=3D"border:none;padding:0;margin:0"><tr style=3D"border:none;marg=
+in:0px;padding:0px;height:32px" data-testid=3D"table-padding-top"><td colsp=
+an=3D"3" style=3D"border:none;padding:0;margin:0;height:32px"></td></tr><tr=
+ style=3D"border:none;margin:0px;padding:0px"><td data-testid=3D"table-padd=
+ing-left" style=3D"border:none;padding:0;margin:0;width:24px"></td><td styl=
+e=3D"border:none;padding:0;margin:0"><p style=3D"border:none;padding:0;marg=
+in:0;background-color:#ffffff;color:#000000;font-size:18px;font-family:&quo=
+t;helvetica&quot;, &quot;arial&quot;, sans-serif !important;font-weight:400=
+;text-align:left">Escolhe um limite de tempo. </p></td><td data-testid=3D"t=
+able-padding-right" style=3D"border:none;padding:0;margin:0;width:24px"></t=
+d></tr><tr style=3D"border:none;margin:0px;padding:0px;height:32px" data-te=
+stid=3D"table-padding-bottom"><td colspan=3D"3" style=3D"border:none;paddin=
+g:0;margin:0;height:32px"></td></tr></tbody></table></td></tr></tbody></tab=
+le><table style=3D"border-collapse:collapse;padding:0;width:100%;background=
+-color:#ffffff;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-s=
+erif !important;font-size:28px" dir=3D"auto"><tbody style=3D"border:none;pa=
+dding:0;margin:0"><tr style=3D"border:none;margin:0px;padding:0px;height:24=
+px" data-testid=3D"table-padding-top"><td colspan=3D"3" style=3D"border:non=
+e;padding:0;margin:0;height:24px"></td></tr><tr style=3D"border:none;margin=
+:0px;padding:0px"><td data-testid=3D"table-padding-left" style=3D"border:no=
+ne;padding:0;margin:0;width:24px"></td><td style=3D"border:none;padding:0;m=
+argin:0"><p style=3D"border:none;padding:0;margin:0;background-color:#fffff=
+f;color:#000000;font-size:28px;font-family:&quot;helvetica&quot;, &quot;ari=
+al&quot;, sans-serif !important;font-weight:400;text-align:center"><b style=
+=3D"border:none;padding:0;margin:0">Ir para a cama com o Spotify <br /> =C3=
+=A9 um descanso. <b style=3D"border:none;padding:0;margin:0"></b></b></p></=
+td><td data-testid=3D"table-padding-right" style=3D"border:none;padding:0;m=
+argin:0;width:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:0=
+px;height:24px" data-testid=3D"table-padding-bottom"><td colspan=3D"3" styl=
+e=3D"border:none;padding:0;margin:0;height:24px"></td></tr></tbody></table>=
+<table class=3D"call-to-action-root" data-testid=3D"call-to-action-root" st=
+yle=3D"border-collapse:collapse;padding:0;width:100%;background-color:#2d46=
+b9;text-align:center"><tbody style=3D"border:none;padding:0;margin:0"><tr s=
+tyle=3D"border:none;margin:0px;padding:0px;height:24px" data-testid=3D"tabl=
+e-padding-top"><td colspan=3D"3" style=3D"border:none;padding:0;margin:0;he=
+ight:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px"><td d=
+ata-testid=3D"table-padding-left" style=3D"border:none;padding:0;margin:0;w=
+idth:24px"></td><td style=3D"border:none;padding:0;margin:0"><table style=
+=3D"border-collapse:collapse;padding:0;width:100%"><tbody style=3D"border:n=
+one;padding:0;margin:0"><tr style=3D"border:none;margin:0px;padding:0px"><t=
+d class=3D"font" style=3D"border:none;padding:0;margin:0;font-family:&quot;=
+helvetica&quot;, &quot;arial&quot;, sans-serif;font-weight:700;line-height:=
+1.1em;letter-spacing:0.15px;font-size:14px;text-decoration:none;text-align:=
+center;text-transform:uppercase"><div style=3D"border:none;padding:0;margin=
+:0;text-align:center;line-height:0">
+<!--[if mso]><div style=3D"line-height:1em;"><v:roundrect xmlns:v=3D"urn:sc=
+hemas-microsoft-com:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+href=3D"https://open.spotify.com/genre/0JQ5DAqbMKFCuoRTxhYWow" style=3D"v-t=
+ext-anchor: middle; width: 240px; max-width: 240px; height: 48px; text-deco=
+ration: none; color: '#000000'; font-family: 'Helvetica', 'Arial', sans-ser=
+if; font-size: 13px; font-weight: bold; line-height: 48px" arcsize=3D"50%" =
+fillcolor=3D"#ffffff" strokecolor=3D"#ffffff"><w:anchorlock /><center style=
+=3D"color: #000000; font-family: 'Helvetica', 'Arial', sans-serif; font-siz=
+e: 13px; font-weight: bold; line-height: 16px; text-transform:uppercase">Ex=
+plorar =C3=A1udio para dormir</center></v:roundrect></div><![endif]-->
+<!--[if mso]><div style=3D"mso-hide: all"><![endif]--><a href=3D"https://wl=
+.spotify.com/uni/ss/c/jB8Q9cVeEn3mlrUL0ylOyZ2nhlm-hlHiuGNdENJbpMZ-k5LIh3nXr=
+vbA1Rau4EPnd0t1bSSqIy-wklLRFmN12g/3sy/T2AICga6Rw2A964U2ZKwWA/h4/KlIfaUXSILY=
+fUDzgqjkV07vmiCUIR1aXwNpYInElMq0" clicktracking=3D"on" universal=3D"true" c=
+lass=3D"call-to-action-button" style=3D"text-decoration:none;color:#000000;=
+margin-left:auto;margin-right:auto;max-width:240px;background-color:#ffffff=
+;border-radius:24px;display:block" data-testid=3D"call-to-action-button"><t=
+able class=3D"call-to-action-container" style=3D"border-collapse:collapse;p=
+adding:0;mso-hide:all;width:100%;max-width:240px;min-height:48px"><tbody st=
+yle=3D"border:none;padding:0;margin:0"><tr style=3D"border:none;margin:0px;=
+padding:0px"><td class=3D"call-to-action-inner-padding" style=3D"border:non=
+e;padding:0;margin:0;width:24px"></td><td style=3D"border:none;padding:0;ma=
+rgin:0;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif;fon=
+t-weight:700;line-height:1.1em;letter-spacing:0.15px;font-size:14px;text-de=
+coration:none;text-align:center;text-transform:uppercase;color:#000000" cla=
+ss=3D"font call-to-action-cell">Explorar =C3=A1udio para dormir</td><td cla=
+ss=3D"call-to-action-inner-padding" style=3D"border:none;padding:0;margin:0=
+;width:24px"></td></tr></tbody></table></a>
+<!--[if mso]></div><![endif]--></div></td></tr></tbody></table></td><td dat=
+a-testid=3D"table-padding-right" style=3D"border:none;padding:0;margin:0;wi=
+dth:24px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px;height:=
+24px" data-testid=3D"table-padding-bottom"><td colspan=3D"3" style=3D"borde=
+r:none;padding:0;margin:0;height:24px"></td></tr></tbody></table><table sty=
+le=3D"border-collapse:collapse;padding:0;background-color:#f7f7f7;width:100=
+%" class=3D"footer-root" dir=3D"auto"><tbody style=3D"border:none;padding:0=
+;margin:0"><tr style=3D"border:none;margin:0px;padding:0px;height:25px"><td=
+ colspan=3D"3" style=3D"border:none;padding:6.25px;margin:0;height:25px"></=
+td></tr><tr style=3D"border:none;margin:0px;padding:0px"><td style=3D"borde=
+r:none;padding:0;margin:0;width:6.25%"></td><td style=3D"border:none;paddin=
+g:0;margin:0"><img alt=3D"Spotify Logo" height=3D"23" style=3D"display:bloc=
+k;max-width:100%;height:23px" src=3D"http://message-editor.scdn.co/newslett=
+er/images/logo_footer.png"></td><td style=3D"border:none;padding:0;margin:0=
+;width:6.25%"></td></tr><tr style=3D"border:none;margin:0px;padding:0px;hei=
+ght:25px"><td colspan=3D"3" style=3D"border:none;padding:6.25px;margin:0;he=
+ight:25px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px"><td s=
+tyle=3D"border:none;padding:0;margin:0;width:6.25%"></td><td style=3D"borde=
+r:none;padding:0;margin:0"><hr style=3D"height:1px;background-color:#d1d5d9=
+;border:none;margin:0px;padding:0px"></td><td style=3D"border:none;padding:=
+0;margin:0;width:6.25%"></td></tr><tr style=3D"border:none;margin:0px;paddi=
+ng:0px;height:12px"><td colspan=3D"3" style=3D"border:none;padding:3px;marg=
+in:0;height:12px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px=
+"><td style=3D"border:none;padding:0;margin:0;width:6.25%"></td><td class=
+=3D"font" style=3D"border:none;padding:0;margin:0;font-family:&quot;helveti=
+ca&quot;, &quot;arial&quot;, sans-serif;font-weight:400;line-height:1.65em;=
+letter-spacing:0.15px;font-size:11px;text-decoration:none;color:#88898c">Ob=
+t=C3=A9m o Spotify para: &nbsp;<a class=3D"footer-separated-text" style=3D"=
+text-decoration:none;color:#6d6d6d;display:inline-block;font-weight:700" hr=
+ef=3D"https://wl.spotify.com/ss/c/LamQ60llzuDczOYk0tvsVVb_SVJdGTIfQ_1t3ZEqs=
+ocA89S5jCd9p0IlNqMwxH3JqzQnktd1uTGceMdF7hhGNw/3sy/T2AICga6Rw2A964U2ZKwWA/h5=
+/nGYReJQbprxzmuvNgZPp_6ZILdeO-XIfWFVm-8QNuQM">iPhone</a><span style=3D"bord=
+er:none;padding:4px 0;margin:0 7px;width:1px;border-left:solid 1px #c3c3c3;=
+border-right:solid 1px transparent">&nbsp;</span><a class=3D"footer-separat=
+ed-text" style=3D"text-decoration:none;color:#6d6d6d;display:inline-block;f=
+ont-weight:700" href=3D"https://wl.spotify.com/ss/c/LamQ60llzuDczOYk0tvsVVb=
+_SVJdGTIfQ_1t3ZEqsocA89S5jCd9p0IlNqMwxH3JqzQnktd1uTGceMdF7hhGNw/3sy/T2AICga=
+6Rw2A964U2ZKwWA/h6/CsI_OYWAK--5aZKLFIlxvJ2tVvicZjDnpCGEstBX56s">iPad</a><sp=
+an style=3D"border:none;padding:4px 0;margin:0 7px;width:1px;border-left:so=
+lid 1px #c3c3c3;border-right:solid 1px transparent">&nbsp;</span><a class=
+=3D"footer-separated-text" style=3D"text-decoration:none;color:#6d6d6d;disp=
+lay:inline-block;font-weight:700" href=3D"https://wl.spotify.com/ss/c/LSBBl=
+YVQQ_VCiEyN29qgQnMlOf9Jt7hsFVsIAtx2fduVQ-RD06uqH_MglQiwpeh4yz3YFY9r5mVv70uX=
+9UksCPAlDPpkTad4_quXpiIygHA/3sy/T2AICga6Rw2A964U2ZKwWA/h7/y6tCt66EXmOmj2nA_=
+ELdFEqGguz5tbUV1zFEh1McoYo">Android</a><span style=3D"border:none;padding:4=
+px 0;margin:0 7px;width:1px;border-left:solid 1px #c3c3c3;border-right:soli=
+d 1px transparent">&nbsp;</span><a class=3D"footer-separated-text" style=3D=
+"text-decoration:none;color:#6d6d6d;display:inline-block;font-weight:700" h=
+ref=3D"https://wl.spotify.com/ss/c/NcOg9etoQJvwfdKhGmCY2X7wwCLpJpAe5ncSaY1i=
+rojI3pkk08KAuyLzK6h-UxjZ/3sy/T2AICga6Rw2A964U2ZKwWA/h8/yf8QZRDCjkO0hFWWdqb3=
+GnVGNS9_QtuCeaiqPRL86Ok">Outros</a></td><td style=3D"border:none;padding:0;=
+margin:0;width:6.25%"></td></tr><tr style=3D"border:none;margin:0px;padding=
+:0px;height:12px"><td colspan=3D"3" style=3D"border:none;padding:3px;margin=
+:0;height:12px"></td></tr><tr style=3D"border:none;margin:0px;padding:0px">=
+<td style=3D"border:none;padding:0;margin:0;width:6.25%"></td><td style=3D"=
+border:none;padding:0;margin:0"><hr style=3D"height:1px;background-color:#d=
+1d5d9;border:none;margin:0px;padding:0px"></td><td style=3D"border:none;pad=
+ding:0;margin:0;width:6.25%"></td></tr><tr style=3D"border:none;margin:0px;=
+padding:0px;height:25px"><td colspan=3D"3" style=3D"border:none;padding:6.2=
+5px;margin:0;height:25px"></td></tr><tr style=3D"border:none;margin:0px;pad=
+ding:0px"><td style=3D"border:none;padding:0;margin:0;width:6.25%"></td><td=
+ class=3D"font" style=3D"border:none;padding:0;margin:0;font-family:&quot;h=
+elvetica&quot;, &quot;arial&quot;, sans-serif;font-weight:400;line-height:1=
+.65em;letter-spacing:0.15px;font-size:11px;text-decoration:none;color:#8889=
+8c"> <span style=3D"border:none;padding:0;margin:0">Esta mensagem foi envia=
+da a faeldroom46@gmail.com.</span> Caso n=C3=A3o pretendas receber estes e-=
+mails da Spotify no futuro, podes <a class=3D"footer-link" href=3D"https://=
+wl.spotify.com/ss/c/NcOg9etoQJvwfdKhGmCY2Tg4LW1ey7esc5l6X6-eqGF-QyfLxArYtrR=
+WBbbxnK85/3sy/T2AICga6Rw2A964U2ZKwWA/h9/ZarcN9bvb7N7uI5O9UceSVhzz1W76q5kdJm=
+gwkZZkog" style=3D"border: none; margin: 0px; padding: 0px; text-decoration=
+: none; color: rgb(109, 109, 109); font-weight: bold;">editar o teu perfil<=
+/a> ou <a class=3D"footer-link" href=3D"https://wl.spotify.com/ss/c/NcOg9et=
+oQJvwfdKhGmCY2Tg4LW1ey7esc5l6X6-eqGEqmIL0iCiYfb2sP410pYkv1Q3RfD9SD7iiN0l94_=
+GEzOt_uC2Jb5Vobz1W-XTxKspq_mbNKo52h049GnrbB-osbKblbv4QYNj1TPYGCihPxwXtrdcWH=
+iX7IzNIRORMkg6GFcWXJPxfs1qzvsV2Ps-TJ7BLAiDCJ4edcUXpxD-DveJoVH_ZztqTP_YzS27M=
+G-2AGhYr37-2TFOseH9H4cQ7zqQusF1JC6jrML878ZV7ew/3sy/T2AICga6Rw2A964U2ZKwWA/h=
+10/7biliYxEpa1Os2rSu67a5mDVbYUVQzLuDS6IRgOuxeU" style=3D"border: none; marg=
+in: 0px; padding: 0px; text-decoration: none; color: rgb(109, 109, 109); fo=
+nt-weight: bold;">anular a subscri=C3=A7=C3=A3o</a>.</td><td style=3D"borde=
+r:none;padding:0;margin:0;width:6.25%"></td></tr><tr style=3D"border:none;m=
+argin:0px;padding:0px;height:33px"><td colspan=3D"3" style=3D"border:none;p=
+adding:8.25px;margin:0;height:33px"></td></tr><tr style=3D"border:none;marg=
+in:0px;padding:0px"><td style=3D"border:none;padding:0;margin:0;width:6.25%=
+"></td><td class=3D"font font-small" style=3D"border:none;padding:0;margin:=
+0;font-family:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif;font-wei=
+ght:400;line-height:1.65em;letter-spacing:0.15px;font-size:11px;text-decora=
+tion:none;color:#88898c"><a class=3D"footer-separated-text" style=3D"text-d=
+ecoration:none;color:#6d6d6d;display:inline-block;font-weight:700" href=3D"=
+https://wl.spotify.com/ss/c/NcOg9etoQJvwfdKhGmCY2fcBnoxmjKsVnFK97F3n2xpfrSi=
+LOBmqYfyUpU7EqHEhY3m2JdYYxb7oVoLbzu-jlQ/3sy/T2AICga6Rw2A964U2ZKwWA/h11/SJGi=
+fK2BylITF05fO1KgqFpeWsueQLnl_uldh4hHD0M">Termos de utiliza=C3=A7=C3=A3o</a>=
+<span style=3D"border:none;padding:4px 0;margin:0 7px;width:1px;border-left=
+:solid 1px #c3c3c3;border-right:solid 1px transparent">&nbsp;</span><a clas=
+s=3D"footer-separated-text" style=3D"text-decoration:none;color:#6d6d6d;dis=
+play:inline-block;font-weight:700" href=3D"https://wl.spotify.com/ss/c/NcOg=
+9etoQJvwfdKhGmCY2fcBnoxmjKsVnFK97F3n2xrJwED8Ww28_ARd9o75w0L3P54amTh-3KUFl3n=
+QvHsy8A/3sy/T2AICga6Rw2A964U2ZKwWA/h12/mEGSjg73xSI1Nu4MvD3nPPFRqxcj1CQj0veZ=
+xpk3eS8">Pol=C3=ADtica de privacidade</a><span style=3D"border:none;padding=
+:4px 0;margin:0 7px;width:1px;border-left:solid 1px #c3c3c3;border-right:so=
+lid 1px transparent">&nbsp;</span><a class=3D"footer-separated-text" style=
+=3D"text-decoration:none;color:#6d6d6d;display:inline-block;font-weight:700=
+" href=3D"https://wl.spotify.com/ss/c/NcOg9etoQJvwfdKhGmCY2SM2WHtDeWpixSGNn=
+LCcXfuP7mNHsv5L3zy1pG5dDltl/3sy/T2AICga6Rw2A964U2ZKwWA/h13/noWs5MDS3afIwrA-=
+80nZ_RxT4SVxWNjq1jiGhNqnaEk">Contacte-nos</a></td><td style=3D"border:none;=
+padding:0;margin:0;width:6.25%"></td></tr><tr style=3D"border:none;margin:0=
+px;padding:0px;height:12px"><td colspan=3D"3" style=3D"border:none;padding:=
+3px;margin:0;height:12px"></td></tr><tr style=3D"border:none;margin:0px;pad=
+ding:0px"><td style=3D"border:none;padding:0;margin:0;width:6.25%"></td><td=
+ class=3D"font font-small" style=3D"border:none;padding:0;margin:0;font-fam=
+ily:&quot;helvetica&quot;, &quot;arial&quot;, sans-serif;font-weight:400;li=
+ne-height:1.65em;letter-spacing:0.15px;font-size:11px;text-decoration:none;=
+color:#88898c">Spotify AB, Regeringsgatan 19, 111 53, Stockholm, Sweden</td=
+><td style=3D"border:none;padding:0;margin:0;width:6.25%"></td></tr><tr sty=
+le=3D"border:none;margin:0px;padding:0px;height:25px"><td colspan=3D"3" sty=
+le=3D"border:none;padding:6.25px;margin:0;height:25px"></td></tr></tbody></=
+table></div></td></tr></tbody></table>
+<!--[if (mso) | (IE)]></td></tr></table><![endif]--><img src=3D"https://wl.=
+spotify.com/ss/o/BIFIEceKwRrl2okIkGwAPQ/3sy/T2AICga6Rw2A964U2ZKwWA/ho.gif" =
+alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !importa=
+nt;width:1px !important;border-width:0 !important;margin-top:0 !important;m=
+argin-bottom:0 !important;margin-right:0 !important;margin-left:0 !importan=
+t;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !imp=
+ortant;padding-left:0 !important;"/></body></html>
+--ffe20a487322b508477fc52770bc0748d3740a797a8ea221ce2ea33399a9--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>123</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1674039246</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>11968</string>
+</dict>
+</plist>

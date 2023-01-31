@@ -1,0 +1,664 @@
+28561     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:6146:b0:2fc:a4a9:44 with SMTP id y6csp3230220pxc;
+        Tue, 18 Oct 2022 07:01:59 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7mjvwjYlk7ouyma3efP3hxqCTQWgVetdf1DgDh5+N/0dwIJAEe4BnrKJKg71weaaYAfIlF
+X-Received: by 2002:adf:e38e:0:b0:22c:df19:be53 with SMTP id e14-20020adfe38e000000b0022cdf19be53mr1917928wrm.427.1666101719747;
+        Tue, 18 Oct 2022 07:01:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1666101719; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Lb3h4ExACzYgKTskSL0YtZrvlG+qamdAwKvPkq1jRw12/PmSkmXD9F6QCBflDt26bG
+         Dp93KqWKxfcPWOv4W8ZMz4XQB3Pu0oVGandEGvxwBG5MTabYmJualbvEYuwBU4KyojaV
+         i8LWVJUiLRpLgGAWVy0RuHPLqQ+l4WyeuVFuX+ikv8gDEtH3tmR9HvV7h9TXKftaWYM/
+         teQw/xqwLEQLlRHShNGBKcXUB6VIvaYVq2FvGUiM55xDibnvEAJcN/ike1mUTq9Joo1V
+         aWYe7S1I7iJhum5ySaC61NVo+KqRZ6dgxCpj73ZxL4lq0ImhmVg8Zbzb0xXmGdjysrc6
+         s3wg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:message-id:to:reply-to:from:date
+         :ironport-hdrordr:ironport-data:dkim-signature;
+        bh=2PtyFajTu/bw4NTfIYf+Rop/8Q2bSt24P5CUEZIWg/s=;
+        b=SQaJgaxIoSjSuWX8FpU6bIvsttpjJbY7yW9SU5wvCNzJXRXXi9a4akcd+SE/pGpU4e
+         HBcLqUKtTOvD+2NvPFMT3aUoH82fmQNmfzUbGXxpGzICYtWBccb5ZlSN53MQzNJoek7F
+         6XfkisBcTgiWdoB3pg+xS6vJ9UuofcyOiKFpluX91z5SVv0B9DhwpBWlj4m4qV02Rcgr
+         +r9cxOY7tQb4HZItWCSubWqAcCDn4+ft5c9ZPJMabSdzIIL0pHr1JgzaiyKF1MriHYqg
+         WLlQm8GKN5RTcbjjJOyhbAVIpdiMboczsr3GlzQwUg8RxUvyRwWuCFORCSJKzuaUJlAT
+         fpAA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@santander.pt header.s=k1 header.b=U92mhX5P;
+       spf=pass (google.com: domain of prvs=283cb3f2b=appsantander@santander.pt designates 193.127.177.25 as permitted sender) smtp.mailfrom="prvs=283cb3f2b=appsantander@santander.pt";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=santander.pt
+Return-Path: <prvs=283cb3f2b=appsantander@santander.pt>
+Received: from mx.gruposantander.pt (mx00.gruposantander.pt. [193.127.177.25])
+        by mx.google.com with ESMTPS id 6-20020a056000154600b0022af514d80asi9092510wry.796.2022.10.18.07.01.59
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Oct 2022 07:01:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of prvs=283cb3f2b=appsantander@santander.pt designates 193.127.177.25 as permitted sender) client-ip=193.127.177.25;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@santander.pt header.s=k1 header.b=U92mhX5P;
+       spf=pass (google.com: domain of prvs=283cb3f2b=appsantander@santander.pt designates 193.127.177.25 as permitted sender) smtp.mailfrom="prvs=283cb3f2b=appsantander@santander.pt";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=santander.pt
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=santander.pt; i=@santander.pt; q=dns/txt; s=k1;
+  t=1666092886; x=1697628886;
+  h=date:from:reply-to:to:message-id:subject:mime-version;
+  bh=drOg/e+TClLam0MdNNO224rh9ohG/BD9Jx19Dzw9hqY=;
+  b=U92mhX5PnIjwjLkpWfKaSGcdexNG8NdwmclFeNit4y0bIjaFR82S8UCw
+   NG7+zb/iB6RDis0KXwQDMyB/CvbJgUMKv7h83x0ucboiQX8T+BUYysmdF
+   /UftUp/Y64tjzzISx3Ds4g1KXrkiAlXRd4sGyzjC2iiEHbAWDFK6zSPQB
+   lBRBdW5Q2NH+LwiZ0baIIQ48xzUWT1kfMaa2+Bi8x1LxVOXoOPMqd1oAj
+   ldOmU0A5XV63KAbfao92Hr1f64msKwv46w5LvoR0qkp3FByZiq/T3nH8L
+   ATLJwd5SI9n4B88Ab0U+mekrMl/eJ0eBhuSEfQjL/KF/LTEuSYIZSjZuy
+   A==;
+IronPort-Data: =?us-ascii?q?A9a23=3A4qgb3qn7QCDlNpstUeEUz17o5gxMJERdPkR7X?=
+ =?us-ascii?q?Q2eYbSJt1+Wr1GztxIdCjuAO63YZWP9KopxaNy//UNVuMWEzINjGlNqqitjQ?=
+ =?us-ascii?q?n8b8sCt6faxdB+oZ3vKRiHgoOOLye1AMIGYRCwTZiaE/0nxWlTZQMoVOZigH?=
+ =?us-ascii?q?tIQM8aZfHEsLeNYYH1500g6w7dp2tcAbeWRWGthh/uj+qUzB3f1g1aYAkpMg?=
+ =?us-ascii?q?06ygEsHUMba4Vv0jXRiDRx/h2IyolFOZH4pyQFdGFOjKmVcNrbSq+8uV9hV9?=
+ =?us-ascii?q?EuBl/smIovNfroW7iTm61MPVDVihEa6W4D66vRDjgYM7oEWBNcwRmpv02zPl?=
+ =?us-ascii?q?N131M9EsdqqSAE1M7fKkaIZVBJRF0mSP4Ufp+WBeCj56JzLiR2WG5fv66wG4?=
+ =?us-ascii?q?EUeNJUA4e9xHWhI+fECACsEaAyKge672vSjVoGAg+x6dpC2YN5H5ysIITbxS?=
+ =?us-ascii?q?KxOrYr4a6vD6NtUxjA3g5wQNfnbbssdLzFoaXz9j7dnUrsMIMthxqHx1j+mI?=
+ =?us-ascii?q?2Ue+AL9mEb+2ECLpCQZ7VQnGIO9lgS2ePho?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AFg7yDKuAnVjWUTs2EMVh+SOU7skDbdV00z?=
+ =?us-ascii?q?EX/kB9WHVpm62j5qOTdZsgvyMc5Ax9ZJhCo7C90cu7L080nKQdieIs1NGZMD?=
+ =?us-ascii?q?UO0FHYTr2KhrGC/9SPIULDytI=3D?=
+X-IronPort-AV: E=Sophos;i="5.95,193,1661810400"; 
+   d="scan'208,217,150";a="121545052"
+Received: from unknown (HELO BVTOEXEDGEP01.central.rinterna.local) ([172.18.180.88])
+  by totvvdesmtp0002.totta.corp with ESMTP/TLS/AES256-GCM-SHA384; 18 Oct 2022 13:34:45 +0200
+Received: from email-dispatcher-7-vtddv (107.1.13.159) by
+ BVTOEXEDGEP01.central.rinterna.local (172.18.180.88) with Microsoft SMTP
+ Server id 14.3.498.0; Tue, 18 Oct 2022 15:01:58 +0100
+Date: Tue, 18 Oct 2022 15:01:59 +0100
+From: App Santander <appsantander@santander.pt>
+Reply-To: <appsantander@santander.pt>
+To: <faeldroom46@gmail.com>
+Message-ID: <803951812.17458.1666101719005@email-dispatcher-7-vtddv>
+Subject: MB WAY
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_Part_17456_107066517.1666101718996"
+Return-Path: appsantander@santander.pt
+
+
+------=_Part_17456_107066517.1666101718996
+Content-Type: multipart/related;
+	boundary="----=_Part_17457_1748150465.1666101718996"
+
+
+------=_Part_17457_1748150465.1666101718996
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"en">
+<head>
+    <!--[if gte mso 9]><xml>
+    <o:OfficeDocumentSettings>
+        <o:AllowPNG/>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml><![endif]-->
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+" />
+    <title>MB WAY Pending Acceptance (OneApp)</title>
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width,initial-scale=
+=3D1" />
+    <meta name=3D"color-scheme" content=3D"light dark" />
+    <meta name=3D"supported-color-schemes" content=3D"light dark" />
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3D9; IE=3D8; IE=3D7;=
+ IE=3DEDGE" />
+    <style type=3D"text/css">
+        body {
+            width: 100% !important;
+        }
+
+        :root {
+            color-scheme: light dark;
+            supported-color-schemes: light dark;
+        }
+
+        .mobile, .mobileFooter {
+            display: none !important;
+            mso-hide: all;
+            max-height: none !important;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .bottom-border {
+                border-bottom: 1px solid #EC0000 !important;
+            }
+
+            .text {
+                color: #FFFFFF !important;
+            }
+        }
+
+        @media screen and (min-width: 1025px) {
+            .mobile {
+                display: none !important;
+                mso-hide: all;
+            }
+
+            .desktop {
+                display: flex !important;
+                justify-content: center !important;
+                text-align: center !important;
+            }
+
+            .mobileFooter {
+                display: none !important;
+                mso-hide: all;
+            }
+
+            .desktopFooter {
+                display: flex !important;
+                justify-content: center !important;
+            }
+        }
+
+        @media screen and (min-width: 801px) and (max-width: 1024px) {
+            .mobile {
+                display: none !important;
+                mso-hide: all;
+            }
+
+            .desktop {
+                display: flex !important;
+                justify-content: center !important;
+                text-align: center !important;
+            }
+
+            .mobileFooter {
+                display: none !important;
+                mso-hide: all;
+            }
+
+            .desktopFooter {
+                display: flex !important;
+                justify-content: center !important;
+            }
+        }
+
+        @media screen and (min-width: 320px) and (max-width: 800px) {
+            table {
+                width: 300px !important;
+            }
+
+            .mobile {
+                display: table !important;
+            }
+
+            .desktop {
+                display: none !important;
+                mso-hide: all;
+            }
+
+            .mobileFooter {
+                display: table !important;
+                float: none !important;
+            }
+
+            .desktopFooter {
+                display: none !important;
+                mso-hide: all;
+            }
+        }
+    </style>
+</head>
+<body style=3D"margin: 0; padding: 0;">
+<style type=3D"text/css">
+    @media screen and (min-width: 320px) and (max-width: 800px) {
+        table {
+            width: 400px !important;
+        }
+
+        .mobile {
+            display: table !important;
+        }
+
+        .desktop {
+            display: none !important;
+            mso-hide: all;
+        }
+
+        .mobileFooter {
+            display: table !important;
+            float: none !important;
+        }
+
+        .desktopFooter {
+            display: none !important;
+            mso-hide: all;
+        }
+    }
+</style>
+    <!--[if gte mso 9]><table cellpadding=3D"0" cellspacing=3D"0" border=3D=
+"0" align=3D"center" style=3D"border-spacing: 16px; border-collapse: separa=
+te; margin:0px auto;text-align:inherit;display:none; mso-hide: none; width:=
+ 100% !important;" width=3D"800"><![endif]--><!--[if !mso]> <!-- --><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-spacing: 1=
+6px; border-collapse: separate;width: 100% !important; max-width:800px;marg=
+in:0px auto;text-align:inherit;"><!--<![endif]-->
+        <tr>
+            <td align=3D"right" style=3D"padding-top: 20px; padding-bottom:=
+ 20px; padding-left: 16px; padding-right: 16px; border-bottom: 1px solid #E=
+C0000;">
+                <img src=3D"cid:santander-logo-light" alt=3D"Santander logo=
+" width=3D"138" height=3D"25" style=3D"display: block;" />
+            </td>
+        </tr>
+        <tr>
+            <td class=3D"bottom-border" style=3D"padding-top: 30px; padding=
+-bottom: 24px; border-bottom: 1px solid #999999;">
+                <!--[if gte mso 9]><table cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0" style=3D"margin:0px auto;table-layout:fixed;display:none; m=
+so-hide: none; width: 100% !important;" width=3D"100%"><![endif]--><!--[if =
+!mso]> <!-- --><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" styl=
+e=3D"margin:0px auto;table-layout:fixed;width: 100% !important; max-width:8=
+00px;"><!--<![endif]-->
+                    <tr>
+                        <td class=3D"text" style=3D"padding-bottom: 27px; f=
+ont-family: Helvetica,Arial,sans-serif; font-size: 24px; line-height: 24px;=
+ color: #444444;">
+                            Ol=C3=A1,
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=3D"text" style=3D"font-family: Helvetica,=
+Arial,sans-serif; font-size: 16px; line-height: 20px; color: #444444; paddi=
+ng-bottom: 40px;">
+                            Regist=C3=A1mos o seu pedido:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=3D"text" style=3D"font-family: Helvetica,=
+Arial,sans-serif; font-size: 18px; line-height: 22px; color: #444444; font-=
+weight: bold; padding-bottom: 9px;">
+                            Envio de dinheiro por MB WAY
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class=3D"text" cellpadding=3D"8" cellspa=
+cing=3D"0" width=3D"100%">
+                                <tr>
+                                    <td class=3D"text" width=3D"25%" valign=
+=3D"top" style=3D"padding-left: 0; border-bottom: 1px solid #DBE0E3; font-f=
+amily: Helvetica,Arial,sans-serif; font-size: 14px; line-height: 20px; colo=
+r: #444444;">Para</td>
+                                    <td class=3D"text" width=3D"75%" align=
+=3D"left" style=3D"text-align: left !important; border-bottom: 1px solid #D=
+BE0E3; font-family: Helvetica,Arial,sans-serif; font-size: 14px; line-heigh=
+t: 20px; color: #444444;">+351 926098906 Amor</td>
+                                </tr>
+                                <tr>
+                                    <td class=3D"text" width=3D"25%" valign=
+=3D"top" style=3D"padding-left: 0; border-bottom: 1px solid #DBE0E3; font-f=
+amily: Helvetica,Arial,sans-serif; font-size: 14px; line-height: 20px; colo=
+r: #444444;">Valor</td>
+                                    <td class=3D"text" width=3D"75%" align=
+=3D"left" style=3D"text-align: left !important; border-bottom: 1px solid #D=
+BE0E3; font-family: Helvetica,Arial,sans-serif; font-size: 14px; line-heigh=
+t: 20px; color: #444444;">5,00 EUR</td>
+                                </tr>
+                                <tr>
+                                    <td class=3D"text" width=3D"25%"valign=
+=3D"top" style=3D"padding-left: 0; border-bottom: 1px solid #DBE0E3; font-f=
+amily: Helvetica,Arial,sans-serif; font-size: 14px; line-height: 20px; colo=
+r: #444444;">Descri=C3=A7=C3=A3o</td>
+                                    <td class=3D"text" width=3D"75%" align=
+=3D"left" style=3D"text-align: left !important; border-bottom: 1px solid #D=
+BE0E3; font-family: Helvetica,Arial,sans-serif; font-size: 14px; line-heigh=
+t: 20px; color: #444444;"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=3D"text" style=3D"font-family: Helvetica,=
+Arial,sans-serif; font-size: 16px; line-height: 20px; color: #444444; paddi=
+ng-bottom: 40px; padding-top: 40px;">
+                            O dinheiro ser=C3=A1 entregue ap=C3=B3s 351 926=
+098906 Amor aceitar o seu pedido de envio.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=3D"text" style=3D"padding-top: 25px; padd=
+ing-bottom: 48px; font-family: Helvetica,Arial,sans-serif; font-size: 16px;=
+ line-height: 20px; color: #444444;">
+                            <b>Obrigado,
+                            <br>Santander</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class=3D"desktop text" style=3D"font-family: He=
+lvetica,Arial,sans-serif; font-size: 12px; line-height: 16px; color: #44444=
+4; text-align: left;">
+                            Este e-mail =C3=A9 meramente informativo e n=C3=
+=A3o serve como comprovativo oficial. Por favor n=C3=A3o responda para este=
+ endere=C3=A7o.
+                        </td>
+
+                        <!-- Mobile message -->
+                        <td class=3D"mobile text" style=3D"display: none; m=
+ax-height: 0px; overflow: hidden; font-family: Helvetica,Arial,sans-serif; =
+font-size: 12px; line-height: 16px; color: #444444; text-align: center;">
+                            Este e-mail =C3=A9 meramente informativo e n=C3=
+=A3o serve como comprovativo oficial. Por favor n=C3=A3o responda para este=
+ endere=C3=A7o.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style=3D"padding-top: 12px; padding-bottom: 12px;">
+                <!--[if !mso]><!-->
+                <table class=3D"desktopFooter text" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"100%">
+                    <tr>
+                        <td width=3D"33%">
+                            <table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" align=3D"left">
+                                <tr>
+                                    <td class=3D"text" style=3D"color: #6F7=
+779; font-family: Helvetica,Arial,sans-serif; font-size: 9px; line-height: =
+10px;" align=3D"left">
+                                        <b>=C2=A92021 Banco Santander Totta=
+, S.A.</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class=3D"text" style=3D"padding-top=
+: 5px; color: #6F7779; font-family: Helvetica,Arial,sans-serif; font-size: =
+9px; line-height: 10px;" align=3D"left">
+                                        <a class=3D"text" style=3D"color: #=
+6F7779; font-family: Helvetica,Arial,sans-serif; font-size: 9px; line-heigh=
+t: 20px;" href=3D"https://www.santander.pt/" target=3D"_blank">www.santande=
+r.pt</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class=3D"text" style=3D"padding-top=
+: 5px; color: #6F7779; font-family: Helvetica,Arial,sans-serif; font-size: =
+9px; line-height: 10px;" align=3D"left">
+                                        Todos os direitos reservados.
+                                        <a class=3D"text" style=3D"color: #=
+6F7779; font-family: Helvetica,Arial,sans-serif; font-size: 9px; line-heigh=
+t: 10px;" href=3D"https://www.santander.pt/aviso-legal-copyright" target=3D=
+"_blank"><font class=3D"text" color=3D"#6F7779">Aviso legal</font></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width=3D"33%">
+                            <table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" align=3D"center">
+                                <tr>
+                                    <td class=3D"text" style=3D"color: #6F7=
+779; font-family: Helvetica,Arial,sans-serif; font-size: 9px; line-height: =
+16px; text-align: center;">
+                                        N=C3=A3o reconhece esta opera=C3=A7=
+=C3=A3o? Ligue para a SuperLinha, +351 <b>217 807 364</b>, chamada para red=
+e fixa nacional
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width=3D"33%">
+                            <table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" align=3D"right">
+                                <tr>
+                                    <td>
+                                        <a href=3D"https://www.facebook.com=
+/santanderpt/" target=3D"_blank"><img src=3D"cid:facebook-light" width=3D"1=
+6" height=3D"16" alt=3D"Facebook logo" style=3D"width: 16px !important; hei=
+ght: 16px !important;"></a>
+                                    </td>
+                                    <td style=3D"font-size: 0; line-height:=
+ 0;" width=3D"20">&nbsp;</td>
+                                    <td>
+                                        <a href=3D"https://www.instagram.co=
+m/santanderpt/" target=3D"_blank"><img src=3D"cid:instagram-light" width=3D=
+"16" height=3D"16" alt=3D"Instagram logo" style=3D"width: 16px !important; =
+height: 16px !important;"></a>
+                                    </td>
+                                    <td style=3D"font-size: 0; line-height:=
+ 0;" width=3D"20">&nbsp;</td>
+                                    <td>
+                                        <a href=3D"https://pt.linkedin.com/=
+company/santanderpt" target=3D"_blank"><img src=3D"cid:linkedin-light" widt=
+h=3D"16" height=3D"16" alt=3D"LinkedIn logo" style=3D"width: 16px !importan=
+t; height: 16px !important;"></a>
+                                    </td>
+                                    <td style=3D"font-size: 0; line-height:=
+ 0;" width=3D"20">&nbsp;</td>
+                                    <td>
+                                        <a href=3D"https://twitter.com/sant=
+anderpt" target=3D"_blank"><img src=3D"cid:twitter-light" width=3D"16" heig=
+ht=3D"16" alt=3D"Twitter logo" style=3D"width: 16px !important; height: 16p=
+x !important;"></a>
+                                    </td>
+                                    <td style=3D"font-size: 0; line-height:=
+ 0;" width=3D"20">&nbsp;</td>
+                                    <td>
+                                        <a href=3D"https://www.youtube.com/=
+user/bancosantandertotta/" target=3D"_blank"><img src=3D"cid:youtube-light"=
+ width=3D"16" height=3D"16" alt=3D"YouTube logo" style=3D"width: 16px !impo=
+rtant; height: 16px !important;"></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!--<![endif]-->
+
+                <!-- Mobile footer -->
+                <!--[if gte mso 9]><table style=3D"display: none;" class=3D=
+"mobileFooter text" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" align=3D"center"><![endif]--><!--[if !mso]> <!-- --><table class=
+=3D"mobileFooter text" align=3D"center" style=3D"display: none;margin-top:0=
+px;min-width:10px;width:100%;float:none;text-align:left;" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" width=3D"800"><!--<![endif]-->
+                <tr>
+                    <!--[if gte mso 9]><td width=3D"100%" align=3D"center" =
+style=3D"padding-bottom: 20px;"><![endif]--><!--[if !mso]> <!-- --><td vali=
+gn=3D"bottom" style=3D"padding-bottom: 20px;text-size-adjust:none;text-alig=
+n:left;vertical-align:bottom;height:35px;"><!--<![endif]-->
+                    <!--[if gte mso 9]><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" align=3D"center"><![endif]--><!--[if !mso]> <!-- --><ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"table-layout:=
+ fixed;margin-left:auto;margin-right:auto;float:none;text-align:left;"><!--=
+<![endif]-->
+                        <tr>
+                            <td class=3D"text" style=3D"color: #6F7779; fon=
+t-family: Helvetica,Arial,sans-serif; font-size: 9px; line-height: 16px; te=
+xt-align: center;">
+                                N=C3=A3o reconhece esta opera=C3=A7=C3=A3o?=
+ Ligue para a SuperLinha, +351 <b>217 807 364</b>, chamada para rede fixa n=
+acional
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                </tr>
+                <tr>
+                    <!--[if gte mso 9]><td width=3D"100%" align=3D"center" =
+style=3D"padding-bottom: 20px;"><![endif]--><!--[if !mso]> <!-- --><td vali=
+gn=3D"bottom" style=3D"padding-bottom: 20px;text-size-adjust:none;text-alig=
+n:left;vertical-align:bottom;height:35px;" align=3D"center"><!--<![endif]--=
+>
+                    <!--[if gte mso 9]><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" align=3D"center"><![endif]--><!--[if !mso]> <!-- --><ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"table-layout:=
+ fixed;margin-left:auto;margin-right:auto;float:none;text-align:center;" al=
+ign=3D"center"><!--<![endif]-->
+                        <tr>
+                            <td>
+                                <a href=3D"https://www.facebook.com/santand=
+erpt/" target=3D"_blank"><img src=3D"cid:facebook-light" width=3D"16" heigh=
+t=3D"16" alt=3D"Facebook logo"></a>
+                            </td>
+                            <td style=3D"font-size: 0; line-height: 0;" wid=
+th=3D"20">&nbsp;</td>
+                            <td>
+                                <a href=3D"https://www.instagram.com/santan=
+derpt/" target=3D"_blank"><img src=3D"cid:instagram-light" width=3D"16" hei=
+ght=3D"16" alt=3D"Instagram logo"></a>
+                            </td>
+                            <td style=3D"font-size: 0; line-height: 0;" wid=
+th=3D"20">&nbsp;</td>
+                            <td>
+                                <a href=3D"https://pt.linkedin.com/company/=
+santanderpt" target=3D"_blank"><img src=3D"cid:linkedin-light" width=3D"16"=
+ height=3D"16" alt=3D"LinkedIn logo"></a>
+                            </td>
+                            <td style=3D"font-size: 0; line-height: 0;" wid=
+th=3D"20">&nbsp;</td>
+                            <td>
+                                <a href=3D"https://twitter.com/santanderpt"=
+ target=3D"_blank"><img src=3D"cid:twitter-light" width=3D"16" height=3D"16=
+" alt=3D"Twitter logo"></a>
+                            </td>
+                            <td style=3D"font-size: 0; line-height: 0;" wid=
+th=3D"20">&nbsp;</td>
+                            <td>
+                                <a href=3D"https://www.youtube.com/user/ban=
+cosantandertotta/" target=3D"_blank"><img src=3D"cid:youtube-light" width=
+=3D"16" height=3D"16" alt=3D"YouTube logo"></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                </tr>
+                <tr>
+                    <!--[if gte mso 9]><td width=3D"100%" align=3D"center" =
+style=3D"padding-bottom: 20px;"><![endif]--><!--[if !mso]> <!-- --><td vali=
+gn=3D"bottom" style=3D"padding-bottom: 20px;text-size-adjust:none;text-alig=
+n:left;vertical-align:bottom;height:35px;"><!--<![endif]-->
+                    <!--[if gte mso 9]><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" align=3D"center"><![endif]--><!--[if !mso]> <!-- --><ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"table-layout:=
+ fixed;margin-left:auto;margin-right:auto;float:none;text-align:left;"><!--=
+<![endif]-->
+                        <tr>
+                            <td class=3D"text" style=3D"color: #6F7779; fon=
+t-family: Helvetica,Arial,sans-serif; font-size: 9px; line-height: 20px;" a=
+lign=3D"center">
+                                <b>=C2=A92021 Banco Santander Totta, S.A.</=
+b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class=3D"text" style=3D"color: #6F7779; fon=
+t-family: Helvetica,Arial,sans-serif; font-size: 9px; line-height: 20px;" a=
+lign=3D"center">
+                                <a class=3D"text" style=3D"border-bottom:1p=
+x solid #6F7779; color: #6F7779; font-family: Helvetica,Arial,sans-serif; f=
+ont-size: 9px; line-height: 20px;" href=3D"https://www.santander.pt/" targe=
+t=3D"_blank">www.santander.pt</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class=3D"text" style=3D"color: #6F7779; fon=
+t-family: Helvetica,Arial,sans-serif; font-size: 9px; line-height: 20px;" a=
+lign=3D"center">
+                                Todos os direitos reservados.
+                                <a class=3D"text" style=3D"border-bottom:1p=
+x solid #6F7779; color: #6F7779; font-family: Helvetica,Arial,sans-serif; f=
+ont-size: 9px; line-height: 20px;" href=3D"https://www.santander.pt/aviso-l=
+egal-copyright" target=3D"_blank"><font class=3D"text" color=3D"#6F7779">Av=
+iso legal</font></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td height=3D"18" bgcolor=3D"#EC0000">
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+------=_Part_17457_1748150465.1666101718996
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+Content-Type: image/png
+X-Apple-Content-Length: 332
+Content-Id: <facebook-light>
+
+
+------=_Part_17457_1748150465.1666101718996
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+Content-Type: image/png
+X-Apple-Content-Length: 620
+Content-Id: <instagram-light>
+
+
+------=_Part_17457_1748150465.1666101718996
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+Content-Type: image/png
+X-Apple-Content-Length: 437
+Content-Id: <linkedin-light>
+
+
+------=_Part_17457_1748150465.1666101718996
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+Content-Type: image/png
+X-Apple-Content-Length: 2188
+Content-Id: <santander-logo-light>
+
+
+------=_Part_17457_1748150465.1666101718996
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+Content-Type: image/png
+X-Apple-Content-Length: 518
+Content-Id: <twitter-light>
+
+
+------=_Part_17457_1748150465.1666101718996
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+Content-Type: image/png
+X-Apple-Content-Length: 385
+Content-Id: <youtube-light>
+
+
+------=_Part_17457_1748150465.1666101718996--
+
+------=_Part_17456_107066517.1666101718996--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>845</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1666101719</integer>
+	<key>flags</key>
+	<integer>8590137472</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>11040</string>
+</dict>
+</plist>

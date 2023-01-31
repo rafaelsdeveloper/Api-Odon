@@ -1,0 +1,829 @@
+44191     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a11:52a7:b0:2fb:3d56:aeaf with SMTP id qe39csp1050022pxb;
+        Wed, 5 Oct 2022 07:42:21 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7Fi7XGBKzp+0YmI87PXLgxyXUgBPbV2lukKFAUVS3rcKf3mUBoiw8OIowTDmHYIodA20eZ
+X-Received: by 2002:a05:620a:bc5:b0:6ce:bc87:9253 with SMTP id s5-20020a05620a0bc500b006cebc879253mr20748505qki.486.1664980941547;
+        Wed, 05 Oct 2022 07:42:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1664980941; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Uod8Ko70Zm8j3G10bC8Iov8PQxhu4Aue/GpP7z6rFG3TAf0uciRSVKJlUht4bRbbto
+         ojh0sXGyf0UypawUnwdxW94Q4C5EZQyFFtEgxQxZHneP+SrgqUM7bYtZhbrRlXQk9jqw
+         cUJiRjqrFnL2DHzizaCPphW59GJRYS8Qvfui2HhfgbKEi+z3WSdxRcYYJbwNFtKV08Ui
+         rPYkypNJDwKbfitrDXJ45LX4kMJTQUJv/iRxz6/QeZuSZPrM4CBhdOWsFplYnj51X969
+         SpOgiXeMk3aYGyJsCjGJfb719GRA2p0VKEj0JSBbuOr19xF/aOhjRq7AhRVRChvNK3zx
+         IaXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:precedence:mime-version:subject:message-id:to:reply-to
+         :from:date:list-unsubscribe:dkim-signature:dkim-signature;
+        bh=lV/4dgN5Uxtd98ZQ82wzilXx2PxpsRFmQ577YmnvwTs=;
+        b=VFTL6kFg3lA9xK/KdVS4RRw9zszU/D5SvH4QpMyxfkkuGVOpgx74kJ1l2oH1WamR3R
+         MVyYmYLKdqJYgQjxl6Sesm7AzJRJzJZcqVatJz5An/at1Dg85mh922epcaSlZuOO4jt1
+         L01cyvkFt0WsY7JPu8kYjjEDA+iBRia0a07E4UdulR2wuI3ehyw+BTSPg2Cq1pxtBA45
+         jDL1CqTdZRVVgXzT0NVHSD52W5U/pxiTGVxjUxyaWkFN2cQJHdGASDnvhT6/1tIztbK2
+         nL/IlgHIRm1ylv8Hjno4LPdFNCEv8+mM3npBsCyj5fqHDuWDxKSwJ9txi1Jqk7lz2glF
+         KnKA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@bf03.hubspotemail.net header.s=hs2 header.b=W0ql4w9c;
+       dkim=pass header.i=@activestate.com header.s=hs2 header.b=FgVTtExX;
+       spf=pass (google.com: domain of 1axclyvhs8gmixksd37lwfyhabdhqd16957u2s-faeldroom46=gmail.com@bf03.hubspotemail.net designates 158.247.24.144 as permitted sender) smtp.mailfrom="1axclyvhs8gmixksd37lwfyhabdhqd16957u2s-faeldroom46=gmail.com@bf03.hubspotemail.net";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=activestate.com
+Return-Path: <1axclyvhs8gmixksd37lwfyhabdhqd16957u2s-faeldroom46=gmail.com@bf03.hubspotemail.net>
+Received: from bid47vm.bf03.hubspotemail.net (bid47vm.bf03.hubspotemail.net. [158.247.24.144])
+        by mx.google.com with ESMTPS id c65-20020a37b344000000b006bc374c5afbsi5946601qkf.134.2022.10.05.07.42.21
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 05 Oct 2022 07:42:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 1axclyvhs8gmixksd37lwfyhabdhqd16957u2s-faeldroom46=gmail.com@bf03.hubspotemail.net designates 158.247.24.144 as permitted sender) client-ip=158.247.24.144;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@bf03.hubspotemail.net header.s=hs2 header.b=W0ql4w9c;
+       dkim=pass header.i=@activestate.com header.s=hs2 header.b=FgVTtExX;
+       spf=pass (google.com: domain of 1axclyvhs8gmixksd37lwfyhabdhqd16957u2s-faeldroom46=gmail.com@bf03.hubspotemail.net designates 158.247.24.144 as permitted sender) smtp.mailfrom="1axclyvhs8gmixksd37lwfyhabdhqd16957u2s-faeldroom46=gmail.com@bf03.hubspotemail.net";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=activestate.com
+Received: by 172.16.28.112 with SMTP id aybpbz3a1zmnbre4w9qtplu8m1pnex2xuxt5q99x;
+        Wed, 5 Oct 2022 14:42:21 GMT
+DKIM-Signature: v=1; s=hs2; d=bf03.hubspotemail.net; 
+        i=@bf03.hubspotemail.net; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=lV/4dgN5Uxtd98ZQ82wzilXx2PxpsRFmQ577YmnvwTs=; 
+        b=W0ql4w9cr23xmdJi0TyciLS/5LELhEn0O4K6FSU1OlcpOGfkEU+7Q3577tm8gq
+         HBu9O4HYs610LUWpbBhU1enIJlzr5LWE3jmfsJ9HAscntxwi9vtajk42DHA4TJQ
+         YgxCILpB2FWvXWeUA8Bo/JDk9oa9Pof/7S//8k5IfHt/VKvTCn8Fw1xuIEYfCSF
+         F9ZH/czAmdyQzr2kcoX2uixF1mS99EMNyeN03alZLp+l10StVIYwWenX783N0ye
+         a0fpjISTjhHyDSFAdHWDE9n5GhVgRLg36fMh+in1TZaHmqRaWX2z0IZihP0AZU/
+         qpfUukN/rslMASc/Fv0sXYq9kGTA==; q=dns/txt; t=1664980941; 
+        x=1665153741;
+DKIM-Signature: v=1; s=hs2; d=activestate.com; 
+        i=@activestate.com; 
+        h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id; 
+        a=rsa-sha256; c=relaxed/relaxed; 
+        bh=lV/4dgN5Uxtd98ZQ82wzilXx2PxpsRFmQ577YmnvwTs=; 
+        b=FgVTtExX3fe7FNWt0iWaHy1nRq8KeLGH+5ZHeH9KLbzeLWWYX24y2RRjc6Iw2N
+         bDGpKDdswE9BOqX8/fR+n96AfTeNM15CGbLzdTcZ1ebh0eDxQPQ5TW+Su4vpVFC
+         7Wh44cFoGxiVxakW6LJrnBvEU9sSJyaARtF7wtVjXBRiDiRGTlulwdyD0RcuxEj
+         xuQAok7ZG2ZSuZj+ysmAVi+SnaM8mmqi7osTpJam/hr+/mplAjyeqID/NsxzRAe
+         uMDYp4ctP2ov4SXyIFWspeLRFG6gkBjbuWmA15T3qh2TyFVaQmzdzBsChvooDtr
+         EA+d30bBOs8c6FIkRcblUosxQ8fw==; q=dns/txt; t=1664980941; 
+        x=1665153741;
+Return-Path: <1axclyvhs8gmixksd37lwfyhabdhqd16957u2s-faeldroom46=gmail.com@bf03.hubspotemail.net>
+X-HS-Cid: 1axfs1ai7jph89q7k5nqehbrr5ff9uw7evsvtg
+List-Unsubscribe: <mailto:1axdh84iunjhuj14tod7bne6qus98mxqdqihhw-faeldroom46=gmail.com@bf03.hubspotemail.net?subject=unsubscribe>
+Date: Wed, 5 Oct 2022 07:42:21 -0700
+From: ActiveState Team <marcom@activestate.com>
+Reply-To: marcom@activestate.com
+To: faeldroom46@gmail.com
+Message-ID: <1664980940898.d26d27e3-2a2a-417e-9925-f147bdafd80c@bf03.hubspotemail.net>
+Subject: Do you still want to hear from us?
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_6693711_982374981.1664980941203"
+Precedence: bulk
+X-Report-Abuse-To: abuse@hubspot.com (see
+ https://policy.hubspot.com/abuse-complaints)
+Feedback-ID: aede2oc:aibzs6j5:aib1s:HubSpot
+
+------=_Part_6693711_982374981.1664980941203
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Drum,
+
+It's been a while since you last visited or opened our emails.
+
+We understand, your inbox gets busy. Would you still like to receive our em=
+ails?
+
+Since you last visited, thousands of developers have been using the ActiveS=
+tate Platform (https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VW-Jl78jcz=
+XQW4DPBny2DyLVPVrHz2f4QNM6dN3Bm-7Q3pdrrV1-WJV7CgBpNW7KzKD-4wGsWtW7rS-gW1JqB=
+MRVJ7Dy-7hlX3QW17bVhz7km1wcW397yQ-68m8wSW258_wh2jWF_XW2thH4j5dYKpSW1v9wnr1h=
+pm5yMwVv5sqsnQnW3vbtQR9dTqR2W3tzLTC1Cv3pyW3QFVSy5dxyVlW2W65GZ6yYcm9N5vNVHS2=
+MpFjV-7yj96GWyWJW5fYYQD41kF1_W5V4-Kg4kBBc7VnPwqZ5RCT_8W32P9mr7NP-jsVd13xx35=
+wtzyW1WVRjX6FjTgWW14rv-w2BkM1jW5Vgy8r4CNgpfN2J8pZ44y0r73cP01 ) to:
+
+- Automatically build Python, Perl and Tcl environments from source
+- Resolve package dependency conflicts
+- Restore corrupted environments to previous working versions
+
+It=E2=80=99s still in Beta, but we=E2=80=99re committed to making it a valu=
+able tool for you. If you=E2=80=99d like to keep up to date, just click bel=
+ow to continue receiving our emails:
+
+Yes, Keep Me Updated!
+(https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VW-Jl78jczXQW4DPBny2DyLV=
+PVrHz2f4QNM6dN3Bm-8J5TqkQV3Zsc37CgDgVW4Z8qWD53QXPtW7FYcps8CKqGsW2PhWK87H9kS=
+qW1nVlGQ3b3bJcW68YjNQ1mBWK3W45NGPz49czZ-N8XPSdFxDF6fW1MxG305SyvK0W4dX5jL3Sg=
+t5MW4yBpxY7TMwrTW4tpdzD6yWHT1W7slpRz6Nh4PFW8RdzTX5QCtcKW97pVgZ3XN8DgW2QBYX1=
+26-l9DV2S4V-2KnRjGW7cXB5Z8N3r2ZW7zP8TT1tDRLPW4mq1H95jpqpqW2QBFrq2pDwl8W10yG=
+qg7d-ZvGW2bn3z04Vym3nW9f1Ff-4vkJHVW3SfwNv46MTv1W43fzmV1NJtwMN3T8lt1WdLJ0N3H=
+BkycK2W7FW9dz8cv5jK1ctW54tzdV6dJvcWW1W8trQ4HScJpW69-0452-109jW5G1Ctk4RK60vW=
+5zwJtt7Fh6ChW3hCp9d5gd29vW84bJ0S2NWJDRW7Td-Hz2CtMpnW39PPtN1bp19XVT0Tf487N3R=
+XW1-ww7X2ycvfnW4tblvJ34thkjW8ydFTZ41zBV9VcvB302dp6mxW4-nyKd1s_q6qW8mY9sn2XP=
+4xXW4rfKzV8B3ysHW1gxt6h7nfpQZ3ctL1 )
+
+If you=E2=80=99d rather not stick around, we=E2=80=99ll simply remove you f=
+rom our list. But we=E2=80=99ll be sad to see you go!
+
+Cheers,
+
+- The ActiveState Team
+
+Facebook (https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VW-Jl78jczXQW4D=
+PBny2DyLVPVrHz2f4QNM6dN3Bm-7Q3pdrrV1-WJV7CgF8dW38198k7Jv9gwN5szCwsQyT8ZW3Yr=
+lVB50mVsGW8ZPlmy6SYdk6W7Q-Cpm4rbTWbW7Sb6J-5WyL02W3tL4PD2dkTGXW8DGbFk2NtyMkW=
+2-dNGn6NvLNVN5D7xHKZsSLhW3xsJY87b7dCbW45DT8L9j-2stW8QQphx4DVMWnW8kHHNM124GP=
+sW54tfv54my34MW5pgCCx8zG0g_W5zlQ9G7rVvHxW1LS0Z432Nm7TW2csY9v2Gvq71N2s-BqfWv=
+gW0W1qzcM16wz8wsW3zzDLq2jkCj_N7yFY9VtRXGkMFMTdMfxqGY3gf61 )
+LinkedIn (https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VW-Jl78jczXQW4D=
+PBny2DyLVPVrHz2f4QNM6dN3Bm-7Q3pdrrV1-WJV7Cg_4RW6269Nb4P8s7bVzjgFx6tgwt1W4fx=
+Lq61l3FzLW7HlhQG34Cw8LW8H5ckz2Jy9KhN9dGNpgN0PXfW1YsvZ91N_B1zW26pN3T7PrlzJW7=
+dGjTc95YFT_VTQcjT7MxN4SW2swqTQ66VWXhW3KBKcB6r-m_8N2gyrlY6NDjvW7ns5ZD8RCQglN=
+1XKGxGlqkHtW6pPgxM5FBH15W1gNSqK6gLvLqW8KWs0d9khFc5W90GhDY3JmmKWW8SGgKy77c4D=
+GW3l8f0M9hBxYvW5NLYVt3NhHGPW9lj3NR19hqBWW1m1yQn7G6TWb3pk71 )
+Twitter (https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VW-Jl78jczXQW4DP=
+Bny2DyLVPVrHz2f4QNM6dN3Bm-7w3pdr7V1-WJV7CgCLVN3kdRSzX-VxlW6V87GH3DyDm6W1T-R=
+lc9kRWnwW9b9h3Y72zQ_XW4_xKC52dfVYSW6CKlqT2Njt8mW2pgpRW3847GfW21J_6d6c9BHsW5=
+03hg259XJnLW6QSYbY1ZdnXqW84m0F66yqdmDN2J7-CVMXgT-W4jJXrv2XJ-6sW56wYDN2Wr6xs=
+W2kVjtS26TYp7N6mqZxHm3X5RW1tFXK31NGWKLW8FvB993lKNXjN8Tt7NXN1FfmW4Gpcsr7F0sp=
+fW5Vv_q53_9tnYW7kYwSr5CKxPb32XY1 )
+Instagram (https://go.activestate.com/e3t/Ctc/5C+113/cDqDn04/VW-Jl78jczXQW4=
+DPBny2DyLVPVrHz2f4QNM6dN3Bm-7Q3pdrrV1-WJV7CgCNCW5Yrmw64kBd14W87jZcp5ghjn7N4=
+wsqWwFtk1GV5fw-s1qgnfzW6m7BW268MzyxW2yQdkt6WmYfbW6y50Sz5w4KjbW8MdLvG3WFr5FW=
+84M4sZ7T4sPbV2rfWC2Qf2gnW696JqP7Qc_Z2Vmlf-614YxvLW20GVRp3Nb4tlW1CTmr727-lwP=
+W7BVcK64Pfj6QN7HGbSlfd4-_W3HhPXC4bC6ZjW1YFhg539zPx7VzWbMt83sDK0W38cXzw6kmhz=
+nW9gT49D4GBKMGW74f8z28F8rnSW5tkcdg3rYWCnW6_Gktj8TL4yr34Fl1 )
+
+ActiveState Software, 1000 - 1177 West Hastings Street, , Vancouver, BC V6E=
+ 2K3, ,=20
+
+Unsubscribe (https://go.activestate.com/hs/manage-preferences/unsubscribe-a=
+ll?languagePreference=3Den&d=3DVndZ6P5yqRQjVPd4xS3ZTQVtW43T5bK2m40KfW3T0pbm=
+43T2QnW7qdHV817f7hvW57C2TD9bytgFW5BW1_x4NQK3CN9dNFjY28WR8N8kpWG6GKd_PV20N89=
+94J9n2W3K8mtg1ZbhkCM5Cjjw1k-TH1&v=3D3&_hsenc=3Dp2ANqtz-_8lVzpETScrIC7WkY2NH=
+wgI5XKedpiUB6ljabYCL5taYXhBYNhZsapSRg_xmgcnz1oYbdfoY-0MecWsWk8FcUB02hOxg&_h=
+smi=3D103338211 )
+
+Manage preferences (https://go.activestate.com/hs/manage-preferences/unsubs=
+cribe?languagePreference=3Den&d=3DVndZ6P5yqRQjVPd4xS3ZTQVtW43T5bK2m40KfW3T0=
+pbm43T2QnW7qdHV817f7hvW57C2TD9bytgFW5BW1_x4NQK3CN9dNFjY28WR8N8kpWG6GKd_PV20=
+N8994J9n2W3K8mtg1ZbhkCM5Cjjw1k-TH1&v=3D3&_hsenc=3Dp2ANqtz-_8lVzpETScrIC7WkY=
+2NHwgI5XKedpiUB6ljabYCL5taYXhBYNhZsapSRg_xmgcnz1oYbdfoY-0MecWsWk8FcUB02hOxg=
+&_hsmi=3D103338211 )
+------=_Part_6693711_982374981.1664980941203
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3=
+.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:=
+v=3D"urn:schemas-microsoft-com:vml" lang=3D"en"><head><link rel=3D"styleshe=
+et" type=3D"text/css" hs-webfonts=3D"true" href=3D"https://fonts.googleapis=
+.com/css?family=3DLato|Lato:i,b,bi">
+    <title>Do you still want to hear from us?</title>
+    <meta property=3D"og:title" content=3D"Do you still want to hear from u=
+s?">
+    <meta name=3D"twitter:title" content=3D"Do you still want to hear from =
+us?">
+   =20
+   =20
+   =20
+<meta name=3D"x-apple-disable-message-reformatting">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+    <!--[if gte mso 9]>
+  <xml>
+      <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+  </xml>
+ =20
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type=3D"text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+</style>
+<![endif]-->
+   =20
+     =20
+   =20
+  <meta name=3D"generator" content=3D"HubSpot"><meta property=3D"og:url" co=
+ntent=3D"https://go.activestate.com/-temporary-slug-c0f8749b-ca71-4828-98b0=
+-81171d197ff2"><meta name=3D"robots" content=3D"noindex,follow"><!--[if !((=
+mso)|(IE))]><!-- --><style type=3D"text/css">.moz-text-html .hse-column-con=
+tainer{max-width:600px !important;width:600px !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-=
+html .hse-section .hse-size-12{max-width:600px !important;width:600px !impo=
+rtant}
+[owa] .hse-column-container{max-width:600px !important;width:600px !importa=
+nt}[owa] .hse-column{display:table-cell;vertical-align:top}
+[owa] .hse-section .hse-size-12{max-width:600px !important;width:600px !imp=
+ortant}
+@media only screen and (min-width:640px){.hse-column-container{max-width:60=
+0px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-12=
+{max-width:600px !important;width:600px !important}
+}@media only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_ema=
+il_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;wid=
+th:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px =
+!important;padding-right:20px !important}
+ul,blockquote{margin:0;padding:1em 40px}}@media screen and (max-width:639px=
+){.social-network-cell{display:inline-block}
+}</style><!--<![endif]--><style type=3D"text/css">body[data-outlook-cycle] =
+img.stretch-on-mobile,body[data-outlook-cycle] .hs_rss_email_entries_table =
+img{height:auto !important;width:100% !important}
+body[data-outlook-cycle] .hs_padded{padding-left:20px !important;padding-ri=
+ght:20px !important}
+a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !im=
+portant;font-size:inherit !important;font-family:inherit !important;font-we=
+ight:inherit !important;line-height:inherit !important}
+#outlook a{padding:0}.yshortcuts a{border-bottom:none !important}a{text-dec=
+oration:underline}
+.ExternalClass{width:100%}.ExternalClass,.ExternalClass p,.ExternalClass td=
+,.ExternalClass div,.ExternalClass span,.ExternalClass font{line-height:100=
+%}
+p{margin:0}body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-we=
+bkit-font-smoothing:antialiased;moz-osx-font-smoothing:grayscale}
+@media only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_emai=
+l_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;widt=
+h:100% !important}
+}@media only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_ema=
+il_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;wid=
+th:100% !important}
+}</style></head>
+  <body bgcolor=3D"#2c363a" style=3D"margin:0 !important; padding:0 !import=
+ant; font-family:Arial, sans-serif; font-size:15px; color:#444444; word-bre=
+ak:break-word">
+   =20
+<div id=3D"preview_text" style=3D"display:none!important;font-size:1px;colo=
+r:#2c363a;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:h=
+idden;">Stay up to date with Python, Perl and Tcl on the ActiveState Platfo=
+rm.</div>
+   =20
+<!--[if gte mso 9]>
+<v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+ =20
+    <v:fill type=3D"tile" size=3D"100%,100%" color=3D"#2c363a"/>
+ =20
+</v:background>
+<![endif]-->
+    <div class=3D"hse-body-background" style=3D"background-color:#2c363a" b=
+gcolor=3D"#2c363a">
+      <table role=3D"presentation" class=3D"hse-body-wrapper-table" cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"border-spacing:0 !important; border-c=
+ollapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; margin:0; pad=
+ding:0; width:100% !important; min-width:320px !important; height:100% !imp=
+ortant" width=3D"100%" height=3D"100%">
+        <tbody><tr>
+          <td class=3D"hse-body-wrapper-td" valign=3D"top" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:15px; color:#444444; word-break:break-word">
+            <div id=3D"hs_cos_wrapper_main" class=3D"hs_cos_wrapper hs_cos_=
+wrapper_widget hs_cos_wrapper_type_dnd_area" style=3D"color: inherit; font-=
+size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" d=
+ata-hs-cos-type=3D"dnd_area">  <div id=3D"section_1562609679325" class=3D"h=
+se-section hse-section-first" style=3D"padding-left:10px; padding-right:10p=
+x; padding-top:20px">
+   =20
+   =20
+    <!--[if !((mso)|(IE))]><!-- -->
+      <div class=3D"hse-column-container hse-border hse-border-top" style=
+=3D"min-width:280px; max-width:600px; width:100%; Margin-left:auto; Margin-=
+right:auto; border-collapse:collapse; border-spacing:0; border-left:1px sol=
+id #cccccc; border-right:1px solid #cccccc; box-sizing:border-box; border-t=
+op:1px solid #cccccc; background-color:#ffffff" bgcolor=3D"#ffffff">
+    <!--<![endif]-->
+   =20
+    <!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;max-widt=
+h:600px;width:100%;Margin-left:auto;Margin-right:auto;border-collapse:colla=
+pse;border-spacing:0;">
+      <table align=3D"center" style=3D"border-collapse:collapse;mso-table-l=
+space:0pt;mso-table-rspace:0pt;width:600px;border-left:1px solid #cccccc;bo=
+rder-right:1px solid #cccccc;border-top:1px solid #cccccc" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" class=3D"hse-border hse-border-to=
+p" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:598px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"598" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rsp=
+ace:0pt;width:598px">
+<![endif]-->
+<div id=3D"column_1562609679326_0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module_15677067440027" class=3D"hs_cos_wrapper =
+hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; =
+font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widg=
+et" data-hs-cos-type=3D"module"><!-- image_email.module - email-default-mod=
+ules -->
+=09
+<table class=3D"hse-image-wrapper" role=3D"presentation" width=3D"100%" cel=
+lpadding=3D"0" cellspacing=3D"0" style=3D"border-spacing:0 !important; bord=
+er-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt">
+    <tbody>
+        <tr>
+            <td align=3D"left" valign=3D"top" style=3D"border-collapse:coll=
+apse; mso-line-height-rule:exactly; font-family:Arial, sans-serif; color:#4=
+44444; word-break:break-word; text-align:left; padding:10px 20px; font-size=
+:0px">
+               =20
+                    <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cD=
+qDn04/VW-Jl78jczXQW4DPBny2DyLVPVrHz2f4QNM6dN3Bm-7w3q3npV1-WJV7CgW1mN7Wbk75_=
+2f11W5l4JbH8MdZj2W3kLsG03w8HTyW4gtjhv6_tm5hW8M5bXJ1GbSK7W69G-sY7VKZC5VCq5Kc=
+7C6DmVW3QB4zQ3s_PmNW198G_D7F129_W2xB42L5zrlsrW85_4c-47QMYMW5XLlCn5ClPKcW1lF=
+Gpp8x2GGlW7c7Hvv8VXvRKW8qdf925_VX_TW1v1WTC3wG9hkN6vsybYdv0vGMfKTLTkYKnPW475=
+SYM2pgbsGN194fnGxYhYsW3mMNml2-XhtcVcwyyw4657WH3pw-1" target=3D"_blank" styl=
+e=3D"color:#00a4bd; mso-line-height-rule:exactly" data-hs-link-id=3D"0">
+               =20
+                <img alt=3D"" src=3D"https://go.activestate.com/hs-fs/hubfs=
+/ActiveState_March2019%20Theme/image/activestate-logo.png?width=3D360&amp;u=
+pscale=3Dtrue&amp;name=3Dactivestate-logo.png" style=3D"outline:none; text-=
+decoration:none; -ms-interpolation-mode:bicubic; border:none; max-width:100=
+%; font-size:16px" width=3D"180" align=3D"middle" srcset=3D"https://go.acti=
+vestate.com/hs-fs/hubfs/ActiveState_March2019%20Theme/image/activestate-log=
+o.png?upscale=3Dtrue&amp;width=3D360&amp;upscale=3Dtrue&amp;name=3Dactivest=
+ate-logo.png 180w, https://go.activestate.com/hs-fs/hubfs/ActiveState_March=
+2019%20Theme/image/activestate-logo.png?upscale=3Dtrue&amp;width=3D720&amp;=
+upscale=3Dtrue&amp;name=3Dactivestate-logo.png 360w" sizes=3D"(max-width: 1=
+80px) 100vw, 180px">
+               =20
+                    </a>
+               =20
+            </td>
+        </tr>
+    </tbody>
+</table></div>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:15px; color:#444444; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_module_15985488645151" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_mo=
+dule_15985488645151_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_=
+wrapper_type_rich_text" style=3D"color: inherit; font-size: inherit; line-h=
+eight: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"ri=
+ch_text"><p style=3D"mso-line-height-rule:exactly; line-height:150%">Hi Dru=
+m,</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:150%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:150%">It's been a whi=
+le since you last visited or opened our emails.</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:150%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:150%">We understand, =
+your inbox gets busy. Would you still like to receive our emails?</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:150%">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; line-height:150%">Since you last =
+visited, thousands of developers have been using the <a href=3D"https://go.=
+activestate.com/e3t/Ctc/5C+113/cDqDn04/VW-Jl78jczXQW4DPBny2DyLVPVrHz2f4QNM6=
+dN3Bm-7Q3q3nJV1-WJV7CgLByW7jw7xm165MX8W7LHKZx3dDQdKW7KjVq82B8jdqW6Bc9JD6M_X=
+FsW7n67Lt2c8xtkW2F3DYg4rDg3BW7q6cFl5xk_5zW1nzbs01910L8MmSlBb8yp5FW8CX3VG6GS=
+p_wW55JHr221c--4W1dhTMf2SYfzgN3931PlhzsQFN7KhpLtWYZx2W1PQRKj7M5wvgW1rJsqZ4x=
+TVZqW5xkZz27L75LsW87ZlVq2HsVZ2VfgQZS2ylM1lW8sy-Bl3vstY6W8L5k229frjv3W7hjjBk=
+8LhRF-VyLkrj1rwmDJW22_PK62C4MBZ3fhc1" rel=3D" noopener" style=3D"mso-line-h=
+eight-rule:exactly; color:#2a4dc0" data-hs-link-id=3D"0" target=3D"_blank">=
+ActiveState Platform</a> to:</p>
+<ul style=3D"mso-line-height-rule:exactly; line-height:150%">
+<li style=3D"mso-line-height-rule:exactly">Automatically build Python, Perl=
+ and Tcl environments from source</li>
+<li style=3D"mso-line-height-rule:exactly">Resolve package dependency confl=
+icts</li>
+<li style=3D"mso-line-height-rule:exactly">Restore corrupted environments t=
+o previous working versions</li>
+</ul>
+<p style=3D"mso-line-height-rule:exactly; line-height:150%">It=E2=80=99s st=
+ill in Beta, but we=E2=80=99re committed to making it a valuable tool for y=
+ou. If you=E2=80=99d like to keep updated, just click below to continue rec=
+eiving our emails:</p></div></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"builtin_section-1" class=3D"hse-section hse-section-last" styl=
+e=3D"padding-left:10px; padding-right:10px; padding-bottom:20px">
+   =20
+   =20
+    <!--[if !((mso)|(IE))]><!-- -->
+      <div class=3D"hse-column-container hse-border-bottom hse-border" styl=
+e=3D"min-width:280px; max-width:600px; width:100%; Margin-left:auto; Margin=
+-right:auto; border-collapse:collapse; border-spacing:0; border-left:1px so=
+lid #cccccc; border-right:1px solid #cccccc; box-sizing:border-box; border-=
+bottom:1px solid #cccccc; background-color:#ffffff; padding-bottom:24px" bg=
+color=3D"#ffffff">
+    <!--<![endif]-->
+   =20
+    <!--[if (mso)|(IE)]>
+      <div class=3D"hse-column-container" style=3D"min-width:280px;max-widt=
+h:600px;width:100%;Margin-left:auto;Margin-right:auto;border-collapse:colla=
+pse;border-spacing:0;">
+      <table align=3D"center" style=3D"border-collapse:collapse;mso-table-l=
+space:0pt;mso-table-rspace:0pt;width:600px;border-bottom:1px solid #cccccc;=
+border-left:1px solid #cccccc;border-right:1px solid #cccccc" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" class=3D"hse-border-bottom h=
+se-border" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:598px;padding-bottom:24px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"598" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rsp=
+ace:0pt;width:598px">
+<![endif]-->
+<div id=3D"builtin_column_1-0" class=3D"hse-column hse-size-12">
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-=
+table-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" =
+style=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-famil=
+y:Arial, sans-serif; font-size:15px; color:#444444; word-break:break-word; =
+padding:15px 20px"><div id=3D"hs_cos_wrapper_module_15974354994681" class=
+=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=
+=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-=
+general-type=3D"widget" data-hs-cos-type=3D"module"><!-- button_email.modul=
+e - email-default-modules -->
+<table role=3D"presentation" width=3D"100%" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-spacing:0 !important; border-collapse:col=
+lapse; mso-table-lspace:0pt; mso-table-rspace:0pt">
+  <tbody><tr>
+    <td align=3D"center" width=3D"auto" style=3D"border-collapse:collapse; =
+mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-size:15px=
+; color:#444444; word-break:break-word; width:auto; display:block">
+      <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"bord=
+er-spacing:0 !important; border-collapse:collapse; mso-table-lspace:0pt; ms=
+o-table-rspace:0pt">
+        <tbody><tr>
+            <!--[if mso]><td border=3D"0" align=3D"center"  style=3D"backgr=
+ound-color:transparent;border-radius:20px;"><![endif]-->
+            <!--[if !mso]><!-- --><td align=3D"center" style=3D"border-coll=
+apse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-serif;=
+ font-size:15px; color:#444444; word-break:break-word"><!--<![endif]-->
+            <div id=3D"hs_cos_wrapper_module_15974354994681_" class=3D"hs_c=
+os_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style=3D"color: i=
+nherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type=
+=3D"widget" data-hs-cos-type=3D"cta"><!--HubSpot Call-to-Action Code --><sp=
+an class=3D"hs-cta-wrapper" data-hs-img-pg=3D"d8e1c3b5-0637-4a83-9a24-3cbff=
+015300c" id=3D"hs-cta-wrapper-d8e1c3b5-0637-4a83-9a24-3cbff015300c"><span c=
+lass=3D"hs-cta-node hs-cta-d8e1c3b5-0637-4a83-9a24-3cbff015300c" id=3D"hs-c=
+ta-d8e1c3b5-0637-4a83-9a24-3cbff015300c"><a href=3D"https://go.activestate.=
+com/e3t/Ctc/5C+113/cDqDn04/VW-Jl78jczXQW4DPBny2DyLVPVrHz2f4QNM6dN3Bm-8J5Vfh=
+3V3Zsc37CgR82W5nWYXr3_xFrsW4SDLDV1BwXgyW25bKCF4vMWGmW1hTZ0q25Ns3fW6404MS5Nj=
+7PxW2cyhw77Cg7cVW4fLdd62fs1w5W4Wm6vG8PQ7DxW4kHGH43WPPWlW90Wm4X4TjL-vW8TnQnh=
+5Hb5cZW5Jyj5v9dbR62W2jJSSh7vRGXSW3hmDl95_h2c_W5-xj2p2lGhbLW1p4lfQ4CtZqVW41M=
+V9h6Y4JyVW9lcR3y8-LGV0W22WH383-BjQXW80hhq41XsTBwW17WFKc62pMqkW62BRlr1Rv1mmW=
+8NsQDn3M4ts5W515nTY78bTMXW4lWyfb1drq-JW66L3rh7fj0gBW6NCmCm8f98QWN99W5T8fBrb=
+gW211xp915yTZ-W1PdNdb3dnTCnW4p-kK42GkmbkW8tLw5K26HzLxN5hT2t-9ChC-W8WXy8b5lW=
+X3zW5SGhqy5k_c_ZW7gVH0L83MxR-W1mKybC6j4D5-W1sNLb-5kglPGW4md1vM8L87H8VbpXqn2=
+X7jQNW1N0xVT8Z9NDyN2rJcf5HrzNjW3qhX9n30mvnBW5B1lTz7zbNBrW30B0Bp5BlzCzW1JZJf=
+01tkssf3gnF1" style=3D"color:#00a4bd; mso-line-height-rule:exactly" data-hs=
+-link-id=3D"0" target=3D"_blank"><img class=3D"hs-cta-img" id=3D"hs-cta-img=
+-d8e1c3b5-0637-4a83-9a24-3cbff015300c" style=3D"outline:none; text-decorati=
+on:none; -ms-interpolation-mode:bicubic; border:none; border-width:0px; wid=
+th:auto !important; max-width:100% !important" mce_noresize=3D"1" src=3D"ht=
+tps://hsctaimages.net/ctas/v2/public/cs/il/?pg=3Dd8e1c3b5-0637-4a83-9a24-3c=
+bff015300c&amp;pid=3D5262266&amp;ecid=3DACsprvu7qrrVjW_qZYyth3TP_jXM29GS0f6=
+NJ5rU8oBaCfSz_pc8AqNpQgCa1CjYZ1anUTbgXyPe&amp;hseid=3D103338211&amp;hsic=3D=
+false" alt=3D"Yes, Keep Me Updated!" srcset=3D"https://hsctaimages.net/ctas=
+/v2/public/cs/il/?pg=3Dd8e1c3b5-0637-4a83-9a24-3cbff015300c&amp;pid=3D52622=
+66&amp;ecid=3DACsprvu7qrrVjW_qZYyth3TP_jXM29GS0f6NJ5rU8oBaCfSz_pc8AqNpQgCa1=
+CjYZ1anUTbgXyPe&amp;hseid=3D103338211&amp;hsic=3Dfalse&amp;dsf=3D2 2x, http=
+s://hsctaimages.net/ctas/v2/public/cs/il/?pg=3Dd8e1c3b5-0637-4a83-9a24-3cbf=
+f015300c&amp;pid=3D5262266&amp;ecid=3DACsprvu7qrrVjW_qZYyth3TP_jXM29GS0f6NJ=
+5rU8oBaCfSz_pc8AqNpQgCa1CjYZ1anUTbgXyPe&amp;hseid=3D103338211&amp;hsic=3Dfa=
+lse&amp;dsf=3D3 3x, https://hsctaimages.net/ctas/v2/public/cs/il/?pg=3Dd8e1=
+c3b5-0637-4a83-9a24-3cbff015300c&amp;pid=3D5262266&amp;ecid=3DACsprvu7qrrVj=
+W_qZYyth3TP_jXM29GS0f6NJ5rU8oBaCfSz_pc8AqNpQgCa1CjYZ1anUTbgXyPe&amp;hseid=
+=3D103338211&amp;hsic=3Dfalse&amp;dsf=3D4 4x" width=3D"auto"></a></span></s=
+pan><!-- end HubSpot Call-to-Action Code --></div>
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+</div></td></tr></tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:15px; color:#444444; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_module_15928584000261" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_mo=
+dule_15928584000261_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_=
+wrapper_type_rich_text" style=3D"color: inherit; font-size: inherit; line-h=
+eight: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"ri=
+ch_text"><p style=3D"mso-line-height-rule:exactly; font-size:15px; line-hei=
+ght:150%">If you=E2=80=99d rather not stick around, we=E2=80=99ll simply re=
+move you from our list. But we=E2=80=99ll be sad to see you go!</p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>Cheers,</p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly; font-size:15px; line-height:150%"=
+>- The ActiveState Team</p></div></div></td></tr></tbody></table>
+<table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" style=3D"border-spacing:0 !important; border-collapse:collapse; mso-ta=
+ble-lspace:0pt; mso-table-rspace:0pt"><tbody><tr><td class=3D"hs_padded" st=
+yle=3D"border-collapse:collapse; mso-line-height-rule:exactly; font-family:=
+Arial, sans-serif; font-size:15px; color:#444444; word-break:break-word; pa=
+dding:10px 20px"><div id=3D"hs_cos_wrapper_module_15677066581193" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><!-- follow_me_email.module =
+- email-default-modules -->
+<table role=3D"presentation" align=3D"center" style=3D"border-spacing:0 !im=
+portant; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0=
+pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_social_modu=
+le" width=3D"auto">
+  <tbody>
+    <tr align=3D"center">
+     =20
+      <td class=3D"social-network-cell" style=3D"border-collapse:collapse; =
+mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-size:15px=
+; color:#444444; word-break:break-word">
+        <table role=3D"presentation" align=3D"center" style=3D"border-spaci=
+ng:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-=
+rspace:0pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_soc=
+ial_module_single" width=3D"auto">
+          <tbody>
+            <tr align=3D"center">
+             =20
+              <td class=3D"display_block_on_small_screens" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:15px; color:#444444; word-break:break-word; padding:8px 5px;=
+ line-height:1; vertical-align:middle" valign=3D"middle">
+                <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cDqDn0=
+4/VW-Jl78jczXQW4DPBny2DyLVPVrHz2f4QNM6dN3Bm-7Q3q3nJV1-WJV7CgVmfW5x9pHB3dBmM=
+HW5rG6NW2BsTBCW7rfBlC7yMX4JVVlmN_588w4nW7M6kCj6-6H7hV-Cg0M9hnK-dW68gLQQ4JNt=
+fPN7PL8pCFcQtvW3XZgZY7jH36KW1RBlvS7CCRhNW1K8Mf17mKvBsW7TVHcC2bh8JcW6zCxG238=
+JV98W1Kr-R38tC0pzW6Y_kx13XqFCkN7Tb_L6yw7cBW80_WF05VBh3RW4FftCm2jhSZZW87fXmW=
+1d129pW86S5bh4YcbyHW3tV79D938-w5W2_Gb_B4LNSvqW7GCR-P9g8_F5W7krKk66wkWK43jq8=
+1" style=3D"color:#00a4bd; mso-line-height-rule:exactly; text-decoration:no=
+ne !important" data-hs-link-id=3D"0" target=3D"_blank">
+                 =20
+                 =20
+                  <img src=3D"https://go.activestate.com/hs/hsstatic/Templa=
+teAssets/static-1.114/img/hs_default_template_images/modules/Follow+Me+-+Em=
+ail/facebook_circle_color.png" alt=3D"Facebook" height=3D"25" style=3D"outl=
+ine:none; text-decoration:none; -ms-interpolation-mode:bicubic; border:none=
+; width:auto!important; height:25px!important; vertical-align:middle" valig=
+n=3D"middle" width=3D"auto">
+                 =20
+                </a>
+              </td>
+             =20
+             =20
+            </tr>
+          </tbody>
+        </table>
+      </td>
+     =20
+      <td class=3D"social-network-cell" style=3D"border-collapse:collapse; =
+mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-size:15px=
+; color:#444444; word-break:break-word">
+        <table role=3D"presentation" align=3D"center" style=3D"border-spaci=
+ng:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-=
+rspace:0pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_soc=
+ial_module_single" width=3D"auto">
+          <tbody>
+            <tr align=3D"center">
+             =20
+              <td class=3D"display_block_on_small_screens" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:15px; color:#444444; word-break:break-word; padding:8px 5px;=
+ line-height:1; vertical-align:middle" valign=3D"middle">
+                <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cDqDn0=
+4/VW-Jl78jczXQW4DPBny2DyLVPVrHz2f4QNM6dN3Bm-7Q3q3nJV1-WJV7CgCb3W8vsDK_98b_C=
+3W4Glpg882HD_1V7c_sl6lm6X4W4SzBnR8Ljh4cW2C3tBq1j_F6vV5Yf9W5hZx8WW6xscxf415Q=
+d-W5YDT1T46d6cjW2bCzBz3722CBVrfS6f1_m8X4VKLV5_3HvhvZW3XTyG38h86vtW2wFl4R8wF=
+LYpW67bc9X3dGHyVW2pjHz42wdSXyW72V4H73bfrsSW7sMrmf7Wm0s0W8sc7GM2Cwp9HW7z4fMM=
+7YhKxFW59mYGp8kb251W4FWBtQ8M5PdJW3yJ88x2bYRSTW63HYl_4BpgshW1YpS7d4wQPbX3p-C=
+1" style=3D"color:#00a4bd; mso-line-height-rule:exactly; text-decoration:no=
+ne !important" data-hs-link-id=3D"0" target=3D"_blank">
+                 =20
+                 =20
+                  <img src=3D"https://go.activestate.com/hs/hsstatic/Templa=
+teAssets/static-1.114/img/hs_default_template_images/modules/Follow+Me+-+Em=
+ail/linkedin_circle_color.png" alt=3D"LinkedIn" height=3D"25" style=3D"outl=
+ine:none; text-decoration:none; -ms-interpolation-mode:bicubic; border:none=
+; width:auto!important; height:25px!important; vertical-align:middle" valig=
+n=3D"middle" width=3D"auto">
+                 =20
+                </a>
+              </td>
+             =20
+             =20
+            </tr>
+          </tbody>
+        </table>
+      </td>
+     =20
+      <td class=3D"social-network-cell" style=3D"border-collapse:collapse; =
+mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-size:15px=
+; color:#444444; word-break:break-word">
+        <table role=3D"presentation" align=3D"center" style=3D"border-spaci=
+ng:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-=
+rspace:0pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_soc=
+ial_module_single" width=3D"auto">
+          <tbody>
+            <tr align=3D"center">
+             =20
+              <td class=3D"display_block_on_small_screens" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:15px; color:#444444; word-break:break-word; padding:8px 5px;=
+ line-height:1; vertical-align:middle" valign=3D"middle">
+                <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cDqDn0=
+4/VW-Jl78jczXQW4DPBny2DyLVPVrHz2f4QNM6dN3Bm-7w3q3npV1-WJV7CgYnMVQbtXX47sQJ2=
+W8HgZ6H89lzLgW2mDtQk4WzDFZW70WX-s6D4MkpW34ZSHG3MBq8gW4wHb401lYj97VPg4sc1LC3=
+05W1vKR-h35lSqpW7gngVg9d1048VKmjz64h_kgyW3by1PC7QDFN-W215wqX2rsTB2VRnzvk6Qj=
+b3NW4YRrG72YyCxpW5yl7g993NyjxW2vQHwC2g2MzqN6t3DZtQFrcmW6DqFk4930THpW9k-R165=
+fwKqcW2-k_pV5cSTrwN9ky6D5WT1L4W947TZd1G8hBv3cbp1" style=3D"color:#00a4bd; m=
+so-line-height-rule:exactly; text-decoration:none !important" data-hs-link-=
+id=3D"0" target=3D"_blank">
+                 =20
+                 =20
+                  <img src=3D"https://go.activestate.com/hs/hsstatic/Templa=
+teAssets/static-1.114/img/hs_default_template_images/modules/Follow+Me+-+Em=
+ail/twitter_circle_color.png" alt=3D"Twitter" height=3D"25" style=3D"outlin=
+e:none; text-decoration:none; -ms-interpolation-mode:bicubic; border:none; =
+width:auto!important; height:25px!important; vertical-align:middle" valign=
+=3D"middle" width=3D"auto">
+                 =20
+                </a>
+              </td>
+             =20
+             =20
+            </tr>
+          </tbody>
+        </table>
+      </td>
+     =20
+      <td class=3D"social-network-cell" style=3D"border-collapse:collapse; =
+mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-size:15px=
+; color:#444444; word-break:break-word">
+        <table role=3D"presentation" align=3D"center" style=3D"border-spaci=
+ng:0 !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-=
+rspace:0pt; width:auto; text-align:center" class=3D"hs_cos_wrapper_type_soc=
+ial_module_single" width=3D"auto">
+          <tbody>
+            <tr align=3D"center">
+             =20
+              <td class=3D"display_block_on_small_screens" style=3D"border-=
+collapse:collapse; mso-line-height-rule:exactly; font-family:Arial, sans-se=
+rif; font-size:15px; color:#444444; word-break:break-word; padding:8px 5px;=
+ line-height:1; vertical-align:middle" valign=3D"middle">
+                <a href=3D"https://go.activestate.com/e3t/Ctc/5C+113/cDqDn0=
+4/VW-Jl78jczXQW4DPBny2DyLVPVrHz2f4QNM6dN3Bm-7Q3q3nJV1-WJV7CgQySW5fLP4y6tbP3=
+2W804l3P3_X71lW8SN8fT2VbNxHW1VP3P61CYhKjW8yfLMW2R9RR6W17hbnT3tpSc5W3Z6W9C74=
+SgP0N5Yh08s7XlNGW4RZ3QT2rmxnnW8BHSpg8NXb2kW98Wd8M15XH3WW2L-37C6Xm35hW5l1tMN=
+4kJWNMW8TBZnk3zl96bW4YMx7L10Bpm4W2-shHC4lD06WW74LGPF5XL4THW3J7Mfr5-5yd-W4t_=
+GdT96vJFVW6PpQWc5PHH36W849ZxR874r5xW6CtWzn8xmrH-VP3yvT4N1h1PW205qDC9lkVHK3m=
+wD1" style=3D"color:#00a4bd; mso-line-height-rule:exactly; text-decoration:=
+none !important" data-hs-link-id=3D"0" target=3D"_blank">
+                 =20
+                 =20
+                  <img src=3D"https://go.activestate.com/hs/hsstatic/Templa=
+teAssets/static-1.114/img/hs_default_template_images/modules/Follow+Me+-+Em=
+ail/instagram_circle_color.png" alt=3D"Instagram" height=3D"25" style=3D"ou=
+tline:none; text-decoration:none; -ms-interpolation-mode:bicubic; border:no=
+ne; width:auto!important; height:25px!important; vertical-align:middle" val=
+ign=3D"middle" width=3D"auto">
+                 =20
+                </a>
+              </td>
+             =20
+             =20
+            </tr>
+          </tbody>
+        </table>
+      </td>
+     =20
+    </tr>
+  </tbody>
+</table>
+</div></td></tr></tbody></table>
+<div id=3D"hs_cos_wrapper_footer_module" class=3D"hs_cos_wrapper hs_cos_wra=
+pper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size:=
+ inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-h=
+s-cos-type=3D"module"><!-- email_footer.module - email-default-modules -->
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+<table role=3D"presentation" class=3D"hse-footer hse-secondary" width=3D"10=
+0%" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-spacing:0 !importan=
+t; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; fo=
+nt-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496=
+d; margin-bottom:0; padding:0">
+    <tbody>
+        <tr>
+            <td align=3D"center" valign=3D"top" style=3D"border-collapse:co=
+llapse; mso-line-height-rule:exactly; font-family:Arial, sans-serif; font-s=
+ize:15px; color:#444444; word-break:break-word; text-align:center; margin-b=
+ottom:0; line-height:135%; padding:10px 20px">
+               =20
+                <p style=3D"mso-line-height-rule:exactly; font-family:Lato,=
+Tahoma,sans-serif; font-size:12px; font-weight:normal; text-decoration:none=
+; font-style:normal; color:#79859a; direction:lrt" dir=3D"lrt">
+                  ActiveState Software, 1000 - 1177 West Hastings Street, V=
+ancouver, BC V6E 2K3
+                </p>
+                <p style=3D"mso-line-height-rule:exactly">
+                 =20
+                  <a data-unsubscribe=3D"true" href=3D"https://go.activesta=
+te.com/hs/manage-preferences/unsubscribe-all?languagePreference=3Den&amp;d=
+=3DVndZ6P5yqRQjVPd4xS3ZTQVtW43T5bK2m40KfW3T0pbm43T2QnW7qdHV817f7hvW57C2TD9b=
+ytgFW5BW1_x4NQK3CN9dNFjY28WR8N8kpWG6GKd_PV20N8994J9n2W3K8mtg1ZbhkCM5Cjjw1k-=
+TH1&amp;v=3D3&amp;utm_campaign=3DRe-Engagement&amp;utm_source=3Dhs_automati=
+on&amp;utm_medium=3Demail&amp;utm_content=3D103338211&amp;_hsenc=3Dp2ANqtz-=
+83JEdYrTIkn4WegMh7upiX0UoeeCBLXSIZSTYNte4GxAdL1rrRaZ429emxfaVYhu7dleZpO5fnu=
+PF-LVi8o423_8dUkQ&amp;_hsmi=3D103338211" style=3D"mso-line-height-rule:exac=
+tly; font-family:Lato,Tahoma,sans-serif; font-size:12px; color:#2a4dc0; fon=
+t-weight:normal; text-decoration:underline; font-style:normal" data-hs-link=
+-id=3D"0" target=3D"_blank">Unsubscribe</a>
+                 =20
+                  <a data-unsubscribe=3D"true" href=3D"https://go.activesta=
+te.com/hs/manage-preferences/unsubscribe?languagePreference=3Den&amp;d=3DVn=
+dZ6P5yqRQjVPd4xS3ZTQVtW43T5bK2m40KfW3T0pbm43T2QnW7qdHV817f7hvW57C2TD9bytgFW=
+5BW1_x4NQK3CN9dNFjY28WR8N8kpWG6GKd_PV20N8994J9n2W3K8mtg1ZbhkCM5Cjjw1k-TH1&a=
+mp;v=3D3&amp;utm_campaign=3DRe-Engagement&amp;utm_source=3Dhs_automation&am=
+p;utm_medium=3Demail&amp;utm_content=3D103338211&amp;_hsenc=3Dp2ANqtz-83JEd=
+YrTIkn4WegMh7upiX0UoeeCBLXSIZSTYNte4GxAdL1rrRaZ429emxfaVYhu7dleZpO5fnuPF-LV=
+i8o423_8dUkQ&amp;_hsmi=3D103338211" style=3D"mso-line-height-rule:exactly; =
+font-family:Lato,Tahoma,sans-serif; font-size:12px; color:#2a4dc0; font-wei=
+ght:normal; text-decoration:underline; font-style:normal" data-hs-link-id=
+=3D"0" target=3D"_blank">Manage preferences</a>
+                 =20
+                </p>
+               =20
+            </td>
+        </tr>
+    </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+</div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+ =20
+<img src=3D"https://go.activestate.com/e3t/Cto/5C+113/cDqDn04/VW-Jl78jczXQW=
+4DPBny2DyLVPVrHz2f4QNM6dW3BmZWD3CQbYJ122" alt=3D"" width=3D"1" height=3D"1"=
+ border=3D"0" style=3D"display:none!important;min-height:1px!important;widt=
+h:1px!important;border-width:0!important;margin-top:0!important;margin-bott=
+om:0!important;margin-right:0!important;margin-left:0!important;padding-top=
+:0!important;padding-bottom:0!important;padding-right:0!important;padding-l=
+eft:0!important"></body></html>
+------=_Part_6693711_982374981.1664980941203--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>744</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1664980941</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>10937</string>
+</dict>
+</plist>

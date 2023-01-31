@@ -1,0 +1,904 @@
+33936     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:55ca:b0:288:b2b8:61cb with SMTP id ef10csp215886pxb;
+        Wed, 18 May 2022 01:36:33 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxQjtb8AUefvZC5TKAtR902qh+BD/PN/hsJJq+Mc8GO6eW6W68GuEyqVOa7jpE2KQkzAoiN
+X-Received: by 2002:a17:906:c142:b0:6da:9781:ae5d with SMTP id dp2-20020a170906c14200b006da9781ae5dmr21886664ejc.73.1652862993712;
+        Wed, 18 May 2022 01:36:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1652862993; cv=none;
+        d=google.com; s=arc-20160816;
+        b=giuBcFB9IIjvaR9ZGd6fDqhnDVx35ui2nufS8QSchlug5tMqcix74XpvmWKldqiiBY
+         Yy1czoIyM3S/O4oQ8JOWUmgKY0LRT87MDVZ7g6ijvohad6j5NMhXUVOMuE86v1DhVJRa
+         d7Dox6l3yP1lgqvdQi1IE7sipTkhN53b7zSRiuitaBALC+5BC8KORzj6sQPUruae9AdY
+         ZW1niwKISTKYST4/BNWEeiZq7y33KtD8PgVp3VVOJeGQm8RA7jfUZ6/bXa6xxt8gML2g
+         lV4L+pg45rswVHfePBOG53WTHiGD3F+XeX441zLj5goSn4Ozqj/56pZ6XAXVh9anUIcP
+         dshw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=date:to:from:subject:reply-to:feedback-id:mime-version:message-id
+         :list-unsubscribe:dkim-signature;
+        bh=jRxcji5o9BzdI2E7VXXdpmeEBbF3W9nUhbOowaRfff8=;
+        b=wgo8zPxtUF6JB3S8RphpWncYV2EgtL8hn8o3ghzAgFjiJKSNAGrJtZ9krqA5bpKJQe
+         ep3dtLI5nr4I47WBixVGSLBK7Bs03xS4p9wXyAfwoaCSssUx1eqyFQvnVZCBrPFR6p5V
+         d7n+YjhB7biA3Nq0UdSe3ueQvqUqIZvjCxju7kPwfR+UBv65pAZmYlwMNyq0x2nfmUd8
+         /47gz1ePPv0NOVXxOfFRJPCYBV3mnwGK5vWTYuWagR7SZ+jpx5rcE1843nwi3o0yq2xG
+         Y9qDiUMMYAq8j2uz47IQ4Jc1aiMc8QbsP6zNL5nTjESjrWYp/x8G5qhoRXOC9wYHUfDf
+         /Xcw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mail.paypal.com header.s=pp-epsilon1 header.b=q3dVkUUa;
+       spf=pass (google.com: domain of bounce@mail.paypal.com designates 142.54.244.97 as permitted sender) smtp.mailfrom=bounce@mail.paypal.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=paypal.com
+Return-Path: <bounce@mail.paypal.com>
+Received: from mta097b.pmx1.epsl1.com (mta097b.pmx1.epsl1.com. [142.54.244.97])
+        by mx.google.com with ESMTPS id f26-20020a170906391a00b006f460b50245si1450896eje.682.2022.05.18.01.36.32
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 18 May 2022 01:36:33 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce@mail.paypal.com designates 142.54.244.97 as permitted sender) client-ip=142.54.244.97;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mail.paypal.com header.s=pp-epsilon1 header.b=q3dVkUUa;
+       spf=pass (google.com: domain of bounce@mail.paypal.com designates 142.54.244.97 as permitted sender) smtp.mailfrom=bounce@mail.paypal.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=paypal.com
+Return-Path: <bounce@mail.paypal.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mail.paypal.com;
+	s=pp-epsilon1; t=1652862991;
+	bh=jRxcji5o9BzdI2E7VXXdpmeEBbF3W9nUhbOowaRfff8=;
+	h=MIME-Version:Subject:From:To:Date:Content-Type;
+	b=q3dVkUUaBKEo+vjEzw/RyfOlQFb+du+xAQ5kIEOCRAmzDWqDTNiqogn0EYOiM29Ju
+	 CwEq5WJ9Edtf/B8AohZfVLMsBHOSFheEukjxL41LEZxxBTLeB/glbOHmv7snRUNYHv
+	 0HBKJjRme9kYEQD8LWNLHNIhqYh/7Bhp0iMy8bJin80BYfqTp+b1s/6wkANeza9s1A
+	 JtAHFgY6DlqCTxabO8iqArrmlfuE6/5ZuyyC37oEUi1m1PJITpz5J12d++O5Y5sAP0
+	 O29IZ25OyWG6bxQmke9WBvNRSk05sRjutIhkuhgFkmH768KnuJjX8Js8IiG09Ijyq3
+	 893NXcmcLfWbg==
+Received: from [10.233.19.185] ([10.233.19.185:47296])
+	by pc1udsmtn1n16 (envelope-from <bounce@mail.paypal.com>)
+	(ecelerity 3.6.9.48312 r(Core:3.6.9.0)) with ECSTREAM
+	id F5/87-08123-F00B4826; Wed, 18 May 2022 08:36:31 +0000
+List-Unsubscribe: <mailto:bounce-HP2v600000180d64fbd2fc221c56e966f4650214@mail.paypal.com?subject=list-unsubscribe>
+Message-ID: <HP2v600000180d64fbd2fc221c56e966f4650214@mail.paypal.com>
+MIME-Version: 1.0
+Feedback-ID: f18a637f-d538-4471-bd9e-3ea82366c463:b4cad6e3-63d4-4776-bd51-33e0d8fe639a:email:epslh1
+X-NSS: f18a637f-d538-4471-bd9e-3ea82366c463
+Reply-To: "noreply@mail.paypal.com"
+ <noreply-HP2v600000180d64fbd2fc221c56e966f4650214@mail.paypal.com>
+Subject: =?UTF-8?B?QWx0ZXJhw6fDtWVzIGZ1dHVyYXMgYW9zIFQ=?=
+ =?UTF-8?B?ZXJtb3MgZSBDb25kacOnw7VlcyBQYXlQYWw=?=
+From: PayPal  <paypal@mail.paypal.com>
+To: faeldroom46@gmail.com
+Date: Wed, 18 May 2022 08:36:31 +0000
+Content-Type: multipart/alternative;
+ boundary="-=Part.311836.ae56f299ca03a8d0.180d64fbd73.b3c1c0b8ed544a8b=-"
+
+---=Part.311836.ae56f299ca03a8d0.180d64fbd73.b3c1c0b8ed544a8b=-
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+
+PayPal
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Ol=C3=A1 Rafael Souza,
+=20
+Tent=C3=A1mos enviar-lhe este e-mail como HTML (imagens e palavras), mas i=
+nfelizmente n=C3=A3o foi poss=C3=ADvel=2E Para v=C3=AA-lo corretamente no s=
+eu navegador, clique no seguinte link:
+=20
+https://epl=2Epaypal-communication=2Ecom/H/2/v600000180d64fbd2fc221c56e966=
+f4650/f18a637f-d538-4471-bd9e-3ea82366c463/HTML=20
+=20
+Atentamente,
+=20
+PayPal
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Envi=C3=A1mos-lhe este email para comunicar altera=C3=A7=C3=B5es =C3=A0 su=
+a conta=2E Esta mensagem n=C3=A3o =C3=A9 afetada pelas suas prefer=C3=AAnci=
+as de marketing:
+
+https://epl=2Epaypal-communication=2Ecom/T/v600000180d64fbd2fc221c56e966f4=
+650/f18a637fd53844710000021ef3a0bcc2/f18a637f-d538-4471-bd9e-3ea82366c463?_=
+_dU__=3Dv0G4RBKTXg2GtDSXU69hUjn5RqR7EEyYkx
+  =20
+Copyright (C) 1999-2022 PayPal=2E Todos os direitos reservados=2E PayPal (=
+Europe) S=2E=C3=A0 r=2El=2E et Cie, S=2EC=2EA=2E, Soci=C3=A9t=C3=A9 en Comm=
+andite par Actions=2E Sede social: 22=E2=80=9324 Boulevard Royal, L-2449 Lu=
+xembourg RCS Luxembourg B 118 349=2E
+
+207215
+---=Part.311836.ae56f299ca03a8d0.180d64fbd73.b3c1c0b8ed544a8b=-
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1=2E0 Transitional//EN" "http://ww=
+w=2Ew3=2Eorg/TR/xhtml1/DTD/xhtml1-transitional=2Edtd"><html xmlns=3D"http:/=
+/www=2Ew3=2Eorg/1999/xhtml" xmlns=3D"http://www=2Ew3=2Eorg/1999/xhtml" xmln=
+s:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:=
+office:office" lang=3D"en" xml:lang=3D"en"><head>
+    <title>PayPal</title>
+<link rel=3D"shortcut icon" href=3D"https://pp=2Eimages=2Eharmony=2Eepsilo=
+n=2Ecom/PayPal/favicon=2Eico" type=3D"image/x-icon">
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-=
+8" />
+    <meta content=3D"initial-scale=3D1=2E0" name=3D"viewport" />
+    <meta http-equiv=3D"X-UA-Compatible" />
+    <meta name=3D"robots" content=3D"no index" />
+
+    <style>
+      =2EappleLinks a {
+        color: #000000;
+      }
+      =2EappleLinksHEADLINE a {
+        color: #2c2e2f;
+        text-decoration: none;
+      }
+      =2EappleLinksBODY a {
+        color: #6c7378;
+        text-decoration: none;
+      }
+      =2EappleLinksWHITE a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+      =2EappleLinksGRAY2 a {
+        color: #77787b;
+        text-decoration: none;
+      }
+      =2EappleLinksDKGRAY a {
+        color: #595959;
+        text-decoration: none;
+      }
+      =2EappleLinksBLUE a {
+        color: #0073ae;
+        text-decoration: none;
+      }
+    </style>
+
+    <!--[if !mso]><!-- -->
+    <style>
+      @font-face {
+        font-family: "pp-sans-big-bold";
+        src: url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014des=
+ign/font/PP-Sans/PayPalSansBig-Bold=2Eeot")
+            format("eot"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansBig-Bold=2Ewoff")
+            format("woff"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/headlinedark/festivo1=2Ettf")
+            format("truetype");
+        font-weight: normal !important;
+        font-style: normal !important;
+      }
+
+      @font-face {
+        font-family: "pp-sans-big-light";
+        src: url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014des=
+ign/font/PP-Sans/PayPalSansBig-Light=2Eeot")
+            format("eot"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansBig-Light=2Ewoff")
+            format("woff"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/headlinedark/festivo1=2Ettf")
+            format("truetype"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansBig-Light=2Esvg")
+            format("svg");
+        font-weight: normal !important;
+        font-style: normal !important;
+      }
+
+      @font-face {
+        font-family: "pp-sans-big-medium";
+        src: url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014des=
+ign/font/PP-Sans/PayPalSansBig-Medium=2Eeot")
+            format("eot"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansBig-Medium=2Ewoff")
+            format("woff"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/headlinedark/festivo1=2Ettf")
+            format("truetype"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansBig-Medium=2Esvg")
+            format("svg");
+        font-weight: normal !important;
+        font-style: normal !important;
+      }
+
+      @font-face {
+        font-family: "pp-sans-big-regular";
+        src: url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014des=
+ign/font/PP-Sans/PayPalSansBig-Regular=2Eeot")
+            format("eot"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansBig-Regular=2Ewoff")
+            format("woff"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/headlinedark/festivo1=2Ettf")
+            format("truetype"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansBig-Regular=2Esvg")
+            format("svg");
+        font-weight: normal !important;
+        font-style: normal !important;
+      }
+
+      @font-face {
+        font-family: "pp-sans-big-thin";
+        src: url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014des=
+ign/font/PP-Sans/PayPalSansBig-Thin=2Eeot")
+            format("eot"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansBig-Thin=2Ewoff")
+            format("woff"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/headlinedark/festivo1=2Ettf")
+            format("truetype"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansBig-Thin=2Esvg")
+            format("svg");
+        font-weight: normal !important;
+        font-style: normal !important;
+      }
+
+      @font-face {
+        font-family: "pp-sans-small-light";
+        src: url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014des=
+ign/font/PP-Sans/PayPalSansSmall-Light=2Eeot")
+            format("eot"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansSmall-Light=2Ewoff")
+            format("woff"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/headlinedark/festivo1=2Ettf")
+            format("truetype"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansSmall-Light=2Esvg")
+            format("svg");
+        font-weight: normal !important;
+        font-style: normal !important;
+      }
+
+      @font-face {
+        font-family: "pp-sans-small-medium";
+        src: url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014des=
+ign/font/PP-Sans/PayPalSansSmall-Medium=2Eeot")
+            format("eot"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansSmall-Medium=2Ewoff")
+            format("woff"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/headlinedark/festivo1=2Ettf")
+            format("truetype"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansSmall-Medium=2Esvg")
+            format("svg");
+        font-weight: normal !important;
+        font-style: normal !important;
+      }
+
+      @font-face {
+        font-family: "pp-sans-small-regular";
+        src: url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014des=
+ign/font/PP-Sans/PayPalSansSmall-Regular=2Eeot")
+            format("eot"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansSmall-Regular=2Ewoff")
+            format("woff"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/headlinedark/festivo1=2Ettf")
+            format("truetype"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansSmall-Regular=2Esvg")
+            format("svg");
+        font-weight: normal !important;
+        font-style: normal !important;
+      }
+
+      @font-face {
+        font-family: "pp-sans-small-thin";
+        src: url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014des=
+ign/font/PP-Sans/PayPalSansSmall-Thin=2Eeot")
+            format("eot"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansSmall-Thin=2Ewoff")
+            format("woff"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/headlinedark/festivo1=2Ettf")
+            format("truetype"),
+          url("https://www=2Epaypalobjects=2Ecom/webstatic/mktg/2014design=
+/font/PP-Sans/PayPalSansSmall-Thin=2Esvg")
+            format("svg");
+        font-weight: normal !important;
+        font-style: normal !important;
+      }
+    </style>
+    <!--<![endif]-->
+
+    <style type=3D"text/css">
+      @media only screen and (max-width: 480px) {
+        @-ms-viewport {
+          width: 320px;
+        }
+        @viewport {
+          width: 320px;
+        }
+      }
+
+      div,
+      p,
+      a,
+      li,
+      td {
+        -webkit-text-size-adjust: none;
+      }
+
+      td {
+        text-decoration: none !important;
+      }
+
+      td {
+        border-bottom: none;
+      }
+
+      a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+      }
+
+      @media all and (min-width: 480px) {
+        =2Ehide {
+          display: block !important;
+          width: auto !important;
+          overflow: auto !important;
+          max-height: inherit !important;
+        }
+      }
+
+      @media all and (max-width: 480px) {
+        =2Emob-hide {
+          display: none !important;
+        }
+       =20
+      =2Emob-showcell {
+        display: table-cell !important;
+      }
+        =2Etable {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        a=2E100 {
+          width: 100% !important;
+        }
+
+        =2Etable-main {
+          width: 90% !important;
+        }
+
+        =2Etable-sm {
+          width: 80% !important;
+        }
+
+        =2Etable-xsm {
+          width: 70% !important;
+        }
+
+        =2Etable-full {
+          width: 100% !important;
+          min-width: 100% !important;
+        }
+
+        =2Eimg {
+          width: 100% !important;
+          height: auto !important;
+        }
+
+        =2Eheader-border {
+          width: 90% !important;
+          height: 1px !important;
+        }
+
+        =2Epad20 {
+          padding: 20px 20px 20px 20px !important;
+        }
+
+        =2Epad2035 {
+          padding: 20px 35px 20px 35px !important;
+        }
+
+        =2Epad2035nobot {
+          padding: 20px 35px 0px 35px !important;
+        }
+
+        =2Epad1235 {
+          padding: 12px 35px 12px 35px !important;
+        }
+
+        =2Epadside35 {
+          padding: 0px 35px 0px 35px !important;
+        }
+
+        =2Epad2035noborder {
+          padding: 20px 35px 20px 35px !important;
+          border: none !important;
+        }
+
+        =2Epad2035follow {
+          padding: 0px 35px 20px 35px !important;
+        }
+
+        =2Epad2035follownoborder {
+          padding: 0px 35px 20px 35px !important;
+          border: none !important;
+        }
+
+        =2Epad4035 {
+          padding: 40px 35px 40px 35px !important;
+        }
+
+        =2Enopad {
+          padding: 0px 0px 0px 0px !important;
+        }
+
+        =2Enopadtop {
+          padding-top: 0px !important;
+        }
+
+        =2Epadbot20 {
+          padding-bottom: 20px !important;
+        }
+
+        =2Epadbot20border {
+          padding-bottom: 20px !important;
+          border-bottom: solid 1px #dddddd !important;
+          text-align: center !important;
+        }
+
+        =2Ebordernone {
+          border: none !important;
+        }
+
+        =2Ecentertext {
+          text-align: center !important;
+        }
+
+        =2Ehide {
+          max-height: 0; /* Gmail*/
+          display: none; /* Generic*/
+          mso-hide: all; /* Outlook clients*/
+          overflow: hidden; /* Generic */
+        }
+
+        =2Emobile-only {
+          display: block !important;
+          width: 100% !important;
+          max-height: none !important;
+          color: #000000 !important;
+          font-size: 32px !important;
+        }
+
+        =2Enoheight {
+          height: auto !important;
+        }
+
+        =2Efull {
+          width: 100% !important;
+          border: none !important;
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+        }
+
+        a[class=3D"full_border"] {
+          width: 100% !important;
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+        }
+
+        =2EdisplayBlock {
+          width: 100% !important;
+          display: block !important;
+          margin-bottom: 4px;
+        }
+      }
+    </style>
+
+    <!--[if gte mso 9
+      ]><xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG /> <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml><!
+    [endif]-->
+
+    <!--[if mso | ie]>
+      <style>
+        =2Esup {
+          vertical-align: 1px !important;
+          font-size: 100% !important;
+        }
+
+
+
+
+
+
+
+
+      </style>
+    <![endif]-->
+    <!--[if ie]>
+      <style>
+        =2Esup {
+          vertical-align: 6px !important;
+          font-size: 80% !important;
+        }
+      </style>
+    <![endif]-->
+  </head>
+
+  <body style=3D"margin: 0px auto; padding: 0px;" bgcolor=3D"#f2f2f2" data=
+-modular=3D"true" data-base=3D"leftToRight=2Ehtml">
+  <!---->
+    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+ align=3D"center" role=3D"presentation">
+      <tbody><tr>
+        <td align=3D"center" valign=3D"middle" bgcolor=3D"#f2f2f2">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"640" align=3D"center" class=3D"table-full" role=3D"presentation" style=3D"=
+min-width:320px; max-width:640px;">
+            <tbody id=3D"base"><!-- Preheader START-->
+  <tr data-component=3D"preheaders" data-name=3D"pre1=2Ejs" data-base=3D"L=
+R">
+  <td align=3D"center" valign=3D"middle">
+   =20
+  <table width=3D"640" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" al=
+ign=3D"center" class=3D"table" style=3D"max-width:640px;" role=3D"presentat=
+ion">
+  <tbody><tr>
+ =20
+  <th align=3D"center" valign=3D"top" class=3D"coldrop" style=3D"font-weig=
+ht:normal;" width=3D"500">
+  <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+     <tbody>
+        <tr>
+            <td valign=3D"top" align=3D"left" style=3D"font-family:'pp-san=
+s-small-regular', Tahoma, Arial, sans-serif; font-size:12px; color:#666666;=
+ padding: 10px 10px 10px 10px;"><b><span style=3D"font-family:'pp-sans-smal=
+l-regular', Tahoma, Arial, sans-serif; font-size:12px; color:#666666;" data=
+-type=3D"plaintext" data-name=3D"name" data-block=3D"editable">Rafael Souza=
+</span></b> - <span style=3D"font-family:'pp-sans-small-regular', Tahoma, A=
+rial, sans-serif; font-size:12px; color:#666666;" data-type=3D"plaintext" d=
+ata-name=3D"description" data-block=3D"editable">Pode ver as altera=C3=A7=
+=C3=B5es no nosso site</span></td>
+        </tr>
+     </tbody>
+  </table>
+</th>
+<th align=3D"center" valign=3D"top" class=3D"coldrop" style=3D"font-weight=
+:normal;" width=3D"75">
+  <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+     <tbody>
+        <tr>
+            <td valign=3D"top" align=3D"right" style=3D"font-family:'pp-sa=
+ns-small-regular', Tahoma, Arial, sans-serif; font-size:12px; color:#666666=
+; white-space: nowrap; padding: 10px 10px 10px 0;" class=3D"view-online_ltr=
+"><a data-type=3D"plaintext" data-name=3D"View online text" data-block=3D"e=
+ditable" style=3D"font-family:'pp-sans-small-regular', Tahoma, Arial, sans-=
+serif; color:#666666;text-decoration:underline;" href=3D"https://epl=2Epayp=
+al-communication=2Ecom/H/2/v600000180d64fbd2fc221c56e966f4650/f18a637f-d538=
+-4471-bd9e-3ea82366c463/HTML" target=3D"_blank">Ver online</a>
+            </td>
+        </tr>
+     </tbody>
+  </table>
+</th> =20
+    </tr>
+    </tbody></table>
+  </td>
+  </tr> <!-- Preheader END--><!--Header 1=2E1 - PayPal - START-->
+    <tr data-component=3D"headers" data-name=3D"h1=2E1=2Ejs" data-base=3D"=
+LR">
+    <td align=3D"center" valign=3D"middle" bgcolor=3D"#ffffff" style=3D"ba=
+ckground-color:#ffffff;">
+   =20
+                    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%" align=3D"center" style=3D"min-width:320px;" role=3D"presen=
+tation">
+                    <tbody><tr>
+                    <td align=3D"center" valign=3D"middle" style=3D"paddin=
+g:10px 0px 10px 0px;">
+   =20
+                            <table border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" align=3D"center" role=3D"presentation">
+                            <tbody><tr>
+                            <td align=3D"center" valign=3D"middle" height=
+=3D"70" style=3D"vertical-align: middle;">
+   =20
+                                <a data-type=3D"imglink" data-tag=3D"IMG" =
+data-max=3D"140" data-strict=3D"true" data-name=3D"PayPal logo" data-block=
+=3D"editable" href=3D"https://epl=2Epaypal-communication=2Ecom/T/v600000180=
+d64fbd2fc221c56e966f4650/f18a637fd53844710000021ef3a0bcc3/f18a637f-d538-447=
+1-bd9e-3ea82366c463?__dU__=3Dv0G4RBKTXg2GtDSXU69hUjn5RqR7EEyYkx" target=3D"=
+_blank" style=3D"text-decoration: none;" data-linkname=3D"PayPal">
+                                <img src=3D"https://images=2Ectfassets=2En=
+et/7rifqg28wcbd/52UVBwiCFFmTktrlmJYRAr/3adedd4218c0ccb648245e74761fb336/Pay=
+Pal_logo_blue=2Epng" alt=3D"PayPal" title=3D"PayPal" height=3D"50" border=
+=3D"0" style=3D"display:block; font-family:'pp-sans-big-medium', Tahoma, Ar=
+ial, sans-serif; font-size:32px; color:#003288;" /></a>
+   =20
+                            </td>
+                            </tr>
+                            </tbody></table>
+   =20
+                    </td>
+                    </tr>
+                    <tr>
+                    <td align=3D"center" valign=3D"middle" style=3D"paddin=
+g:0px 0px 0px 0px; vertical-align: middle; line-height: 1px;">
+   =20
+                            <table border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" align=3D"center" role=3D"presentation">
+                            <tbody><tr>
+                            <td align=3D"center" valign=3D"middle" height=
+=3D"1" style=3D"vertical-align: middle; line-height: 1px;">
+   =20
+                                <img src=3D"https://images=2Ectfassets=2En=
+et/7rifqg28wcbd/1tFsF7cjjNpwaLC3AKwtu7/3709b2fab644d1c377323faf87f300f9/hea=
+dergrad_onwhite=2Ejpg" alt height=3D"1" border=3D"0" style=3D"display:block=
+;" class=3D"header-border" />
+   =20
+                            </td>
+                            </tr>
+                            </tbody></table>
+   =20
+                    </td>
+                    </tr>
+                    </tbody></table>
+   =20
+            </td>
+            </tr>
+    <!--Header 1=2E1 - PayPal - END--><tr data-component=3D"tertiaries" da=
+ta-name=3D"t2=2E1=2Ejs" data-base=3D"LR">
+    <td align=3D"center" valign=3D"middle" style=3D"padding:0px 0px 0px 0p=
+x; background-color:#ffffff;" bgcolor=3D"#ffffff">
+   =20
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" align=3D"center" style=3D"max-width: 640px;" role=3D"presentation=
+">
+            <tbody><tr>
+            <td align=3D"center" valign=3D"middle">
+    <img data-name=3D"Spacer Image" data-block=3D"editable" src=3D"https:/=
+/images=2Ectfassets=2Enet/7rifqg28wcbd/6Xa3RLs8deEywtgXmAo9JV/61b1ee3576f04=
+73ea04f86166fc8f4b1/spacer=2Egif" alt width=3D"25" height=3D"25" border=3D"=
+0" style=3D"display:block;" />
+   =20
+            </td>
+            </tr>
+            </tbody></table>
+       =20
+    </td>
+    </tr><tr data-component=3D"blocks" data-name=3D"b5=2E1=2Ejs" data-base=
+=3D"LR">
+    <td align=3D"center" valign=3D"middle" style=3D"padding:0px 0px 0px 0p=
+x; background-color:#ffffff;" bgcolor=3D"#ffffff">
+   =20
+            <table width=3D"560" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" align=3D"center" class=3D"table" style=3D"max-width: 560px;" role=
+=3D"presentation">
+            <tbody><tr>
+            <td align=3D"center" valign=3D"middle" style=3D"padding: 20px =
+20px 0px 20px;" class=3D"pad2035nobot">
+   =20
+                    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%" align=3D"left" role=3D"presentation">
+                    <tbody><tr>
+                    <td align=3D"left" valign=3D"middle" style=3D"padding:=
+0px 0px 0px 0px;">
+                       =20
+                        <p data-max=3D"216" data-type=3D"richtext" data-na=
+me=3D"Body copy" data-block=3D"editable" style=3D"margin: 0px; font-family:=
+'pp-sans-small-regular', Tahoma, Arial, sans-serif; font-size:16px; mso-lin=
+e-height-rule:exactly; line-height:150%; color:#6c7378;">Ol=C3=A1, Rafael S=
+ouza=2E<br /><br />Estamos a fazer algumas altera=C3=A7=C3=B5es aos nossos =
+Termos e Condi=C3=A7=C3=B5es que ser=C3=A3o aplic=C3=A1veis a si=2E<br /><b=
+r />De momento, n=C3=A3o =C3=A9 preciso fazer nada=2E Se quiser saber mais,=
+ visite a nossa p=C3=A1gina <a target=3D"_blank" href=3D"https://epl=2Epayp=
+al-communication=2Ecom/T/v600000180d64fbd2fc221c56e966f4650/f18a637fd538447=
+10000021ef3a0bcc4/f18a637f-d538-4471-bd9e-3ea82366c463?__dU__=3Dv0G4RBKTXg2=
+GtDSXU69hUjn5RqR7EEyYkx" data-linkname=3D"Policy_Updates" data-tag=3D"GEN" =
+title=3D"Atualiza=C3=A7=C3=B5es da Pol=C3=ADtica" style=3D"text-decoration:=
+ underline; color: rgb(108, 115, 120);">Atualiza=C3=A7=C3=B5es da pol=C3=AD=
+tica</a> para obter detalhes sobre estas altera=C3=A7=C3=B5es, quando se ap=
+licam e o que pode fazer se as quiser declinar=2E<br />Em alternativa, visi=
+te PayPal=2Ecom e clique em Termos e Condi=C3=A7=C3=B5es=2E Na parte inferi=
+or da p=C3=A1gina, selecione Atualiza=C3=A7=C3=B5es da Pol=C3=ADtica=2E<br =
+/><br />Se tiver d=C3=BAvidas sobre qualquer uma destas altera=C3=A7=C3=B5e=
+s ou sobre a sua conta, n=C3=A3o hesite em <a target=3D"_blank" href=3D"htt=
+ps://epl=2Epaypal-communication=2Ecom/T/v600000180d64fbd2fc221c56e966f4650/=
+f18a637fd53844710000021ef3a0bcc5/f18a637f-d538-4471-bd9e-3ea82366c463?__dU_=
+_=3Dv0G4RBKTXg2GtDSXU69hUjn5RqR7EEyYkx" data-linkname=3D"Contact" data-tag=
+=3D"GEN" title=3D"Contactos" style=3D"text-decoration: underline; color: rg=
+b(108, 115, 120);">contactar-nos</a>=2E<br /><br />Obrigado por ser cliente=
+ PayPal=2E<br /><br />Atenciosamente,<br /><br />PayPal <br /></p>
+   =20
+                    </td>
+                    </tr>
+                    </tbody></table>
+   =20
+            </td>
+            </tr>
+            </tbody></table>
+       =20
+    </td>
+    </tr><tr data-component=3D"tertiaries" data-name=3D"t2=2E1=2Ejs" data-=
+base=3D"LR">
+    <td align=3D"center" valign=3D"middle" style=3D"padding:0px 0px 0px 0p=
+x; background-color:#ffffff;" bgcolor=3D"#ffffff">
+   =20
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" align=3D"center" style=3D"max-width: 640px;" role=3D"presentation=
+">
+            <tbody><tr>
+            <td align=3D"center" valign=3D"middle">
+    <img data-name=3D"Spacer Image" data-block=3D"editable" src=3D"https:/=
+/images=2Ectfassets=2Enet/7rifqg28wcbd/6Xa3RLs8deEywtgXmAo9JV/61b1ee3576f04=
+73ea04f86166fc8f4b1/spacer=2Egif" alt width=3D"25" height=3D"25" border=3D"=
+0" style=3D"display:block;" />
+   =20
+            </td>
+            </tr>
+            </tbody></table>
+       =20
+    </td>
+    </tr><!--Tertiary 5=2E1 START-->=09
+    <tr data-component=3D"tertiaries" data-name=3D"t5=2E1=2Ejs" data-base=
+=3D"LR">
+    <td align=3D"center" valign=3D"middle" style=3D"padding:0px 0px 0px 0p=
+x; background-color:#f5f7fa;" bgcolor=3D"#f5f7fa">
+   =20
+            <table width=3D"620" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" align=3D"center" class=3D"table" style=3D"max-width: 620px; backgro=
+und-color: inherit;" role=3D"presentation">
+            <tbody><tr>
+            <td align=3D"center" valign=3D"middle" style=3D"padding: 25px =
+20px 25px 20px;" class=3D"pad2035">
+   =20
+                    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%" align=3D"center" role=3D"presentation">
+   =20
+                        <tbody>
+   =20
+                       =20
+   =20
+   =20
+                       =20
+                   =20
+                   =20
+                       =20
+                   =20
+                   =20
+                    <tr>
+                    <td align=3D"left" valign=3D"middle" style=3D"padding:=
+0px 0px 0px 0px;">
+                       =20
+                        <p data-type=3D"richtext" data-name=3D"Footer Copy=
+ 2" data-block=3D"editable" style=3D"margin: 0px; font-family:'pp-sans-smal=
+l-regular', Tahoma, Arial, sans-serif; font-size:13px; mso-line-height-rule=
+:exactly; line-height:150%; color:#6c7378;">
+   =20
+                        Envi=C3=A1mos-lhe este email para comunicar altera=
+=C3=A7=C3=B5es =C3=A0 sua conta=2E Esta mensagem n=C3=A3o =C3=A9 afetada pe=
+las suas <a href=3D"https://epl=2Epaypal-communication=2Ecom/T/v600000180d6=
+4fbd2fc221c56e966f4650/f18a637fd53844710000021ef3a0bcc6/f18a637f-d538-4471-=
+bd9e-3ea82366c463?__dU__=3Dv0G4RBKTXg2GtDSXU69hUjn5RqR7EEyYkx" target=3D"_b=
+lank" data-linkname=3D"UNSUB Link" data-tag=3D"UNSUB" data-linkdescription=
+=3D"UNSUB Link" style=3D"color: #6c7378;text-decoration:underline;">prefer=
+=C3=AAncias de marketing</a>=2E
+                           =20
+                        </p>
+   =20
+                    </td>
+                    </tr>
+                    <tr>
+                    <td align=3D"left" valign=3D"middle" style=3D"padding:=
+20px 0px 0px 0px;">
+                       =20
+                        <p data-type=3D"richtext" data-name=3D"Footer Copy=
+ 3" data-block=3D"editable" style=3D"margin: 0px; font-family:'pp-sans-smal=
+l-regular', Tahoma, Arial, sans-serif; font-size:13px; mso-line-height-rule=
+:exactly; line-height:150%; color:#6c7378;">
+   =20
+                        Copyright =C2=A9 1999-2022 PayPal=2E Todos os dire=
+itos reservados=2E PayPal (Europe) S=2E=C3=A0 r=2El=2E et Cie, S=2EC=2EA=2E=
+, Soci=C3=A9t=C3=A9 en Commandite par Actions=2E Sede social: 22=E2=80=9324=
+ Boulevard Royal, L-2449 Luxembourg RCS Luxembourg B 118 349=2E
+                           =20
+                        </p>
+   =20
+                    </td>
+                    </tr>
+                    <tr data-parent=3D"ID">
+                    <td align=3D"left" valign=3D"middle" style=3D"padding:=
+20px 0px 0px 0px;">
+                       =20
+                        <p data-type=3D"richtext" data-name=3D"ID" data-bl=
+ock=3D"editable" style=3D"margin: 0px; font-family:'pp-sans-small-regular',=
+ Tahoma, Arial, sans-serif; font-size:13px; mso-line-height-rule:exactly; l=
+ine-height:150%; color:#6c7378;">207215</p>
+   =20
+                    </td>
+                    </tr>=20
+                       =20
+                    </tbody></table>
+               =20
+               =20
+            </td>
+            </tr>
+            </tbody></table>
+                   =20
+    </td>
+    </tr>
+    <!--Tertiary 5=2E1 END--><tr>
+                <td class=3D"mob-hide">
+                  <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+align=3D"center" width=3D"640" role=3D"presentation">
+                    <tbody><tr>
+                      <td style=3D"line-height:2px; height:2px; min-width:=
+ 640px;">
+                        <img src=3D"https://images=2Ectfassets=2Enet/7rifq=
+g28wcbd/6Xa3RLs8deEywtgXmAo9JV/61b1ee3576f0473ea04f86166fc8f4b1/spacer=2Egi=
+f" height=3D"2" width=3D"640" style=3D"max-height:2px; min-height:2px; disp=
+lay:block; width:640px; min-width:640px;" />
+                      </td>
+                    </tr>
+                  </tbody></table>
+                </td>
+              </tr></tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody></table>
+    <table><tbody><tr><td valign=3D"top" align=3D"center">
+   =20
+    </td></tr></tbody></table>
+ =20
+
+
+<img src=3D'https://epl=2Epaypal-communication=2Ecom/O/v600000180d64fbd2fc=
+221c56e966f4650/f18a637fd538447100004c5a42963aa1' style=3D"display:none; ma=
+x-height: 0px; font-size: 0px; overflow: hidden; mso-hide: all"/></body></h=
+tml>
+---=Part.311836.ae56f299ca03a8d0.180d64fbd73.b3c1c0b8ed544a8b=---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>2388</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1652862993</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>9486</string>
+</dict>
+</plist>

@@ -1,0 +1,1079 @@
+jQuery(document).ready(function() {
+
+    /**
+     * Code will loop through each element that has the class markdown-editor and
+     * enable the Markdown editor.
+     */
+    var count = 0,
+        editorName = 'clientMDE',
+        counter = 0;
+    jQuery(".markdown-editor").each(function( index ) {
+        count++;
+        var autoSaveName = jQuery(this).data('auto-save-name'),
+            footerId = jQuery(this).attr('id') + '-footer';
+        if (typeof autoSaveName == "undefined") {
+            autoSaveName = 'client_area';
+        }
+        window[editorName + count.toString()] = jQuery(this).markdown(
+        {
+            footer: '<div id="' + footerId + '" class="markdown-editor-status"></div>',
+            autofocus: false,
+            savable: false,
+            resize: 'vertical',
+            iconlibrary: 'fa',
+            language: locale,
+            onShow: function(e){
+                var content = '',
+                    save_enabled = false;
+                if(typeof(Storage) !== "undefined") {
+                    // Code for localStorage/sessionStorage.
+                    content = localStorage.getItem(autoSaveName);
+                    save_enabled = true;
+                    if (content && typeof(content) !== "undefined") {
+                        e.setContent(content);
+                    }
+                }
+                jQuery("#" + footerId).html(parseMdeFooter(content, save_enabled, saved));
+            },
+            onChange: function(e){
+                var content = e.getContent(),
+                    save_enabled = false;
+                if(typeof(Storage) !== "undefined") {
+                    counter = 3;
+                    save_enabled = true;
+                    localStorage.setItem(autoSaveName, content);
+                    doCountdown();
+                }
+                jQuery("#" + footerId).html(parseMdeFooter(content, save_enabled));
+            },
+            onPreview: function(e){
+                var originalContent = e.getContent(),
+                    parsedContent;
+
+                jQuery.ajax({
+                    url: 'clientarea.php',
+                    async: false,
+                    data: {token: csrfToken, action: 'parseMarkdown', content: originalContent},
+                    dataType: 'json',
+                    success: function (data) {
+                        parsedContent = data;
+                    }
+                });
+
+                return parsedContent.body ? parsedContent.body : '';
+            },
+            additionalButtons: [
+                [{
+                    name: "groupCustom",
+                    data: [{
+                        name: "cmdHelp",
+                        title: "Help",
+                        hotkey: "Ctrl+F1",
+                        btnClass: "btn open-modal",
+                        icon: {
+                            glyph: 'glyphicons glyphicons-question-sign',
+                            fa: 'fa fa-question-circle',
+                            'fa-3': 'icon-question-sign'
+                        },
+                        callback: function(e) {
+                            e.$editor.removeClass("md-fullscreen-mode");
+                        }
+                    }]
+                }]
+            ],
+            hiddenButtons: [
+                'cmdImage'
+            ]
+        });
+        jQuery('button[data-handler="bootstrap-markdown-cmdHelp"]')
+            .attr('data-modal-title', markdownGuide)
+            .attr('href', 'submitticket.php?action=markdown');
+
+        jQuery(this).closest("form").bind({
+            submit: function() {
+                if(typeof(Storage) !== "undefined") {
+                    localStorage.removeItem(autoSaveName);
+                }
+            }
+        });
+    });
+
+    // Email verification
+    jQuery('#btnResendVerificationEmail').click(function() {
+        jQuery.post('clientarea.php',
+            {
+                'token': csrfToken,
+                'action': 'resendVerificationEmail'
+            }).done(function(data) {
+                jQuery('#btnResendVerificationEmail').html('Email Sent').prop('disabled', true);
+            });
+    });
+
+    /**
+     * Parse the content to populate the markdown editor footer.
+     *
+     * @param {string} content
+     * @param {bool} auto_save
+     * @param {string} [saveText]
+     * @returns {string}
+     */
+    function parseMdeFooter(content, auto_save, saveText)
+    {
+        saveText = saveText || saving;
+        var pattern = /[a-zA-Z0-9_\u0392-\u03c9]+|[\u4E00-\u9FFF\u3400-\u4dbf\uf900-\ufaff\u3040-\u309f\uac00-\ud7af]+/g,
+            m = [],
+            word_count = 0,
+            line_count = 0;
+        if (content) {
+            m = content.match(pattern);
+            line_count = content.split(/\\r\\n|\\r|\\n/).length;
+        }
+        for(var i = 0; i < m.length; i++) {
+            if(m[i].charCodeAt(0) >= 0x4E00) {
+                word_count += m[i].length;
+            } else {
+                word_count += 1;
+            }
+        }
+        return '<div class="small-font">lines: ' + line_count
+            + '&nbsp;&nbsp;&nbsp;words: ' + word_count + ''
+            + (auto_save ? '&nbsp;&nbsp;&nbsp;<span class="markdown-save">' + saveText + '</span>' : '')
+            + '</div>';
+    }
+
+    /**
+     * Countdown the save timeout. When zero, the span will update to show saved.
+     */
+    function doCountdown()
+    {
+        if (counter >= 0) {
+            if (counter == 0) {
+                jQuery("span.markdown-save").html(saved);
+            }
+            counter--;
+            setTimeout(doCountdown, 1000);
+        }
+    }
+
+    // Two-Factor Activation Process Modal Handler.
+    var frmTwoFactorActivation = jQuery('input[name=2fasetup]').parent('form');
+    frmTwoFactorActivation.submit(function(e) {
+        e.preventDefault();
+        openModal(frmTwoFactorActivation.attr('action'), frmTwoFactorActivation.serialize(), 'Loading...');
+    });
+
+    jQuery('#frmPayment').find('#btnSubmit').on('click', function(){
+        jQuery(this).find('span').toggleClass('hidden');
+    });
+    // SSL Manage Action Button.
+jQuery('.btn-resend-approver-email').click(function () {
+    jQuery.post(
+        jQuery(this).data('url'),
+        {
+            addonId: jQuery(this).data('addonid'),
+            serviceId: jQuery(this).data('serviceid'),
+        },
+        function(data) {
+            if (data.success == true) {
+                jQuery('.alert-table-ssl-manage').addClass('alert-success').text('Approver Email Resent').removeClass('hidden');
+            } else {
+                jQuery('.alert-table-ssl-manage').addClass('alert-danger').text('Error: ' + data.message).removeClass('hidden');
+            }
+        }
+    );
+});
+});
+
+// Default catch for all other popovers
+jQuery('[data-toggle="popover"]').popover({
+    html: true
+});
+
+// Logic to dismiss popovers on click outside
+jQuery('body').on('click', function (e) {
+    jQuery('[data-toggle="popover"]').each(function () {
+        if (!jQuery(this).is(e.target) && jQuery(this).has(e.target).length === 0 && jQuery('.popover').has(e.target).length === 0) {
+            jQuery(this).popover('hide');
+        }
+    });
+});
+
+(function(j) {
+  j.fn.extend({
+    accordion: function() {
+      return this.each(function() {
+        function b(c, b) {
+          $(c).parent(d).siblings().removeClass(e).children(f).slideUp(g);
+          $(c).siblings(f)[b || h](b == "show" ? g : !1, function() {
+            $(c).siblings(f).is(":visible") ? $(c).parents(d).not(a.parents()).addClass(e) : $(c).parent(d).removeClass(e);
+            b == "show" && $(c).parents(d).not(a.parents()).addClass(e);
+            $(c).parents().show()
+          })
+        }
+        var a = $(this), e = "active", h = "slideToggle", f = "ul, div", g = "fast", d = "li";
+        if (a.data("accordiated"))
+          return !1;
+        $.each(a.find("ul, li>div"),
+          function() {
+            $(this).data("accordiated", !0);
+            $(this).hide()
+          });
+        $.each(a.find("a"), function() {
+          $(this).click(function() {
+            b(this, h)
+          });
+          $(this).bind("activate-node", function() {
+            a.find(f).not($(this).parents()).not($(this).siblings()).slideUp(g);
+            b(this, "slideDown")
+          })
+        });
+        var i = location.hash ? a.find("a[href='" + location.hash + "']")[0]: a.find("li.current a")[0];
+				
+				if (i === undefined) {
+					jQuery(document).ready(function() {
+							jQuery("ul.nav.nav-material a[href='" + location.hash).trigger( "click" );
+					});
+				}else{
+					i && b(i, !1);
+				}
+      })
+}
+})
+})(jQuery);
+
+/**
+ * WHMCS core JS library reference
+ *
+ * @copyright Copyright (c) WHMCS Limited 2005-2017
+ * @license http://www.whmcs.com/license/ WHMCS Eula
+ */
+
+(function (window, factory) {
+    if (typeof window.WHMCS !== 'object') {
+        window.WHMCS = factory;
+    }
+}(
+    window,
+    {
+        hasModule: function (name) {
+            return (typeof WHMCS[name] !== 'undefined'
+            && Object.getOwnPropertyNames(WHMCS[name]).length > 0);
+        },
+        loadModule: function (name, module) {
+            if (this.hasModule(name)) {
+                return;
+            }
+
+            WHMCS[name] = {};
+            if (typeof module === 'function') {
+                (module).apply(WHMCS[name]);
+            } else {
+                for (var key in module) {
+                    if (module.hasOwnProperty(key)) {
+                        WHMCS[name][key] = {};
+                        (module[key]).apply(WHMCS[name][key]);
+                    }
+                }
+            }
+        }
+    }
+));
+/**
+ * WHMCS HTTP module
+ *
+ * @copyright Copyright (c) WHMCS Limited 2005-2018
+ * @license http://www.whmcs.com/license/ WHMCS Eula
+ */
+(function(module) {
+    if (!WHMCS.hasModule('http')) {
+        WHMCS.loadModule('http', module);
+    }
+})({
+    jqClient: function () {
+        _getSettings = function (url, data, success, dataType)
+        {
+            if (typeof url === 'object') {
+                /*
+                 Settings may be the only argument
+                 */
+                return url;
+            }
+
+            if (typeof data === 'function') {
+                /*
+                 If 'data' is omitted, 'success' will come in its place
+                 */
+                success = data;
+                data = null;
+            }
+
+            return {
+                url: url,
+                data: data,
+                success: success,
+                dataType: dataType
+            };
+        };
+
+        /**
+         * @param url
+         * @param data
+         * @param success
+         * @param dataType
+         * @returns {*}
+         */
+        this.get = function (url, data, success, dataType)
+        {
+            return WHMCS.http.client.request(
+                jQuery.extend(
+                    _getSettings(url, data, success, dataType),
+                    {
+                        type: 'GET'
+                    }
+                )
+            );
+        };
+
+        /**
+         * @param url
+         * @param data
+         * @param success
+         * @param dataType
+         * @returns {*}
+         */
+        this.post = function (url, data, success, dataType)
+        {
+            return WHMCS.http.client.request(
+                jQuery.extend(
+                    _getSettings(url, data, success, dataType),
+                    {
+                        type: 'POST'
+                    }
+                )
+            );
+        };
+
+        /**
+         * @param options
+         * @returns {*}
+         */
+        this.jsonPost = function (options) {
+            options = options || {};
+            this.post(options.url, options.data, function(response) {
+                if (response.warning) {
+                    console.log('[WHMCS] Warning: ' + response.warning);
+                    if (typeof options.warning === 'function') {
+                        options.warning(response.warning);
+                    }
+                } else if (response.error) {
+                    console.log('[WHMCS] Error: ' + response.error);
+                    if (typeof options.error === 'function') {
+                        options.error(response.error);
+                    }
+                } else {
+                    if (typeof options.success === 'function') {
+                        options.success(response);
+                    }
+                }
+            }, 'json').error(function(xhr, errorMsg){
+                console.log('[WHMCS] Error: ' + errorMsg);
+                if (typeof options.fail === 'function') {
+                    options.fail(errorMsg);
+                }
+            }).always(function() {
+                if (typeof options.always === 'function') {
+                    options.always();
+                }
+            });
+        };
+
+        return this;
+    },
+
+    client: function () {
+        var methods = ['get', 'post', 'put', 'delete'];
+        var client = this;
+
+        _beforeRequest = function (settings)
+        {
+            /*
+             Enforcing dataType was found to break many invocations expecting HTML back.
+             If/when those are refactored, this may be uncommented to enforce a safer
+             data transit.
+             */
+            /*if (typeof settings.dataType === 'undefined') {
+             settings.dataType = 'json';
+             }*/
+
+            if (typeof settings.type === 'undefined') {
+                // default request type is GET
+                settings.type = 'GET';
+            }
+
+            /*
+             Add other preprocessing here if required
+             */
+
+            return settings;
+        };
+
+        this.request = function (settings)
+        {
+            settings = _beforeRequest(settings || {});
+            return jQuery.ajax(settings);
+        };
+
+        /*
+         Create shortcut methods for methods[] array above
+         */
+        jQuery.each(methods, function(index, method) {
+            client[method] = (function(method, client) {
+                return function (settings)
+                {
+                    settings = settings || {};
+
+                    settings.type = method.toUpperCase();
+
+                    return client.request(settings);
+                }
+            })(method, client);
+        });
+
+        return this;
+    }
+
+});
+
+// Checkboxes Toggle
+// ===============================
+function toggleCheckboxes(classname) {
+  jQuery("."+classname).attr('checked',!jQuery("."+classname+":first").is(':checked'));
+}
+// Disable Field Class
+// ===============================
+function disableFields(classname,disable) {
+  if (disable) jQuery("."+classname).attr("disabled","disabled");
+  else jQuery("."+classname).removeAttr("disabled");
+}
+
+/**
+ * Used to toggle display of editable billing address fields.
+ */
+function editBillingAddress() {
+    jQuery("#billingAddressSummary").hide();
+    jQuery(".cc-billing-address").hide().removeClass('hidden').fadeIn();
+}
+
+
+/**
+ * Show new credit card input fields.
+ */
+function showNewCardInputFields() {
+    if (jQuery(".cc-details").hasClass("hidden")) {
+        jQuery(".cc-details").hide().removeClass("hidden");
+    }
+    jQuery(".cc-details").slideDown();
+    jQuery("#btnEditBillingAddress").removeAttr("disabled");
+}
+
+/**
+ * Hide new credit card input fields.
+ */
+function hideNewCardInputFields() {
+    jQuery(".cc-billing-address").slideUp();
+    jQuery(".cc-details").slideUp();
+    jQuery("#btnEditBillingAddress").attr("disabled", "disabled");
+    if (jQuery("#billingAddressSummary").hasClass('hidden')) {
+        jQuery("#billingAddressSummary").hide().removeClass('hidden').slideDown();
+    } else {
+        jQuery("#billingAddressSummary").slideDown();
+    }
+}
+
+// Open Centered Popup
+// ===============================
+function popupWindow(addr,popname,w,h,features) {
+  var winl = (screen.width-w)/2;
+  var wint = (screen.height-h)/2;
+  if (winl < 0) winl = 0;
+  if (wint < 0) wint = 0;
+  var settings = 'height=' + h + ',';
+  settings += 'width=' + w + ',';
+  settings += 'top=' + wint + ',';
+  settings += 'left=' + winl + ',';
+  settings += features;
+  win = window.open(addr,popname,settings);
+  win.window.focus();
+}
+// Support Tickets
+// ===============================
+function extraTicketAttachment() {
+  jQuery("#fileuploads").append('<p><div class="input-group"><span class="input-group-btn"><span class="btn btn-default btn-sm btn-file"><span class="glyphicon glyphicon-folder-open"></span> <input type="file" name="attachments[]" multiple=""></span></span><input type="text" class="form-control input-sm" readonly=""></div></p>');
+  $(document).ready( function() {
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+
+      var input = $(this).parents('.input-group').find(':text'),
+      log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+      if( input.length ) {
+        input.val(log);
+      } else {
+        if( log ) alert(log);
+      }
+
+    });
+  });
+}
+function rating_hover(id) {
+    var selrating=id.split('_');
+    for(var i=1; i<=5; i++){
+        if(i<=selrating[1]) document.getElementById(selrating[0]+'_'+i).childNodes[0].className="glyphicon glyphicon-star";
+        if(i>selrating[1]) document.getElementById(selrating[0]+'_'+i).childNodes[0].className="glyphicon glyphicon-star-empty";
+    }
+}
+function rating_leave(id){
+    for(var i=1; i<=5; i++){
+        document.getElementById(id+'_'+i).childNodes[0].className="glyphicon glyphicon-star-empty";
+    }
+}
+function rating_select(tid,c,id){
+  window.location='viewticket.php?tid='+tid+'&c='+c+'&rating='+id;
+}
+// Sidebar
+// ===============================
+$('ul.nav-list').accordion();
+$('.site-holder.container .nav > li > ul > li.active').parent().css('display','block');
+$('.site-holder.container.mini-sidebar .nav > li > ul > li.active').parent().css('display','none');
+$('.btn-nav-toggle-responsive').click(function(){
+  $('.left-sidebar').toggleClass('show-fullsidebar');
+});
+$('li.nav-toggle > button').click(function(e){
+        //Set cookie
+        if($.cookie('minibar')==null||$.cookie('minibar')==0) {
+          $.cookie('minibar',1);
+          $('li.submenu').removeClass('active');
+          $('li.submenu > ul').hide();
+          $('.fa.arrow.rotate').removeClass('down');
+        }
+        else {
+          $.cookie('minibar',0);
+        }
+        e.preventDefault();
+        changeSidebarState();
+      });
+    //Load sidebar state
+    $(function(){
+      if($.cookie('minibar')==1) {
+        changeSidebarStateNoAnimate();
+      }
+    });
+    function changeSidebarState(){
+      $('.hidden-minibar').toggleClass("hide");
+      $('.site-holder').toggleClass("mini-sidebar");
+
+      if($('.toggle-right').hasClass('fa-angle-double-right')){ $('.toggle-right').removeClass('fa-angle-double-right').addClass('fa-angle-double-left'); }
+            else { $('.toggle-right').removeClass('fa-angle-double-left').addClass('fa-angle-double-right'); }
+
+      if($('.toggle-left').hasClass('fa-angle-double-left')){ $('.toggle-left').removeClass('fa-angle-double-left').addClass('fa-angle-double-right'); }
+            else { $('.toggle-left').removeClass('fa-angle-double-right').addClass('fa-angle-double-left'); }
+
+      if($('.site-holder').hasClass('mini-sidebar'))
+      {
+        $('.sidebar-holder').tooltip({
+          selector: "a",
+          container: "body",
+          placement: "right"
+        });
+        $('li.submenu ul').tooltip('destroy');
+      }
+      else
+      {
+        $('.sidebar-holder').tooltip('destroy');
+      }
+    }
+    function changeSidebarStateNoAnimate(){
+      $('.toggle-left').removeClass('fa-angle-double-left').addClass('fa-angle-double-right');
+      $('.toggle-right').removeClass('fa-angle-double-right').addClass('fa-angle-double-left');
+      if($('.site-holder').hasClass('mini-sidebar'))
+      {
+        $('.sidebar-holder').tooltip({
+          selector: "a",
+          container: "body",
+          placement: "right"
+        });
+        $('li.submenu ul').tooltip('destroy');
+      }
+      else
+      {
+        $('.sidebar-holder').tooltip('destroy');
+      }
+    }
+      //
+      if($('.site-holder').hasClass('mini-sidebar'))
+      {
+        $('.sidebar-holder').tooltip({
+          selector: "a",
+          container: "body",
+          placement: "right"
+        });
+        $('li.submenu').tooltip('destroy');
+      }
+      else
+      {
+        $('.sidebar-holder').tooltip('destroy');
+      }
+      $('.show-info').click(function(){
+       $(this).toggleClass("down");
+        $('.page-information').toggleClass('hidden');
+      });
+
+      $('.site-holder.mini-sidebar .content').click(function () {
+       $('.site-holder.mini-sidebar li.submenu ul').hide();
+       $('.site-holder.mini-sidebar li.submenu').removeClass('active');
+
+     });
+
+// Rotate icon
+// ===============================
+$(".sidebar-holder .nav a.dropdown").click(function(){
+$('.rotate', this).toggleClass("down")  ;
+})
+
+
+// Language Dropdown
+// ===============================
+
+
+$('.settings-toggle').click(function(e){
+  e.preventDefault();
+  $('.right-sidebar').toggleClass('right-sidebar-hidden');
+});
+$('.theme-panel-close').click(function(){
+  $('.right-sidebar').toggleClass('right-sidebar-hidden');
+});
+
+$(function(){
+  $('.right-sidebar-holder').perfectScrollbar();
+});
+
+// Scrollbar
+// ===============================
+
+
+$(function(){
+  $('.ps-messages').perfectScrollbar();
+});
+
+$(function(){
+  $('.ps-languages').perfectScrollbar();
+});
+
+$(function(){
+  $('.server-list').perfectScrollbar();
+});
+
+// Server List
+// ===============================
+
+
+$(function(){
+        $('.server-list').tooltip({
+          selector: "a",
+          container: "body",
+          placement: "top"
+        });
+});
+
+ // Enable Switches for Checkboxes
+    if (jQuery.prototype.bootstrapSwitch) {
+        jQuery(".toggle-switch-success").bootstrapSwitch({
+            onColor: 'success'
+        });
+    }
+
+// Handle Single Sign-On Toggle Setting
+    jQuery("#inputAllowSso").on('switchChange.bootstrapSwitch', function(event, isChecked) {
+        if (isChecked) {
+            jQuery("#ssoStatusTextEnabled").removeClass('hidden').show();
+            jQuery("#ssoStatusTextDisabled").hide();
+        } else {
+            jQuery("#ssoStatusTextDisabled").removeClass('hidden').show();
+            jQuery("#ssoStatusTextEnabled").hide();
+        }
+        jQuery.post("clientarea.php", jQuery("#frmSingleSignOn").serialize());
+    });
+
+
+    // Single Sign-On call for Product/Service
+    jQuery('.btn-service-sso').on('click', function(e) {
+        e.preventDefault();
+        var button = jQuery(this);
+
+        var form = button.parents('form');
+
+        if (form.length == 0) {
+            form = button.find('form');
+        }
+        if (form.hasClass('disabled')) {
+            return;
+        }
+
+        button.find('.loading').removeClass('hidden').show().end()
+            .attr('disabled', 'disabled');
+        jQuery.post(
+            window.location.href,
+            form.serialize(),
+            function (data) {
+                button.find('.loading').hide().end().removeAttr('disabled');
+                form.find('.login-feedback').html('');
+                if (data.error) {
+                    form.find('.login-feedback').html(data.error);
+                }
+                if (data.redirect !== undefined && data.redirect.substr(0, 7) === 'window|') {
+                    window.open(data.redirect.substr(7), '_blank');
+                }
+            },
+            'json'
+        );
+    });
+    jQuery('.btn-sidebar-form-submit').on('click', function(e) {
+        e.preventDefault();
+        jQuery(this).find('.loading').removeClass('hidden').show().end()
+            .attr('disabled', 'disabled');
+
+        var form = jQuery(this).parents('form');
+
+        if (form.length == 0) {
+            form = jQuery(this).find('form');
+        }
+
+        if (form.length !== 0 && form.hasClass('disabled') === false) {
+            form.submit();
+        } else {
+            jQuery(this).find('.loading').hide().end().removeAttr('disabled');
+        }
+    });
+
+    // Email verification close
+    jQuery('.email-verification .btn.close').click(function(e) {
+        e.preventDefault();
+        jQuery.post('clientarea.php', 'action=dismiss-email-banner&token=' + csrfToken);
+        jQuery('.email-verification').hide();
+    });
+
+    // Back to top animated scroll
+    jQuery('.back-to-top').click(function(e) {
+        e.preventDefault();
+        jQuery('body,html').animate({scrollTop: 0}, 500);
+    });
+
+    // Prevent page scroll on language choose click
+    jQuery('.choose-language').click(function(e) {
+        e.preventDefault();
+    });
+
+
+
+// Sub-Account Activation Toggle
+    jQuery("#inputSubaccountActivate").click(function () {
+        if (jQuery("#inputSubaccountActivate:checked").val() != null) {
+            jQuery("#subacct-container").removeClass('hidden');
+        } else {
+            jQuery("#subacct-container").addClass('hidden');
+        }
+    });
+
+/**
+ * Add domain renewal to shopping cart.
+ *
+ * @param {number} renewalID    The domain ID to be added
+ * @param {domElement} selfThis The object triggering the add
+ */
+function addRenewalToCart(renewalID, selfThis) {
+    jQuery("#domainRow" + renewalID).attr('disabled', 'disabled');
+    jQuery("#domainRow" + renewalID).find("select,button").attr("disabled", "disabled");
+    jQuery(selfThis).html('<span class="glyphicon glyphicon-shopping-cart"></span> Adding...');
+    var renewalPeriod = jQuery("#renewalPeriod" + renewalID).val();
+    jQuery.post(
+        "clientarea.php",
+        "addRenewalToCart=1&token=" + csrfToken + "&renewID="+ renewalID + "&period=" + renewalPeriod,
+        function( data ) {
+            jQuery("#cartItemCount").html(((jQuery("#cartItemCount").html() * 1) + 1));
+            jQuery(selfThis).html('<span class="glyphicon glyphicon-shopping-cart"></span> Added');
+            jQuery("#btnCheckout").fadeIn();
+        }
+    );
+}
+
+    // Mass Domain Management Bulk Action Handling
+    jQuery(".setBulkAction").click(function(event) {
+        event.preventDefault();
+        var id = jQuery(this).attr('id').replace("Link", "");
+        if (jQuery("#" + id).length != 0) {
+            var action = jQuery("#domainForm").attr("action");
+            jQuery("#domainForm").attr("action", action + "#" + id);
+        }
+        jQuery("#bulkaction").val(id);
+        jQuery("#domainForm").submit();
+    });
+
+/**
+ * Submit default whois info and disable custom fields.
+ *
+ * @param {string} regType The contact registration type
+ */
+function useDefaultWhois(regType) {
+    jQuery("." + regType.substr(0, regType.length - 1) + "customwhois").attr("disabled", true);
+    jQuery("." + regType.substr(0, regType.length - 1) + "defaultwhois").attr("disabled", false);
+    jQuery('#' + regType.substr(0, regType.length - 1) + '1').attr("checked", "checked");
+}
+
+/**
+ * Submit the first form that exists within a given container.
+ *
+ * @param {string} containerId The ID name of the container
+ */
+function autoSubmitFormByContainer(containerId) {
+    jQuery("#" + containerId).find("form:first").submit();
+}
+
+/**
+ * Submit custom fields and disable default whois info.
+ *
+ * @param {string} regType The contact registration type
+ */
+function useCustomWhois(regType) {
+    jQuery("." + regType.substr(0, regType.length - 1) + "customwhois").attr("disabled", false);
+    jQuery("." + regType.substr(0, regType.length - 1) + "defaultwhois").attr("disabled", true);
+    jQuery('#' + regType.substr(0, regType.length - 1) + '2').attr("checked", "checked");
+}
+
+
+/**
+ * Confirm that the contact should be deleted and redirect.
+ *
+ * @param {string} confirmQuestion
+ * @param {int} contactId
+ */
+function deleteContact(confirmQuestion, contactId)
+{
+    if (confirm(confirmQuestion)) {
+        window.location = 'clientarea.php?action=contacts&delete=true&id=' + contactId + '&token=' + csrfToken;
+    }
+}
+
+if (typeof Waves !== 'undefined') {
+  Waves.init();
+  Waves.attach(".sidebar-holder .nav a", ["waves-light", "waves-round"]);
+}
+
+
+/*!
+ * WHMCS Ajax Driven Modal Framework
+ *
+ * @copyright Copyright (c) WHMCS Limited 2005-2016
+ * @license http://www.whmcs.com/license/ WHMCS Eula
+ */
+jQuery(document).ready(function(){
+    jQuery(document).on('click', '.open-modal', function(e) {
+        e.preventDefault();
+        var url = jQuery(this).attr('href'),
+            modalSize = jQuery(this).data('modal-size'),
+            modalClass = jQuery(this).data('modal-class'),
+            modalTitle = jQuery(this).data('modal-title'),
+            submitId = jQuery(this).data('btn-submit-id'),
+            submitLabel = jQuery(this).data('btn-submit-label'),
+            hideClose = jQuery(this).data('btn-close-hide');
+
+        openModal(url, '', modalTitle, modalSize, modalClass, submitLabel, submitId, hideClose);
+    });
+
+    // define modal close reset action
+    jQuery('#modalAjax').on('hidden.bs.modal', function (e) {
+        jQuery('#modalAjax').find('.modal-body').empty();
+        jQuery('#modalAjax').children('div[class="modal-dialog"]').removeClass('modal-lg');
+        jQuery('#modalAjax').removeClass().addClass('modal whmcs-modal fade');
+        jQuery('#modalAjax .modal-title').html('Title');
+        jQuery('#modalAjax .modal-submit').html('Submit')
+            .removeClass()
+            .addClass('btn btn-primary modal-submit')
+            .removeAttr('id')
+            .removeAttr('disabled');
+        jQuery('#modalAjax .loader').show();
+    });
+});
+
+function openModal(url, postData, modalTitle, modalSize, modalClass, submitLabel, submitId, hideClose) {
+    //set the text of the modal title
+    jQuery('#modalAjax .modal-title').html(modalTitle);
+
+    // set the modal size via a class attribute
+    if (modalSize) {
+        jQuery('#modalAjax').children('div[class="modal-dialog"]').addClass(modalSize);
+    }
+    // set the modal class
+    if (modalClass) {
+        jQuery('#modalAjax').addClass(modalClass);
+    }
+
+    // set the modal class
+    if (modalClass) {
+        jQuery('#modalAjax').addClass(modalClass);
+    }
+
+    // set the text of the submit button
+    if(!submitLabel){
+       jQuery('#modalAjax .modal-submit').hide();
+    } else {
+        jQuery('#modalAjax .modal-submit').show().html(submitLabel);
+        // set the button id so we can target the click function of it.
+        if (submitId) {
+            jQuery('#modalAjax .modal-submit').attr('id', submitId);
+        }
+    }
+
+    if (hideClose) {
+        jQuery('#modalAjaxClose').hide();
+    }
+
+    jQuery('#modalAjax .modal-body').html('');
+
+    jQuery('#modalSkip').hide();
+    jQuery('#modalAjax .modal-submit').prop('disabled', true);
+
+    // show modal
+    jQuery('#modalAjax').modal('show');
+
+    // fetch modal content
+    jQuery.post(url, postData, function(data) {
+        updateAjaxModal(data);
+    }, 'json').fail(function() {
+        jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
+        jQuery('#modalAjax .loader').fadeOut();
+    });
+
+    //define modal submit button click
+    if (submitId) {
+        /**
+         * Reloading ajax modal multiple times on the same page can add
+         * multiple "on" click events which submits the same form over
+         * and over.
+         * Remove the on click event with "off" to avoid multiple growl
+         * and save events being run.
+         *
+         * @see http://api.jquery.com/off/
+         */
+        var submitButton = jQuery('#' + submitId);
+        submitButton.off('click');
+        submitButton.on('click', function() {
+            var modalForm = jQuery('#modalAjax').find('form');
+            jQuery('#modalAjax .loader').show();
+            var modalPost = jQuery.post(modalForm.attr('action'), modalForm.serialize(),
+                function(data) {
+                    updateAjaxModal(data);
+                }, 'json').fail(function() {
+                    jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
+                    jQuery('#modalAjax .loader').fadeOut();
+                }
+            );
+        })
+    }
+}
+
+function updateAjaxModal(data) {
+    if (data.dismiss) {
+        dialogClose();
+    }
+    if (data.successMsg) {
+        jQuery.growl.notice({ title: data.successMsgTitle, message: data.successMsg });
+    }
+    if (data.errorMsg) {
+        jQuery.growl.warning({ title: data.errorMsgTitle, message: data.errorMsg });
+    }
+    if (data.title) {
+        jQuery('#modalAjax .modal-title').html(data.title);
+    }
+    if (data.body) {
+        jQuery('#modalAjax .modal-body').html(data.body);
+    } else {
+        if (data.url) {
+            jQuery.post(data.url, '', function(data2) {
+                jQuery('#modalAjax').find('.modal-body').html(data2.body);
+            }, 'json').fail(function() {
+                jQuery('#modalAjax').find('.modal-body').html('An error occurred while communicating with the server. Please try again.');
+                jQuery('#modalAjax').find('.loader').fadeOut();
+            });
+        }
+    }
+    if (data.submitlabel) {
+        jQuery('#modalAjax .modal-submit').html(data.submitlabel).show();
+        if (data.submitId) {
+            jQuery('#modalAjax').find('.modal-submit').attr('id', data.submitId);
+        }
+    }
+
+    if (data.submitId) {
+        /**
+         * Reloading ajax modal multiple times on the same page can add
+         * multiple "on" click events which submits the same form over
+         * and over.
+         * Remove the on click event with "off" to avoid multiple growl
+         * and save events being run.
+         *
+         * @see http://api.jquery.com/off/
+         */
+        var submitButton = jQuery('#' + data.submitId);
+        submitButton.off('click');
+        submitButton.on('click', function() {
+            var modalForm = jQuery('#modalAjax').find('form');
+            jQuery('#modalAjax .loader').show();
+            var modalPost = jQuery.post(modalForm.attr('action'), modalForm.serialize(),
+                function(data) {
+                    updateAjaxModal(data);
+                }, 'json').fail(function() {
+                    jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
+                    jQuery('#modalAjax .loader').fadeOut();
+                }
+            );
+        })
+    }
+
+    jQuery('#modalAjax .loader').fadeOut();
+    jQuery('#modalAjax .modal-submit').removeProp('disabled');
+}
+
+// backwards compat for older dialog implementations
+
+function dialogSubmit() {
+    jQuery('#modalAjax .modal-submit').prop("disabled", true);
+    jQuery('#modalAjax .loader').show();
+    jQuery.post('', jQuery('#modalAjax').find('form').serialize(),
+        function(data) {
+            updateAjaxModal(data);
+        }, 'json').fail(function() {
+            jQuery('#modalAjax .modal-body').html('An error occurred while communicating with the server. Please try again.');
+            jQuery('#modalAjax .loader').fadeOut();
+        });
+}
+
+function dialogClose() {
+    jQuery('#modalAjax').modal('hide');
+}
+Û8@ŒLå      c×¯c×¯E62cØ•W   b    O^partitionKey=%28https%2Cdominios.pt%29,:https://my.dominios.pt/templates/hexa/assets/js/whmcs.js necko:classified 1 strongly-framed 1 security-info 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 request-method GET response-head HTTP/1.1 200 OK
+Date: Mon, 30 Jan 2023 11:50:15 GMT
+Server: Apache
+Last-Modified: Mon, 23 Jan 2023 16:00:48 GMT
+ETag: "8948-5f2f080ad2200"
+Accept-Ranges: bytes
+Content-Length: 35144
+Content-Type: application/javascript
+ original-response-headers Date: Mon, 30 Jan 2023 11:50:15 GMT
+Server: Apache
+Last-Modified: Mon, 23 Jan 2023 16:00:48 GMT
+ETag: "8948-5f2f080ad2200"
+Accept-Ranges: bytes
+Content-Length: 35144
+Keep-Alive: timeout=3, max=147
+Connection: Keep-Alive
+Content-Type: application/javascript
+ ctid 2 uncompressed-len 0 net-response-time-onstart 186 net-response-time-onstop 187   ‰H

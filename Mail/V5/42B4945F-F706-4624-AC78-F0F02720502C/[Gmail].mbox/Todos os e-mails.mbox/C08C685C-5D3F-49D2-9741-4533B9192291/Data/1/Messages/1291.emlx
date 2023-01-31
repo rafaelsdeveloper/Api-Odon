@@ -1,0 +1,990 @@
+70961     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:8377:b0:2d5:8bc:48b9 with SMTP id o23csp193269pxf;
+        Wed, 10 Aug 2022 18:18:56 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4OoAiNE9qyqpHjb2TBuTpzcsw5LobcvCvYWAJAUDPU2LOaIu6oTJ5QsbM/mn7HhliPhP0p
+X-Received: by 2002:a05:622a:c5:b0:341:9717:924b with SMTP id p5-20020a05622a00c500b003419717924bmr26645418qtw.581.1660180736412;
+        Wed, 10 Aug 2022 18:18:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1660180736; cv=none;
+        d=google.com; s=arc-20160816;
+        b=pTsU2WamNXkAvn37mw7eEx8i1LZAo8Ddjw0ZoEVidwHrFpyGu2+9JtOoEtDEH+vhAl
+         fnpcAo/fVPCp5FjDiIG0k9g3Ht6dSI+aTPo75SZ8yDX799D9/DRF/Snfoq547bPDvazk
+         XD46irlZwy5/owOcWqQlRSmCN8PWXZ+d4o/7S1qOavQLkRn8SHG1L9SRLQbsKUOTv+VW
+         rtVN/aFpo7gp6HBgFlTI36R2+VekGHFGOc0M/BBtyDUvBIylgdjDfEN0xBl69oJYCkj8
+         T9JtfMxSY0lQ/N73fkwYf1s9yaLGDCBiq2u118v6cZzqFGtZqS644f2jljwdbovJhpVK
+         jxGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=8WW2ZJonmVSuNoj9gqWx8yAb2qOCMzmZotZHLGDoGKY=;
+        b=RGYMdEsAydl92Emd71gBascJKsSEszl1hHL7xF3/sci/yM6PtfRkWif+bOtPJN/y0I
+         UZ3mLVeJHUJbwMrcckpGK5jOllC1ABTCL3yg54AeGz3rCSEfe3RpAjrzYPf51vJESKrM
+         sE9Fs2eZGIyhw91+HrhSzLD1H8Tl4kL1PqamCML+/VJvNTxYxUmRGKqlQcxjGbYavO+Y
+         Nbx7BGa3/XCAvgmorGgo25o7q7CH3eZx/gjgBKme/0rlxo9zDK0NvLRKE+CbSOtQVJ7o
+         25N5lQsGtYnQyQlwWQ3z611Z4U4wj0Yix/yK4KcQP6u1hEm9hQY9TCzcC8g1YUstSF6j
+         F2iQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=KpSyVqPp;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=41xHsUp1;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9v3r4x4q1iobhy0k@bounce.linkedin.com designates 2620:109:c006:104::198 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9v3r4x4q1iobhy0k@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9v3r4x4q1iobhy0k@bounce.linkedin.com>
+Received: from maile-af.linkedin.com (maile-af.linkedin.com. [2620:109:c006:104::198])
+        by mx.google.com with ESMTPS id i1-20020a05620a404100b006b250f958b5si935738qko.464.2022.08.10.18.18.56
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 10 Aug 2022 18:18:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9v3r4x4q1iobhy0k@bounce.linkedin.com designates 2620:109:c006:104::198 as permitted sender) client-ip=2620:109:c006:104::198;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=KpSyVqPp;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=41xHsUp1;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9v3r4x4q1iobhy0k@bounce.linkedin.com designates 2620:109:c006:104::198 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijm9v3r4x4q1iobhy0k@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1660180734;
+	bh=8WW2ZJonmVSuNoj9gqWx8yAb2qOCMzmZotZHLGDoGKY=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=KpSyVqPpR/KE13PWdUrsFLwcoq6sEk2tEC3RniZBnjk4z5BTYhe9ehFxGz+QPy03y
+	 323semnDMlsm0KjQNRxJQsWk6nRrihyJI6Y6iFv3lEfXJK+86wONFYr+MS8b0VB1ZH
+	 elJ2oG7z31C/+eFC0yyHuXkukjA13mCyQIbwcPzXEWTvxpsRRTpkry88Tzvh3pawBd
+	 BHSOF1SftgYMrLfODK8wUQgFhZqHOd4CzA0GkCWgAN3woJ/QClj0U2P4H8KmEPCBDF
+	 GJf1pD3RlJTPTBdOJJOiYySbYu8tszYgNY0MifNYhNt+wBrXKXI5MH1iPgpSrhnSbg
+	 LlKtSLtzDogcQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maile.linkedin.com;
+	s=proddkim1024; t=1660180734;
+	bh=8WW2ZJonmVSuNoj9gqWx8yAb2qOCMzmZotZHLGDoGKY=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=41xHsUp1AE+nfeFEdaWUy2bcZjm7F2zidCBJ4FBn6yyzySL+W2WWxwcYYBxnMdFiY
+	 DwivLzrktK6aeAxTZ9q2Z68iQpOT6ZhdLH0D/ik/9MqZ6iVUFQLkJM/JF1V3dKaRr0
+	 87oN0HIPdfvOGIsCMVWSmeXyyHHwE3kti1gGPIK4=
+From: Denyze Santos via LinkedIn <newsletters-noreply@linkedin.com>
+Message-ID: <250837940.10344082.1660180734633@lva1-app72777.prod.linkedin.com>
+Subject: =?UTF-8?Q?Voc=C3=AA_busca_uma_transi=C3=A7=C3=A3o_de_carrei?=
+ =?UTF-8?Q?ra_e_n=C3=A3o_sabe_quais_passos_seguir=3F?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_10344080_252428094.1660180734628"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Thu, 11 Aug 2022 01:18:54 +0000 (UTC)
+X-LinkedIn-Class: EMAIL-DEFAULT
+X-LinkedIn-Template: email_series_follow_newsletter_01
+X-LinkedIn-fbl: m2-at00duv0sb40xmltrnsbwxuth8w97pzf9td4m3od1gqf4avqvq3wt7lug6nblu5l3n6fsv0te3oqbzdahjb5s6y1av25sofpjwnlgt
+X-LinkedIn-Id: eau1wl-l6ocqskr-qt
+List-Unsubscribe: <https://www.linkedin.com/e/v2?e=eau1wl-l6ocqskr-qt&t=lun&midToken=AQEq1MBbB2bM8g&midSig=3hMwL7NDKKdao1&ek=email_series_follow_newsletter_01&li=42&m=unsub&ts=unsub&eid=eau1wl-l6ocqskr-qt&loid=AQFbiSdDqHdP9AAAAYKKe6Hym98CJM69kgrmK31B-q0ZvS-jXOiRgYUMZZwl2YXUZFl1rEAygxEXQ4F-ny3m76v4SFZZMr5IXRJ0WjmFmMWt-KK7551z-g>
+Feedback-ID: email_series_follow_newsletter_01:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_10344080_252428094.1660180734628
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+NEWSLETTER ON LINKEDIN
+Voc=C3=AA busca uma transi=C3=A7=C3=A3o de carreira e n=C3=A3o sabe quais p=
+assos seguir?
+By Denyze Santos
+
+Sentiu que est=C3=A1 na hora de mudar? Esse artigo =C3=A9 para voc=C3=AA! A=
+proveitando, se voc=C3=AA quiser aprender mais sobre Carreira e as tend=C3=
+=AAncias do mercado de trabalho, compartilho cases diariamente no meu insta=
+gram: https://www.instagram.com/denyzesantos.rh/ A transi=C3=A7=C3=A3o de c=
+arreira, quando colocada nesse fator de mudan=C3=A7a, percebo nas pessoas u=
+m sentimento de que ser=C3=A1 algo gigante, uma sess=C3=A3o que ter=C3=A1 q=
+ue come=C3=A7ar do zero, que vai ser radical. Voc=C3=AA tamb=C3=A9m est=C3=
+=A1 passando por isso? (Voc=C3=AA tamb=C3=A9m tem esse sentimento?) Para vo=
+c=C3=AA j=C3=A1 come=C3=A7ar compreendendo o grande significado de uma tran=
+si=C3=A7=C3=A3o de carreira e at=C3=A9 te responder logo nesse in=C3=ADcio =
+da leitura, para aliviar esse sentimento inseguro que possivelmente voc=C3=
+=AA est=C3=A1 passando. Sempre nas consultorias quando recebo uma situa=C3=
+=A7=C3=A3o de transi=C3=A7=C3=A3o eu fa=C3=A7o uma pergunta que considero m=
+uito importante para eu compreender a situa=C3=A7=C3=A3o do profissional e =
+saber se de fato ele sabe o que quer: nada mais que o AUTOCONHECIMENTO, ess=
+e =C3=A9 o ponto crucial para uma mudan=C3=A7a, e aqui j=C3=A1 come=C3=A7a =
+o seu exerc=C3=ADcio:=C2=A0 Quais as raz=C3=B5es para essa mudan=C3=A7a? Qu=
+ais s=C3=A3o as for=C3=A7as que impulsionam para essa mudan=C3=A7a e quais =
+as for=C3=A7as resistentes desta situa=C3=A7=C3=A3o? Esse =C3=A9 o grande c=
+ome=C3=A7o para um direcionamento e tomada de decis=C3=A3o. DICA: anote tud=
+o na ordem cronol=C3=B3gica, voc=C3=AA vai conseguir visualizar o cen=C3=A1=
+rio atual e as possibilidades para o novo ciclo. =C2=A0A transi=C3=A7=C3=A3=
+o=C2=A0de=C2=A0carreira, muitos conhecem pelo fato de mudar totalmente de =
+=C3=A1rea, como recome=C3=A7ar em uma nova profiss=C3=A3o e nada mais =C3=
+=A9 o desejo=C2=A0de=C2=A0um profissional por mudar ou migrar para uma nova=
+ =C3=A1rea=C2=A0de=C2=A0atua=C3=A7=C3=A3o. Esse desejo por mudan=C3=A7a pod=
+e acontecer por v=C3=A1rios aspectos, dentre eles: buscar reconhecimento pr=
+ofissional, desenvolver novas compet=C3=AAncias e habilidades, dificuldades=
+ no mercado=C2=A0de=C2=A0trabalho, busca por melhor remunera=C3=A7=C3=A3o e=
+ condi=C3=A7=C3=B5es=C2=A0de=C2=A0trabalho, dentre outros.=C2=A0 UM CASE DA=
+ CONSULTORIA Uma profissional estava bem insatisfeita com a sua carreira, p=
+ois atuava 11 anos numa organiza=C3=A7=C3=A3o e n=C3=A3o era reconhecida pr=
+ofissionalmente na posi=C3=A7=C3=A3o que assumia, e a sua maior inseguran=
+=C3=A7a era o medo do famoso =E2=80=9Ctrocar o certo pelo duvidoso=E2=80=9D=
+. Mesmo com medo, essa profissional fez algumas entrevistas e n=C3=A3o pass=
+ava pelo desequil=C3=ADbrio emocional, das situa=C3=A7=C3=B5es que estava p=
+assando na empresa atual. Ap=C3=B3s a nossa primeira sess=C3=A3o de Orienta=
+=C3=A7=C3=A3o de Carreira ela participou de um processo e passou, e claro v=
+eio a insegura, =E2=80=9Ce agora aceito ou n=C3=A3o?=E2=80=9D. Fizemos uma =
+an=C3=A1lise de todo o processo, sobre seu perfil comportamental e sobre a =
+nova empresa e suas possibilidades de oferta, conclu=C3=ADmos que sim seria=
+ uma grande oportunidade, e nesse momento a autoconfian=C3=A7a consigo mesm=
+o foi fundamental e com planejamento. Como diz =E2=80=94 Arthur Ashe, campe=
+=C3=A3o de t=C3=AAnis; &quot;Um importante aspecto para o sucesso =C3=A9 a =
+autoconfian=C3=A7a. Um importante aspecto para autoconfian=C3=A7a =C3=A9 a =
+prepara=C3=A7=C3=A3o&quot;. Precisamos entender que=C2=A0transi=C3=A7=C3=A3=
+o=C2=A0de=C2=A0carreira=C2=A0=C3=A9 algo realiz=C3=A1vel quando bem planeja=
+da, e n=C3=A3o deixar que pessoas que vivam em um mundo paralelo fa=C3=A7am=
+ voc=C3=AA acreditar que n=C3=A3o =C3=A9 poss=C3=ADvel, que voc=C3=AA sonha=
+ demais e at=C3=A9 mesmo fazer voc=C3=AA duvidar da sua capacidade profissi=
+onal. =C2=A0Como o caso dessa profissional que te contei acima e com certez=
+a de alguns profissionais que tamb=C3=A9m se apegam aos seus empregos, mesm=
+o quando n=C3=A3o h=C3=A1 mais o desejo por continuar, apenas pelo medo=C2=
+=A0de=C2=A0n=C3=A3o dar certo. E permanecem infelizes com suas carreiras po=
+rque acreditam ser imposs=C3=ADvel fazer essa=C2=A0transi=C3=A7=C3=A3o. Sen=
+tiu que algo n=C3=A3o se encaixa mais no que voc=C3=AA vem fazendo? Aquele =
+ambiente n=C3=A3o te faz feliz? Sentiu-se enferrujado nas habilidades e com=
+pet=C3=AAncias? Despertou um novo amor por outras atividades? Na busca pelo=
+ novo fa=C3=A7a um bom planejamento, entendas suas raz=C3=B5es para mudan=
+=C3=A7as e estipule metas. S=C3=B3 mudar e n=C3=A3o saber aonde quer chegar=
+ nessa localiza=C3=A7=C3=A3o n=C3=A3o vai fazer sentido, concorda? Pr=C3=B3=
+xima orienta=C3=A7=C3=A3o =E2=80=93 O simples que faz toda diferen=C3=A7a: =
+Nessa =C3=A1rea que voc=C3=AA atua ou vai atuar, qual =C3=A9 a tend=C3=AAnc=
+ia do mercado? Qual certifica=C3=A7=C3=B5es ser=C3=A1 um diferencial? Qual =
+Soft Skills voc=C3=AA precisa desenvolver? Voc=C3=AA tem uma reserva financ=
+eira para essa prioridade? A que ponto voc=C3=AA quer chegar nessa profiss=
+=C3=A3o? Foque na especialidade e n=C3=A3o um generalista muito amplo, para=
+ voc=C3=AA n=C3=A3o ser visto como =E2=80=9Cfaz tudo e n=C3=A3o faz nada=E2=
+=80=9D. Digo isso porque =C3=A9 o que eu mais recebo de curr=C3=ADculos com=
+ experi=C3=AAncias e forma=C3=A7=C3=B5es muito amplas e acaba atrapalhando =
+nessas mudan=C3=A7as. Percebeu que voc=C3=AA pode ser feliz na sua carreira=
+ e que a transi=C3=A7=C3=A3o =C3=A9 poss=C3=ADvel? Toda essa mudan=C3=A7a c=
+ome=C3=A7a quando o foco est=C3=A1 na autorresponsabilidade pela sua carrei=
+ra. O que est=C3=A1 te impedindo=C2=A0de=C2=A0ter sucesso e ser feliz na su=
+a=C2=A0carreira?
+
+Join the conversation:
+https://www.linkedin.com/e/v2/pulse?e=3Deau1wl-l6ocqskr-qt&amp;lipi=3Durn%3=
+Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFs=
+bA%3D%3D&amp;a=3Dpulse_web_view_article_detail_new_url&amp;midToken=3DAQEq1=
+MBbB2bM8g&amp;midSig=3D3hMwL7NDKKdao1&amp;ek=3Demail_series_follow_newslett=
+er_01&amp;li=3D3&amp;m=3Dfooter_promo&amp;ts=3Dprimary_cta_link&amp;permLin=
+k=3Dvoc%25C3%25AA-busca-uma-transi%25C3%25A7%25C3%25A3o-de-carreira-e-n%25C=
+3%25A3o-sabe-quais-denyze-santos
+
+.....................................
+
+Alterar frequ=C3=AAncia: https://www.linkedin.com/e/v2?e=3Deau1wl-l6ocqskr-=
+qt&t=3Dlun&midToken=3DAQEq1MBbB2bM8g&midSig=3D3hMwL7NDKKdao1&ek=3Demail_ser=
+ies_follow_newsletter_01&li=3D43&m=3Dunsub&ts=3Dfreq&eid=3Deau1wl-l6ocqskr-=
+qt&loid=3DAQHiZBaToTldZQAAAYKKe6HzNUDhK3gJmuzjAiytogLhl2DmD1fqSICsg3P9nGnQm=
+q2ZYGBH7VIFAINDKgmlTAihBZh1pHM046x4ICeJQ2kUvxaysz-A9w
+
+Cancelar inscri=C3=A7=C3=A3o: https://www.linkedin.com/e/v2?e=3Deau1wl-l6oc=
+qskr-qt&t=3Dlun&midToken=3DAQEq1MBbB2bM8g&midSig=3D3hMwL7NDKKdao1&ek=3Demai=
+l_series_follow_newsletter_01&li=3D42&m=3Dunsub&ts=3Dunsub&eid=3Deau1wl-l6o=
+cqskr-qt&loid=3DAQFbiSdDqHdP9AAAAYKKe6Hym98CJM69kgrmK31B-q0ZvS-jXOiRgYUMZZw=
+l2YXUZFl1rEAygxEXQ4F-ny3m76v4SFZZMr5IXRJ0WjmFmMWt-KK7551z-g
+
+Ajuda: https://www.linkedin.com/e/v2?e=3Deau1wl-l6ocqskr-qt&lipi=3Durn%3Ali=
+%3Apage%3Aemail_email_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%=
+3D%3D&a=3DcustomerServiceUrl&midToken=3DAQEq1MBbB2bM8g&midSig=3D3hMwL7NDKKd=
+ao1&ek=3Demail_series_follow_newsletter_01&li=3D41&m=3Dfooter&ts=3Dhelp&art=
+icleId=3D67
+
+
+Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do LinkedIn.
+
+Este e-mail foi enviado para Rafael Souza (Desenvolvedor da web na Solution=
+.dev).
+Saiba por que inclu=C3=ADmos isso: https://www.linkedin.com/e/v2?e=3Deau1wl=
+-l6ocqskr-qt&lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_=
+01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D&a=3DcustomerServiceUrl&midToken=3DAQEq1MB=
+bB2bM8g&midSig=3D3hMwL7NDKKdao1&ek=3Demail_series_follow_newsletter_01&arti=
+cleId=3D4788
+
+=C2=A9 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2. LinkedIn =C3=A9 um nome comercial registrado da LinkedIn Ireland=
+ Unlimited Company. LinkedIn e o logo do LinkedIn s=C3=A3o marcas registrad=
+as do LinkedIn.
+------=_Part_10344080_252428094.1660180734628
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns=3D"http://www.w3=
+.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt" style=3D"color:#282828;font-si=
+ze:16px;font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',R=
+oboto,'Helvetica Neue','Fira Sans',Ubuntu,Oxygen,'Oxygen Sans',Cantarell,'D=
+roid Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Emoji','Segoe UI =
+Symbol','Lucida Grande',Helvetica,Arial,sans-serif;"> <head> <meta http-equ=
+iv=3D"Content-Type" content=3D"text/html;charset=3Dutf-8"> <meta name=3D"Ha=
+ndheldFriendly" content=3D"true"> <meta name=3D"viewport" content=3D"width=
+=3Ddevice-width; initial-scale=3D0.666667; user-scalable=3D0"> <meta name=
+=3D"viewport" content=3D"width=3Ddevice-width"> <title></title><!--[if mso]=
+><style type=3D"text/css">body {font-family: Helvetica Neue, Helvetica, Ari=
+al, sans-serif;}.mercado-email-container {width: 512px !important;}h1, h2, =
+h3, h4, h5, h6 {font-weight: 700 !important;}</style><![endif]--><!--[if IE=
+]><style type=3D"text/css">.mercado-email-container {width: 512px !importan=
+t;}h1, h2, h3, h4, h5, h6 {font-weight: 700 !important;}</style><![endif]--=
+> <style type=3D"text/css">@media only screen and (max-width:32em) {
+  .mercado-email-container { width:100% !important; }
+}
+@media only screen and (max-width:20em) {}
+@media only screen and (max-device-width:30em) {}
+@media screen and (device-width:30em) and (device-height:22.5em), screen an=
+d (device-width:22.5em) and (device-height:30em), screen and (device-width:=
+20em) and (device-height:15em) {}
+@media screen and (-webkit-min-device-pixel-ratio:0) {}
+@media screen and (max-device-width:25.88em) and (max-device-height:48.5em)=
+ {}
+@media only screen and (max-width:32em) {
+  .mercado-email-container { width:100% !important; }
+}
+@media only screen and (max-width:20em) {}
+@media only screen and (max-device-width:30em) {}
+@media screen and (device-width:30em) and (device-height:22.5em), screen an=
+d (device-width:22.5em) and (device-height:30em), screen and (device-width:=
+20em) and (device-height:15em) {}
+@media screen and (-webkit-min-device-pixel-ratio:0) {}
+@media screen and (max-device-width:25.88em) and (max-device-height:48.5em)=
+ {}
+@media only screen and (max-width:32em) {
+  .newsletter-email-content {
+    padding-left:1em !important;
+    padding-right:1em !important;
+  }
+
+  .newsletter-content-preview__image { max-width:480px !important; }
+}
+</style> </head> <body style=3D"padding:0;margin:0 auto;color:#282828;-webk=
+it-text-size-adjust:100%;width:100% !important;-ms-text-size-adjust:100%;fo=
+nt-size:16px;font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe =
+UI',Roboto,'Helvetica Neue','Fira Sans',Ubuntu,Oxygen,'Oxygen Sans',Cantare=
+ll,'Droid Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Emoji','Sego=
+e UI Symbol','Lucida Grande',Helvetica,Arial,sans-serif;"> <div style=3D"ov=
+erflow:hidden;color:transparent;visibility:hidden;mso-hide:all;width:0;font=
+-size:0;opacity:0;height:0;"> Sentiu que est=C3=A1 na hora de mudar? Esse a=
+rtigo =C3=A9 para voc=C3=AA! Aproveitando, se... </div> <table role=3D"pres=
+entation" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ width=3D"100%" bgcolor=3D"#F3F2EF" style=3D"background-color:#F3F2EF;table=
+-layout:fixed;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-=
+lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <t=
+r> <td align=3D"center" style=3D"padding-top:24px;-webkit-text-size-adjust:=
+100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">=
+ <center style=3D"width:100%;"> <table role=3D"presentation" border=3D"0" c=
+lass=3D"mercado-email-container" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"512" bgcolor=3D"#FFFFFF" style=3D"background-color:#FFFFFF;margin:0 aut=
+o;max-width:512px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;width:=
+inherit;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:sepa=
+rate;"> <tbody> <tr> <td bgcolor=3D"#FFFFFF" style=3D"background-color:#FFF=
+FFF;padding:18px 32px 0 32px;-webkit-text-size-adjust:100%;mso-table-rspace=
+:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"prese=
+ntation" border=3D"0" class=3D"mercado-email-container" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" bgcolor=3D"#FFFFFF" style=3D"background-col=
+or:#FFFFFF;margin:0 auto;max-width:512px;-webkit-text-size-adjust:100%;mso-=
+table-rspace:0pt;width:100% !important;mso-table-lspace:0pt;-ms-text-size-a=
+djust:100%;border-collapse:separate;min-width:100% !important;"> <tbody> <t=
+r> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presentation" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webki=
+t-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-=
+size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td align=3D"left=
+" valign=3D"middle" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace=
+:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://ww=
+w.linkedin.com/comm/feed/?midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3hMwL7NDKK=
+dao1&amp;trk=3Deml-email_series_follow_newsletter_01-header-37-home&amp;trk=
+Email=3Deml-email_series_follow_newsletter_01-header-37-home-null-eau1wl%7E=
+l6ocqskr%7Eqt-null-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_=
+series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D" style=3D"cursor=
+:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-block;t=
+ext-decoration:none;-ms-text-size-adjust:100%;"> <img alt=3D"LinkedIn" bord=
+er=3D"0" src=3D"https://static.licdn.com/sc/p/com.linkedin.email-assets-fro=
+ntend%3Aemail-assets-frontend-static-content%2B__latest__/f/%2Femail-assets=
+-frontend%2Fimages%2Flogos%2Flogo_mercado_linkedin_84x21.png" height=3D"21"=
+ width=3D"84" style=3D"outline:none;-ms-interpolation-mode:bicubic;color:#F=
+FFFFF;max-width:unset !important;text-decoration:none;"></a></td> <td valig=
+n=3D"middle" width=3D"100%" align=3D"right" style=3D"-webkit-text-size-adju=
+st:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%=
+;"><a href=3D"https://www.linkedin.com/comm/in/rafaelandersonsouza?midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D3hMwL7NDKKdao1&amp;trk=3Deml-email_series_fo=
+llow_newsletter_01-header-46-profile&amp;trkEmail=3Deml-email_series_follow=
+_newsletter_01-header-46-profile-null-eau1wl%7El6ocqskr%7Eqt-null-neptune%2=
+Fprofile%7Evanity%2Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_fo=
+llow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D" style=3D"cursor:pointer;=
+margin:0;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-block;t=
+ext-decoration:none;-ms-text-size-adjust:100%;"> <table role=3D"presentatio=
+n" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D=
+"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-m=
+s-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td align=
+=3D"left" valign=3D"middle" style=3D"padding:0 0 0 10px;padding-top:7px;-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;"></td> <td valign=3D"middle" width=3D"40" style=3D"pad=
+ding-top:7px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;padding-lef=
+t:10px;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <img alt=3D"Rafael=
+ Souza" border=3D"0" height=3D"32" width=3D"32" src=3D"https://media-exp1.l=
+icdn.com/dms/image/C4D03AQEH4CxhkhtzrA/profile-displayphoto-shrink_100_100/=
+0/1607511453788?e=3D2147483647&amp;v=3Dbeta&amp;t=3DBXzEowst0lteThC0JO_aU8C=
+jmPmnC6xKyHE4zwwNdCY" style=3D"border-radius:50%;outline:none;-ms-interpola=
+tion-mode:bicubic;color:#FFFFFF;max-width:unset !important;text-decoration:=
+none;"></td> </tr> </tbody> </table></a></td> </tr> </tbody> </table></td> =
+</tr> </tbody> </table></td> </tr> <tr> <td style=3D"-webkit-text-size-adju=
+st:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%=
+;"> <table role=3D"presentation" border=3D"0" class=3D"newsletter-email-con=
+tent" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-t=
+ext-size-adjust:100%;mso-table-rspace:0pt;padding-left:2em;mso-table-lspace=
+:0pt;-ms-text-size-adjust:100%;border-collapse:separate;padding-right:2em;"=
+> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-a=
+djust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size=
+-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust=
+:100%;"> <div style=3D"height:32px;font-size:32px;line-height:32px"> &nbsp;=
+ </div></td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D"-webkit-t=
+ext-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-siz=
+e-adjust:100%;"> <p style=3D"margin:0;word-wrap:break-word;color:#666666;wo=
+rd-break:break-word;font-weight:400;-ms-word-break:break-all;letter-spacing=
+:2px;font-size:14px;line-height:1.429;overflow-wrap:break-word;">NEWSLETTER=
+ ON LINKEDIN</p></td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <ta=
+ble width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-=
+webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D=
+"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-m=
+s-text-size-adjust:100%;"> <div style=3D"height:16px;font-size:16px;line-he=
+ight:16px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> <tr style=
+=3D"padding-top:0;padding-bottom:0;"> <td style=3D"-webkit-text-size-adjust=
+:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"=
+> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspa=
+ce:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separ=
+ate;"> <tbody> <tr style=3D"padding-top:0;padding-bottom:0;"> <td valign=3D=
+"top" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;padding-right:0.5em;"> <a href=3D"htt=
+ps://www.linkedin.com/comm/newsletters/6952442930536046592?midToken=3DAQEq1=
+MBbB2bM8g&amp;midSig=3D3hMwL7NDKKdao1&amp;trk=3Deml-email_series_follow_new=
+sletter_01-hero-6-null&amp;trkEmail=3Deml-email_series_follow_newsletter_01=
+-hero-6-null-null-eau1wl%7El6ocqskr%7Eqt-null-neptune%2Fnewsletters&amp;lip=
+i=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BR00Ot9OyT4q=
+qAgdmeFFsbA%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-=
+adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-adjust:=
+100%;"><img alt=3D"" border=3D"0" height=3D"64" width=3D"64" src=3D"https:/=
+/media-exp1.licdn.com/dms/image/D4E12AQEwzP7-t8Tatw/series-logo_image-shrin=
+k_300_300/0/1657591543689?e=3D2147483647&amp;v=3Dbeta&amp;t=3DoT87aZFb0Woad=
+nDcdTyBr7K1wa5Q_M5RiqQJ2pCT-IE" style=3D"outline:none;-ms-interpolation-mod=
+e:bicubic;color:#FFFFFF;max-width:unset !important;text-decoration:none;"><=
+/a></td> <td width=3D"100%" valign=3D"top" style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;=
+"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspa=
+ce:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separ=
+ate;"> <tbody> <tr style=3D"padding-top:0;padding-bottom:0;"> <td style=3D"=
+padding-top:0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-=
+lspace:0pt;-ms-text-size-adjust:100%;padding-bottom:0;"><a href=3D"https://=
+www.linkedin.com/comm/newsletters/6952442930536046592?midToken=3DAQEq1MBbB2=
+bM8g&amp;midSig=3D3hMwL7NDKKdao1&amp;trk=3Deml-email_series_follow_newslett=
+er_01-hero-6-null&amp;trkEmail=3Deml-email_series_follow_newsletter_01-hero=
+-6-null-null-eau1wl%7El6ocqskr%7Eqt-null-neptune%2Fnewsletters&amp;lipi=3Du=
+rn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdm=
+eFFsbA%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjus=
+t:100%;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;=
+"> <span style=3D"word-wrap:break-word;color:#282828;word-break:break-word;=
+font-weight:700;-ms-word-break:break-all;font-size:16px;line-height:1.25;ov=
+erflow-wrap:break-word;">A sua carreira em evolu=C3=A7=C3=A3o</span></a></t=
+d> </tr> <tr style=3D"padding-top:0;padding-bottom:0;"> <td style=3D"paddin=
+g-top:0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace=
+:0pt;-ms-text-size-adjust:100%;padding-bottom:0;"><a href=3D"https://www.li=
+nkedin.com/comm/newsletters/6952442930536046592?midToken=3DAQEq1MBbB2bM8g&a=
+mp;midSig=3D3hMwL7NDKKdao1&amp;trk=3Deml-email_series_follow_newsletter_01-=
+hero-6-null&amp;trkEmail=3Deml-email_series_follow_newsletter_01-hero-6-nul=
+l-null-eau1wl%7El6ocqskr%7Eqt-null-neptune%2Fnewsletters&amp;lipi=3Durn%3Al=
+i%3Apage%3Aemail_email_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA=
+%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%=
+;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <sp=
+an style=3D"word-wrap:break-word;color:#737373;word-break:break-word;font-w=
+eight:400;-ms-word-break:break-all;font-size:14px;line-height:1.429;overflo=
+w-wrap:break-word;">Atrav=C3=A9s do Linkedin, voc=C3=AA ter=C3=A1 uma vitri=
+ne que ser=C3=A1 o ponto de sele=C3=A7=C3=A3o para a sua oportunidade e car=
+reira.</span></a></td> </tr> </tbody> </table></td> </tr> </tbody> </table>=
+</td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspac=
+e:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size=
+-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust=
+:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adju=
+st:100%;"> <div style=3D"height:16px;font-size:16px;line-height:16px"> &nbs=
+p; </div></td> </tr> </tbody> </table></td> </tr> <tr style=3D"padding-top:=
+0;padding-bottom:0;"> <td align=3D"left" style=3D"-webkit-text-size-adjust:=
+100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">=
+ <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate=
+;"> <tbody> <tr style=3D"padding-top:0;padding-bottom:0;"> <td valign=3D"mi=
+ddle" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;padding-right:0.5em;"> <a href=3D"htt=
+ps://www.linkedin.com/comm/profile/view?id=3DAAsAACGY_uwBeWlV17C03dwmlv9Oo1=
+XWeldE3Vg&amp;amp;midToken=3DAQEq1MBbB2bM8g&amp;amp;midSig=3D3hMwL7NDKKdao1=
+&amp;amp;trk=3Deml-email_series_follow_newsletter_01-null-0-null&amp;amp;tr=
+kEmail=3Deml-email_series_follow_newsletter_01-null-0-null-null-eau1wl%7El6=
+ocqskr%7Eqt-npv-nprofile%7Eview&amp;amp;lipi=3Durn%3Ali%3Apage%3Aemail_emai=
+l_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D" style=3D"bord=
+er-radius:50%;cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;di=
+splay:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"><img al=
+t=3D"Denyze Santos" border=3D"0" height=3D"32" width=3D"32" src=3D"https://=
+media-exp1.licdn.com/dms/image/C4E03AQFpqPYTvR_gKA/profile-displayphoto-shr=
+ink_800_800/0/1657582181457?e=3D2147483647&amp;v=3Dbeta&amp;t=3DHC56z3-2yO3=
+SiDRKTYsyJKd81pdQRSbnJI1etJs4zBU" style=3D"border-radius:50%;outline:none;-=
+ms-interpolation-mode:bicubic;color:#FFFFFF;max-width:unset !important;text=
+-decoration:none;"></a></td> <td valign=3D"middle" width=3D"100%" style=3D"=
+-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms=
+-text-size-adjust:100%;"> <table role=3D"presentation" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adju=
+st:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%=
+;border-collapse:separate;"> <tbody> <tr style=3D"padding-top:0;padding-bot=
+tom:0;"> <td style=3D"padding-top:0;-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-bottom:0=
+;"><a href=3D"https://www.linkedin.com/comm/profile/view?id=3DAAsAACGY_uwBe=
+WlV17C03dwmlv9Oo1XWeldE3Vg&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3hMwL=
+7NDKKdao1&amp;trk=3Deml-email_series_follow_newsletter_01-null-0-null&amp;t=
+rkEmail=3Deml-email_series_follow_newsletter_01-null-0-null-null-eau1wl%7El=
+6ocqskr%7Eqt-npv-nprofile%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_s=
+eries_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D" style=3D"cursor:=
+pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-block;te=
+xt-decoration:none;-ms-text-size-adjust:100%;padding-right:0.25em;"> <span =
+style=3D"word-wrap:break-word;color:#282828;word-break:break-word;font-weig=
+ht:700;-ms-word-break:break-all;font-size:14px;line-height:1.429;overflow-w=
+rap:break-word;">Denyze Santos</span></a></td> </tr> <tr style=3D"padding-t=
+op:0;padding-bottom:0;"> <td style=3D"padding-top:0;-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;=
+padding-bottom:0;"><a href=3D"https://www.linkedin.com/comm/profile/view?id=
+=3DAAsAACGY_uwBeWlV17C03dwmlv9Oo1XWeldE3Vg&amp;midToken=3DAQEq1MBbB2bM8g&am=
+p;midSig=3D3hMwL7NDKKdao1&amp;trk=3Deml-email_series_follow_newsletter_01-n=
+ull-0-null&amp;trkEmail=3Deml-email_series_follow_newsletter_01-null-0-null=
+-null-eau1wl%7El6ocqskr%7Eqt-npv-nprofile%7Eview&amp;lipi=3Durn%3Ali%3Apage=
+%3Aemail_email_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D" =
+style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display=
+:inline-block;text-decoration:none;-ms-text-size-adjust:100%;padding-right:=
+0.25em;"> <span style=3D"word-wrap:break-word;color:#737373;word-break:brea=
+k-word;font-weight:400;-ms-word-break:break-all;font-size:12px;line-height:=
+1.333;overflow-wrap:break-word;">Linkedin Top Voices 2022 l Consultora de C=
+arreira l Curr=C3=ADculo l Linkedin Estrat=C3=A9gico I Orienta=C3=A7=C3=A3o=
+ Profissional l Palestrante l Especialista em vitrine profissional</span></=
+a></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </tr> <tr=
+> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adjust:100%;ms=
+o-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-co=
+llapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;=
+mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <div=
+ style=3D"height:16px;font-size:16px;line-height:16px"> &nbsp; </div></td> =
+</tr> </tbody> </table></td> </tr> </tbody> </table> <table role=3D"present=
+ation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0p=
+t;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr bgcolor=
+=3D"#dce6f1" style=3D"background-color:#dce6f1;"> <td class=3D"newsletter-e=
+mail-content" style=3D"padding-top:1em;-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;padding-left:2em;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;padding-bottom:1em;padding-right:2em;"><a href=3D"https://www.linkedin.=
+com/e/v2/pulse?e=3Deau1wl-l6ocqskr-qt&amp;lipi=3Durn%3Ali%3Apage%3Aemail_em=
+ail_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D&amp;a=3Dpuls=
+e_web_view_article_detail_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=
+=3D3hMwL7NDKKdao1&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D3&amp=
+;m=3Dfooter_promo&amp;ts=3Dprimary_cta_link&amp;permLink=3Dvoc%25C3%25AA-bu=
+sca-uma-transi%25C3%25A7%25C3%25A3o-de-carreira-e-n%25C3%25A3o-sabe-quais-d=
+enyze-santos" target=3D"_blank" style=3D"cursor:pointer;color:#0A66C2;-webk=
+it-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text=
+-size-adjust:100%;"> <span style=3D"color:#282828;font-weight:400;font-size=
+:16px;line-height:1.25;">Abra este artigo no LinkedIn para ver o que as pes=
+soas est=C3=A3o dizendo sobre este t=C3=B3pico.</span>&nbsp; <span style=3D=
+"color:#0A66C2;font-weight:400;font-size:16px;line-height:1.25;">Abrir no L=
+inkedIn</span></a></td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <=
+table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D=
+"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-m=
+s-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td style=
+=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt=
+;-ms-text-size-adjust:100%;"> <div style=3D"height:16px;font-size:16px;line=
+-height:16px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> </tbod=
+y> </table> <table role=3D"presentation" border=3D"0" class=3D"newsletter-e=
+mail-content" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-=
+webkit-text-size-adjust:100%;mso-table-rspace:0pt;padding-left:2em;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;padding-rig=
+ht:2em;"> <tbody> <tr style=3D"padding-top:0;"> <td style=3D"-webkit-text-s=
+ize-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adj=
+ust:100%;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0" width=3D"100%" style=3D"border-radius:8px;overflow:hidden;-w=
+ebkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-t=
+ext-size-adjust:100%;border-collapse:separate;"> <tbody> <tr style=3D"paddi=
+ng-top: 0;"> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.l=
+inkedin.com/e/v2/pulse?e=3Deau1wl-l6ocqskr-qt&amp;lipi=3Durn%3Ali%3Apage%3A=
+email_email_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D&amp;=
+a=3Dpulse_web_view_article_detail_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp=
+;midSig=3D3hMwL7NDKKdao1&amp;ek=3Demail_series_follow_newsletter_01&amp;li=
+=3D2&amp;m=3Dhero&amp;ts=3Dimage_link&amp;permLink=3Dvoc%25C3%25AA-busca-um=
+a-transi%25C3%25A7%25C3%25A3o-de-carreira-e-n%25C3%25A3o-sabe-quais-denyze-=
+santos" style=3D"cursor:pointer;background-color:#f7f9fb;border-radius:8px;=
+background-repeat:;color:#0A66C2;-webkit-text-size-adjust:100%;display:inli=
+ne-block;text-decoration:none;-ms-text-size-adjust:100%;background-position=
+:;"><img class=3D"newsletter-content-preview__image" border=3D"0" src=3D"ht=
+tps://media-exp1.licdn.com/dms/image/D4D12AQGADAFVhsLbEQ/article-cover_imag=
+e-shrink_720_1280/0/1660178263071?e=3D2147483647&amp;v=3Dbeta&amp;t=3D6USse=
+zrzyB1rbvjx6ZcDF45elqyPRpJHj1l6yuRP5wQ" alt=3D"Imagem de capa da newsletter=
+" width=3D"448" style=3D"border-radius:8px;max-height:500px;outline:none;ma=
+rgin:0 auto;-ms-interpolation-mode:bicubic;color:#FFFFFF;max-width:448px;te=
+xt-decoration:none;display:block;width:100%;"></a></td> </tr> <tr> <td styl=
+e=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0p=
+t;-ms-text-size-adjust:100%;"> <table role=3D"presentation" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size=
+-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust=
+:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adju=
+st:100%;"> <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"1" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-l=
+space:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr=
+> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height:16px;font-siz=
+e:16px;line-height:16px"> &nbsp; </div></td> </tr> </tbody> </table></td> <=
+/tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.link=
+edin.com/e/v2/pulse?e=3Deau1wl-l6ocqskr-qt&amp;lipi=3Durn%3Ali%3Apage%3Aema=
+il_email_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D&amp;a=
+=3Dpulse_web_view_article_detail_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp;=
+midSig=3D3hMwL7NDKKdao1&amp;ek=3Demail_series_follow_newsletter_01&amp;li=
+=3D1&amp;m=3Dhero&amp;ts=3Dtitle_link&amp;permLink=3Dvoc%25C3%25AA-busca-um=
+a-transi%25C3%25A7%25C3%25A3o-de-carreira-e-n%25C3%25A3o-sabe-quais-denyze-=
+santos" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%=
+;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <h2=
+ style=3D"margin:0;color:#282828;font-weight:500;font-size:20px;line-height=
+:1.2;">Voc=C3=AA busca uma transi=C3=A7=C3=A3o de carreira e n=C3=A3o sabe =
+quais passos seguir?</h2></a></td> </tr> <tr> <td style=3D"-webkit-text-siz=
+e-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjus=
+t:100%;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-tabl=
+e-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse=
+:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=
+=3D"margin:0;color:#000000;font-weight:400;font-size:1em;margin-top:0.8em;l=
+ine-height:1.5;"></p><p style=3D"margin:0;font-weight:400;font-size:1em;mar=
+gin-top:0.8em;line-height:1.5;">Sentiu que est=C3=A1 na hora de mudar? Esse=
+ artigo =C3=A9 para voc=C3=AA!</p><p style=3D"margin:0;font-weight:400;font=
+-size:1em;margin-top:0.8em;line-height:1.5;">Aproveitando, se voc=C3=AA qui=
+ser aprender mais sobre Carreira e as tend=C3=AAncias do mercado de trabalh=
+o, compartilho cases diariamente no meu instagram: <a href=3D"https://www.i=
+nstagram.com/denyzesantos.rh/" target=3D"_blank" rel=3D"nofollow noopener" =
+style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display=
+:inline;text-decoration:none;-ms-text-size-adjust:100%;">https://www.instag=
+ram.com/denyzesantos.rh/</a></p><p style=3D"margin:0;font-weight:400;font-s=
+ize:1em;margin-top:0.8em;line-height:1.5;">A transi=C3=A7=C3=A3o de carreir=
+a, quando colocada nesse fator de mudan=C3=A7a, percebo nas pessoas um sent=
+imento de que ser=C3=A1 algo gigante, uma sess=C3=A3o que ter=C3=A1 que com=
+e=C3=A7ar do zero, que vai ser radical. Voc=C3=AA tamb=C3=A9m est=C3=A1 pas=
+sando por isso? (Voc=C3=AA tamb=C3=A9m tem esse sentimento?)</p><p style=3D=
+"margin:0;font-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5;">=
+Para voc=C3=AA j=C3=A1 come=C3=A7ar compreendendo o grande significado de u=
+ma transi=C3=A7=C3=A3o de carreira e at=C3=A9 te responder logo nesse in=C3=
+=ADcio da leitura, para aliviar esse sentimento inseguro que possivelmente =
+voc=C3=AA est=C3=A1 passando.</p><p style=3D"margin:0;font-weight:400;font-=
+size:1em;margin-top:0.8em;line-height:1.5;">Sempre nas consultorias quando =
+recebo uma situa=C3=A7=C3=A3o de transi=C3=A7=C3=A3o eu fa=C3=A7o uma pergu=
+nta que considero muito importante para eu compreender a situa=C3=A7=C3=A3o=
+ do profissional e saber se de fato ele sabe o que quer: nada mais que o AU=
+TOCONHECIMENTO, esse =C3=A9 o ponto crucial para uma mudan=C3=A7a, e aqui j=
+=C3=A1 come=C3=A7a o seu exerc=C3=ADcio:&nbsp;</p><pre spellcheck=3D"false"=
+ style=3D"padding:32px;margin:1.5em 0;color:#ffffff;white-space:pre-wrap;di=
+splay:block;font-size:1em;line-height:1.25;background-position:;background-=
+color:#38434f;border-radius:4px;background-repeat:;overflow-x:auto;font-fam=
+ily:monospace;">Quais as raz=C3=B5es para essa mudan=C3=A7a?
+
+Quais s=C3=A3o as for=C3=A7as que impulsionam para essa mudan=C3=A7a e quai=
+s as for=C3=A7as resistentes desta situa=C3=A7=C3=A3o?
+</pre><p style=3D"margin:0;font-weight:400;font-size:1em;margin-top:0.8em;l=
+ine-height:1.5;">Esse =C3=A9 o grande come=C3=A7o para um direcionamento e =
+tomada de decis=C3=A3o. </p><p style=3D"margin:0;font-weight:400;font-size:=
+1em;margin-top:0.8em;line-height:1.5;">DICA: anote tudo na ordem cronol=C3=
+=B3gica, voc=C3=AA vai conseguir visualizar o cen=C3=A1rio atual e as possi=
+bilidades para o novo ciclo.</p><p style=3D"margin:0;font-weight:400;font-s=
+ize:1em;margin-top:0.8em;line-height:1.5;">&nbsp;A transi=C3=A7=C3=A3o&nbsp=
+;de&nbsp;carreira, muitos conhecem pelo fato de mudar totalmente de =C3=A1r=
+ea, como recome=C3=A7ar em uma nova profiss=C3=A3o e nada mais =C3=A9 o des=
+ejo&nbsp;de&nbsp;um profissional por mudar ou migrar para uma nova =C3=A1re=
+a&nbsp;de&nbsp;atua=C3=A7=C3=A3o. Esse desejo por mudan=C3=A7a pode acontec=
+er por v=C3=A1rios aspectos, dentre eles: buscar reconhecimento profissiona=
+l, desenvolver novas compet=C3=AAncias e habilidades, dificuldades no merca=
+do&nbsp;de&nbsp;trabalho, busca por melhor remunera=C3=A7=C3=A3o e condi=C3=
+=A7=C3=B5es&nbsp;de&nbsp;trabalho, dentre outros.&nbsp;</p><p style=3D"marg=
+in:0;font-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5;">UM CA=
+SE DA CONSULTORIA</p><p style=3D"margin:0;font-weight:400;font-size:1em;mar=
+gin-top:0.8em;line-height:1.5;">Uma profissional estava bem insatisfeita co=
+m a sua carreira, pois atuava 11 anos numa organiza=C3=A7=C3=A3o e n=C3=A3o=
+ era reconhecida profissionalmente na posi=C3=A7=C3=A3o que assumia, e a su=
+a maior inseguran=C3=A7a era o medo do famoso =E2=80=9Ctrocar o certo pelo =
+duvidoso=E2=80=9D. Mesmo com medo, essa profissional fez algumas entrevista=
+s e n=C3=A3o passava pelo desequil=C3=ADbrio emocional, das situa=C3=A7=C3=
+=B5es que estava passando na empresa atual. Ap=C3=B3s a nossa primeira sess=
+=C3=A3o de Orienta=C3=A7=C3=A3o de Carreira ela participou de um processo e=
+ passou, e claro veio a insegura, =E2=80=9Ce agora aceito ou n=C3=A3o?=E2=
+=80=9D. Fizemos uma an=C3=A1lise de todo o processo, sobre seu perfil compo=
+rtamental e sobre a nova empresa e suas possibilidades de oferta, conclu=C3=
+=ADmos que sim seria uma grande oportunidade, e nesse momento a autoconfian=
+=C3=A7a consigo mesmo foi fundamental e com planejamento.</p> <blockquote s=
+tyle=3D"padding:0 0 0 1.5em;margin:1.5em 0;color:#282828;border-left:4px so=
+lid rgba(0,0,0,.75);display:block;font-size:1em;line-height:1.5;font-style:=
+italic;"> Como diz =E2=80=94 Arthur Ashe, campe=C3=A3o de t=C3=AAnis; "Um i=
+mportante aspecto para o sucesso =C3=A9 a autoconfian=C3=A7a. Um importante=
+ aspecto para autoconfian=C3=A7a =C3=A9 a prepara=C3=A7=C3=A3o". </blockquo=
+te><p style=3D"margin:0;font-weight:400;font-size:1em;margin-top:0.8em;line=
+-height:1.5;">Precisamos entender que&nbsp;transi=C3=A7=C3=A3o&nbsp;de&nbsp=
+;carreira&nbsp;=C3=A9 algo realiz=C3=A1vel quando bem planejada, e n=C3=A3o=
+ deixar que pessoas que vivam em um mundo paralelo fa=C3=A7am voc=C3=AA acr=
+editar que n=C3=A3o =C3=A9 poss=C3=ADvel, que voc=C3=AA sonha demais e at=
+=C3=A9 mesmo fazer voc=C3=AA duvidar da sua capacidade profissional.</p><p =
+style=3D"margin:0;font-weight:400;font-size:1em;margin-top:0.8em;line-heigh=
+t:1.5;">&nbsp;Como o caso dessa profissional que te contei acima e com cert=
+eza de alguns profissionais que tamb=C3=A9m se apegam aos seus empregos, me=
+smo quando n=C3=A3o h=C3=A1 mais o desejo por continuar, apenas pelo medo&n=
+bsp;de&nbsp;n=C3=A3o dar certo. E permanecem infelizes com suas carreiras p=
+orque acreditam ser imposs=C3=ADvel fazer essa&nbsp;transi=C3=A7=C3=A3o.</p=
+><p style=3D"margin:0;font-weight:400;font-size:1em;margin-top:0.8em;line-h=
+eight:1.5;">Sentiu que algo n=C3=A3o se encaixa mais no que voc=C3=AA vem f=
+azendo? Aquele ambiente n=C3=A3o te faz feliz? Sentiu-se enferrujado nas ha=
+bilidades e compet=C3=AAncias? Despertou um novo amor por outras atividades=
+? </p><p style=3D"margin:0;font-weight:400;font-size:1em;margin-top:0.8em;l=
+ine-height:1.5;">Na busca pelo novo fa=C3=A7a um bom planejamento, entendas=
+ suas raz=C3=B5es para mudan=C3=A7as e estipule metas.</p><p style=3D"margi=
+n:0;font-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5;">S=C3=
+=B3 mudar e n=C3=A3o saber aonde quer chegar nessa localiza=C3=A7=C3=A3o n=
+=C3=A3o vai fazer sentido, concorda?</p><p style=3D"margin:0;font-weight:40=
+0;font-size:1em;margin-top:0.8em;line-height:1.5;">Pr=C3=B3xima orienta=C3=
+=A7=C3=A3o =E2=80=93 O simples que faz toda diferen=C3=A7a:</p> <ul style=
+=3D"padding:0;margin:1em 0 0 1.5em;display:block;"> <li style=3D"margin-lef=
+t:1em;color:#282828;letter-spacing:-0.15%;font-size:1em;line-height:1.5;">N=
+essa =C3=A1rea que voc=C3=AA atua ou vai atuar, qual =C3=A9 a tend=C3=AAnci=
+a do mercado?</li> <li style=3D"margin-left:1em;color:#282828;letter-spacin=
+g:-0.15%;font-size:1em;line-height:1.5;">Qual certifica=C3=A7=C3=B5es ser=
+=C3=A1 um diferencial?</li> <li style=3D"margin-left:1em;color:#282828;lett=
+er-spacing:-0.15%;font-size:1em;line-height:1.5;">Qual Soft Skills voc=C3=
+=AA precisa desenvolver?</li> <li style=3D"margin-left:1em;color:#282828;le=
+tter-spacing:-0.15%;font-size:1em;line-height:1.5;">Voc=C3=AA tem uma reser=
+va financeira para essa prioridade?</li> <li style=3D"margin-left:1em;color=
+:#282828;letter-spacing:-0.15%;font-size:1em;line-height:1.5;">A que ponto =
+voc=C3=AA quer chegar nessa profiss=C3=A3o? </li> </ul><p style=3D"margin:0=
+;font-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5;">Foque na =
+especialidade e n=C3=A3o um generalista muito amplo, para voc=C3=AA n=C3=A3=
+o ser visto como =E2=80=9Cfaz tudo e n=C3=A3o faz nada=E2=80=9D. Digo isso =
+porque =C3=A9 o que eu mais recebo de curr=C3=ADculos com experi=C3=AAncias=
+ e forma=C3=A7=C3=B5es muito amplas e acaba atrapalhando nessas mudan=C3=A7=
+as. </p><p style=3D"margin:0;font-weight:400;font-size:1em;margin-top:0.8em=
+;line-height:1.5;">Percebeu que voc=C3=AA pode ser feliz na sua carreira e =
+que a transi=C3=A7=C3=A3o =C3=A9 poss=C3=ADvel? Toda essa mudan=C3=A7a come=
+=C3=A7a quando o foco est=C3=A1 na autorresponsabilidade pela sua carreira.=
+ </p><p style=3D"margin:0;font-weight:400;font-size:1em;margin-top:0.8em;li=
+ne-height:1.5;">O que est=C3=A1 te impedindo&nbsp;de&nbsp;ter sucesso e ser=
+ feliz na sua&nbsp;carreira?</p><p style=3D"margin:0;font-weight:400;font-s=
+ize:1em;margin-top:0.8em;line-height:1.5;"><br></p><p style=3D"margin:0;fon=
+t-weight:400;font-size:1em;margin-top:0.8em;line-height:1.5;"></p></td> </t=
+r> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso=
+-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;bor=
+der-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust=
+:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"=
+> <div style=3D"height:16px;font-size:16px;line-height:16px"> &nbsp; </div>=
+</td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D"-webkit-text-siz=
+e-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjus=
+t:100%;"> <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"p=
+resentation" align=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-tabl=
+e-rspace:0pt;display:inline-block;mso-table-lspace:0pt;-ms-text-size-adjust=
+:100%;border-collapse:separate;"> <tbody> <tr> <td align=3D"center" valign=
+=3D"middle" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso=
+-table-lspace:0pt;font-size:16px;-ms-text-size-adjust:100%;"><a href=3D"htt=
+ps://www.linkedin.com/e/v2/pulse?e=3Deau1wl-l6ocqskr-qt&amp;lipi=3Durn%3Ali=
+%3Apage%3Aemail_email_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%=
+3D%3D&amp;a=3Dpulse_web_view_article_detail_new_url&amp;midToken=3DAQEq1MBb=
+B2bM8g&amp;midSig=3D3hMwL7NDKKdao1&amp;ek=3Demail_series_follow_newsletter_=
+01&amp;li=3D3&amp;m=3Dfooter_promo&amp;ts=3Dprimary_cta_link&amp;permLink=
+=3Dvoc%25C3%25AA-busca-uma-transi%25C3%25A7%25C3%25A3o-de-carreira-e-n%25C3=
+%25A3o-sabe-quais-denyze-santos" style=3D"cursor:pointer;word-wrap:normal;c=
+olor:#0A66C2;word-break:normal;white-space:normal;-webkit-text-size-adjust:=
+100%;display:block;text-decoration:none;-ms-text-size-adjust:100%;overflow-=
+wrap:normal;text-align:center;"> <table role=3D"presentation" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adju=
+st:100%;border-collapse:separate;"> <tbody> <tr> <td bgcolor=3D"#0A66C2" st=
+yle=3D"padding:12px 24px;color:#FFFFFF;-webkit-text-size-adjust:100%;font-w=
+eight:400;display:inline-block;text-decoration:none;font-size:16px;-ms-text=
+-size-adjust:100%;line-height:1.25em;border-color:#0A66C2;background-color:=
+#0A66C2;border-radius:34px;mso-table-rspace:0pt;mso-table-lspace:0pt;border=
+-width:1px;border-style:solid;"><a href=3D"https://www.linkedin.com/e/v2/pu=
+lse?e=3Deau1wl-l6ocqskr-qt&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_=
+follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D&amp;a=3Dpulse_web_view_=
+article_detail_new_url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3hMwL7NDK=
+Kdao1&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D3&amp;m=3Dfooter_=
+promo&amp;ts=3Dprimary_cta_link&amp;permLink=3Dvoc%25C3%25AA-busca-uma-tran=
+si%25C3%25A7%25C3%25A3o-de-carreira-e-n%25C3%25A3o-sabe-quais-denyze-santos=
+" style=3D"cursor:pointer;word-wrap:normal;color:#FFFFFF;word-break:normal;=
+white-space:normal;-webkit-text-size-adjust:100%;display:block;text-decorat=
+ion:none;-ms-text-size-adjust:100%;overflow-wrap:normal;text-align:center;"=
+>Participe da conversa</a></td> </tr> </tbody> </table></a></td> </tr><!--[=
+if !mso]><!--> <tr> <td height=3D"3" style=3D"-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <ta=
+ble width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-=
+webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D=
+"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-m=
+s-text-size-adjust:100%;"> <div style=3D"height:1px;font-size:1px;line-heig=
+ht:1px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr><!--<![endif]=
+--> </tbody> </table></td> </tr> </tbody> </table></td> </tr> </tbody> </ta=
+ble></td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D"-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-a=
+djust:100%;"> <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> =
+<tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-ta=
+ble-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height:16px;font-=
+size:16px;line-height:16px"> &nbsp; </div></td> </tr> </tbody> </table></td=
+> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=3D"margin:0;co=
+lor:#282828;font-weight:400;font-size:16px;line-height:1.25;">Conhece algu=
+=C3=A9m que possa se interessar por esta newsletter? Compartilhe-a!</p></td=
+> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100=
+%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-a=
+djust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;"> <div style=3D"height:16px;font-size:16px;line-height:16px"> &nbsp; <=
+/div></td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D"-webkit-tex=
+t-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-=
+adjust:100%;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"75%" style=3D"margin:0 auto;-webkit-text-size-ad=
+just:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:10=
+0%;border-collapse:separate;"> <tbody> <tr align=3D"middle"> <td style=3D"-=
+webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;"><a href=3D"https://www.linkedin.com/e/v2?e=3Deau1wl=
+-l6ocqskr-qt&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newslet=
+ter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D&amp;t=3Dplh&amp;midToken=3DAQEq1MBbB2=
+bM8g&amp;ek=3Demail_series_follow_newsletter_01&amp;li=3D7&amp;m=3Dfooter_p=
+romo&amp;urlhash=3DQwyX&amp;url=3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fshar=
+eArticle%3Fmini%3Dtrue%26url%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2=
+Fvoc%25C3%25AA-busca-uma-transi%25C3%25A7%25C3%25A3o-de-carreira-e-n%25C3%2=
+5A3o-sabe-quais-denyze-santos" style=3D"cursor:pointer;color:#0A66C2;-webki=
+t-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-=
+size-adjust:100%;"><img src=3D"https://static.licdn.com/sc/p/com.linkedin.e=
+mail-assets-frontend%3Aemail-assets-frontend-static-content%2B__latest__/f/=
+%2Femail-assets-frontend%2Fimages%2Femail%2Fartdeco%2Fsocial%2F24%2Flinkedi=
+n-color.png" height=3D"24" width=3D"24" alt=3D"Compartilhe esta s=C3=A9rie =
+no LinkedIn" style=3D"outline:none;-ms-interpolation-mode:bicubic;color:#FF=
+FFFF;text-decoration:none;"></a></td> <td style=3D"-webkit-text-size-adjust=
+:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"=
+><a href=3D"https://www.linkedin.com/e/v2?e=3Deau1wl-l6ocqskr-qt&amp;lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_01%3BR00Ot9OyT4qq=
+AgdmeFFsbA%3D%3D&amp;t=3Dplh&amp;midToken=3DAQEq1MBbB2bM8g&amp;ek=3Demail_s=
+eries_follow_newsletter_01&amp;li=3D8&amp;m=3Dfooter_promo&amp;urlhash=3DwM=
+5Y&amp;url=3Dhttps%3A%2F%2Fwww%2Efacebook%2Ecom%2Fsharer%2Fsharer%2Ephp%3Fu=
+%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fpulse%2Fvoc%25C3%25AA-busca-uma-tra=
+nsi%25C3%25A7%25C3%25A3o-de-carreira-e-n%25C3%25A3o-sabe-quais-denyze-santo=
+s" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;disp=
+lay:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"><img src=
+=3D"https://static.licdn.com/sc/p/com.linkedin.email-assets-frontend%3Aemai=
+l-assets-frontend-static-content%2B__latest__/f/%2Femail-assets-frontend%2F=
+images%2Femail%2Fartdeco%2Fsocial%2F24%2Ffacebook-color.png" height=3D"24" =
+width=3D"24" alt=3D"Compartilhe esta s=C3=A9rie no Facebook" style=3D"outli=
+ne:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;"=
+></a></td> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;=
+mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.lin=
+kedin.com/e/v2?e=3Deau1wl-l6ocqskr-qt&amp;lipi=3Durn%3Ali%3Apage%3Aemail_em=
+ail_series_follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D&amp;t=3Dplh&=
+amp;midToken=3DAQEq1MBbB2bM8g&amp;ek=3Demail_series_follow_newsletter_01&am=
+p;li=3D9&amp;m=3Dfooter_promo&amp;urlhash=3DvXUi&amp;url=3Dhttps%3A%2F%2Fww=
+w%2Etwitter%2Ecom%2Fintent%2Ftweet%3Furl%3Dhttps%3A%2F%2Fwww%2Elinkedin%2Ec=
+om%2Fpulse%2Fvoc%25C3%25AA-busca-uma-transi%25C3%25A7%25C3%25A3o-de-carreir=
+a-e-n%25C3%25A3o-sabe-quais-denyze-santos" style=3D"cursor:pointer;color:#0=
+A66C2;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:no=
+ne;-ms-text-size-adjust:100%;"><img src=3D"https://static.licdn.com/sc/p/co=
+m.linkedin.email-assets-frontend%3Aemail-assets-frontend-static-content%2B_=
+_latest__/f/%2Femail-assets-frontend%2Fimages%2Femail%2Fartdeco%2Fsocial%2F=
+24%2Ftwitter-color.png" height=3D"24" width=3D"24" alt=3D"Compartilhe esta =
+s=C3=A9rie no Twitter" style=3D"outline:none;-ms-interpolation-mode:bicubic=
+;color:#FFFFFF;text-decoration:none;"></a></td> </tr> </tbody> </table></td=
+> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100=
+%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-a=
+djust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;"> <div style=3D"height:16px;font-size:16px;line-height:16px"> &nbsp; <=
+/div></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </tr> =
+<tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-ta=
+ble-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presentation" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" bgcolor=3D"#F=
+3F2EF" align=3D"left" style=3D"background-color:#F3F2EF;padding-top:16px;co=
+lor:#000000;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-ls=
+pace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;text-align:left=
+;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspac=
+e:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"24"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-siz=
+e-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjus=
+t:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-s=
+ize-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adj=
+ust:100%;"> <div style=3D"height:0px;font-size:0px;line-height:0px"> &nbsp;=
+ </div></td> </tr> </tbody> </table></td> <td style=3D"-webkit-text-size-ad=
+just:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:10=
+0%;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:sep=
+arate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-=
+rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D=
+"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"10=
+0%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-l=
+space:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr=
+> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adjust:100%;ms=
+o-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-co=
+llapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;=
+mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <div=
+ style=3D"height:12px;font-size:12px;line-height:12px"> &nbsp; </div></td> =
+</tr> </tbody> </table></td> </tr> <tr> <td align=3D"left" style=3D"padding=
+:0;color:#000000;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tab=
+le-lspace:0pt;-ms-text-size-adjust:100%;text-align:left;"> <p style=3D"marg=
+in:0;word-wrap:break-word;color:#000000;word-break:break-word;font-weight:4=
+00;-ms-word-break:break-all;font-size:12px;line-height:1.333;overflow-wrap:=
+break-word;">Este e-mail foi enviado para Rafael Souza (Desenvolvedor da we=
+b na Solution.dev). <a href=3D"https://www.linkedin.com/e/v2?e=3Deau1wl-l6o=
+cqskr-qt&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_follow_newsletter_=
+01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D&amp;a=3DcustomerServiceUrl&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D3hMwL7NDKKdao1&amp;ek=3Demail_series_follow_=
+newsletter_01&amp;articleId=3D4788" style=3D"cursor:pointer;color:#0A66C2;-=
+webkit-text-size-adjust:100%;text-decoration:underline;display:inline-block=
+;-ms-text-size-adjust:100%;">Saiba por que inclu=C3=ADmos isto.</a></p></td=
+> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100=
+%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-a=
+djust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;"> <div style=3D"height:16px;font-size:16px;line-height:16px"> &nbsp; <=
+/div></td> </tr> </tbody> </table></td> </tr> <tr> <td align=3D"left" style=
+=3D"padding:0;color:#000000;-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:left;"> <p st=
+yle=3D"margin:0;color:#000000;font-weight:400;font-size:12px;line-height:1.=
+333;">Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do Lin=
+kedIn. O autor da newsletter pode ver que voc=C3=AA =C3=A9 assinante.</p></=
+td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-size-a=
+djust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size=
+-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust=
+:100%;"> <div style=3D"height:16px;font-size:16px;line-height:16px"> &nbsp;=
+ </div></td> </tr> </tbody> </table></td> </tr> <tr> <td align=3D"left" sty=
+le=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;text-align:left;"> <table role=3D"presentation=
+" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-t=
+able-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbod=
+y> <tr> <td valign=3D"middle" align=3D"left" style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;vertical-align:middle;mso-table-lspace:0pt;-m=
+s-text-size-adjust:100%;text-align:left;"><a href=3D"https://www.linkedin.c=
+om/e/v2?e=3Deau1wl-l6ocqskr-qt&amp;t=3Dlun&amp;midToken=3DAQEq1MBbB2bM8g&am=
+p;midSig=3D3hMwL7NDKKdao1&amp;ek=3Demail_series_follow_newsletter_01&amp;li=
+=3D42&amp;m=3Dunsub&amp;ts=3Dunsub&amp;eid=3Deau1wl-l6ocqskr-qt&amp;loid=3D=
+AQFbiSdDqHdP9AAAAYKKe6Hym98CJM69kgrmK31B-q0ZvS-jXOiRgYUMZZwl2YXUZFl1rEAygxE=
+XQ4F-ny3m76v4SFZZMr5IXRJ0WjmFmMWt-KK7551z-g" style=3D"cursor:pointer;color:=
+#0A66C2;-webkit-text-size-adjust:100%;text-decoration:underline;display:inl=
+ine-block;-ms-text-size-adjust:100%;"> <span style=3D"color:#0A66C2;font-we=
+ight:400;font-size:12px;line-height:1.333;">Cancelar inscri=C3=A7=C3=A3o</s=
+pan></a>&nbsp;&nbsp;=C2=B7&nbsp;&nbsp;<a href=3D"https://www.linkedin.com/e=
+/v2?e=3Deau1wl-l6ocqskr-qt&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_=
+follow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D&amp;a=3DcustomerService=
+Url&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3hMwL7NDKKdao1&amp;ek=3Demai=
+l_series_follow_newsletter_01&amp;li=3D41&amp;m=3Dfooter&amp;ts=3Dhelp&amp;=
+articleId=3D67" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adj=
+ust:100%;text-decoration:underline;display:inline-block;-ms-text-size-adjus=
+t:100%;"> <span style=3D"color:#0A66C2;font-weight:400;font-size:12px;line-=
+height:1.333;">Ajuda</span></a></td> </tr> <tr> <td style=3D"-webkit-text-s=
+ize-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adj=
+ust:100%;"> <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> =
+<tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-ta=
+ble-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height:16px;font-=
+size:16px;line-height:16px"> &nbsp; </div></td> </tr> </tbody> </table></td=
+> </tr> </tbody> </table></td> </tr> <tr> <td align=3D"left" style=3D"paddi=
+ng:0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0p=
+t;-ms-text-size-adjust:100%;text-align:left;"><a href=3D"https://www.linked=
+in.com/comm/feed/?midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D3hMwL7NDKKdao1&amp=
+;trk=3Deml-email_series_follow_newsletter_01-footer-39-home&amp;trkEmail=3D=
+eml-email_series_follow_newsletter_01-footer-39-home-null-eau1wl%7El6ocqskr=
+%7Eqt-null-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_series_f=
+ollow_newsletter_01%3BR00Ot9OyT4qqAgdmeFFsbA%3D%3D" style=3D"cursor:pointer=
+;color:#0A66C2;-webkit-text-size-adjust:100%;text-decoration:underline;disp=
+lay:inline-block;-ms-text-size-adjust:100%;"><img alt=3D"LinkedIn" border=
+=3D"0" height=3D"14" src=3D"https://static.licdn.com/sc/p/com.linkedin.emai=
+l-assets-frontend%3Aemail-assets-frontend-static-content%2B__latest__/f/%2F=
+email-assets-frontend%2Fimages%2Flogos%2Flogo_linkedin_mercado_blue_112x28.=
+png" width=3D"56" style=3D"outline:none;-ms-interpolation-mode:bicubic;colo=
+r:#FFFFFF;max-width:unset !important;display:block;text-decoration:none;"><=
+/a></td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"=
+1" border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text-s=
+ize-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adj=
+ust:100%;border-collapse:separate;"> <tbody> <tr> <td style=3D"-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-a=
+djust:100%;"> <div style=3D"height:16px;font-size:16px;line-height:16px"> &=
+nbsp; </div></td> </tr> </tbody> </table></td> </tr> <tr> <td align=3D"left=
+" style=3D"padding:0;color:#000000;-webkit-text-size-adjust:100%;mso-table-=
+rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:left;"=
+> <p style=3D"margin:0;color:#000000;font-weight:400;font-size:12px;line-he=
+ight:1.333;">=C2=A9 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, =
+Wilton Place, Dublin 2. LinkedIn =C3=A9 um nome comercial registrado da Lin=
+kedIn Ireland Unlimited Company. LinkedIn e o logo do LinkedIn s=C3=A3o mar=
+cas registradas do LinkedIn.</p></td> </tr> <tr> <td style=3D"-webkit-text-=
+size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-ad=
+just:100%;"> <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> =
+<tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-ta=
+ble-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height:24px;font-=
+size:24px;line-height:24px"> &nbsp; </div></td> </tr> </tbody> </table></td=
+> </tr> </tbody> </table></td> </tr> </tbody> </table></td> <td style=3D"-w=
+ebkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-t=
+ext-size-adjust:100%;"> <table width=3D"24" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0=
+pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;=
+"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace=
+:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height=
+:0px;font-size:0px;line-height:0px"> &nbsp; </div></td> </tr> </tbody> </ta=
+ble></td> </tr> </tbody> </table></td> </tr> </tbody> </table> </center></t=
+d> </tr> </tbody> </table> <img alt=3D"" role=3D"presentation" src=3D"https=
+://www.linkedin.com/emimp/ip_WldGMU1YZHNMV3cyYjJOeGMydHlMWEYwOlpXMWhhV3hmYz=
+JWeWFXVnpYMlp2Ykd4dmQxOXVaWGR6YkdWMGRHVnlYekF4OmRYSnVPbXhwT214cGJtdGxaRWx1U=
+VhKMGFXTnNaVG8yT1RZek1qa3lNek15T1RjMk5qZzVNVFV5.gif" style=3D"outline:none;=
+-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;width:1px=
+;height:1px;"> </body> </html>
+------=_Part_10344080_252428094.1660180734628--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>1283</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1660180736</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>10459</string>
+</dict>
+</plist>

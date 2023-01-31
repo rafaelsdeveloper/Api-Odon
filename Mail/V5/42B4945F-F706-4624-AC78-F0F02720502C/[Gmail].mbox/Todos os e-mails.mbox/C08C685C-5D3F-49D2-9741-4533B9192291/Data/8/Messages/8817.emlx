@@ -1,0 +1,580 @@
+30333     
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:e110:b0:3e4:c96d:8327 with SMTP id a16csp43517pxw;
+        Tue, 31 Jan 2023 03:34:41 -0800 (PST)
+X-Google-Smtp-Source: AK7set87ou03PDTIZsfv4d8M3mxaF4fnjK/NfrvpcU1FiXT4CRInYXRPD4YatBQAjKX9mDFq6wzO
+X-Received: by 2002:a05:622a:1207:b0:3b8:2ea9:a09c with SMTP id y7-20020a05622a120700b003b82ea9a09cmr22626809qtx.1.1675164881780;
+        Tue, 31 Jan 2023 03:34:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1675164881; cv=none;
+        d=google.com; s=arc-20160816;
+        b=pU24das/DJ0D9+qenJL41nNMfxRQKtD8PS3z42HZWAidmVH8or/gmReLS6kyPjYhOv
+         H1md2q/Ex7m7zUGFpVSR5TzElQVHTeGYj78CJbYSckxOZbkGxeX9hPmO7HcU0iJ2Ox8y
+         xvEK1wLWfhm6ahuW88H4/n1WCaVe2JcohEQiWcD6Gd1/uRJy6+BETzlQx+wP48yH6+F9
+         GAkpT2vPcOld0VIp27y8Dj7IYRDNOqGEXugIlqHe7Hm2HoFbvN8KLiz0+on88tvQMdI5
+         zaceWBejGhGUGStjfqm6jivTuD5bZ+veyjCIxBy/njhZp/DvSiSwzYKcmXIYRnNRy1vU
+         sKPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date:dkim-signature;
+        bh=0TwtQ69wRgQzjxf/K79UnO7/Cpo9hqSWPiYndXPffi0=;
+        b=JnDyqTmzYNM8+mrsc3W+jhK/CKankxB2wVGrrXAgyALcMP5M51vr955L54ymrpdJXV
+         wr5P+PChpu/BMbHI0txjknZLQkdTXEIRxfT+AWypl1nYyXwhZJZNP4DC7EHLqlgvfS0c
+         /vFGCtvsDEqA7TxMYh3735iiR3wiZBWBcmd7VdjWFqgJhVgpp8OfYK45t8Nb7FLZqDD2
+         lKvILIY/take7FoL69p8rQReangIkieMk9Nu82Hq7YLo8Wr42OLwsQbdlDDNAugTuPAr
+         rrlfpKlpEQz7gofzZYVPwxcmh28uSULY1SMSrZD9iPnqxipnPMUimVJG/PM5GH9ljHqK
+         +41A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2014 header.b="y1S9/Vly";
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.200 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from smtp.github.com (out-17.smtp.github.com. [192.30.252.200])
+        by mx.google.com with ESMTPS id m2-20020aed27c2000000b003b860983963si3662671qtg.207.2023.01.31.03.34.41
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 31 Jan 2023 03:34:41 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.200 as permitted sender) client-ip=192.30.252.200;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2014 header.b="y1S9/Vly";
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.200 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Received: from github.com (hubbernetes-node-a62d878.va3-iad.github.net [10.48.205.41])
+	by smtp.github.com (Postfix) with ESMTPA id 6A5545C08D6
+	for <faeldroom46@gmail.com>; Tue, 31 Jan 2023 03:34:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2014; t=1675164881;
+	bh=0TwtQ69wRgQzjxf/K79UnO7/Cpo9hqSWPiYndXPffi0=;
+	h=Date:From:To:Subject:From;
+	b=y1S9/Vly/Egx2IiSJ7KhxIWEpIMJ5uHnY+vAMCSwkQzgjwRHYj5GfSDyncA834lEd
+	 f6NnHU4O5xQfKrQTNpsfpCZhhJ8hk+u16n7P+bg24Y5kEqYlYx6/R93eCyQ8s1muW2
+	 Bis1DFWpWr5q5Wq5nb3F8fojKe7sVnDYRk1UhUek=
+Date: Tue, 31 Jan 2023 03:34:41 -0800
+From: GitHub <noreply@github.com>
+To: rafaelsdeveloper <faeldroom46@gmail.com>
+Message-ID: <63d8fcd167c6e_6ca0c5bc104511@lowworker-768d475bd-rf8lg.mail>
+Subject: [GitHub] Please reset your password
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_63d8fcd08cb87_6ca0c5bc104452";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Auto-Response-Suppress: All
+
+
+----==_mimepart_63d8fcd08cb87_6ca0c5bc104452
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+We heard that you lost your GitHub password. Sorry about that!=0D
+=0D
+But don=E2=80=99t worry! You can use the following link to reset your pas=
+sword:=0D
+=0D
+https://github.com/password_reset/AS7SYB6CUCYM43WLEISSUNTD3ETQBBFFMVWWC2L=
+MWVTGCZLMMRZG633NGQ3EAZ3NMFUWYLTDN5W2KZTPOJRWLQVTOR3W6X3GMFRXI33SL53GK4TJ=
+MZUWKZGCXJTG64TDMVSF653FMFVV64DBONZXO33SMRPXEZLTMV2ME?auto=3Dtrue=0D
+=0D
+If you don=E2=80=99t use this link within 3 hours, it will expire. To get=
+ a new password reset link, visit https://github.com/password_reset=0D
+=0D
+=0D
+Thanks,=0D
+The GitHub Team=0D
+
+----==_mimepart_63d8fcd08cb87_6ca0c5bc104452
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://ww=
+w.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns=3D"http://www.w3.org/1=
+999/xhtml" lang=3D"en" xml:lang=3D"en" style=3D"font-family: sans-serif; =
+-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; box-sizing: b=
+order-box;" xml:lang=3D"en">
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width" />
+    <title></title>
+    =
+
+  </head>
+  <body style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot;; font-size: 14px; line-heig=
+ht: 1.5; color: #24292e; background-color: #fff; margin: 0;" bgcolor=3D"#=
+fff">
+    <table align=3D"center" class=3D"container-sm width-full" width=3D"10=
+0%" style=3D"box-sizing: border-box; border-spacing: 0; border-collapse: =
+collapse; max-width: 544px; margin-right: auto; margin-left: auto; width:=
+ 100% !important; font-family: -apple-system,BlinkMacSystemFont,&quot;Seg=
+oe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quo=
+t;Segoe UI Emoji&quot; !important;">
+      <tr style=3D"box-sizing: border-box; font-family: -apple-system,Bli=
+nkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;App=
+le Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+        <td class=3D"center p-3" align=3D"center" valign=3D"top" style=3D=
+"box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,&q=
+uot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quo=
+t;,&quot;Segoe UI Emoji&quot; !important; padding: 16px;">
+          <center style=3D"box-sizing: border-box; font-family: -apple-sy=
+stem,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&=
+quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+            <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" class=3D"width-full container-md" width=3D"100%" style=3D"box=
+-sizing: border-box; border-spacing: 0; border-collapse: collapse; max-wi=
+dth: 768px; margin-right: auto; margin-left: auto; width: 100% !important=
+; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helv=
+etica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji=
+&quot; !important;">
+  <tr style=3D"box-sizing: border-box; font-family: -apple-system,BlinkMa=
+cSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <td align=3D"center" style=3D"box-sizing: border-box; font-family: -a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-=
+serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important=
+; padding: 0;">
+              <table style=3D"box-sizing: border-box; border-spacing: 0; =
+border-collapse: collapse; font-family: -apple-system,BlinkMacSystemFont,=
+&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&q=
+uot;,&quot;Segoe UI Emoji&quot; !important;">
+  <tbody style=3D"box-sizing: border-box; font-family: -apple-system,Blin=
+kMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <tr style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+      <td height=3D"16" style=3D"font-size: 16px; line-height: 16px; box-=
+sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot; !important; padding: 0;">&#160;</td>
+    </tr>
+  </tbody>
+</table>
+
+              <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" ali=
+gn=3D"left" width=3D"100%" style=3D"box-sizing: border-box; border-spacin=
+g: 0; border-collapse: collapse; font-family: -apple-system,BlinkMacSyste=
+mFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color E=
+moji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+                <tr style=3D"box-sizing: border-box; font-family: -apple-=
+system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif=
+,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+                  <td class=3D"text-left" style=3D"box-sizing: border-box=
+; text-align: left !important; font-family: -apple-system,BlinkMacSystemF=
+ont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emo=
+ji&quot;,&quot;Segoe UI Emoji&quot; !important; padding: 0;" align=3D"lef=
+t">
+                    <img src=3D"https://github.githubassets.com/images/em=
+ail/global/octocat-logo.png" alt=3D"GitHub" width=3D"32" style=3D"box-siz=
+ing: border-box; font-family: -apple-system,BlinkMacSystemFont,&quot;Sego=
+e UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot=
+;Segoe UI Emoji&quot; !important; border: none;" />
+                    <h2 class=3D"lh-condensed mt-2 text-normal" style=3D"=
+box-sizing: border-box; margin-top: 8px !important; margin-bottom: 0; fon=
+t-size: 24px; font-weight: 400 !important; line-height: 1.25 !important; =
+font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvet=
+ica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&q=
+uot; !important;">
+                        Reset your GitHub password
+
+                    </h2>
+                  </td>
+                </tr>
+              </table>
+              <table style=3D"box-sizing: border-box; border-spacing: 0; =
+border-collapse: collapse; font-family: -apple-system,BlinkMacSystemFont,=
+&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&q=
+uot;,&quot;Segoe UI Emoji&quot; !important;">
+  <tbody style=3D"box-sizing: border-box; font-family: -apple-system,Blin=
+kMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <tr style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+      <td height=3D"16" style=3D"font-size: 16px; line-height: 16px; box-=
+sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot; !important; padding: 0;">&#160;</td>
+    </tr>
+  </tbody>
+</table>
+
+</td>
+  </tr>
+</table>
+            <table width=3D"100%" class=3D"width-full" style=3D"box-sizin=
+g: border-box; border-spacing: 0; border-collapse: collapse; width: 100% =
+!important; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&=
+quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Sego=
+e UI Emoji&quot; !important;">
+              <tr style=3D"box-sizing: border-box; font-family: -apple-sy=
+stem,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&=
+quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+                <td class=3D"border rounded-2 d-block" style=3D"box-sizin=
+g: border-box; border-radius: 6px !important; display: block !important; =
+font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvet=
+ica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&q=
+uot; !important; padding: 0; border: 1px solid #e1e4e8;">
+                  <table align=3D"center" class=3D"width-full text-center=
+" style=3D"box-sizing: border-box; border-spacing: 0; border-collapse: co=
+llapse; width: 100% !important; text-align: center !important; font-famil=
+y: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,=
+sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !impo=
+rtant;">
+                    <tr style=3D"box-sizing: border-box; font-family: -ap=
+ple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-s=
+erif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;=
+">
+                      <td class=3D"p-3 p-sm-4" style=3D"box-sizing: borde=
+r-box; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;=
+,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI =
+Emoji&quot; !important; padding: 24px;">
+                        <table border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" align=3D"center" class=3D"width-full" width=3D"100%" style=3D"box-=
+sizing: border-box; border-spacing: 0; border-collapse: collapse; width: =
+100% !important; font-family: -apple-system,BlinkMacSystemFont,&quot;Sego=
+e UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot=
+;Segoe UI Emoji&quot; !important;">
+  <tr style=3D"box-sizing: border-box; font-family: -apple-system,BlinkMa=
+cSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <td align=3D"center" style=3D"box-sizing: border-box; font-family: -a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-=
+serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important=
+; padding: 0;">
+                          =
+
+<h3 class=3D"lh-condensed" style=3D"box-sizing: border-box; margin-top: 0=
+; margin-bottom: 0; font-size: 20px; font-weight: 600; line-height: 1.25 =
+!important; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&=
+quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Sego=
+e UI Emoji&quot; !important;">GitHub password reset</h3>
+<table style=3D"box-sizing: border-box; border-spacing: 0; border-collaps=
+e: collapse; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI=
+&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Seg=
+oe UI Emoji&quot; !important;">
+  <tbody style=3D"box-sizing: border-box; font-family: -apple-system,Blin=
+kMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <tr style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+      <td height=3D"16" style=3D"font-size: 16px; line-height: 16px; box-=
+sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot; !important; padding: 0;">&#160;</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<table class=3D"width-full" style=3D"box-sizing: border-box; border-spaci=
+ng: 0; border-collapse: collapse; width: 100% !important; font-family: -a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-=
+serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important=
+;">
+  <tbody style=3D"box-sizing: border-box; font-family: -apple-system,Blin=
+kMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <tr style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+      =
+
+  <td style=3D"box-sizing: border-box; font-family: -apple-system,BlinkMa=
+cSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot; !important; padding: 0;">
+  <table style=3D"box-sizing: border-box; border-spacing: 0; border-colla=
+pse: collapse; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;S=
+egoe UI Emoji&quot; !important;">
+    <tr style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+      <td class=3D"text-left" style=3D"box-sizing: border-box; text-align=
+: left !important; font-family: -apple-system,BlinkMacSystemFont,&quot;Se=
+goe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
+ot;Segoe UI Emoji&quot; !important; padding: 0;" align=3D"left">
+      <p style=3D"box-sizing: border-box; margin-top: 0; margin-bottom: 1=
+0px; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,H=
+elvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Em=
+oji&quot; !important;">We heard that you lost your GitHub password. Sorry=
+ about that!</p>
+      <p style=3D"box-sizing: border-box; margin-top: 0; margin-bottom: 1=
+0px; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,H=
+elvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Em=
+oji&quot; !important;">But don&#8217;t worry! You can use the following b=
+utton to reset your password:</p>
+
+    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"cent=
+er" class=3D"width-full" width=3D"100%" style=3D"box-sizing: border-box; =
+border-spacing: 0; border-collapse: collapse; width: 100% !important; fon=
+t-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica=
+,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot=
+; !important;">
+  <tr style=3D"box-sizing: border-box; font-family: -apple-system,BlinkMa=
+cSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <td align=3D"center" style=3D"box-sizing: border-box; font-family: -a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-=
+serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important=
+; padding: 0;">
+      <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" style=3D"box-sizing: border-box; border-spacing: 0; border-collapse: =
+collapse; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&qu=
+ot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe =
+UI Emoji&quot; !important;">
+  <tr style=3D"box-sizing: border-box; font-family: -apple-system,BlinkMa=
+cSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <td style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important; padding: 0;">
+      <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"10=
+0%" style=3D"box-sizing: border-box; border-spacing: 0; border-collapse: =
+collapse; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&qu=
+ot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe =
+UI Emoji&quot; !important;">
+        <tr style=3D"box-sizing: border-box; font-family: -apple-system,B=
+linkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;A=
+pple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+          <td align=3D"center" style=3D"box-sizing: border-box; font-fami=
+ly: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial=
+,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !imp=
+ortant; padding: 0;">
+              <a href=3D"https://github.com/password_reset/AS7SYB6CUCYM43=
+WLEISSUNTD3ETQBBFFMVWWC2LMWVTGCZLMMRZG633NGQ3EAZ3NMFUWYLTDN5W2KZTPOJRWLQV=
+TOR3W6X3GMFRXI33SL53GK4TJMZUWKZGCXJTG64TDMVSF653FMFVV64DBONZXO33SMRPXEZLT=
+MV2ME?auto=3Dtrue" target=3D"_blank" class=3D"btn btn-primary btn-large" =
+style=3D"background-color: #28a745 !important; box-sizing: border-box; co=
+lor: #fff; text-decoration: none; position: relative; display: inline-blo=
+ck; font-size: inherit; font-weight: 500; line-height: 1.5; white-space: =
+nowrap; vertical-align: middle; cursor: pointer; -webkit-user-select: non=
+e; user-select: none; border-radius: .5em; -webkit-appearance: none; appe=
+arance: none; box-shadow: 0 1px 0 rgba(27,31,35,.1),inset 0 1px 0 rgba(25=
+5,255,255,.03); transition: background-color .2s cubic-bezier(0.3, 0, 0.5=
+, 1); font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,=
+Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI E=
+moji&quot; !important; padding: .75em 1.5em; border: 1px solid #28a745;">=
+Reset your password</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+
+    <table style=3D"box-sizing: border-box; border-spacing: 0; border-col=
+lapse: collapse; font-family: -apple-system,BlinkMacSystemFont,&quot;Sego=
+e UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot=
+;Segoe UI Emoji&quot; !important;">
+  <tbody style=3D"box-sizing: border-box; font-family: -apple-system,Blin=
+kMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <tr style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+      <td height=3D"16" style=3D"font-size: 16px; line-height: 16px; box-=
+sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot; !important; padding: 0;">&#160;</td>
+    </tr>
+  </tbody>
+</table>
+
+
+      <p style=3D"box-sizing: border-box; margin-top: 0; margin-bottom: 1=
+0px; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,H=
+elvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Em=
+oji&quot; !important;">
+        If you don&#8217;t use this link within 3 hours,
+        it will expire. To get a new password reset link, visit:
+        <a href=3D"https://github.com/password_reset" style=3D"background=
+-color: transparent; box-sizing: border-box; color: #0366d6; text-decorat=
+ion: none; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&q=
+uot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe=
+ UI Emoji&quot; !important;">https://github.com/password_reset</a>
+      </p>
+
+    <p style=3D"box-sizing: border-box; margin-top: 0; margin-bottom: 10p=
+x; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Hel=
+vetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoj=
+i&quot; !important;">
+      Thanks,<br style=3D"box-sizing: border-box; font-family: -apple-sys=
+tem,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&q=
+uot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;" />
+      The GitHub Team
+    </p>
+
+</td>
+      <td style=3D"box-sizing: border-box; font-family: -apple-system,Bli=
+nkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;App=
+le Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important; padding: 0;">=
+</td>
+    </tr>
+  </table>
+</td>
+
+    </tr>
+  </tbody>
+</table>
+
+
+</td>
+  </tr>
+</table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+
+            <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" class=3D"width-full text-center" width=3D"100%" style=3D"box-=
+sizing: border-box; border-spacing: 0; border-collapse: collapse; width: =
+100% !important; text-align: center !important; font-family: -apple-syste=
+m,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quo=
+t;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+  <tr style=3D"box-sizing: border-box; font-family: -apple-system,BlinkMa=
+cSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <td align=3D"center" style=3D"box-sizing: border-box; font-family: -a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-=
+serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important=
+; padding: 0;">
+              <table style=3D"box-sizing: border-box; border-spacing: 0; =
+border-collapse: collapse; font-family: -apple-system,BlinkMacSystemFont,=
+&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&q=
+uot;,&quot;Segoe UI Emoji&quot; !important;">
+  <tbody style=3D"box-sizing: border-box; font-family: -apple-system,Blin=
+kMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <tr style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+      <td height=3D"16" style=3D"font-size: 16px; line-height: 16px; box-=
+sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot; !important; padding: 0;">&#160;</td>
+    </tr>
+  </tbody>
+</table>
+
+              <table style=3D"box-sizing: border-box; border-spacing: 0; =
+border-collapse: collapse; font-family: -apple-system,BlinkMacSystemFont,=
+&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&q=
+uot;,&quot;Segoe UI Emoji&quot; !important;">
+  <tbody style=3D"box-sizing: border-box; font-family: -apple-system,Blin=
+kMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <tr style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+      <td height=3D"16" style=3D"font-size: 16px; line-height: 16px; box-=
+sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot; !important; padding: 0;">&#160;</td>
+    </tr>
+  </tbody>
+</table>
+
+              <p class=3D"f5 text-gray-light" style=3D"box-sizing: border=
+-box; margin-top: 0; margin-bottom: 10px; color: #6a737d !important; font=
+-size: 14px !important; font-family: -apple-system,BlinkMacSystemFont,&qu=
+ot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot=
+;,&quot;Segoe UI Emoji&quot; !important;">  You're receiving this email b=
+ecause a password reset was requested for your account.
+</p>
+</td>
+  </tr>
+</table>
+            <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" class=3D"width-full text-center" width=3D"100%" style=3D"box-=
+sizing: border-box; border-spacing: 0; border-collapse: collapse; width: =
+100% !important; text-align: center !important; font-family: -apple-syste=
+m,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quo=
+t;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+  <tr style=3D"box-sizing: border-box; font-family: -apple-system,BlinkMa=
+cSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <td align=3D"center" style=3D"box-sizing: border-box; font-family: -a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-=
+serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important=
+; padding: 0;">
+  <table style=3D"box-sizing: border-box; border-spacing: 0; border-colla=
+pse: collapse; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;S=
+egoe UI Emoji&quot; !important;">
+  <tbody style=3D"box-sizing: border-box; font-family: -apple-system,Blin=
+kMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+    <tr style=3D"box-sizing: border-box; font-family: -apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
+ Color Emoji&quot;,&quot;Segoe UI Emoji&quot; !important;">
+      <td height=3D"16" style=3D"font-size: 16px; line-height: 16px; box-=
+sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot; !important; padding: 0;">&#160;</td>
+    </tr>
+  </tbody>
+</table>
+
+  <p class=3D"f6 text-gray-light" style=3D"box-sizing: border-box; margin=
+-top: 0; margin-bottom: 10px; color: #6a737d !important; font-size: 12px =
+!important; font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&=
+quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Sego=
+e UI Emoji&quot; !important;">GitHub, Inc. &#12539;88 Colin P Kelly Jr St=
+reet &#12539;San Francisco, CA 94107</p>
+</td>
+  </tr>
+</table>
+
+          </center>
+        </td>
+      </tr>
+    </table>
+    <!-- prevent Gmail on iOS font size manipulation -->
+   <div style=3D"display: none; white-space: nowrap; box-sizing: border-b=
+ox; font: 15px/0 apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;,H=
+elvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Em=
+oji&quot;;"> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#16=
+0; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; =
+&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#1=
+60; </div>
+  </body>
+</html>
+
+----==_mimepart_63d8fcd08cb87_6ca0c5bc104452--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>8677</integer>
+	<key>date-last-viewed</key>
+	<integer>1675164903</integer>
+	<key>date-received</key>
+	<integer>1675164881</integer>
+	<key>flags</key>
+	<integer>8590195841</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+		<integer>6</integer>
+	</array>
+	<key>remote-id</key>
+	<string>12135</string>
+</dict>
+</plist>

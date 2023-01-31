@@ -1,0 +1,2831 @@
+144535    
+Delivered-To: faeldroom46@gmail.com
+Received: by 2002:a05:6a10:e110:b0:3e4:c96d:8327 with SMTP id a16csp662496pxw;
+        Thu, 26 Jan 2023 11:28:01 -0800 (PST)
+X-Google-Smtp-Source: AMrXdXtl/duF1Vvm6/OAdZWOlVca+ME2SvB2O2L0uiqKJM4kNzxPiuPnrfVW36y6WCH+ZN1DYWI1
+X-Received: by 2002:ac8:4443:0:b0:3b6:2ec0:69fe with SMTP id m3-20020ac84443000000b003b62ec069femr55027823qtn.40.1674761281486;
+        Thu, 26 Jan 2023 11:28:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1674761281; cv=none;
+        d=google.com; s=arc-20160816;
+        b=iQqUvuNOb6K7U6xEP/DKul9uPIIsiP8ul6XqN8qRaWzJlPN/ZFb3P7wO+Uwki14OdQ
+         XVGGbCDix2eDDfnU3iEbBPWBuliB/66x+WXDZb46YP+MzzWGAdNDtAkfIP2U05VlfCnu
+         JNtSYhusYPuLSYrjm1Cyhcp0Lt3lenjj08V+bQ7mkupeeJ996CtsKfQ+oFjMYi1QiJhu
+         kDHyVaIjvjCZsLo0awa0//xm0hMN66rpykdFyYUS2PYfCoaXZuF5SBGtC36javuWjbhd
+         Dm0cj1D6YQTaiZssadapS0ld3Jpr9sPhT9ISoR3YUcrV+2oW8LbpqHmnqHtvM05FsZyO
+         Qf3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=GgQ2hBQcE8bxZpkdcCG+mXEsWflGdFloi1D8XWpxrfQ=;
+        b=ES7ycjtK2QqHddtiae3tF/ISI6lMWgRVEwYBH8lCh+Kyt7/tCk9dGDRWdO9bWTUE0p
+         Ev2Gu2cXD/b/W+RN9ulesw9WT+ifKe9F5N40CmFVSA8+Ciqmp5QNZlGLCtx44X1J73cO
+         lml+MCD0SJN0Z1ZrQc2bmTUZTMW8Law8ZFPKMjfNwmnjfweFBGS6BF4Ozw5lhwvVL4Ex
+         Pc2vw+E4Ex6zR5xQWGUuuZwLhL8+WPks08/2qFJ0zJoSLQ7UKi5HuoOFMQqL+FMaNKCV
+         MRqbQzMm5queArwdgCppQBp9jdq9Iks81Bk2SrwL17/kNdZqHBKCqINtAatHCM2SBVhA
+         7JHQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=rs9nEesP;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=oED+4UAJ;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaug0x0zhku633xbp@bounce.linkedin.com designates 108.174.3.195 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaug0x0zhku633xbp@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaug0x0zhku633xbp@bounce.linkedin.com>
+Received: from maile-ac.linkedin.com (maile-ac.linkedin.com. [108.174.3.195])
+        by mx.google.com with ESMTPS id v9-20020a05622a144900b003b6355bf8c0si1057022qtx.480.2023.01.26.11.28.01
+        for <faeldroom46@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 26 Jan 2023 11:28:01 -0800 (PST)
+Received-SPF: pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaug0x0zhku633xbp@bounce.linkedin.com designates 108.174.3.195 as permitted sender) client-ip=108.174.3.195;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=rs9nEesP;
+       dkim=pass header.i=@maile.linkedin.com header.s=proddkim1024 header.b=oED+4UAJ;
+       spf=pass (google.com: domain of m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaug0x0zhku633xbp@bounce.linkedin.com designates 108.174.3.195 as permitted sender) smtp.mailfrom=m-9xmfmqjrt2mjavb3zoiqy6qkszqnbzwe51ffz9m9q75ijmaug0x0zhku633xbp@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1674761279;
+	bh=GgQ2hBQcE8bxZpkdcCG+mXEsWflGdFloi1D8XWpxrfQ=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=rs9nEesPPuQgzNqBP1dOkMJeSLWH3WKxaxHdjau19PHLcoKpshxoS/g2/ezvZxxPO
+	 y4WmJryhpnG9mbEXQLcHMGsaRzOhNq/3i1nr8KTTwW1/XyfQZjaQdSc8Dnx1QUw2RX
+	 O4xuPGNMgGtWuwY68Ya2XBt362O9yI3h8GixtdrAMFtvt2Vyv8F9xb3nd4wI+BGGd0
+	 bTIWuv32HOU+VAKAFCXgtksNJUbQBx71nDFr5w6TUKu0JmXUDE5OEhSsdL2b0iBk/k
+	 oEAqKATfqnoWLn19usELLvNGsX3dMil349TpCcWdmBfEutXOQimqRPTFS51LKCqpCy
+	 PrjNcCgs5uhAA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maile.linkedin.com;
+	s=proddkim1024; t=1674761279;
+	bh=GgQ2hBQcE8bxZpkdcCG+mXEsWflGdFloi1D8XWpxrfQ=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=oED+4UAJckTkl4g4dtV+bq4nNR6xSK4oSb3vrr4Qo4IQv7Tr59i/p7ZoMOu+XLV3a
+	 gmE6pJVkGNsjDniKWfqiFmgPflClChIR5qGECfvZv9orvumaTH2q8TS4fjH1HOb21W
+	 7lc+f2RCy6X2DxTsaXM7UhuvUGAiHASBindi+/gY=
+From: LinkedIn <messages-noreply@linkedin.com>
+Message-ID: <1758279536.1433935.1674761279974@lva1-app52698.prod.linkedin.com>
+Subject: =?UTF-8?Q?=F0=9F=92=AC_Rafael,_adicione_Valdeci_Oli?=
+ =?UTF-8?Q?veira_Canguss=C3=BA_Junior_=C3=A0_sua_rede?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1433933_716029921.1674761279971"
+To: Rafael Souza <faeldroom46@gmail.com>
+Date: Thu, 26 Jan 2023 19:27:59 +0000 (UTC)
+X-LinkedIn-Class: TIK
+X-LinkedIn-Template: email_pymk_02
+X-LinkedIn-fbl: m2-aszusr03vkmxyjmzer4xbnzsoq1rratn1mwg6uclhespiv3guks1arc75en13v20mhaey9w8eako5n5qyj7gf3qz3dndfw0mau3vjh
+X-LinkedIn-Id: eau1wl-lddhmhca-fu
+List-Unsubscribe: <https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=urn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&midToken=AQEq1MBbB2bM8g&midSig=1l_cy9c-jLWqA1&trk=eml-email_pymk_02-unsub-0-unsub&trkEmail=eml-email_pymk_02-unsub-0-unsub-null-eau1wl~lddhmhca~fu-null-null&eid=eau1wl-lddhmhca-fu&loid=AQHaSpdoG-IOUgAAAYXvjRdmcKoXupnkbCcAv92oycDyH6j0B1oKlr2-i7BjIx6ep9GoC-F43YBoPUh3B4euRtqckPnpkS-3g65U8jW9EB3G>
+Feedback-ID: email_pymk_02:linkedin
+Require-Recipient-Valid-Since: faeldroom46@gmail.com; Wed, 9 Dec 2020 10:59:21 +0000
+
+------=_Part_1433933_716029921.1674761279971
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+Voc=C3=AA conhece Valdeci Oliveira Canguss=C3=BA Junior?
+3 conex=C3=B5es em comum
+
+Sim, quero me conectar:
+      https://www.linkedin.com/comm/mynetwork/send-invite/vocjunior/?lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&m=
+idSig=3D1l_cy9c-jLWqA1&midToken=3DAQEq1MBbB2bM8g&trkEmail=3Deml-email_pymk_=
+02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&trk=3Deml-email_pym=
+k_02-pymkCard-0-cta&_sig=3D0441mpL9DLWqA1
+
+Mais pessoas que talvez voc=C3=AA conhe=C3=A7a
+           =20
+C=C3=A1tia Fernandes
+Arquiteta Freelancer/Blogger | 67ideas
+      https://www.linkedin.com/comm/mynetwork/send-invite/c%C3%A1tia-fernan=
+des-ba969972/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsy=
+GU98t%2BEQ%3D%3D&midSig=3D1l_cy9c-jLWqA1&midToken=3DAQEq1MBbB2bM8g&trkEmail=
+=3Deml-email_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&t=
+rk=3Deml-email_pymk_02-pymkCard-0-cta&_sig=3D0441mpL9DLWqA1
+2 conex=C3=B5es em comum
+           =20
+Elias Costa
+Software Developer | JavaScript - React
+      https://www.linkedin.com/comm/mynetwork/send-invite/elias-costa-6761b=
+743/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BE=
+Q%3D%3D&midSig=3D1l_cy9c-jLWqA1&midToken=3DAQEq1MBbB2bM8g&trkEmail=3Deml-em=
+ail_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&trk=3Deml-=
+email_pymk_02-pymkCard-0-cta&_sig=3D0441mpL9DLWqA1
+2 conex=C3=B5es em comum
+           =20
+Renan Paix=C3=A3o
+Front end Developer | TypeScript | Vue | Cypress | Jest
+      https://www.linkedin.com/comm/mynetwork/send-invite/renanpaixao/?lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&m=
+idSig=3D1l_cy9c-jLWqA1&midToken=3DAQEq1MBbB2bM8g&trkEmail=3Deml-email_pymk_=
+02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&trk=3Deml-email_pym=
+k_02-pymkCard-0-cta&_sig=3D0441mpL9DLWqA1
+2 conex=C3=B5es em comum
+           =20
+Iago Rocha Porto
+Full Stack Engineer | Node | Typescript | React
+      https://www.linkedin.com/comm/mynetwork/send-invite/iago-rocha-porto/=
+?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D=
+%3D&midSig=3D1l_cy9c-jLWqA1&midToken=3DAQEq1MBbB2bM8g&trkEmail=3Deml-email_=
+pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&trk=3Deml-emai=
+l_pymk_02-pymkCard-0-cta&_sig=3D0441mpL9DLWqA1
+3 conex=C3=B5es em comum
+           =20
+Marco Ribeiro do Prado
+Desenvolvedor Full Stack - C# | Angular | HTML | CSS | TypeScript - Ci=C3=
+=AAncia da Computa=C3=A7=C3=A3o UNISAGRADO
+      https://www.linkedin.com/comm/mynetwork/send-invite/marco-ribeiro-do-=
+prado-439929186/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4y=
+csyGU98t%2BEQ%3D%3D&midSig=3D1l_cy9c-jLWqA1&midToken=3DAQEq1MBbB2bM8g&trkEm=
+ail=3Deml-email_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-nul=
+l&trk=3Deml-email_pymk_02-pymkCard-0-cta&_sig=3D0441mpL9DLWqA1
+2 conex=C3=B5es em comum
+
+Veja mais pessoas que talvez voc=C3=AA conhe=C3=A7a:
+      https://www.linkedin.com/comm/mynetwork/add-connections/?lipi=3Durn%3=
+Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&midToken=
+=3DAQEq1MBbB2bM8g&midSig=3D1l_cy9c-jLWqA1&trk=3Deml-email_pymk_02-see_more-=
+0-cta~text&trkEmail=3Deml-email_pymk_02-see_more-0-cta~text-null-eau1wl~ldd=
+hmhca~fu-null-null&eid=3Deau1wl-lddhmhca-fu
+     =20
+         =20
+     =20
+
+----------------
+
+Este e-mail foi enviado a Rafael Souza (Desenvolvedor web na Solution.dev)
+Saiba por que inclu=C3=ADmos isso:
+      https://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&lipi=3Du=
+rn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&midTo=
+ken=3DAQEq1MBbB2bM8g&midSig=3D1l_cy9c-jLWqA1&trk=3Deml-email_pymk_02-Securi=
+tyHelp-0-textfooterglimmer&trkEmail=3Deml-email_pymk_02-SecurityHelp-0-text=
+footerglimmer-null-eau1wl~lddhmhca~fu-null-null&eid=3Deau1wl-lddhmhca-fu
+Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o de pessoas q=
+ue talvez conhe=C3=A7a.
+
+         =20
+           =20
+         =20
+       =20
+Cancelar inscri=C3=A7=C3=A3o:
+      https://www.linkedin.com/comm/psettings/email-unsubscribe?lipi=3Durn%=
+3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&midToken=
+=3DAQEq1MBbB2bM8g&midSig=3D1l_cy9c-jLWqA1&trk=3Deml-email_pymk_02-unsubscri=
+be-0-textfooterglimmer&trkEmail=3Deml-email_pymk_02-unsubscribe-0-textfoote=
+rglimmer-null-eau1wl~lddhmhca~fu-null-null&eid=3Deau1wl-lddhmhca-fu&loid=3D=
+AQHaSpdoG-IOUgAAAYXvjRdmcKoXupnkbCcAv92oycDyH6j0B1oKlr2-i7BjIx6ep9GoC-F43YB=
+oPUh3B4euRtqckPnpkS-3g65U8jW9EB3G
+Ajuda:
+      https://www.linkedin.com/help/linkedin/answer/67?lang=3Dpt&lipi=3Durn=
+%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&midToke=
+n=3DAQEq1MBbB2bM8g&midSig=3D1l_cy9c-jLWqA1&trk=3Deml-email_pymk_02-help-0-t=
+extfooterglimmer&trkEmail=3Deml-email_pymk_02-help-0-textfooterglimmer-null=
+-eau1wl~lddhmhca~fu-null-null&eid=3Deau1wl-lddhmhca-fu
+
+=C2=A9 2023 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2 - Irlanda.LinkedIn =C3=A9 um nome comercial registrado da LinkedI=
+n Ireland Unlimited Company.LinkedIn e o logo do LinkedIn s=C3=A3o marcas r=
+egistradas do LinkedIn.
+------=_Part_1433933_716029921.1674761279971
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt"> <=
+head> <meta http-equiv=3D"Content-Type" content=3D"text/html;charset=3Dutf-=
+8"> <meta name=3D"HandheldFriendly" content=3D"true"> <meta name=3D"viewpor=
+t" content=3D"width=3Ddevice-width; initial-scale=3D0.666667; user-scalable=
+=3D0"> <meta name=3D"viewport" content=3D"width=3Ddevice-width"> <title></t=
+itle> <style>
+          @media (max-width: 512px) { .mercado-container { width: 100% !imp=
+ortant; } }
+        </style> <style>
+          .full-width-button, .full-width-button table { display: none; } @=
+media (max-width: 320px) { .inline-button,
+          .inline-button table { display: none !important; } .full-width-bu=
+tton, .full-width-button table { display:
+          table !important; } }
+        </style> <!--[if mso]><style type=3D"text/css"> </style><![endif]--=
+> <!--[if IE]><style type=3D"text/css"> </style><![endif]--> <style>
+@media (min-width: 576px) {
+  .container {
+    max-width: 576px;
+  }
+
+  .\!container {
+    max-width: 576px !important;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  .\!container {
+    max-width: 768px !important;
+  }
+}
+@media (min-width: 790px) {
+  .container {
+    max-width: 790px;
+  }
+
+  .\!container {
+    max-width: 790px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+
+  .\!container {
+    max-width: 992px !important;
+  }
+}
+@media (min-width: 1128px) {
+  .container {
+    max-width: 1128px;
+  }
+
+  .\!container {
+    max-width: 1128px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .\!container {
+    max-width: 1200px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+
+  .\!container {
+    max-width: 1440px !important;
+  }
+}
+@media (min-width: 1680px) {
+  .container {
+    max-width: 1680px;
+  }
+
+  .\!container {
+    max-width: 1680px !important;
+  }
+}
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1920px;
+  }
+
+  .\!container {
+    max-width: 1920px !important;
+  }
+}
+@media (min-width: 992px) {
+  .base-detail-page__header .nav {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1128px;
+  }
+
+  .base-detail-page__header .\!nav {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1128px;
+  }
+}
+@media (max-width: 767px) {
+  .embedded-social-share .modal__outlet {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .nav .search-bar {
+    order: 4;
+  }
+}
+@media (max-width: 767px) {
+  .\!nav .search-bar {
+    order: 4;
+  }
+}
+@media (max-width: 767px) {
+  .nav .sign-in-card {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .\!nav .sign-in-card {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .nav--minified-mobile .nav__cta-container > *:not(.nav__link-person) {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    order: initial;
+    width: initial;
+  }
+
+  .nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+
+  .\!nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    order: initial !important;
+    width: initial !important;
+  }
+
+  .\!nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+
+  .\!nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    order: initial !important;
+    width: initial !important;
+  }
+
+  .\!nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+
+  .\!nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    order: initial !important;
+    width: initial !important;
+  }
+
+  .\!nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+
+  .\!nav .search-bar--minified-mobile {
+    margin-bottom: 0px;
+    height: 100%;
+    flex-grow: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    order: initial !important;
+    width: initial !important;
+  }
+
+  .\!nav .search-bar--minified-mobile .search-bar__placeholder {
+    margin-top: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .tw-link-column-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .tw-link-column-item {
+    margin-bottom: 8px;
+  }
+
+  .tw-linkster .tw-link-column-item {
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__button {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .member-nav-menu .collapsible-dropdown__list {
+    right: 0px;
+    max-height: calc(100vh - 52px);
+    overflow-y: auto;
+  }
+}
+@media (max-width: 767px) {
+  .recent-searches.recent-searches--show {
+    position: fixed;
+    top: 168px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+    border-width: 0;
+  }
+}
+@media (max-width: 767px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0.75);
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #cf0007;
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  .input-error .search-bar .dismissable-input:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: #8a0005;
+    box-shadow: 0 0 0 1px #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: #8a0005;
+    cursor: pointer;
+    border-width: 1px;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:focus {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .input-error .search-bar .dismissable-input:disabled:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    border-width: 1px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:active {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .base-search-bar .input-error .search-bar .dismissable-input.typeahead-in=
+put:focus-within {
+    border-style: solid;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar .dismissable-input {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (min-width: 992px) {
+  .search-bar .dismissable-input {
+    width: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+  }
+
+  .search-bar .dismissable-input:hover {
+    border-right-color: rgba(0, 0, 0, 0.08);
+  }
+}
+@media (max-width: 767px) {
+  .search-bar:not(.isExpanded) .base-search-bar__form {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  @media (max-width: 767px) {
+    .search-bar.isExpanded .search-bar__placeholder {
+      display: none;
+    }
+
+    .search-bar.isExpanded .base-search-bar__form {
+      display: flex;
+    }
+
+    position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 1000;
+        margin-bottom: 0px;
+        height: 100%;
+        background-color: #ffffff;
+    .search-bar.isExpanded .switcher-tabs {
+      display: inherit;
+    }
+
+  }
+}
+@media screen and (max-width: 767px) {
+  .stuck .search-bar {
+    transition: height 0.4s, margin-bottom 0.4s ease-in-out;
+    margin-bottom: 0px;
+    height: 0px;
+  }
+
+  .stuck .search-bar--minified-mobile .search-bar__placeholder {
+    max-height: initial;
+    pointer-events: initial;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.6);
+  }
+}
+@media (max-width: 767px) {
+  .tabs__list {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .typeahead-input__dropdown.typeahead-input__dropdown--show {
+    position: fixed;
+    top: 158px;
+    left: 0px;
+    width: 100vw;
+    min-width: 100vw;
+  }
+}
+@media (max-width: 767px) {
+  .base-search-bar .dismissable-input {
+    max-height: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .base-main-card__media ~ .base-main-card__info {
+    margin-left: 0px;
+    margin-top: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .mx-main-feed-card-no-gutter {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mx-main-feed-card-no-gutter {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
+@media (max-width: 767px) {
+  .px-main-feed-card-no-gutter {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .px-main-feed-card-no-gutter {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .filter .collapsible-dropdown__list {
+    max-height: 400px;
+  }
+}
+@media (forced-colors: active) {
+  .filter-button--selected {
+    border-width: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .base-card .duration {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+@media (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__button {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  .social-action-bar__icon--svg {
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    padding-right: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .babybear\:invisible {
+    visibility: hidden;
+  }
+
+  .babybear\:static {
+    position: static;
+  }
+
+  .babybear\:right-4 {
+    right: 32px;
+  }
+
+  .babybear\:-top-1 {
+    top: -8px;
+  }
+
+  .babybear\:z-0 {
+    z-index: 0;
+  }
+
+  .babybear\:my-2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .babybear\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .babybear\:mx-mobile-container-padding {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .babybear\:ml-0 {
+    margin-left: 0px;
+  }
+
+  .babybear\:mb-1 {
+    margin-bottom: 8px;
+  }
+
+  .babybear\:mr-0 {
+    margin-right: 0px;
+  }
+
+  .babybear\:ml-\[-9999px\] {
+    margin-left: -9999px;
+  }
+
+  .babybear\:mb-1\.5 {
+    margin-bottom: 12px;
+  }
+
+  .babybear\:ml-1 {
+    margin-left: 8px;
+  }
+
+  .babybear\:flex {
+    display: flex;
+  }
+
+  .babybear\:hidden {
+    display: none;
+  }
+
+  .babybear\:h-\[360px\] {
+    height: 360px;
+  }
+
+  .babybear\:h-\[72px\] {
+    height: 72px;
+  }
+
+  .babybear\:h-\[27px\] {
+    height: 27px;
+  }
+
+  .babybear\:h-\[1px\] {
+    height: 1px;
+  }
+
+  .babybear\:h-\[48px\] {
+    height: 48px;
+  }
+
+  .babybear\:h-auto {
+    height: auto;
+  }
+
+  .babybear\:h-\[180px\] {
+    height: 180px;
+  }
+
+  .babybear\:max-h-\[225px\] {
+    max-height: 225px;
+  }
+
+  .babybear\:max-h-\[400px\] {
+    max-height: 400px;
+  }
+
+  .babybear\:max-h-\[250px\] {
+    max-height: 250px;
+  }
+
+  .babybear\:min-h-\[134px\] {
+    min-height: 134px;
+  }
+
+  .babybear\:w-\[360px\] {
+    width: 360px;
+  }
+
+  .babybear\:w-full {
+    width: 100%;
+  }
+
+  .babybear\:w-6 {
+    width: 48px;
+  }
+
+  .babybear\:w-\[27px\] {
+    width: 27px;
+  }
+
+  .babybear\:w-\[1px\] {
+    width: 1px;
+  }
+
+  .babybear\:w-\[100vw\] {
+    width: 100vw;
+  }
+
+  .babybear\:w-\[calc\(100\%-68px\)\] {
+    width: calc(100% - 68px);
+  }
+
+  .babybear\:min-w-full {
+    min-width: 100%;
+  }
+
+  .babybear\:max-w-\[100vw\] {
+    max-width: 100vw;
+  }
+
+  .babybear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .babybear\:flex-none {
+    flex: none;
+  }
+
+  .babybear\:flex-auto {
+    flex: 1 1 auto;
+  }
+
+  .babybear\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .babybear\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .babybear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .babybear\:flex-row {
+    flex-direction: row;
+  }
+
+  .babybear\:flex-col {
+    flex-direction: column;
+  }
+
+  .babybear\:flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .babybear\:items-start {
+    align-items: flex-start;
+  }
+
+  .babybear\:items-center {
+    align-items: center;
+  }
+
+  .babybear\:justify-around {
+    justify-content: space-around;
+  }
+
+  .babybear\:self-start {
+    align-self: flex-start;
+  }
+
+  .babybear\:self-center {
+    align-self: center;
+  }
+
+  .babybear\:rounded-\[0px\] {
+    border-radius: 0px;
+  }
+
+  .babybear\:border-b-1 {
+    border-bottom-width: 1px;
+  }
+
+  .babybear\:border-solid {
+    border-style: solid;
+  }
+
+  .babybear\:border-color-border-low-emphasis {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .babybear\:bg-color-transparent {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .babybear\:bg-color-brand {
+    background-color: #0a66c2;
+  }
+
+  .babybear\:p-2 {
+    padding: 16px;
+  }
+
+  .babybear\:p-0 {
+    padding: 0px;
+  }
+
+  .babybear\:px-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .babybear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:px-\[4px\] {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .babybear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .babybear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .babybear\:py-1\.5 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .babybear\:py-1 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .babybear\:pb-2 {
+    padding-bottom: 16px;
+  }
+
+  .babybear\:pr-0 {
+    padding-right: 0px;
+  }
+
+  .babybear\:leading-\[150px\] {
+    line-height: 150px;
+  }
+
+  .babybear\:last\:border-b-0:last-child {
+    border-bottom-width: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .mamabear\:absolute {
+    position: absolute;
+  }
+
+  .mamabear\:right-4 {
+    right: 32px;
+  }
+
+  .mamabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .mamabear\:-top-1 {
+    top: -8px;
+  }
+
+  .mamabear\:flex {
+    display: flex;
+  }
+
+  .mamabear\:hidden {
+    display: none;
+  }
+
+  .mamabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .mamabear\:w-\[744px\] {
+    width: 744px;
+  }
+
+  .mamabear\:w-full {
+    width: 100%;
+  }
+
+  .mamabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .mamabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .mamabear\:max-w-\[790px\] {
+    max-width: 790px;
+  }
+
+  .mamabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .mamabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .mamabear\:flex-row {
+    flex-direction: row;
+  }
+
+  .mamabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .mamabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .mamabear\:items-center {
+    align-items: center;
+  }
+
+  .mamabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:tab-vertical.tab-sm,
+.mamabear\:tab-vertical .tab-md,
+.mamabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .mamabear\:self-center {
+    align-self: center;
+  }
+
+  .mamabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .mamabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .mamabear\:px-3 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .mamabear\:px-mobile-container-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:py-3 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mamabear\:px-2 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mamabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .papabear\:absolute {
+    position: absolute;
+  }
+
+  .papabear\:top-\[58px\] {
+    top: 58px;
+  }
+
+  .papabear\:-top-1 {
+    top: -8px;
+  }
+
+  .papabear\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .papabear\:\!mx-2 {
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
+
+  .papabear\:mt-\[-100px\] {
+    margin-top: -100px;
+  }
+
+  .papabear\:mb-\[18px\] {
+    margin-bottom: 18px;
+  }
+
+  .papabear\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .papabear\:mt-0\.5 {
+    margin-top: 4px;
+  }
+
+  .papabear\:mr-2 {
+    margin-right: 16px;
+  }
+
+  .papabear\:ml-column-gutter {
+    margin-left: 24px;
+  }
+
+  .papabear\:flex {
+    display: flex;
+  }
+
+  .papabear\:hidden {
+    display: none;
+  }
+
+  .papabear\:h-\[34px\] {
+    height: 34px;
+  }
+
+  .papabear\:h-\[100\%\] {
+    height: 100%;
+  }
+
+  .papabear\:min-h-\[96px\] {
+    min-height: 96px;
+  }
+
+  .papabear\:w-\[400px\] {
+    width: 400px;
+  }
+
+  .papabear\:w-content-max-w {
+    width: 1128px;
+  }
+
+  .papabear\:w-core-rail-width {
+    width: 790px;
+  }
+
+  .papabear\:w-right-rail-width {
+    width: calc(1128px - 24px - 790px);
+  }
+
+  .papabear\:w-auto {
+    width: auto;
+  }
+
+  .papabear\:w-\[1128px\] {
+    width: 1128px;
+  }
+
+  .papabear\:w-\[135px\] {
+    width: 135px;
+  }
+
+  .papabear\:w-\[calc\(100\%-97px\)\] {
+    width: calc(100% - 97px);
+  }
+
+  .papabear\:min-w-0 {
+    min-width: 0px;
+  }
+
+  .papabear\:max-w-\[550px\] {
+    max-width: 550px;
+  }
+
+  .papabear\:container-lined {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
+  .papabear\:container-raised {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .papabear\:flex-col {
+    flex-direction: column;
+  }
+
+  .papabear\:flex-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .papabear\:items-start {
+    align-items: flex-start;
+  }
+
+  .papabear\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .papabear\:justify-center {
+    justify-content: center;
+  }
+
+  .papabear\:tab-vertical.tab-sm,
+.papabear\:tab-vertical .tab-md,
+.papabear\:tab-vertical .tab-lg {
+    justify-content: flex-start;
+  }
+
+  .papabear\:self-start {
+    align-self: flex-start;
+  }
+
+  .papabear\:tab-vertical.tab-selected {
+    box-shadow: inset 4px 0 rgba(0, 0, 0, 0.9);
+  }
+
+  .papabear\:rounded-tr-none {
+    border-top-right-radius: 0px;
+  }
+
+  .papabear\:border-4 {
+    border-width: 4px;
+  }
+
+  .papabear\:p-details-container-padding {
+    padding: 24px;
+  }
+
+  .papabear\:p-0 {
+    padding: 0px;
+  }
+
+  .papabear\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .papabear\:py-2 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .papabear\:pt-desktop-content-top-margin {
+    padding-top: 16px;
+  }
+
+  .papabear\:text-xl {
+    font-size: 24px;
+  }
+}
+</style></head> <body dir=3D"ltr" class=3D"font-sans bg-color-background-ca=
+nvas w-full m-0 p-0 pt-1" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ma=
+rgin: 0px; width: 100%; background-color: #f3f2f0; padding: 0px; padding-to=
+p: 8px; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe U=
+I', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', C=
+antarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Em=
+oji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <=
+div class=3D"h-0 opacity-0 text-transparent invisible overflow-hidden w-0 m=
+ax-h-[0]" style=3D"visibility: hidden; height: 0px; max-height: 0; width: 0=
+px; overflow: hidden; opacity: 0; mso-hide: all;" data-email-preheader=3D"t=
+rue">Voc=C3=AAs t=C3=AAm 3 conex=C3=B5es em comum</div> <div class=3D"h-0 o=
+pacity-0 text-transparent invisible overflow-hidden w-0 max-h-[0]" style=3D=
+"visibility: hidden; height: 0px; max-height: 0; width: 0px; overflow: hidd=
+en; opacity: 0; mso-hide: all;"> =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=
+=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=
+=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0 =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=
+=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+ =CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=
+=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0=CD=8F=C2=A0 </div> <table class=3D"fon=
+t-sans mercado-container w-[512px] max-w-[512px] mx-auto my-0 p-0 bg-color-=
+background-container" role=3D"presentation" valign=3D"top" border=3D"0" cel=
+lspacing=3D"0" cellpadding=3D"0" width=3D"512" align=3D"center" style=3D"-w=
+ebkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace=
+: 0pt; margin-left: auto; margin-right: auto; margin-top: 0px; margin-botto=
+m: 0px; width: 512px; max-width: 512px; background-color: #ffffff; padding:=
+ 0px; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI'=
+, Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Can=
+tarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoj=
+i', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tb=
+ody> <tr> <td class=3D"text-center p-3" style=3D"-webkit-text-size-adjust: =
+100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-ad=
+just: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 24px; te=
+xt-align: center;"> <table class=3D"font-sans min-w-full" role=3D"presentat=
+ion" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; min-width: 100%; font-family: -apple-system, sy=
+stem-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sa=
+ns', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color E=
+moji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grand=
+e', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td align=3D"left" valign=
+=3D"middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/fe=
+ed/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ=
+%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1l_cy9c-jLWqA1&amp;trk=3D=
+eml-email_pymk_02-header-0-home_glimmer&amp;trkEmail=3Deml-email_pymk_02-he=
+ader-0-home_glimmer-null-eau1wl~lddhmhca~fu-null-null&amp;eid=3Deau1wl-lddh=
+mhca-fu" target=3D"_blank" class=3D"w-[84px]" style=3D"color: #0a66c2; curs=
+or: pointer; display: inline-block; text-decoration: none; -webkit-text-siz=
+e-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; te=
+xt-size-adjust: 100%; width: 84px;"> <img class=3D"block" alt=3D"LinkedIn" =
+src=3D"https://www.linkedin.com/comm/dms/logo?badgeTheme=3Dmercado&amp;lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&a=
+mp;midSig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml=
+-email_pymk_02-null-0-comms%7Ebadging%7Edynamic%7Eglimmer-null-eau1wl%7Eldd=
+hmhca%7Efu-null-null&amp;trk=3Deml-email_pymk_02-null-0-comms%7Ebadging%7Ed=
+ynamic%7Eglimmer&amp;_sig=3D0cC1DP0mrLWqA1" data-test-header-dynamic-badgin=
+g-img style=3D"outline: none; text-decoration: none; -ms-interpolation-mode=
+: bicubic; display: block;"> </a> </td> <td valign=3D"middle" align=3D"righ=
+t" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt;"> <table class=3D"font-sans" role=3D"presentation" val=
+ign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%"=
+ data-test-header-profile style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, sys=
+tem-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira San=
+s', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Em=
+oji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande=
+', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td align=3D"right" valign=
+=3D"middle" class=3D"w-[32px]" style=3D"-webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 32px;" width=3D"32"=
+> <a href=3D"https://pt.linkedin.com/comm/in/rafaelandersonsouza?lipi=3Durn=
+%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;mid=
+Token=3DAQEq1MBbB2bM8g&amp;midSig=3D1l_cy9c-jLWqA1&amp;trk=3Deml-email_pymk=
+_02-header-0-profile_glimmer&amp;trkEmail=3Deml-email_pymk_02-header-0-prof=
+ile_glimmer-null-eau1wl~lddhmhca~fu-null-null&amp;eid=3Deau1wl-lddhmhca-fu"=
+ target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: inlin=
+e-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <im=
+g alt=3D"Rafael Souza" src=3D"https://media.licdn.com/dms/image/C4D03AQEH4C=
+xhkhtzrA/profile-displayphoto-shrink_200_200/0/1607511453788?e=3D1680134400=
+&amp;v=3Dbeta&amp;t=3DMsKB48syCBRx81qxdHPLlNRzc9-vGPZk9iYfiQw3cD0" class=3D=
+"rounded-[100%] w-[32px] h-[32px]" style=3D"outline: none; text-decoration:=
+ none; -ms-interpolation-mode: bicubic; height: 32px; width: 32px; border-r=
+adius: 100%;" width=3D"32" height=3D"32"> </a> </td> </tr> </tbody> </table=
+> </td> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"px-0 pb-3" st=
+yle=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-tex=
+t-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; padding-left: 0px; padding-right: 0px; padding-bottom: 24px=
+;"> <div> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" b=
+order=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace:=
+ 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI'=
+, Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Can=
+tarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoj=
+i', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tb=
+ody> <tr data-test-id=3D"pymk-hero-banner"> <td style=3D"-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <table =
+class=3D"font-sans bg-blue-20" role=3D"presentation" valign=3D"top" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;=
+ background-color: #e8f3ff; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif;"> <tbody> <tr> <td class=3D"px-3 py-2" style=3D"-webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; p=
+adding-top: 16px; padding-bottom: 16px; padding-left: 24px; padding-right: =
+24px;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" bor=
+der=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webk=
+it-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjus=
+t: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0=
+pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', =
+Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Canta=
+rell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji'=
+, 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbod=
+y> <tr> <td align=3D"center" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://br.link=
+edin.com/comm/in/vocjunior?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BT=
+yixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1l=
+_cy9c-jLWqA1&amp;trk=3Deml-email_pymk_02-pymk-0-profile_image&amp;trkEmail=
+=3Deml-email_pymk_02-pymk-0-profile_image-null-eau1wl~lddhmhca~fu-null-null=
+&amp;eid=3Deau1wl-lddhmhca-fu" target=3D"_blank" style=3D"color: #0a66c2; c=
+ursor: pointer; display: inline-block; text-decoration: none; -webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%;"> <img class=3D"inline-block relative bg-color-ent=
+ity-ghost-background clip-path-circle-50 rounded-full w-12 h-12 w-[88px] h-=
+[88px]" src=3D"https://media.licdn.com/dms/image/C4D03AQGBLueTdXFiYA/profil=
+e-displayphoto-shrink_400_400/0/1662902619175?e=3D1680134400&amp;v=3Dbeta&a=
+mp;t=3D-LL3V6jGB1ziEzz6P61aGl_6ldmP8-elbfWGYQPGljo" alt=3D"Valdeci Oliveira=
+ Canguss=C3=BA Junior" style=3D"outline: none; text-decoration: none; -ms-i=
+nterpolation-mode: bicubic; position: relative; display: inline-block; heig=
+ht: 88px; width: 88px; border-radius: 9999px; background-color: #eae6df; cl=
+ip-path: circle(50%);" width=3D"88" height=3D"88"> </a> </td> </tr> <tr> <t=
+d class=3D"pt-[10px]" align=3D"center" style=3D"-webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 10px;=
+"> <a href=3D"https://br.linkedin.com/comm/in/vocjunior?lipi=3Durn%3Ali%3Ap=
+age%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DA=
+QEq1MBbB2bM8g&amp;midSig=3D1l_cy9c-jLWqA1&amp;trk=3Deml-email_pymk_02-pymk-=
+0-profile_name_link&amp;trkEmail=3Deml-email_pymk_02-pymk-0-profile_name_li=
+nk-null-eau1wl~lddhmhca~fu-null-null&amp;eid=3Deau1wl-lddhmhca-fu" target=
+=3D"_blank" class=3D"text-system-gray-90" style=3D"cursor: pointer; display=
+: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%=
+; color: #282828;"> <h2 class=3D"text-lg font-semibold leading-regular" sty=
+le=3D"margin: 0; font-size: 20px; font-weight: 600; line-height: 1.25;"> Vo=
+c=C3=AA conhece Valdeci Oliveira Canguss=C3=BA Junior? </h2> </a> </td> </t=
+r> <tr> <td class=3D"text-xs text-system-gray-90 leading-regular pt-0.5" al=
+ign=3D"center" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt; padding-top: 4px; font-size: 12px; line-he=
+ight: 1.25; color: #282828;"> Soluctions Architect | Master Software Engine=
+er at=E2=80=A6 </td> </tr> <tr> <td align=3D"center" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <t=
+able class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <t=
+d class=3D"pr-1" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; padding-right: 8px;"> <img src=3D"https:=
+//static.licdn.com/aero-v1/sc/h/a5trofy3m1cbionb0ri63g46e" alt=3D"=C3=8Dcon=
+e de pessoas" class=3D"w-2 h-2 block" style=3D"outline: none; text-decorati=
+on: none; -ms-interpolation-mode: bicubic; display: block; height: 16px; wi=
+dth: 16px;" width=3D"16" height=3D"16"> </td> <td class=3D"align-middle" st=
+yle=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-tex=
+t-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; vertical-align: middle;"> <p class=3D"leading-regular text-=
+xs text-system-gray-90" style=3D"margin: 0; font-weight: 400; font-size: 12=
+px; line-height: 1.25; color: #282828;"> 3 conex=C3=B5es em comum </p> </td=
+> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"pt-2" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; padding-top: 16px;"> <table class=3D"font-sans" role=3D"presentation" =
+valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"10=
+0%" data-test-id=3D"email-button" style=3D"-webkit-text-size-adjust: 100%; =
+-ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: =
+100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-sys=
+tem, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', '=
+Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple =
+Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucid=
+a Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=3D"middl=
+e" align=3D"middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tabl=
+e-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com=
+/comm/mynetwork/send-invite/vocjunior/?lipi=3Durn%3Ali%3Apage%3Aemail_email=
+_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midSig=3D1l_cy9c-jLWqA1&amp;m=
+idToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml-email_pymk_02-pymkCard-0-cta-nu=
+ll-eau1wl%7Elddhmhca%7Efu-null-null&amp;trk=3Deml-email_pymk_02-pymkCard-0-=
+cta&amp;_sig=3D0441mpL9DLWqA1" target=3D"_blank" style=3D"color: #0a66c2; c=
+ursor: pointer; display: inline-block; text-decoration: none; -webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%;"> <table class=3D"font-sans border-separate" role=
+=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: separate; font-fam=
+ily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hel=
+vetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid=
+ Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI =
+Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td =
+class=3D"btn-md btn-primary border-color-brand button-link leading-regular =
+!min-h-[auto] font-sans !shadow-none border-1 border-solid" style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; height: min-content; border-radius: 24px; padding-top: 12px; padding-bot=
+tom: 12px; padding-left: 24px; padding-right: 24px; text-align: center; fon=
+t-size: 16px; font-weight: 600; cursor: pointer; text-decoration-line: none=
+; background-color: #0a66c2; color: #ffffff; border-width: 1px; border-styl=
+e: solid; border-color: #0a66c2; font-family: -apple-system, system-ui, Bli=
+nkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu,=
+ Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Sego=
+e UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetic=
+a, Arial, sans-serif; line-height: 1.25; min-height: auto !important; box-s=
+hadow: 0 0 #0000, 0 0 #0000, 0 0 #0000 !important;"> <a href=3D"https://www=
+.linkedin.com/comm/mynetwork/send-invite/vocjunior/?lipi=3Durn%3Ali%3Apage%=
+3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midSig=3D1l_cy9c=
+-jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml-email_pymk_02-pymk=
+Card-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&amp;trk=3Deml-email_pymk_0=
+2-pymkCard-0-cta&amp;_sig=3D0441mpL9DLWqA1" target=3D"_blank" tabindex=3D"-=
+1" aria-hidden=3D"true" style=3D"color: #0a66c2; cursor: pointer; display: =
+inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"=
+> <span class=3D"no-underline text-white" style=3D"color: #ffffff; text-dec=
+oration-line: none;"> Convidar </span> </a> </td> </tr> </tbody> </table> <=
+/a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr>=
+ </tbody> </table> </td> </tr> <tr data-test-id=3D"pymk-section-header"> <t=
+d class=3D"pt-2" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adj=
+ust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; padding-top: 16px;"> <h2 class=3D"text-l=
+g font-semibold leading-regular text-system-gray-90 text-center" style=3D"m=
+argin: 0; text-align: center; font-size: 20px; font-weight: 600; line-heigh=
+t: 1.25; color: #282828;"> Mais pessoas que talvez voc=C3=AA conhe=C3=A7a <=
+/h2> </td> </tr> <tr data-test-id=3D"pymk-section-body"> <td align=3D"cente=
+r" class=3D"pt-1.5" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tabl=
+e-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 12px;"> <table class=3D"=
+font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-=
+system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue'=
+, 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'App=
+le Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lu=
+cida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td style=3D"-we=
+bkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adj=
+ust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace:=
+ 0pt;"></td> <td class=3D"pr-1 w-[400px]" style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 400px; p=
+adding-right: 8px;" width=3D"400"> <table class=3D"font-sans" role=3D"prese=
+ntation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, Blink=
+MacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, O=
+xygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe =
+UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica,=
+ Arial, sans-serif;"> <tbody> <tr> <td class=3D"w-1/2 pl-1" data-test-id=3D=
+"pymk-card" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt; width: 50%; padding-left: 8px;" width=3D"50%"=
+> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" data-test-id=3D"pymk=
+-entity" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacS=
+ystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyge=
+n, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI E=
+moji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ari=
+al, sans-serif;"> <tbody> <tr> <td class=3D"p-1 pb-1.5 border-1 border-soli=
+d border-system-gray-30 rounded-md" style=3D"-webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 8px; b=
+order-width: 1px; border-style: solid; border-color: #e6e6e6; padding: 8px;=
+ padding-bottom: 12px;"> <table class=3D"font-sans" role=3D"presentation" v=
+align=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100=
+%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemF=
+ont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Ox=
+ygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji',=
+ 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sa=
+ns-serif;"> <tbody> <tr> <td valign=3D"top" align=3D"center" class=3D"h-[20=
+5px]" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; height: 205px;" height=3D"205"> <a href=3D"https://=
+pt.linkedin.com/comm/in/c%C3%A1tia-fernandes-ba969972?lipi=3Durn%3Ali%3Apag=
+e%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQE=
+q1MBbB2bM8g&amp;midSig=3D1l_cy9c-jLWqA1&amp;trk=3Deml-email_pymk_02-pymk_ca=
+rd-0-profile_link&amp;trkEmail=3Deml-email_pymk_02-pymk_card-0-profile_link=
+-null-eau1wl~lddhmhca~fu-null-null&amp;eid=3Deau1wl-lddhmhca-fu" target=3D"=
+_blank" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; te=
+xt-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <table class=
+=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -ap=
+ple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica N=
+eue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',=
+ 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td align=3D=
+"center" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt;"> <img class=3D"inline-block relative bg-color-e=
+ntity-ghost-background clip-path-circle-50 rounded-full w-12 h-12 w-[88px] =
+h-[88px] align-top" src=3D"https://media.licdn.com/dms/image/C4E03AQETWinYJ=
+toTug/profile-displayphoto-shrink_400_400/0/1516470536269?e=3D1680134400&am=
+p;v=3Dbeta&amp;t=3DWjq19GmIKQ9Pa3pGPzTym4wwAccOWuy42MTbG8BAl1I" alt=3D"C=C3=
+=A1tia Fernandes" style=3D"outline: none; text-decoration: none; -ms-interp=
+olation-mode: bicubic; position: relative; display: inline-block; height: 8=
+8px; width: 88px; border-radius: 9999px; background-color: #eae6df; vertica=
+l-align: top; clip-path: circle(50%);" width=3D"88" height=3D"88"> </td> </=
+tr> <tr> <td align=3D"center" class=3D"pt-0.5" style=3D"-webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-to=
+p: 4px;"> <p class=3D"text-sm leading-regular font-semibold text-system-gra=
+y-90" style=3D"margin: 0; font-size: 14px; font-weight: 600; line-height: 1=
+.25; color: #282828;"> C=C3=A1tia Fernandes </p> </td> </tr> <tr> <td class=
+=3D"pt-0.5" align=3D"center" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 4px;"> <p class=
+=3D"text-sm leading-regular text-system-gray-90" style=3D"margin: 0; font-w=
+eight: 400; font-size: 14px; line-height: 1.25; color: #282828;"> Arquiteta=
+ Freelancer/Blogger=E2=80=A6 </p> </td> </tr> </tbody> </table> </a> </td> =
+</tr> <tr> <td valign=3D"bottom" class=3D"h-[77px]" style=3D"-webkit-text-s=
+ize-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; =
+text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; heigh=
+t: 77px;" height=3D"77"> <table class=3D"font-sans" role=3D"presentation" v=
+align=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100=
+%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemF=
+ont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Ox=
+ygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji',=
+ 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sa=
+ns-serif;"> <tbody> <tr> <td align=3D"center" valign=3D"bottom" style=3D"-w=
+ebkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-ad=
+just: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace=
+: 0pt;"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"auto" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',=
+ Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cant=
+arell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji=
+', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbo=
+dy> <tr> <td class=3D"pr-0.25" style=3D"-webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-right: 2px;"> <img=
+ src=3D"https://static.licdn.com/aero-v1/sc/h/a5trofy3m1cbionb0ri63g46e" al=
+t=3D"=C3=8Dcone de pessoas" class=3D"w-2 h-2 block" style=3D"outline: none;=
+ text-decoration: none; -ms-interpolation-mode: bicubic; display: block; he=
+ight: 16px; width: 16px;" width=3D"16" height=3D"16"> </td> <td class=3D"al=
+ign-middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt; vertical-align: middle;"> <p class=3D"leading=
+-regular text-[10px] text-system-gray-70" style=3D"margin: 0; font-weight: =
+400; font-size: 10px; line-height: 1.25; color: #666666;"> 2 conex=C3=B5es =
+em comum </p> </td> </tr> </tbody> </table> </td> </tr> <tr> <td align=3D"c=
+enter" class=3D"pt-1" style=3D"-webkit-text-size-adjust: 100%; -ms-text-siz=
+e-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-ta=
+ble-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 8px;"> <table class=3D=
+"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" width=3D"100%" data-test-id=3D"email-button" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Se=
+goe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen San=
+s', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe =
+UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif=
+;"> <tbody> <tr> <td valign=3D"middle" align=3D"middle" style=3D"-webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">=
+ <a href=3D"https://www.linkedin.com/comm/mynetwork/send-invite/c%C3%A1tia-=
+fernandes-ba969972/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyz=
+R4ycsyGU98t%2BEQ%3D%3D&amp;midSig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MBbB=
+2bM8g&amp;trkEmail=3Deml-email_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhc=
+a%7Efu-null-null&amp;trk=3Deml-email_pymk_02-pymkCard-0-cta&amp;_sig=3D0441=
+mpL9DLWqA1" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; dis=
+play: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; =
+-ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: =
+100%;"> <table class=3D"font-sans border-separate" role=3D"presentation" va=
+lign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"auto=
+" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso=
+-table-rspace: 0pt; border-collapse: separate; font-family: -apple-system, =
+system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira =
+Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gra=
+nde', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"btn-md btn-=
+secondary-emphasis border-color-brand button-link leading-regular !min-h-[a=
+uto] font-sans !shadow-none border-1 border-solid" style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; height=
+: min-content; border-radius: 24px; padding-top: 12px; padding-bottom: 12px=
+; padding-left: 24px; padding-right: 24px; text-align: center; font-size: 1=
+6px; font-weight: 600; cursor: pointer; text-decoration-line: none; backgro=
+und-color: rgba(0, 0, 0, 0); color: #0a66c2; border-width: 1px; border-styl=
+e: solid; border-color: #0a66c2; font-family: -apple-system, system-ui, Bli=
+nkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu,=
+ Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Sego=
+e UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetic=
+a, Arial, sans-serif; line-height: 1.25; min-height: auto !important; box-s=
+hadow: 0 0 #0000, 0 0 #0000, 0 0 #0000 !important;"> <a href=3D"https://www=
+.linkedin.com/comm/mynetwork/send-invite/c%C3%A1tia-fernandes-ba969972/?lip=
+i=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&=
+amp;midSig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Dem=
+l-email_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&amp;tr=
+k=3Deml-email_pymk_02-pymkCard-0-cta&amp;_sig=3D0441mpL9DLWqA1" target=3D"_=
+blank" tabindex=3D"-1" aria-hidden=3D"true" style=3D"color: #0a66c2; cursor=
+: pointer; display: inline-block; text-decoration: none; -webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%;"> <span class=3D"no-underline text-color-brand" style=
+=3D"color: #0a66c2; text-decoration-line: none;"> Conectar </span> </a> </t=
+d> </tr> </tbody> </table> </a> </td> </tr> </tbody> </table> </td> </tr> <=
+/tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table=
+> </td> <td class=3D"w-1/2 pl-1" data-test-id=3D"pymk-card" style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; width: 50%; padding-left: 8px;" width=3D"50%"> <table class=3D"font-sans=
+" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"100%" data-test-id=3D"pymk-entity" style=3D"-webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Robo=
+to, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell=
+, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <=
+tr> <td class=3D"p-1 pb-1.5 border-1 border-solid border-system-gray-30 rou=
+nded-md" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt; border-radius: 8px; border-width: 1px; border-st=
+yle: solid; border-color: #e6e6e6; padding: 8px; padding-bottom: 12px;"> <t=
+able class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <t=
+d valign=3D"top" align=3D"center" class=3D"h-[205px]" style=3D"-webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; hei=
+ght: 205px;" height=3D"205"> <a href=3D"https://br.linkedin.com/comm/in/eli=
+as-costa-6761b743?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4=
+ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1l_cy9c-jLW=
+qA1&amp;trk=3Deml-email_pymk_02-pymk_card-0-profile_link&amp;trkEmail=3Deml=
+-email_pymk_02-pymk_card-0-profile_link-null-eau1wl~lddhmhca~fu-null-null&a=
+mp;eid=3Deau1wl-lddhmhca-fu" target=3D"_blank" style=3D"color: #0a66c2; cur=
+sor: pointer; display: inline-block; text-decoration: none; -webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%;"> <table class=3D"font-sans" role=3D"presentation" v=
+align=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100=
+%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemF=
+ont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Ox=
+ygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji',=
+ 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sa=
+ns-serif;"> <tbody> <tr> <td align=3D"center" style=3D"-webkit-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <img clas=
+s=3D"inline-block relative bg-color-entity-ghost-background clip-path-circl=
+e-50 rounded-full w-12 h-12 w-[88px] h-[88px] align-top" src=3D"https://med=
+ia.licdn.com/dms/image/C4D03AQE8nIh-idua9g/profile-displayphoto-shrink_400_=
+400/0/1626874014847?e=3D1680134400&amp;v=3Dbeta&amp;t=3Dhh6PtRjUkiYvkBrEDTF=
+K-CsuXeYz8zrUDjleG5JKUjI" alt=3D"Elias Costa" style=3D"outline: none; text-=
+decoration: none; -ms-interpolation-mode: bicubic; position: relative; disp=
+lay: inline-block; height: 88px; width: 88px; border-radius: 9999px; backgr=
+ound-color: #eae6df; vertical-align: top; clip-path: circle(50%);" width=3D=
+"88" height=3D"88"> </td> </tr> <tr> <td align=3D"center" class=3D"pt-0.5" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; padding-top: 4px;"> <p class=3D"text-sm leading-regular f=
+ont-semibold text-system-gray-90" style=3D"margin: 0; font-size: 14px; font=
+-weight: 600; line-height: 1.25; color: #282828;"> Elias Costa </p> </td> <=
+/tr> <tr> <td class=3D"pt-0.5" align=3D"center" style=3D"-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-t=
+op: 4px;"> <p class=3D"text-sm leading-regular text-system-gray-90" style=
+=3D"margin: 0; font-weight: 400; font-size: 14px; line-height: 1.25; color:=
+ #282828;"> Software Developer |=E2=80=A6 </p> </td> </tr> </tbody> </table=
+> </a> </td> </tr> <tr> <td valign=3D"bottom" class=3D"h-[77px]" style=3D"-=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; height: 77px;" height=3D"77"> <table class=3D"font-sans" role=3D"pr=
+esentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, Bl=
+inkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu=
+, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Seg=
+oe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helveti=
+ca, Arial, sans-serif;"> <tbody> <tr> <td align=3D"center" valign=3D"bottom=
+" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso=
+-table-rspace: 0pt;"> <table class=3D"font-sans" role=3D"presentation" vali=
+gn=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"auto" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont=
+, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxyge=
+n Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-=
+serif;"> <tbody> <tr> <td class=3D"pr-0.25" style=3D"-webkit-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-siz=
+e-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-right=
+: 2px;"> <img src=3D"https://static.licdn.com/aero-v1/sc/h/a5trofy3m1cbionb=
+0ri63g46e" alt=3D"=C3=8Dcone de pessoas" class=3D"w-2 h-2 block" style=3D"o=
+utline: none; text-decoration: none; -ms-interpolation-mode: bicubic; displ=
+ay: block; height: 16px; width: 16px;" width=3D"16" height=3D"16"> </td> <t=
+d class=3D"align-middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso=
+-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: middle;"> <p cla=
+ss=3D"leading-regular text-[10px] text-system-gray-70" style=3D"margin: 0; =
+font-weight: 400; font-size: 10px; line-height: 1.25; color: #666666;"> 2 c=
+onex=C3=B5es em comum </p> </td> </tr> </tbody> </table> </td> </tr> <tr> <=
+td align=3D"center" class=3D"pt-1" style=3D"-webkit-text-size-adjust: 100%;=
+ -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 8px;"> <t=
+able class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" data-test-id=3D"email-bu=
+tton" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSyst=
+emFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, =
+'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoj=
+i', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial,=
+ sans-serif;"> <tbody> <tr> <td valign=3D"middle" align=3D"middle" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/mynetwork/send-invite/=
+elias-costa-6761b743/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPA=
+yzR4ycsyGU98t%2BEQ%3D%3D&amp;midSig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MB=
+bB2bM8g&amp;trkEmail=3Deml-email_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhm=
+hca%7Efu-null-null&amp;trk=3Deml-email_pymk_02-pymkCard-0-cta&amp;_sig=3D04=
+41mpL9DLWqA1" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; d=
+isplay: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%;"> <table class=3D"font-sans border-separate" role=3D"presentation" =
+valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"au=
+to" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt; border-collapse: separate; font-family: -apple-system=
+, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fir=
+a Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Col=
+or Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida G=
+rande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"btn-md bt=
+n-secondary-emphasis border-color-brand button-link leading-regular !min-h-=
+[auto] font-sans !shadow-none border-1 border-solid" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; heig=
+ht: min-content; border-radius: 24px; padding-top: 12px; padding-bottom: 12=
+px; padding-left: 24px; padding-right: 24px; text-align: center; font-size:=
+ 16px; font-weight: 600; cursor: pointer; text-decoration-line: none; backg=
+round-color: rgba(0, 0, 0, 0); color: #0a66c2; border-width: 1px; border-st=
+yle: solid; border-color: #0a66c2; font-family: -apple-system, system-ui, B=
+linkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubunt=
+u, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Se=
+goe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvet=
+ica, Arial, sans-serif; line-height: 1.25; min-height: auto !important; box=
+-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000 !important;"> <a href=3D"https://w=
+ww.linkedin.com/comm/mynetwork/send-invite/elias-costa-6761b743/?lipi=3Durn=
+%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;mid=
+Sig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml-email=
+_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&amp;trk=3Deml=
+-email_pymk_02-pymkCard-0-cta&amp;_sig=3D0441mpL9DLWqA1" target=3D"_blank" =
+tabindex=3D"-1" aria-hidden=3D"true" style=3D"color: #0a66c2; cursor: point=
+er; display: inline-block; text-decoration: none; -webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%;"> <span class=3D"no-underline text-color-brand" style=3D"color=
+: #0a66c2; text-decoration-line: none;"> Conectar </span> </a> </td> </tr> =
+</tbody> </table> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> <=
+/table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> <=
+/tr> <tr> <td class=3D"w-1/2 pt-1 pl-1" data-test-id=3D"pymk-card" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt; width: 50%; padding-left: 8px; padding-top: 8px;" width=3D"50%"> =
+<table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" data-test-id=3D"pymk-e=
+ntity" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;=
+ -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt=
+; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSys=
+temFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen,=
+ 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emo=
+ji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial=
+, sans-serif;"> <tbody> <tr> <td class=3D"p-1 pb-1.5 border-1 border-solid =
+border-system-gray-30 rounded-md" style=3D"-webkit-text-size-adjust: 100%; =
+-ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: =
+100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 8px; bor=
+der-width: 1px; border-style: solid; border-color: #e6e6e6; padding: 8px; p=
+adding-bottom: 12px;"> <table class=3D"font-sans" role=3D"presentation" val=
+ign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%"=
+ style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-=
+text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-=
+table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFon=
+t, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxyg=
+en Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', '=
+Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans=
+-serif;"> <tbody> <tr> <td valign=3D"top" align=3D"center" class=3D"h-[205p=
+x]" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; m=
+so-table-rspace: 0pt; height: 205px;" height=3D"205"> <a href=3D"https://br=
+.linkedin.com/comm/in/renanpaixao?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk=
+_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midS=
+ig=3D1l_cy9c-jLWqA1&amp;trk=3Deml-email_pymk_02-pymk_card-0-profile_link&am=
+p;trkEmail=3Deml-email_pymk_02-pymk_card-0-profile_link-null-eau1wl~lddhmhc=
+a~fu-null-null&amp;eid=3Deau1wl-lddhmhca-fu" target=3D"_blank" style=3D"col=
+or: #0a66c2; cursor: pointer; display: inline-block; text-decoration: none;=
+ -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%;"> <table class=3D"font-sans" role=3D=
+"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-a=
+djust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui,=
+ BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubu=
+ntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', '=
+Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helv=
+etica, Arial, sans-serif;"> <tbody> <tr> <td align=3D"center" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt;"> <img class=3D"inline-block relative bg-color-entity-ghost-background=
+ clip-path-circle-50 rounded-full w-12 h-12 w-[88px] h-[88px] align-top" sr=
+c=3D"https://media.licdn.com/dms/image/C4D03AQG81K-k1lkBFw/profile-displayp=
+hoto-shrink_400_400/0/1662253440051?e=3D1680134400&amp;v=3Dbeta&amp;t=3D1Uf=
+4EHV_4zw2u53ZVW05zuu30ru76e4GetPNll4cesw" alt=3D"Renan Paix=C3=A3o" style=
+=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; =
+position: relative; display: inline-block; height: 88px; width: 88px; borde=
+r-radius: 9999px; background-color: #eae6df; vertical-align: top; clip-path=
+: circle(50%);" width=3D"88" height=3D"88"> </td> </tr> <tr> <td align=3D"c=
+enter" class=3D"pt-0.5" style=3D"-webkit-text-size-adjust: 100%; -ms-text-s=
+ize-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-=
+table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 4px;"> <p class=3D"t=
+ext-sm leading-regular font-semibold text-system-gray-90" style=3D"margin: =
+0; font-size: 14px; font-weight: 600; line-height: 1.25; color: #282828;"> =
+Renan Paix=C3=A3o </p> </td> </tr> <tr> <td class=3D"pt-0.5" align=3D"cente=
+r" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt; padding-top: 4px;"> <p class=3D"text-sm leading-regula=
+r text-system-gray-90" style=3D"margin: 0; font-weight: 400; font-size: 14p=
+x; line-height: 1.25; color: #282828;"> Front end Developer |=E2=80=A6 </p>=
+ </td> </tr> </tbody> </table> </a> </td> </tr> <tr> <td valign=3D"bottom" =
+class=3D"h-[77px]" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-a=
+djust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt; height: 77px;" height=3D"77"> <table c=
+lass=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellsp=
+acing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family:=
+ -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helveti=
+ca Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid San=
+s', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symb=
+ol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td alig=
+n=3D"center" valign=3D"bottom" style=3D"-webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"font-san=
+s" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, =
+system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira =
+Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gra=
+nde', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-0.25" st=
+yle=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-tex=
+t-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; padding-right: 2px;"> <img src=3D"https://static.licdn.com/=
+aero-v1/sc/h/a5trofy3m1cbionb0ri63g46e" alt=3D"=C3=8Dcone de pessoas" class=
+=3D"w-2 h-2 block" style=3D"outline: none; text-decoration: none; -ms-inter=
+polation-mode: bicubic; display: block; height: 16px; width: 16px;" width=
+=3D"16" height=3D"16"> </td> <td class=3D"align-middle" style=3D"-webkit-te=
+xt-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 10=
+0%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; v=
+ertical-align: middle;"> <p class=3D"leading-regular text-[10px] text-syste=
+m-gray-70" style=3D"margin: 0; font-weight: 400; font-size: 10px; line-heig=
+ht: 1.25; color: #666666;"> 2 conex=C3=B5es em comum </p> </td> </tr> </tbo=
+dy> </table> </td> </tr> <tr> <td align=3D"center" class=3D"pt-1" style=3D"=
+-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-=
+adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspa=
+ce: 0pt; padding-top: 8px;"> <table class=3D"font-sans" role=3D"presentatio=
+n" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" data-test-id=3D"email-button" style=3D"-webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-=
+system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue'=
+, 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'App=
+le Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lu=
+cida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=3D"mi=
+ddle" align=3D"middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-si=
+ze-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-t=
+able-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.=
+com/comm/mynetwork/send-invite/renanpaixao/?lipi=3Durn%3Ali%3Apage%3Aemail_=
+email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midSig=3D1l_cy9c-jLWqA1&=
+amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml-email_pymk_02-pymkCard-0-c=
+ta-null-eau1wl%7Elddhmhca%7Efu-null-null&amp;trk=3Deml-email_pymk_02-pymkCa=
+rd-0-cta&amp;_sig=3D0441mpL9DLWqA1" target=3D"_blank" style=3D"color: #0a66=
+c2; cursor: pointer; display: inline-block; text-decoration: none; -webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%;"> <table class=3D"font-sans border-separate" =
+role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; ms=
+o-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: separate; font=
+-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, =
+'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'D=
+roid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> =
+<td class=3D"btn-md btn-secondary-emphasis border-color-brand button-link l=
+eading-regular !min-h-[auto] font-sans !shadow-none border-1 border-solid" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; height: min-content; border-radius: 24px; padding-top: 12=
+px; padding-bottom: 12px; padding-left: 24px; padding-right: 24px; text-ali=
+gn: center; font-size: 16px; font-weight: 600; cursor: pointer; text-decora=
+tion-line: none; background-color: rgba(0, 0, 0, 0); color: #0a66c2; border=
+-width: 1px; border-style: solid; border-color: #0a66c2; font-family: -appl=
+e-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neu=
+e', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'A=
+pple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', '=
+Lucida Grande', Helvetica, Arial, sans-serif; line-height: 1.25; min-height=
+: auto !important; box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000 !important;"=
+> <a href=3D"https://www.linkedin.com/comm/mynetwork/send-invite/renanpaixa=
+o/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%=
+3D%3D&amp;midSig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmai=
+l=3Deml-email_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&=
+amp;trk=3Deml-email_pymk_02-pymkCard-0-cta&amp;_sig=3D0441mpL9DLWqA1" targe=
+t=3D"_blank" tabindex=3D"-1" aria-hidden=3D"true" style=3D"color: #0a66c2; =
+cursor: pointer; display: inline-block; text-decoration: none; -webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%;"> <span class=3D"no-underline text-color-brand" s=
+tyle=3D"color: #0a66c2; text-decoration-line: none;"> Conectar </span> </a>=
+ </td> </tr> </tbody> </table> </a> </td> </tr> </tbody> </table> </td> </t=
+r> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </t=
+able> </td> <td class=3D"w-1/2 pt-1 pl-1" data-test-id=3D"pymk-card" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; width: 50%; padding-left: 8px; padding-top: 8px;" width=3D"50%=
+"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" data-test-id=3D"p=
+ymk-entity" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: =
+100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace=
+: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkM=
+acSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Ox=
+ygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe U=
+I Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, =
+Arial, sans-serif;"> <tbody> <tr> <td class=3D"p-1 pb-1.5 border-1 border-s=
+olid border-system-gray-30 rounded-md" style=3D"-webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 8px=
+; border-width: 1px; border-style: solid; border-color: #e6e6e6; padding: 8=
+px; padding-bottom: 12px;"> <table class=3D"font-sans" role=3D"presentation=
+" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"=
+100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSyst=
+emFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, =
+'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoj=
+i', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial,=
+ sans-serif;"> <tbody> <tr> <td valign=3D"top" align=3D"center" class=3D"h-=
+[205px]" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt; height: 205px;" height=3D"205"> <a href=3D"https=
+://br.linkedin.com/comm/in/iago-rocha-porto?lipi=3Durn%3Ali%3Apage%3Aemail_=
+email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQEq1MBbB2bM8=
+g&amp;midSig=3D1l_cy9c-jLWqA1&amp;trk=3Deml-email_pymk_02-pymk_card-0-profi=
+le_link&amp;trkEmail=3Deml-email_pymk_02-pymk_card-0-profile_link-null-eau1=
+wl~lddhmhca~fu-null-null&amp;eid=3Deau1wl-lddhmhca-fu" target=3D"_blank" st=
+yle=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decorat=
+ion: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%;"> <table class=3D"font-san=
+s" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, =
+system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira =
+Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gra=
+nde', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td align=3D"center" sty=
+le=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text=
+-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt;"> <img class=3D"inline-block relative bg-color-entity-ghost-=
+background clip-path-circle-50 rounded-full w-12 h-12 w-[88px] h-[88px] ali=
+gn-top" src=3D"https://media.licdn.com/dms/image/C4D03AQGUS7vwQwgVKg/profil=
+e-displayphoto-shrink_400_400/0/1617059270134?e=3D1680134400&amp;v=3Dbeta&a=
+mp;t=3DoNsD9n10-BUnuYGy4BCixUCguDEtzapHKJCkrBJw31s" alt=3D"Iago Rocha Porto=
+" style=3D"outline: none; text-decoration: none; -ms-interpolation-mode: bi=
+cubic; position: relative; display: inline-block; height: 88px; width: 88px=
+; border-radius: 9999px; background-color: #eae6df; vertical-align: top; cl=
+ip-path: circle(50%);" width=3D"88" height=3D"88"> </td> </tr> <tr> <td ali=
+gn=3D"center" class=3D"pt-0.5" style=3D"-webkit-text-size-adjust: 100%; -ms=
+-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100=
+%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 4px;"> <p cla=
+ss=3D"text-sm leading-regular font-semibold text-system-gray-90" style=3D"m=
+argin: 0; font-size: 14px; font-weight: 600; line-height: 1.25; color: #282=
+828;"> Iago Rocha Porto </p> </td> </tr> <tr> <td class=3D"pt-0.5" align=3D=
+"center" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt; padding-top: 4px;"> <p class=3D"text-sm leading-=
+regular text-system-gray-90" style=3D"margin: 0; font-weight: 400; font-siz=
+e: 14px; line-height: 1.25; color: #282828;"> Full Stack Engineer | Node |=
+=E2=80=A6 </p> </td> </tr> </tbody> </table> </a> </td> </tr> <tr> <td vali=
+gn=3D"bottom" class=3D"h-[77px]" style=3D"-webkit-text-size-adjust: 100%; -=
+ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 1=
+00%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; height: 77px;" height=3D=
+"77"> <table class=3D"font-sans" role=3D"presentation" valign=3D"top" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit=
+-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust:=
+ 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt=
+; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Ro=
+boto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantare=
+ll, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', =
+'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody>=
+ <tr> <td align=3D"center" valign=3D"bottom" style=3D"-webkit-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <table cla=
+ss=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspac=
+ing=3D"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -=
+apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica=
+ Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans'=
+, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol=
+', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=
+=3D"pr-0.25" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust:=
+ 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspac=
+e: 0pt; mso-table-rspace: 0pt; padding-right: 2px;"> <img src=3D"https://st=
+atic.licdn.com/aero-v1/sc/h/a5trofy3m1cbionb0ri63g46e" alt=3D"=C3=8Dcone de=
+ pessoas" class=3D"w-2 h-2 block" style=3D"outline: none; text-decoration: =
+none; -ms-interpolation-mode: bicubic; display: block; height: 16px; width:=
+ 16px;" width=3D"16" height=3D"16"> </td> <td class=3D"align-middle" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; vertical-align: middle;"> <p class=3D"leading-regular text-[10=
+px] text-system-gray-70" style=3D"margin: 0; font-weight: 400; font-size: 1=
+0px; line-height: 1.25; color: #666666;"> 3 conex=C3=B5es em comum </p> </t=
+d> </tr> </tbody> </table> </td> </tr> <tr> <td align=3D"center" class=3D"p=
+t-1" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -=
+moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; =
+mso-table-rspace: 0pt; padding-top: 8px;"> <table class=3D"font-sans" role=
+=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" data-test-id=3D"email-button" style=3D"-webkit-text-s=
+ize-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; =
+text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-=
+family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, '=
+Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dr=
+oid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe =
+UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <=
+td valign=3D"middle" align=3D"middle" style=3D"-webkit-text-size-adjust: 10=
+0%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adju=
+st: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https:=
+//www.linkedin.com/comm/mynetwork/send-invite/iago-rocha-porto/?lipi=3Durn%=
+3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midS=
+ig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml-email_=
+pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&amp;trk=3Deml-=
+email_pymk_02-pymkCard-0-cta&amp;_sig=3D0441mpL9DLWqA1" target=3D"_blank" s=
+tyle=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decora=
+tion: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -mo=
+z-text-size-adjust: 100%; text-size-adjust: 100%;"> <table class=3D"font-sa=
+ns border-separate" role=3D"presentation" valign=3D"top" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-coll=
+apse: separate; font-family: -apple-system, system-ui, BlinkMacSystemFont, =
+'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen =
+Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Seg=
+oe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-se=
+rif;"> <tbody> <tr> <td class=3D"btn-md btn-secondary-emphasis border-color=
+-brand button-link leading-regular !min-h-[auto] font-sans !shadow-none bor=
+der-1 border-solid" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tabl=
+e-lspace: 0pt; mso-table-rspace: 0pt; height: min-content; border-radius: 2=
+4px; padding-top: 12px; padding-bottom: 12px; padding-left: 24px; padding-r=
+ight: 24px; text-align: center; font-size: 16px; font-weight: 600; cursor: =
+pointer; text-decoration-line: none; background-color: rgba(0, 0, 0, 0); co=
+lor: #0a66c2; border-width: 1px; border-style: solid; border-color: #0a66c2=
+; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Ro=
+boto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantare=
+ll, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', =
+'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; line-heig=
+ht: 1.25; min-height: auto !important; box-shadow: 0 0 #0000, 0 0 #0000, 0 =
+0 #0000 !important;"> <a href=3D"https://www.linkedin.com/comm/mynetwork/se=
+nd-invite/iago-rocha-porto/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3B=
+TyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midSig=3D1l_cy9c-jLWqA1&amp;midToken=3DA=
+QEq1MBbB2bM8g&amp;trkEmail=3Deml-email_pymk_02-pymkCard-0-cta-null-eau1wl%7=
+Elddhmhca%7Efu-null-null&amp;trk=3Deml-email_pymk_02-pymkCard-0-cta&amp;_si=
+g=3D0441mpL9DLWqA1" target=3D"_blank" tabindex=3D"-1" aria-hidden=3D"true" =
+style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-decor=
+ation: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -m=
+oz-text-size-adjust: 100%; text-size-adjust: 100%;"> <span class=3D"no-unde=
+rline text-color-brand" style=3D"color: #0a66c2; text-decoration-line: none=
+;"> Conectar </span> </a> </td> </tr> </tbody> </table> </a> </td> </tr> </=
+tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>=
+ </td> </tr> </tbody> </table> </td> </tr> <tr> <td class=3D"w-1/2 pt-1 pl-=
+1" data-test-id=3D"pymk-card" style=3D"-webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%=
+; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 50%; padding-left: 8=
+px; padding-top: 8px;" width=3D"50%"> <table class=3D"font-sans" role=3D"pr=
+esentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ width=3D"100%" data-test-id=3D"pymk-entity" style=3D"-webkit-text-size-adj=
+ust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-si=
+ze-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family:=
+ -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helveti=
+ca Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid San=
+s', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symb=
+ol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td clas=
+s=3D"p-1 pb-1.5 border-1 border-solid border-system-gray-30 rounded-md" sty=
+le=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text=
+-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt; border-radius: 8px; border-width: 1px; border-style: solid; =
+border-color: #e6e6e6; padding: 8px; padding-bottom: 12px;"> <table class=
+=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -ap=
+ple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica N=
+eue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',=
+ 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=
+=3D"top" align=3D"center" class=3D"h-[205px]" style=3D"-webkit-text-size-ad=
+just: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-s=
+ize-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; height: 205=
+px;" height=3D"205"> <a href=3D"https://br.linkedin.com/comm/in/marco-ribei=
+ro-do-prado-439929186?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPA=
+yzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1l_cy9c=
+-jLWqA1&amp;trk=3Deml-email_pymk_02-pymk_card-0-profile_link&amp;trkEmail=
+=3Deml-email_pymk_02-pymk_card-0-profile_link-null-eau1wl~lddhmhca~fu-null-=
+null&amp;eid=3Deau1wl-lddhmhca-fu" target=3D"_blank" style=3D"color: #0a66c=
+2; cursor: pointer; display: inline-block; text-decoration: none; -webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%;"> <table class=3D"font-sans" role=3D"presentat=
+ion" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif;"> <tbody> <tr> <td align=3D"center" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <i=
+mg class=3D"inline-block relative bg-color-entity-ghost-background clip-pat=
+h-circle-50 rounded-full w-12 h-12 w-[88px] h-[88px] align-top" src=3D"http=
+s://media.licdn.com/dms/image/C4E03AQFwxuD9NroOtQ/profile-displayphoto-shri=
+nk_400_400/0/1645113393170?e=3D1680134400&amp;v=3Dbeta&amp;t=3Dh05sPPP73mB5=
+kVsfqsydMic_IZbrfU601_YAiSI9U6U" alt=3D"Marco Ribeiro do Prado" style=3D"ou=
+tline: none; text-decoration: none; -ms-interpolation-mode: bicubic; positi=
+on: relative; display: inline-block; height: 88px; width: 88px; border-radi=
+us: 9999px; background-color: #eae6df; vertical-align: top; clip-path: circ=
+le(50%);" width=3D"88" height=3D"88"> </td> </tr> <tr> <td align=3D"center"=
+ class=3D"pt-0.5" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-ad=
+just: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-=
+lspace: 0pt; mso-table-rspace: 0pt; padding-top: 4px;"> <p class=3D"text-sm=
+ leading-regular font-semibold text-system-gray-90" style=3D"margin: 0; fon=
+t-size: 14px; font-weight: 600; line-height: 1.25; color: #282828;"> Marco =
+Ribeiro do Prado </p> </td> </tr> <tr> <td class=3D"pt-0.5" align=3D"center=
+" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso=
+-table-rspace: 0pt; padding-top: 4px;"> <p class=3D"text-sm leading-regular=
+ text-system-gray-90" style=3D"margin: 0; font-weight: 400; font-size: 14px=
+; line-height: 1.25; color: #282828;"> Desenvolvedor Full Stack - C#=E2=80=
+=A6 </p> </td> </tr> </tbody> </table> </a> </td> </tr> <tr> <td valign=3D"=
+bottom" class=3D"h-[77px]" style=3D"-webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; height: 77px;" height=3D"77"> =
+<table class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font=
+-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, =
+'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'D=
+roid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> =
+<td align=3D"center" valign=3D"bottom" style=3D"-webkit-text-size-adjust: 1=
+00%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adj=
+ust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <table class=3D"=
+font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-=
+system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue'=
+, 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'App=
+le Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lu=
+cida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"pr-=
+0.25" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; padding-right: 2px;"> <img src=3D"https://static.li=
+cdn.com/aero-v1/sc/h/a5trofy3m1cbionb0ri63g46e" alt=3D"=C3=8Dcone de pessoa=
+s" class=3D"w-2 h-2 block" style=3D"outline: none; text-decoration: none; -=
+ms-interpolation-mode: bicubic; display: block; height: 16px; width: 16px;"=
+ width=3D"16" height=3D"16"> </td> <td class=3D"align-middle" style=3D"-web=
+kit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adju=
+st: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: =
+0pt; vertical-align: middle;"> <p class=3D"leading-regular text-[10px] text=
+-system-gray-70" style=3D"margin: 0; font-weight: 400; font-size: 10px; lin=
+e-height: 1.25; color: #666666;"> 2 conex=C3=B5es em comum </p> </td> </tr>=
+ </tbody> </table> </td> </tr> <tr> <td align=3D"center" class=3D"pt-1" sty=
+le=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text=
+-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-tabl=
+e-rspace: 0pt; padding-top: 8px;"> <table class=3D"font-sans" role=3D"prese=
+ntation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%" data-test-id=3D"email-button" style=3D"-webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -=
+apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica=
+ Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans'=
+, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol=
+', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=
+=3D"middle" align=3D"middle" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.lin=
+kedin.com/comm/mynetwork/send-invite/marco-ribeiro-do-prado-439929186/?lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&a=
+mp;midSig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml=
+-email_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&amp;trk=
+=3Deml-email_pymk_02-pymkCard-0-cta&amp;_sig=3D0441mpL9DLWqA1" target=3D"_b=
+lank" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text=
+-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <table class=3D"=
+font-sans border-separate" role=3D"presentation" valign=3D"top" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; bord=
+er-collapse: separate; font-family: -apple-system, system-ui, BlinkMacSyste=
+mFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, '=
+Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji=
+', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, =
+sans-serif;"> <tbody> <tr> <td class=3D"btn-md btn-secondary-emphasis borde=
+r-color-brand button-link leading-regular !min-h-[auto] font-sans !shadow-n=
+one border-1 border-solid" style=3D"-webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; m=
+so-table-lspace: 0pt; mso-table-rspace: 0pt; height: min-content; border-ra=
+dius: 24px; padding-top: 12px; padding-bottom: 12px; padding-left: 24px; pa=
+dding-right: 24px; text-align: center; font-size: 16px; font-weight: 600; c=
+ursor: pointer; text-decoration-line: none; background-color: rgba(0, 0, 0,=
+ 0); color: #0a66c2; border-width: 1px; border-style: solid; border-color: =
+#0a66c2; font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe =
+UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', =
+Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI E=
+moji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif; li=
+ne-height: 1.25; min-height: auto !important; box-shadow: 0 0 #0000, 0 0 #0=
+000, 0 0 #0000 !important;"> <a href=3D"https://www.linkedin.com/comm/mynet=
+work/send-invite/marco-ribeiro-do-prado-439929186/?lipi=3Durn%3Ali%3Apage%3=
+Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midSig=3D1l_cy9c-=
+jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml-email_pymk_02-pymkC=
+ard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&amp;trk=3Deml-email_pymk_02=
+-pymkCard-0-cta&amp;_sig=3D0441mpL9DLWqA1" target=3D"_blank" tabindex=3D"-1=
+" aria-hidden=3D"true" style=3D"color: #0a66c2; cursor: pointer; display: i=
+nline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-tex=
+t-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;">=
+ <span class=3D"no-underline text-color-brand" style=3D"color: #0a66c2; tex=
+t-decoration-line: none;"> Conectar </span> </a> </td> </tr> </tbody> </tab=
+le> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> =
+</tr> </tbody> </table> </td> </tr> </tbody> </table> </td> <td class=3D"w-=
+1/2 pt-1 pl-1" data-test-id=3D"pymk-card" style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-=
+adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 50%; pad=
+ding-left: 8px; padding-top: 8px;" width=3D"50%"> <table class=3D"font-sans=
+" role=3D"presentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"100%" data-test-id=3D"pymk-entity" style=3D"-webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Robo=
+to, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell=
+, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <=
+tr> <td class=3D"p-1 pb-1.5 border-1 border-solid border-system-gray-30 rou=
+nded-md" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0=
+pt; mso-table-rspace: 0pt; border-radius: 8px; border-width: 1px; border-st=
+yle: solid; border-color: #e6e6e6; padding: 8px; padding-bottom: 12px;"> <t=
+able class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-si=
+ze-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; t=
+ext-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-f=
+amily: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'H=
+elvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Dro=
+id Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <t=
+d valign=3D"top" align=3D"center" class=3D"h-[205px]" style=3D"-webkit-text=
+-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%=
+; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; hei=
+ght: 205px;" height=3D"205"> <a href=3D"https://pt.linkedin.com/comm/in/tia=
+go-filipe-silva-42710956?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyi=
+xPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1l_c=
+y9c-jLWqA1&amp;trk=3Deml-email_pymk_02-pymk_card-0-profile_link&amp;trkEmai=
+l=3Deml-email_pymk_02-pymk_card-0-profile_link-null-eau1wl~lddhmhca~fu-null=
+-null&amp;eid=3Deau1wl-lddhmhca-fu" target=3D"_blank" style=3D"color: #0a66=
+c2; cursor: pointer; display: inline-block; text-decoration: none; -webkit-=
+text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: =
+100%; text-size-adjust: 100%;"> <table class=3D"font-sans" role=3D"presenta=
+tion" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMac=
+SystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxyg=
+en, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Ar=
+ial, sans-serif;"> <tbody> <tr> <td align=3D"center" style=3D"-webkit-text-=
+size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%;=
+ text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> <i=
+mg class=3D"inline-block relative bg-color-entity-ghost-background clip-pat=
+h-circle-50 rounded-full w-12 h-12 w-[88px] h-[88px] align-top" src=3D"http=
+s://media.licdn.com/dms/image/D4E03AQFKFWbtfyVEUw/profile-displayphoto-shri=
+nk_400_400/0/1664815093604?e=3D1680134400&amp;v=3Dbeta&amp;t=3DC_NKb2aGDi2y=
+DvDvHEc5gaMM5-FF1S2n0bQ52lB_SAs" alt=3D"Tiago Filipe Silva" style=3D"outlin=
+e: none; text-decoration: none; -ms-interpolation-mode: bicubic; position: =
+relative; display: inline-block; height: 88px; width: 88px; border-radius: =
+9999px; background-color: #eae6df; vertical-align: top; clip-path: circle(5=
+0%);" width=3D"88" height=3D"88"> </td> </tr> <tr> <td align=3D"center" cla=
+ss=3D"pt-0.5" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt; padding-top: 4px;"> <p class=3D"text-sm lea=
+ding-regular font-semibold text-system-gray-90" style=3D"margin: 0; font-si=
+ze: 14px; font-weight: 600; line-height: 1.25; color: #282828;"> Tiago Fili=
+pe Silva </p> </td> </tr> <tr> <td class=3D"pt-0.5" align=3D"center" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; padding-top: 4px;"> <p class=3D"text-sm leading-regular text-s=
+ystem-gray-90" style=3D"margin: 0; font-weight: 400; font-size: 14px; line-=
+height: 1.25; color: #282828;"> Architect </p> </td> </tr> </tbody> </table=
+> </a> </td> </tr> <tr> <td valign=3D"bottom" class=3D"h-[77px]" style=3D"-=
+webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-a=
+djust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspac=
+e: 0pt; height: 77px;" height=3D"77"> <table class=3D"font-sans" role=3D"pr=
+esentation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ width=3D"100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adju=
+st: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-ls=
+pace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, system-ui, Bl=
+inkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu=
+, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Seg=
+oe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helveti=
+ca, Arial, sans-serif;"> <tbody> <tr> <td align=3D"center" valign=3D"bottom=
+" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz=
+-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso=
+-table-rspace: 0pt;"> <table class=3D"font-sans" role=3D"presentation" vali=
+gn=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"auto" =
+style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-t=
+ext-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-t=
+able-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSystemFont=
+, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxyge=
+n Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'S=
+egoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-=
+serif;"> <tbody> <tr> <td class=3D"pr-0.25" style=3D"-webkit-text-size-adju=
+st: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-siz=
+e-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-right=
+: 2px;"> <img src=3D"https://static.licdn.com/aero-v1/sc/h/a5trofy3m1cbionb=
+0ri63g46e" alt=3D"=C3=8Dcone de pessoas" class=3D"w-2 h-2 block" style=3D"o=
+utline: none; text-decoration: none; -ms-interpolation-mode: bicubic; displ=
+ay: block; height: 16px; width: 16px;" width=3D"16" height=3D"16"> </td> <t=
+d class=3D"align-middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-=
+size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso=
+-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: middle;"> <p cla=
+ss=3D"leading-regular text-[10px] text-system-gray-70" style=3D"margin: 0; =
+font-weight: 400; font-size: 10px; line-height: 1.25; color: #666666;"> 8 c=
+onex=C3=B5es em comum </p> </td> </tr> </tbody> </table> </td> </tr> <tr> <=
+td align=3D"center" class=3D"pt-1" style=3D"-webkit-text-size-adjust: 100%;=
+ -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust:=
+ 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 8px;"> <t=
+able class=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" data-test-id=3D"email-bu=
+tton" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSyst=
+emFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, =
+'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoj=
+i', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial,=
+ sans-serif;"> <tbody> <tr> <td valign=3D"middle" align=3D"middle" style=3D=
+"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size=
+-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rsp=
+ace: 0pt;"> <a href=3D"https://www.linkedin.com/comm/mynetwork/send-invite/=
+tiago-filipe-silva-42710956/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3=
+BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midSig=3D1l_cy9c-jLWqA1&amp;midToken=3D=
+AQEq1MBbB2bM8g&amp;trkEmail=3Deml-email_pymk_02-pymkCard-0-cta-null-eau1wl%=
+7Elddhmhca%7Efu-null-null&amp;trk=3Deml-email_pymk_02-pymkCard-0-cta&amp;_s=
+ig=3D0441mpL9DLWqA1" target=3D"_blank" style=3D"color: #0a66c2; cursor: poi=
+nter; display: inline-block; text-decoration: none; -webkit-text-size-adjus=
+t: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size=
+-adjust: 100%;"> <table class=3D"font-sans border-separate" role=3D"present=
+ation" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"auto" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 1=
+00%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace:=
+ 0pt; mso-table-rspace: 0pt; border-collapse: separate; font-family: -apple=
+-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue=
+', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Ap=
+ple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'L=
+ucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"bt=
+n-md btn-secondary-emphasis border-color-brand button-link leading-regular =
+!min-h-[auto] font-sans !shadow-none border-1 border-solid" style=3D"-webki=
+t-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust=
+: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0p=
+t; height: min-content; border-radius: 24px; padding-top: 12px; padding-bot=
+tom: 12px; padding-left: 24px; padding-right: 24px; text-align: center; fon=
+t-size: 16px; font-weight: 600; cursor: pointer; text-decoration-line: none=
+; background-color: rgba(0, 0, 0, 0); color: #0a66c2; border-width: 1px; bo=
+rder-style: solid; border-color: #0a66c2; font-family: -apple-system, syste=
+m-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans'=
+, Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoj=
+i', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande',=
+ Helvetica, Arial, sans-serif; line-height: 1.25; min-height: auto !importa=
+nt; box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000 !important;"> <a href=3D"ht=
+tps://www.linkedin.com/comm/mynetwork/send-invite/tiago-filipe-silva-427109=
+56/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ=
+%3D%3D&amp;midSig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEma=
+il=3Deml-email_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null=
+&amp;trk=3Deml-email_pymk_02-pymkCard-0-cta&amp;_sig=3D0441mpL9DLWqA1" targ=
+et=3D"_blank" tabindex=3D"-1" aria-hidden=3D"true" style=3D"color: #0a66c2;=
+ cursor: pointer; display: inline-block; text-decoration: none; -webkit-tex=
+t-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100=
+%; text-size-adjust: 100%;"> <span class=3D"no-underline text-color-brand" =
+style=3D"color: #0a66c2; text-decoration-line: none;"> Conectar </span> </a=
+> </td> </tr> </tbody> </table> </a> </td> </tr> </tbody> </table> </td> </=
+tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </=
+table> </td> </tr> </tbody> </table> </td> <td style=3D"-webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"></td> </t=
+r> </tbody> </table> </td> </tr> <tr> <td class=3D"pt-2" style=3D"-webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+padding-top: 16px;"> <table class=3D"font-sans" role=3D"presentation" valig=
+n=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" d=
+ata-test-id=3D"email-button" style=3D"-webkit-text-size-adjust: 100%; -ms-t=
+ext-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;=
+ mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -apple-system, =
+system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira =
+Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color=
+ Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Gra=
+nde', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td valign=3D"middle" al=
+ign=3D"middle" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjus=
+t: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lsp=
+ace: 0pt; mso-table-rspace: 0pt;"> <a href=3D"https://www.linkedin.com/comm=
+/mynetwork/add-connections/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3B=
+TyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1=
+l_cy9c-jLWqA1&amp;trk=3Deml-email_pymk_02-see_more-0-cta&amp;trkEmail=3Deml=
+-email_pymk_02-see_more-0-cta-null-eau1wl~lddhmhca~fu-null-null&amp;eid=3De=
+au1wl-lddhmhca-fu" target=3D"_blank" style=3D"color: #0a66c2; cursor: point=
+er; display: inline-block; text-decoration: none; -webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%;"> <table class=3D"font-sans border-separate" role=3D"presentat=
+ion" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"auto" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: =
+0pt; mso-table-rspace: 0pt; border-collapse: separate; font-family: -apple-=
+system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue'=
+, 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'App=
+le Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lu=
+cida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D"btn=
+-md btn-primary border-color-brand button-link leading-regular !min-h-[auto=
+] font-sans !shadow-none border-1 border-solid" style=3D"-webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; height: m=
+in-content; border-radius: 24px; padding-top: 12px; padding-bottom: 12px; p=
+adding-left: 24px; padding-right: 24px; text-align: center; font-size: 16px=
+; font-weight: 600; cursor: pointer; text-decoration-line: none; background=
+-color: #0a66c2; color: #ffffff; border-width: 1px; border-style: solid; bo=
+rder-color: #0a66c2; font-family: -apple-system, system-ui, BlinkMacSystemF=
+ont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Ox=
+ygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji',=
+ 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sa=
+ns-serif; line-height: 1.25; min-height: auto !important; box-shadow: 0 0 #=
+0000, 0 0 #0000, 0 0 #0000 !important;"> <a href=3D"https://www.linkedin.co=
+m/comm/mynetwork/add-connections/?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk=
+_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midS=
+ig=3D1l_cy9c-jLWqA1&amp;trk=3Deml-email_pymk_02-see_more-0-cta&amp;trkEmail=
+=3Deml-email_pymk_02-see_more-0-cta-null-eau1wl~lddhmhca~fu-null-null&amp;e=
+id=3Deau1wl-lddhmhca-fu" target=3D"_blank" tabindex=3D"-1" aria-hidden=3D"t=
+rue" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text-=
+decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100=
+%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <span class=3D"no=
+-underline text-white" style=3D"color: #ffffff; text-decoration-line: none;=
+"> Ver mais </span> </a> </td> </tr> </tbody> </table> </a> </td> </tr> </t=
+body> </table> </td> </tr> </tbody> </table> <div itemscope itemtype=3D"htt=
+p://schema.org/EmailMessage"> <div itemprop=3D"potentialAction" itemscope i=
+temtype=3D"http://schema.org/ViewAction"> <link itemprop=3D"target url" hre=
+f=3D"https://www.linkedin.com/comm/mynetwork/send-invite/vocjunior/?lipi=3D=
+urn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;=
+midSig=3D1l_cy9c-jLWqA1&amp;midToken=3DAQEq1MBbB2bM8g&amp;trkEmail=3Deml-em=
+ail_pymk_02-pymkCard-0-cta-null-eau1wl%7Elddhmhca%7Efu-null-null&amp;trk=3D=
+eml-email_pymk_02-pymkCard-0-cta&amp;_sig=3D0441mpL9DLWqA1"> <meta itemprop=
+=3D"name" content=3D"Conectar"> </div> <meta itemprop=3D"description" conte=
+nt=3D"Cpnectar com Valdeci"> <div itemprop=3D"publisher" itemscope itemtype=
+=3D"http://schema.org/Organization"> <meta itemprop=3D"name" content=3D"Lin=
+kedIn"> <link itemprop=3D"url" href=3D"https://www.linkedin.com"> </div> </=
+div> </div> </td> </tr> <tr> <td class=3D"bg-color-background-canvas p-3" s=
+tyle=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-te=
+xt-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-ta=
+ble-rspace: 0pt; background-color: #f3f2f0; padding: 24px;"> <table class=
+=3D"font-sans" role=3D"presentation" valign=3D"top" border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-family: -ap=
+ple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica N=
+eue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', =
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',=
+ 'Lucida Grande', Helvetica, Arial, sans-serif;"> <tbody> <tr> <td class=3D=
+"text-center pb-2" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-a=
+djust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt; padding-bottom: 16px; text-align: cent=
+er;"> <h2 class=3D"text-lg" style=3D"margin: 0; font-weight: 500; font-size=
+: 20px;">Mantenha-se a par das atualiza=C3=A7=C3=B5es com o aplicativo do L=
+inkedIn</h2> </td> </tr> <tr> <td class=3D"text-center" data-test-id=3D"foo=
+ter-app-store-icon" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-tabl=
+e-lspace: 0pt; mso-table-rspace: 0pt; text-align: center;"> <a href=3D"http=
+s://itunes.apple.com/us/app/linkedin/id288429040?pt=3D10746&amp;ct=3Dst_app=
+site_flagship&amp;mt=3D8" style=3D"color: #0a66c2; cursor: pointer; display=
+: inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-=
+text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%=
+;"> <img alt=3D"Baixe na App Store" src=3D"https://static.licdn.com/aero-v1=
+/sc/h/uslxhb1orpuqowrx33atnpsu" class=3D"h-[40px] w-[120px] pr-1" style=3D"=
+outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; heig=
+ht: 40px; width: 120px; padding-right: 8px;" width=3D"120" height=3D"40"> <=
+/a><a href=3D"https://play.google.com/store/apps/details?id=3Dcom.linkedin.=
+android&amp;referrer=3Dst_appsite_flagship" style=3D"color: #0a66c2; cursor=
+: pointer; display: inline-block; text-decoration: none; -webkit-text-size-=
+adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text=
+-size-adjust: 100%;"> <img alt=3D"Baixe no Google Play" src=3D"https://stat=
+ic.licdn.com/aero-v1/sc/h/a460qa5pzdbqv5d5y7d8sbovh" class=3D"h-[40px] w-[1=
+34px]" style=3D"outline: none; text-decoration: none; -ms-interpolation-mod=
+e: bicubic; height: 40px; width: 134px;" width=3D"134" height=3D"40"> </a> =
+</td> </tr> <tr> <td class=3D"py-2" style=3D"-webkit-text-size-adjust: 100%=
+; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust=
+: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-top: 16px; pa=
+dding-bottom: 16px;"><hr class=3D"border-none bg-[#e0dfdd] h-[1px]" style=
+=3D"height: 1px; border-style: none; background-color: #e0dfdd;"></td> </tr=
+> </tbody> </table> <table class=3D"font-sans text-xs" role=3D"presentation=
+" valign=3D"top" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"=
+100%" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; =
+-moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt;=
+ mso-table-rspace: 0pt; font-family: -apple-system, system-ui, BlinkMacSyst=
+emFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, =
+'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoj=
+i', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial,=
+ sans-serif; font-size: 12px;"> <tbody> <tr> <td class=3D"pb-1 m-0" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-s=
+ize-adjust: 100%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-=
+rspace: 0pt; margin: 0px; padding-bottom: 8px;"> Este e-mail foi enviado a =
+Rafael Souza (Desenvolvedor web na Solution.dev) </td> </tr> <tr> <td class=
+=3D"pb-1 m-0" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt; margin: 0px; padding-bottom: 8px;"> <a href=
+=3D"https://www.linkedin.com/help/linkedin/answer/4788?lang=3Dpt&amp;lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&a=
+mp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1l_cy9c-jLWqA1&amp;trk=3Deml-emai=
+l_pymk_02-SecurityHelp-0-footerglimmer&amp;trkEmail=3Deml-email_pymk_02-Sec=
+urityHelp-0-footerglimmer-null-eau1wl~lddhmhca~fu-null-null&amp;eid=3Deau1w=
+l-lddhmhca-fu" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; =
+display: inline-block; text-decoration: none; -webkit-text-size-adjust: 100=
+%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjus=
+t: 100%;">Saiba por que inclu=C3=ADmos isso.</a> </td> </tr> <tr> <td class=
+=3D"pb-1 m-0" style=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust=
+: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%; mso-table-lspa=
+ce: 0pt; mso-table-rspace: 0pt; margin: 0px; padding-bottom: 8px;">Voc=C3=
+=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o de pessoas que tal=
+vez conhe=C3=A7a.</td> </tr> <tr> <td class=3D"pb-1 m-0" style=3D"-webkit-t=
+ext-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 1=
+00%; text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+margin: 0px; padding-bottom: 8px;"> <a href=3D"https://www.linkedin.com/com=
+m/psettings/email-unsubscribe?lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%=
+3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=
+=3D1l_cy9c-jLWqA1&amp;trk=3Deml-email_pymk_02-unsubscribe-0-footerGlimmer&a=
+mp;trkEmail=3Deml-email_pymk_02-unsubscribe-0-footerGlimmer-null-eau1wl~ldd=
+hmhca~fu-null-null&amp;eid=3Deau1wl-lddhmhca-fu&amp;loid=3DAQHaSpdoG-IOUgAA=
+AYXvjRdmcKoXupnkbCcAv92oycDyH6j0B1oKlr2-i7BjIx6ep9GoC-F43YBoPUh3B4euRtqckPn=
+pkS-3g65U8jW9EB3G" target=3D"_blank" style=3D"color: #0a66c2; cursor: point=
+er; display: inline-block; text-decoration: none; -webkit-text-size-adjust:=
+ 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-a=
+djust: 100%;">Cancelar inscri=C3=A7=C3=A3o</a> =C2=A0=C2=A0=C2=B7=C2=A0=C2=
+=A0 <a href=3D"https://www.linkedin.com/help/linkedin/answer/67?lang=3Dpt&a=
+mp;lipi=3Durn%3Ali%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%=
+3D%3D&amp;midToken=3DAQEq1MBbB2bM8g&amp;midSig=3D1l_cy9c-jLWqA1&amp;trk=3De=
+ml-email_pymk_02-help-0-footerglimmer&amp;trkEmail=3Deml-email_pymk_02-help=
+-0-footerglimmer-null-eau1wl~lddhmhca~fu-null-null&amp;eid=3Deau1wl-lddhmhc=
+a-fu" target=3D"_blank" style=3D"color: #0a66c2; cursor: pointer; display: =
+inline-block; text-decoration: none; -webkit-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"=
+>Ajuda</a> </td> </tr> <tr> <td class=3D"pb-1" style=3D"-webkit-text-size-a=
+djust: 100%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-=
+size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding-bo=
+ttom: 8px;"> <a href=3D"https://www.linkedin.com/comm/feed/?lipi=3Durn%3Ali=
+%3Apage%3Aemail_email_pymk_02%3BTyixPAyzR4ycsyGU98t%2BEQ%3D%3D&amp;midToken=
+=3DAQEq1MBbB2bM8g&amp;midSig=3D1l_cy9c-jLWqA1&amp;trk=3Deml-email_pymk_02-f=
+ooter-0-logoGlimmer&amp;trkEmail=3Deml-email_pymk_02-footer-0-logoGlimmer-n=
+ull-eau1wl~lddhmhca~fu-null-null&amp;eid=3Deau1wl-lddhmhca-fu" target=3D"_b=
+lank" style=3D"color: #0a66c2; cursor: pointer; display: inline-block; text=
+-decoration: none; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10=
+0%; -moz-text-size-adjust: 100%; text-size-adjust: 100%;"> <img src=3D"http=
+s://static.licdn.com/aero-v1/sc/h/9ehe6n39fa07dc5edzv0rla4e" alt=3D"LinkedI=
+n" class=3D"block h-[14px] w-[56px] image-rendering-crisp" style=3D"outline=
+: none; text-decoration: none; image-rendering: -moz-crisp-edges; image-ren=
+dering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-r=
+endering: crisp-edges; -ms-interpolation-mode: nearest-neighbor; display: b=
+lock; height: 14px; width: 56px;" width=3D"56" height=3D"14"> </a> </td> </=
+tr> <tr> <td data-test-copyright-text style=3D"-webkit-text-size-adjust: 10=
+0%; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; text-size-adju=
+st: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt;"> =C2=A9 2023 Linke=
+dIn Ireland Unlimited Company, Wilton Plaza, Wilton Place, Dublin 2 - Irlan=
+da. LinkedIn =C3=A9 um nome comercial registrado da LinkedIn Ireland Unlimi=
+ted Company. <span data-test-trademarks-text> LinkedIn e o logo do LinkedIn=
+ s=C3=A3o marcas registradas do LinkedIn. </span> </td> </tr> </tbody> </ta=
+ble> </td> </tr> </tbody> </table> <img alt role=3D"presentation" src=3D"ht=
+tps://www.linkedin.com/emimp/ip_WldGMU1YZHNMV3hrWkdodGFHTmhMV1oxOlpXMWhhV3h=
+mY0hsdGExOHdNZz09Og=3D=3D.gif" style=3D"outline: none; text-decoration: non=
+e; -ms-interpolation-mode: bicubic; width: 1px; height: 1px;" width=3D"1" h=
+eight=3D"1"> </body> </html>
+------=_Part_1433933_716029921.1674761279971--
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>color</key>
+	<string>000000</string>
+	<key>conversation-id</key>
+	<integer>8681</integer>
+	<key>date-last-viewed</key>
+	<integer>0</integer>
+	<key>date-received</key>
+	<integer>1674761281</integer>
+	<key>flags</key>
+	<integer>8590195840</integer>
+	<key>gmail-label-ids</key>
+	<array>
+		<integer>2</integer>
+	</array>
+	<key>remote-id</key>
+	<string>12046</string>
+</dict>
+</plist>
